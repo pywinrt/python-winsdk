@@ -1,0 +1,9 @@
+graft cppwinrt
+graft pywinrt
+recursive-exclude pywinrt *.pyc
+recursive-exclude pywinrt *.pyd
+include CMakeLists.txt
+include LICENSE
+include pyproject.toml
+include README.md
+include setup.py
