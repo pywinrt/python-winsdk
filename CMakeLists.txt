@@ -2,9 +2,12 @@ cmake_minimum_required(VERSION 3.16)
 project(winsdk)
 
 file(GLOB sources "${CMAKE_CURRENT_SOURCE_DIR}/pywinrt/${CMAKE_PROJECT_NAME}/src/*.cpp")
-foreach(file ${sources})
-    message(${file})
-endforeach()
+
+file(GLOB headers RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
+    "cppwinrt/*.h"
+    "cppwinrt/impl/*.h"
+    "pywinrt/winrt/src/*.h"
+)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -20,9 +23,16 @@ find_package (Python3 ${PYTHON_BASE_VERSION} EXACT COMPONENTS Interpreter Develo
 
 Python3_add_library (_winrt MODULE ${sources})
 set_target_properties(_winrt PROPERTIES LIBRARY_OUTPUT_NAME_DEBUG _winrt_d)
-target_precompile_headers(_winrt PRIVATE <winrt/base.h> [["pybase.h"]])
+target_precompile_headers(_winrt PRIVATE ${headers})
 target_include_directories(_winrt PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/cppwinrt" "${CMAKE_CURRENT_SOURCE_DIR}/pywinrt/${CMAKE_PROJECT_NAME}/src")
 target_link_libraries(_winrt PRIVATE onecore)
+
+if($ENV{CI})
+    # CI has limited resources (runs out of heap space), so we limit the number
+    # of concurrent processes to combat this
+    set_property(GLOBAL PROPERTY JOB_POOLS compile_job=2)
+    set_property(TARGET _winrt PROPERTY JOB_POOL_COMPILE compile_job)
+endif()
 
 string(REGEX REPLACE "/GR" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 # TODO: re-enable /GL and /LTCG when we get a bigger build machine
