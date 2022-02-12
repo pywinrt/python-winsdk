@@ -6,7 +6,7 @@ file(GLOB sources "${CMAKE_CURRENT_SOURCE_DIR}/pywinrt/${CMAKE_PROJECT_NAME}/src
 file(GLOB headers RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "cppwinrt/*.h"
     "cppwinrt/impl/*.h"
-    "pywinrt/winrt/src/*.h"
+    "pywinrt/${CMAKE_PROJECT_NAME}/src/*.h"
 )
 
 set(CMAKE_CXX_STANDARD 17)
