@@ -1,6 +1,6 @@
 param ([switch]$skipNugetInstall)
 
-$pywinrt_version = '1.0.0-beta.2'
+$pywinrt_version = '1.0.0-beta.3'
 $cppwinrt_version = '2.0.220110.5'
 $windows_sdk_version = '10.0.22000.0'
 $repoRootPath = (Get-Item $PSScriptRoot).FullName
@@ -8,7 +8,7 @@ $nugetPath = "$repoRootPath\_nuget"
 $projectionPath = "$PSScriptRoot"
 
 if (!$skipNugetInstall) {
-    nuget install PyWinRT -Version $pywinrt_version -Prerelease -ExcludeVersion -OutputDirectory "$nugetPath"
+    nuget install PyWinRT -Version $pywinrt_version -Prerelease -NoCache -ExcludeVersion -OutputDirectory "$nugetPath"
     nuget install Microsoft.Windows.CppWinRT -Version $cppwinrt_version -ExcludeVersion -OutputDirectory "$nugetPath"
 }
 

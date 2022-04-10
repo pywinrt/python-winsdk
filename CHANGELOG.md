@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+
+### Changed
+
+- Update PyWinRT to [v1.0.0-beta.3](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.3).
+
 ## [v1.0.0b2] - 2022-02-12
 
 ### Changed
