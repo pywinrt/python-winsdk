@@ -1,6 +1,6 @@
 param ([switch]$skipNugetInstall)
 
-$pywinrt_version = '1.0.0-beta.3'
+$pywinrt_version = '1.0.0-beta.4'
 $cppwinrt_version = '2.0.220110.5'
 $windows_sdk_version = '10.0.22000.0'
 $repoRootPath = (Get-Item $PSScriptRoot).FullName
