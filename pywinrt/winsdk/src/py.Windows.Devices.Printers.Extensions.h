@@ -21,6 +21,12 @@ namespace py::wrapper::Windows::Devices::Printers::Extensions
     using Print3DWorkflow = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::Print3DWorkflow>;
     using Print3DWorkflowPrintRequestedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::Print3DWorkflowPrintRequestedEventArgs>;
     using Print3DWorkflowPrinterChangedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::Print3DWorkflowPrinterChangedEventArgs>;
+    using PrintExtensionContext = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::PrintExtensionContext>;
+    using PrintNotificationEventDetails = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails>;
+    using PrintTaskConfiguration = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration>;
+    using PrintTaskConfigurationSaveRequest = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest>;
+    using PrintTaskConfigurationSaveRequestedDeferral = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral>;
+    using PrintTaskConfigurationSaveRequestedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs>;
 }
 
 namespace py
@@ -52,6 +58,42 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Devices::Printers::Extensions::Print3DWorkflowPrinterChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintExtensionContext>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

@@ -40,11 +40,39 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
         AutoUpdateSettingsOptions();
         static auto CreateFromAppInstallerInfo(winrt::Windows::ApplicationModel::AppInstallerInfo const& appInstallerInfo);
     };
+    struct __declspec(empty_bases) CreateSharedPackageContainerOptions : winrt::Windows::Management::Deployment::ICreateSharedPackageContainerOptions
+    {
+        CreateSharedPackageContainerOptions(std::nullptr_t) noexcept {}
+        CreateSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::ICreateSharedPackageContainerOptions(ptr, take_ownership_from_abi) {}
+        CreateSharedPackageContainerOptions();
+    };
+    struct __declspec(empty_bases) CreateSharedPackageContainerResult : winrt::Windows::Management::Deployment::ICreateSharedPackageContainerResult
+    {
+        CreateSharedPackageContainerResult(std::nullptr_t) noexcept {}
+        CreateSharedPackageContainerResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::ICreateSharedPackageContainerResult(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) DeleteSharedPackageContainerOptions : winrt::Windows::Management::Deployment::IDeleteSharedPackageContainerOptions
+    {
+        DeleteSharedPackageContainerOptions(std::nullptr_t) noexcept {}
+        DeleteSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IDeleteSharedPackageContainerOptions(ptr, take_ownership_from_abi) {}
+        DeleteSharedPackageContainerOptions();
+    };
+    struct __declspec(empty_bases) DeleteSharedPackageContainerResult : winrt::Windows::Management::Deployment::IDeleteSharedPackageContainerResult
+    {
+        DeleteSharedPackageContainerResult(std::nullptr_t) noexcept {}
+        DeleteSharedPackageContainerResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IDeleteSharedPackageContainerResult(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) DeploymentResult : winrt::Windows::Management::Deployment::IDeploymentResult,
         impl::require<DeploymentResult, winrt::Windows::Management::Deployment::IDeploymentResult2>
     {
         DeploymentResult(std::nullptr_t) noexcept {}
         DeploymentResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IDeploymentResult(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) FindSharedPackageContainerOptions : winrt::Windows::Management::Deployment::IFindSharedPackageContainerOptions
+    {
+        FindSharedPackageContainerOptions(std::nullptr_t) noexcept {}
+        FindSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IFindSharedPackageContainerOptions(ptr, take_ownership_from_abi) {}
+        FindSharedPackageContainerOptions();
     };
     struct __declspec(empty_bases) PackageAllUserProvisioningOptions : winrt::Windows::Management::Deployment::IPackageAllUserProvisioningOptions
     {
@@ -100,11 +128,41 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
         RegisterPackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IRegisterPackageOptions(ptr, take_ownership_from_abi) {}
         RegisterPackageOptions();
     };
+    struct __declspec(empty_bases) SharedPackageContainer : winrt::Windows::Management::Deployment::ISharedPackageContainer
+    {
+        SharedPackageContainer(std::nullptr_t) noexcept {}
+        SharedPackageContainer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::ISharedPackageContainer(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SharedPackageContainerManager : winrt::Windows::Management::Deployment::ISharedPackageContainerManager
+    {
+        SharedPackageContainerManager(std::nullptr_t) noexcept {}
+        SharedPackageContainerManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::ISharedPackageContainerManager(ptr, take_ownership_from_abi) {}
+        static auto GetDefault();
+        static auto GetForUser(param::hstring const& userSid);
+        static auto GetForProvisioning();
+    };
+    struct __declspec(empty_bases) SharedPackageContainerMember : winrt::Windows::Management::Deployment::ISharedPackageContainerMember
+    {
+        SharedPackageContainerMember(std::nullptr_t) noexcept {}
+        SharedPackageContainerMember(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::ISharedPackageContainerMember(ptr, take_ownership_from_abi) {}
+        explicit SharedPackageContainerMember(param::hstring const& packageFamilyName);
+    };
     struct __declspec(empty_bases) StagePackageOptions : winrt::Windows::Management::Deployment::IStagePackageOptions
     {
         StagePackageOptions(std::nullptr_t) noexcept {}
         StagePackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IStagePackageOptions(ptr, take_ownership_from_abi) {}
         StagePackageOptions();
+    };
+    struct __declspec(empty_bases) UpdateSharedPackageContainerOptions : winrt::Windows::Management::Deployment::IUpdateSharedPackageContainerOptions
+    {
+        UpdateSharedPackageContainerOptions(std::nullptr_t) noexcept {}
+        UpdateSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IUpdateSharedPackageContainerOptions(ptr, take_ownership_from_abi) {}
+        UpdateSharedPackageContainerOptions();
+    };
+    struct __declspec(empty_bases) UpdateSharedPackageContainerResult : winrt::Windows::Management::Deployment::IUpdateSharedPackageContainerResult
+    {
+        UpdateSharedPackageContainerResult(std::nullptr_t) noexcept {}
+        UpdateSharedPackageContainerResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IUpdateSharedPackageContainerResult(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

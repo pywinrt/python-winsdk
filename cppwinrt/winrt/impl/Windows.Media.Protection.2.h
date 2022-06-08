@@ -46,6 +46,11 @@ WINRT_EXPORT namespace winrt::Windows::Media::Protection
         ComponentLoadFailedEventArgs(std::nullptr_t) noexcept {}
         ComponentLoadFailedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Protection::IComponentLoadFailedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct ComponentRenewal
+    {
+        ComponentRenewal() = delete;
+        static auto RenewSystemComponentsAsync(winrt::Windows::Media::Protection::RevocationAndRenewalInformation const& information);
+    };
     struct __declspec(empty_bases) HdcpSession : winrt::Windows::Media::Protection::IHdcpSession
     {
         HdcpSession(std::nullptr_t) noexcept {}

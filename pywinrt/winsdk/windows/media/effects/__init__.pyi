@@ -124,6 +124,14 @@ class ProcessVideoFrameContext(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> ProcessVideoFrameContext: ...
 
+class SlowMotionEffectDefinition(_winrt.Object):
+    time_stretch_rate: _winrt.Double
+    activatable_class_id: str
+    properties: typing.Optional[winsdk.windows.foundation.collections.IPropertySet]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SlowMotionEffectDefinition: ...
+    def __init__(self) -> None: ...
+
 class VideoCompositorDefinition(_winrt.Object):
     activatable_class_id: str
     properties: typing.Optional[winsdk.windows.foundation.collections.IPropertySet]

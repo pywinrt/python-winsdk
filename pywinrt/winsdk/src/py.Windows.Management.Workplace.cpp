@@ -10,6 +10,7 @@ namespace py::cpp::Windows::Management::Workplace
     {
         PyObject* type_MessagingSyncPolicy;
         PyTypeObject* type_MdmPolicy;
+        PyTypeObject* type_WorkplaceSettings;
     };
 
     static PyObject* register_MessagingSyncPolicy(PyObject* module, PyObject* type)
@@ -190,6 +191,54 @@ namespace py::cpp::Windows::Management::Workplace
         _type_slots_MdmPolicy
     };
 
+    // ----- WorkplaceSettings class --------------------
+    constexpr const char* const type_name_WorkplaceSettings = "WorkplaceSettings";
+
+    static PyObject* _new_WorkplaceSettings(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WorkplaceSettings);
+        return nullptr;
+    }
+
+    static PyObject* WorkplaceSettings_get_IsMicrosoftAccountOptional(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Management::Workplace::WorkplaceSettings::IsMicrosoftAccountOptional());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WorkplaceSettings[] = {
+        { "get_is_microsoft_account_optional", reinterpret_cast<PyCFunction>(WorkplaceSettings_get_IsMicrosoftAccountOptional), METH_NOARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WorkplaceSettings[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_WorkplaceSettings[] = 
+    {
+        { Py_tp_new, _new_WorkplaceSettings },
+        { Py_tp_methods, _methods_WorkplaceSettings },
+        { Py_tp_getset, _getset_WorkplaceSettings },
+        { },
+    };
+
+    static PyType_Spec type_spec_WorkplaceSettings =
+    {
+        "_winsdk_Windows_Management_Workplace.WorkplaceSettings",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WorkplaceSettings
+    };
+
     // ----- Windows.Management.Workplace Initialization --------------------
     PyDoc_STRVAR(module_doc, "Windows::Management::Workplace");
 
@@ -209,6 +258,7 @@ namespace py::cpp::Windows::Management::Workplace
 
         Py_VISIT(state->type_MessagingSyncPolicy);
         Py_VISIT(state->type_MdmPolicy);
+        Py_VISIT(state->type_WorkplaceSettings);
 
         return 0;
     }
@@ -224,6 +274,7 @@ namespace py::cpp::Windows::Management::Workplace
 
         Py_CLEAR(state->type_MessagingSyncPolicy);
         Py_CLEAR(state->type_MdmPolicy);
+        Py_CLEAR(state->type_WorkplaceSettings);
 
         return 0;
     }
@@ -340,6 +391,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Management_Workplace(void) noexcept
 
     Py_INCREF(state->type_MdmPolicy);
 
+    state->type_WorkplaceSettings = py::register_python_type(module.get(), type_name_WorkplaceSettings, &type_spec_WorkplaceSettings, nullptr);
+    if (!state->type_WorkplaceSettings)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WorkplaceSettings);
+
 
     return module.detach();
 }
@@ -384,6 +443,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Management::Workplace::MdmPolicy>::
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Workplace::MdmPolicy is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Workplace::WorkplaceSettings>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Workplace;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Workplace");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WorkplaceSettings;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Workplace::WorkplaceSettings is not registered");
         return nullptr;
     }
 

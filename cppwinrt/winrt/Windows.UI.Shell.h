@@ -26,6 +26,20 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IAdaptiveCardBuilderStatics)->CreateAdaptiveCardFromJson(*(void**)(&value), &result));
         return winrt::Windows::UI::Shell::IAdaptiveCard{ result, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_UI_Shell_ISecurityAppManager<D>::Register(winrt::Windows::UI::Shell::SecurityAppKind const& kind, param::hstring const& displayName, winrt::Windows::Foundation::Uri const& detailsUri, bool registerPerUser) const
+    {
+        winrt::guid result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::ISecurityAppManager)->Register(static_cast<int32_t>(kind), *(void**)(&displayName), *(void**)(&detailsUri), registerPerUser, put_abi(result)));
+        return result;
+    }
+    template <typename D> auto consume_Windows_UI_Shell_ISecurityAppManager<D>::Unregister(winrt::Windows::UI::Shell::SecurityAppKind const& kind, winrt::guid const& guidRegistration) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::ISecurityAppManager)->Unregister(static_cast<int32_t>(kind), impl::bind_in(guidRegistration)));
+    }
+    template <typename D> auto consume_Windows_UI_Shell_ISecurityAppManager<D>::UpdateState(winrt::Windows::UI::Shell::SecurityAppKind const& kind, winrt::guid const& guidRegistration, winrt::Windows::UI::Shell::SecurityAppState const& state, winrt::Windows::UI::Shell::SecurityAppSubstatus const& substatus, winrt::Windows::Foundation::Uri const& detailsUri) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::ISecurityAppManager)->UpdateState(static_cast<int32_t>(kind), impl::bind_in(guidRegistration), static_cast<int32_t>(state), static_cast<int32_t>(substatus), *(void**)(&detailsUri)));
+    }
     template <typename D> auto consume_Windows_UI_Shell_IShareWindowCommandEventArgs<D>::WindowId() const
     {
         winrt::Windows::UI::WindowId value{};
@@ -172,6 +186,33 @@ namespace winrt::impl
         }
         catch (...) { return to_hresult(); }
     };
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Shell::ISecurityAppManager> : produce_base<D, winrt::Windows::UI::Shell::ISecurityAppManager>
+    {
+        int32_t __stdcall Register(int32_t kind, void* displayName, void* detailsUri, bool registerPerUser, winrt::guid* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::guid>(this->shim().Register(*reinterpret_cast<winrt::Windows::UI::Shell::SecurityAppKind const*>(&kind), *reinterpret_cast<hstring const*>(&displayName), *reinterpret_cast<winrt::Windows::Foundation::Uri const*>(&detailsUri), registerPerUser));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall Unregister(int32_t kind, winrt::guid guidRegistration) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Unregister(*reinterpret_cast<winrt::Windows::UI::Shell::SecurityAppKind const*>(&kind), *reinterpret_cast<winrt::guid const*>(&guidRegistration));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall UpdateState(int32_t kind, winrt::guid guidRegistration, int32_t state, int32_t substatus, void* detailsUri) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().UpdateState(*reinterpret_cast<winrt::Windows::UI::Shell::SecurityAppKind const*>(&kind), *reinterpret_cast<winrt::guid const*>(&guidRegistration), *reinterpret_cast<winrt::Windows::UI::Shell::SecurityAppState const*>(&state), *reinterpret_cast<winrt::Windows::UI::Shell::SecurityAppSubstatus const*>(&substatus), *reinterpret_cast<winrt::Windows::Foundation::Uri const*>(&detailsUri));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::UI::Shell::IShareWindowCommandEventArgs> : produce_base<D, winrt::Windows::UI::Shell::IShareWindowCommandEventArgs>
@@ -372,6 +413,10 @@ WINRT_EXPORT namespace winrt::Windows::UI::Shell
     {
         return impl::call_factory<AdaptiveCardBuilder, IAdaptiveCardBuilderStatics>([&](IAdaptiveCardBuilderStatics const& f) { return f.CreateAdaptiveCardFromJson(value); });
     }
+    inline SecurityAppManager::SecurityAppManager() :
+        SecurityAppManager(impl::call_factory_cast<SecurityAppManager(*)(winrt::Windows::Foundation::IActivationFactory const&), SecurityAppManager>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<SecurityAppManager>(); }))
+    {
+    }
     inline auto ShareWindowCommandSource::GetForCurrentView()
     {
         return impl::call_factory_cast<winrt::Windows::UI::Shell::ShareWindowCommandSource(*)(IShareWindowCommandSourceStatics const&), ShareWindowCommandSource, IShareWindowCommandSourceStatics>([](IShareWindowCommandSourceStatics const& f) { return f.GetForCurrentView(); });
@@ -386,6 +431,7 @@ namespace std
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::UI::Shell::IAdaptiveCard> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IAdaptiveCardBuilderStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::ISecurityAppManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandSource> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandSourceStatics> : winrt::impl::hash_base {};
@@ -393,6 +439,7 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Shell::ITaskbarManager2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ITaskbarManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::AdaptiveCardBuilder> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::SecurityAppManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ShareWindowCommandSource> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::TaskbarManager> : winrt::impl::hash_base {};

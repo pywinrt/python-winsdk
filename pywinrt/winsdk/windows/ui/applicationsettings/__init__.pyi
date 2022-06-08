@@ -13,6 +13,10 @@ import winsdk.windows.security.credentials
 import winsdk.windows.system
 import winsdk.windows.ui.popups
 
+class SettingsEdgeLocation(enum.IntEnum):
+    RIGHT = 0
+    LEFT = 1
+
 class SupportedWebAccountActions(enum.IntFlag):
     NONE = 0
     RECONNECT = 0x1
@@ -82,6 +86,27 @@ class SettingsCommand(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> SettingsCommand: ...
     def __init__(self, settings_command_id: typing.Optional[_winrt.Object], label: str, handler: typing.Optional[winsdk.windows.ui.popups.UICommandInvokedHandler]) -> None: ...
+
+class SettingsPane(_winrt.Object):
+    edge: SettingsEdgeLocation
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SettingsPane: ...
+    @staticmethod
+    def get_for_current_view() -> typing.Optional[SettingsPane]: ...
+    @staticmethod
+    def show() -> None: ...
+    def add_commands_requested(self, handler: winsdk.windows.foundation.TypedEventHandler[SettingsPane, SettingsPaneCommandsRequestedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_commands_requested(self, cookie: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class SettingsPaneCommandsRequest(_winrt.Object):
+    application_commands: typing.Optional[winsdk.windows.foundation.collections.IVector[SettingsCommand]]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SettingsPaneCommandsRequest: ...
+
+class SettingsPaneCommandsRequestedEventArgs(_winrt.Object):
+    request: typing.Optional[SettingsPaneCommandsRequest]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SettingsPaneCommandsRequestedEventArgs: ...
 
 class WebAccountCommand(_winrt.Object):
     actions: SupportedWebAccountActions

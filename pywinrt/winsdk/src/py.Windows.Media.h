@@ -50,6 +50,7 @@ namespace py::wrapper::Windows::Media
     using AudioFrame = py::winrt_wrapper<winrt::Windows::Media::AudioFrame>;
     using AutoRepeatModeChangeRequestedEventArgs = py::winrt_wrapper<winrt::Windows::Media::AutoRepeatModeChangeRequestedEventArgs>;
     using ImageDisplayProperties = py::winrt_wrapper<winrt::Windows::Media::ImageDisplayProperties>;
+    using MediaControl = py::winrt_wrapper<winrt::Windows::Media::MediaControl>;
     using MediaExtensionManager = py::winrt_wrapper<winrt::Windows::Media::MediaExtensionManager>;
     using MediaMarkerTypes = py::winrt_wrapper<winrt::Windows::Media::MediaMarkerTypes>;
     using MediaProcessingTriggerDetails = py::winrt_wrapper<winrt::Windows::Media::MediaProcessingTriggerDetails>;
@@ -151,6 +152,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::ImageDisplayProperties>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::MediaControl>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

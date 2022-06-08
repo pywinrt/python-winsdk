@@ -76,6 +76,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         IAppInstanceStatics(std::nullptr_t = nullptr) noexcept {}
         IAppInstanceStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ICameraApplicationManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICameraApplicationManagerStatics>
+    {
+        ICameraApplicationManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        ICameraApplicationManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IDesignModeStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDesignModeStatics>
@@ -96,6 +103,27 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         IEnteredBackgroundEventArgs(std::nullptr_t = nullptr) noexcept {}
         IEnteredBackgroundEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IFullTrustProcessLaunchResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFullTrustProcessLaunchResult>
+    {
+        IFullTrustProcessLaunchResult(std::nullptr_t = nullptr) noexcept {}
+        IFullTrustProcessLaunchResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IFullTrustProcessLauncherStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFullTrustProcessLauncherStatics>
+    {
+        IFullTrustProcessLauncherStatics(std::nullptr_t = nullptr) noexcept {}
+        IFullTrustProcessLauncherStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IFullTrustProcessLauncherStatics2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFullTrustProcessLauncherStatics2>
+    {
+        IFullTrustProcessLauncherStatics2(std::nullptr_t = nullptr) noexcept {}
+        IFullTrustProcessLauncherStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ILeavingBackgroundEventArgs :
         winrt::Windows::Foundation::IInspectable,

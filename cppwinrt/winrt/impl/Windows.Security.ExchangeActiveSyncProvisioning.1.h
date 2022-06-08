@@ -21,5 +21,27 @@ WINRT_EXPORT namespace winrt::Windows::Security::ExchangeActiveSyncProvisioning
         IEasClientDeviceInformation2(std::nullptr_t = nullptr) noexcept {}
         IEasClientDeviceInformation2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IEasClientSecurityPolicy :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IEasClientSecurityPolicy>
+    {
+        IEasClientSecurityPolicy(std::nullptr_t = nullptr) noexcept {}
+        IEasClientSecurityPolicy(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IEasComplianceResults :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IEasComplianceResults>
+    {
+        IEasComplianceResults(std::nullptr_t = nullptr) noexcept {}
+        IEasComplianceResults(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IEasComplianceResults2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IEasComplianceResults2>,
+        impl::require<winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasComplianceResults2, winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasComplianceResults>
+    {
+        IEasComplianceResults2(std::nullptr_t = nullptr) noexcept {}
+        IEasComplianceResults2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
 }
 #endif

@@ -18,9 +18,16 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         PyTypeObject* type_BackgroundActivatedEventArgs;
         PyTypeObject* type_BarcodeScannerPreviewActivatedEventArgs;
         PyTypeObject* type_CachedFileUpdaterActivatedEventArgs;
+        PyTypeObject* type_CameraSettingsActivatedEventArgs;
         PyTypeObject* type_CommandLineActivatedEventArgs;
         PyTypeObject* type_CommandLineActivationOperation;
+        PyTypeObject* type_ContactCallActivatedEventArgs;
+        PyTypeObject* type_ContactMapActivatedEventArgs;
+        PyTypeObject* type_ContactMessageActivatedEventArgs;
         PyTypeObject* type_ContactPanelActivatedEventArgs;
+        PyTypeObject* type_ContactPickerActivatedEventArgs;
+        PyTypeObject* type_ContactPostActivatedEventArgs;
+        PyTypeObject* type_ContactVideoCallActivatedEventArgs;
         PyTypeObject* type_DeviceActivatedEventArgs;
         PyTypeObject* type_DevicePairingActivatedEventArgs;
         PyTypeObject* type_DialReceiverActivatedEventArgs;
@@ -32,9 +39,12 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         PyTypeObject* type_FolderPickerContinuationEventArgs;
         PyTypeObject* type_LaunchActivatedEventArgs;
         PyTypeObject* type_LockScreenActivatedEventArgs;
+        PyTypeObject* type_LockScreenCallActivatedEventArgs;
         PyTypeObject* type_LockScreenComponentActivatedEventArgs;
         PyTypeObject* type_PhoneCallActivatedEventArgs;
         PyTypeObject* type_PickerReturnedActivatedEventArgs;
+        PyTypeObject* type_Print3DWorkflowActivatedEventArgs;
+        PyTypeObject* type_PrintTaskSettingsActivatedEventArgs;
         PyTypeObject* type_ProtocolActivatedEventArgs;
         PyTypeObject* type_ProtocolForResultsActivatedEventArgs;
         PyTypeObject* type_RestrictedLaunchActivatedEventArgs;
@@ -46,6 +56,7 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         PyTypeObject* type_ToastNotificationActivatedEventArgs;
         PyTypeObject* type_UserDataAccountProviderActivatedEventArgs;
         PyTypeObject* type_VoiceCommandActivatedEventArgs;
+        PyTypeObject* type_WalletActionActivatedEventArgs;
         PyTypeObject* type_WebAccountProviderActivatedEventArgs;
         PyTypeObject* type_WebAuthenticationBrokerContinuationEventArgs;
         PyTypeObject* type_IActivatedEventArgs;
@@ -60,8 +71,17 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         PyTypeObject* type_IBackgroundActivatedEventArgs;
         PyTypeObject* type_IBarcodeScannerPreviewActivatedEventArgs;
         PyTypeObject* type_ICachedFileUpdaterActivatedEventArgs;
+        PyTypeObject* type_ICameraSettingsActivatedEventArgs;
         PyTypeObject* type_ICommandLineActivatedEventArgs;
+        PyTypeObject* type_IContactActivatedEventArgs;
+        PyTypeObject* type_IContactCallActivatedEventArgs;
+        PyTypeObject* type_IContactMapActivatedEventArgs;
+        PyTypeObject* type_IContactMessageActivatedEventArgs;
         PyTypeObject* type_IContactPanelActivatedEventArgs;
+        PyTypeObject* type_IContactPickerActivatedEventArgs;
+        PyTypeObject* type_IContactPostActivatedEventArgs;
+        PyTypeObject* type_IContactVideoCallActivatedEventArgs;
+        PyTypeObject* type_IContactsProviderActivatedEventArgs;
         PyTypeObject* type_IContinuationActivatedEventArgs;
         PyTypeObject* type_IDeviceActivatedEventArgs;
         PyTypeObject* type_IDevicePairingActivatedEventArgs;
@@ -79,9 +99,12 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         PyTypeObject* type_ILaunchActivatedEventArgs;
         PyTypeObject* type_ILaunchActivatedEventArgs2;
         PyTypeObject* type_ILockScreenActivatedEventArgs;
+        PyTypeObject* type_ILockScreenCallActivatedEventArgs;
         PyTypeObject* type_IPhoneCallActivatedEventArgs;
         PyTypeObject* type_IPickerReturnedActivatedEventArgs;
         PyTypeObject* type_IPrelaunchActivatedEventArgs;
+        PyTypeObject* type_IPrint3DWorkflowActivatedEventArgs;
+        PyTypeObject* type_IPrintTaskSettingsActivatedEventArgs;
         PyTypeObject* type_IProtocolActivatedEventArgs;
         PyTypeObject* type_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData;
         PyTypeObject* type_IProtocolForResultsActivatedEventArgs;
@@ -94,6 +117,7 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         PyTypeObject* type_IUserDataAccountProviderActivatedEventArgs;
         PyTypeObject* type_IViewSwitcherProvider;
         PyTypeObject* type_IVoiceCommandActivatedEventArgs;
+        PyTypeObject* type_IWalletActionActivatedEventArgs;
         PyTypeObject* type_IWebAccountProviderActivatedEventArgs;
         PyTypeObject* type_IWebAuthenticationBrokerContinuationEventArgs;
     };
@@ -1226,6 +1250,134 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         _type_slots_CachedFileUpdaterActivatedEventArgs
     };
 
+    // ----- CameraSettingsActivatedEventArgs class --------------------
+    constexpr const char* const type_name_CameraSettingsActivatedEventArgs = "CameraSettingsActivatedEventArgs";
+
+    static PyObject* _new_CameraSettingsActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_CameraSettingsActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_CameraSettingsActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* CameraSettingsActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CameraSettingsActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CameraSettingsActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CameraSettingsActivatedEventArgs_get_VideoDeviceController(py::wrapper::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.VideoDeviceController());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CameraSettingsActivatedEventArgs_get_VideoDeviceExtension(py::wrapper::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.VideoDeviceExtension());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_CameraSettingsActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CameraSettingsActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_CameraSettingsActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CameraSettingsActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(CameraSettingsActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(CameraSettingsActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(CameraSettingsActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "video_device_controller", reinterpret_cast<getter>(CameraSettingsActivatedEventArgs_get_VideoDeviceController), nullptr, nullptr, nullptr },
+        { "video_device_extension", reinterpret_cast<getter>(CameraSettingsActivatedEventArgs_get_VideoDeviceExtension), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_CameraSettingsActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_CameraSettingsActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_CameraSettingsActivatedEventArgs },
+        { Py_tp_methods, _methods_CameraSettingsActivatedEventArgs },
+        { Py_tp_getset, _getset_CameraSettingsActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_CameraSettingsActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.CameraSettingsActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CameraSettingsActivatedEventArgs
+    };
+
     // ----- CommandLineActivatedEventArgs class --------------------
     constexpr const char* const type_name_CommandLineActivatedEventArgs = "CommandLineActivatedEventArgs";
 
@@ -1500,6 +1652,460 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         _type_slots_CommandLineActivationOperation
     };
 
+    // ----- ContactCallActivatedEventArgs class --------------------
+    constexpr const char* const type_name_ContactCallActivatedEventArgs = "ContactCallActivatedEventArgs";
+
+    static PyObject* _new_ContactCallActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ContactCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ContactCallActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ContactCallActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactCallActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactCallActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactCallActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactCallActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ContactCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ContactCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ContactCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ContactCallActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(ContactCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ContactCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ContactCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(ContactCallActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(ContactCallActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(ContactCallActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(ContactCallActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ContactCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ContactCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ContactCallActivatedEventArgs },
+        { Py_tp_methods, _methods_ContactCallActivatedEventArgs },
+        { Py_tp_getset, _getset_ContactCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ContactCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ContactCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ContactCallActivatedEventArgs
+    };
+
+    // ----- ContactMapActivatedEventArgs class --------------------
+    constexpr const char* const type_name_ContactMapActivatedEventArgs = "ContactMapActivatedEventArgs";
+
+    static PyObject* _new_ContactMapActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ContactMapActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ContactMapActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ContactMapActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMapActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMapActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMapActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMapActivatedEventArgs_get_Address(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Address());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMapActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ContactMapActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ContactMapActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ContactMapActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ContactMapActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(ContactMapActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ContactMapActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ContactMapActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(ContactMapActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "address", reinterpret_cast<getter>(ContactMapActivatedEventArgs_get_Address), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(ContactMapActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ContactMapActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ContactMapActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ContactMapActivatedEventArgs },
+        { Py_tp_methods, _methods_ContactMapActivatedEventArgs },
+        { Py_tp_getset, _getset_ContactMapActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ContactMapActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ContactMapActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ContactMapActivatedEventArgs
+    };
+
+    // ----- ContactMessageActivatedEventArgs class --------------------
+    constexpr const char* const type_name_ContactMessageActivatedEventArgs = "ContactMessageActivatedEventArgs";
+
+    static PyObject* _new_ContactMessageActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ContactMessageActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ContactMessageActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ContactMessageActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMessageActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMessageActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMessageActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMessageActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMessageActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactMessageActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ContactMessageActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ContactMessageActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ContactMessageActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ContactMessageActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(ContactMessageActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ContactMessageActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ContactMessageActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(ContactMessageActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(ContactMessageActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(ContactMessageActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(ContactMessageActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ContactMessageActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ContactMessageActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ContactMessageActivatedEventArgs },
+        { Py_tp_methods, _methods_ContactMessageActivatedEventArgs },
+        { Py_tp_getset, _getset_ContactMessageActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ContactMessageActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ContactMessageActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ContactMessageActivatedEventArgs
+    };
+
     // ----- ContactPanelActivatedEventArgs class --------------------
     constexpr const char* const type_name_ContactPanelActivatedEventArgs = "ContactPanelActivatedEventArgs";
 
@@ -1640,6 +2246,432 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ContactPanelActivatedEventArgs
+    };
+
+    // ----- ContactPickerActivatedEventArgs class --------------------
+    constexpr const char* const type_name_ContactPickerActivatedEventArgs = "ContactPickerActivatedEventArgs";
+
+    static PyObject* _new_ContactPickerActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ContactPickerActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ContactPickerActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ContactPickerActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPickerActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPickerActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPickerActivatedEventArgs_get_ContactPickerUI(py::wrapper::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ContactPickerUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ContactPickerActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ContactPickerActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ContactPickerActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ContactPickerActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(ContactPickerActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ContactPickerActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ContactPickerActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "contact_picker_u_i", reinterpret_cast<getter>(ContactPickerActivatedEventArgs_get_ContactPickerUI), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ContactPickerActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ContactPickerActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ContactPickerActivatedEventArgs },
+        { Py_tp_methods, _methods_ContactPickerActivatedEventArgs },
+        { Py_tp_getset, _getset_ContactPickerActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ContactPickerActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ContactPickerActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ContactPickerActivatedEventArgs
+    };
+
+    // ----- ContactPostActivatedEventArgs class --------------------
+    constexpr const char* const type_name_ContactPostActivatedEventArgs = "ContactPostActivatedEventArgs";
+
+    static PyObject* _new_ContactPostActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ContactPostActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ContactPostActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ContactPostActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPostActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPostActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPostActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPostActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPostActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactPostActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ContactPostActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ContactPostActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ContactPostActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ContactPostActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(ContactPostActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ContactPostActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ContactPostActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(ContactPostActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(ContactPostActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(ContactPostActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(ContactPostActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ContactPostActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ContactPostActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ContactPostActivatedEventArgs },
+        { Py_tp_methods, _methods_ContactPostActivatedEventArgs },
+        { Py_tp_getset, _getset_ContactPostActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ContactPostActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ContactPostActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ContactPostActivatedEventArgs
+    };
+
+    // ----- ContactVideoCallActivatedEventArgs class --------------------
+    constexpr const char* const type_name_ContactVideoCallActivatedEventArgs = "ContactVideoCallActivatedEventArgs";
+
+    static PyObject* _new_ContactVideoCallActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ContactVideoCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ContactVideoCallActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ContactVideoCallActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactVideoCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactVideoCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactVideoCallActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactVideoCallActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactVideoCallActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ContactVideoCallActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ContactVideoCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ContactVideoCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ContactVideoCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ContactVideoCallActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(ContactVideoCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ContactVideoCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ContactVideoCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(ContactVideoCallActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(ContactVideoCallActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(ContactVideoCallActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(ContactVideoCallActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ContactVideoCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ContactVideoCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ContactVideoCallActivatedEventArgs },
+        { Py_tp_methods, _methods_ContactVideoCallActivatedEventArgs },
+        { Py_tp_getset, _getset_ContactVideoCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ContactVideoCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ContactVideoCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ContactVideoCallActivatedEventArgs
     };
 
     // ----- DeviceActivatedEventArgs class --------------------
@@ -3372,6 +4404,176 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         _type_slots_LockScreenActivatedEventArgs
     };
 
+    // ----- LockScreenCallActivatedEventArgs class --------------------
+    constexpr const char* const type_name_LockScreenCallActivatedEventArgs = "LockScreenCallActivatedEventArgs";
+
+    static PyObject* _new_LockScreenCallActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_LockScreenCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_LockScreenCallActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_CurrentlyShownApplicationViewId(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CurrentlyShownApplicationViewId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_Arguments(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Arguments());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_TileId(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.TileId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_CallUI(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CallUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallActivatedEventArgs_get_ViewSwitcher(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ViewSwitcher());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_LockScreenCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_LockScreenCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_LockScreenCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_LockScreenCallActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "currently_shown_application_view_id", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_CurrentlyShownApplicationViewId), nullptr, nullptr, nullptr },
+        { "arguments", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_Arguments), nullptr, nullptr, nullptr },
+        { "tile_id", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_TileId), nullptr, nullptr, nullptr },
+        { "call_u_i", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_CallUI), nullptr, nullptr, nullptr },
+        { "view_switcher", reinterpret_cast<getter>(LockScreenCallActivatedEventArgs_get_ViewSwitcher), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_LockScreenCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_LockScreenCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_LockScreenCallActivatedEventArgs },
+        { Py_tp_methods, _methods_LockScreenCallActivatedEventArgs },
+        { Py_tp_getset, _getset_LockScreenCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_LockScreenCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.LockScreenCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_LockScreenCallActivatedEventArgs
+    };
+
     // ----- LockScreenComponentActivatedEventArgs class --------------------
     constexpr const char* const type_name_LockScreenComponentActivatedEventArgs = "LockScreenComponentActivatedEventArgs";
 
@@ -3712,6 +4914,234 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_PickerReturnedActivatedEventArgs
+    };
+
+    // ----- Print3DWorkflowActivatedEventArgs class --------------------
+    constexpr const char* const type_name_Print3DWorkflowActivatedEventArgs = "Print3DWorkflowActivatedEventArgs";
+
+    static PyObject* _new_Print3DWorkflowActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_Print3DWorkflowActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_Print3DWorkflowActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* Print3DWorkflowActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* Print3DWorkflowActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* Print3DWorkflowActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* Print3DWorkflowActivatedEventArgs_get_Workflow(py::wrapper::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Workflow());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_Print3DWorkflowActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_Print3DWorkflowActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_Print3DWorkflowActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_Print3DWorkflowActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(Print3DWorkflowActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(Print3DWorkflowActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(Print3DWorkflowActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "workflow", reinterpret_cast<getter>(Print3DWorkflowActivatedEventArgs_get_Workflow), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_Print3DWorkflowActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_Print3DWorkflowActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_Print3DWorkflowActivatedEventArgs },
+        { Py_tp_methods, _methods_Print3DWorkflowActivatedEventArgs },
+        { Py_tp_getset, _getset_Print3DWorkflowActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_Print3DWorkflowActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.Print3DWorkflowActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_Print3DWorkflowActivatedEventArgs
+    };
+
+    // ----- PrintTaskSettingsActivatedEventArgs class --------------------
+    constexpr const char* const type_name_PrintTaskSettingsActivatedEventArgs = "PrintTaskSettingsActivatedEventArgs";
+
+    static PyObject* _new_PrintTaskSettingsActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintTaskSettingsActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintTaskSettingsActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintTaskSettingsActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskSettingsActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskSettingsActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskSettingsActivatedEventArgs_get_Configuration(py::wrapper::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Configuration());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintTaskSettingsActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintTaskSettingsActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintTaskSettingsActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintTaskSettingsActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(PrintTaskSettingsActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(PrintTaskSettingsActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(PrintTaskSettingsActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "configuration", reinterpret_cast<getter>(PrintTaskSettingsActivatedEventArgs_get_Configuration), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintTaskSettingsActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_PrintTaskSettingsActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_PrintTaskSettingsActivatedEventArgs },
+        { Py_tp_methods, _methods_PrintTaskSettingsActivatedEventArgs },
+        { Py_tp_getset, _getset_PrintTaskSettingsActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintTaskSettingsActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.PrintTaskSettingsActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintTaskSettingsActivatedEventArgs
     };
 
     // ----- ProtocolActivatedEventArgs class --------------------
@@ -5237,6 +6667,148 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_VoiceCommandActivatedEventArgs
+    };
+
+    // ----- WalletActionActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WalletActionActivatedEventArgs = "WalletActionActivatedEventArgs";
+
+    static PyObject* _new_WalletActionActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WalletActionActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WalletActionActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WalletActionActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WalletActionActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WalletActionActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WalletActionActivatedEventArgs_get_ActionId(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WalletActionActivatedEventArgs_get_ActionKind(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionKind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WalletActionActivatedEventArgs_get_ItemId(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ItemId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WalletActionActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WalletActionActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WalletActionActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WalletActionActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WalletActionActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WalletActionActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WalletActionActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "action_id", reinterpret_cast<getter>(WalletActionActivatedEventArgs_get_ActionId), nullptr, nullptr, nullptr },
+        { "action_kind", reinterpret_cast<getter>(WalletActionActivatedEventArgs_get_ActionKind), nullptr, nullptr, nullptr },
+        { "item_id", reinterpret_cast<getter>(WalletActionActivatedEventArgs_get_ItemId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WalletActionActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WalletActionActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WalletActionActivatedEventArgs },
+        { Py_tp_methods, _methods_WalletActionActivatedEventArgs },
+        { Py_tp_getset, _getset_WalletActionActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WalletActionActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.WalletActionActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WalletActionActivatedEventArgs
     };
 
     // ----- WebAccountProviderActivatedEventArgs class --------------------
@@ -6919,6 +8491,134 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         _type_slots_ICachedFileUpdaterActivatedEventArgs
     };
 
+    // ----- ICameraSettingsActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_ICameraSettingsActivatedEventArgs = "ICameraSettingsActivatedEventArgs";
+
+    static PyObject* _new_ICameraSettingsActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_ICameraSettingsActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ICameraSettingsActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ICameraSettingsActivatedEventArgs_get_VideoDeviceController(py::wrapper::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.VideoDeviceController());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ICameraSettingsActivatedEventArgs_get_VideoDeviceExtension(py::wrapper::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.VideoDeviceExtension());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ICameraSettingsActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ICameraSettingsActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ICameraSettingsActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ICameraSettingsActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ICameraSettingsActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ICameraSettingsActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ICameraSettingsActivatedEventArgs[] = {
+        { "video_device_controller", reinterpret_cast<getter>(ICameraSettingsActivatedEventArgs_get_VideoDeviceController), nullptr, nullptr, nullptr },
+        { "video_device_extension", reinterpret_cast<getter>(ICameraSettingsActivatedEventArgs_get_VideoDeviceExtension), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(ICameraSettingsActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ICameraSettingsActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ICameraSettingsActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ICameraSettingsActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ICameraSettingsActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ICameraSettingsActivatedEventArgs },
+        { Py_tp_methods, _methods_ICameraSettingsActivatedEventArgs },
+        { Py_tp_getset, _getset_ICameraSettingsActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ICameraSettingsActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ICameraSettingsActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ICameraSettingsActivatedEventArgs
+    };
+
     // ----- ICommandLineActivatedEventArgs interface --------------------
     constexpr const char* const type_name_ICommandLineActivatedEventArgs = "ICommandLineActivatedEventArgs";
 
@@ -7033,6 +8733,574 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         _type_slots_ICommandLineActivatedEventArgs
     };
 
+    // ----- IContactActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactActivatedEventArgs = "IContactActivatedEventArgs";
+
+    static PyObject* _new_IContactActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::IContactActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactActivatedEventArgs[] = {
+        { "verb", reinterpret_cast<getter>(IContactActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactActivatedEventArgs
+    };
+
+    // ----- IContactCallActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactCallActivatedEventArgs = "IContactCallActivatedEventArgs";
+
+    static PyObject* _new_IContactCallActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactCallActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactCallActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactCallActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactCallActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactCallActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactCallActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactCallActivatedEventArgs[] = {
+        { "contact", reinterpret_cast<getter>(IContactCallActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(IContactCallActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(IContactCallActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(IContactCallActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactCallActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactCallActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactCallActivatedEventArgs
+    };
+
+    // ----- IContactMapActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactMapActivatedEventArgs = "IContactMapActivatedEventArgs";
+
+    static PyObject* _new_IContactMapActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactMapActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactMapActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactMapActivatedEventArgs_get_Address(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Address());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMapActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMapActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMapActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMapActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMapActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactMapActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactMapActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactMapActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactMapActivatedEventArgs[] = {
+        { "address", reinterpret_cast<getter>(IContactMapActivatedEventArgs_get_Address), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(IContactMapActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(IContactMapActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactMapActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactMapActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactMapActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactMapActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactMapActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactMapActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactMapActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactMapActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactMapActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactMapActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactMapActivatedEventArgs
+    };
+
+    // ----- IContactMessageActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactMessageActivatedEventArgs = "IContactMessageActivatedEventArgs";
+
+    static PyObject* _new_IContactMessageActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactMessageActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactMessageActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactMessageActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMessageActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMessageActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMessageActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMessageActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMessageActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactMessageActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactMessageActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactMessageActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactMessageActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactMessageActivatedEventArgs[] = {
+        { "contact", reinterpret_cast<getter>(IContactMessageActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(IContactMessageActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(IContactMessageActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(IContactMessageActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactMessageActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactMessageActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactMessageActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactMessageActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactMessageActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactMessageActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactMessageActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactMessageActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactMessageActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactMessageActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactMessageActivatedEventArgs
+    };
+
     // ----- IContactPanelActivatedEventArgs interface --------------------
     constexpr const char* const type_name_IContactPanelActivatedEventArgs = "IContactPanelActivatedEventArgs";
 
@@ -7117,6 +9385,546 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_IContactPanelActivatedEventArgs
+    };
+
+    // ----- IContactPickerActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactPickerActivatedEventArgs = "IContactPickerActivatedEventArgs";
+
+    static PyObject* _new_IContactPickerActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactPickerActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactPickerActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactPickerActivatedEventArgs_get_ContactPickerUI(py::wrapper::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ContactPickerUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPickerActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPickerActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPickerActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactPickerActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactPickerActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactPickerActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactPickerActivatedEventArgs[] = {
+        { "contact_picker_u_i", reinterpret_cast<getter>(IContactPickerActivatedEventArgs_get_ContactPickerUI), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactPickerActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactPickerActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactPickerActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactPickerActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactPickerActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactPickerActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactPickerActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactPickerActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactPickerActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactPickerActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactPickerActivatedEventArgs
+    };
+
+    // ----- IContactPostActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactPostActivatedEventArgs = "IContactPostActivatedEventArgs";
+
+    static PyObject* _new_IContactPostActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactPostActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactPostActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactPostActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPostActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPostActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPostActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPostActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPostActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactPostActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactPostActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactPostActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactPostActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactPostActivatedEventArgs[] = {
+        { "contact", reinterpret_cast<getter>(IContactPostActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(IContactPostActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(IContactPostActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(IContactPostActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactPostActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactPostActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactPostActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactPostActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactPostActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactPostActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactPostActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactPostActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactPostActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactPostActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactPostActivatedEventArgs
+    };
+
+    // ----- IContactVideoCallActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactVideoCallActivatedEventArgs = "IContactVideoCallActivatedEventArgs";
+
+    static PyObject* _new_IContactVideoCallActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactVideoCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactVideoCallActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactVideoCallActivatedEventArgs_get_Contact(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactVideoCallActivatedEventArgs_get_ServiceId(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactVideoCallActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactVideoCallActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactVideoCallActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactVideoCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactVideoCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactVideoCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactVideoCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactVideoCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactVideoCallActivatedEventArgs[] = {
+        { "contact", reinterpret_cast<getter>(IContactVideoCallActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(IContactVideoCallActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(IContactVideoCallActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(IContactVideoCallActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactVideoCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactVideoCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactVideoCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactVideoCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactVideoCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactVideoCallActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactVideoCallActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactVideoCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactVideoCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactVideoCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactVideoCallActivatedEventArgs
+    };
+
+    // ----- IContactsProviderActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IContactsProviderActivatedEventArgs = "IContactsProviderActivatedEventArgs";
+
+    static PyObject* _new_IContactsProviderActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IContactsProviderActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IContactsProviderActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IContactsProviderActivatedEventArgs_get_Verb(py::wrapper::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactsProviderActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactsProviderActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IContactsProviderActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IContactsProviderActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IContactsProviderActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IContactsProviderActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IContactsProviderActivatedEventArgs[] = {
+        { "verb", reinterpret_cast<getter>(IContactsProviderActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IContactsProviderActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IContactsProviderActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IContactsProviderActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IContactsProviderActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IContactsProviderActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IContactsProviderActivatedEventArgs },
+        { Py_tp_methods, _methods_IContactsProviderActivatedEventArgs },
+        { Py_tp_getset, _getset_IContactsProviderActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IContactsProviderActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IContactsProviderActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IContactsProviderActivatedEventArgs
     };
 
     // ----- IContinuationActivatedEventArgs interface --------------------
@@ -9155,6 +11963,148 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         _type_slots_ILockScreenActivatedEventArgs
     };
 
+    // ----- ILockScreenCallActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_ILockScreenCallActivatedEventArgs = "ILockScreenCallActivatedEventArgs";
+
+    static PyObject* _new_ILockScreenCallActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_ILockScreenCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ILockScreenCallActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ILockScreenCallActivatedEventArgs_get_CallUI(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CallUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ILockScreenCallActivatedEventArgs_get_Arguments(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Arguments());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ILockScreenCallActivatedEventArgs_get_TileId(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.TileId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ILockScreenCallActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ILockScreenCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ILockScreenCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ILockScreenCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ILockScreenCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ILockScreenCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ILockScreenCallActivatedEventArgs[] = {
+        { "call_u_i", reinterpret_cast<getter>(ILockScreenCallActivatedEventArgs_get_CallUI), nullptr, nullptr, nullptr },
+        { "arguments", reinterpret_cast<getter>(ILockScreenCallActivatedEventArgs_get_Arguments), nullptr, nullptr, nullptr },
+        { "tile_id", reinterpret_cast<getter>(ILockScreenCallActivatedEventArgs_get_TileId), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(ILockScreenCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(ILockScreenCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(ILockScreenCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ILockScreenCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ILockScreenCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_ILockScreenCallActivatedEventArgs },
+        { Py_tp_methods, _methods_ILockScreenCallActivatedEventArgs },
+        { Py_tp_getset, _getset_ILockScreenCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ILockScreenCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.ILockScreenCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ILockScreenCallActivatedEventArgs
+    };
+
     // ----- IPhoneCallActivatedEventArgs interface --------------------
     constexpr const char* const type_name_IPhoneCallActivatedEventArgs = "IPhoneCallActivatedEventArgs";
 
@@ -9495,6 +12445,234 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_IPrelaunchActivatedEventArgs
+    };
+
+    // ----- IPrint3DWorkflowActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IPrint3DWorkflowActivatedEventArgs = "IPrint3DWorkflowActivatedEventArgs";
+
+    static PyObject* _new_IPrint3DWorkflowActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IPrint3DWorkflowActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IPrint3DWorkflowActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IPrint3DWorkflowActivatedEventArgs_get_Workflow(py::wrapper::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Workflow());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IPrint3DWorkflowActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IPrint3DWorkflowActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IPrint3DWorkflowActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IPrint3DWorkflowActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IPrint3DWorkflowActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IPrint3DWorkflowActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IPrint3DWorkflowActivatedEventArgs[] = {
+        { "workflow", reinterpret_cast<getter>(IPrint3DWorkflowActivatedEventArgs_get_Workflow), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IPrint3DWorkflowActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IPrint3DWorkflowActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IPrint3DWorkflowActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IPrint3DWorkflowActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IPrint3DWorkflowActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IPrint3DWorkflowActivatedEventArgs },
+        { Py_tp_methods, _methods_IPrint3DWorkflowActivatedEventArgs },
+        { Py_tp_getset, _getset_IPrint3DWorkflowActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IPrint3DWorkflowActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IPrint3DWorkflowActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IPrint3DWorkflowActivatedEventArgs
+    };
+
+    // ----- IPrintTaskSettingsActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IPrintTaskSettingsActivatedEventArgs = "IPrintTaskSettingsActivatedEventArgs";
+
+    static PyObject* _new_IPrintTaskSettingsActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IPrintTaskSettingsActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IPrintTaskSettingsActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IPrintTaskSettingsActivatedEventArgs_get_Configuration(py::wrapper::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Configuration());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IPrintTaskSettingsActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IPrintTaskSettingsActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IPrintTaskSettingsActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IPrintTaskSettingsActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IPrintTaskSettingsActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IPrintTaskSettingsActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IPrintTaskSettingsActivatedEventArgs[] = {
+        { "configuration", reinterpret_cast<getter>(IPrintTaskSettingsActivatedEventArgs_get_Configuration), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IPrintTaskSettingsActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IPrintTaskSettingsActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IPrintTaskSettingsActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IPrintTaskSettingsActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IPrintTaskSettingsActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IPrintTaskSettingsActivatedEventArgs },
+        { Py_tp_methods, _methods_IPrintTaskSettingsActivatedEventArgs },
+        { Py_tp_getset, _getset_IPrintTaskSettingsActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IPrintTaskSettingsActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IPrintTaskSettingsActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IPrintTaskSettingsActivatedEventArgs
     };
 
     // ----- IProtocolActivatedEventArgs interface --------------------
@@ -10865,6 +14043,148 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         _type_slots_IVoiceCommandActivatedEventArgs
     };
 
+    // ----- IWalletActionActivatedEventArgs interface --------------------
+    constexpr const char* const type_name_IWalletActionActivatedEventArgs = "IWalletActionActivatedEventArgs";
+
+    static PyObject* _new_IWalletActionActivatedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IWalletActionActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_IWalletActionActivatedEventArgs(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IWalletActionActivatedEventArgs_get_ActionId(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IWalletActionActivatedEventArgs_get_ActionKind(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionKind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IWalletActionActivatedEventArgs_get_ItemId(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ItemId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IWalletActionActivatedEventArgs_get_Kind(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IWalletActionActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IWalletActionActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IWalletActionActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IWalletActionActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_IWalletActionActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IWalletActionActivatedEventArgs[] = {
+        { "action_id", reinterpret_cast<getter>(IWalletActionActivatedEventArgs_get_ActionId), nullptr, nullptr, nullptr },
+        { "action_kind", reinterpret_cast<getter>(IWalletActionActivatedEventArgs_get_ActionKind), nullptr, nullptr, nullptr },
+        { "item_id", reinterpret_cast<getter>(IWalletActionActivatedEventArgs_get_ItemId), nullptr, nullptr, nullptr },
+        { "kind", reinterpret_cast<getter>(IWalletActionActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(IWalletActionActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(IWalletActionActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IWalletActionActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_IWalletActionActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_IWalletActionActivatedEventArgs },
+        { Py_tp_methods, _methods_IWalletActionActivatedEventArgs },
+        { Py_tp_getset, _getset_IWalletActionActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_IWalletActionActivatedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Activation.IWalletActionActivatedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IWalletActionActivatedEventArgs
+    };
+
     // ----- IWebAccountProviderActivatedEventArgs interface --------------------
     constexpr const char* const type_name_IWebAccountProviderActivatedEventArgs = "IWebAccountProviderActivatedEventArgs";
 
@@ -11135,9 +14455,16 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_VISIT(state->type_BackgroundActivatedEventArgs);
         Py_VISIT(state->type_BarcodeScannerPreviewActivatedEventArgs);
         Py_VISIT(state->type_CachedFileUpdaterActivatedEventArgs);
+        Py_VISIT(state->type_CameraSettingsActivatedEventArgs);
         Py_VISIT(state->type_CommandLineActivatedEventArgs);
         Py_VISIT(state->type_CommandLineActivationOperation);
+        Py_VISIT(state->type_ContactCallActivatedEventArgs);
+        Py_VISIT(state->type_ContactMapActivatedEventArgs);
+        Py_VISIT(state->type_ContactMessageActivatedEventArgs);
         Py_VISIT(state->type_ContactPanelActivatedEventArgs);
+        Py_VISIT(state->type_ContactPickerActivatedEventArgs);
+        Py_VISIT(state->type_ContactPostActivatedEventArgs);
+        Py_VISIT(state->type_ContactVideoCallActivatedEventArgs);
         Py_VISIT(state->type_DeviceActivatedEventArgs);
         Py_VISIT(state->type_DevicePairingActivatedEventArgs);
         Py_VISIT(state->type_DialReceiverActivatedEventArgs);
@@ -11149,9 +14476,12 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_VISIT(state->type_FolderPickerContinuationEventArgs);
         Py_VISIT(state->type_LaunchActivatedEventArgs);
         Py_VISIT(state->type_LockScreenActivatedEventArgs);
+        Py_VISIT(state->type_LockScreenCallActivatedEventArgs);
         Py_VISIT(state->type_LockScreenComponentActivatedEventArgs);
         Py_VISIT(state->type_PhoneCallActivatedEventArgs);
         Py_VISIT(state->type_PickerReturnedActivatedEventArgs);
+        Py_VISIT(state->type_Print3DWorkflowActivatedEventArgs);
+        Py_VISIT(state->type_PrintTaskSettingsActivatedEventArgs);
         Py_VISIT(state->type_ProtocolActivatedEventArgs);
         Py_VISIT(state->type_ProtocolForResultsActivatedEventArgs);
         Py_VISIT(state->type_RestrictedLaunchActivatedEventArgs);
@@ -11163,6 +14493,7 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_VISIT(state->type_ToastNotificationActivatedEventArgs);
         Py_VISIT(state->type_UserDataAccountProviderActivatedEventArgs);
         Py_VISIT(state->type_VoiceCommandActivatedEventArgs);
+        Py_VISIT(state->type_WalletActionActivatedEventArgs);
         Py_VISIT(state->type_WebAccountProviderActivatedEventArgs);
         Py_VISIT(state->type_WebAuthenticationBrokerContinuationEventArgs);
         Py_VISIT(state->type_IActivatedEventArgs);
@@ -11177,8 +14508,17 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_VISIT(state->type_IBackgroundActivatedEventArgs);
         Py_VISIT(state->type_IBarcodeScannerPreviewActivatedEventArgs);
         Py_VISIT(state->type_ICachedFileUpdaterActivatedEventArgs);
+        Py_VISIT(state->type_ICameraSettingsActivatedEventArgs);
         Py_VISIT(state->type_ICommandLineActivatedEventArgs);
+        Py_VISIT(state->type_IContactActivatedEventArgs);
+        Py_VISIT(state->type_IContactCallActivatedEventArgs);
+        Py_VISIT(state->type_IContactMapActivatedEventArgs);
+        Py_VISIT(state->type_IContactMessageActivatedEventArgs);
         Py_VISIT(state->type_IContactPanelActivatedEventArgs);
+        Py_VISIT(state->type_IContactPickerActivatedEventArgs);
+        Py_VISIT(state->type_IContactPostActivatedEventArgs);
+        Py_VISIT(state->type_IContactVideoCallActivatedEventArgs);
+        Py_VISIT(state->type_IContactsProviderActivatedEventArgs);
         Py_VISIT(state->type_IContinuationActivatedEventArgs);
         Py_VISIT(state->type_IDeviceActivatedEventArgs);
         Py_VISIT(state->type_IDevicePairingActivatedEventArgs);
@@ -11196,9 +14536,12 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_VISIT(state->type_ILaunchActivatedEventArgs);
         Py_VISIT(state->type_ILaunchActivatedEventArgs2);
         Py_VISIT(state->type_ILockScreenActivatedEventArgs);
+        Py_VISIT(state->type_ILockScreenCallActivatedEventArgs);
         Py_VISIT(state->type_IPhoneCallActivatedEventArgs);
         Py_VISIT(state->type_IPickerReturnedActivatedEventArgs);
         Py_VISIT(state->type_IPrelaunchActivatedEventArgs);
+        Py_VISIT(state->type_IPrint3DWorkflowActivatedEventArgs);
+        Py_VISIT(state->type_IPrintTaskSettingsActivatedEventArgs);
         Py_VISIT(state->type_IProtocolActivatedEventArgs);
         Py_VISIT(state->type_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData);
         Py_VISIT(state->type_IProtocolForResultsActivatedEventArgs);
@@ -11211,6 +14554,7 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_VISIT(state->type_IUserDataAccountProviderActivatedEventArgs);
         Py_VISIT(state->type_IViewSwitcherProvider);
         Py_VISIT(state->type_IVoiceCommandActivatedEventArgs);
+        Py_VISIT(state->type_IWalletActionActivatedEventArgs);
         Py_VISIT(state->type_IWebAccountProviderActivatedEventArgs);
         Py_VISIT(state->type_IWebAuthenticationBrokerContinuationEventArgs);
 
@@ -11236,9 +14580,16 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_CLEAR(state->type_BackgroundActivatedEventArgs);
         Py_CLEAR(state->type_BarcodeScannerPreviewActivatedEventArgs);
         Py_CLEAR(state->type_CachedFileUpdaterActivatedEventArgs);
+        Py_CLEAR(state->type_CameraSettingsActivatedEventArgs);
         Py_CLEAR(state->type_CommandLineActivatedEventArgs);
         Py_CLEAR(state->type_CommandLineActivationOperation);
+        Py_CLEAR(state->type_ContactCallActivatedEventArgs);
+        Py_CLEAR(state->type_ContactMapActivatedEventArgs);
+        Py_CLEAR(state->type_ContactMessageActivatedEventArgs);
         Py_CLEAR(state->type_ContactPanelActivatedEventArgs);
+        Py_CLEAR(state->type_ContactPickerActivatedEventArgs);
+        Py_CLEAR(state->type_ContactPostActivatedEventArgs);
+        Py_CLEAR(state->type_ContactVideoCallActivatedEventArgs);
         Py_CLEAR(state->type_DeviceActivatedEventArgs);
         Py_CLEAR(state->type_DevicePairingActivatedEventArgs);
         Py_CLEAR(state->type_DialReceiverActivatedEventArgs);
@@ -11250,9 +14601,12 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_CLEAR(state->type_FolderPickerContinuationEventArgs);
         Py_CLEAR(state->type_LaunchActivatedEventArgs);
         Py_CLEAR(state->type_LockScreenActivatedEventArgs);
+        Py_CLEAR(state->type_LockScreenCallActivatedEventArgs);
         Py_CLEAR(state->type_LockScreenComponentActivatedEventArgs);
         Py_CLEAR(state->type_PhoneCallActivatedEventArgs);
         Py_CLEAR(state->type_PickerReturnedActivatedEventArgs);
+        Py_CLEAR(state->type_Print3DWorkflowActivatedEventArgs);
+        Py_CLEAR(state->type_PrintTaskSettingsActivatedEventArgs);
         Py_CLEAR(state->type_ProtocolActivatedEventArgs);
         Py_CLEAR(state->type_ProtocolForResultsActivatedEventArgs);
         Py_CLEAR(state->type_RestrictedLaunchActivatedEventArgs);
@@ -11264,6 +14618,7 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_CLEAR(state->type_ToastNotificationActivatedEventArgs);
         Py_CLEAR(state->type_UserDataAccountProviderActivatedEventArgs);
         Py_CLEAR(state->type_VoiceCommandActivatedEventArgs);
+        Py_CLEAR(state->type_WalletActionActivatedEventArgs);
         Py_CLEAR(state->type_WebAccountProviderActivatedEventArgs);
         Py_CLEAR(state->type_WebAuthenticationBrokerContinuationEventArgs);
         Py_CLEAR(state->type_IActivatedEventArgs);
@@ -11278,8 +14633,17 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_CLEAR(state->type_IBackgroundActivatedEventArgs);
         Py_CLEAR(state->type_IBarcodeScannerPreviewActivatedEventArgs);
         Py_CLEAR(state->type_ICachedFileUpdaterActivatedEventArgs);
+        Py_CLEAR(state->type_ICameraSettingsActivatedEventArgs);
         Py_CLEAR(state->type_ICommandLineActivatedEventArgs);
+        Py_CLEAR(state->type_IContactActivatedEventArgs);
+        Py_CLEAR(state->type_IContactCallActivatedEventArgs);
+        Py_CLEAR(state->type_IContactMapActivatedEventArgs);
+        Py_CLEAR(state->type_IContactMessageActivatedEventArgs);
         Py_CLEAR(state->type_IContactPanelActivatedEventArgs);
+        Py_CLEAR(state->type_IContactPickerActivatedEventArgs);
+        Py_CLEAR(state->type_IContactPostActivatedEventArgs);
+        Py_CLEAR(state->type_IContactVideoCallActivatedEventArgs);
+        Py_CLEAR(state->type_IContactsProviderActivatedEventArgs);
         Py_CLEAR(state->type_IContinuationActivatedEventArgs);
         Py_CLEAR(state->type_IDeviceActivatedEventArgs);
         Py_CLEAR(state->type_IDevicePairingActivatedEventArgs);
@@ -11297,9 +14661,12 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_CLEAR(state->type_ILaunchActivatedEventArgs);
         Py_CLEAR(state->type_ILaunchActivatedEventArgs2);
         Py_CLEAR(state->type_ILockScreenActivatedEventArgs);
+        Py_CLEAR(state->type_ILockScreenCallActivatedEventArgs);
         Py_CLEAR(state->type_IPhoneCallActivatedEventArgs);
         Py_CLEAR(state->type_IPickerReturnedActivatedEventArgs);
         Py_CLEAR(state->type_IPrelaunchActivatedEventArgs);
+        Py_CLEAR(state->type_IPrint3DWorkflowActivatedEventArgs);
+        Py_CLEAR(state->type_IPrintTaskSettingsActivatedEventArgs);
         Py_CLEAR(state->type_IProtocolActivatedEventArgs);
         Py_CLEAR(state->type_IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData);
         Py_CLEAR(state->type_IProtocolForResultsActivatedEventArgs);
@@ -11312,6 +14679,7 @@ namespace py::cpp::Windows::ApplicationModel::Activation
         Py_CLEAR(state->type_IUserDataAccountProviderActivatedEventArgs);
         Py_CLEAR(state->type_IViewSwitcherProvider);
         Py_CLEAR(state->type_IVoiceCommandActivatedEventArgs);
+        Py_CLEAR(state->type_IWalletActionActivatedEventArgs);
         Py_CLEAR(state->type_IWebAccountProviderActivatedEventArgs);
         Py_CLEAR(state->type_IWebAuthenticationBrokerContinuationEventArgs);
 
@@ -11486,6 +14854,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
 
     Py_INCREF(state->type_CachedFileUpdaterActivatedEventArgs);
 
+    state->type_CameraSettingsActivatedEventArgs = py::register_python_type(module.get(), type_name_CameraSettingsActivatedEventArgs, &type_spec_CameraSettingsActivatedEventArgs, bases.get());
+    if (!state->type_CameraSettingsActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CameraSettingsActivatedEventArgs);
+
     state->type_CommandLineActivatedEventArgs = py::register_python_type(module.get(), type_name_CommandLineActivatedEventArgs, &type_spec_CommandLineActivatedEventArgs, bases.get());
     if (!state->type_CommandLineActivatedEventArgs)
     {
@@ -11502,6 +14878,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
 
     Py_INCREF(state->type_CommandLineActivationOperation);
 
+    state->type_ContactCallActivatedEventArgs = py::register_python_type(module.get(), type_name_ContactCallActivatedEventArgs, &type_spec_ContactCallActivatedEventArgs, bases.get());
+    if (!state->type_ContactCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ContactCallActivatedEventArgs);
+
+    state->type_ContactMapActivatedEventArgs = py::register_python_type(module.get(), type_name_ContactMapActivatedEventArgs, &type_spec_ContactMapActivatedEventArgs, bases.get());
+    if (!state->type_ContactMapActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ContactMapActivatedEventArgs);
+
+    state->type_ContactMessageActivatedEventArgs = py::register_python_type(module.get(), type_name_ContactMessageActivatedEventArgs, &type_spec_ContactMessageActivatedEventArgs, bases.get());
+    if (!state->type_ContactMessageActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ContactMessageActivatedEventArgs);
+
     state->type_ContactPanelActivatedEventArgs = py::register_python_type(module.get(), type_name_ContactPanelActivatedEventArgs, &type_spec_ContactPanelActivatedEventArgs, bases.get());
     if (!state->type_ContactPanelActivatedEventArgs)
     {
@@ -11509,6 +14909,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
     }
 
     Py_INCREF(state->type_ContactPanelActivatedEventArgs);
+
+    state->type_ContactPickerActivatedEventArgs = py::register_python_type(module.get(), type_name_ContactPickerActivatedEventArgs, &type_spec_ContactPickerActivatedEventArgs, bases.get());
+    if (!state->type_ContactPickerActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ContactPickerActivatedEventArgs);
+
+    state->type_ContactPostActivatedEventArgs = py::register_python_type(module.get(), type_name_ContactPostActivatedEventArgs, &type_spec_ContactPostActivatedEventArgs, bases.get());
+    if (!state->type_ContactPostActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ContactPostActivatedEventArgs);
+
+    state->type_ContactVideoCallActivatedEventArgs = py::register_python_type(module.get(), type_name_ContactVideoCallActivatedEventArgs, &type_spec_ContactVideoCallActivatedEventArgs, bases.get());
+    if (!state->type_ContactVideoCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ContactVideoCallActivatedEventArgs);
 
     state->type_DeviceActivatedEventArgs = py::register_python_type(module.get(), type_name_DeviceActivatedEventArgs, &type_spec_DeviceActivatedEventArgs, bases.get());
     if (!state->type_DeviceActivatedEventArgs)
@@ -11598,6 +15022,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
 
     Py_INCREF(state->type_LockScreenActivatedEventArgs);
 
+    state->type_LockScreenCallActivatedEventArgs = py::register_python_type(module.get(), type_name_LockScreenCallActivatedEventArgs, &type_spec_LockScreenCallActivatedEventArgs, bases.get());
+    if (!state->type_LockScreenCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_LockScreenCallActivatedEventArgs);
+
     state->type_LockScreenComponentActivatedEventArgs = py::register_python_type(module.get(), type_name_LockScreenComponentActivatedEventArgs, &type_spec_LockScreenComponentActivatedEventArgs, bases.get());
     if (!state->type_LockScreenComponentActivatedEventArgs)
     {
@@ -11621,6 +15053,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
     }
 
     Py_INCREF(state->type_PickerReturnedActivatedEventArgs);
+
+    state->type_Print3DWorkflowActivatedEventArgs = py::register_python_type(module.get(), type_name_Print3DWorkflowActivatedEventArgs, &type_spec_Print3DWorkflowActivatedEventArgs, bases.get());
+    if (!state->type_Print3DWorkflowActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_Print3DWorkflowActivatedEventArgs);
+
+    state->type_PrintTaskSettingsActivatedEventArgs = py::register_python_type(module.get(), type_name_PrintTaskSettingsActivatedEventArgs, &type_spec_PrintTaskSettingsActivatedEventArgs, bases.get());
+    if (!state->type_PrintTaskSettingsActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintTaskSettingsActivatedEventArgs);
 
     state->type_ProtocolActivatedEventArgs = py::register_python_type(module.get(), type_name_ProtocolActivatedEventArgs, &type_spec_ProtocolActivatedEventArgs, bases.get());
     if (!state->type_ProtocolActivatedEventArgs)
@@ -11709,6 +15157,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
     }
 
     Py_INCREF(state->type_VoiceCommandActivatedEventArgs);
+
+    state->type_WalletActionActivatedEventArgs = py::register_python_type(module.get(), type_name_WalletActionActivatedEventArgs, &type_spec_WalletActionActivatedEventArgs, bases.get());
+    if (!state->type_WalletActionActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WalletActionActivatedEventArgs);
 
     state->type_WebAccountProviderActivatedEventArgs = py::register_python_type(module.get(), type_name_WebAccountProviderActivatedEventArgs, &type_spec_WebAccountProviderActivatedEventArgs, bases.get());
     if (!state->type_WebAccountProviderActivatedEventArgs)
@@ -11822,6 +15278,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
 
     Py_INCREF(state->type_ICachedFileUpdaterActivatedEventArgs);
 
+    state->type_ICameraSettingsActivatedEventArgs = py::register_python_type(module.get(), type_name_ICameraSettingsActivatedEventArgs, &type_spec_ICameraSettingsActivatedEventArgs, bases.get());
+    if (!state->type_ICameraSettingsActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ICameraSettingsActivatedEventArgs);
+
     state->type_ICommandLineActivatedEventArgs = py::register_python_type(module.get(), type_name_ICommandLineActivatedEventArgs, &type_spec_ICommandLineActivatedEventArgs, bases.get());
     if (!state->type_ICommandLineActivatedEventArgs)
     {
@@ -11830,6 +15294,38 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
 
     Py_INCREF(state->type_ICommandLineActivatedEventArgs);
 
+    state->type_IContactActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactActivatedEventArgs, &type_spec_IContactActivatedEventArgs, bases.get());
+    if (!state->type_IContactActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactActivatedEventArgs);
+
+    state->type_IContactCallActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactCallActivatedEventArgs, &type_spec_IContactCallActivatedEventArgs, bases.get());
+    if (!state->type_IContactCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactCallActivatedEventArgs);
+
+    state->type_IContactMapActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactMapActivatedEventArgs, &type_spec_IContactMapActivatedEventArgs, bases.get());
+    if (!state->type_IContactMapActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactMapActivatedEventArgs);
+
+    state->type_IContactMessageActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactMessageActivatedEventArgs, &type_spec_IContactMessageActivatedEventArgs, bases.get());
+    if (!state->type_IContactMessageActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactMessageActivatedEventArgs);
+
     state->type_IContactPanelActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactPanelActivatedEventArgs, &type_spec_IContactPanelActivatedEventArgs, bases.get());
     if (!state->type_IContactPanelActivatedEventArgs)
     {
@@ -11837,6 +15333,38 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
     }
 
     Py_INCREF(state->type_IContactPanelActivatedEventArgs);
+
+    state->type_IContactPickerActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactPickerActivatedEventArgs, &type_spec_IContactPickerActivatedEventArgs, bases.get());
+    if (!state->type_IContactPickerActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactPickerActivatedEventArgs);
+
+    state->type_IContactPostActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactPostActivatedEventArgs, &type_spec_IContactPostActivatedEventArgs, bases.get());
+    if (!state->type_IContactPostActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactPostActivatedEventArgs);
+
+    state->type_IContactVideoCallActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactVideoCallActivatedEventArgs, &type_spec_IContactVideoCallActivatedEventArgs, bases.get());
+    if (!state->type_IContactVideoCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactVideoCallActivatedEventArgs);
+
+    state->type_IContactsProviderActivatedEventArgs = py::register_python_type(module.get(), type_name_IContactsProviderActivatedEventArgs, &type_spec_IContactsProviderActivatedEventArgs, bases.get());
+    if (!state->type_IContactsProviderActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IContactsProviderActivatedEventArgs);
 
     state->type_IContinuationActivatedEventArgs = py::register_python_type(module.get(), type_name_IContinuationActivatedEventArgs, &type_spec_IContinuationActivatedEventArgs, bases.get());
     if (!state->type_IContinuationActivatedEventArgs)
@@ -11974,6 +15502,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
 
     Py_INCREF(state->type_ILockScreenActivatedEventArgs);
 
+    state->type_ILockScreenCallActivatedEventArgs = py::register_python_type(module.get(), type_name_ILockScreenCallActivatedEventArgs, &type_spec_ILockScreenCallActivatedEventArgs, bases.get());
+    if (!state->type_ILockScreenCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ILockScreenCallActivatedEventArgs);
+
     state->type_IPhoneCallActivatedEventArgs = py::register_python_type(module.get(), type_name_IPhoneCallActivatedEventArgs, &type_spec_IPhoneCallActivatedEventArgs, bases.get());
     if (!state->type_IPhoneCallActivatedEventArgs)
     {
@@ -11997,6 +15533,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
     }
 
     Py_INCREF(state->type_IPrelaunchActivatedEventArgs);
+
+    state->type_IPrint3DWorkflowActivatedEventArgs = py::register_python_type(module.get(), type_name_IPrint3DWorkflowActivatedEventArgs, &type_spec_IPrint3DWorkflowActivatedEventArgs, bases.get());
+    if (!state->type_IPrint3DWorkflowActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IPrint3DWorkflowActivatedEventArgs);
+
+    state->type_IPrintTaskSettingsActivatedEventArgs = py::register_python_type(module.get(), type_name_IPrintTaskSettingsActivatedEventArgs, &type_spec_IPrintTaskSettingsActivatedEventArgs, bases.get());
+    if (!state->type_IPrintTaskSettingsActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IPrintTaskSettingsActivatedEventArgs);
 
     state->type_IProtocolActivatedEventArgs = py::register_python_type(module.get(), type_name_IProtocolActivatedEventArgs, &type_spec_IProtocolActivatedEventArgs, bases.get());
     if (!state->type_IProtocolActivatedEventArgs)
@@ -12093,6 +15645,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Activation(void) noexcept
     }
 
     Py_INCREF(state->type_IVoiceCommandActivatedEventArgs);
+
+    state->type_IWalletActionActivatedEventArgs = py::register_python_type(module.get(), type_name_IWalletActionActivatedEventArgs, &type_spec_IWalletActionActivatedEventArgs, bases.get());
+    if (!state->type_IWalletActionActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IWalletActionActivatedEventArgs);
 
     state->type_IWebAccountProviderActivatedEventArgs = py::register_python_type(module.get(), type_name_IWebAccountProviderActivatedEventArgs, &type_spec_IWebAccountProviderActivatedEventArgs, bases.get());
     if (!state->type_IWebAccountProviderActivatedEventArgs)
@@ -12344,6 +15904,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::Cache
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CameraSettingsActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::CommandLineActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Activation;
 
@@ -12390,6 +15973,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::Comma
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ContactCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ContactMapActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ContactMessageActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ContactPanelActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Activation;
 
@@ -12407,6 +16059,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::Conta
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ContactPanelActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ContactPickerActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ContactPostActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ContactVideoCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs is not registered");
         return nullptr;
     }
 
@@ -12666,6 +16387,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::LockS
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_LockScreenCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::LockScreenComponentActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Activation;
 
@@ -12729,6 +16473,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::Picke
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::PickerReturnedActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_Print3DWorkflowActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintTaskSettingsActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs is not registered");
         return nullptr;
     }
 
@@ -12982,6 +16772,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::Voice
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::VoiceCommandActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WalletActionActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs is not registered");
         return nullptr;
     }
 
@@ -13310,6 +17123,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ICach
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ICameraSettingsActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Activation;
 
@@ -13333,6 +17169,98 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IComm
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactMapActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactMessageActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Activation;
 
@@ -13350,6 +17278,98 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ICont
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactPickerActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactPostActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactVideoCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IContactsProviderActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs is not registered");
         return nullptr;
     }
 
@@ -13747,6 +17767,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ILock
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ILockScreenCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Activation;
 
@@ -13810,6 +17853,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IPrel
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IPrelaunchActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IPrint3DWorkflowActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IPrintTaskSettingsActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs is not registered");
         return nullptr;
     }
 
@@ -14086,6 +18175,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IVoic
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IVoiceCommandActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Activation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Activation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IWalletActionActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs is not registered");
         return nullptr;
     }
 

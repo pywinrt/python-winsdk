@@ -34,5 +34,47 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Printers::Extensions
         IPrint3DWorkflowPrinterChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IPrint3DWorkflowPrinterChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IPrintExtensionContextStatic :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrintExtensionContextStatic>
+    {
+        IPrintExtensionContextStatic(std::nullptr_t = nullptr) noexcept {}
+        IPrintExtensionContextStatic(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPrintNotificationEventDetails :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrintNotificationEventDetails>
+    {
+        IPrintNotificationEventDetails(std::nullptr_t = nullptr) noexcept {}
+        IPrintNotificationEventDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPrintTaskConfiguration :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrintTaskConfiguration>
+    {
+        IPrintTaskConfiguration(std::nullptr_t = nullptr) noexcept {}
+        IPrintTaskConfiguration(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPrintTaskConfigurationSaveRequest :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrintTaskConfigurationSaveRequest>
+    {
+        IPrintTaskConfigurationSaveRequest(std::nullptr_t = nullptr) noexcept {}
+        IPrintTaskConfigurationSaveRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPrintTaskConfigurationSaveRequestedDeferral :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrintTaskConfigurationSaveRequestedDeferral>
+    {
+        IPrintTaskConfigurationSaveRequestedDeferral(std::nullptr_t = nullptr) noexcept {}
+        IPrintTaskConfigurationSaveRequestedDeferral(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPrintTaskConfigurationSaveRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrintTaskConfigurationSaveRequestedEventArgs>
+    {
+        IPrintTaskConfigurationSaveRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPrintTaskConfigurationSaveRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
 }
 #endif

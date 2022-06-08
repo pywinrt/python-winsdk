@@ -13,10 +13,53 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Search
         LocalContentSuggestionSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ILocalContentSuggestionSettings(ptr, take_ownership_from_abi) {}
         LocalContentSuggestionSettings();
     };
+    struct __declspec(empty_bases) SearchPane : winrt::Windows::ApplicationModel::Search::ISearchPane
+    {
+        SearchPane(std::nullptr_t) noexcept {}
+        SearchPane(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPane(ptr, take_ownership_from_abi) {}
+        static auto GetForCurrentView();
+        static auto HideThisApplication();
+    };
+    struct __declspec(empty_bases) SearchPaneQueryChangedEventArgs : winrt::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs
+    {
+        SearchPaneQueryChangedEventArgs(std::nullptr_t) noexcept {}
+        SearchPaneQueryChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) SearchPaneQueryLinguisticDetails : winrt::Windows::ApplicationModel::Search::ISearchPaneQueryLinguisticDetails
     {
         SearchPaneQueryLinguisticDetails(std::nullptr_t) noexcept {}
         SearchPaneQueryLinguisticDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneQueryLinguisticDetails(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SearchPaneQuerySubmittedEventArgs : winrt::Windows::ApplicationModel::Search::ISearchPaneQuerySubmittedEventArgs,
+        impl::require<SearchPaneQuerySubmittedEventArgs, winrt::Windows::ApplicationModel::Search::ISearchPaneQuerySubmittedEventArgsWithLinguisticDetails>
+    {
+        SearchPaneQuerySubmittedEventArgs(std::nullptr_t) noexcept {}
+        SearchPaneQuerySubmittedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneQuerySubmittedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SearchPaneResultSuggestionChosenEventArgs : winrt::Windows::ApplicationModel::Search::ISearchPaneResultSuggestionChosenEventArgs
+    {
+        SearchPaneResultSuggestionChosenEventArgs(std::nullptr_t) noexcept {}
+        SearchPaneResultSuggestionChosenEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneResultSuggestionChosenEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SearchPaneSuggestionsRequest : winrt::Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequest
+    {
+        SearchPaneSuggestionsRequest(std::nullptr_t) noexcept {}
+        SearchPaneSuggestionsRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequest(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SearchPaneSuggestionsRequestDeferral : winrt::Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequestDeferral
+    {
+        SearchPaneSuggestionsRequestDeferral(std::nullptr_t) noexcept {}
+        SearchPaneSuggestionsRequestDeferral(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequestDeferral(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SearchPaneSuggestionsRequestedEventArgs : winrt::Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequestedEventArgs
+    {
+        SearchPaneSuggestionsRequestedEventArgs(std::nullptr_t) noexcept {}
+        SearchPaneSuggestionsRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneSuggestionsRequestedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SearchPaneVisibilityChangedEventArgs : winrt::Windows::ApplicationModel::Search::ISearchPaneVisibilityChangedEventArgs
+    {
+        SearchPaneVisibilityChangedEventArgs(std::nullptr_t) noexcept {}
+        SearchPaneVisibilityChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Search::ISearchPaneVisibilityChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) SearchQueryLinguisticDetails : winrt::Windows::ApplicationModel::Search::ISearchQueryLinguisticDetails
     {

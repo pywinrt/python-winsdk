@@ -11,7 +11,10 @@ namespace py::cpp::Windows::Gaming::UI
         PyObject* type_GameChatMessageOrigin;
         PyObject* type_GameChatOverlayPosition;
         PyTypeObject* type_GameBar;
+        PyTypeObject* type_GameChatMessageReceivedEventArgs;
         PyTypeObject* type_GameChatOverlay;
+        PyTypeObject* type_GameChatOverlayMessageSource;
+        PyTypeObject* type_GameUIProviderActivatedEventArgs;
     };
 
     static PyObject* register_GameChatMessageOrigin(PyObject* module, PyObject* type)
@@ -190,6 +193,134 @@ namespace py::cpp::Windows::Gaming::UI
         _type_slots_GameBar
     };
 
+    // ----- GameChatMessageReceivedEventArgs class --------------------
+    constexpr const char* const type_name_GameChatMessageReceivedEventArgs = "GameChatMessageReceivedEventArgs";
+
+    static PyObject* _new_GameChatMessageReceivedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_GameChatMessageReceivedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_GameChatMessageReceivedEventArgs(py::wrapper::Windows::Gaming::UI::GameChatMessageReceivedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* GameChatMessageReceivedEventArgs_get_AppDisplayName(py::wrapper::Windows::Gaming::UI::GameChatMessageReceivedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AppDisplayName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameChatMessageReceivedEventArgs_get_AppId(py::wrapper::Windows::Gaming::UI::GameChatMessageReceivedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AppId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameChatMessageReceivedEventArgs_get_Message(py::wrapper::Windows::Gaming::UI::GameChatMessageReceivedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Message());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameChatMessageReceivedEventArgs_get_Origin(py::wrapper::Windows::Gaming::UI::GameChatMessageReceivedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Origin());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameChatMessageReceivedEventArgs_get_SenderName(py::wrapper::Windows::Gaming::UI::GameChatMessageReceivedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SenderName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_GameChatMessageReceivedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Gaming::UI::GameChatMessageReceivedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_GameChatMessageReceivedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_GameChatMessageReceivedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_GameChatMessageReceivedEventArgs[] = {
+        { "app_display_name", reinterpret_cast<getter>(GameChatMessageReceivedEventArgs_get_AppDisplayName), nullptr, nullptr, nullptr },
+        { "app_id", reinterpret_cast<getter>(GameChatMessageReceivedEventArgs_get_AppId), nullptr, nullptr, nullptr },
+        { "message", reinterpret_cast<getter>(GameChatMessageReceivedEventArgs_get_Message), nullptr, nullptr, nullptr },
+        { "origin", reinterpret_cast<getter>(GameChatMessageReceivedEventArgs_get_Origin), nullptr, nullptr, nullptr },
+        { "sender_name", reinterpret_cast<getter>(GameChatMessageReceivedEventArgs_get_SenderName), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_GameChatMessageReceivedEventArgs[] = 
+    {
+        { Py_tp_new, _new_GameChatMessageReceivedEventArgs },
+        { Py_tp_dealloc, _dealloc_GameChatMessageReceivedEventArgs },
+        { Py_tp_methods, _methods_GameChatMessageReceivedEventArgs },
+        { Py_tp_getset, _getset_GameChatMessageReceivedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_GameChatMessageReceivedEventArgs =
+    {
+        "_winsdk_Windows_Gaming_UI.GameChatMessageReceivedEventArgs",
+        sizeof(py::wrapper::Windows::Gaming::UI::GameChatMessageReceivedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_GameChatMessageReceivedEventArgs
+    };
+
     // ----- GameChatOverlay class --------------------
     constexpr const char* const type_name_GameChatOverlay = "GameChatOverlay";
 
@@ -337,6 +468,288 @@ namespace py::cpp::Windows::Gaming::UI
         _type_slots_GameChatOverlay
     };
 
+    // ----- GameChatOverlayMessageSource class --------------------
+    constexpr const char* const type_name_GameChatOverlayMessageSource = "GameChatOverlayMessageSource";
+
+    static PyObject* _new_GameChatOverlayMessageSource(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Gaming::UI::GameChatOverlayMessageSource instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_GameChatOverlayMessageSource(py::wrapper::Windows::Gaming::UI::GameChatOverlayMessageSource* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* GameChatOverlayMessageSource_SetDelayBeforeClosingAfterMessageReceived(py::wrapper::Windows::Gaming::UI::GameChatOverlayMessageSource* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::TimeSpan>(args, 0);
+
+                self->obj.SetDelayBeforeClosingAfterMessageReceived(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameChatOverlayMessageSource_add_MessageReceived(py::wrapper::Windows::Gaming::UI::GameChatOverlayMessageSource* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Gaming::UI::GameChatOverlayMessageSource, winrt::Windows::Gaming::UI::GameChatMessageReceivedEventArgs>>(arg);
+
+            return py::convert(self->obj.MessageReceived(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameChatOverlayMessageSource_remove_MessageReceived(py::wrapper::Windows::Gaming::UI::GameChatOverlayMessageSource* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.MessageReceived(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_GameChatOverlayMessageSource(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Gaming::UI::GameChatOverlayMessageSource>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_GameChatOverlayMessageSource[] = {
+        { "set_delay_before_closing_after_message_received", reinterpret_cast<PyCFunction>(GameChatOverlayMessageSource_SetDelayBeforeClosingAfterMessageReceived), METH_VARARGS, nullptr },
+        { "add_message_received", reinterpret_cast<PyCFunction>(GameChatOverlayMessageSource_add_MessageReceived), METH_O, nullptr },
+        { "remove_message_received", reinterpret_cast<PyCFunction>(GameChatOverlayMessageSource_remove_MessageReceived), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_GameChatOverlayMessageSource), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_GameChatOverlayMessageSource[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_GameChatOverlayMessageSource[] = 
+    {
+        { Py_tp_new, _new_GameChatOverlayMessageSource },
+        { Py_tp_dealloc, _dealloc_GameChatOverlayMessageSource },
+        { Py_tp_methods, _methods_GameChatOverlayMessageSource },
+        { Py_tp_getset, _getset_GameChatOverlayMessageSource },
+        { },
+    };
+
+    static PyType_Spec type_spec_GameChatOverlayMessageSource =
+    {
+        "_winsdk_Windows_Gaming_UI.GameChatOverlayMessageSource",
+        sizeof(py::wrapper::Windows::Gaming::UI::GameChatOverlayMessageSource),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_GameChatOverlayMessageSource
+    };
+
+    // ----- GameUIProviderActivatedEventArgs class --------------------
+    constexpr const char* const type_name_GameUIProviderActivatedEventArgs = "GameUIProviderActivatedEventArgs";
+
+    static PyObject* _new_GameUIProviderActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_GameUIProviderActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_GameUIProviderActivatedEventArgs(py::wrapper::Windows::Gaming::UI::GameUIProviderActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* GameUIProviderActivatedEventArgs_ReportCompleted(py::wrapper::Windows::Gaming::UI::GameUIProviderActivatedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::ValueSet>(args, 0);
+
+                self->obj.ReportCompleted(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameUIProviderActivatedEventArgs_get_Kind(py::wrapper::Windows::Gaming::UI::GameUIProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameUIProviderActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::Gaming::UI::GameUIProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameUIProviderActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::Gaming::UI::GameUIProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GameUIProviderActivatedEventArgs_get_GameUIArgs(py::wrapper::Windows::Gaming::UI::GameUIProviderActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.GameUIArgs());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_GameUIProviderActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Gaming::UI::GameUIProviderActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_GameUIProviderActivatedEventArgs[] = {
+        { "report_completed", reinterpret_cast<PyCFunction>(GameUIProviderActivatedEventArgs_ReportCompleted), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_GameUIProviderActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_GameUIProviderActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(GameUIProviderActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(GameUIProviderActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(GameUIProviderActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "game_u_i_args", reinterpret_cast<getter>(GameUIProviderActivatedEventArgs_get_GameUIArgs), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_GameUIProviderActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_GameUIProviderActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_GameUIProviderActivatedEventArgs },
+        { Py_tp_methods, _methods_GameUIProviderActivatedEventArgs },
+        { Py_tp_getset, _getset_GameUIProviderActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_GameUIProviderActivatedEventArgs =
+    {
+        "_winsdk_Windows_Gaming_UI.GameUIProviderActivatedEventArgs",
+        sizeof(py::wrapper::Windows::Gaming::UI::GameUIProviderActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_GameUIProviderActivatedEventArgs
+    };
+
     // ----- Windows.Gaming.UI Initialization --------------------
     PyDoc_STRVAR(module_doc, "Windows::Gaming::UI");
 
@@ -358,7 +771,10 @@ namespace py::cpp::Windows::Gaming::UI
         Py_VISIT(state->type_GameChatMessageOrigin);
         Py_VISIT(state->type_GameChatOverlayPosition);
         Py_VISIT(state->type_GameBar);
+        Py_VISIT(state->type_GameChatMessageReceivedEventArgs);
         Py_VISIT(state->type_GameChatOverlay);
+        Py_VISIT(state->type_GameChatOverlayMessageSource);
+        Py_VISIT(state->type_GameUIProviderActivatedEventArgs);
 
         return 0;
     }
@@ -375,7 +791,10 @@ namespace py::cpp::Windows::Gaming::UI
         Py_CLEAR(state->type_GameChatMessageOrigin);
         Py_CLEAR(state->type_GameChatOverlayPosition);
         Py_CLEAR(state->type_GameBar);
+        Py_CLEAR(state->type_GameChatMessageReceivedEventArgs);
         Py_CLEAR(state->type_GameChatOverlay);
+        Py_CLEAR(state->type_GameChatOverlayMessageSource);
+        Py_CLEAR(state->type_GameUIProviderActivatedEventArgs);
 
         return 0;
     }
@@ -492,6 +911,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Gaming_UI(void) noexcept
 
     Py_INCREF(state->type_GameBar);
 
+    state->type_GameChatMessageReceivedEventArgs = py::register_python_type(module.get(), type_name_GameChatMessageReceivedEventArgs, &type_spec_GameChatMessageReceivedEventArgs, bases.get());
+    if (!state->type_GameChatMessageReceivedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_GameChatMessageReceivedEventArgs);
+
     state->type_GameChatOverlay = py::register_python_type(module.get(), type_name_GameChatOverlay, &type_spec_GameChatOverlay, bases.get());
     if (!state->type_GameChatOverlay)
     {
@@ -499,6 +926,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Gaming_UI(void) noexcept
     }
 
     Py_INCREF(state->type_GameChatOverlay);
+
+    state->type_GameChatOverlayMessageSource = py::register_python_type(module.get(), type_name_GameChatOverlayMessageSource, &type_spec_GameChatOverlayMessageSource, bases.get());
+    if (!state->type_GameChatOverlayMessageSource)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_GameChatOverlayMessageSource);
+
+    state->type_GameUIProviderActivatedEventArgs = py::register_python_type(module.get(), type_name_GameUIProviderActivatedEventArgs, &type_spec_GameUIProviderActivatedEventArgs, bases.get());
+    if (!state->type_GameUIProviderActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_GameUIProviderActivatedEventArgs);
 
 
     return module.detach();
@@ -573,6 +1016,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Gaming::UI::GameBar>::get_python_ty
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Gaming::UI::GameChatMessageReceivedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Gaming::UI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Gaming::UI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_GameChatMessageReceivedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Gaming::UI::GameChatMessageReceivedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Gaming::UI::GameChatOverlay>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Gaming::UI;
 
@@ -590,6 +1056,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::Gaming::UI::GameChatOverlay>::get_p
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Gaming::UI::GameChatOverlay is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Gaming::UI::GameChatOverlayMessageSource>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Gaming::UI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Gaming::UI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_GameChatOverlayMessageSource;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Gaming::UI::GameChatOverlayMessageSource is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Gaming::UI::GameUIProviderActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Gaming::UI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Gaming::UI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_GameUIProviderActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Gaming::UI::GameUIProviderActivatedEventArgs is not registered");
         return nullptr;
     }
 

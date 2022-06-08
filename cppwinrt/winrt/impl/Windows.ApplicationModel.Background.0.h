@@ -88,6 +88,13 @@ WINRT_EXPORT namespace winrt::Windows::UI::Notifications
 }
 WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
 {
+    enum class AlarmAccessStatus : int32_t
+    {
+        Unspecified = 0,
+        AllowedWithWakeupCapability = 1,
+        AllowedWithoutWakeupCapability = 2,
+        Denied = 3,
+    };
     enum class ApplicationTriggerResult : int32_t
     {
         Allowed = 0,
@@ -194,6 +201,10 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
     };
     struct IActivitySensorTrigger;
     struct IActivitySensorTriggerFactory;
+    struct IAlarmApplicationManagerStatics;
+    struct IAppBroadcastTrigger;
+    struct IAppBroadcastTriggerFactory;
+    struct IAppBroadcastTriggerProviderInfo;
     struct IApplicationTrigger;
     struct IApplicationTriggerDetails;
     struct IAppointmentStoreNotificationTrigger;
@@ -285,6 +296,9 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
     struct IToastNotificationHistoryChangedTriggerFactory;
     struct IUserNotificationChangedTriggerFactory;
     struct ActivitySensorTrigger;
+    struct AlarmApplicationManager;
+    struct AppBroadcastTrigger;
+    struct AppBroadcastTriggerProviderInfo;
     struct ApplicationTrigger;
     struct ApplicationTriggerDetails;
     struct AppointmentStoreNotificationTrigger;
@@ -355,6 +369,10 @@ namespace winrt::impl
 {
     template <> struct category<winrt::Windows::ApplicationModel::Background::IActivitySensorTrigger>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::IActivitySensorTriggerFactory>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::IApplicationTrigger>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::IApplicationTriggerDetails>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::IAppointmentStoreNotificationTrigger>{ using type = interface_category; };
@@ -446,6 +464,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::Background::IToastNotificationHistoryChangedTriggerFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::IUserNotificationChangedTriggerFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::AlarmApplicationManager>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::ApplicationTrigger>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::ApplicationTriggerDetails>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::AppointmentStoreNotificationTrigger>{ using type = class_category; };
@@ -508,6 +529,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::Background::ToastNotificationActionTrigger>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::ToastNotificationHistoryChangedTrigger>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::ApplicationTriggerResult>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus>{ using type = enum_category; };
@@ -524,6 +546,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::Background::BackgroundTaskCompletedEventHandler>{ using type = delegate_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::BackgroundTaskProgressEventHandler>{ using type = delegate_category; };
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger> = L"Windows.ApplicationModel.Background.ActivitySensorTrigger";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::AlarmApplicationManager> = L"Windows.ApplicationModel.Background.AlarmApplicationManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger> = L"Windows.ApplicationModel.Background.AppBroadcastTrigger";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo> = L"Windows.ApplicationModel.Background.AppBroadcastTriggerProviderInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ApplicationTrigger> = L"Windows.ApplicationModel.Background.ApplicationTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ApplicationTriggerDetails> = L"Windows.ApplicationModel.Background.ApplicationTriggerDetails";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::AppointmentStoreNotificationTrigger> = L"Windows.ApplicationModel.Background.AppointmentStoreNotificationTrigger";
@@ -586,6 +611,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ToastNotificationActionTrigger> = L"Windows.ApplicationModel.Background.ToastNotificationActionTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ToastNotificationHistoryChangedTrigger> = L"Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger> = L"Windows.ApplicationModel.Background.UserNotificationChangedTrigger";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus> = L"Windows.ApplicationModel.Background.AlarmAccessStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ApplicationTriggerResult> = L"Windows.ApplicationModel.Background.ApplicationTriggerResult";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind> = L"Windows.ApplicationModel.Background.BackgroundAccessRequestKind";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::BackgroundAccessStatus> = L"Windows.ApplicationModel.Background.BackgroundAccessStatus";
@@ -600,6 +626,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::SystemTriggerType> = L"Windows.ApplicationModel.Background.SystemTriggerType";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IActivitySensorTrigger> = L"Windows.ApplicationModel.Background.IActivitySensorTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IActivitySensorTriggerFactory> = L"Windows.ApplicationModel.Background.IActivitySensorTriggerFactory";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics> = L"Windows.ApplicationModel.Background.IAlarmApplicationManagerStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger> = L"Windows.ApplicationModel.Background.IAppBroadcastTrigger";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory> = L"Windows.ApplicationModel.Background.IAppBroadcastTriggerFactory";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo> = L"Windows.ApplicationModel.Background.IAppBroadcastTriggerProviderInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IApplicationTrigger> = L"Windows.ApplicationModel.Background.IApplicationTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IApplicationTriggerDetails> = L"Windows.ApplicationModel.Background.IApplicationTriggerDetails";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::IAppointmentStoreNotificationTrigger> = L"Windows.ApplicationModel.Background.IAppointmentStoreNotificationTrigger";
@@ -695,6 +725,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::BackgroundTaskProgressEventHandler> = L"Windows.ApplicationModel.Background.BackgroundTaskProgressEventHandler";
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IActivitySensorTrigger>{ 0xD0DD4342,0xE37B,0x4823,{ 0xA5,0xFE,0x6B,0x31,0xDF,0xEF,0xDE,0xB0 } }; // D0DD4342-E37B-4823-A5FE-6B31DFEFDEB0
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IActivitySensorTriggerFactory>{ 0xA72691C3,0x3837,0x44F7,{ 0x83,0x1B,0x01,0x32,0xCC,0x87,0x2B,0xC3 } }; // A72691C3-3837-44F7-831B-0132CC872BC3
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics>{ 0xCA03FA3B,0xCCE6,0x4DE2,{ 0xB0,0x9B,0x96,0x28,0xBD,0x33,0xBB,0xBE } }; // CA03FA3B-CCE6-4DE2-B09B-9628BD33BBBE
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger>{ 0x74D4F496,0x8D37,0x44EC,{ 0x94,0x81,0x2A,0x0B,0x98,0x54,0xEB,0x48 } }; // 74D4F496-8D37-44EC-9481-2A0B9854EB48
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory>{ 0x280B9F44,0x22F4,0x4618,{ 0xA0,0x2E,0xE7,0xE4,0x11,0xEB,0x72,0x38 } }; // 280B9F44-22F4-4618-A02E-E7E411EB7238
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo>{ 0xF219352D,0x9DE8,0x4420,{ 0x9C,0xE2,0x5E,0xFF,0x8F,0x17,0x37,0x6B } }; // F219352D-9DE8-4420-9CE2-5EFF8F17376B
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IApplicationTrigger>{ 0x0B468630,0x9574,0x492C,{ 0x9E,0x93,0x1A,0x3A,0xE6,0x33,0x5F,0xE9 } }; // 0B468630-9574-492C-9E93-1A3AE6335FE9
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IApplicationTriggerDetails>{ 0x97DC6AB2,0x2219,0x4A9E,{ 0x9C,0x5E,0x41,0xD0,0x47,0xF7,0x6E,0x82 } }; // 97DC6AB2-2219-4A9E-9C5E-41D047F76E82
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::IAppointmentStoreNotificationTrigger>{ 0x64D4040C,0xC201,0x42AD,{ 0xAA,0x2A,0xE2,0x1B,0xA3,0x42,0x5B,0x6D } }; // 64D4040C-C201-42AD-AA2A-E21BA3425B6D
@@ -789,6 +823,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::BackgroundTaskCompletedEventHandler>{ 0x5B38E929,0xA086,0x46A7,{ 0xA6,0x78,0x43,0x91,0x35,0x82,0x2B,0xCF } }; // 5B38E929-A086-46A7-A678-439135822BCF
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Background::BackgroundTaskProgressEventHandler>{ 0x46E0683C,0x8A88,0x4C99,{ 0x80,0x4C,0x76,0x89,0x7F,0x62,0x77,0xA6 } }; // 46E0683C-8A88-4C99-804C-76897F6277A6
     template <> struct default_interface<winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IActivitySensorTrigger; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>{ using type = winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Background::ApplicationTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IApplicationTrigger; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Background::ApplicationTriggerDetails>{ using type = winrt::Windows::ApplicationModel::Background::IApplicationTriggerDetails; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Background::AppointmentStoreNotificationTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IAppointmentStoreNotificationTrigger; };
@@ -864,6 +900,47 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall Create(uint32_t, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall RequestAccessAsync(void**) noexcept = 0;
+            virtual int32_t __stdcall GetAccessStatus(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_ProviderInfo(void*) noexcept = 0;
+            virtual int32_t __stdcall get_ProviderInfo(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreateAppBroadcastTrigger(void*, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_DisplayNameResource(void*) noexcept = 0;
+            virtual int32_t __stdcall get_DisplayNameResource(void**) noexcept = 0;
+            virtual int32_t __stdcall put_LogoResource(void*) noexcept = 0;
+            virtual int32_t __stdcall get_LogoResource(void**) noexcept = 0;
+            virtual int32_t __stdcall put_VideoKeyFrameInterval(int64_t) noexcept = 0;
+            virtual int32_t __stdcall get_VideoKeyFrameInterval(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall put_MaxVideoBitrate(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_MaxVideoBitrate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_MaxVideoWidth(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_MaxVideoWidth(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_MaxVideoHeight(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_MaxVideoHeight(uint32_t*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::ApplicationModel::Background::IApplicationTrigger>
@@ -1603,6 +1680,55 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::ApplicationModel::Background::IActivitySensorTriggerFactory>
     {
         template <typename D> using type = consume_Windows_ApplicationModel_Background_IActivitySensorTriggerFactory<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_Background_IAlarmApplicationManagerStatics
+    {
+        auto RequestAccessAsync() const;
+        auto GetAccessStatus() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_Background_IAlarmApplicationManagerStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_Background_IAppBroadcastTrigger
+    {
+        auto ProviderInfo(winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo const& value) const;
+        [[nodiscard]] auto ProviderInfo() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_Background_IAppBroadcastTrigger<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerFactory
+    {
+        auto CreateAppBroadcastTrigger(param::hstring const& providerKey) const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerFactory<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo
+    {
+        auto DisplayNameResource(param::hstring const& value) const;
+        [[nodiscard]] auto DisplayNameResource() const;
+        auto LogoResource(param::hstring const& value) const;
+        [[nodiscard]] auto LogoResource() const;
+        auto VideoKeyFrameInterval(winrt::Windows::Foundation::TimeSpan const& value) const;
+        [[nodiscard]] auto VideoKeyFrameInterval() const;
+        auto MaxVideoBitrate(uint32_t value) const;
+        [[nodiscard]] auto MaxVideoBitrate() const;
+        auto MaxVideoWidth(uint32_t value) const;
+        [[nodiscard]] auto MaxVideoWidth() const;
+        auto MaxVideoHeight(uint32_t value) const;
+        [[nodiscard]] auto MaxVideoHeight() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>;
     };
     template <typename D>
     struct consume_Windows_ApplicationModel_Background_IApplicationTrigger

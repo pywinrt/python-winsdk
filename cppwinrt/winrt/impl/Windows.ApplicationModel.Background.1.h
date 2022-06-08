@@ -21,6 +21,35 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         IActivitySensorTriggerFactory(std::nullptr_t = nullptr) noexcept {}
         IActivitySensorTriggerFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAlarmApplicationManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAlarmApplicationManagerStatics>
+    {
+        IAlarmApplicationManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IAlarmApplicationManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastTrigger :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastTrigger>,
+        impl::require<winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger, winrt::Windows::ApplicationModel::Background::IBackgroundTrigger>
+    {
+        IAppBroadcastTrigger(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastTrigger(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastTriggerFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastTriggerFactory>
+    {
+        IAppBroadcastTriggerFactory(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastTriggerFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastTriggerProviderInfo :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastTriggerProviderInfo>
+    {
+        IAppBroadcastTriggerProviderInfo(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastTriggerProviderInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IApplicationTrigger :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IApplicationTrigger>,

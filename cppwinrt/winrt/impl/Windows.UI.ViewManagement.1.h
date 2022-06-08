@@ -237,6 +237,27 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement
         IProjectionManagerStatics2(std::nullptr_t = nullptr) noexcept {}
         IProjectionManagerStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IStatusBar :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStatusBar>
+    {
+        IStatusBar(std::nullptr_t = nullptr) noexcept {}
+        IStatusBar(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IStatusBarProgressIndicator :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStatusBarProgressIndicator>
+    {
+        IStatusBarProgressIndicator(std::nullptr_t = nullptr) noexcept {}
+        IStatusBarProgressIndicator(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IStatusBarStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStatusBarStatics>
+    {
+        IStatusBarStatics(std::nullptr_t = nullptr) noexcept {}
+        IStatusBarStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IUISettings :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IUISettings>

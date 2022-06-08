@@ -45,21 +45,38 @@ namespace py::cpp::Windows::Devices::Sms
         PyObject* type_SmsFilterActionType;
         PyObject* type_SmsGeographicalScope;
         PyObject* type_SmsMessageClass;
+        PyObject* type_SmsMessageFilter;
         PyObject* type_SmsMessageType;
         PyObject* type_SmsModemErrorCode;
+        PyTypeObject* type_DeleteSmsMessageOperation;
+        PyTypeObject* type_DeleteSmsMessagesOperation;
+        PyTypeObject* type_GetSmsDeviceOperation;
+        PyTypeObject* type_GetSmsMessageOperation;
+        PyTypeObject* type_GetSmsMessagesOperation;
+        PyTypeObject* type_SendSmsMessageOperation;
         PyTypeObject* type_SmsAppMessage;
+        PyTypeObject* type_SmsBinaryMessage;
         PyTypeObject* type_SmsBroadcastMessage;
+        PyTypeObject* type_SmsDevice;
         PyTypeObject* type_SmsDevice2;
+        PyTypeObject* type_SmsDeviceMessageStore;
         PyTypeObject* type_SmsFilterRule;
         PyTypeObject* type_SmsFilterRules;
+        PyTypeObject* type_SmsMessageReceivedEventArgs;
         PyTypeObject* type_SmsMessageReceivedTriggerDetails;
         PyTypeObject* type_SmsMessageRegistration;
+        PyTypeObject* type_SmsReceivedEventDetails;
         PyTypeObject* type_SmsSendMessageResult;
         PyTypeObject* type_SmsStatusMessage;
+        PyTypeObject* type_SmsTextMessage;
         PyTypeObject* type_SmsTextMessage2;
         PyTypeObject* type_SmsVoicemailMessage;
         PyTypeObject* type_SmsWapMessage;
+        PyTypeObject* type_ISmsBinaryMessage;
+        PyTypeObject* type_ISmsDevice;
+        PyTypeObject* type_ISmsMessage;
         PyTypeObject* type_ISmsMessageBase;
+        PyTypeObject* type_ISmsTextMessage;
         PyTypeObject* type_SmsEncodedLength;
     };
 
@@ -255,6 +272,30 @@ namespace py::cpp::Windows::Devices::Sms
         Py_RETURN_NONE;
     }
 
+    static PyObject* register_SmsMessageFilter(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SmsMessageFilter)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SmsMessageFilter = type;
+        Py_INCREF(state->type_SmsMessageFilter);
+
+
+        Py_RETURN_NONE;
+    }
+
     static PyObject* register_SmsMessageType(PyObject* module, PyObject* type)
     {
         auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
@@ -302,6 +343,1305 @@ namespace py::cpp::Windows::Devices::Sms
 
         Py_RETURN_NONE;
     }
+
+    // ----- DeleteSmsMessageOperation class --------------------
+    constexpr const char* const type_name_DeleteSmsMessageOperation = "DeleteSmsMessageOperation";
+
+    static PyObject* _new_DeleteSmsMessageOperation(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_DeleteSmsMessageOperation);
+        return nullptr;
+    }
+
+    static void _dealloc_DeleteSmsMessageOperation(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* DeleteSmsMessageOperation_Cancel(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Cancel();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessageOperation_Close(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessageOperation_GetResults(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.GetResults();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessageOperation_get_ErrorCode(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ErrorCode());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessageOperation_get_Id(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessageOperation_get_Status(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessageOperation_get_Completed(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Completed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int DeleteSmsMessageOperation_put_Completed(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::AsyncActionCompletedHandler>(arg);
+
+            self->obj.Completed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_DeleteSmsMessageOperation(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::DeleteSmsMessageOperation>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_DeleteSmsMessageOperation[] = {
+        { "cancel", reinterpret_cast<PyCFunction>(DeleteSmsMessageOperation_Cancel), METH_VARARGS, nullptr },
+        { "close", reinterpret_cast<PyCFunction>(DeleteSmsMessageOperation_Close), METH_VARARGS, nullptr },
+        { "get_results", reinterpret_cast<PyCFunction>(DeleteSmsMessageOperation_GetResults), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_DeleteSmsMessageOperation), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_DeleteSmsMessageOperation[] = {
+        { "error_code", reinterpret_cast<getter>(DeleteSmsMessageOperation_get_ErrorCode), nullptr, nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(DeleteSmsMessageOperation_get_Id), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(DeleteSmsMessageOperation_get_Status), nullptr, nullptr, nullptr },
+        { "completed", reinterpret_cast<getter>(DeleteSmsMessageOperation_get_Completed), reinterpret_cast<setter>(DeleteSmsMessageOperation_put_Completed), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_DeleteSmsMessageOperation[] = 
+    {
+        { Py_tp_new, _new_DeleteSmsMessageOperation },
+        { Py_tp_dealloc, _dealloc_DeleteSmsMessageOperation },
+        { Py_tp_methods, _methods_DeleteSmsMessageOperation },
+        { Py_tp_getset, _getset_DeleteSmsMessageOperation },
+        { },
+    };
+
+    static PyType_Spec type_spec_DeleteSmsMessageOperation =
+    {
+        "_winsdk_Windows_Devices_Sms.DeleteSmsMessageOperation",
+        sizeof(py::wrapper::Windows::Devices::Sms::DeleteSmsMessageOperation),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_DeleteSmsMessageOperation
+    };
+
+    // ----- DeleteSmsMessagesOperation class --------------------
+    constexpr const char* const type_name_DeleteSmsMessagesOperation = "DeleteSmsMessagesOperation";
+
+    static PyObject* _new_DeleteSmsMessagesOperation(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_DeleteSmsMessagesOperation);
+        return nullptr;
+    }
+
+    static void _dealloc_DeleteSmsMessagesOperation(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* DeleteSmsMessagesOperation_Cancel(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Cancel();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessagesOperation_Close(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessagesOperation_GetResults(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.GetResults();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessagesOperation_get_ErrorCode(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ErrorCode());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessagesOperation_get_Id(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessagesOperation_get_Status(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSmsMessagesOperation_get_Completed(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Completed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int DeleteSmsMessagesOperation_put_Completed(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::AsyncActionCompletedHandler>(arg);
+
+            self->obj.Completed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_DeleteSmsMessagesOperation(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::DeleteSmsMessagesOperation>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_DeleteSmsMessagesOperation[] = {
+        { "cancel", reinterpret_cast<PyCFunction>(DeleteSmsMessagesOperation_Cancel), METH_VARARGS, nullptr },
+        { "close", reinterpret_cast<PyCFunction>(DeleteSmsMessagesOperation_Close), METH_VARARGS, nullptr },
+        { "get_results", reinterpret_cast<PyCFunction>(DeleteSmsMessagesOperation_GetResults), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_DeleteSmsMessagesOperation), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_DeleteSmsMessagesOperation[] = {
+        { "error_code", reinterpret_cast<getter>(DeleteSmsMessagesOperation_get_ErrorCode), nullptr, nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(DeleteSmsMessagesOperation_get_Id), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(DeleteSmsMessagesOperation_get_Status), nullptr, nullptr, nullptr },
+        { "completed", reinterpret_cast<getter>(DeleteSmsMessagesOperation_get_Completed), reinterpret_cast<setter>(DeleteSmsMessagesOperation_put_Completed), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_DeleteSmsMessagesOperation[] = 
+    {
+        { Py_tp_new, _new_DeleteSmsMessagesOperation },
+        { Py_tp_dealloc, _dealloc_DeleteSmsMessagesOperation },
+        { Py_tp_methods, _methods_DeleteSmsMessagesOperation },
+        { Py_tp_getset, _getset_DeleteSmsMessagesOperation },
+        { },
+    };
+
+    static PyType_Spec type_spec_DeleteSmsMessagesOperation =
+    {
+        "_winsdk_Windows_Devices_Sms.DeleteSmsMessagesOperation",
+        sizeof(py::wrapper::Windows::Devices::Sms::DeleteSmsMessagesOperation),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_DeleteSmsMessagesOperation
+    };
+
+    // ----- GetSmsDeviceOperation class --------------------
+    constexpr const char* const type_name_GetSmsDeviceOperation = "GetSmsDeviceOperation";
+
+    static PyObject* _new_GetSmsDeviceOperation(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_GetSmsDeviceOperation);
+        return nullptr;
+    }
+
+    static void _dealloc_GetSmsDeviceOperation(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* GetSmsDeviceOperation_Cancel(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Cancel();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsDeviceOperation_Close(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsDeviceOperation_GetResults(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetResults());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsDeviceOperation_get_ErrorCode(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ErrorCode());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsDeviceOperation_get_Id(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsDeviceOperation_get_Status(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsDeviceOperation_get_Completed(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Completed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int GetSmsDeviceOperation_put_Completed(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::AsyncOperationCompletedHandler<winrt::Windows::Devices::Sms::SmsDevice>>(arg);
+
+            self->obj.Completed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_GetSmsDeviceOperation(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::GetSmsDeviceOperation>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_GetSmsDeviceOperation[] = {
+        { "cancel", reinterpret_cast<PyCFunction>(GetSmsDeviceOperation_Cancel), METH_VARARGS, nullptr },
+        { "close", reinterpret_cast<PyCFunction>(GetSmsDeviceOperation_Close), METH_VARARGS, nullptr },
+        { "get_results", reinterpret_cast<PyCFunction>(GetSmsDeviceOperation_GetResults), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_GetSmsDeviceOperation), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_GetSmsDeviceOperation[] = {
+        { "error_code", reinterpret_cast<getter>(GetSmsDeviceOperation_get_ErrorCode), nullptr, nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(GetSmsDeviceOperation_get_Id), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(GetSmsDeviceOperation_get_Status), nullptr, nullptr, nullptr },
+        { "completed", reinterpret_cast<getter>(GetSmsDeviceOperation_get_Completed), reinterpret_cast<setter>(GetSmsDeviceOperation_put_Completed), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_GetSmsDeviceOperation[] = 
+    {
+        { Py_tp_new, _new_GetSmsDeviceOperation },
+        { Py_tp_dealloc, _dealloc_GetSmsDeviceOperation },
+        { Py_tp_methods, _methods_GetSmsDeviceOperation },
+        { Py_tp_getset, _getset_GetSmsDeviceOperation },
+        { },
+    };
+
+    static PyType_Spec type_spec_GetSmsDeviceOperation =
+    {
+        "_winsdk_Windows_Devices_Sms.GetSmsDeviceOperation",
+        sizeof(py::wrapper::Windows::Devices::Sms::GetSmsDeviceOperation),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_GetSmsDeviceOperation
+    };
+
+    // ----- GetSmsMessageOperation class --------------------
+    constexpr const char* const type_name_GetSmsMessageOperation = "GetSmsMessageOperation";
+
+    static PyObject* _new_GetSmsMessageOperation(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_GetSmsMessageOperation);
+        return nullptr;
+    }
+
+    static void _dealloc_GetSmsMessageOperation(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* GetSmsMessageOperation_Cancel(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Cancel();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessageOperation_Close(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessageOperation_GetResults(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetResults());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessageOperation_get_ErrorCode(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ErrorCode());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessageOperation_get_Id(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessageOperation_get_Status(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessageOperation_get_Completed(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Completed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int GetSmsMessageOperation_put_Completed(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::AsyncOperationCompletedHandler<winrt::Windows::Devices::Sms::ISmsMessage>>(arg);
+
+            self->obj.Completed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_GetSmsMessageOperation(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::GetSmsMessageOperation>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_GetSmsMessageOperation[] = {
+        { "cancel", reinterpret_cast<PyCFunction>(GetSmsMessageOperation_Cancel), METH_VARARGS, nullptr },
+        { "close", reinterpret_cast<PyCFunction>(GetSmsMessageOperation_Close), METH_VARARGS, nullptr },
+        { "get_results", reinterpret_cast<PyCFunction>(GetSmsMessageOperation_GetResults), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_GetSmsMessageOperation), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_GetSmsMessageOperation[] = {
+        { "error_code", reinterpret_cast<getter>(GetSmsMessageOperation_get_ErrorCode), nullptr, nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(GetSmsMessageOperation_get_Id), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(GetSmsMessageOperation_get_Status), nullptr, nullptr, nullptr },
+        { "completed", reinterpret_cast<getter>(GetSmsMessageOperation_get_Completed), reinterpret_cast<setter>(GetSmsMessageOperation_put_Completed), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_GetSmsMessageOperation[] = 
+    {
+        { Py_tp_new, _new_GetSmsMessageOperation },
+        { Py_tp_dealloc, _dealloc_GetSmsMessageOperation },
+        { Py_tp_methods, _methods_GetSmsMessageOperation },
+        { Py_tp_getset, _getset_GetSmsMessageOperation },
+        { },
+    };
+
+    static PyType_Spec type_spec_GetSmsMessageOperation =
+    {
+        "_winsdk_Windows_Devices_Sms.GetSmsMessageOperation",
+        sizeof(py::wrapper::Windows::Devices::Sms::GetSmsMessageOperation),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_GetSmsMessageOperation
+    };
+
+    // ----- GetSmsMessagesOperation class --------------------
+    constexpr const char* const type_name_GetSmsMessagesOperation = "GetSmsMessagesOperation";
+
+    static PyObject* _new_GetSmsMessagesOperation(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_GetSmsMessagesOperation);
+        return nullptr;
+    }
+
+    static void _dealloc_GetSmsMessagesOperation(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* GetSmsMessagesOperation_Cancel(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Cancel();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessagesOperation_Close(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessagesOperation_GetResults(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetResults());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessagesOperation_get_ErrorCode(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ErrorCode());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessagesOperation_get_Id(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessagesOperation_get_Status(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* GetSmsMessagesOperation_get_Progress(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Progress());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int GetSmsMessagesOperation_put_Progress(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::AsyncOperationProgressHandler<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Devices::Sms::ISmsMessage>, int32_t>>(arg);
+
+            self->obj.Progress(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* GetSmsMessagesOperation_get_Completed(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Completed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int GetSmsMessagesOperation_put_Completed(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Devices::Sms::ISmsMessage>, int32_t>>(arg);
+
+            self->obj.Completed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_GetSmsMessagesOperation(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::GetSmsMessagesOperation>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_GetSmsMessagesOperation[] = {
+        { "cancel", reinterpret_cast<PyCFunction>(GetSmsMessagesOperation_Cancel), METH_VARARGS, nullptr },
+        { "close", reinterpret_cast<PyCFunction>(GetSmsMessagesOperation_Close), METH_VARARGS, nullptr },
+        { "get_results", reinterpret_cast<PyCFunction>(GetSmsMessagesOperation_GetResults), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_GetSmsMessagesOperation), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_GetSmsMessagesOperation[] = {
+        { "error_code", reinterpret_cast<getter>(GetSmsMessagesOperation_get_ErrorCode), nullptr, nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(GetSmsMessagesOperation_get_Id), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(GetSmsMessagesOperation_get_Status), nullptr, nullptr, nullptr },
+        { "progress", reinterpret_cast<getter>(GetSmsMessagesOperation_get_Progress), reinterpret_cast<setter>(GetSmsMessagesOperation_put_Progress), nullptr, nullptr },
+        { "completed", reinterpret_cast<getter>(GetSmsMessagesOperation_get_Completed), reinterpret_cast<setter>(GetSmsMessagesOperation_put_Completed), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_GetSmsMessagesOperation[] = 
+    {
+        { Py_tp_new, _new_GetSmsMessagesOperation },
+        { Py_tp_dealloc, _dealloc_GetSmsMessagesOperation },
+        { Py_tp_methods, _methods_GetSmsMessagesOperation },
+        { Py_tp_getset, _getset_GetSmsMessagesOperation },
+        { },
+    };
+
+    static PyType_Spec type_spec_GetSmsMessagesOperation =
+    {
+        "_winsdk_Windows_Devices_Sms.GetSmsMessagesOperation",
+        sizeof(py::wrapper::Windows::Devices::Sms::GetSmsMessagesOperation),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_GetSmsMessagesOperation
+    };
+
+    // ----- SendSmsMessageOperation class --------------------
+    constexpr const char* const type_name_SendSmsMessageOperation = "SendSmsMessageOperation";
+
+    static PyObject* _new_SendSmsMessageOperation(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SendSmsMessageOperation);
+        return nullptr;
+    }
+
+    static void _dealloc_SendSmsMessageOperation(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SendSmsMessageOperation_Cancel(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Cancel();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SendSmsMessageOperation_Close(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SendSmsMessageOperation_GetResults(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.GetResults();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SendSmsMessageOperation_get_ErrorCode(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ErrorCode());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SendSmsMessageOperation_get_Id(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SendSmsMessageOperation_get_Status(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SendSmsMessageOperation_get_Completed(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Completed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SendSmsMessageOperation_put_Completed(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::AsyncActionCompletedHandler>(arg);
+
+            self->obj.Completed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_SendSmsMessageOperation(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::SendSmsMessageOperation>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SendSmsMessageOperation[] = {
+        { "cancel", reinterpret_cast<PyCFunction>(SendSmsMessageOperation_Cancel), METH_VARARGS, nullptr },
+        { "close", reinterpret_cast<PyCFunction>(SendSmsMessageOperation_Close), METH_VARARGS, nullptr },
+        { "get_results", reinterpret_cast<PyCFunction>(SendSmsMessageOperation_GetResults), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SendSmsMessageOperation), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SendSmsMessageOperation[] = {
+        { "error_code", reinterpret_cast<getter>(SendSmsMessageOperation_get_ErrorCode), nullptr, nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(SendSmsMessageOperation_get_Id), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(SendSmsMessageOperation_get_Status), nullptr, nullptr, nullptr },
+        { "completed", reinterpret_cast<getter>(SendSmsMessageOperation_get_Completed), reinterpret_cast<setter>(SendSmsMessageOperation_put_Completed), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SendSmsMessageOperation[] = 
+    {
+        { Py_tp_new, _new_SendSmsMessageOperation },
+        { Py_tp_dealloc, _dealloc_SendSmsMessageOperation },
+        { Py_tp_methods, _methods_SendSmsMessageOperation },
+        { Py_tp_getset, _getset_SendSmsMessageOperation },
+        { },
+    };
+
+    static PyType_Spec type_spec_SendSmsMessageOperation =
+    {
+        "_winsdk_Windows_Devices_Sms.SendSmsMessageOperation",
+        sizeof(py::wrapper::Windows::Devices::Sms::SendSmsMessageOperation),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SendSmsMessageOperation
+    };
 
     // ----- SmsAppMessage class --------------------
     constexpr const char* const type_name_SmsAppMessage = "SmsAppMessage";
@@ -842,6 +2182,202 @@ namespace py::cpp::Windows::Devices::Sms
         _type_slots_SmsAppMessage
     };
 
+    // ----- SmsBinaryMessage class --------------------
+    constexpr const char* const type_name_SmsBinaryMessage = "SmsBinaryMessage";
+
+    static PyObject* _new_SmsBinaryMessage(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Devices::Sms::SmsBinaryMessage instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_SmsBinaryMessage(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SmsBinaryMessage_GetData(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetData());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsBinaryMessage_SetData(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::array_view<uint8_t>>(args, 0);
+
+                self->obj.SetData(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsBinaryMessage_get_Format(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Format());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SmsBinaryMessage_put_Format(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsDataFormat>(arg);
+
+            self->obj.Format(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SmsBinaryMessage_get_Id(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsBinaryMessage_get_MessageClass(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SmsBinaryMessage(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::SmsBinaryMessage>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SmsBinaryMessage[] = {
+        { "get_data", reinterpret_cast<PyCFunction>(SmsBinaryMessage_GetData), METH_VARARGS, nullptr },
+        { "set_data", reinterpret_cast<PyCFunction>(SmsBinaryMessage_SetData), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SmsBinaryMessage), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SmsBinaryMessage[] = {
+        { "format", reinterpret_cast<getter>(SmsBinaryMessage_get_Format), reinterpret_cast<setter>(SmsBinaryMessage_put_Format), nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(SmsBinaryMessage_get_Id), nullptr, nullptr, nullptr },
+        { "message_class", reinterpret_cast<getter>(SmsBinaryMessage_get_MessageClass), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SmsBinaryMessage[] = 
+    {
+        { Py_tp_new, _new_SmsBinaryMessage },
+        { Py_tp_dealloc, _dealloc_SmsBinaryMessage },
+        { Py_tp_methods, _methods_SmsBinaryMessage },
+        { Py_tp_getset, _getset_SmsBinaryMessage },
+        { },
+    };
+
+    static PyType_Spec type_spec_SmsBinaryMessage =
+    {
+        "_winsdk_Windows_Devices_Sms.SmsBinaryMessage",
+        sizeof(py::wrapper::Windows::Devices::Sms::SmsBinaryMessage),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SmsBinaryMessage
+    };
+
     // ----- SmsBroadcastMessage class --------------------
     constexpr const char* const type_name_SmsBroadcastMessage = "SmsBroadcastMessage";
 
@@ -1108,6 +2644,338 @@ namespace py::cpp::Windows::Devices::Sms
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_SmsBroadcastMessage
+    };
+
+    // ----- SmsDevice class --------------------
+    constexpr const char* const type_name_SmsDevice = "SmsDevice";
+
+    static PyObject* _new_SmsDevice(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SmsDevice);
+        return nullptr;
+    }
+
+    static void _dealloc_SmsDevice(py::wrapper::Windows::Devices::Sms::SmsDevice* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SmsDevice_CalculateLength(py::wrapper::Windows::Devices::Sms::SmsDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsTextMessage>(args, 0);
+
+                return py::convert(self->obj.CalculateLength(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_FromIdAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sms::SmsDevice::FromIdAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_FromNetworkAccountIdAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sms::SmsDevice::FromNetworkAccountIdAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_GetDefaultAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sms::SmsDevice::GetDefaultAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_GetDeviceSelector(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sms::SmsDevice::GetDeviceSelector());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_SendMessageAsync(py::wrapper::Windows::Devices::Sms::SmsDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::ISmsMessage>(args, 0);
+
+                return py::convert(self->obj.SendMessageAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_get_AccountPhoneNumber(py::wrapper::Windows::Devices::Sms::SmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AccountPhoneNumber());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_get_CellularClass(py::wrapper::Windows::Devices::Sms::SmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CellularClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_get_DeviceStatus(py::wrapper::Windows::Devices::Sms::SmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DeviceStatus());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_get_MessageStore(py::wrapper::Windows::Devices::Sms::SmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageStore());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_add_SmsDeviceStatusChanged(py::wrapper::Windows::Devices::Sms::SmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsDeviceStatusChangedEventHandler>(arg);
+
+            return py::convert(self->obj.SmsDeviceStatusChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_remove_SmsDeviceStatusChanged(py::wrapper::Windows::Devices::Sms::SmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.SmsDeviceStatusChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_add_SmsMessageReceived(py::wrapper::Windows::Devices::Sms::SmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsMessageReceivedEventHandler>(arg);
+
+            return py::convert(self->obj.SmsMessageReceived(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDevice_remove_SmsMessageReceived(py::wrapper::Windows::Devices::Sms::SmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.SmsMessageReceived(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SmsDevice(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::SmsDevice>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SmsDevice[] = {
+        { "calculate_length", reinterpret_cast<PyCFunction>(SmsDevice_CalculateLength), METH_VARARGS, nullptr },
+        { "from_id_async", reinterpret_cast<PyCFunction>(SmsDevice_FromIdAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "from_network_account_id_async", reinterpret_cast<PyCFunction>(SmsDevice_FromNetworkAccountIdAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_default_async", reinterpret_cast<PyCFunction>(SmsDevice_GetDefaultAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_device_selector", reinterpret_cast<PyCFunction>(SmsDevice_GetDeviceSelector), METH_VARARGS | METH_STATIC, nullptr },
+        { "send_message_async", reinterpret_cast<PyCFunction>(SmsDevice_SendMessageAsync), METH_VARARGS, nullptr },
+        { "add_sms_device_status_changed", reinterpret_cast<PyCFunction>(SmsDevice_add_SmsDeviceStatusChanged), METH_O, nullptr },
+        { "remove_sms_device_status_changed", reinterpret_cast<PyCFunction>(SmsDevice_remove_SmsDeviceStatusChanged), METH_O, nullptr },
+        { "add_sms_message_received", reinterpret_cast<PyCFunction>(SmsDevice_add_SmsMessageReceived), METH_O, nullptr },
+        { "remove_sms_message_received", reinterpret_cast<PyCFunction>(SmsDevice_remove_SmsMessageReceived), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SmsDevice), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SmsDevice[] = {
+        { "account_phone_number", reinterpret_cast<getter>(SmsDevice_get_AccountPhoneNumber), nullptr, nullptr, nullptr },
+        { "cellular_class", reinterpret_cast<getter>(SmsDevice_get_CellularClass), nullptr, nullptr, nullptr },
+        { "device_status", reinterpret_cast<getter>(SmsDevice_get_DeviceStatus), nullptr, nullptr, nullptr },
+        { "message_store", reinterpret_cast<getter>(SmsDevice_get_MessageStore), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SmsDevice[] = 
+    {
+        { Py_tp_new, _new_SmsDevice },
+        { Py_tp_dealloc, _dealloc_SmsDevice },
+        { Py_tp_methods, _methods_SmsDevice },
+        { Py_tp_getset, _getset_SmsDevice },
+        { },
+    };
+
+    static PyType_Spec type_spec_SmsDevice =
+    {
+        "_winsdk_Windows_Devices_Sms.SmsDevice",
+        sizeof(py::wrapper::Windows::Devices::Sms::SmsDevice),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SmsDevice
     };
 
     // ----- SmsDevice2 class --------------------
@@ -1457,6 +3325,182 @@ namespace py::cpp::Windows::Devices::Sms
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_SmsDevice2
+    };
+
+    // ----- SmsDeviceMessageStore class --------------------
+    constexpr const char* const type_name_SmsDeviceMessageStore = "SmsDeviceMessageStore";
+
+    static PyObject* _new_SmsDeviceMessageStore(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SmsDeviceMessageStore);
+        return nullptr;
+    }
+
+    static void _dealloc_SmsDeviceMessageStore(py::wrapper::Windows::Devices::Sms::SmsDeviceMessageStore* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SmsDeviceMessageStore_DeleteMessageAsync(py::wrapper::Windows::Devices::Sms::SmsDeviceMessageStore* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+
+                return py::convert(self->obj.DeleteMessageAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDeviceMessageStore_DeleteMessagesAsync(py::wrapper::Windows::Devices::Sms::SmsDeviceMessageStore* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsMessageFilter>(args, 0);
+
+                return py::convert(self->obj.DeleteMessagesAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDeviceMessageStore_GetMessageAsync(py::wrapper::Windows::Devices::Sms::SmsDeviceMessageStore* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+
+                return py::convert(self->obj.GetMessageAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDeviceMessageStore_GetMessagesAsync(py::wrapper::Windows::Devices::Sms::SmsDeviceMessageStore* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsMessageFilter>(args, 0);
+
+                return py::convert(self->obj.GetMessagesAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsDeviceMessageStore_get_MaxMessages(py::wrapper::Windows::Devices::Sms::SmsDeviceMessageStore* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxMessages());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SmsDeviceMessageStore(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::SmsDeviceMessageStore>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SmsDeviceMessageStore[] = {
+        { "delete_message_async", reinterpret_cast<PyCFunction>(SmsDeviceMessageStore_DeleteMessageAsync), METH_VARARGS, nullptr },
+        { "delete_messages_async", reinterpret_cast<PyCFunction>(SmsDeviceMessageStore_DeleteMessagesAsync), METH_VARARGS, nullptr },
+        { "get_message_async", reinterpret_cast<PyCFunction>(SmsDeviceMessageStore_GetMessageAsync), METH_VARARGS, nullptr },
+        { "get_messages_async", reinterpret_cast<PyCFunction>(SmsDeviceMessageStore_GetMessagesAsync), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SmsDeviceMessageStore), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SmsDeviceMessageStore[] = {
+        { "max_messages", reinterpret_cast<getter>(SmsDeviceMessageStore_get_MaxMessages), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SmsDeviceMessageStore[] = 
+    {
+        { Py_tp_new, _new_SmsDeviceMessageStore },
+        { Py_tp_dealloc, _dealloc_SmsDeviceMessageStore },
+        { Py_tp_methods, _methods_SmsDeviceMessageStore },
+        { Py_tp_getset, _getset_SmsDeviceMessageStore },
+        { },
+    };
+
+    static PyType_Spec type_spec_SmsDeviceMessageStore =
+    {
+        "_winsdk_Windows_Devices_Sms.SmsDeviceMessageStore",
+        sizeof(py::wrapper::Windows::Devices::Sms::SmsDeviceMessageStore),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SmsDeviceMessageStore
     };
 
     // ----- SmsFilterRule class --------------------
@@ -1857,6 +3901,92 @@ namespace py::cpp::Windows::Devices::Sms
         _type_slots_SmsFilterRules
     };
 
+    // ----- SmsMessageReceivedEventArgs class --------------------
+    constexpr const char* const type_name_SmsMessageReceivedEventArgs = "SmsMessageReceivedEventArgs";
+
+    static PyObject* _new_SmsMessageReceivedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SmsMessageReceivedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_SmsMessageReceivedEventArgs(py::wrapper::Windows::Devices::Sms::SmsMessageReceivedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SmsMessageReceivedEventArgs_get_BinaryMessage(py::wrapper::Windows::Devices::Sms::SmsMessageReceivedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.BinaryMessage());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsMessageReceivedEventArgs_get_TextMessage(py::wrapper::Windows::Devices::Sms::SmsMessageReceivedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.TextMessage());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SmsMessageReceivedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::SmsMessageReceivedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SmsMessageReceivedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SmsMessageReceivedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SmsMessageReceivedEventArgs[] = {
+        { "binary_message", reinterpret_cast<getter>(SmsMessageReceivedEventArgs_get_BinaryMessage), nullptr, nullptr, nullptr },
+        { "text_message", reinterpret_cast<getter>(SmsMessageReceivedEventArgs_get_TextMessage), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SmsMessageReceivedEventArgs[] = 
+    {
+        { Py_tp_new, _new_SmsMessageReceivedEventArgs },
+        { Py_tp_dealloc, _dealloc_SmsMessageReceivedEventArgs },
+        { Py_tp_methods, _methods_SmsMessageReceivedEventArgs },
+        { Py_tp_getset, _getset_SmsMessageReceivedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_SmsMessageReceivedEventArgs =
+    {
+        "_winsdk_Windows_Devices_Sms.SmsMessageReceivedEventArgs",
+        sizeof(py::wrapper::Windows::Devices::Sms::SmsMessageReceivedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SmsMessageReceivedEventArgs
+    };
+
     // ----- SmsMessageReceivedTriggerDetails class --------------------
     constexpr const char* const type_name_SmsMessageReceivedTriggerDetails = "SmsMessageReceivedTriggerDetails";
 
@@ -2232,6 +4362,120 @@ namespace py::cpp::Windows::Devices::Sms
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_SmsMessageRegistration
+    };
+
+    // ----- SmsReceivedEventDetails class --------------------
+    constexpr const char* const type_name_SmsReceivedEventDetails = "SmsReceivedEventDetails";
+
+    static PyObject* _new_SmsReceivedEventDetails(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SmsReceivedEventDetails);
+        return nullptr;
+    }
+
+    static void _dealloc_SmsReceivedEventDetails(py::wrapper::Windows::Devices::Sms::SmsReceivedEventDetails* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SmsReceivedEventDetails_get_DeviceId(py::wrapper::Windows::Devices::Sms::SmsReceivedEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DeviceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsReceivedEventDetails_get_MessageIndex(py::wrapper::Windows::Devices::Sms::SmsReceivedEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageIndex());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsReceivedEventDetails_get_BinaryMessage(py::wrapper::Windows::Devices::Sms::SmsReceivedEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.BinaryMessage());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsReceivedEventDetails_get_MessageClass(py::wrapper::Windows::Devices::Sms::SmsReceivedEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SmsReceivedEventDetails(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::SmsReceivedEventDetails>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SmsReceivedEventDetails[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SmsReceivedEventDetails), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SmsReceivedEventDetails[] = {
+        { "device_id", reinterpret_cast<getter>(SmsReceivedEventDetails_get_DeviceId), nullptr, nullptr, nullptr },
+        { "message_index", reinterpret_cast<getter>(SmsReceivedEventDetails_get_MessageIndex), nullptr, nullptr, nullptr },
+        { "binary_message", reinterpret_cast<getter>(SmsReceivedEventDetails_get_BinaryMessage), nullptr, nullptr, nullptr },
+        { "message_class", reinterpret_cast<getter>(SmsReceivedEventDetails_get_MessageClass), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SmsReceivedEventDetails[] = 
+    {
+        { Py_tp_new, _new_SmsReceivedEventDetails },
+        { Py_tp_dealloc, _dealloc_SmsReceivedEventDetails },
+        { Py_tp_methods, _methods_SmsReceivedEventDetails },
+        { Py_tp_getset, _getset_SmsReceivedEventDetails },
+        { },
+    };
+
+    static PyType_Spec type_spec_SmsReceivedEventDetails =
+    {
+        "_winsdk_Windows_Devices_Sms.SmsReceivedEventDetails",
+        sizeof(py::wrapper::Windows::Devices::Sms::SmsReceivedEventDetails),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SmsReceivedEventDetails
     };
 
     // ----- SmsSendMessageResult class --------------------
@@ -2614,6 +4858,394 @@ namespace py::cpp::Windows::Devices::Sms
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_SmsStatusMessage
+    };
+
+    // ----- SmsTextMessage class --------------------
+    constexpr const char* const type_name_SmsTextMessage = "SmsTextMessage";
+
+    static PyObject* _new_SmsTextMessage(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Devices::Sms::SmsTextMessage instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_SmsTextMessage(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SmsTextMessage_FromBinaryData(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsDataFormat>(args, 0);
+                auto param1 = py::convert_to<winrt::array_view<uint8_t>>(args, 1);
+
+                return py::convert(winrt::Windows::Devices::Sms::SmsTextMessage::FromBinaryData(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_FromBinaryMessage(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsBinaryMessage>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sms::SmsTextMessage::FromBinaryMessage(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_ToBinaryMessages(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsDataFormat>(args, 0);
+
+                return py::convert(self->obj.ToBinaryMessages(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_Id(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_MessageClass(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_To(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.To());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SmsTextMessage_put_To(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.To(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_From(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.From());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SmsTextMessage_put_From(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.From(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_Encoding(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Encoding());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SmsTextMessage_put_Encoding(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsEncoding>(arg);
+
+            self->obj.Encoding(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_Body(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Body());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SmsTextMessage_put_Body(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Body(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_PartCount(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PartCount());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_PartNumber(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PartNumber());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_PartReferenceId(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PartReferenceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmsTextMessage_get_Timestamp(py::wrapper::Windows::Devices::Sms::SmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Timestamp());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SmsTextMessage(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::SmsTextMessage>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SmsTextMessage[] = {
+        { "from_binary_data", reinterpret_cast<PyCFunction>(SmsTextMessage_FromBinaryData), METH_VARARGS | METH_STATIC, nullptr },
+        { "from_binary_message", reinterpret_cast<PyCFunction>(SmsTextMessage_FromBinaryMessage), METH_VARARGS | METH_STATIC, nullptr },
+        { "to_binary_messages", reinterpret_cast<PyCFunction>(SmsTextMessage_ToBinaryMessages), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SmsTextMessage), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SmsTextMessage[] = {
+        { "id", reinterpret_cast<getter>(SmsTextMessage_get_Id), nullptr, nullptr, nullptr },
+        { "message_class", reinterpret_cast<getter>(SmsTextMessage_get_MessageClass), nullptr, nullptr, nullptr },
+        { "to", reinterpret_cast<getter>(SmsTextMessage_get_To), reinterpret_cast<setter>(SmsTextMessage_put_To), nullptr, nullptr },
+        { "from_", reinterpret_cast<getter>(SmsTextMessage_get_From), reinterpret_cast<setter>(SmsTextMessage_put_From), nullptr, nullptr },
+        { "encoding", reinterpret_cast<getter>(SmsTextMessage_get_Encoding), reinterpret_cast<setter>(SmsTextMessage_put_Encoding), nullptr, nullptr },
+        { "body", reinterpret_cast<getter>(SmsTextMessage_get_Body), reinterpret_cast<setter>(SmsTextMessage_put_Body), nullptr, nullptr },
+        { "part_count", reinterpret_cast<getter>(SmsTextMessage_get_PartCount), nullptr, nullptr, nullptr },
+        { "part_number", reinterpret_cast<getter>(SmsTextMessage_get_PartNumber), nullptr, nullptr, nullptr },
+        { "part_reference_id", reinterpret_cast<getter>(SmsTextMessage_get_PartReferenceId), nullptr, nullptr, nullptr },
+        { "timestamp", reinterpret_cast<getter>(SmsTextMessage_get_Timestamp), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SmsTextMessage[] = 
+    {
+        { Py_tp_new, _new_SmsTextMessage },
+        { Py_tp_dealloc, _dealloc_SmsTextMessage },
+        { Py_tp_methods, _methods_SmsTextMessage },
+        { Py_tp_getset, _getset_SmsTextMessage },
+        { },
+    };
+
+    static PyType_Spec type_spec_SmsTextMessage =
+    {
+        "_winsdk_Windows_Devices_Sms.SmsTextMessage",
+        sizeof(py::wrapper::Windows::Devices::Sms::SmsTextMessage),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SmsTextMessage
     };
 
     // ----- SmsTextMessage2 class --------------------
@@ -3449,6 +6081,497 @@ namespace py::cpp::Windows::Devices::Sms
         _type_slots_SmsWapMessage
     };
 
+    // ----- ISmsBinaryMessage interface --------------------
+    constexpr const char* const type_name_ISmsBinaryMessage = "ISmsBinaryMessage";
+
+    static PyObject* _new_ISmsBinaryMessage(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_ISmsBinaryMessage);
+        return nullptr;
+    }
+
+    static void _dealloc_ISmsBinaryMessage(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ISmsBinaryMessage_GetData(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetData());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsBinaryMessage_SetData(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::array_view<uint8_t>>(args, 0);
+
+                self->obj.SetData(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsBinaryMessage_get_Format(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Format());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ISmsBinaryMessage_put_Format(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsDataFormat>(arg);
+
+            self->obj.Format(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ISmsBinaryMessage_get_Id(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsBinaryMessage_get_MessageClass(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ISmsBinaryMessage(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::ISmsBinaryMessage>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ISmsBinaryMessage[] = {
+        { "get_data", reinterpret_cast<PyCFunction>(ISmsBinaryMessage_GetData), METH_VARARGS, nullptr },
+        { "set_data", reinterpret_cast<PyCFunction>(ISmsBinaryMessage_SetData), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_ISmsBinaryMessage), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ISmsBinaryMessage[] = {
+        { "format", reinterpret_cast<getter>(ISmsBinaryMessage_get_Format), reinterpret_cast<setter>(ISmsBinaryMessage_put_Format), nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(ISmsBinaryMessage_get_Id), nullptr, nullptr, nullptr },
+        { "message_class", reinterpret_cast<getter>(ISmsBinaryMessage_get_MessageClass), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ISmsBinaryMessage[] = 
+    {
+        { Py_tp_new, _new_ISmsBinaryMessage },
+        { Py_tp_dealloc, _dealloc_ISmsBinaryMessage },
+        { Py_tp_methods, _methods_ISmsBinaryMessage },
+        { Py_tp_getset, _getset_ISmsBinaryMessage },
+        { },
+    };
+
+    static PyType_Spec type_spec_ISmsBinaryMessage =
+    {
+        "_winsdk_Windows_Devices_Sms.ISmsBinaryMessage",
+        sizeof(py::wrapper::Windows::Devices::Sms::ISmsBinaryMessage),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ISmsBinaryMessage
+    };
+
+    // ----- ISmsDevice interface --------------------
+    constexpr const char* const type_name_ISmsDevice = "ISmsDevice";
+
+    static PyObject* _new_ISmsDevice(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_ISmsDevice);
+        return nullptr;
+    }
+
+    static void _dealloc_ISmsDevice(py::wrapper::Windows::Devices::Sms::ISmsDevice* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ISmsDevice_CalculateLength(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsTextMessage>(args, 0);
+
+                return py::convert(self->obj.CalculateLength(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_SendMessageAsync(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::ISmsMessage>(args, 0);
+
+                return py::convert(self->obj.SendMessageAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_get_AccountPhoneNumber(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AccountPhoneNumber());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_get_CellularClass(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CellularClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_get_DeviceStatus(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DeviceStatus());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_get_MessageStore(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageStore());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_add_SmsDeviceStatusChanged(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsDeviceStatusChangedEventHandler>(arg);
+
+            return py::convert(self->obj.SmsDeviceStatusChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_remove_SmsDeviceStatusChanged(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.SmsDeviceStatusChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_add_SmsMessageReceived(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsMessageReceivedEventHandler>(arg);
+
+            return py::convert(self->obj.SmsMessageReceived(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsDevice_remove_SmsMessageReceived(py::wrapper::Windows::Devices::Sms::ISmsDevice* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.SmsMessageReceived(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ISmsDevice(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::ISmsDevice>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ISmsDevice[] = {
+        { "calculate_length", reinterpret_cast<PyCFunction>(ISmsDevice_CalculateLength), METH_VARARGS, nullptr },
+        { "send_message_async", reinterpret_cast<PyCFunction>(ISmsDevice_SendMessageAsync), METH_VARARGS, nullptr },
+        { "add_sms_device_status_changed", reinterpret_cast<PyCFunction>(ISmsDevice_add_SmsDeviceStatusChanged), METH_O, nullptr },
+        { "remove_sms_device_status_changed", reinterpret_cast<PyCFunction>(ISmsDevice_remove_SmsDeviceStatusChanged), METH_O, nullptr },
+        { "add_sms_message_received", reinterpret_cast<PyCFunction>(ISmsDevice_add_SmsMessageReceived), METH_O, nullptr },
+        { "remove_sms_message_received", reinterpret_cast<PyCFunction>(ISmsDevice_remove_SmsMessageReceived), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_ISmsDevice), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ISmsDevice[] = {
+        { "account_phone_number", reinterpret_cast<getter>(ISmsDevice_get_AccountPhoneNumber), nullptr, nullptr, nullptr },
+        { "cellular_class", reinterpret_cast<getter>(ISmsDevice_get_CellularClass), nullptr, nullptr, nullptr },
+        { "device_status", reinterpret_cast<getter>(ISmsDevice_get_DeviceStatus), nullptr, nullptr, nullptr },
+        { "message_store", reinterpret_cast<getter>(ISmsDevice_get_MessageStore), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ISmsDevice[] = 
+    {
+        { Py_tp_new, _new_ISmsDevice },
+        { Py_tp_dealloc, _dealloc_ISmsDevice },
+        { Py_tp_methods, _methods_ISmsDevice },
+        { Py_tp_getset, _getset_ISmsDevice },
+        { },
+    };
+
+    static PyType_Spec type_spec_ISmsDevice =
+    {
+        "_winsdk_Windows_Devices_Sms.ISmsDevice",
+        sizeof(py::wrapper::Windows::Devices::Sms::ISmsDevice),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ISmsDevice
+    };
+
+    // ----- ISmsMessage interface --------------------
+    constexpr const char* const type_name_ISmsMessage = "ISmsMessage";
+
+    static PyObject* _new_ISmsMessage(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_ISmsMessage);
+        return nullptr;
+    }
+
+    static void _dealloc_ISmsMessage(py::wrapper::Windows::Devices::Sms::ISmsMessage* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ISmsMessage_get_Id(py::wrapper::Windows::Devices::Sms::ISmsMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsMessage_get_MessageClass(py::wrapper::Windows::Devices::Sms::ISmsMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ISmsMessage(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::ISmsMessage>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ISmsMessage[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ISmsMessage), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ISmsMessage[] = {
+        { "id", reinterpret_cast<getter>(ISmsMessage_get_Id), nullptr, nullptr, nullptr },
+        { "message_class", reinterpret_cast<getter>(ISmsMessage_get_MessageClass), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ISmsMessage[] = 
+    {
+        { Py_tp_new, _new_ISmsMessage },
+        { Py_tp_dealloc, _dealloc_ISmsMessage },
+        { Py_tp_methods, _methods_ISmsMessage },
+        { Py_tp_getset, _getset_ISmsMessage },
+        { },
+    };
+
+    static PyType_Spec type_spec_ISmsMessage =
+    {
+        "_winsdk_Windows_Devices_Sms.ISmsMessage",
+        sizeof(py::wrapper::Windows::Devices::Sms::ISmsMessage),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ISmsMessage
+    };
+
     // ----- ISmsMessageBase interface --------------------
     constexpr const char* const type_name_ISmsMessageBase = "ISmsMessageBase";
 
@@ -3575,6 +6698,318 @@ namespace py::cpp::Windows::Devices::Sms
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ISmsMessageBase
+    };
+
+    // ----- ISmsTextMessage interface --------------------
+    constexpr const char* const type_name_ISmsTextMessage = "ISmsTextMessage";
+
+    static PyObject* _new_ISmsTextMessage(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_ISmsTextMessage);
+        return nullptr;
+    }
+
+    static void _dealloc_ISmsTextMessage(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ISmsTextMessage_ToBinaryMessages(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsDataFormat>(args, 0);
+
+                return py::convert(self->obj.ToBinaryMessages(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_Body(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Body());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ISmsTextMessage_put_Body(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Body(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_Encoding(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Encoding());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ISmsTextMessage_put_Encoding(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Sms::SmsEncoding>(arg);
+
+            self->obj.Encoding(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_From(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.From());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ISmsTextMessage_put_From(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.From(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_PartCount(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PartCount());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_PartNumber(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PartNumber());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_PartReferenceId(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PartReferenceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_Timestamp(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Timestamp());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_To(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.To());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ISmsTextMessage_put_To(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.To(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_Id(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISmsTextMessage_get_MessageClass(py::wrapper::Windows::Devices::Sms::ISmsTextMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MessageClass());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ISmsTextMessage(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sms::ISmsTextMessage>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ISmsTextMessage[] = {
+        { "to_binary_messages", reinterpret_cast<PyCFunction>(ISmsTextMessage_ToBinaryMessages), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_ISmsTextMessage), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ISmsTextMessage[] = {
+        { "body", reinterpret_cast<getter>(ISmsTextMessage_get_Body), reinterpret_cast<setter>(ISmsTextMessage_put_Body), nullptr, nullptr },
+        { "encoding", reinterpret_cast<getter>(ISmsTextMessage_get_Encoding), reinterpret_cast<setter>(ISmsTextMessage_put_Encoding), nullptr, nullptr },
+        { "from_", reinterpret_cast<getter>(ISmsTextMessage_get_From), reinterpret_cast<setter>(ISmsTextMessage_put_From), nullptr, nullptr },
+        { "part_count", reinterpret_cast<getter>(ISmsTextMessage_get_PartCount), nullptr, nullptr, nullptr },
+        { "part_number", reinterpret_cast<getter>(ISmsTextMessage_get_PartNumber), nullptr, nullptr, nullptr },
+        { "part_reference_id", reinterpret_cast<getter>(ISmsTextMessage_get_PartReferenceId), nullptr, nullptr, nullptr },
+        { "timestamp", reinterpret_cast<getter>(ISmsTextMessage_get_Timestamp), nullptr, nullptr, nullptr },
+        { "to", reinterpret_cast<getter>(ISmsTextMessage_get_To), reinterpret_cast<setter>(ISmsTextMessage_put_To), nullptr, nullptr },
+        { "id", reinterpret_cast<getter>(ISmsTextMessage_get_Id), nullptr, nullptr, nullptr },
+        { "message_class", reinterpret_cast<getter>(ISmsTextMessage_get_MessageClass), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ISmsTextMessage[] = 
+    {
+        { Py_tp_new, _new_ISmsTextMessage },
+        { Py_tp_dealloc, _dealloc_ISmsTextMessage },
+        { Py_tp_methods, _methods_ISmsTextMessage },
+        { Py_tp_getset, _getset_ISmsTextMessage },
+        { },
+    };
+
+    static PyType_Spec type_spec_ISmsTextMessage =
+    {
+        "_winsdk_Windows_Devices_Sms.ISmsTextMessage",
+        sizeof(py::wrapper::Windows::Devices::Sms::ISmsTextMessage),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ISmsTextMessage
     };
 
     // ----- SmsEncodedLength struct --------------------
@@ -3847,6 +7282,7 @@ namespace py::cpp::Windows::Devices::Sms
         {"_register_SmsFilterActionType", register_SmsFilterActionType, METH_O, "registers type"},
         {"_register_SmsGeographicalScope", register_SmsGeographicalScope, METH_O, "registers type"},
         {"_register_SmsMessageClass", register_SmsMessageClass, METH_O, "registers type"},
+        {"_register_SmsMessageFilter", register_SmsMessageFilter, METH_O, "registers type"},
         {"_register_SmsMessageType", register_SmsMessageType, METH_O, "registers type"},
         {"_register_SmsModemErrorCode", register_SmsModemErrorCode, METH_O, "registers type"},
         {}};
@@ -3869,21 +7305,38 @@ namespace py::cpp::Windows::Devices::Sms
         Py_VISIT(state->type_SmsFilterActionType);
         Py_VISIT(state->type_SmsGeographicalScope);
         Py_VISIT(state->type_SmsMessageClass);
+        Py_VISIT(state->type_SmsMessageFilter);
         Py_VISIT(state->type_SmsMessageType);
         Py_VISIT(state->type_SmsModemErrorCode);
+        Py_VISIT(state->type_DeleteSmsMessageOperation);
+        Py_VISIT(state->type_DeleteSmsMessagesOperation);
+        Py_VISIT(state->type_GetSmsDeviceOperation);
+        Py_VISIT(state->type_GetSmsMessageOperation);
+        Py_VISIT(state->type_GetSmsMessagesOperation);
+        Py_VISIT(state->type_SendSmsMessageOperation);
         Py_VISIT(state->type_SmsAppMessage);
+        Py_VISIT(state->type_SmsBinaryMessage);
         Py_VISIT(state->type_SmsBroadcastMessage);
+        Py_VISIT(state->type_SmsDevice);
         Py_VISIT(state->type_SmsDevice2);
+        Py_VISIT(state->type_SmsDeviceMessageStore);
         Py_VISIT(state->type_SmsFilterRule);
         Py_VISIT(state->type_SmsFilterRules);
+        Py_VISIT(state->type_SmsMessageReceivedEventArgs);
         Py_VISIT(state->type_SmsMessageReceivedTriggerDetails);
         Py_VISIT(state->type_SmsMessageRegistration);
+        Py_VISIT(state->type_SmsReceivedEventDetails);
         Py_VISIT(state->type_SmsSendMessageResult);
         Py_VISIT(state->type_SmsStatusMessage);
+        Py_VISIT(state->type_SmsTextMessage);
         Py_VISIT(state->type_SmsTextMessage2);
         Py_VISIT(state->type_SmsVoicemailMessage);
         Py_VISIT(state->type_SmsWapMessage);
+        Py_VISIT(state->type_ISmsBinaryMessage);
+        Py_VISIT(state->type_ISmsDevice);
+        Py_VISIT(state->type_ISmsMessage);
         Py_VISIT(state->type_ISmsMessageBase);
+        Py_VISIT(state->type_ISmsTextMessage);
         Py_VISIT(state->type_SmsEncodedLength);
 
         return 0;
@@ -3906,21 +7359,38 @@ namespace py::cpp::Windows::Devices::Sms
         Py_CLEAR(state->type_SmsFilterActionType);
         Py_CLEAR(state->type_SmsGeographicalScope);
         Py_CLEAR(state->type_SmsMessageClass);
+        Py_CLEAR(state->type_SmsMessageFilter);
         Py_CLEAR(state->type_SmsMessageType);
         Py_CLEAR(state->type_SmsModemErrorCode);
+        Py_CLEAR(state->type_DeleteSmsMessageOperation);
+        Py_CLEAR(state->type_DeleteSmsMessagesOperation);
+        Py_CLEAR(state->type_GetSmsDeviceOperation);
+        Py_CLEAR(state->type_GetSmsMessageOperation);
+        Py_CLEAR(state->type_GetSmsMessagesOperation);
+        Py_CLEAR(state->type_SendSmsMessageOperation);
         Py_CLEAR(state->type_SmsAppMessage);
+        Py_CLEAR(state->type_SmsBinaryMessage);
         Py_CLEAR(state->type_SmsBroadcastMessage);
+        Py_CLEAR(state->type_SmsDevice);
         Py_CLEAR(state->type_SmsDevice2);
+        Py_CLEAR(state->type_SmsDeviceMessageStore);
         Py_CLEAR(state->type_SmsFilterRule);
         Py_CLEAR(state->type_SmsFilterRules);
+        Py_CLEAR(state->type_SmsMessageReceivedEventArgs);
         Py_CLEAR(state->type_SmsMessageReceivedTriggerDetails);
         Py_CLEAR(state->type_SmsMessageRegistration);
+        Py_CLEAR(state->type_SmsReceivedEventDetails);
         Py_CLEAR(state->type_SmsSendMessageResult);
         Py_CLEAR(state->type_SmsStatusMessage);
+        Py_CLEAR(state->type_SmsTextMessage);
         Py_CLEAR(state->type_SmsTextMessage2);
         Py_CLEAR(state->type_SmsVoicemailMessage);
         Py_CLEAR(state->type_SmsWapMessage);
+        Py_CLEAR(state->type_ISmsBinaryMessage);
+        Py_CLEAR(state->type_ISmsDevice);
+        Py_CLEAR(state->type_ISmsMessage);
         Py_CLEAR(state->type_ISmsMessageBase);
+        Py_CLEAR(state->type_ISmsTextMessage);
         Py_CLEAR(state->type_SmsEncodedLength);
 
         return 0;
@@ -4030,6 +7500,54 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
     auto state = reinterpret_cast<module_state*>(PyModule_GetState(module.get()));
     assert(state);
 
+    state->type_DeleteSmsMessageOperation = py::register_python_type(module.get(), type_name_DeleteSmsMessageOperation, &type_spec_DeleteSmsMessageOperation, bases.get());
+    if (!state->type_DeleteSmsMessageOperation)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_DeleteSmsMessageOperation);
+
+    state->type_DeleteSmsMessagesOperation = py::register_python_type(module.get(), type_name_DeleteSmsMessagesOperation, &type_spec_DeleteSmsMessagesOperation, bases.get());
+    if (!state->type_DeleteSmsMessagesOperation)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_DeleteSmsMessagesOperation);
+
+    state->type_GetSmsDeviceOperation = py::register_python_type(module.get(), type_name_GetSmsDeviceOperation, &type_spec_GetSmsDeviceOperation, bases.get());
+    if (!state->type_GetSmsDeviceOperation)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_GetSmsDeviceOperation);
+
+    state->type_GetSmsMessageOperation = py::register_python_type(module.get(), type_name_GetSmsMessageOperation, &type_spec_GetSmsMessageOperation, bases.get());
+    if (!state->type_GetSmsMessageOperation)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_GetSmsMessageOperation);
+
+    state->type_GetSmsMessagesOperation = py::register_python_type(module.get(), type_name_GetSmsMessagesOperation, &type_spec_GetSmsMessagesOperation, bases.get());
+    if (!state->type_GetSmsMessagesOperation)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_GetSmsMessagesOperation);
+
+    state->type_SendSmsMessageOperation = py::register_python_type(module.get(), type_name_SendSmsMessageOperation, &type_spec_SendSmsMessageOperation, bases.get());
+    if (!state->type_SendSmsMessageOperation)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SendSmsMessageOperation);
+
     state->type_SmsAppMessage = py::register_python_type(module.get(), type_name_SmsAppMessage, &type_spec_SmsAppMessage, bases.get());
     if (!state->type_SmsAppMessage)
     {
@@ -4037,6 +7555,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
     }
 
     Py_INCREF(state->type_SmsAppMessage);
+
+    state->type_SmsBinaryMessage = py::register_python_type(module.get(), type_name_SmsBinaryMessage, &type_spec_SmsBinaryMessage, bases.get());
+    if (!state->type_SmsBinaryMessage)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SmsBinaryMessage);
 
     state->type_SmsBroadcastMessage = py::register_python_type(module.get(), type_name_SmsBroadcastMessage, &type_spec_SmsBroadcastMessage, bases.get());
     if (!state->type_SmsBroadcastMessage)
@@ -4046,6 +7572,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
 
     Py_INCREF(state->type_SmsBroadcastMessage);
 
+    state->type_SmsDevice = py::register_python_type(module.get(), type_name_SmsDevice, &type_spec_SmsDevice, bases.get());
+    if (!state->type_SmsDevice)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SmsDevice);
+
     state->type_SmsDevice2 = py::register_python_type(module.get(), type_name_SmsDevice2, &type_spec_SmsDevice2, bases.get());
     if (!state->type_SmsDevice2)
     {
@@ -4053,6 +7587,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
     }
 
     Py_INCREF(state->type_SmsDevice2);
+
+    state->type_SmsDeviceMessageStore = py::register_python_type(module.get(), type_name_SmsDeviceMessageStore, &type_spec_SmsDeviceMessageStore, bases.get());
+    if (!state->type_SmsDeviceMessageStore)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SmsDeviceMessageStore);
 
     state->type_SmsFilterRule = py::register_python_type(module.get(), type_name_SmsFilterRule, &type_spec_SmsFilterRule, bases.get());
     if (!state->type_SmsFilterRule)
@@ -4070,6 +7612,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
 
     Py_INCREF(state->type_SmsFilterRules);
 
+    state->type_SmsMessageReceivedEventArgs = py::register_python_type(module.get(), type_name_SmsMessageReceivedEventArgs, &type_spec_SmsMessageReceivedEventArgs, bases.get());
+    if (!state->type_SmsMessageReceivedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SmsMessageReceivedEventArgs);
+
     state->type_SmsMessageReceivedTriggerDetails = py::register_python_type(module.get(), type_name_SmsMessageReceivedTriggerDetails, &type_spec_SmsMessageReceivedTriggerDetails, bases.get());
     if (!state->type_SmsMessageReceivedTriggerDetails)
     {
@@ -4086,6 +7636,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
 
     Py_INCREF(state->type_SmsMessageRegistration);
 
+    state->type_SmsReceivedEventDetails = py::register_python_type(module.get(), type_name_SmsReceivedEventDetails, &type_spec_SmsReceivedEventDetails, bases.get());
+    if (!state->type_SmsReceivedEventDetails)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SmsReceivedEventDetails);
+
     state->type_SmsSendMessageResult = py::register_python_type(module.get(), type_name_SmsSendMessageResult, &type_spec_SmsSendMessageResult, bases.get());
     if (!state->type_SmsSendMessageResult)
     {
@@ -4101,6 +7659,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
     }
 
     Py_INCREF(state->type_SmsStatusMessage);
+
+    state->type_SmsTextMessage = py::register_python_type(module.get(), type_name_SmsTextMessage, &type_spec_SmsTextMessage, bases.get());
+    if (!state->type_SmsTextMessage)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SmsTextMessage);
 
     state->type_SmsTextMessage2 = py::register_python_type(module.get(), type_name_SmsTextMessage2, &type_spec_SmsTextMessage2, bases.get());
     if (!state->type_SmsTextMessage2)
@@ -4126,6 +7692,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
 
     Py_INCREF(state->type_SmsWapMessage);
 
+    state->type_ISmsBinaryMessage = py::register_python_type(module.get(), type_name_ISmsBinaryMessage, &type_spec_ISmsBinaryMessage, bases.get());
+    if (!state->type_ISmsBinaryMessage)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ISmsBinaryMessage);
+
+    state->type_ISmsDevice = py::register_python_type(module.get(), type_name_ISmsDevice, &type_spec_ISmsDevice, bases.get());
+    if (!state->type_ISmsDevice)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ISmsDevice);
+
+    state->type_ISmsMessage = py::register_python_type(module.get(), type_name_ISmsMessage, &type_spec_ISmsMessage, bases.get());
+    if (!state->type_ISmsMessage)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ISmsMessage);
+
     state->type_ISmsMessageBase = py::register_python_type(module.get(), type_name_ISmsMessageBase, &type_spec_ISmsMessageBase, bases.get());
     if (!state->type_ISmsMessageBase)
     {
@@ -4133,6 +7723,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sms(void) noexcept
     }
 
     Py_INCREF(state->type_ISmsMessageBase);
+
+    state->type_ISmsTextMessage = py::register_python_type(module.get(), type_name_ISmsTextMessage, &type_spec_ISmsTextMessage, bases.get());
+    if (!state->type_ISmsTextMessage)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ISmsTextMessage);
 
     state->type_SmsEncodedLength = py::register_python_type(module.get(), type_name_SmsEncodedLength, &type_spec_SmsEncodedLength, bases.get());
     if (!state->type_SmsEncodedLength)
@@ -4330,6 +7928,29 @@ PyObject* py::py_type<winrt::Windows::Devices::Sms::SmsMessageClass>::get_python
     return python_type;
 }
 
+PyObject* py::py_type<winrt::Windows::Devices::Sms::SmsMessageFilter>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmsMessageFilter;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsMessageFilter is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::Devices::Sms::SmsMessageType>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Devices::Sms;
 
@@ -4376,6 +7997,144 @@ PyObject* py::py_type<winrt::Windows::Devices::Sms::SmsModemErrorCode>::get_pyth
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::DeleteSmsMessageOperation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DeleteSmsMessageOperation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::DeleteSmsMessageOperation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::DeleteSmsMessagesOperation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DeleteSmsMessagesOperation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::DeleteSmsMessagesOperation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::GetSmsDeviceOperation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_GetSmsDeviceOperation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::GetSmsDeviceOperation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::GetSmsMessageOperation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_GetSmsMessageOperation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::GetSmsMessageOperation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::GetSmsMessagesOperation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_GetSmsMessagesOperation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::GetSmsMessagesOperation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SendSmsMessageOperation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SendSmsMessageOperation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SendSmsMessageOperation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsAppMessage>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Devices::Sms;
 
@@ -4393,6 +8152,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsAppMessage>::get_p
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsAppMessage is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsBinaryMessage>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmsBinaryMessage;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsBinaryMessage is not registered");
         return nullptr;
     }
 
@@ -4422,6 +8204,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsBroadcastMessage>:
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsDevice>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmsDevice;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsDevice is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsDevice2>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Devices::Sms;
 
@@ -4439,6 +8244,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsDevice2>::get_pyth
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsDevice2 is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsDeviceMessageStore>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmsDeviceMessageStore;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsDeviceMessageStore is not registered");
         return nullptr;
     }
 
@@ -4491,6 +8319,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsFilterRules>::get_
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsMessageReceivedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmsMessageReceivedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsMessageReceivedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsMessageReceivedTriggerDetails>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Devices::Sms;
 
@@ -4537,6 +8388,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsMessageRegistratio
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsReceivedEventDetails>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmsReceivedEventDetails;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsReceivedEventDetails is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsSendMessageResult>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Devices::Sms;
 
@@ -4577,6 +8451,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsStatusMessage>::ge
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsStatusMessage is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsTextMessage>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmsTextMessage;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::SmsTextMessage is not registered");
         return nullptr;
     }
 
@@ -4652,6 +8549,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::SmsWapMessage>::get_p
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::ISmsBinaryMessage>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ISmsBinaryMessage;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::ISmsBinaryMessage is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::ISmsDevice>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ISmsDevice;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::ISmsDevice is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::ISmsMessage>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ISmsMessage;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::ISmsMessage is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::ISmsMessageBase>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Devices::Sms;
 
@@ -4669,6 +8635,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::ISmsMessageBase>::get
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::ISmsMessageBase is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sms::ISmsTextMessage>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sms;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sms");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ISmsTextMessage;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sms::ISmsTextMessage is not registered");
         return nullptr;
     }
 

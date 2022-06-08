@@ -3,7 +3,10 @@
 #pragma once
 #ifndef WINRT_Windows_System_UserProfile_2_H
 #define WINRT_Windows_System_UserProfile_2_H
+#include "winrt/impl/Windows.Foundation.1.h"
 #include "winrt/impl/Windows.Foundation.Collections.1.h"
+#include "winrt/impl/Windows.Storage.1.h"
+#include "winrt/impl/Windows.Storage.Streams.1.h"
 #include "winrt/impl/Windows.System.1.h"
 #include "winrt/impl/Windows.System.UserProfile.1.h"
 WINRT_EXPORT namespace winrt::Windows::System::UserProfile
@@ -56,6 +59,37 @@ WINRT_EXPORT namespace winrt::Windows::System::UserProfile
     {
         GlobalizationPreferencesForUser(std::nullptr_t) noexcept {}
         GlobalizationPreferencesForUser(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::UserProfile::IGlobalizationPreferencesForUser(ptr, take_ownership_from_abi) {}
+    };
+    struct LockScreen
+    {
+        LockScreen() = delete;
+        static auto RequestSetImageFeedAsync(winrt::Windows::Foundation::Uri const& syndicationFeedUri);
+        static auto TryRemoveImageFeed();
+        [[nodiscard]] static auto OriginalImageFile();
+        static auto GetImageStream();
+        static auto SetImageFileAsync(winrt::Windows::Storage::IStorageFile const& value);
+        static auto SetImageStreamAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& value);
+    };
+    struct UserInformation
+    {
+        UserInformation() = delete;
+        [[nodiscard]] static auto AccountPictureChangeEnabled();
+        [[nodiscard]] static auto NameAccessAllowed();
+        static auto GetAccountPicture(winrt::Windows::System::UserProfile::AccountPictureKind const& kind);
+        static auto SetAccountPictureAsync(winrt::Windows::Storage::IStorageFile const& image);
+        static auto SetAccountPicturesAsync(winrt::Windows::Storage::IStorageFile const& smallImage, winrt::Windows::Storage::IStorageFile const& largeImage, winrt::Windows::Storage::IStorageFile const& video);
+        static auto SetAccountPictureFromStreamAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& image);
+        static auto SetAccountPicturesFromStreamsAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& smallImage, winrt::Windows::Storage::Streams::IRandomAccessStream const& largeImage, winrt::Windows::Storage::Streams::IRandomAccessStream const& video);
+        static auto AccountPictureChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& changeHandler);
+        using AccountPictureChanged_revoker = impl::factory_event_revoker<winrt::Windows::System::UserProfile::IUserInformationStatics, &impl::abi_t<winrt::Windows::System::UserProfile::IUserInformationStatics>::remove_AccountPictureChanged>;
+        [[nodiscard]] static auto AccountPictureChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& changeHandler);
+        static auto AccountPictureChanged(winrt::event_token const& token);
+        static auto GetDisplayNameAsync();
+        static auto GetFirstNameAsync();
+        static auto GetLastNameAsync();
+        static auto GetPrincipalNameAsync();
+        static auto GetSessionInitiationProtocolUriAsync();
+        static auto GetDomainNameAsync();
     };
     struct __declspec(empty_bases) UserProfilePersonalizationSettings : winrt::Windows::System::UserProfile::IUserProfilePersonalizationSettings
     {

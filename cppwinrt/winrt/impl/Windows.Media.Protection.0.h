@@ -46,6 +46,14 @@ WINRT_EXPORT namespace winrt::Windows::Media::Protection
         Maybe = 1,
         Probably = 2,
     };
+    enum class RenewalStatus : int32_t
+    {
+        NotStarted = 0,
+        UpdatesInProgress = 1,
+        UserCancelled = 2,
+        AppComponentsMayNeedUpdating = 3,
+        NoComponentsFound = 4,
+    };
     enum class RevocationAndRenewalReasons : uint32_t
     {
         UserModeComponentLoad = 0x1,
@@ -65,6 +73,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Protection
         EncryptionFailure = 0x10000000,
     };
     struct IComponentLoadFailedEventArgs;
+    struct IComponentRenewalStatics;
     struct IHdcpSession;
     struct IMediaProtectionManager;
     struct IMediaProtectionPMPServer;
@@ -77,6 +86,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Protection
     struct IServiceRequestedEventArgs;
     struct IServiceRequestedEventArgs2;
     struct ComponentLoadFailedEventArgs;
+    struct ComponentRenewal;
     struct HdcpSession;
     struct MediaProtectionManager;
     struct MediaProtectionPMPServer;
@@ -92,6 +102,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Protection
 namespace winrt::impl
 {
     template <> struct category<winrt::Windows::Media::Protection::IComponentLoadFailedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Protection::IComponentRenewalStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Protection::IHdcpSession>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Protection::IMediaProtectionManager>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Protection::IMediaProtectionPMPServer>{ using type = interface_category; };
@@ -104,6 +115,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Protection::IServiceRequestedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Protection::IServiceRequestedEventArgs2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Protection::ComponentLoadFailedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Protection::ComponentRenewal>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Protection::HdcpSession>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Protection::MediaProtectionManager>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Protection::MediaProtectionPMPServer>{ using type = class_category; };
@@ -116,11 +128,13 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Protection::HdcpProtection>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Protection::HdcpSetProtectionResult>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Protection::ProtectionCapabilityResult>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Protection::RenewalStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Protection::RevocationAndRenewalReasons>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Protection::ComponentLoadFailedEventHandler>{ using type = delegate_category; };
     template <> struct category<winrt::Windows::Media::Protection::RebootNeededEventHandler>{ using type = delegate_category; };
     template <> struct category<winrt::Windows::Media::Protection::ServiceRequestedEventHandler>{ using type = delegate_category; };
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::ComponentLoadFailedEventArgs> = L"Windows.Media.Protection.ComponentLoadFailedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::ComponentRenewal> = L"Windows.Media.Protection.ComponentRenewal";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::HdcpSession> = L"Windows.Media.Protection.HdcpSession";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::MediaProtectionManager> = L"Windows.Media.Protection.MediaProtectionManager";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::MediaProtectionPMPServer> = L"Windows.Media.Protection.MediaProtectionPMPServer";
@@ -133,8 +147,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::HdcpProtection> = L"Windows.Media.Protection.HdcpProtection";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::HdcpSetProtectionResult> = L"Windows.Media.Protection.HdcpSetProtectionResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::ProtectionCapabilityResult> = L"Windows.Media.Protection.ProtectionCapabilityResult";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::RenewalStatus> = L"Windows.Media.Protection.RenewalStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::RevocationAndRenewalReasons> = L"Windows.Media.Protection.RevocationAndRenewalReasons";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::IComponentLoadFailedEventArgs> = L"Windows.Media.Protection.IComponentLoadFailedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::IComponentRenewalStatics> = L"Windows.Media.Protection.IComponentRenewalStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::IHdcpSession> = L"Windows.Media.Protection.IHdcpSession";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::IMediaProtectionManager> = L"Windows.Media.Protection.IMediaProtectionManager";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::IMediaProtectionPMPServer> = L"Windows.Media.Protection.IMediaProtectionPMPServer";
@@ -150,6 +166,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::RebootNeededEventHandler> = L"Windows.Media.Protection.RebootNeededEventHandler";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Protection::ServiceRequestedEventHandler> = L"Windows.Media.Protection.ServiceRequestedEventHandler";
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Protection::IComponentLoadFailedEventArgs>{ 0x95972E93,0x7746,0x417E,{ 0x84,0x95,0xF0,0x31,0xBB,0xC5,0x86,0x2C } }; // 95972E93-7746-417E-8495-F031BBC5862C
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Protection::IComponentRenewalStatics>{ 0x6FFBCD67,0xB795,0x48C5,{ 0x8B,0x7B,0xA7,0xC4,0xEF,0xE2,0x02,0xE3 } }; // 6FFBCD67-B795-48C5-8B7B-A7C4EFE202E3
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Protection::IHdcpSession>{ 0x718845E9,0x64D7,0x426D,{ 0x80,0x9B,0x1B,0xE4,0x61,0x94,0x1A,0x2A } }; // 718845E9-64D7-426D-809B-1BE461941A2A
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Protection::IMediaProtectionManager>{ 0x45694947,0xC741,0x434B,{ 0xA7,0x9E,0x47,0x4C,0x12,0xD9,0x3D,0x2F } }; // 45694947-C741-434B-A79E-474C12D93D2F
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Protection::IMediaProtectionPMPServer>{ 0x0C111226,0x7B26,0x4D31,{ 0x95,0xBB,0x9C,0x1B,0x08,0xEF,0x7F,0xC0 } }; // 0C111226-7B26-4D31-95BB-9C1B08EF7FC0
@@ -179,6 +196,13 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall get_Information(void**) noexcept = 0;
             virtual int32_t __stdcall get_Completion(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Protection::IComponentRenewalStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall RenewSystemComponentsAsync(void*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Protection::IHdcpSession>
@@ -304,6 +328,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Protection::IComponentLoadFailedEventArgs>
     {
         template <typename D> using type = consume_Windows_Media_Protection_IComponentLoadFailedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Protection_IComponentRenewalStatics
+    {
+        auto RenewSystemComponentsAsync(winrt::Windows::Media::Protection::RevocationAndRenewalInformation const& information) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Protection::IComponentRenewalStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Protection_IComponentRenewalStatics<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Protection_IHdcpSession

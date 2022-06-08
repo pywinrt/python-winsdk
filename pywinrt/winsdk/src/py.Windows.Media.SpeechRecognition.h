@@ -47,6 +47,8 @@ namespace py::wrapper::Windows::Media::SpeechRecognition
     using SpeechRecognizerStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::SpeechRecognition::SpeechRecognizerStateChangedEventArgs>;
     using SpeechRecognizerTimeouts = py::winrt_wrapper<winrt::Windows::Media::SpeechRecognition::SpeechRecognizerTimeouts>;
     using SpeechRecognizerUIOptions = py::winrt_wrapper<winrt::Windows::Media::SpeechRecognition::SpeechRecognizerUIOptions>;
+    using VoiceCommandManager = py::winrt_wrapper<winrt::Windows::Media::SpeechRecognition::VoiceCommandManager>;
+    using VoiceCommandSet = py::winrt_wrapper<winrt::Windows::Media::SpeechRecognition::VoiceCommandSet>;
     using ISpeechRecognitionConstraint = py::winrt_wrapper<winrt::Windows::Media::SpeechRecognition::ISpeechRecognitionConstraint>;
 }
 
@@ -199,6 +201,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::SpeechRecognition::SpeechRecognizerUIOptions>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::SpeechRecognition::VoiceCommandManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::SpeechRecognition::VoiceCommandSet>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

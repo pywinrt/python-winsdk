@@ -119,6 +119,7 @@ namespace py::impl::Windows::Media::Protection
 namespace py::wrapper::Windows::Media::Protection
 {
     using ComponentLoadFailedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Protection::ComponentLoadFailedEventArgs>;
+    using ComponentRenewal = py::winrt_wrapper<winrt::Windows::Media::Protection::ComponentRenewal>;
     using HdcpSession = py::winrt_wrapper<winrt::Windows::Media::Protection::HdcpSession>;
     using MediaProtectionManager = py::winrt_wrapper<winrt::Windows::Media::Protection::MediaProtectionManager>;
     using MediaProtectionPMPServer = py::winrt_wrapper<winrt::Windows::Media::Protection::MediaProtectionPMPServer>;
@@ -158,6 +159,12 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::Media::Protection::RenewalStatus>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Media::Protection::RevocationAndRenewalReasons>
     {
         static PyObject* get_python_type() noexcept;
@@ -165,6 +172,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::Protection::ComponentLoadFailedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Protection::ComponentRenewal>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

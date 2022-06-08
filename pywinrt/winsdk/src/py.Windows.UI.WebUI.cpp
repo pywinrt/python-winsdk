@@ -29,8 +29,15 @@ namespace py::cpp::Windows::UI::WebUI
         PyTypeObject* type_WebUIBackgroundTaskInstanceRuntimeClass;
         PyTypeObject* type_WebUIBarcodeScannerPreviewActivatedEventArgs;
         PyTypeObject* type_WebUICachedFileUpdaterActivatedEventArgs;
+        PyTypeObject* type_WebUICameraSettingsActivatedEventArgs;
         PyTypeObject* type_WebUICommandLineActivatedEventArgs;
+        PyTypeObject* type_WebUIContactCallActivatedEventArgs;
+        PyTypeObject* type_WebUIContactMapActivatedEventArgs;
+        PyTypeObject* type_WebUIContactMessageActivatedEventArgs;
         PyTypeObject* type_WebUIContactPanelActivatedEventArgs;
+        PyTypeObject* type_WebUIContactPickerActivatedEventArgs;
+        PyTypeObject* type_WebUIContactPostActivatedEventArgs;
+        PyTypeObject* type_WebUIContactVideoCallActivatedEventArgs;
         PyTypeObject* type_WebUIDeviceActivatedEventArgs;
         PyTypeObject* type_WebUIDevicePairingActivatedEventArgs;
         PyTypeObject* type_WebUIDialReceiverActivatedEventArgs;
@@ -42,21 +49,26 @@ namespace py::cpp::Windows::UI::WebUI
         PyTypeObject* type_WebUIFolderPickerContinuationEventArgs;
         PyTypeObject* type_WebUILaunchActivatedEventArgs;
         PyTypeObject* type_WebUILockScreenActivatedEventArgs;
+        PyTypeObject* type_WebUILockScreenCallActivatedEventArgs;
         PyTypeObject* type_WebUILockScreenComponentActivatedEventArgs;
         PyTypeObject* type_WebUINavigatedDeferral;
         PyTypeObject* type_WebUINavigatedEventArgs;
         PyTypeObject* type_WebUINavigatedOperation;
         PyTypeObject* type_WebUIPhoneCallActivatedEventArgs;
+        PyTypeObject* type_WebUIPrint3DWorkflowActivatedEventArgs;
+        PyTypeObject* type_WebUIPrintTaskSettingsActivatedEventArgs;
         PyTypeObject* type_WebUIPrintWorkflowForegroundTaskActivatedEventArgs;
         PyTypeObject* type_WebUIProtocolActivatedEventArgs;
         PyTypeObject* type_WebUIProtocolForResultsActivatedEventArgs;
         PyTypeObject* type_WebUIRestrictedLaunchActivatedEventArgs;
+        PyTypeObject* type_WebUISearchActivatedEventArgs;
         PyTypeObject* type_WebUIShareTargetActivatedEventArgs;
         PyTypeObject* type_WebUIStartupTaskActivatedEventArgs;
         PyTypeObject* type_WebUIToastNotificationActivatedEventArgs;
         PyTypeObject* type_WebUIUserDataAccountProviderActivatedEventArgs;
         PyTypeObject* type_WebUIView;
         PyTypeObject* type_WebUIVoiceCommandActivatedEventArgs;
+        PyTypeObject* type_WebUIWalletActionActivatedEventArgs;
         PyTypeObject* type_WebUIWebAccountProviderActivatedEventArgs;
         PyTypeObject* type_WebUIWebAuthenticationBrokerContinuationEventArgs;
         PyTypeObject* type_IActivatedEventArgsDeferral;
@@ -3072,6 +3084,148 @@ namespace py::cpp::Windows::UI::WebUI
         _type_slots_WebUICachedFileUpdaterActivatedEventArgs
     };
 
+    // ----- WebUICameraSettingsActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUICameraSettingsActivatedEventArgs = "WebUICameraSettingsActivatedEventArgs";
+
+    static PyObject* _new_WebUICameraSettingsActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUICameraSettingsActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUICameraSettingsActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUICameraSettingsActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUICameraSettingsActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUICameraSettingsActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUICameraSettingsActivatedEventArgs_get_VideoDeviceController(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.VideoDeviceController());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUICameraSettingsActivatedEventArgs_get_VideoDeviceExtension(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.VideoDeviceExtension());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUICameraSettingsActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUICameraSettingsActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUICameraSettingsActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUICameraSettingsActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUICameraSettingsActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUICameraSettingsActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUICameraSettingsActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUICameraSettingsActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "video_device_controller", reinterpret_cast<getter>(WebUICameraSettingsActivatedEventArgs_get_VideoDeviceController), nullptr, nullptr, nullptr },
+        { "video_device_extension", reinterpret_cast<getter>(WebUICameraSettingsActivatedEventArgs_get_VideoDeviceExtension), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUICameraSettingsActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUICameraSettingsActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUICameraSettingsActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUICameraSettingsActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUICameraSettingsActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUICameraSettingsActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUICameraSettingsActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUICameraSettingsActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUICameraSettingsActivatedEventArgs
+    };
+
     // ----- WebUICommandLineActivatedEventArgs class --------------------
     constexpr const char* const type_name_WebUICommandLineActivatedEventArgs = "WebUICommandLineActivatedEventArgs";
 
@@ -3212,6 +3366,502 @@ namespace py::cpp::Windows::UI::WebUI
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_WebUICommandLineActivatedEventArgs
+    };
+
+    // ----- WebUIContactCallActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIContactCallActivatedEventArgs = "WebUIContactCallActivatedEventArgs";
+
+    static PyObject* _new_WebUIContactCallActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIContactCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIContactCallActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_Verb(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_Contact(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_ServiceId(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactCallActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIContactCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIContactCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIContactCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIContactCallActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIContactCallActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIContactCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIContactCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIContactCallActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIContactCallActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIContactCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIContactCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIContactCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIContactCallActivatedEventArgs
+    };
+
+    // ----- WebUIContactMapActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIContactMapActivatedEventArgs = "WebUIContactMapActivatedEventArgs";
+
+    static PyObject* _new_WebUIContactMapActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIContactMapActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIContactMapActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIContactMapActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMapActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMapActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMapActivatedEventArgs_get_Verb(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMapActivatedEventArgs_get_Address(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Address());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMapActivatedEventArgs_get_Contact(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMapActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIContactMapActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIContactMapActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIContactMapActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIContactMapActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIContactMapActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIContactMapActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIContactMapActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(WebUIContactMapActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "address", reinterpret_cast<getter>(WebUIContactMapActivatedEventArgs_get_Address), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(WebUIContactMapActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIContactMapActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIContactMapActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIContactMapActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIContactMapActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIContactMapActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIContactMapActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIContactMapActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIContactMapActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIContactMapActivatedEventArgs
+    };
+
+    // ----- WebUIContactMessageActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIContactMessageActivatedEventArgs = "WebUIContactMessageActivatedEventArgs";
+
+    static PyObject* _new_WebUIContactMessageActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIContactMessageActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIContactMessageActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_Verb(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_Contact(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_ServiceId(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactMessageActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIContactMessageActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIContactMessageActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIContactMessageActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIContactMessageActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIContactMessageActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIContactMessageActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIContactMessageActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIContactMessageActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIContactMessageActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIContactMessageActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIContactMessageActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIContactMessageActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIContactMessageActivatedEventArgs
     };
 
     // ----- WebUIContactPanelActivatedEventArgs class --------------------
@@ -3368,6 +4018,474 @@ namespace py::cpp::Windows::UI::WebUI
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_WebUIContactPanelActivatedEventArgs
+    };
+
+    // ----- WebUIContactPickerActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIContactPickerActivatedEventArgs = "WebUIContactPickerActivatedEventArgs";
+
+    static PyObject* _new_WebUIContactPickerActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIContactPickerActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIContactPickerActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIContactPickerActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPickerActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPickerActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPickerActivatedEventArgs_get_ContactPickerUI(py::wrapper::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ContactPickerUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPickerActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIContactPickerActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIContactPickerActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIContactPickerActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIContactPickerActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIContactPickerActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIContactPickerActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIContactPickerActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "contact_picker_u_i", reinterpret_cast<getter>(WebUIContactPickerActivatedEventArgs_get_ContactPickerUI), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIContactPickerActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIContactPickerActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIContactPickerActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIContactPickerActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIContactPickerActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIContactPickerActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIContactPickerActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIContactPickerActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIContactPickerActivatedEventArgs
+    };
+
+    // ----- WebUIContactPostActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIContactPostActivatedEventArgs = "WebUIContactPostActivatedEventArgs";
+
+    static PyObject* _new_WebUIContactPostActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIContactPostActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIContactPostActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_Verb(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_Contact(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_ServiceId(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactPostActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIContactPostActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIContactPostActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIContactPostActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIContactPostActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIContactPostActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIContactPostActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIContactPostActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIContactPostActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIContactPostActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIContactPostActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIContactPostActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIContactPostActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIContactPostActivatedEventArgs
+    };
+
+    // ----- WebUIContactVideoCallActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIContactVideoCallActivatedEventArgs = "WebUIContactVideoCallActivatedEventArgs";
+
+    static PyObject* _new_WebUIContactVideoCallActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIContactVideoCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIContactVideoCallActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_Verb(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Verb());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_Contact(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_ServiceId(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_ServiceUserId(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ServiceUserId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIContactVideoCallActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIContactVideoCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIContactVideoCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIContactVideoCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIContactVideoCallActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "verb", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_Verb), nullptr, nullptr, nullptr },
+        { "contact", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { "service_id", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_ServiceId), nullptr, nullptr, nullptr },
+        { "service_user_id", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_ServiceUserId), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIContactVideoCallActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIContactVideoCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIContactVideoCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIContactVideoCallActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIContactVideoCallActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIContactVideoCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIContactVideoCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIContactVideoCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIContactVideoCallActivatedEventArgs
     };
 
     // ----- WebUIDeviceActivatedEventArgs class --------------------
@@ -5198,6 +6316,176 @@ namespace py::cpp::Windows::UI::WebUI
         _type_slots_WebUILockScreenActivatedEventArgs
     };
 
+    // ----- WebUILockScreenCallActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUILockScreenCallActivatedEventArgs = "WebUILockScreenCallActivatedEventArgs";
+
+    static PyObject* _new_WebUILockScreenCallActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUILockScreenCallActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUILockScreenCallActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_CurrentlyShownApplicationViewId(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CurrentlyShownApplicationViewId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_Arguments(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Arguments());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_TileId(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.TileId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_CallUI(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CallUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUILockScreenCallActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUILockScreenCallActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUILockScreenCallActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUILockScreenCallActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUILockScreenCallActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "currently_shown_application_view_id", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_CurrentlyShownApplicationViewId), nullptr, nullptr, nullptr },
+        { "arguments", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_Arguments), nullptr, nullptr, nullptr },
+        { "tile_id", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_TileId), nullptr, nullptr, nullptr },
+        { "call_u_i", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_CallUI), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUILockScreenCallActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUILockScreenCallActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUILockScreenCallActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUILockScreenCallActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUILockScreenCallActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUILockScreenCallActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUILockScreenCallActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUILockScreenCallActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUILockScreenCallActivatedEventArgs
+    };
+
     // ----- WebUILockScreenComponentActivatedEventArgs class --------------------
     constexpr const char* const type_name_WebUILockScreenComponentActivatedEventArgs = "WebUILockScreenComponentActivatedEventArgs";
 
@@ -5689,6 +6977,262 @@ namespace py::cpp::Windows::UI::WebUI
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_WebUIPhoneCallActivatedEventArgs
+    };
+
+    // ----- WebUIPrint3DWorkflowActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIPrint3DWorkflowActivatedEventArgs = "WebUIPrint3DWorkflowActivatedEventArgs";
+
+    static PyObject* _new_WebUIPrint3DWorkflowActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIPrint3DWorkflowActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIPrint3DWorkflowActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIPrint3DWorkflowActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrint3DWorkflowActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrint3DWorkflowActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrint3DWorkflowActivatedEventArgs_get_Workflow(py::wrapper::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Workflow());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrint3DWorkflowActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIPrint3DWorkflowActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIPrint3DWorkflowActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIPrint3DWorkflowActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIPrint3DWorkflowActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIPrint3DWorkflowActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIPrint3DWorkflowActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIPrint3DWorkflowActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "workflow", reinterpret_cast<getter>(WebUIPrint3DWorkflowActivatedEventArgs_get_Workflow), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIPrint3DWorkflowActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIPrint3DWorkflowActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIPrint3DWorkflowActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIPrint3DWorkflowActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIPrint3DWorkflowActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIPrint3DWorkflowActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIPrint3DWorkflowActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIPrint3DWorkflowActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIPrint3DWorkflowActivatedEventArgs
+    };
+
+    // ----- WebUIPrintTaskSettingsActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIPrintTaskSettingsActivatedEventArgs = "WebUIPrintTaskSettingsActivatedEventArgs";
+
+    static PyObject* _new_WebUIPrintTaskSettingsActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIPrintTaskSettingsActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIPrintTaskSettingsActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIPrintTaskSettingsActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrintTaskSettingsActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrintTaskSettingsActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrintTaskSettingsActivatedEventArgs_get_Configuration(py::wrapper::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Configuration());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIPrintTaskSettingsActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIPrintTaskSettingsActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIPrintTaskSettingsActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIPrintTaskSettingsActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIPrintTaskSettingsActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIPrintTaskSettingsActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIPrintTaskSettingsActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIPrintTaskSettingsActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "configuration", reinterpret_cast<getter>(WebUIPrintTaskSettingsActivatedEventArgs_get_Configuration), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIPrintTaskSettingsActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIPrintTaskSettingsActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIPrintTaskSettingsActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIPrintTaskSettingsActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIPrintTaskSettingsActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIPrintTaskSettingsActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIPrintTaskSettingsActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIPrintTaskSettingsActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIPrintTaskSettingsActivatedEventArgs
     };
 
     // ----- WebUIPrintWorkflowForegroundTaskActivatedEventArgs class --------------------
@@ -6327,6 +7871,176 @@ namespace py::cpp::Windows::UI::WebUI
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_WebUIRestrictedLaunchActivatedEventArgs
+    };
+
+    // ----- WebUISearchActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUISearchActivatedEventArgs = "WebUISearchActivatedEventArgs";
+
+    static PyObject* _new_WebUISearchActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUISearchActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUISearchActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_CurrentlyShownApplicationViewId(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CurrentlyShownApplicationViewId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_Language(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Language());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_QueryText(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QueryText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_LinguisticDetails(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LinguisticDetails());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUISearchActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUISearchActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUISearchActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUISearchActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUISearchActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUISearchActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "currently_shown_application_view_id", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_CurrentlyShownApplicationViewId), nullptr, nullptr, nullptr },
+        { "language", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_Language), nullptr, nullptr, nullptr },
+        { "query_text", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_QueryText), nullptr, nullptr, nullptr },
+        { "linguistic_details", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_LinguisticDetails), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUISearchActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUISearchActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUISearchActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUISearchActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUISearchActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUISearchActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUISearchActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUISearchActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUISearchActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUISearchActivatedEventArgs
     };
 
     // ----- WebUIShareTargetActivatedEventArgs class --------------------
@@ -8342,6 +10056,162 @@ namespace py::cpp::Windows::UI::WebUI
         _type_slots_WebUIVoiceCommandActivatedEventArgs
     };
 
+    // ----- WebUIWalletActionActivatedEventArgs class --------------------
+    constexpr const char* const type_name_WebUIWalletActionActivatedEventArgs = "WebUIWalletActionActivatedEventArgs";
+
+    static PyObject* _new_WebUIWalletActionActivatedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WebUIWalletActionActivatedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WebUIWalletActionActivatedEventArgs(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WebUIWalletActionActivatedEventArgs_get_Kind(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Kind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIWalletActionActivatedEventArgs_get_PreviousExecutionState(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PreviousExecutionState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIWalletActionActivatedEventArgs_get_SplashScreen(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SplashScreen());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIWalletActionActivatedEventArgs_get_ActionId(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIWalletActionActivatedEventArgs_get_ActionKind(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionKind());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIWalletActionActivatedEventArgs_get_ItemId(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ItemId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WebUIWalletActionActivatedEventArgs_get_ActivatedOperation(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatedOperation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WebUIWalletActionActivatedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WebUIWalletActionActivatedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WebUIWalletActionActivatedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WebUIWalletActionActivatedEventArgs[] = {
+        { "kind", reinterpret_cast<getter>(WebUIWalletActionActivatedEventArgs_get_Kind), nullptr, nullptr, nullptr },
+        { "previous_execution_state", reinterpret_cast<getter>(WebUIWalletActionActivatedEventArgs_get_PreviousExecutionState), nullptr, nullptr, nullptr },
+        { "splash_screen", reinterpret_cast<getter>(WebUIWalletActionActivatedEventArgs_get_SplashScreen), nullptr, nullptr, nullptr },
+        { "action_id", reinterpret_cast<getter>(WebUIWalletActionActivatedEventArgs_get_ActionId), nullptr, nullptr, nullptr },
+        { "action_kind", reinterpret_cast<getter>(WebUIWalletActionActivatedEventArgs_get_ActionKind), nullptr, nullptr, nullptr },
+        { "item_id", reinterpret_cast<getter>(WebUIWalletActionActivatedEventArgs_get_ItemId), nullptr, nullptr, nullptr },
+        { "activated_operation", reinterpret_cast<getter>(WebUIWalletActionActivatedEventArgs_get_ActivatedOperation), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WebUIWalletActionActivatedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WebUIWalletActionActivatedEventArgs },
+        { Py_tp_dealloc, _dealloc_WebUIWalletActionActivatedEventArgs },
+        { Py_tp_methods, _methods_WebUIWalletActionActivatedEventArgs },
+        { Py_tp_getset, _getset_WebUIWalletActionActivatedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WebUIWalletActionActivatedEventArgs =
+    {
+        "_winsdk_Windows_UI_WebUI.WebUIWalletActionActivatedEventArgs",
+        sizeof(py::wrapper::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WebUIWalletActionActivatedEventArgs
+    };
+
     // ----- WebUIWebAccountProviderActivatedEventArgs class --------------------
     constexpr const char* const type_name_WebUIWebAccountProviderActivatedEventArgs = "WebUIWebAccountProviderActivatedEventArgs";
 
@@ -8902,8 +10772,15 @@ namespace py::cpp::Windows::UI::WebUI
         Py_VISIT(state->type_WebUIBackgroundTaskInstanceRuntimeClass);
         Py_VISIT(state->type_WebUIBarcodeScannerPreviewActivatedEventArgs);
         Py_VISIT(state->type_WebUICachedFileUpdaterActivatedEventArgs);
+        Py_VISIT(state->type_WebUICameraSettingsActivatedEventArgs);
         Py_VISIT(state->type_WebUICommandLineActivatedEventArgs);
+        Py_VISIT(state->type_WebUIContactCallActivatedEventArgs);
+        Py_VISIT(state->type_WebUIContactMapActivatedEventArgs);
+        Py_VISIT(state->type_WebUIContactMessageActivatedEventArgs);
         Py_VISIT(state->type_WebUIContactPanelActivatedEventArgs);
+        Py_VISIT(state->type_WebUIContactPickerActivatedEventArgs);
+        Py_VISIT(state->type_WebUIContactPostActivatedEventArgs);
+        Py_VISIT(state->type_WebUIContactVideoCallActivatedEventArgs);
         Py_VISIT(state->type_WebUIDeviceActivatedEventArgs);
         Py_VISIT(state->type_WebUIDevicePairingActivatedEventArgs);
         Py_VISIT(state->type_WebUIDialReceiverActivatedEventArgs);
@@ -8915,21 +10792,26 @@ namespace py::cpp::Windows::UI::WebUI
         Py_VISIT(state->type_WebUIFolderPickerContinuationEventArgs);
         Py_VISIT(state->type_WebUILaunchActivatedEventArgs);
         Py_VISIT(state->type_WebUILockScreenActivatedEventArgs);
+        Py_VISIT(state->type_WebUILockScreenCallActivatedEventArgs);
         Py_VISIT(state->type_WebUILockScreenComponentActivatedEventArgs);
         Py_VISIT(state->type_WebUINavigatedDeferral);
         Py_VISIT(state->type_WebUINavigatedEventArgs);
         Py_VISIT(state->type_WebUINavigatedOperation);
         Py_VISIT(state->type_WebUIPhoneCallActivatedEventArgs);
+        Py_VISIT(state->type_WebUIPrint3DWorkflowActivatedEventArgs);
+        Py_VISIT(state->type_WebUIPrintTaskSettingsActivatedEventArgs);
         Py_VISIT(state->type_WebUIPrintWorkflowForegroundTaskActivatedEventArgs);
         Py_VISIT(state->type_WebUIProtocolActivatedEventArgs);
         Py_VISIT(state->type_WebUIProtocolForResultsActivatedEventArgs);
         Py_VISIT(state->type_WebUIRestrictedLaunchActivatedEventArgs);
+        Py_VISIT(state->type_WebUISearchActivatedEventArgs);
         Py_VISIT(state->type_WebUIShareTargetActivatedEventArgs);
         Py_VISIT(state->type_WebUIStartupTaskActivatedEventArgs);
         Py_VISIT(state->type_WebUIToastNotificationActivatedEventArgs);
         Py_VISIT(state->type_WebUIUserDataAccountProviderActivatedEventArgs);
         Py_VISIT(state->type_WebUIView);
         Py_VISIT(state->type_WebUIVoiceCommandActivatedEventArgs);
+        Py_VISIT(state->type_WebUIWalletActionActivatedEventArgs);
         Py_VISIT(state->type_WebUIWebAccountProviderActivatedEventArgs);
         Py_VISIT(state->type_WebUIWebAuthenticationBrokerContinuationEventArgs);
         Py_VISIT(state->type_IActivatedEventArgsDeferral);
@@ -8969,8 +10851,15 @@ namespace py::cpp::Windows::UI::WebUI
         Py_CLEAR(state->type_WebUIBackgroundTaskInstanceRuntimeClass);
         Py_CLEAR(state->type_WebUIBarcodeScannerPreviewActivatedEventArgs);
         Py_CLEAR(state->type_WebUICachedFileUpdaterActivatedEventArgs);
+        Py_CLEAR(state->type_WebUICameraSettingsActivatedEventArgs);
         Py_CLEAR(state->type_WebUICommandLineActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIContactCallActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIContactMapActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIContactMessageActivatedEventArgs);
         Py_CLEAR(state->type_WebUIContactPanelActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIContactPickerActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIContactPostActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIContactVideoCallActivatedEventArgs);
         Py_CLEAR(state->type_WebUIDeviceActivatedEventArgs);
         Py_CLEAR(state->type_WebUIDevicePairingActivatedEventArgs);
         Py_CLEAR(state->type_WebUIDialReceiverActivatedEventArgs);
@@ -8982,21 +10871,26 @@ namespace py::cpp::Windows::UI::WebUI
         Py_CLEAR(state->type_WebUIFolderPickerContinuationEventArgs);
         Py_CLEAR(state->type_WebUILaunchActivatedEventArgs);
         Py_CLEAR(state->type_WebUILockScreenActivatedEventArgs);
+        Py_CLEAR(state->type_WebUILockScreenCallActivatedEventArgs);
         Py_CLEAR(state->type_WebUILockScreenComponentActivatedEventArgs);
         Py_CLEAR(state->type_WebUINavigatedDeferral);
         Py_CLEAR(state->type_WebUINavigatedEventArgs);
         Py_CLEAR(state->type_WebUINavigatedOperation);
         Py_CLEAR(state->type_WebUIPhoneCallActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIPrint3DWorkflowActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIPrintTaskSettingsActivatedEventArgs);
         Py_CLEAR(state->type_WebUIPrintWorkflowForegroundTaskActivatedEventArgs);
         Py_CLEAR(state->type_WebUIProtocolActivatedEventArgs);
         Py_CLEAR(state->type_WebUIProtocolForResultsActivatedEventArgs);
         Py_CLEAR(state->type_WebUIRestrictedLaunchActivatedEventArgs);
+        Py_CLEAR(state->type_WebUISearchActivatedEventArgs);
         Py_CLEAR(state->type_WebUIShareTargetActivatedEventArgs);
         Py_CLEAR(state->type_WebUIStartupTaskActivatedEventArgs);
         Py_CLEAR(state->type_WebUIToastNotificationActivatedEventArgs);
         Py_CLEAR(state->type_WebUIUserDataAccountProviderActivatedEventArgs);
         Py_CLEAR(state->type_WebUIView);
         Py_CLEAR(state->type_WebUIVoiceCommandActivatedEventArgs);
+        Py_CLEAR(state->type_WebUIWalletActionActivatedEventArgs);
         Py_CLEAR(state->type_WebUIWebAccountProviderActivatedEventArgs);
         Py_CLEAR(state->type_WebUIWebAuthenticationBrokerContinuationEventArgs);
         Py_CLEAR(state->type_IActivatedEventArgsDeferral);
@@ -9270,6 +11164,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_WebUI(void) noexcept
 
     Py_INCREF(state->type_WebUICachedFileUpdaterActivatedEventArgs);
 
+    state->type_WebUICameraSettingsActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUICameraSettingsActivatedEventArgs, &type_spec_WebUICameraSettingsActivatedEventArgs, bases.get());
+    if (!state->type_WebUICameraSettingsActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUICameraSettingsActivatedEventArgs);
+
     state->type_WebUICommandLineActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUICommandLineActivatedEventArgs, &type_spec_WebUICommandLineActivatedEventArgs, bases.get());
     if (!state->type_WebUICommandLineActivatedEventArgs)
     {
@@ -9278,6 +11180,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_WebUI(void) noexcept
 
     Py_INCREF(state->type_WebUICommandLineActivatedEventArgs);
 
+    state->type_WebUIContactCallActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIContactCallActivatedEventArgs, &type_spec_WebUIContactCallActivatedEventArgs, bases.get());
+    if (!state->type_WebUIContactCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIContactCallActivatedEventArgs);
+
+    state->type_WebUIContactMapActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIContactMapActivatedEventArgs, &type_spec_WebUIContactMapActivatedEventArgs, bases.get());
+    if (!state->type_WebUIContactMapActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIContactMapActivatedEventArgs);
+
+    state->type_WebUIContactMessageActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIContactMessageActivatedEventArgs, &type_spec_WebUIContactMessageActivatedEventArgs, bases.get());
+    if (!state->type_WebUIContactMessageActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIContactMessageActivatedEventArgs);
+
     state->type_WebUIContactPanelActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIContactPanelActivatedEventArgs, &type_spec_WebUIContactPanelActivatedEventArgs, bases.get());
     if (!state->type_WebUIContactPanelActivatedEventArgs)
     {
@@ -9285,6 +11211,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_WebUI(void) noexcept
     }
 
     Py_INCREF(state->type_WebUIContactPanelActivatedEventArgs);
+
+    state->type_WebUIContactPickerActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIContactPickerActivatedEventArgs, &type_spec_WebUIContactPickerActivatedEventArgs, bases.get());
+    if (!state->type_WebUIContactPickerActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIContactPickerActivatedEventArgs);
+
+    state->type_WebUIContactPostActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIContactPostActivatedEventArgs, &type_spec_WebUIContactPostActivatedEventArgs, bases.get());
+    if (!state->type_WebUIContactPostActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIContactPostActivatedEventArgs);
+
+    state->type_WebUIContactVideoCallActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIContactVideoCallActivatedEventArgs, &type_spec_WebUIContactVideoCallActivatedEventArgs, bases.get());
+    if (!state->type_WebUIContactVideoCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIContactVideoCallActivatedEventArgs);
 
     state->type_WebUIDeviceActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIDeviceActivatedEventArgs, &type_spec_WebUIDeviceActivatedEventArgs, bases.get());
     if (!state->type_WebUIDeviceActivatedEventArgs)
@@ -9374,6 +11324,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_WebUI(void) noexcept
 
     Py_INCREF(state->type_WebUILockScreenActivatedEventArgs);
 
+    state->type_WebUILockScreenCallActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUILockScreenCallActivatedEventArgs, &type_spec_WebUILockScreenCallActivatedEventArgs, bases.get());
+    if (!state->type_WebUILockScreenCallActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUILockScreenCallActivatedEventArgs);
+
     state->type_WebUILockScreenComponentActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUILockScreenComponentActivatedEventArgs, &type_spec_WebUILockScreenComponentActivatedEventArgs, bases.get());
     if (!state->type_WebUILockScreenComponentActivatedEventArgs)
     {
@@ -9414,6 +11372,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_WebUI(void) noexcept
 
     Py_INCREF(state->type_WebUIPhoneCallActivatedEventArgs);
 
+    state->type_WebUIPrint3DWorkflowActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIPrint3DWorkflowActivatedEventArgs, &type_spec_WebUIPrint3DWorkflowActivatedEventArgs, bases.get());
+    if (!state->type_WebUIPrint3DWorkflowActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIPrint3DWorkflowActivatedEventArgs);
+
+    state->type_WebUIPrintTaskSettingsActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIPrintTaskSettingsActivatedEventArgs, &type_spec_WebUIPrintTaskSettingsActivatedEventArgs, bases.get());
+    if (!state->type_WebUIPrintTaskSettingsActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIPrintTaskSettingsActivatedEventArgs);
+
     state->type_WebUIPrintWorkflowForegroundTaskActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIPrintWorkflowForegroundTaskActivatedEventArgs, &type_spec_WebUIPrintWorkflowForegroundTaskActivatedEventArgs, bases.get());
     if (!state->type_WebUIPrintWorkflowForegroundTaskActivatedEventArgs)
     {
@@ -9445,6 +11419,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_WebUI(void) noexcept
     }
 
     Py_INCREF(state->type_WebUIRestrictedLaunchActivatedEventArgs);
+
+    state->type_WebUISearchActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUISearchActivatedEventArgs, &type_spec_WebUISearchActivatedEventArgs, bases.get());
+    if (!state->type_WebUISearchActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUISearchActivatedEventArgs);
 
     state->type_WebUIShareTargetActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIShareTargetActivatedEventArgs, &type_spec_WebUIShareTargetActivatedEventArgs, bases.get());
     if (!state->type_WebUIShareTargetActivatedEventArgs)
@@ -9493,6 +11475,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_WebUI(void) noexcept
     }
 
     Py_INCREF(state->type_WebUIVoiceCommandActivatedEventArgs);
+
+    state->type_WebUIWalletActionActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIWalletActionActivatedEventArgs, &type_spec_WebUIWalletActionActivatedEventArgs, bases.get());
+    if (!state->type_WebUIWalletActionActivatedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WebUIWalletActionActivatedEventArgs);
 
     state->type_WebUIWebAccountProviderActivatedEventArgs = py::register_python_type(module.get(), type_name_WebUIWebAccountProviderActivatedEventArgs, &type_spec_WebUIWebAccountProviderActivatedEventArgs, bases.get());
     if (!state->type_WebUIWebAccountProviderActivatedEventArgs)
@@ -10021,6 +12011,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUICachedFileUpdaterAc
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUICameraSettingsActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUICommandLineActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::UI::WebUI;
 
@@ -10044,6 +12057,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUICommandLineActivate
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIContactCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIContactMapActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIContactMessageActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactPanelActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::UI::WebUI;
 
@@ -10061,6 +12143,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactPanelActivat
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIContactPanelActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIContactPickerActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIContactPostActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIContactVideoCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs is not registered");
         return nullptr;
     }
 
@@ -10320,6 +12471,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUILockScreenActivated
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUILockScreenCallActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUILockScreenComponentActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::UI::WebUI;
 
@@ -10435,6 +12609,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIPhoneCallActivatedE
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIPrint3DWorkflowActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIPrintTaskSettingsActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIPrintWorkflowForegroundTaskActivatedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::UI::WebUI;
 
@@ -10521,6 +12741,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIRestrictedLaunchAct
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIRestrictedLaunchActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUISearchActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUISearchActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUISearchActivatedEventArgs is not registered");
         return nullptr;
     }
 
@@ -10659,6 +12902,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIVoiceCommandActivat
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIVoiceCommandActivatedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::WebUI;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::WebUI");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WebUIWalletActionActivatedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs is not registered");
         return nullptr;
     }
 

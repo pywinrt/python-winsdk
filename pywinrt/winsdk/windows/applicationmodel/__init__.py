@@ -55,6 +55,12 @@ class AppInstallerPolicySource(enum.IntEnum):
     DEFAULT = 0
     SYSTEM = 1
 
+class FullTrustLaunchResult(enum.IntEnum):
+    SUCCESS = 0
+    ACCESS_DENIED = 1
+    FILE_NOT_FOUND = 2
+    UNKNOWN = 3
+
 class LimitedAccessFeatureStatus(enum.IntEnum):
     UNAVAILABLE = 0
     AVAILABLE = 1
@@ -91,6 +97,7 @@ class StartupTaskState(enum.IntEnum):
 _ns_module._register_AddResourcePackageOptions(AddResourcePackageOptions)
 _ns_module._register_AppExecutionContext(AppExecutionContext)
 _ns_module._register_AppInstallerPolicySource(AppInstallerPolicySource)
+_ns_module._register_FullTrustLaunchResult(FullTrustLaunchResult)
 _ns_module._register_LimitedAccessFeatureStatus(LimitedAccessFeatureStatus)
 _ns_module._register_PackageContentGroupState(PackageContentGroupState)
 _ns_module._register_PackageSignatureKind(PackageSignatureKind)
@@ -103,8 +110,11 @@ AppDisplayInfo = _ns_module.AppDisplayInfo
 AppInfo = _ns_module.AppInfo
 AppInstallerInfo = _ns_module.AppInstallerInfo
 AppInstance = _ns_module.AppInstance
+CameraApplicationManager = _ns_module.CameraApplicationManager
 DesignMode = _ns_module.DesignMode
 EnteredBackgroundEventArgs = _ns_module.EnteredBackgroundEventArgs
+FullTrustProcessLaunchResult = _ns_module.FullTrustProcessLaunchResult
+FullTrustProcessLauncher = _ns_module.FullTrustProcessLauncher
 LeavingBackgroundEventArgs = _ns_module.LeavingBackgroundEventArgs
 LimitedAccessFeatureRequestResult = _ns_module.LimitedAccessFeatureRequestResult
 LimitedAccessFeatures = _ns_module.LimitedAccessFeatures

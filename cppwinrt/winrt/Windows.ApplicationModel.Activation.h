@@ -9,11 +9,15 @@ static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.220607.4"), "Mismatche
 #include "winrt/Windows.ApplicationModel.h"
 #include "winrt/impl/Windows.ApplicationModel.Appointments.AppointmentsProvider.2.h"
 #include "winrt/impl/Windows.ApplicationModel.Background.2.h"
+#include "winrt/impl/Windows.ApplicationModel.Calls.2.h"
 #include "winrt/impl/Windows.ApplicationModel.Contacts.2.h"
+#include "winrt/impl/Windows.ApplicationModel.Contacts.Provider.2.h"
 #include "winrt/impl/Windows.ApplicationModel.DataTransfer.ShareTarget.2.h"
 #include "winrt/impl/Windows.ApplicationModel.Search.2.h"
 #include "winrt/impl/Windows.ApplicationModel.UserDataAccounts.Provider.2.h"
+#include "winrt/impl/Windows.ApplicationModel.Wallet.2.h"
 #include "winrt/impl/Windows.Devices.Enumeration.2.h"
+#include "winrt/impl/Windows.Devices.Printers.Extensions.2.h"
 #include "winrt/impl/Windows.Foundation.2.h"
 #include "winrt/impl/Windows.Foundation.Collections.2.h"
 #include "winrt/impl/Windows.Media.SpeechRecognition.2.h"
@@ -131,6 +135,18 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::ICachedFileUpdaterActivatedEventArgs)->get_CachedFileUpdaterUI(&value));
         return winrt::Windows::Storage::Provider::CachedFileUpdaterUI{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_ICameraSettingsActivatedEventArgs<D>::VideoDeviceController() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs)->get_VideoDeviceController(&value));
+        return winrt::Windows::Foundation::IInspectable{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_ICameraSettingsActivatedEventArgs<D>::VideoDeviceExtension() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs)->get_VideoDeviceExtension(&value));
+        return winrt::Windows::Foundation::IInspectable{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_ApplicationModel_Activation_ICommandLineActivatedEventArgs<D>::Operation() const
     {
         void* value{};
@@ -165,6 +181,60 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::ICommandLineActivationOperation)->GetDeferral(&value));
         return winrt::Windows::Foundation::Deferral{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactActivatedEventArgs<D>::Verb() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs)->get_Verb(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactCallActivatedEventArgs<D>::ServiceId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs)->get_ServiceId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactCallActivatedEventArgs<D>::ServiceUserId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs)->get_ServiceUserId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactCallActivatedEventArgs<D>::Contact() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs)->get_Contact(&value));
+        return winrt::Windows::ApplicationModel::Contacts::Contact{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactMapActivatedEventArgs<D>::Address() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs)->get_Address(&value));
+        return winrt::Windows::ApplicationModel::Contacts::ContactAddress{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactMapActivatedEventArgs<D>::Contact() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs)->get_Contact(&value));
+        return winrt::Windows::ApplicationModel::Contacts::Contact{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactMessageActivatedEventArgs<D>::ServiceId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs)->get_ServiceId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactMessageActivatedEventArgs<D>::ServiceUserId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs)->get_ServiceUserId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactMessageActivatedEventArgs<D>::Contact() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs)->get_Contact(&value));
+        return winrt::Windows::ApplicationModel::Contacts::Contact{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactPanelActivatedEventArgs<D>::ContactPanel() const
     {
         void* value{};
@@ -176,6 +246,54 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs)->get_Contact(&value));
         return winrt::Windows::ApplicationModel::Contacts::Contact{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactPickerActivatedEventArgs<D>::ContactPickerUI() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs)->get_ContactPickerUI(&value));
+        return winrt::Windows::ApplicationModel::Contacts::Provider::ContactPickerUI{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactPostActivatedEventArgs<D>::ServiceId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs)->get_ServiceId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactPostActivatedEventArgs<D>::ServiceUserId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs)->get_ServiceUserId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactPostActivatedEventArgs<D>::Contact() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs)->get_Contact(&value));
+        return winrt::Windows::ApplicationModel::Contacts::Contact{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactVideoCallActivatedEventArgs<D>::ServiceId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs)->get_ServiceId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactVideoCallActivatedEventArgs<D>::ServiceUserId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs)->get_ServiceUserId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactVideoCallActivatedEventArgs<D>::Contact() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs)->get_Contact(&value));
+        return winrt::Windows::ApplicationModel::Contacts::Contact{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IContactsProviderActivatedEventArgs<D>::Verb() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs)->get_Verb(&value));
+        return hstring{ value, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_ApplicationModel_Activation_IContinuationActivatedEventArgs<D>::ContinuationData() const
     {
@@ -303,6 +421,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::ILockScreenActivatedEventArgs)->get_Info(&value));
         return winrt::Windows::Foundation::IInspectable{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_ILockScreenCallActivatedEventArgs<D>::CallUI() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs)->get_CallUI(&value));
+        return winrt::Windows::ApplicationModel::Calls::LockScreenCallUI{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_ApplicationModel_Activation_IPhoneCallActivatedEventArgs<D>::LineId() const
     {
         winrt::guid value{};
@@ -320,6 +444,18 @@ namespace winrt::impl
         bool value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IPrelaunchActivatedEventArgs)->get_PrelaunchActivated(&value));
         return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IPrint3DWorkflowActivatedEventArgs<D>::Workflow() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs)->get_Workflow(&value));
+        return winrt::Windows::Devices::Printers::Extensions::Print3DWorkflow{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IPrintTaskSettingsActivatedEventArgs<D>::Configuration() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs)->get_Configuration(&value));
+        return winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration{ value, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_ApplicationModel_Activation_IProtocolActivatedEventArgs<D>::Uri() const
     {
@@ -436,6 +572,24 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IVoiceCommandActivatedEventArgs)->get_Result(&value));
         return winrt::Windows::Media::SpeechRecognition::SpeechRecognitionResult{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IWalletActionActivatedEventArgs<D>::ItemId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs)->get_ItemId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IWalletActionActivatedEventArgs<D>::ActionKind() const
+    {
+        winrt::Windows::ApplicationModel::Wallet::WalletActionKind value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs)->get_ActionKind(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Activation_IWalletActionActivatedEventArgs<D>::ActionId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs)->get_ActionId(&value));
+        return hstring{ value, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_ApplicationModel_Activation_IWebAccountProviderActivatedEventArgs<D>::Operation() const
     {
@@ -631,6 +785,26 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs>
+    {
+        int32_t __stdcall get_VideoDeviceController(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IInspectable>(this->shim().VideoDeviceController());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoDeviceExtension(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IInspectable>(this->shim().VideoDeviceExtension());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs>
     {
         int32_t __stdcall get_Operation(void** value) noexcept final try
@@ -687,6 +861,94 @@ namespace winrt::impl
     };
 #endif
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>
+    {
+        int32_t __stdcall get_Verb(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Verb());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs>
+    {
+        int32_t __stdcall get_ServiceId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ServiceUserId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceUserId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Contact(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Contacts::Contact>(this->shim().Contact());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs>
+    {
+        int32_t __stdcall get_Address(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Contacts::ContactAddress>(this->shim().Address());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Contact(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Contacts::Contact>(this->shim().Contact());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs>
+    {
+        int32_t __stdcall get_ServiceId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ServiceUserId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceUserId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Contact(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Contacts::Contact>(this->shim().Contact());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs>
     {
         int32_t __stdcall get_ContactPanel(void** value) noexcept final try
@@ -702,6 +964,86 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::ApplicationModel::Contacts::Contact>(this->shim().Contact());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs>
+    {
+        int32_t __stdcall get_ContactPickerUI(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Contacts::Provider::ContactPickerUI>(this->shim().ContactPickerUI());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs>
+    {
+        int32_t __stdcall get_ServiceId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ServiceUserId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceUserId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Contact(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Contacts::Contact>(this->shim().Contact());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs>
+    {
+        int32_t __stdcall get_ServiceId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ServiceUserId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ServiceUserId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Contact(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Contacts::Contact>(this->shim().Contact());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs>
+    {
+        int32_t __stdcall get_Verb(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Verb());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -943,6 +1285,18 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs>
+    {
+        int32_t __stdcall get_CallUI(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI>(this->shim().CallUI());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs>
     {
         int32_t __stdcall get_LineId(winrt::guid* value) noexcept final try
@@ -972,6 +1326,30 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             *value = detach_from<bool>(this->shim().PrelaunchActivated());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs>
+    {
+        int32_t __stdcall get_Workflow(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Printers::Extensions::Print3DWorkflow>(this->shim().Workflow());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs>
+    {
+        int32_t __stdcall get_Configuration(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration>(this->shim().Configuration());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1187,6 +1565,33 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs>
+    {
+        int32_t __stdcall get_ItemId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ItemId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ActionKind(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Wallet::WalletActionKind>(this->shim().ActionKind());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ActionId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ActionId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::Activation::IWebAccountProviderActivatedEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::Activation::IWebAccountProviderActivatedEventArgs>
     {
         int32_t __stdcall get_Operation(void** value) noexcept final try
@@ -1229,9 +1634,18 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IBackgroundActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IBarcodeScannerPreviewActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ICachedFileUpdaterActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ICommandLineActivationOperation> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IContinuationActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IDeviceActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IDevicePairingActivatedEventArgs> : winrt::impl::hash_base {};
@@ -1249,9 +1663,12 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ILockScreenActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IPickerReturnedActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IPrelaunchActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IProtocolActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IProtocolForResultsActivatedEventArgs> : winrt::impl::hash_base {};
@@ -1266,6 +1683,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IUserDataAccountProviderActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IViewSwitcherProvider> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IVoiceCommandActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IWebAccountProviderActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::IWebAuthenticationBrokerContinuationEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::AppointmentsProviderAddAppointmentActivatedEventArgs> : winrt::impl::hash_base {};
@@ -1276,9 +1694,16 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::BackgroundActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::BarcodeScannerPreviewActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::CachedFileUpdaterActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::CommandLineActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::CommandLineActivationOperation> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ContactPanelActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::DeviceActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::DevicePairingActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::DialReceiverActivatedEventArgs> : winrt::impl::hash_base {};
@@ -1290,9 +1715,12 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::FolderPickerContinuationEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::LaunchActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::LockScreenActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::LockScreenComponentActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::PhoneCallActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::PickerReturnedActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ProtocolActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ProtocolForResultsActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::RestrictedLaunchActivatedEventArgs> : winrt::impl::hash_base {};
@@ -1304,6 +1732,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::ToastNotificationActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::UserDataAccountProviderActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::VoiceCommandActivatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::WebAccountProviderActivatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Activation::WebAuthenticationBrokerContinuationEventArgs> : winrt::impl::hash_base {};
 #endif

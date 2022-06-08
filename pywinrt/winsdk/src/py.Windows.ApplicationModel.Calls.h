@@ -41,6 +41,9 @@ namespace py::wrapper::Windows::ApplicationModel::Calls
     using CallAnswerEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::CallAnswerEventArgs>;
     using CallRejectEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::CallRejectEventArgs>;
     using CallStateChangeEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::CallStateChangeEventArgs>;
+    using LockScreenCallEndCallDeferral = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral>;
+    using LockScreenCallEndRequestedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs>;
+    using LockScreenCallUI = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI>;
     using MuteChangeEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::MuteChangeEventArgs>;
     using PhoneCall = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::PhoneCall>;
     using PhoneCallBlocking = py::winrt_wrapper<winrt::Windows::ApplicationModel::Calls::PhoneCallBlocking>;
@@ -249,6 +252,24 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Calls::CallStateChangeEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

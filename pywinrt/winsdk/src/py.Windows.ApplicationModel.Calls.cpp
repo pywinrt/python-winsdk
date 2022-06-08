@@ -38,6 +38,9 @@ namespace py::cpp::Windows::ApplicationModel::Calls
         PyTypeObject* type_CallAnswerEventArgs;
         PyTypeObject* type_CallRejectEventArgs;
         PyTypeObject* type_CallStateChangeEventArgs;
+        PyTypeObject* type_LockScreenCallEndCallDeferral;
+        PyTypeObject* type_LockScreenCallEndRequestedEventArgs;
+        PyTypeObject* type_LockScreenCallUI;
         PyTypeObject* type_MuteChangeEventArgs;
         PyTypeObject* type_PhoneCall;
         PyTypeObject* type_PhoneCallBlocking;
@@ -929,6 +932,370 @@ namespace py::cpp::Windows::ApplicationModel::Calls
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_CallStateChangeEventArgs
+    };
+
+    // ----- LockScreenCallEndCallDeferral class --------------------
+    constexpr const char* const type_name_LockScreenCallEndCallDeferral = "LockScreenCallEndCallDeferral";
+
+    static PyObject* _new_LockScreenCallEndCallDeferral(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_LockScreenCallEndCallDeferral);
+        return nullptr;
+    }
+
+    static void _dealloc_LockScreenCallEndCallDeferral(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* LockScreenCallEndCallDeferral_Complete(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Complete();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_LockScreenCallEndCallDeferral(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_LockScreenCallEndCallDeferral[] = {
+        { "complete", reinterpret_cast<PyCFunction>(LockScreenCallEndCallDeferral_Complete), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_LockScreenCallEndCallDeferral), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_LockScreenCallEndCallDeferral[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_LockScreenCallEndCallDeferral[] = 
+    {
+        { Py_tp_new, _new_LockScreenCallEndCallDeferral },
+        { Py_tp_dealloc, _dealloc_LockScreenCallEndCallDeferral },
+        { Py_tp_methods, _methods_LockScreenCallEndCallDeferral },
+        { Py_tp_getset, _getset_LockScreenCallEndCallDeferral },
+        { },
+    };
+
+    static PyType_Spec type_spec_LockScreenCallEndCallDeferral =
+    {
+        "_winsdk_Windows_ApplicationModel_Calls.LockScreenCallEndCallDeferral",
+        sizeof(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_LockScreenCallEndCallDeferral
+    };
+
+    // ----- LockScreenCallEndRequestedEventArgs class --------------------
+    constexpr const char* const type_name_LockScreenCallEndRequestedEventArgs = "LockScreenCallEndRequestedEventArgs";
+
+    static PyObject* _new_LockScreenCallEndRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_LockScreenCallEndRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_LockScreenCallEndRequestedEventArgs(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* LockScreenCallEndRequestedEventArgs_GetDeferral(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallEndRequestedEventArgs_get_Deadline(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Deadline());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_LockScreenCallEndRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_LockScreenCallEndRequestedEventArgs[] = {
+        { "get_deferral", reinterpret_cast<PyCFunction>(LockScreenCallEndRequestedEventArgs_GetDeferral), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_LockScreenCallEndRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_LockScreenCallEndRequestedEventArgs[] = {
+        { "deadline", reinterpret_cast<getter>(LockScreenCallEndRequestedEventArgs_get_Deadline), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_LockScreenCallEndRequestedEventArgs[] = 
+    {
+        { Py_tp_new, _new_LockScreenCallEndRequestedEventArgs },
+        { Py_tp_dealloc, _dealloc_LockScreenCallEndRequestedEventArgs },
+        { Py_tp_methods, _methods_LockScreenCallEndRequestedEventArgs },
+        { Py_tp_getset, _getset_LockScreenCallEndRequestedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_LockScreenCallEndRequestedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Calls.LockScreenCallEndRequestedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_LockScreenCallEndRequestedEventArgs
+    };
+
+    // ----- LockScreenCallUI class --------------------
+    constexpr const char* const type_name_LockScreenCallUI = "LockScreenCallUI";
+
+    static PyObject* _new_LockScreenCallUI(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_LockScreenCallUI);
+        return nullptr;
+    }
+
+    static void _dealloc_LockScreenCallUI(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* LockScreenCallUI_Dismiss(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Dismiss();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallUI_get_CallTitle(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CallTitle());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int LockScreenCallUI_put_CallTitle(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.CallTitle(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* LockScreenCallUI_add_Closed(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI, winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(self->obj.Closed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallUI_remove_Closed(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.Closed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallUI_add_EndRequested(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI, winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.EndRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreenCallUI_remove_EndRequested(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.EndRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_LockScreenCallUI(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_LockScreenCallUI[] = {
+        { "dismiss", reinterpret_cast<PyCFunction>(LockScreenCallUI_Dismiss), METH_VARARGS, nullptr },
+        { "add_closed", reinterpret_cast<PyCFunction>(LockScreenCallUI_add_Closed), METH_O, nullptr },
+        { "remove_closed", reinterpret_cast<PyCFunction>(LockScreenCallUI_remove_Closed), METH_O, nullptr },
+        { "add_end_requested", reinterpret_cast<PyCFunction>(LockScreenCallUI_add_EndRequested), METH_O, nullptr },
+        { "remove_end_requested", reinterpret_cast<PyCFunction>(LockScreenCallUI_remove_EndRequested), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_LockScreenCallUI), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_LockScreenCallUI[] = {
+        { "call_title", reinterpret_cast<getter>(LockScreenCallUI_get_CallTitle), reinterpret_cast<setter>(LockScreenCallUI_put_CallTitle), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_LockScreenCallUI[] = 
+    {
+        { Py_tp_new, _new_LockScreenCallUI },
+        { Py_tp_dealloc, _dealloc_LockScreenCallUI },
+        { Py_tp_methods, _methods_LockScreenCallUI },
+        { Py_tp_getset, _getset_LockScreenCallUI },
+        { },
+    };
+
+    static PyType_Spec type_spec_LockScreenCallUI =
+    {
+        "_winsdk_Windows_ApplicationModel_Calls.LockScreenCallUI",
+        sizeof(py::wrapper::Windows::ApplicationModel::Calls::LockScreenCallUI),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_LockScreenCallUI
     };
 
     // ----- MuteChangeEventArgs class --------------------
@@ -7262,6 +7629,9 @@ namespace py::cpp::Windows::ApplicationModel::Calls
         Py_VISIT(state->type_CallAnswerEventArgs);
         Py_VISIT(state->type_CallRejectEventArgs);
         Py_VISIT(state->type_CallStateChangeEventArgs);
+        Py_VISIT(state->type_LockScreenCallEndCallDeferral);
+        Py_VISIT(state->type_LockScreenCallEndRequestedEventArgs);
+        Py_VISIT(state->type_LockScreenCallUI);
         Py_VISIT(state->type_MuteChangeEventArgs);
         Py_VISIT(state->type_PhoneCall);
         Py_VISIT(state->type_PhoneCallBlocking);
@@ -7332,6 +7702,9 @@ namespace py::cpp::Windows::ApplicationModel::Calls
         Py_CLEAR(state->type_CallAnswerEventArgs);
         Py_CLEAR(state->type_CallRejectEventArgs);
         Py_CLEAR(state->type_CallStateChangeEventArgs);
+        Py_CLEAR(state->type_LockScreenCallEndCallDeferral);
+        Py_CLEAR(state->type_LockScreenCallEndRequestedEventArgs);
+        Py_CLEAR(state->type_LockScreenCallUI);
         Py_CLEAR(state->type_MuteChangeEventArgs);
         Py_CLEAR(state->type_PhoneCall);
         Py_CLEAR(state->type_PhoneCallBlocking);
@@ -7490,6 +7863,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Calls(void) noexcept
     }
 
     Py_INCREF(state->type_CallStateChangeEventArgs);
+
+    state->type_LockScreenCallEndCallDeferral = py::register_python_type(module.get(), type_name_LockScreenCallEndCallDeferral, &type_spec_LockScreenCallEndCallDeferral, bases.get());
+    if (!state->type_LockScreenCallEndCallDeferral)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_LockScreenCallEndCallDeferral);
+
+    state->type_LockScreenCallEndRequestedEventArgs = py::register_python_type(module.get(), type_name_LockScreenCallEndRequestedEventArgs, &type_spec_LockScreenCallEndRequestedEventArgs, bases.get());
+    if (!state->type_LockScreenCallEndRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_LockScreenCallEndRequestedEventArgs);
+
+    state->type_LockScreenCallUI = py::register_python_type(module.get(), type_name_LockScreenCallUI, &type_spec_LockScreenCallUI, bases.get());
+    if (!state->type_LockScreenCallUI)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_LockScreenCallUI);
 
     state->type_MuteChangeEventArgs = py::register_python_type(module.get(), type_name_MuteChangeEventArgs, &type_spec_MuteChangeEventArgs, bases.get());
     if (!state->type_MuteChangeEventArgs)
@@ -8395,6 +8792,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Calls::CallStateC
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Calls::CallStateChangeEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Calls;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Calls");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_LockScreenCallEndCallDeferral;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Calls;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Calls");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_LockScreenCallEndRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Calls;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Calls");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_LockScreenCallUI;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Calls::LockScreenCallUI is not registered");
         return nullptr;
     }
 

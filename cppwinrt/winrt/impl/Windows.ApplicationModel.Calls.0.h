@@ -222,6 +222,9 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Calls
     struct ICallAnswerEventArgs;
     struct ICallRejectEventArgs;
     struct ICallStateChangeEventArgs;
+    struct ILockScreenCallEndCallDeferral;
+    struct ILockScreenCallEndRequestedEventArgs;
+    struct ILockScreenCallUI;
     struct IMuteChangeEventArgs;
     struct IPhoneCall;
     struct IPhoneCallBlockingStatics;
@@ -267,6 +270,9 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Calls
     struct CallAnswerEventArgs;
     struct CallRejectEventArgs;
     struct CallStateChangeEventArgs;
+    struct LockScreenCallEndCallDeferral;
+    struct LockScreenCallEndRequestedEventArgs;
+    struct LockScreenCallUI;
     struct MuteChangeEventArgs;
     struct PhoneCall;
     struct PhoneCallBlocking;
@@ -300,6 +306,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::Calls::ICallAnswerEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::ICallRejectEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::ICallStateChangeEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::IMuteChangeEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::IPhoneCall>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::IPhoneCallBlockingStatics>{ using type = interface_category; };
@@ -345,6 +354,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::Calls::CallAnswerEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::CallRejectEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::CallStateChangeEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::MuteChangeEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::PhoneCall>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Calls::PhoneCallBlocking>{ using type = class_category; };
@@ -402,6 +414,9 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::CallAnswerEventArgs> = L"Windows.ApplicationModel.Calls.CallAnswerEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::CallRejectEventArgs> = L"Windows.ApplicationModel.Calls.CallRejectEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::CallStateChangeEventArgs> = L"Windows.ApplicationModel.Calls.CallStateChangeEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral> = L"Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs> = L"Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI> = L"Windows.ApplicationModel.Calls.LockScreenCallUI";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::MuteChangeEventArgs> = L"Windows.ApplicationModel.Calls.MuteChangeEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::PhoneCall> = L"Windows.ApplicationModel.Calls.PhoneCall";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::PhoneCallBlocking> = L"Windows.ApplicationModel.Calls.PhoneCallBlocking";
@@ -459,6 +474,9 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::ICallAnswerEventArgs> = L"Windows.ApplicationModel.Calls.ICallAnswerEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::ICallRejectEventArgs> = L"Windows.ApplicationModel.Calls.ICallRejectEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::ICallStateChangeEventArgs> = L"Windows.ApplicationModel.Calls.ICallStateChangeEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral> = L"Windows.ApplicationModel.Calls.ILockScreenCallEndCallDeferral";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs> = L"Windows.ApplicationModel.Calls.ILockScreenCallEndRequestedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI> = L"Windows.ApplicationModel.Calls.ILockScreenCallUI";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::IMuteChangeEventArgs> = L"Windows.ApplicationModel.Calls.IMuteChangeEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::IPhoneCall> = L"Windows.ApplicationModel.Calls.IPhoneCall";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Calls::IPhoneCallBlockingStatics> = L"Windows.ApplicationModel.Calls.IPhoneCallBlockingStatics";
@@ -504,6 +522,9 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::ICallAnswerEventArgs>{ 0xFD789617,0x2DD7,0x4C8C,{ 0xB2,0xBD,0x95,0xD1,0x7A,0x5B,0xB7,0x33 } }; // FD789617-2DD7-4C8C-B2BD-95D17A5BB733
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::ICallRejectEventArgs>{ 0xDA47FAD7,0x13D4,0x4D92,{ 0xA1,0xC2,0xB7,0x78,0x11,0xEE,0x37,0xEC } }; // DA47FAD7-13D4-4D92-A1C2-B77811EE37EC
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::ICallStateChangeEventArgs>{ 0xEAB2349E,0x66F5,0x47F9,{ 0x9F,0xB5,0x45,0x9C,0x51,0x98,0xC7,0x20 } }; // EAB2349E-66F5-47F9-9FB5-459C5198C720
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral>{ 0x2DD7ED0D,0x98ED,0x4041,{ 0x96,0x32,0x50,0xFF,0x81,0x2B,0x77,0x3F } }; // 2DD7ED0D-98ED-4041-9632-50FF812B773F
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs>{ 0x8190A363,0x6F27,0x46E9,{ 0xAE,0xB6,0xC0,0xAE,0x83,0xE4,0x7D,0xC7 } }; // 8190A363-6F27-46E9-AEB6-C0AE83E47DC7
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI>{ 0xC596FD8D,0x73C9,0x4A14,{ 0xB0,0x21,0xEC,0x1C,0x50,0xA3,0xB7,0x27 } }; // C596FD8D-73C9-4A14-B021-EC1C50A3B727
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::IMuteChangeEventArgs>{ 0x8585E159,0x0C41,0x432C,{ 0x81,0x4D,0xC5,0xF1,0xFD,0xF5,0x30,0xBE } }; // 8585E159-0C41-432C-814D-C5F1FDF530BE
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::IPhoneCall>{ 0xC14ED0F8,0xC17D,0x59D2,{ 0x96,0x28,0x66,0xE5,0x45,0xB6,0xCD,0x21 } }; // C14ED0F8-C17D-59D2-9628-66E545B6CD21
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::Calls::IPhoneCallBlockingStatics>{ 0x19646F84,0x2B79,0x26F1,{ 0xA4,0x6F,0x69,0x4B,0xE0,0x43,0xF3,0x13 } }; // 19646F84-2B79-26F1-A46F-694BE043F313
@@ -549,6 +570,9 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::CallAnswerEventArgs>{ using type = winrt::Windows::ApplicationModel::Calls::ICallAnswerEventArgs; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::CallRejectEventArgs>{ using type = winrt::Windows::ApplicationModel::Calls::ICallRejectEventArgs; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::CallStateChangeEventArgs>{ using type = winrt::Windows::ApplicationModel::Calls::ICallStateChangeEventArgs; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndCallDeferral>{ using type = winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs>{ using type = winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI>{ using type = winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::MuteChangeEventArgs>{ using type = winrt::Windows::ApplicationModel::Calls::IMuteChangeEventArgs; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::PhoneCall>{ using type = winrt::Windows::ApplicationModel::Calls::IPhoneCall; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Calls::PhoneCallHistoryEntry>{ using type = winrt::Windows::ApplicationModel::Calls::IPhoneCallHistoryEntry; };
@@ -591,6 +615,34 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_State(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall Complete() noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetDeferral(void**) noexcept = 0;
+            virtual int32_t __stdcall get_Deadline(int64_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall Dismiss() noexcept = 0;
+            virtual int32_t __stdcall add_EndRequested(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_EndRequested(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_Closed(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_Closed(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall get_CallTitle(void**) noexcept = 0;
+            virtual int32_t __stdcall put_CallTitle(void*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::ApplicationModel::Calls::IMuteChangeEventArgs>
@@ -1111,6 +1163,44 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::ApplicationModel::Calls::ICallStateChangeEventArgs>
     {
         template <typename D> using type = consume_Windows_ApplicationModel_Calls_ICallStateChangeEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_Calls_ILockScreenCallEndCallDeferral
+    {
+        auto Complete() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_Calls_ILockScreenCallEndCallDeferral<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_Calls_ILockScreenCallEndRequestedEventArgs
+    {
+        auto GetDeferral() const;
+        [[nodiscard]] auto Deadline() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_Calls_ILockScreenCallEndRequestedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_Calls_ILockScreenCallUI
+    {
+        auto Dismiss() const;
+        auto EndRequested(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI, winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs> const& handler) const;
+        using EndRequested_revoker = impl::event_revoker<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI, &impl::abi_t<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI>::remove_EndRequested>;
+        [[nodiscard]] auto EndRequested(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI, winrt::Windows::ApplicationModel::Calls::LockScreenCallEndRequestedEventArgs> const& handler) const;
+        auto EndRequested(winrt::event_token const& token) const noexcept;
+        auto Closed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using Closed_revoker = impl::event_revoker<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI, &impl::abi_t<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI>::remove_Closed>;
+        [[nodiscard]] auto Closed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Calls::LockScreenCallUI, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto Closed(winrt::event_token const& token) const noexcept;
+        [[nodiscard]] auto CallTitle() const;
+        auto CallTitle(param::hstring const& value) const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_Calls_ILockScreenCallUI<D>;
     };
     template <typename D>
     struct consume_Windows_ApplicationModel_Calls_IMuteChangeEventArgs

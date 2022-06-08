@@ -115,6 +115,11 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
         ESimWatcher(std::nullptr_t) noexcept {}
         ESimWatcher(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::NetworkOperators::IESimWatcher(ptr, take_ownership_from_abi) {}
     };
+    struct FdnAccessManager
+    {
+        FdnAccessManager() = delete;
+        static auto RequestUnlockAsync(param::hstring const& contactListId);
+    };
     struct __declspec(empty_bases) HotspotAuthenticationContext : winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext,
         impl::require<HotspotAuthenticationContext, winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext2>
     {
@@ -411,6 +416,12 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     {
         NetworkOperatorDataUsageTriggerDetails(std::nullptr_t) noexcept {}
         NetworkOperatorDataUsageTriggerDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) NetworkOperatorNotificationEventDetails : winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails,
+        impl::require<NetworkOperatorNotificationEventDetails, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck>
+    {
+        NetworkOperatorNotificationEventDetails(std::nullptr_t) noexcept {}
+        NetworkOperatorNotificationEventDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) NetworkOperatorTetheringAccessPointConfiguration : winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration,
         impl::require<NetworkOperatorTetheringAccessPointConfiguration, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2>

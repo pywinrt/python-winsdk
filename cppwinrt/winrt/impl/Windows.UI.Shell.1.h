@@ -20,6 +20,13 @@ WINRT_EXPORT namespace winrt::Windows::UI::Shell
         IAdaptiveCardBuilderStatics(std::nullptr_t = nullptr) noexcept {}
         IAdaptiveCardBuilderStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ISecurityAppManager :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISecurityAppManager>
+    {
+        ISecurityAppManager(std::nullptr_t = nullptr) noexcept {}
+        ISecurityAppManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IShareWindowCommandEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IShareWindowCommandEventArgs>

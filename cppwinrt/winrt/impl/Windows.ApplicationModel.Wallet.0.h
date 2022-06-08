@@ -24,6 +24,14 @@ WINRT_EXPORT namespace winrt::Windows::UI
 }
 WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Wallet
 {
+    enum class WalletActionKind : int32_t
+    {
+        OpenItem = 0,
+        Transaction = 1,
+        MoreTransactions = 2,
+        Message = 3,
+        Verb = 4,
+    };
     enum class WalletBarcodeSymbology : int32_t
     {
         Invalid = 0,
@@ -118,6 +126,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::Wallet::WalletRelevantLocation>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Wallet::WalletTransaction>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Wallet::WalletVerb>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Wallet::WalletActionKind>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Wallet::WalletBarcodeSymbology>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Wallet::WalletDetailViewPosition>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Wallet::WalletItemKind>{ using type = enum_category; };
@@ -130,6 +139,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Wallet::WalletRelevantLocation> = L"Windows.ApplicationModel.Wallet.WalletRelevantLocation";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Wallet::WalletTransaction> = L"Windows.ApplicationModel.Wallet.WalletTransaction";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Wallet::WalletVerb> = L"Windows.ApplicationModel.Wallet.WalletVerb";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Wallet::WalletActionKind> = L"Windows.ApplicationModel.Wallet.WalletActionKind";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Wallet::WalletBarcodeSymbology> = L"Windows.ApplicationModel.Wallet.WalletBarcodeSymbology";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Wallet::WalletDetailViewPosition> = L"Windows.ApplicationModel.Wallet.WalletDetailViewPosition";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Wallet::WalletItemKind> = L"Windows.ApplicationModel.Wallet.WalletItemKind";

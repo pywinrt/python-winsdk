@@ -249,6 +249,16 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Effects::IProcessVideoFrameContext)->get_OutputFrame(&value));
         return winrt::Windows::Media::VideoFrame{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Media_Effects_ISlowMotionEffectDefinition<D>::TimeStretchRate() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Effects::ISlowMotionEffectDefinition)->get_TimeStretchRate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Effects_ISlowMotionEffectDefinition<D>::TimeStretchRate(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Effects::ISlowMotionEffectDefinition)->put_TimeStretchRate(value));
+    }
     template <typename D> auto consume_Windows_Media_Effects_IVideoCompositor<D>::TimeIndependent() const
     {
         bool value{};
@@ -803,6 +813,26 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Effects::ISlowMotionEffectDefinition> : produce_base<D, winrt::Windows::Media::Effects::ISlowMotionEffectDefinition>
+    {
+        int32_t __stdcall get_TimeStretchRate(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().TimeStretchRate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_TimeStretchRate(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TimeStretchRate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
     template <typename D>
     struct produce<D, winrt::Windows::Media::Effects::IVideoCompositor> : produce_base<D, winrt::Windows::Media::Effects::IVideoCompositor>
     {
@@ -1137,6 +1167,10 @@ WINRT_EXPORT namespace winrt::Windows::Media::Effects
     {
         return impl::call_factory<AudioEffectsManager, IAudioEffectsManagerStatics>([&](IAudioEffectsManagerStatics const& f) { return f.CreateAudioCaptureEffectsManager(deviceId, category, mode); });
     }
+    inline SlowMotionEffectDefinition::SlowMotionEffectDefinition() :
+        SlowMotionEffectDefinition(impl::call_factory_cast<SlowMotionEffectDefinition(*)(winrt::Windows::Foundation::IActivationFactory const&), SlowMotionEffectDefinition>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<SlowMotionEffectDefinition>(); }))
+    {
+    }
     inline VideoCompositorDefinition::VideoCompositorDefinition(param::hstring const& activatableClassId) :
         VideoCompositorDefinition(impl::call_factory<VideoCompositorDefinition, IVideoCompositorDefinitionFactory>([&](IVideoCompositorDefinitionFactory const& f) { return f.Create(activatableClassId); }))
     {
@@ -1173,6 +1207,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Effects::ICompositeVideoFrameContext> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::IProcessAudioFrameContext> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::IProcessVideoFrameContext> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Effects::ISlowMotionEffectDefinition> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::IVideoCompositor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::IVideoCompositorDefinition> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::IVideoCompositorDefinitionFactory> : winrt::impl::hash_base {};
@@ -1189,6 +1224,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Effects::CompositeVideoFrameContext> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::ProcessAudioFrameContext> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::ProcessVideoFrameContext> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Effects::SlowMotionEffectDefinition> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::VideoCompositorDefinition> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::VideoEffectDefinition> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Effects::VideoTransformEffectDefinition> : winrt::impl::hash_base {};

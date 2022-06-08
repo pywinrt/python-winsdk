@@ -233,17 +233,59 @@ WINRT_EXPORT namespace winrt::Windows::UI::WebUI
         WebUICachedFileUpdaterActivatedEventArgs(std::nullptr_t) noexcept {}
         WebUICachedFileUpdaterActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::ICachedFileUpdaterActivatedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) WebUICameraSettingsActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs,
+        impl::require<WebUICameraSettingsActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUICameraSettingsActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUICameraSettingsActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) WebUICommandLineActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs,
         impl::require<WebUICommandLineActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgsWithUser, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
     {
         WebUICommandLineActivatedEventArgs(std::nullptr_t) noexcept {}
         WebUICommandLineActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) WebUIContactCallActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs,
+        impl::require<WebUIContactCallActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIContactCallActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIContactCallActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUIContactMapActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs,
+        impl::require<WebUIContactMapActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIContactMapActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIContactMapActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUIContactMessageActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs,
+        impl::require<WebUIContactMessageActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIContactMessageActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIContactMessageActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) WebUIContactPanelActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs,
         impl::require<WebUIContactPanelActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgsWithUser>
     {
         WebUIContactPanelActivatedEventArgs(std::nullptr_t) noexcept {}
         WebUIContactPanelActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUIContactPickerActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs,
+        impl::require<WebUIContactPickerActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIContactPickerActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIContactPickerActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUIContactPostActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs,
+        impl::require<WebUIContactPostActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIContactPostActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIContactPostActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUIContactVideoCallActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs,
+        impl::require<WebUIContactVideoCallActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIContactVideoCallActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIContactVideoCallActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) WebUIDeviceActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IDeviceActivatedEventArgs,
         impl::require<WebUIDeviceActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IApplicationViewActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgsWithUser>
@@ -311,6 +353,12 @@ WINRT_EXPORT namespace winrt::Windows::UI::WebUI
         WebUILockScreenActivatedEventArgs(std::nullptr_t) noexcept {}
         WebUILockScreenActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::ILockScreenActivatedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) WebUILockScreenCallActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs,
+        impl::require<WebUILockScreenCallActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IApplicationViewActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUILockScreenCallActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUILockScreenCallActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) WebUILockScreenComponentActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs,
         impl::require<WebUILockScreenComponentActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
     {
@@ -338,6 +386,18 @@ WINRT_EXPORT namespace winrt::Windows::UI::WebUI
         WebUIPhoneCallActivatedEventArgs(std::nullptr_t) noexcept {}
         WebUIPhoneCallActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) WebUIPrint3DWorkflowActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs,
+        impl::require<WebUIPrint3DWorkflowActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIPrint3DWorkflowActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIPrint3DWorkflowActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUIPrintTaskSettingsActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs,
+        impl::require<WebUIPrintTaskSettingsActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIPrintTaskSettingsActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIPrintTaskSettingsActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) WebUIPrintWorkflowForegroundTaskActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs,
         impl::require<WebUIPrintWorkflowForegroundTaskActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
     {
@@ -361,6 +421,12 @@ WINRT_EXPORT namespace winrt::Windows::UI::WebUI
     {
         WebUIRestrictedLaunchActivatedEventArgs(std::nullptr_t) noexcept {}
         WebUIRestrictedLaunchActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IRestrictedLaunchActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUISearchActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::ISearchActivatedEventArgs,
+        impl::require<WebUISearchActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::ISearchActivatedEventArgsWithLinguisticDetails, winrt::Windows::ApplicationModel::Activation::IApplicationViewActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUISearchActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUISearchActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::ISearchActivatedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) WebUIShareTargetActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IShareTargetActivatedEventArgs,
         impl::require<WebUIShareTargetActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgsWithUser>
@@ -399,6 +465,12 @@ WINRT_EXPORT namespace winrt::Windows::UI::WebUI
     {
         WebUIVoiceCommandActivatedEventArgs(std::nullptr_t) noexcept {}
         WebUIVoiceCommandActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IVoiceCommandActivatedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) WebUIWalletActionActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs,
+        impl::require<WebUIWalletActionActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>
+    {
+        WebUIWalletActionActivatedEventArgs(std::nullptr_t) noexcept {}
+        WebUIWalletActionActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) WebUIWebAccountProviderActivatedEventArgs : winrt::Windows::ApplicationModel::Activation::IWebAccountProviderActivatedEventArgs,
         impl::require<WebUIWebAccountProviderActivatedEventArgs, winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgsWithUser>

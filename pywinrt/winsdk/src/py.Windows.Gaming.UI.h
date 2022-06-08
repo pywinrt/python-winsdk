@@ -4,8 +4,16 @@
 
 #include "pybase.h"
 
+#if __has_include("py.Windows.ApplicationModel.Activation.h")
+#include "py.Windows.ApplicationModel.Activation.h"
+#endif
+
 #if __has_include("py.Windows.Foundation.h")
 #include "py.Windows.Foundation.h"
+#endif
+
+#if __has_include("py.Windows.Foundation.Collections.h")
+#include "py.Windows.Foundation.Collections.h"
 #endif
 
 #include <winrt/Windows.Gaming.UI.h>
@@ -19,7 +27,10 @@ namespace py::impl::Windows::Gaming::UI
 namespace py::wrapper::Windows::Gaming::UI
 {
     using GameBar = py::winrt_wrapper<winrt::Windows::Gaming::UI::GameBar>;
+    using GameChatMessageReceivedEventArgs = py::winrt_wrapper<winrt::Windows::Gaming::UI::GameChatMessageReceivedEventArgs>;
     using GameChatOverlay = py::winrt_wrapper<winrt::Windows::Gaming::UI::GameChatOverlay>;
+    using GameChatOverlayMessageSource = py::winrt_wrapper<winrt::Windows::Gaming::UI::GameChatOverlayMessageSource>;
+    using GameUIProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::Gaming::UI::GameUIProviderActivatedEventArgs>;
 }
 
 namespace py
@@ -44,7 +55,25 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Gaming::UI::GameChatMessageReceivedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Gaming::UI::GameChatOverlay>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Gaming::UI::GameChatOverlayMessageSource>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Gaming::UI::GameUIProviderActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

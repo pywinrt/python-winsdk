@@ -114,6 +114,7 @@ AudioBuffer = _ns_module.AudioBuffer
 AudioFrame = _ns_module.AudioFrame
 AutoRepeatModeChangeRequestedEventArgs = _ns_module.AutoRepeatModeChangeRequestedEventArgs
 ImageDisplayProperties = _ns_module.ImageDisplayProperties
+MediaControl = _ns_module.MediaControl
 MediaExtensionManager = _ns_module.MediaExtensionManager
 MediaMarkerTypes = _ns_module.MediaMarkerTypes
 MediaProcessingTriggerDetails = _ns_module.MediaProcessingTriggerDetails

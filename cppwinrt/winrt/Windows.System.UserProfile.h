@@ -11,6 +11,7 @@ static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.220607.4"), "Mismatche
 #include "winrt/impl/Windows.Foundation.Collections.2.h"
 #include "winrt/impl/Windows.Globalization.2.h"
 #include "winrt/impl/Windows.Storage.2.h"
+#include "winrt/impl/Windows.Storage.Streams.2.h"
 #include "winrt/impl/Windows.System.2.h"
 #include "winrt/impl/Windows.System.UserProfile.2.h"
 namespace winrt::impl
@@ -194,6 +195,134 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IGlobalizationPreferencesStatics3)->GetForUser(*(void**)(&user), &value));
         return winrt::Windows::System::UserProfile::GlobalizationPreferencesForUser{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_ILockScreenImageFeedStatics<D>::RequestSetImageFeedAsync(winrt::Windows::Foundation::Uri const& syndicationFeedUri) const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::ILockScreenImageFeedStatics)->RequestSetImageFeedAsync(*(void**)(&syndicationFeedUri), &value));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetImageFeedResult>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_ILockScreenImageFeedStatics<D>::TryRemoveImageFeed() const
+    {
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::ILockScreenImageFeedStatics)->TryRemoveImageFeed(&result));
+        return result;
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_ILockScreenStatics<D>::OriginalImageFile() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::ILockScreenStatics)->get_OriginalImageFile(&value));
+        return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_ILockScreenStatics<D>::GetImageStream() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::ILockScreenStatics)->GetImageStream(&value));
+        return winrt::Windows::Storage::Streams::IRandomAccessStream{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_ILockScreenStatics<D>::SetImageFileAsync(winrt::Windows::Storage::IStorageFile const& value) const
+    {
+        void* Operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::ILockScreenStatics)->SetImageFileAsync(*(void**)(&value), &Operation));
+        return winrt::Windows::Foundation::IAsyncAction{ Operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_ILockScreenStatics<D>::SetImageStreamAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& value) const
+    {
+        void* Operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::ILockScreenStatics)->SetImageStreamAsync(*(void**)(&value), &Operation));
+        return winrt::Windows::Foundation::IAsyncAction{ Operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::AccountPictureChangeEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->get_AccountPictureChangeEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::NameAccessAllowed() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->get_NameAccessAllowed(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::GetAccountPicture(winrt::Windows::System::UserProfile::AccountPictureKind const& kind) const
+    {
+        void* storageFile{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->GetAccountPicture(static_cast<int32_t>(kind), &storageFile));
+        return winrt::Windows::Storage::IStorageFile{ storageFile, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::SetAccountPictureAsync(winrt::Windows::Storage::IStorageFile const& image) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->SetAccountPictureAsync(*(void**)(&image), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::SetAccountPicturesAsync(winrt::Windows::Storage::IStorageFile const& smallImage, winrt::Windows::Storage::IStorageFile const& largeImage, winrt::Windows::Storage::IStorageFile const& video) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->SetAccountPicturesAsync(*(void**)(&smallImage), *(void**)(&largeImage), *(void**)(&video), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::SetAccountPictureFromStreamAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& image) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->SetAccountPictureFromStreamAsync(*(void**)(&image), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::SetAccountPicturesFromStreamsAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& smallImage, winrt::Windows::Storage::Streams::IRandomAccessStream const& largeImage, winrt::Windows::Storage::Streams::IRandomAccessStream const& video) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->SetAccountPicturesFromStreamsAsync(*(void**)(&smallImage), *(void**)(&largeImage), *(void**)(&video), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::AccountPictureChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& changeHandler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->add_AccountPictureChanged(*(void**)(&changeHandler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::AccountPictureChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& changeHandler) const
+    {
+        return impl::make_event_revoker<D, AccountPictureChanged_revoker>(this, AccountPictureChanged(changeHandler));
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::AccountPictureChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->remove_AccountPictureChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::GetDisplayNameAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->GetDisplayNameAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<hstring>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::GetFirstNameAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->GetFirstNameAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<hstring>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::GetLastNameAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->GetLastNameAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<hstring>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::GetPrincipalNameAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->GetPrincipalNameAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<hstring>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::GetSessionInitiationProtocolUriAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->GetSessionInitiationProtocolUriAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Foundation::Uri>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_System_UserProfile_IUserInformationStatics<D>::GetDomainNameAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::UserProfile::IUserInformationStatics)->GetDomainNameAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<hstring>{ operation, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_System_UserProfile_IUserProfilePersonalizationSettings<D>::TrySetLockScreenImageAsync(winrt::Windows::Storage::StorageFile const& imageFile) const
     {
@@ -532,6 +661,187 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::System::UserProfile::ILockScreenImageFeedStatics> : produce_base<D, winrt::Windows::System::UserProfile::ILockScreenImageFeedStatics>
+    {
+        int32_t __stdcall RequestSetImageFeedAsync(void* syndicationFeedUri, void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetImageFeedResult>>(this->shim().RequestSetImageFeedAsync(*reinterpret_cast<winrt::Windows::Foundation::Uri const*>(&syndicationFeedUri)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TryRemoveImageFeed(bool* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<bool>(this->shim().TryRemoveImageFeed());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::System::UserProfile::ILockScreenStatics> : produce_base<D, winrt::Windows::System::UserProfile::ILockScreenStatics>
+    {
+        int32_t __stdcall get_OriginalImageFile(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().OriginalImageFile());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetImageStream(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::Streams::IRandomAccessStream>(this->shim().GetImageStream());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetImageFileAsync(void* value, void** Operation) noexcept final try
+        {
+            clear_abi(Operation);
+            typename D::abi_guard guard(this->shim());
+            *Operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().SetImageFileAsync(*reinterpret_cast<winrt::Windows::Storage::IStorageFile const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetImageStreamAsync(void* value, void** Operation) noexcept final try
+        {
+            clear_abi(Operation);
+            typename D::abi_guard guard(this->shim());
+            *Operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().SetImageStreamAsync(*reinterpret_cast<winrt::Windows::Storage::Streams::IRandomAccessStream const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::System::UserProfile::IUserInformationStatics> : produce_base<D, winrt::Windows::System::UserProfile::IUserInformationStatics>
+    {
+        int32_t __stdcall get_AccountPictureChangeEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().AccountPictureChangeEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_NameAccessAllowed(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().NameAccessAllowed());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetAccountPicture(int32_t kind, void** storageFile) noexcept final try
+        {
+            clear_abi(storageFile);
+            typename D::abi_guard guard(this->shim());
+            *storageFile = detach_from<winrt::Windows::Storage::IStorageFile>(this->shim().GetAccountPicture(*reinterpret_cast<winrt::Windows::System::UserProfile::AccountPictureKind const*>(&kind)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetAccountPictureAsync(void* image, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>>(this->shim().SetAccountPictureAsync(*reinterpret_cast<winrt::Windows::Storage::IStorageFile const*>(&image)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetAccountPicturesAsync(void* smallImage, void* largeImage, void* video, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>>(this->shim().SetAccountPicturesAsync(*reinterpret_cast<winrt::Windows::Storage::IStorageFile const*>(&smallImage), *reinterpret_cast<winrt::Windows::Storage::IStorageFile const*>(&largeImage), *reinterpret_cast<winrt::Windows::Storage::IStorageFile const*>(&video)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetAccountPictureFromStreamAsync(void* image, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>>(this->shim().SetAccountPictureFromStreamAsync(*reinterpret_cast<winrt::Windows::Storage::Streams::IRandomAccessStream const*>(&image)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetAccountPicturesFromStreamsAsync(void* smallImage, void* largeImage, void* video, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::System::UserProfile::SetAccountPictureResult>>(this->shim().SetAccountPicturesFromStreamsAsync(*reinterpret_cast<winrt::Windows::Storage::Streams::IRandomAccessStream const*>(&smallImage), *reinterpret_cast<winrt::Windows::Storage::Streams::IRandomAccessStream const*>(&largeImage), *reinterpret_cast<winrt::Windows::Storage::Streams::IRandomAccessStream const*>(&video)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_AccountPictureChanged(void* changeHandler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().AccountPictureChanged(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&changeHandler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_AccountPictureChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AccountPictureChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall GetDisplayNameAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<hstring>>(this->shim().GetDisplayNameAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetFirstNameAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<hstring>>(this->shim().GetFirstNameAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetLastNameAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<hstring>>(this->shim().GetLastNameAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetPrincipalNameAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<hstring>>(this->shim().GetPrincipalNameAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetSessionInitiationProtocolUriAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Foundation::Uri>>(this->shim().GetSessionInitiationProtocolUriAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetDomainNameAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<hstring>>(this->shim().GetDomainNameAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::System::UserProfile::IUserProfilePersonalizationSettings> : produce_base<D, winrt::Windows::System::UserProfile::IUserProfilePersonalizationSettings>
     {
         int32_t __stdcall TrySetLockScreenImageAsync(void* imageFile, void** operation) noexcept final try
@@ -640,6 +950,95 @@ WINRT_EXPORT namespace winrt::Windows::System::UserProfile
     {
         return impl::call_factory<GlobalizationPreferences, IGlobalizationPreferencesStatics3>([&](IGlobalizationPreferencesStatics3 const& f) { return f.GetForUser(user); });
     }
+    inline auto LockScreen::RequestSetImageFeedAsync(winrt::Windows::Foundation::Uri const& syndicationFeedUri)
+    {
+        return impl::call_factory<LockScreen, ILockScreenImageFeedStatics>([&](ILockScreenImageFeedStatics const& f) { return f.RequestSetImageFeedAsync(syndicationFeedUri); });
+    }
+    inline auto LockScreen::TryRemoveImageFeed()
+    {
+        return impl::call_factory_cast<bool(*)(ILockScreenImageFeedStatics const&), LockScreen, ILockScreenImageFeedStatics>([](ILockScreenImageFeedStatics const& f) { return f.TryRemoveImageFeed(); });
+    }
+    inline auto LockScreen::OriginalImageFile()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::Uri(*)(ILockScreenStatics const&), LockScreen, ILockScreenStatics>([](ILockScreenStatics const& f) { return f.OriginalImageFile(); });
+    }
+    inline auto LockScreen::GetImageStream()
+    {
+        return impl::call_factory_cast<winrt::Windows::Storage::Streams::IRandomAccessStream(*)(ILockScreenStatics const&), LockScreen, ILockScreenStatics>([](ILockScreenStatics const& f) { return f.GetImageStream(); });
+    }
+    inline auto LockScreen::SetImageFileAsync(winrt::Windows::Storage::IStorageFile const& value)
+    {
+        return impl::call_factory<LockScreen, ILockScreenStatics>([&](ILockScreenStatics const& f) { return f.SetImageFileAsync(value); });
+    }
+    inline auto LockScreen::SetImageStreamAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& value)
+    {
+        return impl::call_factory<LockScreen, ILockScreenStatics>([&](ILockScreenStatics const& f) { return f.SetImageStreamAsync(value); });
+    }
+    inline auto UserInformation::AccountPictureChangeEnabled()
+    {
+        return impl::call_factory_cast<bool(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.AccountPictureChangeEnabled(); });
+    }
+    inline auto UserInformation::NameAccessAllowed()
+    {
+        return impl::call_factory_cast<bool(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.NameAccessAllowed(); });
+    }
+    inline auto UserInformation::GetAccountPicture(winrt::Windows::System::UserProfile::AccountPictureKind const& kind)
+    {
+        return impl::call_factory<UserInformation, IUserInformationStatics>([&](IUserInformationStatics const& f) { return f.GetAccountPicture(kind); });
+    }
+    inline auto UserInformation::SetAccountPictureAsync(winrt::Windows::Storage::IStorageFile const& image)
+    {
+        return impl::call_factory<UserInformation, IUserInformationStatics>([&](IUserInformationStatics const& f) { return f.SetAccountPictureAsync(image); });
+    }
+    inline auto UserInformation::SetAccountPicturesAsync(winrt::Windows::Storage::IStorageFile const& smallImage, winrt::Windows::Storage::IStorageFile const& largeImage, winrt::Windows::Storage::IStorageFile const& video)
+    {
+        return impl::call_factory<UserInformation, IUserInformationStatics>([&](IUserInformationStatics const& f) { return f.SetAccountPicturesAsync(smallImage, largeImage, video); });
+    }
+    inline auto UserInformation::SetAccountPictureFromStreamAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& image)
+    {
+        return impl::call_factory<UserInformation, IUserInformationStatics>([&](IUserInformationStatics const& f) { return f.SetAccountPictureFromStreamAsync(image); });
+    }
+    inline auto UserInformation::SetAccountPicturesFromStreamsAsync(winrt::Windows::Storage::Streams::IRandomAccessStream const& smallImage, winrt::Windows::Storage::Streams::IRandomAccessStream const& largeImage, winrt::Windows::Storage::Streams::IRandomAccessStream const& video)
+    {
+        return impl::call_factory<UserInformation, IUserInformationStatics>([&](IUserInformationStatics const& f) { return f.SetAccountPicturesFromStreamsAsync(smallImage, largeImage, video); });
+    }
+    inline auto UserInformation::AccountPictureChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& changeHandler)
+    {
+        return impl::call_factory<UserInformation, IUserInformationStatics>([&](IUserInformationStatics const& f) { return f.AccountPictureChanged(changeHandler); });
+    }
+    inline auto UserInformation::AccountPictureChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& changeHandler)
+    {
+        auto f = get_activation_factory<UserInformation, winrt::Windows::System::UserProfile::IUserInformationStatics>();
+        return UserInformation::AccountPictureChanged_revoker{ f, f.AccountPictureChanged(changeHandler) };
+    }
+    inline auto UserInformation::AccountPictureChanged(winrt::event_token const& token)
+    {
+        impl::call_factory<UserInformation, IUserInformationStatics>([&](IUserInformationStatics const& f) { return f.AccountPictureChanged(token); });
+    }
+    inline auto UserInformation::GetDisplayNameAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<hstring>(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.GetDisplayNameAsync(); });
+    }
+    inline auto UserInformation::GetFirstNameAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<hstring>(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.GetFirstNameAsync(); });
+    }
+    inline auto UserInformation::GetLastNameAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<hstring>(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.GetLastNameAsync(); });
+    }
+    inline auto UserInformation::GetPrincipalNameAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<hstring>(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.GetPrincipalNameAsync(); });
+    }
+    inline auto UserInformation::GetSessionInitiationProtocolUriAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Foundation::Uri>(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.GetSessionInitiationProtocolUriAsync(); });
+    }
+    inline auto UserInformation::GetDomainNameAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<hstring>(*)(IUserInformationStatics const&), UserInformation, IUserInformationStatics>([](IUserInformationStatics const& f) { return f.GetDomainNameAsync(); });
+    }
     inline auto UserProfilePersonalizationSettings::Current()
     {
         return impl::call_factory_cast<winrt::Windows::System::UserProfile::UserProfilePersonalizationSettings(*)(IUserProfilePersonalizationSettingsStatics const&), UserProfilePersonalizationSettings, IUserProfilePersonalizationSettingsStatics>([](IUserProfilePersonalizationSettingsStatics const& f) { return f.Current(); });
@@ -665,6 +1064,9 @@ namespace std
     template<> struct hash<winrt::Windows::System::UserProfile::IGlobalizationPreferencesStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::IGlobalizationPreferencesStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::IGlobalizationPreferencesStatics3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::System::UserProfile::ILockScreenImageFeedStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::System::UserProfile::ILockScreenStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::System::UserProfile::IUserInformationStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::IUserProfilePersonalizationSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::IUserProfilePersonalizationSettingsStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::AdvertisingManager> : winrt::impl::hash_base {};
@@ -674,6 +1076,8 @@ namespace std
     template<> struct hash<winrt::Windows::System::UserProfile::FirstSignInSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::GlobalizationPreferences> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::GlobalizationPreferencesForUser> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::System::UserProfile::LockScreen> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::System::UserProfile::UserInformation> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::UserProfile::UserProfilePersonalizationSettings> : winrt::impl::hash_base {};
 #endif
 #ifdef __cpp_lib_format

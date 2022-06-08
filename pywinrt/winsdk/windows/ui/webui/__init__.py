@@ -27,7 +27,17 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.applicationmodel.calls
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.applicationmodel.contacts
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.applicationmodel.contacts.provider
 except ImportError:
     pass
 
@@ -47,12 +57,27 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.applicationmodel.search
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.applicationmodel.userdataaccounts.provider
 except ImportError:
     pass
 
 try:
+    import winsdk.windows.applicationmodel.wallet
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.devices.enumeration
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.devices.printers.extensions
 except ImportError:
     pass
 
@@ -159,8 +184,15 @@ WebUIBackgroundTaskInstance = _ns_module.WebUIBackgroundTaskInstance
 WebUIBackgroundTaskInstanceRuntimeClass = _ns_module.WebUIBackgroundTaskInstanceRuntimeClass
 WebUIBarcodeScannerPreviewActivatedEventArgs = _ns_module.WebUIBarcodeScannerPreviewActivatedEventArgs
 WebUICachedFileUpdaterActivatedEventArgs = _ns_module.WebUICachedFileUpdaterActivatedEventArgs
+WebUICameraSettingsActivatedEventArgs = _ns_module.WebUICameraSettingsActivatedEventArgs
 WebUICommandLineActivatedEventArgs = _ns_module.WebUICommandLineActivatedEventArgs
+WebUIContactCallActivatedEventArgs = _ns_module.WebUIContactCallActivatedEventArgs
+WebUIContactMapActivatedEventArgs = _ns_module.WebUIContactMapActivatedEventArgs
+WebUIContactMessageActivatedEventArgs = _ns_module.WebUIContactMessageActivatedEventArgs
 WebUIContactPanelActivatedEventArgs = _ns_module.WebUIContactPanelActivatedEventArgs
+WebUIContactPickerActivatedEventArgs = _ns_module.WebUIContactPickerActivatedEventArgs
+WebUIContactPostActivatedEventArgs = _ns_module.WebUIContactPostActivatedEventArgs
+WebUIContactVideoCallActivatedEventArgs = _ns_module.WebUIContactVideoCallActivatedEventArgs
 WebUIDeviceActivatedEventArgs = _ns_module.WebUIDeviceActivatedEventArgs
 WebUIDevicePairingActivatedEventArgs = _ns_module.WebUIDevicePairingActivatedEventArgs
 WebUIDialReceiverActivatedEventArgs = _ns_module.WebUIDialReceiverActivatedEventArgs
@@ -172,21 +204,26 @@ WebUIFileSavePickerContinuationEventArgs = _ns_module.WebUIFileSavePickerContinu
 WebUIFolderPickerContinuationEventArgs = _ns_module.WebUIFolderPickerContinuationEventArgs
 WebUILaunchActivatedEventArgs = _ns_module.WebUILaunchActivatedEventArgs
 WebUILockScreenActivatedEventArgs = _ns_module.WebUILockScreenActivatedEventArgs
+WebUILockScreenCallActivatedEventArgs = _ns_module.WebUILockScreenCallActivatedEventArgs
 WebUILockScreenComponentActivatedEventArgs = _ns_module.WebUILockScreenComponentActivatedEventArgs
 WebUINavigatedDeferral = _ns_module.WebUINavigatedDeferral
 WebUINavigatedEventArgs = _ns_module.WebUINavigatedEventArgs
 WebUINavigatedOperation = _ns_module.WebUINavigatedOperation
 WebUIPhoneCallActivatedEventArgs = _ns_module.WebUIPhoneCallActivatedEventArgs
+WebUIPrint3DWorkflowActivatedEventArgs = _ns_module.WebUIPrint3DWorkflowActivatedEventArgs
+WebUIPrintTaskSettingsActivatedEventArgs = _ns_module.WebUIPrintTaskSettingsActivatedEventArgs
 WebUIPrintWorkflowForegroundTaskActivatedEventArgs = _ns_module.WebUIPrintWorkflowForegroundTaskActivatedEventArgs
 WebUIProtocolActivatedEventArgs = _ns_module.WebUIProtocolActivatedEventArgs
 WebUIProtocolForResultsActivatedEventArgs = _ns_module.WebUIProtocolForResultsActivatedEventArgs
 WebUIRestrictedLaunchActivatedEventArgs = _ns_module.WebUIRestrictedLaunchActivatedEventArgs
+WebUISearchActivatedEventArgs = _ns_module.WebUISearchActivatedEventArgs
 WebUIShareTargetActivatedEventArgs = _ns_module.WebUIShareTargetActivatedEventArgs
 WebUIStartupTaskActivatedEventArgs = _ns_module.WebUIStartupTaskActivatedEventArgs
 WebUIToastNotificationActivatedEventArgs = _ns_module.WebUIToastNotificationActivatedEventArgs
 WebUIUserDataAccountProviderActivatedEventArgs = _ns_module.WebUIUserDataAccountProviderActivatedEventArgs
 WebUIView = _ns_module.WebUIView
 WebUIVoiceCommandActivatedEventArgs = _ns_module.WebUIVoiceCommandActivatedEventArgs
+WebUIWalletActionActivatedEventArgs = _ns_module.WebUIWalletActionActivatedEventArgs
 WebUIWebAccountProviderActivatedEventArgs = _ns_module.WebUIWebAccountProviderActivatedEventArgs
 WebUIWebAuthenticationBrokerContinuationEventArgs = _ns_module.WebUIWebAuthenticationBrokerContinuationEventArgs
 IActivatedEventArgsDeferral = _ns_module.IActivatedEventArgsDeferral

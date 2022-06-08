@@ -35,6 +35,13 @@ class ProtectionCapabilityResult(enum.IntEnum):
     MAYBE = 1
     PROBABLY = 2
 
+class RenewalStatus(enum.IntEnum):
+    NOT_STARTED = 0
+    UPDATES_IN_PROGRESS = 1
+    USER_CANCELLED = 2
+    APP_COMPONENTS_MAY_NEED_UPDATING = 3
+    NO_COMPONENTS_FOUND = 4
+
 class RevocationAndRenewalReasons(enum.IntFlag):
     USER_MODE_COMPONENT_LOAD = 0x1
     KERNEL_MODE_COMPONENT_LOAD = 0x2
@@ -59,6 +66,12 @@ class ComponentLoadFailedEventArgs(_winrt.Object):
     information: typing.Optional[RevocationAndRenewalInformation]
     @staticmethod
     def _from(obj: _winrt.Object) -> ComponentLoadFailedEventArgs: ...
+
+class ComponentRenewal(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ComponentRenewal: ...
+    @staticmethod
+    def renew_system_components_async(information: typing.Optional[RevocationAndRenewalInformation]) -> winsdk.windows.foundation.IAsyncOperationWithProgress[RenewalStatus, _winrt.UInt32]: ...
 
 class HdcpSession(_winrt.Object):
     def __enter__(self: Self) -> Self: ...

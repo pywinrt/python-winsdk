@@ -14,6 +14,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Protection
         IComponentLoadFailedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IComponentLoadFailedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IComponentRenewalStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IComponentRenewalStatics>
+    {
+        IComponentRenewalStatics(std::nullptr_t = nullptr) noexcept {}
+        IComponentRenewalStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IHdcpSession :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IHdcpSession>,

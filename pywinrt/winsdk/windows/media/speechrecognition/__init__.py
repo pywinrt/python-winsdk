@@ -109,4 +109,6 @@ SpeechRecognizer = _ns_module.SpeechRecognizer
 SpeechRecognizerStateChangedEventArgs = _ns_module.SpeechRecognizerStateChangedEventArgs
 SpeechRecognizerTimeouts = _ns_module.SpeechRecognizerTimeouts
 SpeechRecognizerUIOptions = _ns_module.SpeechRecognizerUIOptions
+VoiceCommandManager = _ns_module.VoiceCommandManager
+VoiceCommandSet = _ns_module.VoiceCommandSet
 ISpeechRecognitionConstraint = _ns_module.ISpeechRecognitionConstraint

@@ -15,5 +15,10 @@ WINRT_EXPORT namespace winrt::Windows::Management::Workplace
         static auto IsStoreAllowed();
         static auto GetMessagingSyncPolicy();
     };
+    struct WorkplaceSettings
+    {
+        WorkplaceSettings() = delete;
+        [[nodiscard]] static auto IsMicrosoftAccountOptional();
+    };
 }
 #endif

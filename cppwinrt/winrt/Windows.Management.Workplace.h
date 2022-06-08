@@ -40,6 +40,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Management::Workplace::IMdmPolicyStatics2)->GetMessagingSyncPolicy(reinterpret_cast<int32_t*>(&value)));
         return value;
     }
+    template <typename D> auto consume_Windows_Management_Workplace_IWorkplaceSettingsStatics<D>::IsMicrosoftAccountOptional() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Management::Workplace::IWorkplaceSettingsStatics)->get_IsMicrosoftAccountOptional(&value));
+        return value;
+    }
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::Management::Workplace::IMdmAllowPolicyStatics> : produce_base<D, winrt::Windows::Management::Workplace::IMdmAllowPolicyStatics>
@@ -87,6 +93,19 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Management::Workplace::IWorkplaceSettingsStatics> : produce_base<D, winrt::Windows::Management::Workplace::IWorkplaceSettingsStatics>
+    {
+        int32_t __stdcall get_IsMicrosoftAccountOptional(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsMicrosoftAccountOptional());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
 }
 WINRT_EXPORT namespace winrt::Windows::Management::Workplace
 {
@@ -110,13 +129,19 @@ WINRT_EXPORT namespace winrt::Windows::Management::Workplace
     {
         return impl::call_factory_cast<winrt::Windows::Management::Workplace::MessagingSyncPolicy(*)(IMdmPolicyStatics2 const&), MdmPolicy, IMdmPolicyStatics2>([](IMdmPolicyStatics2 const& f) { return f.GetMessagingSyncPolicy(); });
     }
+    inline auto WorkplaceSettings::IsMicrosoftAccountOptional()
+    {
+        return impl::call_factory_cast<bool(*)(IWorkplaceSettingsStatics const&), WorkplaceSettings, IWorkplaceSettingsStatics>([](IWorkplaceSettingsStatics const& f) { return f.IsMicrosoftAccountOptional(); });
+    }
 }
 namespace std
 {
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::Management::Workplace::IMdmAllowPolicyStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Management::Workplace::IMdmPolicyStatics2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Management::Workplace::IWorkplaceSettingsStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Management::Workplace::MdmPolicy> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Management::Workplace::WorkplaceSettings> : winrt::impl::hash_base {};
 #endif
 #ifdef __cpp_lib_format
 #endif

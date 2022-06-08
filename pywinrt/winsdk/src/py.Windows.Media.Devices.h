@@ -38,7 +38,130 @@ namespace py::proj::Windows::Media::Devices
 {}
 
 namespace py::impl::Windows::Media::Devices
-{}
+{
+    struct CallControlEventHandler
+    {
+        static winrt::Windows::Media::Devices::CallControlEventHandler get(PyObject* callable)
+        {
+            py::delegate_callable _delegate{ callable };
+
+            return [delegate = std::move(_delegate)](auto param0)
+            {
+                winrt::handle_type<py::gil_state_traits> gil_state{ PyGILState_Ensure() };
+
+                py::pyobj_handle py_param0{ py::convert(param0) };
+
+                py::pyobj_handle args{ PyTuple_Pack(1, py_param0.get()) };
+
+                if (!args) {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+
+                py::pyobj_handle return_value{ PyObject_CallObject(delegate.callable(), args.get()) };
+
+                if (!return_value)
+                {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+            };
+        };
+    };
+
+    struct DialRequestedEventHandler
+    {
+        static winrt::Windows::Media::Devices::DialRequestedEventHandler get(PyObject* callable)
+        {
+            py::delegate_callable _delegate{ callable };
+
+            return [delegate = std::move(_delegate)](auto param0, auto param1)
+            {
+                winrt::handle_type<py::gil_state_traits> gil_state{ PyGILState_Ensure() };
+
+                py::pyobj_handle py_param0{ py::convert(param0) };
+                py::pyobj_handle py_param1{ py::convert(param1) };
+
+                py::pyobj_handle args{ PyTuple_Pack(2, py_param0.get(), py_param1.get()) };
+
+                if (!args) {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+
+                py::pyobj_handle return_value{ PyObject_CallObject(delegate.callable(), args.get()) };
+
+                if (!return_value)
+                {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+            };
+        };
+    };
+
+    struct KeypadPressedEventHandler
+    {
+        static winrt::Windows::Media::Devices::KeypadPressedEventHandler get(PyObject* callable)
+        {
+            py::delegate_callable _delegate{ callable };
+
+            return [delegate = std::move(_delegate)](auto param0, auto param1)
+            {
+                winrt::handle_type<py::gil_state_traits> gil_state{ PyGILState_Ensure() };
+
+                py::pyobj_handle py_param0{ py::convert(param0) };
+                py::pyobj_handle py_param1{ py::convert(param1) };
+
+                py::pyobj_handle args{ PyTuple_Pack(2, py_param0.get(), py_param1.get()) };
+
+                if (!args) {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+
+                py::pyobj_handle return_value{ PyObject_CallObject(delegate.callable(), args.get()) };
+
+                if (!return_value)
+                {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+            };
+        };
+    };
+
+    struct RedialRequestedEventHandler
+    {
+        static winrt::Windows::Media::Devices::RedialRequestedEventHandler get(PyObject* callable)
+        {
+            py::delegate_callable _delegate{ callable };
+
+            return [delegate = std::move(_delegate)](auto param0, auto param1)
+            {
+                winrt::handle_type<py::gil_state_traits> gil_state{ PyGILState_Ensure() };
+
+                py::pyobj_handle py_param0{ py::convert(param0) };
+                py::pyobj_handle py_param1{ py::convert(param1) };
+
+                py::pyobj_handle args{ PyTuple_Pack(2, py_param0.get(), py_param1.get()) };
+
+                if (!args) {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+
+                py::pyobj_handle return_value{ PyObject_CallObject(delegate.callable(), args.get()) };
+
+                if (!return_value)
+                {
+                    PyErr_WriteUnraisable(delegate.callable());
+                    throw winrt::hresult_error();
+                }
+            };
+        };
+    };
+}
 
 namespace py::wrapper::Windows::Media::Devices
 {
@@ -48,11 +171,13 @@ namespace py::wrapper::Windows::Media::Devices
     using AudioDeviceModule = py::winrt_wrapper<winrt::Windows::Media::Devices::AudioDeviceModule>;
     using AudioDeviceModuleNotificationEventArgs = py::winrt_wrapper<winrt::Windows::Media::Devices::AudioDeviceModuleNotificationEventArgs>;
     using AudioDeviceModulesManager = py::winrt_wrapper<winrt::Windows::Media::Devices::AudioDeviceModulesManager>;
+    using CallControl = py::winrt_wrapper<winrt::Windows::Media::Devices::CallControl>;
     using CameraOcclusionInfo = py::winrt_wrapper<winrt::Windows::Media::Devices::CameraOcclusionInfo>;
     using CameraOcclusionState = py::winrt_wrapper<winrt::Windows::Media::Devices::CameraOcclusionState>;
     using CameraOcclusionStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Devices::CameraOcclusionStateChangedEventArgs>;
     using DefaultAudioCaptureDeviceChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Devices::DefaultAudioCaptureDeviceChangedEventArgs>;
     using DefaultAudioRenderDeviceChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Devices::DefaultAudioRenderDeviceChangedEventArgs>;
+    using DialRequestedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Devices::DialRequestedEventArgs>;
     using DigitalWindowBounds = py::winrt_wrapper<winrt::Windows::Media::Devices::DigitalWindowBounds>;
     using DigitalWindowCapability = py::winrt_wrapper<winrt::Windows::Media::Devices::DigitalWindowCapability>;
     using DigitalWindowControl = py::winrt_wrapper<winrt::Windows::Media::Devices::DigitalWindowControl>;
@@ -65,6 +190,7 @@ namespace py::wrapper::Windows::Media::Devices
     using HdrVideoControl = py::winrt_wrapper<winrt::Windows::Media::Devices::HdrVideoControl>;
     using InfraredTorchControl = py::winrt_wrapper<winrt::Windows::Media::Devices::InfraredTorchControl>;
     using IsoSpeedControl = py::winrt_wrapper<winrt::Windows::Media::Devices::IsoSpeedControl>;
+    using KeypadPressedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Devices::KeypadPressedEventArgs>;
     using LowLagPhotoControl = py::winrt_wrapper<winrt::Windows::Media::Devices::LowLagPhotoControl>;
     using LowLagPhotoSequenceControl = py::winrt_wrapper<winrt::Windows::Media::Devices::LowLagPhotoSequenceControl>;
     using MediaDevice = py::winrt_wrapper<winrt::Windows::Media::Devices::MediaDevice>;
@@ -74,6 +200,7 @@ namespace py::wrapper::Windows::Media::Devices
     using OpticalImageStabilizationControl = py::winrt_wrapper<winrt::Windows::Media::Devices::OpticalImageStabilizationControl>;
     using PanelBasedOptimizationControl = py::winrt_wrapper<winrt::Windows::Media::Devices::PanelBasedOptimizationControl>;
     using PhotoConfirmationControl = py::winrt_wrapper<winrt::Windows::Media::Devices::PhotoConfirmationControl>;
+    using RedialRequestedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Devices::RedialRequestedEventArgs>;
     using RegionOfInterest = py::winrt_wrapper<winrt::Windows::Media::Devices::RegionOfInterest>;
     using RegionsOfInterestControl = py::winrt_wrapper<winrt::Windows::Media::Devices::RegionsOfInterestControl>;
     using SceneModeControl = py::winrt_wrapper<winrt::Windows::Media::Devices::SceneModeControl>;
@@ -218,6 +345,12 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::Media::Devices::TelephonyKey>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Media::Devices::VideoDeviceControllerGetDevicePropertyStatus>
     {
         static PyObject* get_python_type() noexcept;
@@ -278,6 +411,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Media::Devices::CallControl>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Media::Devices::CameraOcclusionInfo>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -303,6 +442,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::Devices::DefaultAudioRenderDeviceChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Devices::DialRequestedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -380,6 +525,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Media::Devices::KeypadPressedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Media::Devices::LowLagPhotoControl>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -429,6 +580,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::Devices::PhotoConfirmationControl>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Devices::RedialRequestedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -504,4 +661,28 @@ namespace py
     {
         static PyTypeObject* get_python_type() noexcept;
     };
+    template <>
+    struct delegate_python_type<winrt::Windows::Media::Devices::CallControlEventHandler>
+    {
+        using type = py::impl::Windows::Media::Devices::CallControlEventHandler;
+    };
+
+    template <>
+    struct delegate_python_type<winrt::Windows::Media::Devices::DialRequestedEventHandler>
+    {
+        using type = py::impl::Windows::Media::Devices::DialRequestedEventHandler;
+    };
+
+    template <>
+    struct delegate_python_type<winrt::Windows::Media::Devices::KeypadPressedEventHandler>
+    {
+        using type = py::impl::Windows::Media::Devices::KeypadPressedEventHandler;
+    };
+
+    template <>
+    struct delegate_python_type<winrt::Windows::Media::Devices::RedialRequestedEventHandler>
+    {
+        using type = py::impl::Windows::Media::Devices::RedialRequestedEventHandler;
+    };
+
 }

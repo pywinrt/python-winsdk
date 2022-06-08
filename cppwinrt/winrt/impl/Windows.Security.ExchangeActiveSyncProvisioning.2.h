@@ -13,5 +13,17 @@ WINRT_EXPORT namespace winrt::Windows::Security::ExchangeActiveSyncProvisioning
         EasClientDeviceInformation(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasClientDeviceInformation(ptr, take_ownership_from_abi) {}
         EasClientDeviceInformation();
     };
+    struct __declspec(empty_bases) EasClientSecurityPolicy : winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasClientSecurityPolicy
+    {
+        EasClientSecurityPolicy(std::nullptr_t) noexcept {}
+        EasClientSecurityPolicy(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasClientSecurityPolicy(ptr, take_ownership_from_abi) {}
+        EasClientSecurityPolicy();
+    };
+    struct __declspec(empty_bases) EasComplianceResults : winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasComplianceResults,
+        impl::require<EasComplianceResults, winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasComplianceResults2>
+    {
+        EasComplianceResults(std::nullptr_t) noexcept {}
+        EasComplianceResults(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Security::ExchangeActiveSyncProvisioning::IEasComplianceResults(ptr, take_ownership_from_abi) {}
+    };
 }
 #endif

@@ -50,6 +50,7 @@ namespace py::cpp::Windows::Media
         PyTypeObject* type_AudioFrame;
         PyTypeObject* type_AutoRepeatModeChangeRequestedEventArgs;
         PyTypeObject* type_ImageDisplayProperties;
+        PyTypeObject* type_MediaControl;
         PyTypeObject* type_MediaExtensionManager;
         PyTypeObject* type_MediaMarkerTypes;
         PyTypeObject* type_MediaProcessingTriggerDetails;
@@ -1011,6 +1012,574 @@ namespace py::cpp::Windows::Media
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ImageDisplayProperties
+    };
+
+    // ----- MediaControl class --------------------
+    constexpr const char* const type_name_MediaControl = "MediaControl";
+
+    static PyObject* _new_MediaControl(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_MediaControl);
+        return nullptr;
+    }
+
+    static PyObject* MediaControl_get_TrackName(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Media::MediaControl::TrackName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_put_TrackName(PyObject* /*unused*/, PyObject* arg, void* /*unused*/) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            winrt::Windows::Media::MediaControl::TrackName(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_get_IsPlaying(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Media::MediaControl::IsPlaying());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_put_IsPlaying(PyObject* /*unused*/, PyObject* arg, void* /*unused*/) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            winrt::Windows::Media::MediaControl::IsPlaying(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_get_ArtistName(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Media::MediaControl::ArtistName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_put_ArtistName(PyObject* /*unused*/, PyObject* arg, void* /*unused*/) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            winrt::Windows::Media::MediaControl::ArtistName(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_get_AlbumArt(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Media::MediaControl::AlbumArt());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_put_AlbumArt(PyObject* /*unused*/, PyObject* arg, void* /*unused*/) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::Uri>(arg);
+
+            winrt::Windows::Media::MediaControl::AlbumArt(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_get_SoundLevel(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Media::MediaControl::SoundLevel());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_ChannelDownPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::ChannelDownPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_ChannelDownPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::ChannelDownPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_ChannelUpPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::ChannelUpPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_ChannelUpPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::ChannelUpPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_FastForwardPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::FastForwardPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_FastForwardPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::FastForwardPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_NextTrackPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::NextTrackPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_NextTrackPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::NextTrackPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_PausePressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::PausePressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_PausePressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::PausePressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_PlayPauseTogglePressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::PlayPauseTogglePressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_PlayPauseTogglePressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::PlayPauseTogglePressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_PlayPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::PlayPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_PlayPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::PlayPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_PreviousTrackPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::PreviousTrackPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_PreviousTrackPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::PreviousTrackPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_RecordPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::RecordPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_RecordPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::RecordPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_RewindPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::RewindPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_RewindPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::RewindPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_SoundLevelChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::SoundLevelChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_SoundLevelChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::SoundLevelChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_add_StopPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::MediaControl::StopPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* MediaControl_remove_StopPressed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::MediaControl::StopPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_MediaControl[] = {
+        { "get_track_name", reinterpret_cast<PyCFunction>(MediaControl_get_TrackName), METH_NOARGS | METH_STATIC, nullptr },
+        { "put_track_name", reinterpret_cast<PyCFunction>(MediaControl_put_TrackName), METH_O | METH_STATIC, nullptr },
+        { "get_is_playing", reinterpret_cast<PyCFunction>(MediaControl_get_IsPlaying), METH_NOARGS | METH_STATIC, nullptr },
+        { "put_is_playing", reinterpret_cast<PyCFunction>(MediaControl_put_IsPlaying), METH_O | METH_STATIC, nullptr },
+        { "get_artist_name", reinterpret_cast<PyCFunction>(MediaControl_get_ArtistName), METH_NOARGS | METH_STATIC, nullptr },
+        { "put_artist_name", reinterpret_cast<PyCFunction>(MediaControl_put_ArtistName), METH_O | METH_STATIC, nullptr },
+        { "get_album_art", reinterpret_cast<PyCFunction>(MediaControl_get_AlbumArt), METH_NOARGS | METH_STATIC, nullptr },
+        { "put_album_art", reinterpret_cast<PyCFunction>(MediaControl_put_AlbumArt), METH_O | METH_STATIC, nullptr },
+        { "get_sound_level", reinterpret_cast<PyCFunction>(MediaControl_get_SoundLevel), METH_NOARGS | METH_STATIC, nullptr },
+        { "add_channel_down_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_ChannelDownPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_channel_down_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_ChannelDownPressed), METH_O | METH_STATIC, nullptr },
+        { "add_channel_up_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_ChannelUpPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_channel_up_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_ChannelUpPressed), METH_O | METH_STATIC, nullptr },
+        { "add_fast_forward_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_FastForwardPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_fast_forward_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_FastForwardPressed), METH_O | METH_STATIC, nullptr },
+        { "add_next_track_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_NextTrackPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_next_track_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_NextTrackPressed), METH_O | METH_STATIC, nullptr },
+        { "add_pause_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_PausePressed), METH_O | METH_STATIC, nullptr },
+        { "remove_pause_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_PausePressed), METH_O | METH_STATIC, nullptr },
+        { "add_play_pause_toggle_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_PlayPauseTogglePressed), METH_O | METH_STATIC, nullptr },
+        { "remove_play_pause_toggle_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_PlayPauseTogglePressed), METH_O | METH_STATIC, nullptr },
+        { "add_play_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_PlayPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_play_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_PlayPressed), METH_O | METH_STATIC, nullptr },
+        { "add_previous_track_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_PreviousTrackPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_previous_track_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_PreviousTrackPressed), METH_O | METH_STATIC, nullptr },
+        { "add_record_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_RecordPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_record_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_RecordPressed), METH_O | METH_STATIC, nullptr },
+        { "add_rewind_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_RewindPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_rewind_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_RewindPressed), METH_O | METH_STATIC, nullptr },
+        { "add_sound_level_changed", reinterpret_cast<PyCFunction>(MediaControl_add_SoundLevelChanged), METH_O | METH_STATIC, nullptr },
+        { "remove_sound_level_changed", reinterpret_cast<PyCFunction>(MediaControl_remove_SoundLevelChanged), METH_O | METH_STATIC, nullptr },
+        { "add_stop_pressed", reinterpret_cast<PyCFunction>(MediaControl_add_StopPressed), METH_O | METH_STATIC, nullptr },
+        { "remove_stop_pressed", reinterpret_cast<PyCFunction>(MediaControl_remove_StopPressed), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_MediaControl[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_MediaControl[] = 
+    {
+        { Py_tp_new, _new_MediaControl },
+        { Py_tp_methods, _methods_MediaControl },
+        { Py_tp_getset, _getset_MediaControl },
+        { },
+    };
+
+    static PyType_Spec type_spec_MediaControl =
+    {
+        "_winsdk_Windows_Media.MediaControl",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_MediaControl
     };
 
     // ----- MediaExtensionManager class --------------------
@@ -5543,6 +6112,7 @@ namespace py::cpp::Windows::Media
         Py_VISIT(state->type_AudioFrame);
         Py_VISIT(state->type_AutoRepeatModeChangeRequestedEventArgs);
         Py_VISIT(state->type_ImageDisplayProperties);
+        Py_VISIT(state->type_MediaControl);
         Py_VISIT(state->type_MediaExtensionManager);
         Py_VISIT(state->type_MediaMarkerTypes);
         Py_VISIT(state->type_MediaProcessingTriggerDetails);
@@ -5591,6 +6161,7 @@ namespace py::cpp::Windows::Media
         Py_CLEAR(state->type_AudioFrame);
         Py_CLEAR(state->type_AutoRepeatModeChangeRequestedEventArgs);
         Py_CLEAR(state->type_ImageDisplayProperties);
+        Py_CLEAR(state->type_MediaControl);
         Py_CLEAR(state->type_MediaExtensionManager);
         Py_CLEAR(state->type_MediaMarkerTypes);
         Py_CLEAR(state->type_MediaProcessingTriggerDetails);
@@ -5752,6 +6323,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media(void) noexcept
     }
 
     Py_INCREF(state->type_ImageDisplayProperties);
+
+    state->type_MediaControl = py::register_python_type(module.get(), type_name_MediaControl, &type_spec_MediaControl, nullptr);
+    if (!state->type_MediaControl)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_MediaControl);
 
     state->type_MediaExtensionManager = py::register_python_type(module.get(), type_name_MediaExtensionManager, &type_spec_MediaExtensionManager, bases.get());
     if (!state->type_MediaExtensionManager)
@@ -6226,6 +6805,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::ImageDisplayProperties>::get
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::ImageDisplayProperties is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Media::MediaControl>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_MediaControl;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::MediaControl is not registered");
         return nullptr;
     }
 

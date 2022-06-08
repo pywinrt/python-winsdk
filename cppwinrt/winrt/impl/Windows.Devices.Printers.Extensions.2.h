@@ -22,5 +22,35 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Printers::Extensions
         Print3DWorkflowPrinterChangedEventArgs(std::nullptr_t) noexcept {}
         Print3DWorkflowPrinterChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::Extensions::IPrint3DWorkflowPrinterChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct PrintExtensionContext
+    {
+        PrintExtensionContext() = delete;
+        static auto FromDeviceId(param::hstring const& deviceId);
+    };
+    struct __declspec(empty_bases) PrintNotificationEventDetails : winrt::Windows::Devices::Printers::Extensions::IPrintNotificationEventDetails
+    {
+        PrintNotificationEventDetails(std::nullptr_t) noexcept {}
+        PrintNotificationEventDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::Extensions::IPrintNotificationEventDetails(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) PrintTaskConfiguration : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfiguration
+    {
+        PrintTaskConfiguration(std::nullptr_t) noexcept {}
+        PrintTaskConfiguration(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfiguration(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) PrintTaskConfigurationSaveRequest : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfigurationSaveRequest
+    {
+        PrintTaskConfigurationSaveRequest(std::nullptr_t) noexcept {}
+        PrintTaskConfigurationSaveRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfigurationSaveRequest(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) PrintTaskConfigurationSaveRequestedDeferral : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfigurationSaveRequestedDeferral
+    {
+        PrintTaskConfigurationSaveRequestedDeferral(std::nullptr_t) noexcept {}
+        PrintTaskConfigurationSaveRequestedDeferral(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfigurationSaveRequestedDeferral(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) PrintTaskConfigurationSaveRequestedEventArgs : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfigurationSaveRequestedEventArgs
+    {
+        PrintTaskConfigurationSaveRequestedEventArgs(std::nullptr_t) noexcept {}
+        PrintTaskConfigurationSaveRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::Extensions::IPrintTaskConfigurationSaveRequestedEventArgs(ptr, take_ownership_from_abi) {}
+    };
 }
 #endif

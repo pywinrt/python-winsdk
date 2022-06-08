@@ -14,6 +14,14 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sms
         ISmsAppMessage(std::nullptr_t = nullptr) noexcept {}
         ISmsAppMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ISmsBinaryMessage :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsBinaryMessage>,
+        impl::require<winrt::Windows::Devices::Sms::ISmsBinaryMessage, winrt::Windows::Devices::Sms::ISmsMessage>
+    {
+        ISmsBinaryMessage(std::nullptr_t = nullptr) noexcept {}
+        ISmsBinaryMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ISmsBroadcastMessage :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ISmsBroadcastMessage>,
@@ -21,6 +29,13 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sms
     {
         ISmsBroadcastMessage(std::nullptr_t = nullptr) noexcept {}
         ISmsBroadcastMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISmsDevice :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsDevice>
+    {
+        ISmsDevice(std::nullptr_t = nullptr) noexcept {}
+        ISmsDevice(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ISmsDevice2 :
         winrt::Windows::Foundation::IInspectable,
@@ -35,6 +50,27 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sms
     {
         ISmsDevice2Statics(std::nullptr_t = nullptr) noexcept {}
         ISmsDevice2Statics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISmsDeviceMessageStore :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsDeviceMessageStore>
+    {
+        ISmsDeviceMessageStore(std::nullptr_t = nullptr) noexcept {}
+        ISmsDeviceMessageStore(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISmsDeviceStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsDeviceStatics>
+    {
+        ISmsDeviceStatics(std::nullptr_t = nullptr) noexcept {}
+        ISmsDeviceStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISmsDeviceStatics2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsDeviceStatics2>
+    {
+        ISmsDeviceStatics2(std::nullptr_t = nullptr) noexcept {}
+        ISmsDeviceStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ISmsFilterRule :
         winrt::Windows::Foundation::IInspectable,
@@ -64,12 +100,26 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sms
         ISmsFilterRulesFactory(std::nullptr_t = nullptr) noexcept {}
         ISmsFilterRulesFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ISmsMessage :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsMessage>
+    {
+        ISmsMessage(std::nullptr_t = nullptr) noexcept {}
+        ISmsMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ISmsMessageBase :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ISmsMessageBase>
     {
         ISmsMessageBase(std::nullptr_t = nullptr) noexcept {}
         ISmsMessageBase(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISmsMessageReceivedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsMessageReceivedEventArgs>
+    {
+        ISmsMessageReceivedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ISmsMessageReceivedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ISmsMessageReceivedTriggerDetails :
         winrt::Windows::Foundation::IInspectable,
@@ -92,6 +142,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sms
         ISmsMessageRegistrationStatics(std::nullptr_t = nullptr) noexcept {}
         ISmsMessageRegistrationStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ISmsReceivedEventDetails :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsReceivedEventDetails>
+    {
+        ISmsReceivedEventDetails(std::nullptr_t = nullptr) noexcept {}
+        ISmsReceivedEventDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISmsReceivedEventDetails2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsReceivedEventDetails2>
+    {
+        ISmsReceivedEventDetails2(std::nullptr_t = nullptr) noexcept {}
+        ISmsReceivedEventDetails2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ISmsSendMessageResult :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ISmsSendMessageResult>
@@ -107,6 +171,14 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sms
         ISmsStatusMessage(std::nullptr_t = nullptr) noexcept {}
         ISmsStatusMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ISmsTextMessage :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsTextMessage>,
+        impl::require<winrt::Windows::Devices::Sms::ISmsTextMessage, winrt::Windows::Devices::Sms::ISmsMessage>
+    {
+        ISmsTextMessage(std::nullptr_t = nullptr) noexcept {}
+        ISmsTextMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ISmsTextMessage2 :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ISmsTextMessage2>,
@@ -114,6 +186,13 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sms
     {
         ISmsTextMessage2(std::nullptr_t = nullptr) noexcept {}
         ISmsTextMessage2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISmsTextMessageStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISmsTextMessageStatics>
+    {
+        ISmsTextMessageStatics(std::nullptr_t = nullptr) noexcept {}
+        ISmsTextMessageStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ISmsVoicemailMessage :
         winrt::Windows::Foundation::IInspectable,

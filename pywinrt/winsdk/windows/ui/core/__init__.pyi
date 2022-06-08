@@ -13,6 +13,7 @@ import winsdk.windows.system
 import winsdk.windows.ui
 import winsdk.windows.ui.composition
 import winsdk.windows.ui.input
+import winsdk.windows.ui.popups
 
 class AppViewBackButtonVisibility(enum.IntEnum):
     VISIBLE = 0
@@ -347,10 +348,52 @@ class CoreWindow(_winrt.Object):
     def add_resize_started(self, handler: winsdk.windows.foundation.TypedEventHandler[CoreWindow, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
     def remove_resize_started(self, cookie: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 
+class CoreWindowDialog(_winrt.Object):
+    title: str
+    is_interaction_delayed: _winrt.Int32
+    default_command_index: _winrt.UInt32
+    cancel_command_index: _winrt.UInt32
+    back_button_command: typing.Optional[winsdk.windows.ui.popups.UICommandInvokedHandler]
+    commands: typing.Optional[winsdk.windows.foundation.collections.IVector[winsdk.windows.ui.popups.IUICommand]]
+    max_size: winsdk.windows.foundation.Size
+    min_size: winsdk.windows.foundation.Size
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CoreWindowDialog: ...
+    @typing.overload
+    def __init__(self, title: str) -> None: ...
+    @typing.overload
+    def __init__(self) -> None: ...
+    def show_async(self) -> winsdk.windows.foundation.IAsyncOperation[winsdk.windows.ui.popups.IUICommand]: ...
+    def add_showing(self, handler: winsdk.windows.foundation.TypedEventHandler[CoreWindow, CoreWindowPopupShowingEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_showing(self, cookie: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
 class CoreWindowEventArgs(_winrt.Object):
     handled: _winrt.Boolean
     @staticmethod
     def _from(obj: _winrt.Object) -> CoreWindowEventArgs: ...
+
+class CoreWindowFlyout(_winrt.Object):
+    title: str
+    is_interaction_delayed: _winrt.Int32
+    default_command_index: _winrt.UInt32
+    back_button_command: typing.Optional[winsdk.windows.ui.popups.UICommandInvokedHandler]
+    commands: typing.Optional[winsdk.windows.foundation.collections.IVector[winsdk.windows.ui.popups.IUICommand]]
+    max_size: winsdk.windows.foundation.Size
+    min_size: winsdk.windows.foundation.Size
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CoreWindowFlyout: ...
+    @typing.overload
+    def __init__(self, position: winsdk.windows.foundation.Point) -> None: ...
+    @typing.overload
+    def __init__(self, position: winsdk.windows.foundation.Point, title: str) -> None: ...
+    def show_async(self) -> winsdk.windows.foundation.IAsyncOperation[winsdk.windows.ui.popups.IUICommand]: ...
+    def add_showing(self, handler: winsdk.windows.foundation.TypedEventHandler[CoreWindow, CoreWindowPopupShowingEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_showing(self, cookie: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class CoreWindowPopupShowingEventArgs(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CoreWindowPopupShowingEventArgs: ...
+    def set_desired_size(self, value: winsdk.windows.foundation.Size) -> None: ...
 
 class CoreWindowResizeManager(_winrt.Object):
     should_wait_for_layout_completion: _winrt.Boolean

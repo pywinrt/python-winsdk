@@ -78,6 +78,24 @@ WINRT_EXPORT namespace winrt::Windows::UI::ApplicationSettings
         SettingsCommand(winrt::Windows::Foundation::IInspectable const& settingsCommandId, param::hstring const& label, winrt::Windows::UI::Popups::UICommandInvokedHandler const& handler);
         [[nodiscard]] static auto AccountsCommand();
     };
+    struct __declspec(empty_bases) SettingsPane : winrt::Windows::UI::ApplicationSettings::ISettingsPane
+    {
+        SettingsPane(std::nullptr_t) noexcept {}
+        SettingsPane(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ApplicationSettings::ISettingsPane(ptr, take_ownership_from_abi) {}
+        static auto GetForCurrentView();
+        static auto Show();
+        [[nodiscard]] static auto Edge();
+    };
+    struct __declspec(empty_bases) SettingsPaneCommandsRequest : winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest
+    {
+        SettingsPaneCommandsRequest(std::nullptr_t) noexcept {}
+        SettingsPaneCommandsRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SettingsPaneCommandsRequestedEventArgs : winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs
+    {
+        SettingsPaneCommandsRequestedEventArgs(std::nullptr_t) noexcept {}
+        SettingsPaneCommandsRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) WebAccountCommand : winrt::Windows::UI::ApplicationSettings::IWebAccountCommand
     {
         WebAccountCommand(std::nullptr_t) noexcept {}

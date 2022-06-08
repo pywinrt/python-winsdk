@@ -8,8 +8,150 @@ namespace py::cpp::Windows::Security::EnterpriseData
 {
     struct module_state
     {
+        PyObject* type_DataProtectionStatus;
+        PyObject* type_EnforcementLevel;
+        PyObject* type_FileProtectionStatus;
+        PyObject* type_ProtectedImportExportStatus;
+        PyObject* type_ProtectionPolicyAuditAction;
         PyObject* type_ProtectionPolicyEvaluationResult;
+        PyObject* type_ProtectionPolicyRequestAccessBehavior;
+        PyTypeObject* type_BufferProtectUnprotectResult;
+        PyTypeObject* type_DataProtectionInfo;
+        PyTypeObject* type_DataProtectionManager;
+        PyTypeObject* type_FileProtectionInfo;
+        PyTypeObject* type_FileProtectionManager;
+        PyTypeObject* type_FileRevocationManager;
+        PyTypeObject* type_FileUnprotectOptions;
+        PyTypeObject* type_ProtectedAccessResumedEventArgs;
+        PyTypeObject* type_ProtectedAccessSuspendingEventArgs;
+        PyTypeObject* type_ProtectedContainerExportResult;
+        PyTypeObject* type_ProtectedContainerImportResult;
+        PyTypeObject* type_ProtectedContentRevokedEventArgs;
+        PyTypeObject* type_ProtectedFileCreateResult;
+        PyTypeObject* type_ProtectionPolicyAuditInfo;
+        PyTypeObject* type_ProtectionPolicyManager;
+        PyTypeObject* type_ThreadNetworkContext;
     };
+
+    static PyObject* register_DataProtectionStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_DataProtectionStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_DataProtectionStatus = type;
+        Py_INCREF(state->type_DataProtectionStatus);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EnforcementLevel(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EnforcementLevel)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EnforcementLevel = type;
+        Py_INCREF(state->type_EnforcementLevel);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_FileProtectionStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_FileProtectionStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_FileProtectionStatus = type;
+        Py_INCREF(state->type_FileProtectionStatus);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_ProtectedImportExportStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_ProtectedImportExportStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_ProtectedImportExportStatus = type;
+        Py_INCREF(state->type_ProtectedImportExportStatus);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_ProtectionPolicyAuditAction(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_ProtectionPolicyAuditAction)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_ProtectionPolicyAuditAction = type;
+        Py_INCREF(state->type_ProtectionPolicyAuditAction);
+
+
+        Py_RETURN_NONE;
+    }
 
     static PyObject* register_ProtectionPolicyEvaluationResult(PyObject* module, PyObject* type)
     {
@@ -35,11 +177,2979 @@ namespace py::cpp::Windows::Security::EnterpriseData
         Py_RETURN_NONE;
     }
 
+    static PyObject* register_ProtectionPolicyRequestAccessBehavior(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_ProtectionPolicyRequestAccessBehavior)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_ProtectionPolicyRequestAccessBehavior = type;
+        Py_INCREF(state->type_ProtectionPolicyRequestAccessBehavior);
+
+
+        Py_RETURN_NONE;
+    }
+
+    // ----- BufferProtectUnprotectResult class --------------------
+    constexpr const char* const type_name_BufferProtectUnprotectResult = "BufferProtectUnprotectResult";
+
+    static PyObject* _new_BufferProtectUnprotectResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_BufferProtectUnprotectResult);
+        return nullptr;
+    }
+
+    static void _dealloc_BufferProtectUnprotectResult(py::wrapper::Windows::Security::EnterpriseData::BufferProtectUnprotectResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* BufferProtectUnprotectResult_get_Buffer(py::wrapper::Windows::Security::EnterpriseData::BufferProtectUnprotectResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Buffer());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* BufferProtectUnprotectResult_get_ProtectionInfo(py::wrapper::Windows::Security::EnterpriseData::BufferProtectUnprotectResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProtectionInfo());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_BufferProtectUnprotectResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::BufferProtectUnprotectResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_BufferProtectUnprotectResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_BufferProtectUnprotectResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_BufferProtectUnprotectResult[] = {
+        { "buffer", reinterpret_cast<getter>(BufferProtectUnprotectResult_get_Buffer), nullptr, nullptr, nullptr },
+        { "protection_info", reinterpret_cast<getter>(BufferProtectUnprotectResult_get_ProtectionInfo), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_BufferProtectUnprotectResult[] = 
+    {
+        { Py_tp_new, _new_BufferProtectUnprotectResult },
+        { Py_tp_dealloc, _dealloc_BufferProtectUnprotectResult },
+        { Py_tp_methods, _methods_BufferProtectUnprotectResult },
+        { Py_tp_getset, _getset_BufferProtectUnprotectResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_BufferProtectUnprotectResult =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.BufferProtectUnprotectResult",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::BufferProtectUnprotectResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_BufferProtectUnprotectResult
+    };
+
+    // ----- DataProtectionInfo class --------------------
+    constexpr const char* const type_name_DataProtectionInfo = "DataProtectionInfo";
+
+    static PyObject* _new_DataProtectionInfo(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_DataProtectionInfo);
+        return nullptr;
+    }
+
+    static void _dealloc_DataProtectionInfo(py::wrapper::Windows::Security::EnterpriseData::DataProtectionInfo* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* DataProtectionInfo_get_Identity(py::wrapper::Windows::Security::EnterpriseData::DataProtectionInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Identity());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DataProtectionInfo_get_Status(py::wrapper::Windows::Security::EnterpriseData::DataProtectionInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_DataProtectionInfo(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::DataProtectionInfo>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_DataProtectionInfo[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_DataProtectionInfo), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_DataProtectionInfo[] = {
+        { "identity", reinterpret_cast<getter>(DataProtectionInfo_get_Identity), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(DataProtectionInfo_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_DataProtectionInfo[] = 
+    {
+        { Py_tp_new, _new_DataProtectionInfo },
+        { Py_tp_dealloc, _dealloc_DataProtectionInfo },
+        { Py_tp_methods, _methods_DataProtectionInfo },
+        { Py_tp_getset, _getset_DataProtectionInfo },
+        { },
+    };
+
+    static PyType_Spec type_spec_DataProtectionInfo =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.DataProtectionInfo",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::DataProtectionInfo),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_DataProtectionInfo
+    };
+
+    // ----- DataProtectionManager class --------------------
+    constexpr const char* const type_name_DataProtectionManager = "DataProtectionManager";
+
+    static PyObject* _new_DataProtectionManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_DataProtectionManager);
+        return nullptr;
+    }
+
+    static PyObject* DataProtectionManager_GetProtectionInfoAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IBuffer>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::DataProtectionManager::GetProtectionInfoAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DataProtectionManager_GetStreamProtectionInfoAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IInputStream>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::DataProtectionManager::GetStreamProtectionInfoAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DataProtectionManager_ProtectAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IBuffer>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::DataProtectionManager::ProtectAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DataProtectionManager_ProtectStreamAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IInputStream>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Storage::Streams::IOutputStream>(args, 2);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::DataProtectionManager::ProtectStreamAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DataProtectionManager_UnprotectAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IBuffer>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::DataProtectionManager::UnprotectAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DataProtectionManager_UnprotectStreamAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IInputStream>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::Streams::IOutputStream>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::DataProtectionManager::UnprotectStreamAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_DataProtectionManager[] = {
+        { "get_protection_info_async", reinterpret_cast<PyCFunction>(DataProtectionManager_GetProtectionInfoAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_stream_protection_info_async", reinterpret_cast<PyCFunction>(DataProtectionManager_GetStreamProtectionInfoAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "protect_async", reinterpret_cast<PyCFunction>(DataProtectionManager_ProtectAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "protect_stream_async", reinterpret_cast<PyCFunction>(DataProtectionManager_ProtectStreamAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "unprotect_async", reinterpret_cast<PyCFunction>(DataProtectionManager_UnprotectAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "unprotect_stream_async", reinterpret_cast<PyCFunction>(DataProtectionManager_UnprotectStreamAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_DataProtectionManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_DataProtectionManager[] = 
+    {
+        { Py_tp_new, _new_DataProtectionManager },
+        { Py_tp_methods, _methods_DataProtectionManager },
+        { Py_tp_getset, _getset_DataProtectionManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_DataProtectionManager =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.DataProtectionManager",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_DataProtectionManager
+    };
+
+    // ----- FileProtectionInfo class --------------------
+    constexpr const char* const type_name_FileProtectionInfo = "FileProtectionInfo";
+
+    static PyObject* _new_FileProtectionInfo(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FileProtectionInfo);
+        return nullptr;
+    }
+
+    static void _dealloc_FileProtectionInfo(py::wrapper::Windows::Security::EnterpriseData::FileProtectionInfo* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* FileProtectionInfo_get_Identity(py::wrapper::Windows::Security::EnterpriseData::FileProtectionInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Identity());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionInfo_get_IsRoamable(py::wrapper::Windows::Security::EnterpriseData::FileProtectionInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsRoamable());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionInfo_get_Status(py::wrapper::Windows::Security::EnterpriseData::FileProtectionInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionInfo_get_IsProtectWhileOpenSupported(py::wrapper::Windows::Security::EnterpriseData::FileProtectionInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsProtectWhileOpenSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_FileProtectionInfo(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::FileProtectionInfo>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FileProtectionInfo[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_FileProtectionInfo), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FileProtectionInfo[] = {
+        { "identity", reinterpret_cast<getter>(FileProtectionInfo_get_Identity), nullptr, nullptr, nullptr },
+        { "is_roamable", reinterpret_cast<getter>(FileProtectionInfo_get_IsRoamable), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(FileProtectionInfo_get_Status), nullptr, nullptr, nullptr },
+        { "is_protect_while_open_supported", reinterpret_cast<getter>(FileProtectionInfo_get_IsProtectWhileOpenSupported), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_FileProtectionInfo[] = 
+    {
+        { Py_tp_new, _new_FileProtectionInfo },
+        { Py_tp_dealloc, _dealloc_FileProtectionInfo },
+        { Py_tp_methods, _methods_FileProtectionInfo },
+        { Py_tp_getset, _getset_FileProtectionInfo },
+        { },
+    };
+
+    static PyType_Spec type_spec_FileProtectionInfo =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.FileProtectionInfo",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::FileProtectionInfo),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FileProtectionInfo
+    };
+
+    // ----- FileProtectionManager class --------------------
+    constexpr const char* const type_name_FileProtectionManager = "FileProtectionManager";
+
+    static PyObject* _new_FileProtectionManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FileProtectionManager);
+        return nullptr;
+    }
+
+    static PyObject* FileProtectionManager_CopyProtectionAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::CopyProtectionAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionManager_CreateProtectedAndOpenAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFolder>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::hstring>(args, 2);
+                auto param3 = py::convert_to<winrt::Windows::Storage::CreationCollisionOption>(args, 3);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::CreateProtectedAndOpenAsync(param0, param1, param2, param3));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionManager_GetProtectionInfoAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::GetProtectionInfoAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionManager_IsContainerAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::IsContainerAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionManager_LoadFileFromContainerAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::LoadFileFromContainerAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::LoadFileFromContainerAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Storage::NameCollisionOption>(args, 2);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::LoadFileFromContainerAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionManager_ProtectAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::ProtectAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionManager_SaveFileAsContainerAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::SaveFileAsContainerAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::hstring>>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::SaveFileAsContainerAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileProtectionManager_UnprotectAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::UnprotectAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Security::EnterpriseData::FileUnprotectOptions>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileProtectionManager::UnprotectAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FileProtectionManager[] = {
+        { "copy_protection_async", reinterpret_cast<PyCFunction>(FileProtectionManager_CopyProtectionAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "create_protected_and_open_async", reinterpret_cast<PyCFunction>(FileProtectionManager_CreateProtectedAndOpenAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_protection_info_async", reinterpret_cast<PyCFunction>(FileProtectionManager_GetProtectionInfoAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_container_async", reinterpret_cast<PyCFunction>(FileProtectionManager_IsContainerAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "load_file_from_container_async", reinterpret_cast<PyCFunction>(FileProtectionManager_LoadFileFromContainerAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "protect_async", reinterpret_cast<PyCFunction>(FileProtectionManager_ProtectAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "save_file_as_container_async", reinterpret_cast<PyCFunction>(FileProtectionManager_SaveFileAsContainerAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "unprotect_async", reinterpret_cast<PyCFunction>(FileProtectionManager_UnprotectAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FileProtectionManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_FileProtectionManager[] = 
+    {
+        { Py_tp_new, _new_FileProtectionManager },
+        { Py_tp_methods, _methods_FileProtectionManager },
+        { Py_tp_getset, _getset_FileProtectionManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_FileProtectionManager =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.FileProtectionManager",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FileProtectionManager
+    };
+
+    // ----- FileRevocationManager class --------------------
+    constexpr const char* const type_name_FileRevocationManager = "FileRevocationManager";
+
+    static PyObject* _new_FileRevocationManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FileRevocationManager);
+        return nullptr;
+    }
+
+    static PyObject* FileRevocationManager_CopyProtectionAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileRevocationManager::CopyProtectionAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileRevocationManager_GetStatusAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileRevocationManager::GetStatusAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileRevocationManager_ProtectAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::FileRevocationManager::ProtectAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FileRevocationManager_Revoke(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                winrt::Windows::Security::EnterpriseData::FileRevocationManager::Revoke(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FileRevocationManager[] = {
+        { "copy_protection_async", reinterpret_cast<PyCFunction>(FileRevocationManager_CopyProtectionAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_status_async", reinterpret_cast<PyCFunction>(FileRevocationManager_GetStatusAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "protect_async", reinterpret_cast<PyCFunction>(FileRevocationManager_ProtectAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "revoke", reinterpret_cast<PyCFunction>(FileRevocationManager_Revoke), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FileRevocationManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_FileRevocationManager[] = 
+    {
+        { Py_tp_new, _new_FileRevocationManager },
+        { Py_tp_methods, _methods_FileRevocationManager },
+        { Py_tp_getset, _getset_FileRevocationManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_FileRevocationManager =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.FileRevocationManager",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FileRevocationManager
+    };
+
+    // ----- FileUnprotectOptions class --------------------
+    constexpr const char* const type_name_FileUnprotectOptions = "FileUnprotectOptions";
+
+    static PyObject* _new_FileUnprotectOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<bool>(args, 0);
+
+                winrt::Windows::Security::EnterpriseData::FileUnprotectOptions instance{ param0 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_FileUnprotectOptions(py::wrapper::Windows::Security::EnterpriseData::FileUnprotectOptions* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* FileUnprotectOptions_get_Audit(py::wrapper::Windows::Security::EnterpriseData::FileUnprotectOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Audit());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FileUnprotectOptions_put_Audit(py::wrapper::Windows::Security::EnterpriseData::FileUnprotectOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.Audit(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_FileUnprotectOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::FileUnprotectOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FileUnprotectOptions[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_FileUnprotectOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FileUnprotectOptions[] = {
+        { "audit", reinterpret_cast<getter>(FileUnprotectOptions_get_Audit), reinterpret_cast<setter>(FileUnprotectOptions_put_Audit), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_FileUnprotectOptions[] = 
+    {
+        { Py_tp_new, _new_FileUnprotectOptions },
+        { Py_tp_dealloc, _dealloc_FileUnprotectOptions },
+        { Py_tp_methods, _methods_FileUnprotectOptions },
+        { Py_tp_getset, _getset_FileUnprotectOptions },
+        { },
+    };
+
+    static PyType_Spec type_spec_FileUnprotectOptions =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.FileUnprotectOptions",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::FileUnprotectOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FileUnprotectOptions
+    };
+
+    // ----- ProtectedAccessResumedEventArgs class --------------------
+    constexpr const char* const type_name_ProtectedAccessResumedEventArgs = "ProtectedAccessResumedEventArgs";
+
+    static PyObject* _new_ProtectedAccessResumedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ProtectedAccessResumedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ProtectedAccessResumedEventArgs(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessResumedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectedAccessResumedEventArgs_get_Identities(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessResumedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Identities());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ProtectedAccessResumedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectedAccessResumedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectedAccessResumedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectedAccessResumedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectedAccessResumedEventArgs[] = {
+        { "identities", reinterpret_cast<getter>(ProtectedAccessResumedEventArgs_get_Identities), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectedAccessResumedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ProtectedAccessResumedEventArgs },
+        { Py_tp_dealloc, _dealloc_ProtectedAccessResumedEventArgs },
+        { Py_tp_methods, _methods_ProtectedAccessResumedEventArgs },
+        { Py_tp_getset, _getset_ProtectedAccessResumedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectedAccessResumedEventArgs =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectedAccessResumedEventArgs",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessResumedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectedAccessResumedEventArgs
+    };
+
+    // ----- ProtectedAccessSuspendingEventArgs class --------------------
+    constexpr const char* const type_name_ProtectedAccessSuspendingEventArgs = "ProtectedAccessSuspendingEventArgs";
+
+    static PyObject* _new_ProtectedAccessSuspendingEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ProtectedAccessSuspendingEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ProtectedAccessSuspendingEventArgs(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectedAccessSuspendingEventArgs_GetDeferral(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectedAccessSuspendingEventArgs_get_Deadline(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Deadline());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectedAccessSuspendingEventArgs_get_Identities(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Identities());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ProtectedAccessSuspendingEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectedAccessSuspendingEventArgs[] = {
+        { "get_deferral", reinterpret_cast<PyCFunction>(ProtectedAccessSuspendingEventArgs_GetDeferral), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectedAccessSuspendingEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectedAccessSuspendingEventArgs[] = {
+        { "deadline", reinterpret_cast<getter>(ProtectedAccessSuspendingEventArgs_get_Deadline), nullptr, nullptr, nullptr },
+        { "identities", reinterpret_cast<getter>(ProtectedAccessSuspendingEventArgs_get_Identities), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectedAccessSuspendingEventArgs[] = 
+    {
+        { Py_tp_new, _new_ProtectedAccessSuspendingEventArgs },
+        { Py_tp_dealloc, _dealloc_ProtectedAccessSuspendingEventArgs },
+        { Py_tp_methods, _methods_ProtectedAccessSuspendingEventArgs },
+        { Py_tp_getset, _getset_ProtectedAccessSuspendingEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectedAccessSuspendingEventArgs =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectedAccessSuspendingEventArgs",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectedAccessSuspendingEventArgs
+    };
+
+    // ----- ProtectedContainerExportResult class --------------------
+    constexpr const char* const type_name_ProtectedContainerExportResult = "ProtectedContainerExportResult";
+
+    static PyObject* _new_ProtectedContainerExportResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ProtectedContainerExportResult);
+        return nullptr;
+    }
+
+    static void _dealloc_ProtectedContainerExportResult(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerExportResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectedContainerExportResult_get_File(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerExportResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.File());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectedContainerExportResult_get_Status(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerExportResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ProtectedContainerExportResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectedContainerExportResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectedContainerExportResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectedContainerExportResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectedContainerExportResult[] = {
+        { "file", reinterpret_cast<getter>(ProtectedContainerExportResult_get_File), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(ProtectedContainerExportResult_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectedContainerExportResult[] = 
+    {
+        { Py_tp_new, _new_ProtectedContainerExportResult },
+        { Py_tp_dealloc, _dealloc_ProtectedContainerExportResult },
+        { Py_tp_methods, _methods_ProtectedContainerExportResult },
+        { Py_tp_getset, _getset_ProtectedContainerExportResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectedContainerExportResult =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectedContainerExportResult",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerExportResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectedContainerExportResult
+    };
+
+    // ----- ProtectedContainerImportResult class --------------------
+    constexpr const char* const type_name_ProtectedContainerImportResult = "ProtectedContainerImportResult";
+
+    static PyObject* _new_ProtectedContainerImportResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ProtectedContainerImportResult);
+        return nullptr;
+    }
+
+    static void _dealloc_ProtectedContainerImportResult(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerImportResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectedContainerImportResult_get_File(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerImportResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.File());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectedContainerImportResult_get_Status(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerImportResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ProtectedContainerImportResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectedContainerImportResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectedContainerImportResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectedContainerImportResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectedContainerImportResult[] = {
+        { "file", reinterpret_cast<getter>(ProtectedContainerImportResult_get_File), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(ProtectedContainerImportResult_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectedContainerImportResult[] = 
+    {
+        { Py_tp_new, _new_ProtectedContainerImportResult },
+        { Py_tp_dealloc, _dealloc_ProtectedContainerImportResult },
+        { Py_tp_methods, _methods_ProtectedContainerImportResult },
+        { Py_tp_getset, _getset_ProtectedContainerImportResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectedContainerImportResult =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectedContainerImportResult",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectedContainerImportResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectedContainerImportResult
+    };
+
+    // ----- ProtectedContentRevokedEventArgs class --------------------
+    constexpr const char* const type_name_ProtectedContentRevokedEventArgs = "ProtectedContentRevokedEventArgs";
+
+    static PyObject* _new_ProtectedContentRevokedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ProtectedContentRevokedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ProtectedContentRevokedEventArgs(py::wrapper::Windows::Security::EnterpriseData::ProtectedContentRevokedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectedContentRevokedEventArgs_get_Identities(py::wrapper::Windows::Security::EnterpriseData::ProtectedContentRevokedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Identities());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ProtectedContentRevokedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectedContentRevokedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectedContentRevokedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectedContentRevokedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectedContentRevokedEventArgs[] = {
+        { "identities", reinterpret_cast<getter>(ProtectedContentRevokedEventArgs_get_Identities), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectedContentRevokedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ProtectedContentRevokedEventArgs },
+        { Py_tp_dealloc, _dealloc_ProtectedContentRevokedEventArgs },
+        { Py_tp_methods, _methods_ProtectedContentRevokedEventArgs },
+        { Py_tp_getset, _getset_ProtectedContentRevokedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectedContentRevokedEventArgs =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectedContentRevokedEventArgs",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectedContentRevokedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectedContentRevokedEventArgs
+    };
+
+    // ----- ProtectedFileCreateResult class --------------------
+    constexpr const char* const type_name_ProtectedFileCreateResult = "ProtectedFileCreateResult";
+
+    static PyObject* _new_ProtectedFileCreateResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ProtectedFileCreateResult);
+        return nullptr;
+    }
+
+    static void _dealloc_ProtectedFileCreateResult(py::wrapper::Windows::Security::EnterpriseData::ProtectedFileCreateResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectedFileCreateResult_get_File(py::wrapper::Windows::Security::EnterpriseData::ProtectedFileCreateResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.File());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectedFileCreateResult_get_ProtectionInfo(py::wrapper::Windows::Security::EnterpriseData::ProtectedFileCreateResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProtectionInfo());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectedFileCreateResult_get_Stream(py::wrapper::Windows::Security::EnterpriseData::ProtectedFileCreateResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Stream());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ProtectedFileCreateResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectedFileCreateResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectedFileCreateResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectedFileCreateResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectedFileCreateResult[] = {
+        { "file", reinterpret_cast<getter>(ProtectedFileCreateResult_get_File), nullptr, nullptr, nullptr },
+        { "protection_info", reinterpret_cast<getter>(ProtectedFileCreateResult_get_ProtectionInfo), nullptr, nullptr, nullptr },
+        { "stream", reinterpret_cast<getter>(ProtectedFileCreateResult_get_Stream), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectedFileCreateResult[] = 
+    {
+        { Py_tp_new, _new_ProtectedFileCreateResult },
+        { Py_tp_dealloc, _dealloc_ProtectedFileCreateResult },
+        { Py_tp_methods, _methods_ProtectedFileCreateResult },
+        { Py_tp_getset, _getset_ProtectedFileCreateResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectedFileCreateResult =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectedFileCreateResult",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectedFileCreateResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectedFileCreateResult
+    };
+
+    // ----- ProtectionPolicyAuditInfo class --------------------
+    constexpr const char* const type_name_ProtectionPolicyAuditInfo = "ProtectionPolicyAuditInfo";
+
+    static PyObject* _new_ProtectionPolicyAuditInfo(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditAction>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::hstring>(args, 2);
+                auto param3 = py::convert_to<winrt::hstring>(args, 3);
+
+                winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo instance{ param0, param1, param2, param3 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditAction>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo instance{ param0, param1 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_ProtectionPolicyAuditInfo(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectionPolicyAuditInfo_get_TargetDescription(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.TargetDescription());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ProtectionPolicyAuditInfo_put_TargetDescription(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.TargetDescription(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ProtectionPolicyAuditInfo_get_SourceDescription(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SourceDescription());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ProtectionPolicyAuditInfo_put_SourceDescription(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.SourceDescription(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ProtectionPolicyAuditInfo_get_DataDescription(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DataDescription());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ProtectionPolicyAuditInfo_put_DataDescription(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.DataDescription(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ProtectionPolicyAuditInfo_get_Action(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Action());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ProtectionPolicyAuditInfo_put_Action(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditAction>(arg);
+
+            self->obj.Action(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_ProtectionPolicyAuditInfo(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectionPolicyAuditInfo[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectionPolicyAuditInfo), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectionPolicyAuditInfo[] = {
+        { "target_description", reinterpret_cast<getter>(ProtectionPolicyAuditInfo_get_TargetDescription), reinterpret_cast<setter>(ProtectionPolicyAuditInfo_put_TargetDescription), nullptr, nullptr },
+        { "source_description", reinterpret_cast<getter>(ProtectionPolicyAuditInfo_get_SourceDescription), reinterpret_cast<setter>(ProtectionPolicyAuditInfo_put_SourceDescription), nullptr, nullptr },
+        { "data_description", reinterpret_cast<getter>(ProtectionPolicyAuditInfo_get_DataDescription), reinterpret_cast<setter>(ProtectionPolicyAuditInfo_put_DataDescription), nullptr, nullptr },
+        { "action", reinterpret_cast<getter>(ProtectionPolicyAuditInfo_get_Action), reinterpret_cast<setter>(ProtectionPolicyAuditInfo_put_Action), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectionPolicyAuditInfo[] = 
+    {
+        { Py_tp_new, _new_ProtectionPolicyAuditInfo },
+        { Py_tp_dealloc, _dealloc_ProtectionPolicyAuditInfo },
+        { Py_tp_methods, _methods_ProtectionPolicyAuditInfo },
+        { Py_tp_getset, _getset_ProtectionPolicyAuditInfo },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectionPolicyAuditInfo =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectionPolicyAuditInfo",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectionPolicyAuditInfo
+    };
+
+    // ----- ProtectionPolicyManager class --------------------
+    constexpr const char* const type_name_ProtectionPolicyManager = "ProtectionPolicyManager";
+
+    static PyObject* _new_ProtectionPolicyManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ProtectionPolicyManager);
+        return nullptr;
+    }
+
+    static void _dealloc_ProtectionPolicyManager(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyManager* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ProtectionPolicyManager_CheckAccess(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::CheckAccess(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_CheckAccessForApp(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::CheckAccessForApp(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_ClearProcessUIPolicy(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::ClearProcessUIPolicy();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_CreateCurrentThreadNetworkContext(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::CreateCurrentThreadNetworkContext(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_GetEnforcementLevel(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::GetEnforcementLevel(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_GetForCurrentView(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::GetForCurrentView());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_GetPrimaryManagedIdentityForIdentity(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::GetPrimaryManagedIdentityForIdentity(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_GetPrimaryManagedIdentityForNetworkEndpointAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Networking::HostName>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::GetPrimaryManagedIdentityForNetworkEndpointAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_HasContentBeenRevokedSince(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Foundation::DateTime>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::HasContentBeenRevokedSince(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_IsFileProtectionRequiredAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageItem>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::IsFileProtectionRequiredAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_IsFileProtectionRequiredForNewFileAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFolder>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::hstring>(args, 2);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::IsFileProtectionRequiredForNewFileAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_IsIdentityManaged(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::IsIdentityManaged(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_IsProtectionUnderLockRequired(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::IsProtectionUnderLockRequired(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_IsRoamableProtectionEnabled(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::IsRoamableProtectionEnabled(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_IsUserDecryptionAllowed(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::IsUserDecryptionAllowed(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_LogAuditEvent(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+
+                winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::LogAuditEvent(param0, param1, param2);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_RequestAccessAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+                auto param3 = py::convert_to<winrt::hstring>(args, 3);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessAsync(param0, param1, param2, param3));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+                auto param3 = py::convert_to<winrt::hstring>(args, 3);
+                auto param4 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyRequestAccessBehavior>(args, 4);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessAsync(param0, param1, param2, param3, param4));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_RequestAccessForAppAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessForAppAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessForAppAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+                auto param3 = py::convert_to<winrt::hstring>(args, 3);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessForAppAsync(param0, param1, param2, param3));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+                auto param3 = py::convert_to<winrt::hstring>(args, 3);
+                auto param4 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyRequestAccessBehavior>(args, 4);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessForAppAsync(param0, param1, param2, param3, param4));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_RequestAccessToFilesForAppAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Storage::IStorageItem>>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessToFilesForAppAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Storage::IStorageItem>>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+                auto param3 = py::convert_to<winrt::hstring>(args, 3);
+                auto param4 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyRequestAccessBehavior>(args, 4);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessToFilesForAppAsync(param0, param1, param2, param3, param4));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_RequestAccessToFilesForProcessAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Storage::IStorageItem>>(args, 0);
+                auto param1 = py::convert_to<uint32_t>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessToFilesForProcessAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Storage::IStorageItem>>(args, 0);
+                auto param1 = py::convert_to<uint32_t>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>(args, 2);
+                auto param3 = py::convert_to<winrt::hstring>(args, 3);
+                auto param4 = py::convert_to<winrt::Windows::Security::EnterpriseData::ProtectionPolicyRequestAccessBehavior>(args, 4);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RequestAccessToFilesForProcessAsync(param0, param1, param2, param3, param4));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_RevokeContent(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::RevokeContent(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_TryApplyProcessUIPolicy(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::TryApplyProcessUIPolicy(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_get_Identity(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyManager* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Identity());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ProtectionPolicyManager_put_Identity(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyManager* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Identity(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_get_ShowEnterpriseIndicator(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyManager* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ShowEnterpriseIndicator());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int ProtectionPolicyManager_put_ShowEnterpriseIndicator(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyManager* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.ShowEnterpriseIndicator(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_get_IsProtectionEnabled(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::IsProtectionEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_get_PrimaryManagedIdentity(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::PrimaryManagedIdentity());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_add_PolicyChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::PolicyChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_remove_PolicyChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::PolicyChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_add_ProtectedAccessResumed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Security::EnterpriseData::ProtectedAccessResumedEventArgs>>(arg);
+
+            return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::ProtectedAccessResumed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_remove_ProtectedAccessResumed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::ProtectedAccessResumed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_add_ProtectedAccessSuspending(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs>>(arg);
+
+            return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::ProtectedAccessSuspending(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_remove_ProtectedAccessSuspending(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::ProtectedAccessSuspending(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_add_ProtectedContentRevoked(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Security::EnterpriseData::ProtectedContentRevokedEventArgs>>(arg);
+
+            return py::convert(winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::ProtectedContentRevoked(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ProtectionPolicyManager_remove_ProtectedContentRevoked(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager::ProtectedContentRevoked(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ProtectionPolicyManager(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ProtectionPolicyManager[] = {
+        { "check_access", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_CheckAccess), METH_VARARGS | METH_STATIC, nullptr },
+        { "check_access_for_app", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_CheckAccessForApp), METH_VARARGS | METH_STATIC, nullptr },
+        { "clear_process_u_i_policy", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_ClearProcessUIPolicy), METH_VARARGS | METH_STATIC, nullptr },
+        { "create_current_thread_network_context", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_CreateCurrentThreadNetworkContext), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_enforcement_level", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_GetEnforcementLevel), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_for_current_view", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_GetForCurrentView), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_primary_managed_identity_for_identity", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_GetPrimaryManagedIdentityForIdentity), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_primary_managed_identity_for_network_endpoint_async", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_GetPrimaryManagedIdentityForNetworkEndpointAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "has_content_been_revoked_since", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_HasContentBeenRevokedSince), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_file_protection_required_async", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_IsFileProtectionRequiredAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_file_protection_required_for_new_file_async", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_IsFileProtectionRequiredForNewFileAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_identity_managed", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_IsIdentityManaged), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_protection_under_lock_required", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_IsProtectionUnderLockRequired), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_roamable_protection_enabled", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_IsRoamableProtectionEnabled), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_user_decryption_allowed", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_IsUserDecryptionAllowed), METH_VARARGS | METH_STATIC, nullptr },
+        { "log_audit_event", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_LogAuditEvent), METH_VARARGS | METH_STATIC, nullptr },
+        { "request_access_async", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_RequestAccessAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "request_access_for_app_async", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_RequestAccessForAppAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "request_access_to_files_for_app_async", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_RequestAccessToFilesForAppAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "request_access_to_files_for_process_async", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_RequestAccessToFilesForProcessAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "revoke_content", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_RevokeContent), METH_VARARGS | METH_STATIC, nullptr },
+        { "try_apply_process_u_i_policy", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_TryApplyProcessUIPolicy), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_is_protection_enabled", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_get_IsProtectionEnabled), METH_NOARGS | METH_STATIC, nullptr },
+        { "get_primary_managed_identity", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_get_PrimaryManagedIdentity), METH_NOARGS | METH_STATIC, nullptr },
+        { "add_policy_changed", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_add_PolicyChanged), METH_O | METH_STATIC, nullptr },
+        { "remove_policy_changed", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_remove_PolicyChanged), METH_O | METH_STATIC, nullptr },
+        { "add_protected_access_resumed", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_add_ProtectedAccessResumed), METH_O | METH_STATIC, nullptr },
+        { "remove_protected_access_resumed", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_remove_ProtectedAccessResumed), METH_O | METH_STATIC, nullptr },
+        { "add_protected_access_suspending", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_add_ProtectedAccessSuspending), METH_O | METH_STATIC, nullptr },
+        { "remove_protected_access_suspending", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_remove_ProtectedAccessSuspending), METH_O | METH_STATIC, nullptr },
+        { "add_protected_content_revoked", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_add_ProtectedContentRevoked), METH_O | METH_STATIC, nullptr },
+        { "remove_protected_content_revoked", reinterpret_cast<PyCFunction>(ProtectionPolicyManager_remove_ProtectedContentRevoked), METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_ProtectionPolicyManager), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ProtectionPolicyManager[] = {
+        { "identity", reinterpret_cast<getter>(ProtectionPolicyManager_get_Identity), reinterpret_cast<setter>(ProtectionPolicyManager_put_Identity), nullptr, nullptr },
+        { "show_enterprise_indicator", reinterpret_cast<getter>(ProtectionPolicyManager_get_ShowEnterpriseIndicator), reinterpret_cast<setter>(ProtectionPolicyManager_put_ShowEnterpriseIndicator), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ProtectionPolicyManager[] = 
+    {
+        { Py_tp_new, _new_ProtectionPolicyManager },
+        { Py_tp_dealloc, _dealloc_ProtectionPolicyManager },
+        { Py_tp_methods, _methods_ProtectionPolicyManager },
+        { Py_tp_getset, _getset_ProtectionPolicyManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_ProtectionPolicyManager =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ProtectionPolicyManager",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ProtectionPolicyManager),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ProtectionPolicyManager
+    };
+
+    // ----- ThreadNetworkContext class --------------------
+    constexpr const char* const type_name_ThreadNetworkContext = "ThreadNetworkContext";
+
+    static PyObject* _new_ThreadNetworkContext(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ThreadNetworkContext);
+        return nullptr;
+    }
+
+    static void _dealloc_ThreadNetworkContext(py::wrapper::Windows::Security::EnterpriseData::ThreadNetworkContext* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ThreadNetworkContext_Close(py::wrapper::Windows::Security::EnterpriseData::ThreadNetworkContext* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ThreadNetworkContext(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::EnterpriseData::ThreadNetworkContext>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _enter_ThreadNetworkContext(py::wrapper::Windows::Security::EnterpriseData::ThreadNetworkContext* self) noexcept
+    {
+        Py_INCREF(self);
+        return reinterpret_cast<PyObject*>(self);
+    }
+
+    static PyObject* _exit_ThreadNetworkContext(py::wrapper::Windows::Security::EnterpriseData::ThreadNetworkContext* self) noexcept
+    {
+        try
+        {
+            self->obj.Close();
+            Py_RETURN_FALSE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ThreadNetworkContext[] = {
+        { "close", reinterpret_cast<PyCFunction>(ThreadNetworkContext_Close), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_ThreadNetworkContext), METH_O | METH_STATIC, nullptr },
+        { "__enter__", reinterpret_cast<PyCFunction>(_enter_ThreadNetworkContext), METH_NOARGS, nullptr },
+        { "__exit__",  reinterpret_cast<PyCFunction>(_exit_ThreadNetworkContext), METH_VARARGS, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ThreadNetworkContext[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_ThreadNetworkContext[] = 
+    {
+        { Py_tp_new, _new_ThreadNetworkContext },
+        { Py_tp_dealloc, _dealloc_ThreadNetworkContext },
+        { Py_tp_methods, _methods_ThreadNetworkContext },
+        { Py_tp_getset, _getset_ThreadNetworkContext },
+        { },
+    };
+
+    static PyType_Spec type_spec_ThreadNetworkContext =
+    {
+        "_winsdk_Windows_Security_EnterpriseData.ThreadNetworkContext",
+        sizeof(py::wrapper::Windows::Security::EnterpriseData::ThreadNetworkContext),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ThreadNetworkContext
+    };
+
     // ----- Windows.Security.EnterpriseData Initialization --------------------
     PyDoc_STRVAR(module_doc, "Windows::Security::EnterpriseData");
 
     static PyMethodDef module_methods[] = {
+        {"_register_DataProtectionStatus", register_DataProtectionStatus, METH_O, "registers type"},
+        {"_register_EnforcementLevel", register_EnforcementLevel, METH_O, "registers type"},
+        {"_register_FileProtectionStatus", register_FileProtectionStatus, METH_O, "registers type"},
+        {"_register_ProtectedImportExportStatus", register_ProtectedImportExportStatus, METH_O, "registers type"},
+        {"_register_ProtectionPolicyAuditAction", register_ProtectionPolicyAuditAction, METH_O, "registers type"},
         {"_register_ProtectionPolicyEvaluationResult", register_ProtectionPolicyEvaluationResult, METH_O, "registers type"},
+        {"_register_ProtectionPolicyRequestAccessBehavior", register_ProtectionPolicyRequestAccessBehavior, METH_O, "registers type"},
         {}};
 
 
@@ -52,7 +3162,29 @@ namespace py::cpp::Windows::Security::EnterpriseData
             return 0;
         }
 
+        Py_VISIT(state->type_DataProtectionStatus);
+        Py_VISIT(state->type_EnforcementLevel);
+        Py_VISIT(state->type_FileProtectionStatus);
+        Py_VISIT(state->type_ProtectedImportExportStatus);
+        Py_VISIT(state->type_ProtectionPolicyAuditAction);
         Py_VISIT(state->type_ProtectionPolicyEvaluationResult);
+        Py_VISIT(state->type_ProtectionPolicyRequestAccessBehavior);
+        Py_VISIT(state->type_BufferProtectUnprotectResult);
+        Py_VISIT(state->type_DataProtectionInfo);
+        Py_VISIT(state->type_DataProtectionManager);
+        Py_VISIT(state->type_FileProtectionInfo);
+        Py_VISIT(state->type_FileProtectionManager);
+        Py_VISIT(state->type_FileRevocationManager);
+        Py_VISIT(state->type_FileUnprotectOptions);
+        Py_VISIT(state->type_ProtectedAccessResumedEventArgs);
+        Py_VISIT(state->type_ProtectedAccessSuspendingEventArgs);
+        Py_VISIT(state->type_ProtectedContainerExportResult);
+        Py_VISIT(state->type_ProtectedContainerImportResult);
+        Py_VISIT(state->type_ProtectedContentRevokedEventArgs);
+        Py_VISIT(state->type_ProtectedFileCreateResult);
+        Py_VISIT(state->type_ProtectionPolicyAuditInfo);
+        Py_VISIT(state->type_ProtectionPolicyManager);
+        Py_VISIT(state->type_ThreadNetworkContext);
 
         return 0;
     }
@@ -66,7 +3198,29 @@ namespace py::cpp::Windows::Security::EnterpriseData
             return 0;
         }
 
+        Py_CLEAR(state->type_DataProtectionStatus);
+        Py_CLEAR(state->type_EnforcementLevel);
+        Py_CLEAR(state->type_FileProtectionStatus);
+        Py_CLEAR(state->type_ProtectedImportExportStatus);
+        Py_CLEAR(state->type_ProtectionPolicyAuditAction);
         Py_CLEAR(state->type_ProtectionPolicyEvaluationResult);
+        Py_CLEAR(state->type_ProtectionPolicyRequestAccessBehavior);
+        Py_CLEAR(state->type_BufferProtectUnprotectResult);
+        Py_CLEAR(state->type_DataProtectionInfo);
+        Py_CLEAR(state->type_DataProtectionManager);
+        Py_CLEAR(state->type_FileProtectionInfo);
+        Py_CLEAR(state->type_FileProtectionManager);
+        Py_CLEAR(state->type_FileRevocationManager);
+        Py_CLEAR(state->type_FileUnprotectOptions);
+        Py_CLEAR(state->type_ProtectedAccessResumedEventArgs);
+        Py_CLEAR(state->type_ProtectedAccessSuspendingEventArgs);
+        Py_CLEAR(state->type_ProtectedContainerExportResult);
+        Py_CLEAR(state->type_ProtectedContainerImportResult);
+        Py_CLEAR(state->type_ProtectedContentRevokedEventArgs);
+        Py_CLEAR(state->type_ProtectedFileCreateResult);
+        Py_CLEAR(state->type_ProtectionPolicyAuditInfo);
+        Py_CLEAR(state->type_ProtectionPolicyManager);
+        Py_CLEAR(state->type_ThreadNetworkContext);
 
         return 0;
     }
@@ -175,8 +3329,251 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Security_EnterpriseData(void) noexcept
     auto state = reinterpret_cast<module_state*>(PyModule_GetState(module.get()));
     assert(state);
 
+    state->type_BufferProtectUnprotectResult = py::register_python_type(module.get(), type_name_BufferProtectUnprotectResult, &type_spec_BufferProtectUnprotectResult, bases.get());
+    if (!state->type_BufferProtectUnprotectResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_BufferProtectUnprotectResult);
+
+    state->type_DataProtectionInfo = py::register_python_type(module.get(), type_name_DataProtectionInfo, &type_spec_DataProtectionInfo, bases.get());
+    if (!state->type_DataProtectionInfo)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_DataProtectionInfo);
+
+    state->type_DataProtectionManager = py::register_python_type(module.get(), type_name_DataProtectionManager, &type_spec_DataProtectionManager, nullptr);
+    if (!state->type_DataProtectionManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_DataProtectionManager);
+
+    state->type_FileProtectionInfo = py::register_python_type(module.get(), type_name_FileProtectionInfo, &type_spec_FileProtectionInfo, bases.get());
+    if (!state->type_FileProtectionInfo)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FileProtectionInfo);
+
+    state->type_FileProtectionManager = py::register_python_type(module.get(), type_name_FileProtectionManager, &type_spec_FileProtectionManager, nullptr);
+    if (!state->type_FileProtectionManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FileProtectionManager);
+
+    state->type_FileRevocationManager = py::register_python_type(module.get(), type_name_FileRevocationManager, &type_spec_FileRevocationManager, nullptr);
+    if (!state->type_FileRevocationManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FileRevocationManager);
+
+    state->type_FileUnprotectOptions = py::register_python_type(module.get(), type_name_FileUnprotectOptions, &type_spec_FileUnprotectOptions, bases.get());
+    if (!state->type_FileUnprotectOptions)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FileUnprotectOptions);
+
+    state->type_ProtectedAccessResumedEventArgs = py::register_python_type(module.get(), type_name_ProtectedAccessResumedEventArgs, &type_spec_ProtectedAccessResumedEventArgs, bases.get());
+    if (!state->type_ProtectedAccessResumedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectedAccessResumedEventArgs);
+
+    state->type_ProtectedAccessSuspendingEventArgs = py::register_python_type(module.get(), type_name_ProtectedAccessSuspendingEventArgs, &type_spec_ProtectedAccessSuspendingEventArgs, bases.get());
+    if (!state->type_ProtectedAccessSuspendingEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectedAccessSuspendingEventArgs);
+
+    state->type_ProtectedContainerExportResult = py::register_python_type(module.get(), type_name_ProtectedContainerExportResult, &type_spec_ProtectedContainerExportResult, bases.get());
+    if (!state->type_ProtectedContainerExportResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectedContainerExportResult);
+
+    state->type_ProtectedContainerImportResult = py::register_python_type(module.get(), type_name_ProtectedContainerImportResult, &type_spec_ProtectedContainerImportResult, bases.get());
+    if (!state->type_ProtectedContainerImportResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectedContainerImportResult);
+
+    state->type_ProtectedContentRevokedEventArgs = py::register_python_type(module.get(), type_name_ProtectedContentRevokedEventArgs, &type_spec_ProtectedContentRevokedEventArgs, bases.get());
+    if (!state->type_ProtectedContentRevokedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectedContentRevokedEventArgs);
+
+    state->type_ProtectedFileCreateResult = py::register_python_type(module.get(), type_name_ProtectedFileCreateResult, &type_spec_ProtectedFileCreateResult, bases.get());
+    if (!state->type_ProtectedFileCreateResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectedFileCreateResult);
+
+    state->type_ProtectionPolicyAuditInfo = py::register_python_type(module.get(), type_name_ProtectionPolicyAuditInfo, &type_spec_ProtectionPolicyAuditInfo, bases.get());
+    if (!state->type_ProtectionPolicyAuditInfo)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectionPolicyAuditInfo);
+
+    state->type_ProtectionPolicyManager = py::register_python_type(module.get(), type_name_ProtectionPolicyManager, &type_spec_ProtectionPolicyManager, bases.get());
+    if (!state->type_ProtectionPolicyManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ProtectionPolicyManager);
+
+    state->type_ThreadNetworkContext = py::register_python_type(module.get(), type_name_ThreadNetworkContext, &type_spec_ThreadNetworkContext, bases.get());
+    if (!state->type_ThreadNetworkContext)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ThreadNetworkContext);
+
 
     return module.detach();
+}
+
+PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::DataProtectionStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DataProtectionStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::DataProtectionStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::EnforcementLevel>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EnforcementLevel;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::EnforcementLevel is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::FileProtectionStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FileProtectionStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::FileProtectionStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::ProtectedImportExportStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectedImportExportStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectedImportExportStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditAction>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectionPolicyAuditAction;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditAction is not registered");
+        return nullptr;
+    }
+
+    return python_type;
 }
 
 PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::ProtectionPolicyEvaluationResult>::get_python_type() noexcept {
@@ -196,6 +3593,397 @@ PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::ProtectionPolicy
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectionPolicyEvaluationResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::EnterpriseData::ProtectionPolicyRequestAccessBehavior>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectionPolicyRequestAccessBehavior;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectionPolicyRequestAccessBehavior is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::BufferProtectUnprotectResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_BufferProtectUnprotectResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::BufferProtectUnprotectResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::DataProtectionInfo>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DataProtectionInfo;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::DataProtectionInfo is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::DataProtectionManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DataProtectionManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::DataProtectionManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::FileProtectionInfo>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FileProtectionInfo;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::FileProtectionInfo is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::FileProtectionManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FileProtectionManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::FileProtectionManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::FileRevocationManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FileRevocationManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::FileRevocationManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::FileUnprotectOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FileUnprotectOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::FileUnprotectOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectedAccessResumedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectedAccessResumedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectedAccessResumedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectedAccessSuspendingEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectedAccessSuspendingEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectedContainerExportResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectedContainerExportResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectedContainerExportResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectedContainerImportResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectedContainerImportResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectedContainerImportResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectedContentRevokedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectedContentRevokedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectedContentRevokedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectedFileCreateResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectedFileCreateResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectedFileCreateResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectionPolicyAuditInfo;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectionPolicyAuditInfo is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ProtectionPolicyManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ProtectionPolicyManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::EnterpriseData::ThreadNetworkContext>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::EnterpriseData;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::EnterpriseData");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ThreadNetworkContext;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::EnterpriseData::ThreadNetworkContext is not registered");
         return nullptr;
     }
 

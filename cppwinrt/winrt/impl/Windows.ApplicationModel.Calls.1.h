@@ -27,6 +27,27 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Calls
         ICallStateChangeEventArgs(std::nullptr_t = nullptr) noexcept {}
         ICallStateChangeEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ILockScreenCallEndCallDeferral :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILockScreenCallEndCallDeferral>
+    {
+        ILockScreenCallEndCallDeferral(std::nullptr_t = nullptr) noexcept {}
+        ILockScreenCallEndCallDeferral(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ILockScreenCallEndRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILockScreenCallEndRequestedEventArgs>
+    {
+        ILockScreenCallEndRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ILockScreenCallEndRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ILockScreenCallUI :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILockScreenCallUI>
+    {
+        ILockScreenCallUI(std::nullptr_t = nullptr) noexcept {}
+        ILockScreenCallUI(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IMuteChangeEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IMuteChangeEventArgs>

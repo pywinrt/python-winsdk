@@ -90,7 +90,10 @@ namespace py::cpp::Windows::UI::Core
         PyTypeObject* type_CoreIndependentInputSource;
         PyTypeObject* type_CoreIndependentInputSourceController;
         PyTypeObject* type_CoreWindow;
+        PyTypeObject* type_CoreWindowDialog;
         PyTypeObject* type_CoreWindowEventArgs;
+        PyTypeObject* type_CoreWindowFlyout;
+        PyTypeObject* type_CoreWindowPopupShowingEventArgs;
         PyTypeObject* type_CoreWindowResizeManager;
         PyTypeObject* type_IdleDispatchedHandlerArgs;
         PyTypeObject* type_InputEnabledEventArgs;
@@ -4513,6 +4516,381 @@ namespace py::cpp::Windows::UI::Core
         _type_slots_CoreWindow
     };
 
+    // ----- CoreWindowDialog class --------------------
+    constexpr const char* const type_name_CoreWindowDialog = "CoreWindowDialog";
+
+    static PyObject* _new_CoreWindowDialog(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                winrt::Windows::UI::Core::CoreWindowDialog instance{ param0 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::UI::Core::CoreWindowDialog instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_CoreWindowDialog(py::wrapper::Windows::UI::Core::CoreWindowDialog* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* CoreWindowDialog_ShowAsync(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.ShowAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_Title(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Title());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowDialog_put_Title(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Title(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_IsInteractionDelayed(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsInteractionDelayed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowDialog_put_IsInteractionDelayed(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<int32_t>(arg);
+
+            self->obj.IsInteractionDelayed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_DefaultCommandIndex(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DefaultCommandIndex());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowDialog_put_DefaultCommandIndex(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint32_t>(arg);
+
+            self->obj.DefaultCommandIndex(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_CancelCommandIndex(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CancelCommandIndex());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowDialog_put_CancelCommandIndex(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint32_t>(arg);
+
+            self->obj.CancelCommandIndex(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_BackButtonCommand(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.BackButtonCommand());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowDialog_put_BackButtonCommand(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::UI::Popups::UICommandInvokedHandler>(arg);
+
+            self->obj.BackButtonCommand(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_Commands(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Commands());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_MaxSize(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxSize());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_get_MinSize(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MinSize());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_add_Showing(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>>(arg);
+
+            return py::convert(self->obj.Showing(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowDialog_remove_Showing(py::wrapper::Windows::UI::Core::CoreWindowDialog* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.Showing(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_CoreWindowDialog(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Core::CoreWindowDialog>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CoreWindowDialog[] = {
+        { "show_async", reinterpret_cast<PyCFunction>(CoreWindowDialog_ShowAsync), METH_VARARGS, nullptr },
+        { "add_showing", reinterpret_cast<PyCFunction>(CoreWindowDialog_add_Showing), METH_O, nullptr },
+        { "remove_showing", reinterpret_cast<PyCFunction>(CoreWindowDialog_remove_Showing), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_CoreWindowDialog), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CoreWindowDialog[] = {
+        { "title", reinterpret_cast<getter>(CoreWindowDialog_get_Title), reinterpret_cast<setter>(CoreWindowDialog_put_Title), nullptr, nullptr },
+        { "is_interaction_delayed", reinterpret_cast<getter>(CoreWindowDialog_get_IsInteractionDelayed), reinterpret_cast<setter>(CoreWindowDialog_put_IsInteractionDelayed), nullptr, nullptr },
+        { "default_command_index", reinterpret_cast<getter>(CoreWindowDialog_get_DefaultCommandIndex), reinterpret_cast<setter>(CoreWindowDialog_put_DefaultCommandIndex), nullptr, nullptr },
+        { "cancel_command_index", reinterpret_cast<getter>(CoreWindowDialog_get_CancelCommandIndex), reinterpret_cast<setter>(CoreWindowDialog_put_CancelCommandIndex), nullptr, nullptr },
+        { "back_button_command", reinterpret_cast<getter>(CoreWindowDialog_get_BackButtonCommand), reinterpret_cast<setter>(CoreWindowDialog_put_BackButtonCommand), nullptr, nullptr },
+        { "commands", reinterpret_cast<getter>(CoreWindowDialog_get_Commands), nullptr, nullptr, nullptr },
+        { "max_size", reinterpret_cast<getter>(CoreWindowDialog_get_MaxSize), nullptr, nullptr, nullptr },
+        { "min_size", reinterpret_cast<getter>(CoreWindowDialog_get_MinSize), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_CoreWindowDialog[] = 
+    {
+        { Py_tp_new, _new_CoreWindowDialog },
+        { Py_tp_dealloc, _dealloc_CoreWindowDialog },
+        { Py_tp_methods, _methods_CoreWindowDialog },
+        { Py_tp_getset, _getset_CoreWindowDialog },
+        { },
+    };
+
+    static PyType_Spec type_spec_CoreWindowDialog =
+    {
+        "_winsdk_Windows_UI_Core.CoreWindowDialog",
+        sizeof(py::wrapper::Windows::UI::Core::CoreWindowDialog),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CoreWindowDialog
+    };
+
     // ----- CoreWindowEventArgs class --------------------
     constexpr const char* const type_name_CoreWindowEventArgs = "CoreWindowEventArgs";
 
@@ -4605,6 +4983,433 @@ namespace py::cpp::Windows::UI::Core
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_CoreWindowEventArgs
+    };
+
+    // ----- CoreWindowFlyout class --------------------
+    constexpr const char* const type_name_CoreWindowFlyout = "CoreWindowFlyout";
+
+    static PyObject* _new_CoreWindowFlyout(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Point>(args, 0);
+
+                winrt::Windows::UI::Core::CoreWindowFlyout instance{ param0 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Point>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                winrt::Windows::UI::Core::CoreWindowFlyout instance{ param0, param1 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_CoreWindowFlyout(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* CoreWindowFlyout_ShowAsync(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.ShowAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_get_Title(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Title());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowFlyout_put_Title(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Title(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_get_IsInteractionDelayed(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsInteractionDelayed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowFlyout_put_IsInteractionDelayed(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<int32_t>(arg);
+
+            self->obj.IsInteractionDelayed(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_get_DefaultCommandIndex(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DefaultCommandIndex());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowFlyout_put_DefaultCommandIndex(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint32_t>(arg);
+
+            self->obj.DefaultCommandIndex(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_get_BackButtonCommand(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.BackButtonCommand());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CoreWindowFlyout_put_BackButtonCommand(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::UI::Popups::UICommandInvokedHandler>(arg);
+
+            self->obj.BackButtonCommand(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_get_Commands(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Commands());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_get_MaxSize(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxSize());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_get_MinSize(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MinSize());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_add_Showing(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>>(arg);
+
+            return py::convert(self->obj.Showing(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CoreWindowFlyout_remove_Showing(py::wrapper::Windows::UI::Core::CoreWindowFlyout* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.Showing(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_CoreWindowFlyout(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Core::CoreWindowFlyout>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CoreWindowFlyout[] = {
+        { "show_async", reinterpret_cast<PyCFunction>(CoreWindowFlyout_ShowAsync), METH_VARARGS, nullptr },
+        { "add_showing", reinterpret_cast<PyCFunction>(CoreWindowFlyout_add_Showing), METH_O, nullptr },
+        { "remove_showing", reinterpret_cast<PyCFunction>(CoreWindowFlyout_remove_Showing), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_CoreWindowFlyout), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CoreWindowFlyout[] = {
+        { "title", reinterpret_cast<getter>(CoreWindowFlyout_get_Title), reinterpret_cast<setter>(CoreWindowFlyout_put_Title), nullptr, nullptr },
+        { "is_interaction_delayed", reinterpret_cast<getter>(CoreWindowFlyout_get_IsInteractionDelayed), reinterpret_cast<setter>(CoreWindowFlyout_put_IsInteractionDelayed), nullptr, nullptr },
+        { "default_command_index", reinterpret_cast<getter>(CoreWindowFlyout_get_DefaultCommandIndex), reinterpret_cast<setter>(CoreWindowFlyout_put_DefaultCommandIndex), nullptr, nullptr },
+        { "back_button_command", reinterpret_cast<getter>(CoreWindowFlyout_get_BackButtonCommand), reinterpret_cast<setter>(CoreWindowFlyout_put_BackButtonCommand), nullptr, nullptr },
+        { "commands", reinterpret_cast<getter>(CoreWindowFlyout_get_Commands), nullptr, nullptr, nullptr },
+        { "max_size", reinterpret_cast<getter>(CoreWindowFlyout_get_MaxSize), nullptr, nullptr, nullptr },
+        { "min_size", reinterpret_cast<getter>(CoreWindowFlyout_get_MinSize), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_CoreWindowFlyout[] = 
+    {
+        { Py_tp_new, _new_CoreWindowFlyout },
+        { Py_tp_dealloc, _dealloc_CoreWindowFlyout },
+        { Py_tp_methods, _methods_CoreWindowFlyout },
+        { Py_tp_getset, _getset_CoreWindowFlyout },
+        { },
+    };
+
+    static PyType_Spec type_spec_CoreWindowFlyout =
+    {
+        "_winsdk_Windows_UI_Core.CoreWindowFlyout",
+        sizeof(py::wrapper::Windows::UI::Core::CoreWindowFlyout),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CoreWindowFlyout
+    };
+
+    // ----- CoreWindowPopupShowingEventArgs class --------------------
+    constexpr const char* const type_name_CoreWindowPopupShowingEventArgs = "CoreWindowPopupShowingEventArgs";
+
+    static PyObject* _new_CoreWindowPopupShowingEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_CoreWindowPopupShowingEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_CoreWindowPopupShowingEventArgs(py::wrapper::Windows::UI::Core::CoreWindowPopupShowingEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* CoreWindowPopupShowingEventArgs_SetDesiredSize(py::wrapper::Windows::UI::Core::CoreWindowPopupShowingEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Size>(args, 0);
+
+                self->obj.SetDesiredSize(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_CoreWindowPopupShowingEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CoreWindowPopupShowingEventArgs[] = {
+        { "set_desired_size", reinterpret_cast<PyCFunction>(CoreWindowPopupShowingEventArgs_SetDesiredSize), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_CoreWindowPopupShowingEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CoreWindowPopupShowingEventArgs[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_CoreWindowPopupShowingEventArgs[] = 
+    {
+        { Py_tp_new, _new_CoreWindowPopupShowingEventArgs },
+        { Py_tp_dealloc, _dealloc_CoreWindowPopupShowingEventArgs },
+        { Py_tp_methods, _methods_CoreWindowPopupShowingEventArgs },
+        { Py_tp_getset, _getset_CoreWindowPopupShowingEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_CoreWindowPopupShowingEventArgs =
+    {
+        "_winsdk_Windows_UI_Core.CoreWindowPopupShowingEventArgs",
+        sizeof(py::wrapper::Windows::UI::Core::CoreWindowPopupShowingEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CoreWindowPopupShowingEventArgs
     };
 
     // ----- CoreWindowResizeManager class --------------------
@@ -8720,7 +9525,10 @@ namespace py::cpp::Windows::UI::Core
         Py_VISIT(state->type_CoreIndependentInputSource);
         Py_VISIT(state->type_CoreIndependentInputSourceController);
         Py_VISIT(state->type_CoreWindow);
+        Py_VISIT(state->type_CoreWindowDialog);
         Py_VISIT(state->type_CoreWindowEventArgs);
+        Py_VISIT(state->type_CoreWindowFlyout);
+        Py_VISIT(state->type_CoreWindowPopupShowingEventArgs);
         Py_VISIT(state->type_CoreWindowResizeManager);
         Py_VISIT(state->type_IdleDispatchedHandlerArgs);
         Py_VISIT(state->type_InputEnabledEventArgs);
@@ -8778,7 +9586,10 @@ namespace py::cpp::Windows::UI::Core
         Py_CLEAR(state->type_CoreIndependentInputSource);
         Py_CLEAR(state->type_CoreIndependentInputSourceController);
         Py_CLEAR(state->type_CoreWindow);
+        Py_CLEAR(state->type_CoreWindowDialog);
         Py_CLEAR(state->type_CoreWindowEventArgs);
+        Py_CLEAR(state->type_CoreWindowFlyout);
+        Py_CLEAR(state->type_CoreWindowPopupShowingEventArgs);
         Py_CLEAR(state->type_CoreWindowResizeManager);
         Py_CLEAR(state->type_IdleDispatchedHandlerArgs);
         Py_CLEAR(state->type_InputEnabledEventArgs);
@@ -9003,6 +9814,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_Core(void) noexcept
 
     Py_INCREF(state->type_CoreWindow);
 
+    state->type_CoreWindowDialog = py::register_python_type(module.get(), type_name_CoreWindowDialog, &type_spec_CoreWindowDialog, bases.get());
+    if (!state->type_CoreWindowDialog)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CoreWindowDialog);
+
     state->type_CoreWindowEventArgs = py::register_python_type(module.get(), type_name_CoreWindowEventArgs, &type_spec_CoreWindowEventArgs, bases.get());
     if (!state->type_CoreWindowEventArgs)
     {
@@ -9010,6 +9829,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_Core(void) noexcept
     }
 
     Py_INCREF(state->type_CoreWindowEventArgs);
+
+    state->type_CoreWindowFlyout = py::register_python_type(module.get(), type_name_CoreWindowFlyout, &type_spec_CoreWindowFlyout, bases.get());
+    if (!state->type_CoreWindowFlyout)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CoreWindowFlyout);
+
+    state->type_CoreWindowPopupShowingEventArgs = py::register_python_type(module.get(), type_name_CoreWindowPopupShowingEventArgs, &type_spec_CoreWindowPopupShowingEventArgs, bases.get());
+    if (!state->type_CoreWindowPopupShowingEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CoreWindowPopupShowingEventArgs);
 
     state->type_CoreWindowResizeManager = py::register_python_type(module.get(), type_name_CoreWindowResizeManager, &type_spec_CoreWindowResizeManager, bases.get());
     if (!state->type_CoreWindowResizeManager)
@@ -9727,6 +10562,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::Core::CoreWindow>::get_python_t
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Core::CoreWindowDialog>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Core;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Core");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CoreWindowDialog;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Core::CoreWindowDialog is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::UI::Core::CoreWindowEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::UI::Core;
 
@@ -9744,6 +10602,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::Core::CoreWindowEventArgs>::get
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Core::CoreWindowEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Core::CoreWindowFlyout>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Core;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Core");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CoreWindowFlyout;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Core::CoreWindowFlyout is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Core;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Core");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CoreWindowPopupShowingEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs is not registered");
         return nullptr;
     }
 

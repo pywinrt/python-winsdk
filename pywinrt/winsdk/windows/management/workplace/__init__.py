@@ -14,3 +14,4 @@ class MessagingSyncPolicy(enum.IntEnum):
 _ns_module._register_MessagingSyncPolicy(MessagingSyncPolicy)
 
 MdmPolicy = _ns_module.MdmPolicy
+WorkplaceSettings = _ns_module.WorkplaceSettings

@@ -71,6 +71,220 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IImageDisplayProperties)->put_Subtitle(*(void**)(&value)));
     }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::SoundLevelChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_SoundLevelChanged(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::SoundLevelChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, SoundLevelChanged_revoker>(this, SoundLevelChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::SoundLevelChanged(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_SoundLevelChanged(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PlayPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_PlayPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PlayPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, PlayPressed_revoker>(this, PlayPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PlayPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_PlayPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PausePressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_PausePressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PausePressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, PausePressed_revoker>(this, PausePressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PausePressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_PausePressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::StopPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_StopPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::StopPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, StopPressed_revoker>(this, StopPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::StopPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_StopPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PlayPauseTogglePressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_PlayPauseTogglePressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PlayPauseTogglePressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, PlayPauseTogglePressed_revoker>(this, PlayPauseTogglePressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PlayPauseTogglePressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_PlayPauseTogglePressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::RecordPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_RecordPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::RecordPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, RecordPressed_revoker>(this, RecordPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::RecordPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_RecordPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::NextTrackPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_NextTrackPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::NextTrackPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, NextTrackPressed_revoker>(this, NextTrackPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::NextTrackPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_NextTrackPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PreviousTrackPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_PreviousTrackPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PreviousTrackPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, PreviousTrackPressed_revoker>(this, PreviousTrackPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::PreviousTrackPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_PreviousTrackPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::FastForwardPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_FastForwardPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::FastForwardPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, FastForwardPressed_revoker>(this, FastForwardPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::FastForwardPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_FastForwardPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::RewindPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_RewindPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::RewindPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, RewindPressed_revoker>(this, RewindPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::RewindPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_RewindPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ChannelUpPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_ChannelUpPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ChannelUpPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, ChannelUpPressed_revoker>(this, ChannelUpPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ChannelUpPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_ChannelUpPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ChannelDownPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->add_ChannelDownPressed(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ChannelDownPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, ChannelDownPressed_revoker>(this, ChannelDownPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ChannelDownPressed(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->remove_ChannelDownPressed(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::SoundLevel() const
+    {
+        winrt::Windows::Media::SoundLevel value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->get_SoundLevel(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::TrackName(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->put_TrackName(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::TrackName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->get_TrackName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ArtistName(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->put_ArtistName(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::ArtistName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->get_ArtistName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::IsPlaying(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->put_IsPlaying(value));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::IsPlaying() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->get_IsPlaying(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::AlbumArt(winrt::Windows::Foundation::Uri const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->put_AlbumArt(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_IMediaControl<D>::AlbumArt() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaControl)->get_AlbumArt(&value));
+        return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Media_IMediaExtension<D>::SetProperties(winrt::Windows::Foundation::Collections::IPropertySet const& configuration) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::IMediaExtension)->SetProperties(*(void**)(&configuration)));
@@ -996,6 +1210,246 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().Subtitle(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::IMediaControl> : produce_base<D, winrt::Windows::Media::IMediaControl>
+    {
+        int32_t __stdcall add_SoundLevelChanged(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().SoundLevelChanged(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_SoundLevelChanged(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SoundLevelChanged(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_PlayPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().PlayPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PlayPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PlayPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_PausePressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().PausePressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PausePressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PausePressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_StopPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().StopPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_StopPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StopPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_PlayPauseTogglePressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().PlayPauseTogglePressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PlayPauseTogglePressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PlayPauseTogglePressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_RecordPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().RecordPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_RecordPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RecordPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_NextTrackPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().NextTrackPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_NextTrackPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().NextTrackPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_PreviousTrackPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().PreviousTrackPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PreviousTrackPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PreviousTrackPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_FastForwardPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().FastForwardPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_FastForwardPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().FastForwardPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_RewindPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().RewindPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_RewindPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RewindPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_ChannelUpPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().ChannelUpPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_ChannelUpPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ChannelUpPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall add_ChannelDownPressed(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().ChannelDownPressed(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_ChannelDownPressed(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ChannelDownPressed(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall get_SoundLevel(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::SoundLevel>(this->shim().SoundLevel());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_TrackName(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TrackName(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_TrackName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().TrackName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ArtistName(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ArtistName(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ArtistName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().ArtistName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsPlaying(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsPlaying(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsPlaying(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsPlaying());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AlbumArt(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AlbumArt(*reinterpret_cast<winrt::Windows::Foundation::Uri const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AlbumArt(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().AlbumArt());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2311,6 +2765,198 @@ WINRT_EXPORT namespace winrt::Windows::Media
         AudioFrame(impl::call_factory<AudioFrame, IAudioFrameFactory>([&](IAudioFrameFactory const& f) { return f.Create(capacity); }))
     {
     }
+    inline auto MediaControl::SoundLevelChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.SoundLevelChanged(handler); });
+    }
+    inline auto MediaControl::SoundLevelChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::SoundLevelChanged_revoker{ f, f.SoundLevelChanged(handler) };
+    }
+    inline auto MediaControl::SoundLevelChanged(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.SoundLevelChanged(cookie); });
+    }
+    inline auto MediaControl::PlayPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PlayPressed(handler); });
+    }
+    inline auto MediaControl::PlayPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::PlayPressed_revoker{ f, f.PlayPressed(handler) };
+    }
+    inline auto MediaControl::PlayPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PlayPressed(cookie); });
+    }
+    inline auto MediaControl::PausePressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PausePressed(handler); });
+    }
+    inline auto MediaControl::PausePressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::PausePressed_revoker{ f, f.PausePressed(handler) };
+    }
+    inline auto MediaControl::PausePressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PausePressed(cookie); });
+    }
+    inline auto MediaControl::StopPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.StopPressed(handler); });
+    }
+    inline auto MediaControl::StopPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::StopPressed_revoker{ f, f.StopPressed(handler) };
+    }
+    inline auto MediaControl::StopPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.StopPressed(cookie); });
+    }
+    inline auto MediaControl::PlayPauseTogglePressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PlayPauseTogglePressed(handler); });
+    }
+    inline auto MediaControl::PlayPauseTogglePressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::PlayPauseTogglePressed_revoker{ f, f.PlayPauseTogglePressed(handler) };
+    }
+    inline auto MediaControl::PlayPauseTogglePressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PlayPauseTogglePressed(cookie); });
+    }
+    inline auto MediaControl::RecordPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.RecordPressed(handler); });
+    }
+    inline auto MediaControl::RecordPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::RecordPressed_revoker{ f, f.RecordPressed(handler) };
+    }
+    inline auto MediaControl::RecordPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.RecordPressed(cookie); });
+    }
+    inline auto MediaControl::NextTrackPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.NextTrackPressed(handler); });
+    }
+    inline auto MediaControl::NextTrackPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::NextTrackPressed_revoker{ f, f.NextTrackPressed(handler) };
+    }
+    inline auto MediaControl::NextTrackPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.NextTrackPressed(cookie); });
+    }
+    inline auto MediaControl::PreviousTrackPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PreviousTrackPressed(handler); });
+    }
+    inline auto MediaControl::PreviousTrackPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::PreviousTrackPressed_revoker{ f, f.PreviousTrackPressed(handler) };
+    }
+    inline auto MediaControl::PreviousTrackPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.PreviousTrackPressed(cookie); });
+    }
+    inline auto MediaControl::FastForwardPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.FastForwardPressed(handler); });
+    }
+    inline auto MediaControl::FastForwardPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::FastForwardPressed_revoker{ f, f.FastForwardPressed(handler) };
+    }
+    inline auto MediaControl::FastForwardPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.FastForwardPressed(cookie); });
+    }
+    inline auto MediaControl::RewindPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.RewindPressed(handler); });
+    }
+    inline auto MediaControl::RewindPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::RewindPressed_revoker{ f, f.RewindPressed(handler) };
+    }
+    inline auto MediaControl::RewindPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.RewindPressed(cookie); });
+    }
+    inline auto MediaControl::ChannelUpPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.ChannelUpPressed(handler); });
+    }
+    inline auto MediaControl::ChannelUpPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::ChannelUpPressed_revoker{ f, f.ChannelUpPressed(handler) };
+    }
+    inline auto MediaControl::ChannelUpPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.ChannelUpPressed(cookie); });
+    }
+    inline auto MediaControl::ChannelDownPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.ChannelDownPressed(handler); });
+    }
+    inline auto MediaControl::ChannelDownPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<MediaControl, winrt::Windows::Media::IMediaControl>();
+        return MediaControl::ChannelDownPressed_revoker{ f, f.ChannelDownPressed(handler) };
+    }
+    inline auto MediaControl::ChannelDownPressed(winrt::event_token const& cookie)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.ChannelDownPressed(cookie); });
+    }
+    inline auto MediaControl::SoundLevel()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::SoundLevel(*)(IMediaControl const&), MediaControl, IMediaControl>([](IMediaControl const& f) { return f.SoundLevel(); });
+    }
+    inline auto MediaControl::TrackName(param::hstring const& value)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.TrackName(value); });
+    }
+    inline auto MediaControl::TrackName()
+    {
+        return impl::call_factory_cast<hstring(*)(IMediaControl const&), MediaControl, IMediaControl>([](IMediaControl const& f) { return f.TrackName(); });
+    }
+    inline auto MediaControl::ArtistName(param::hstring const& value)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.ArtistName(value); });
+    }
+    inline auto MediaControl::ArtistName()
+    {
+        return impl::call_factory_cast<hstring(*)(IMediaControl const&), MediaControl, IMediaControl>([](IMediaControl const& f) { return f.ArtistName(); });
+    }
+    inline auto MediaControl::IsPlaying(bool value)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.IsPlaying(value); });
+    }
+    inline auto MediaControl::IsPlaying()
+    {
+        return impl::call_factory_cast<bool(*)(IMediaControl const&), MediaControl, IMediaControl>([](IMediaControl const& f) { return f.IsPlaying(); });
+    }
+    inline auto MediaControl::AlbumArt(winrt::Windows::Foundation::Uri const& value)
+    {
+        impl::call_factory<MediaControl, IMediaControl>([&](IMediaControl const& f) { return f.AlbumArt(value); });
+    }
+    inline auto MediaControl::AlbumArt()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::Uri(*)(IMediaControl const&), MediaControl, IMediaControl>([](IMediaControl const& f) { return f.AlbumArt(); });
+    }
     inline MediaExtensionManager::MediaExtensionManager() :
         MediaExtensionManager(impl::call_factory_cast<MediaExtensionManager(*)(winrt::Windows::Foundation::IActivationFactory const&), MediaExtensionManager>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<MediaExtensionManager>(); }))
     {
@@ -2368,6 +3014,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::IAudioFrameFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::IAutoRepeatModeChangeRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::IImageDisplayProperties> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::IMediaControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::IMediaExtension> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::IMediaExtensionManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::IMediaExtensionManager2> : winrt::impl::hash_base {};
@@ -2403,6 +3050,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::AudioFrame> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::AutoRepeatModeChangeRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::ImageDisplayProperties> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::MediaControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaExtensionManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaMarkerTypes> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProcessingTriggerDetails> : winrt::impl::hash_base {};

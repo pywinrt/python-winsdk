@@ -228,6 +228,9 @@ _ns_module._register_VoipPhoneCallState(VoipPhoneCallState)
 CallAnswerEventArgs = _ns_module.CallAnswerEventArgs
 CallRejectEventArgs = _ns_module.CallRejectEventArgs
 CallStateChangeEventArgs = _ns_module.CallStateChangeEventArgs
+LockScreenCallEndCallDeferral = _ns_module.LockScreenCallEndCallDeferral
+LockScreenCallEndRequestedEventArgs = _ns_module.LockScreenCallEndRequestedEventArgs
+LockScreenCallUI = _ns_module.LockScreenCallUI
 MuteChangeEventArgs = _ns_module.MuteChangeEventArgs
 PhoneCall = _ns_module.PhoneCall
 PhoneCallBlocking = _ns_module.PhoneCallBlocking

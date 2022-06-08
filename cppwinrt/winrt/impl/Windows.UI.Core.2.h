@@ -132,10 +132,29 @@ WINRT_EXPORT namespace winrt::Windows::UI::Core
         using impl::consume_t<CoreWindow, winrt::Windows::UI::Core::ICoreWindow2>::PointerPosition;
         static auto GetForCurrentThread();
     };
+    struct __declspec(empty_bases) CoreWindowDialog : winrt::Windows::UI::Core::ICoreWindowDialog
+    {
+        CoreWindowDialog(std::nullptr_t) noexcept {}
+        CoreWindowDialog(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Core::ICoreWindowDialog(ptr, take_ownership_from_abi) {}
+        CoreWindowDialog();
+        explicit CoreWindowDialog(param::hstring const& title);
+    };
     struct __declspec(empty_bases) CoreWindowEventArgs : winrt::Windows::UI::Core::ICoreWindowEventArgs
     {
         CoreWindowEventArgs(std::nullptr_t) noexcept {}
         CoreWindowEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Core::ICoreWindowEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) CoreWindowFlyout : winrt::Windows::UI::Core::ICoreWindowFlyout
+    {
+        CoreWindowFlyout(std::nullptr_t) noexcept {}
+        CoreWindowFlyout(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Core::ICoreWindowFlyout(ptr, take_ownership_from_abi) {}
+        explicit CoreWindowFlyout(winrt::Windows::Foundation::Point const& position);
+        CoreWindowFlyout(winrt::Windows::Foundation::Point const& position, param::hstring const& title);
+    };
+    struct __declspec(empty_bases) CoreWindowPopupShowingEventArgs : winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs
+    {
+        CoreWindowPopupShowingEventArgs(std::nullptr_t) noexcept {}
+        CoreWindowPopupShowingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) CoreWindowResizeManager : winrt::Windows::UI::Core::ICoreWindowResizeManager,
         impl::require<CoreWindowResizeManager, winrt::Windows::UI::Core::ICoreWindowResizeManagerLayoutCapability>

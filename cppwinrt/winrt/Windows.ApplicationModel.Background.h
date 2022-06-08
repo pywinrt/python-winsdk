@@ -58,6 +58,94 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IActivitySensorTriggerFactory)->Create(reportIntervalInMilliseconds, &activityTrigger));
         return winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger{ activityTrigger, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAlarmApplicationManagerStatics<D>::RequestAccessAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics)->RequestAccessAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAlarmApplicationManagerStatics<D>::GetAccessStatus() const
+    {
+        winrt::Windows::ApplicationModel::Background::AlarmAccessStatus status{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics)->GetAccessStatus(reinterpret_cast<int32_t*>(&status)));
+        return status;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTrigger<D>::ProviderInfo(winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger)->put_ProviderInfo(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTrigger<D>::ProviderInfo() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger)->get_ProviderInfo(&value));
+        return winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerFactory<D>::CreateAppBroadcastTrigger(param::hstring const& providerKey) const
+    {
+        void* broadcastTrigger{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory)->CreateAppBroadcastTrigger(*(void**)(&providerKey), &broadcastTrigger));
+        return winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger{ broadcastTrigger, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::DisplayNameResource(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->put_DisplayNameResource(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::DisplayNameResource() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->get_DisplayNameResource(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::LogoResource(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->put_LogoResource(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::LogoResource() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->get_LogoResource(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::VideoKeyFrameInterval(winrt::Windows::Foundation::TimeSpan const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->put_VideoKeyFrameInterval(impl::bind_in(value)));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::VideoKeyFrameInterval() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->get_VideoKeyFrameInterval(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::MaxVideoBitrate(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->put_MaxVideoBitrate(value));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::MaxVideoBitrate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->get_MaxVideoBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::MaxVideoWidth(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->put_MaxVideoWidth(value));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::MaxVideoWidth() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->get_MaxVideoWidth(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::MaxVideoHeight(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->put_MaxVideoHeight(value));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_Background_IAppBroadcastTriggerProviderInfo<D>::MaxVideoHeight() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo)->get_MaxVideoHeight(&value));
+        return value;
+    }
     template <typename D> auto consume_Windows_ApplicationModel_Background_IApplicationTrigger<D>::RequestAsync() const
     {
         void* result{};
@@ -1024,6 +1112,155 @@ namespace winrt::impl
             clear_abi(activityTrigger);
             typename D::abi_guard guard(this->shim());
             *activityTrigger = detach_from<winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger>(this->shim().Create(reportIntervalInMilliseconds));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics> : produce_base<D, winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics>
+    {
+        int32_t __stdcall RequestAccessAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>>(this->shim().RequestAccessAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetAccessStatus(int32_t* status) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *status = detach_from<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>(this->shim().GetAccessStatus());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger> : produce_base<D, winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger>
+    {
+        int32_t __stdcall put_ProviderInfo(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ProviderInfo(*reinterpret_cast<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ProviderInfo(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>(this->shim().ProviderInfo());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory> : produce_base<D, winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory>
+    {
+        int32_t __stdcall CreateAppBroadcastTrigger(void* providerKey, void** broadcastTrigger) noexcept final try
+        {
+            clear_abi(broadcastTrigger);
+            typename D::abi_guard guard(this->shim());
+            *broadcastTrigger = detach_from<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger>(this->shim().CreateAppBroadcastTrigger(*reinterpret_cast<hstring const*>(&providerKey)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo> : produce_base<D, winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo>
+    {
+        int32_t __stdcall put_DisplayNameResource(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DisplayNameResource(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DisplayNameResource(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().DisplayNameResource());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_LogoResource(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().LogoResource(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_LogoResource(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().LogoResource());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_VideoKeyFrameInterval(int64_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoKeyFrameInterval(*reinterpret_cast<winrt::Windows::Foundation::TimeSpan const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoKeyFrameInterval(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().VideoKeyFrameInterval());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_MaxVideoBitrate(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MaxVideoBitrate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MaxVideoBitrate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().MaxVideoBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_MaxVideoWidth(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MaxVideoWidth(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MaxVideoWidth(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().MaxVideoWidth());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_MaxVideoHeight(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MaxVideoHeight(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MaxVideoHeight(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().MaxVideoHeight());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2728,6 +2965,18 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         ActivitySensorTrigger(impl::call_factory<ActivitySensorTrigger, IActivitySensorTriggerFactory>([&](IActivitySensorTriggerFactory const& f) { return f.Create(reportIntervalInMilliseconds); }))
     {
     }
+    inline auto AlarmApplicationManager::RequestAccessAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>(*)(IAlarmApplicationManagerStatics const&), AlarmApplicationManager, IAlarmApplicationManagerStatics>([](IAlarmApplicationManagerStatics const& f) { return f.RequestAccessAsync(); });
+    }
+    inline auto AlarmApplicationManager::GetAccessStatus()
+    {
+        return impl::call_factory_cast<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus(*)(IAlarmApplicationManagerStatics const&), AlarmApplicationManager, IAlarmApplicationManagerStatics>([](IAlarmApplicationManagerStatics const& f) { return f.GetAccessStatus(); });
+    }
+    inline AppBroadcastTrigger::AppBroadcastTrigger(param::hstring const& providerKey) :
+        AppBroadcastTrigger(impl::call_factory<AppBroadcastTrigger, IAppBroadcastTriggerFactory>([&](IAppBroadcastTriggerFactory const& f) { return f.CreateAppBroadcastTrigger(providerKey); }))
+    {
+    }
     inline ApplicationTrigger::ApplicationTrigger() :
         ApplicationTrigger(impl::call_factory_cast<ApplicationTrigger(*)(winrt::Windows::Foundation::IActivationFactory const&), ApplicationTrigger>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<ApplicationTrigger>(); }))
     {
@@ -3098,6 +3347,10 @@ namespace std
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IActivitySensorTrigger> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IActivitySensorTriggerFactory> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::IAlarmApplicationManagerStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerFactory> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IApplicationTrigger> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IApplicationTriggerDetails> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IAppointmentStoreNotificationTrigger> : winrt::impl::hash_base {};
@@ -3189,6 +3442,9 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IToastNotificationHistoryChangedTriggerFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::IUserNotificationChangedTriggerFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::AlarmApplicationManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::ApplicationTrigger> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::ApplicationTriggerDetails> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::AppointmentStoreNotificationTrigger> : winrt::impl::hash_base {};

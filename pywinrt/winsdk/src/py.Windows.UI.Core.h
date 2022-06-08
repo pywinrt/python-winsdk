@@ -28,6 +28,10 @@
 #include "py.Windows.UI.Input.h"
 #endif
 
+#if __has_include("py.Windows.UI.Popups.h")
+#include "py.Windows.UI.Popups.h"
+#endif
+
 #include <winrt/Windows.UI.Core.h>
 
 namespace py::proj::Windows::UI::Core
@@ -102,7 +106,10 @@ namespace py::wrapper::Windows::UI::Core
     using CoreIndependentInputSource = py::winrt_wrapper<winrt::Windows::UI::Core::CoreIndependentInputSource>;
     using CoreIndependentInputSourceController = py::winrt_wrapper<winrt::Windows::UI::Core::CoreIndependentInputSourceController>;
     using CoreWindow = py::winrt_wrapper<winrt::Windows::UI::Core::CoreWindow>;
+    using CoreWindowDialog = py::winrt_wrapper<winrt::Windows::UI::Core::CoreWindowDialog>;
     using CoreWindowEventArgs = py::winrt_wrapper<winrt::Windows::UI::Core::CoreWindowEventArgs>;
+    using CoreWindowFlyout = py::winrt_wrapper<winrt::Windows::UI::Core::CoreWindowFlyout>;
+    using CoreWindowPopupShowingEventArgs = py::winrt_wrapper<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>;
     using CoreWindowResizeManager = py::winrt_wrapper<winrt::Windows::UI::Core::CoreWindowResizeManager>;
     using IdleDispatchedHandlerArgs = py::winrt_wrapper<winrt::Windows::UI::Core::IdleDispatchedHandlerArgs>;
     using InputEnabledEventArgs = py::winrt_wrapper<winrt::Windows::UI::Core::InputEnabledEventArgs>;
@@ -273,7 +280,25 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::UI::Core::CoreWindowDialog>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::UI::Core::CoreWindowEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Core::CoreWindowFlyout>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

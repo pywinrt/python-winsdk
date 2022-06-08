@@ -31,6 +31,13 @@ try:
 except ImportError:
     pass
 
+class WalletActionKind(enum.IntEnum):
+    OPEN_ITEM = 0
+    TRANSACTION = 1
+    MORE_TRANSACTIONS = 2
+    MESSAGE = 3
+    VERB = 4
+
 class WalletBarcodeSymbology(enum.IntEnum):
     INVALID = 0
     UPCA = 1
@@ -76,6 +83,7 @@ class WalletSummaryViewPosition(enum.IntEnum):
     FIELD1 = 1
     FIELD2 = 2
 
+_ns_module._register_WalletActionKind(WalletActionKind)
 _ns_module._register_WalletBarcodeSymbology(WalletBarcodeSymbology)
 _ns_module._register_WalletDetailViewPosition(WalletDetailViewPosition)
 _ns_module._register_WalletItemKind(WalletItemKind)

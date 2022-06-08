@@ -149,6 +149,48 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsCommandStatics)->get_AccountsCommand(&value));
         return winrt::Windows::UI::ApplicationSettings::SettingsCommand{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPane<D>::CommandsRequested(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ApplicationSettings::SettingsPane, winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsPane)->add_CommandsRequested(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPane<D>::CommandsRequested(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ApplicationSettings::SettingsPane, winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, CommandsRequested_revoker>(this, CommandsRequested(handler));
+    }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPane<D>::CommandsRequested(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsPane)->remove_CommandsRequested(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPaneCommandsRequest<D>::ApplicationCommands() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest)->get_ApplicationCommands(&value));
+        return winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::ApplicationSettings::SettingsCommand>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPaneCommandsRequestedEventArgs<D>::Request() const
+    {
+        void* request{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs)->get_Request(&request));
+        return winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest{ request, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPaneStatics<D>::GetForCurrentView() const
+    {
+        void* current{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics)->GetForCurrentView(&current));
+        return winrt::Windows::UI::ApplicationSettings::SettingsPane{ current, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPaneStatics<D>::Show() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics)->Show());
+    }
+    template <typename D> auto consume_Windows_UI_ApplicationSettings_ISettingsPaneStatics<D>::Edge() const
+    {
+        winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics)->get_Edge(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
     template <typename D> auto consume_Windows_UI_ApplicationSettings_IWebAccountCommand<D>::WebAccount() const
     {
         void* value{};
@@ -477,6 +519,82 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::UI::ApplicationSettings::ISettingsPane> : produce_base<D, winrt::Windows::UI::ApplicationSettings::ISettingsPane>
+    {
+        int32_t __stdcall add_CommandsRequested(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().CommandsRequested(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ApplicationSettings::SettingsPane, winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_CommandsRequested(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CommandsRequested(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest> : produce_base<D, winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest>
+    {
+        int32_t __stdcall get_ApplicationCommands(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::ApplicationSettings::SettingsCommand>>(this->shim().ApplicationCommands());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs> : produce_base<D, winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs>
+    {
+        int32_t __stdcall get_Request(void** request) noexcept final try
+        {
+            clear_abi(request);
+            typename D::abi_guard guard(this->shim());
+            *request = detach_from<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest>(this->shim().Request());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics> : produce_base<D, winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics>
+    {
+        int32_t __stdcall GetForCurrentView(void** current) noexcept final try
+        {
+            clear_abi(current);
+            typename D::abi_guard guard(this->shim());
+            *current = detach_from<winrt::Windows::UI::ApplicationSettings::SettingsPane>(this->shim().GetForCurrentView());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall Show() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Show();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Edge(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation>(this->shim().Edge());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::UI::ApplicationSettings::IWebAccountCommand> : produce_base<D, winrt::Windows::UI::ApplicationSettings::IWebAccountCommand>
     {
         int32_t __stdcall get_WebAccount(void** value) noexcept final try
@@ -641,6 +759,18 @@ WINRT_EXPORT namespace winrt::Windows::UI::ApplicationSettings
     {
         return impl::call_factory_cast<winrt::Windows::UI::ApplicationSettings::SettingsCommand(*)(ISettingsCommandStatics const&), SettingsCommand, ISettingsCommandStatics>([](ISettingsCommandStatics const& f) { return f.AccountsCommand(); });
     }
+    inline auto SettingsPane::GetForCurrentView()
+    {
+        return impl::call_factory_cast<winrt::Windows::UI::ApplicationSettings::SettingsPane(*)(ISettingsPaneStatics const&), SettingsPane, ISettingsPaneStatics>([](ISettingsPaneStatics const& f) { return f.GetForCurrentView(); });
+    }
+    inline auto SettingsPane::Show()
+    {
+        impl::call_factory_cast<void(*)(ISettingsPaneStatics const&), SettingsPane, ISettingsPaneStatics>([](ISettingsPaneStatics const& f) { return f.Show(); });
+    }
+    inline auto SettingsPane::Edge()
+    {
+        return impl::call_factory_cast<winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation(*)(ISettingsPaneStatics const&), SettingsPane, ISettingsPaneStatics>([](ISettingsPaneStatics const& f) { return f.Edge(); });
+    }
     inline WebAccountCommand::WebAccountCommand(winrt::Windows::Security::Credentials::WebAccount const& webAccount, winrt::Windows::UI::ApplicationSettings::WebAccountCommandInvokedHandler const& invoked, winrt::Windows::UI::ApplicationSettings::SupportedWebAccountActions const& actions) :
         WebAccountCommand(impl::call_factory<WebAccountCommand, IWebAccountCommandFactory>([&](IWebAccountCommandFactory const& f) { return f.CreateWebAccountCommand(webAccount, invoked, actions); }))
     {
@@ -736,6 +866,10 @@ namespace std
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::ICredentialCommandFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::ISettingsCommandFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::ISettingsCommandStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ApplicationSettings::ISettingsPane> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::IWebAccountCommand> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::IWebAccountCommandFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::IWebAccountInvokedArgs> : winrt::impl::hash_base {};
@@ -746,6 +880,9 @@ namespace std
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::AccountsSettingsPaneEventDeferral> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::CredentialCommand> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::SettingsCommand> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ApplicationSettings::SettingsPane> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::WebAccountCommand> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::WebAccountInvokedArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ApplicationSettings::WebAccountProviderCommand> : winrt::impl::hash_base {};

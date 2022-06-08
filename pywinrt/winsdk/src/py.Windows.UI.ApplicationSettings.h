@@ -130,6 +130,9 @@ namespace py::wrapper::Windows::UI::ApplicationSettings
     using AccountsSettingsPaneEventDeferral = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::AccountsSettingsPaneEventDeferral>;
     using CredentialCommand = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::CredentialCommand>;
     using SettingsCommand = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::SettingsCommand>;
+    using SettingsPane = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::SettingsPane>;
+    using SettingsPaneCommandsRequest = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest>;
+    using SettingsPaneCommandsRequestedEventArgs = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs>;
     using WebAccountCommand = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::WebAccountCommand>;
     using WebAccountInvokedArgs = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::WebAccountInvokedArgs>;
     using WebAccountProviderCommand = py::winrt_wrapper<winrt::Windows::UI::ApplicationSettings::WebAccountProviderCommand>;
@@ -137,6 +140,12 @@ namespace py::wrapper::Windows::UI::ApplicationSettings
 
 namespace py
 {
+
+    template<>
+    struct py_type<winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
 
     template<>
     struct py_type<winrt::Windows::UI::ApplicationSettings::SupportedWebAccountActions>
@@ -176,6 +185,24 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsCommand>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsPane>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

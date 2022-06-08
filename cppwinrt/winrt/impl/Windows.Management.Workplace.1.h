@@ -20,5 +20,12 @@ WINRT_EXPORT namespace winrt::Windows::Management::Workplace
         IMdmPolicyStatics2(std::nullptr_t = nullptr) noexcept {}
         IMdmPolicyStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IWorkplaceSettingsStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWorkplaceSettingsStatics>
+    {
+        IWorkplaceSettingsStatics(std::nullptr_t = nullptr) noexcept {}
+        IWorkplaceSettingsStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
 }
 #endif

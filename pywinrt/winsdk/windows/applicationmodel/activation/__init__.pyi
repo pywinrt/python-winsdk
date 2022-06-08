@@ -9,11 +9,15 @@ import uuid
 import winsdk._winrt as _winrt
 import winsdk.windows.applicationmodel.appointments.appointmentsprovider
 import winsdk.windows.applicationmodel.background
+import winsdk.windows.applicationmodel.calls
 import winsdk.windows.applicationmodel.contacts
+import winsdk.windows.applicationmodel.contacts.provider
 import winsdk.windows.applicationmodel.datatransfer.sharetarget
 import winsdk.windows.applicationmodel.search
 import winsdk.windows.applicationmodel.userdataaccounts.provider
+import winsdk.windows.applicationmodel.wallet
 import winsdk.windows.devices.enumeration
+import winsdk.windows.devices.printers.extensions
 import winsdk.windows.foundation
 import winsdk.windows.foundation.collections
 import winsdk.windows.media.speechrecognition
@@ -158,6 +162,15 @@ class CachedFileUpdaterActivatedEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> CachedFileUpdaterActivatedEventArgs: ...
 
+class CameraSettingsActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    video_device_controller: typing.Optional[_winrt.Object]
+    video_device_extension: typing.Optional[_winrt.Object]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CameraSettingsActivatedEventArgs: ...
+
 class CommandLineActivatedEventArgs(_winrt.Object):
     kind: ActivationKind
     previous_execution_state: ApplicationExecutionState
@@ -175,6 +188,38 @@ class CommandLineActivationOperation(_winrt.Object):
     def _from(obj: _winrt.Object) -> CommandLineActivationOperation: ...
     def get_deferral(self) -> typing.Optional[winsdk.windows.foundation.Deferral]: ...
 
+class ContactCallActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    verb: str
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ContactCallActivatedEventArgs: ...
+
+class ContactMapActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    verb: str
+    address: typing.Optional[winsdk.windows.applicationmodel.contacts.ContactAddress]
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ContactMapActivatedEventArgs: ...
+
+class ContactMessageActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    verb: str
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ContactMessageActivatedEventArgs: ...
+
 class ContactPanelActivatedEventArgs(_winrt.Object):
     kind: ActivationKind
     previous_execution_state: ApplicationExecutionState
@@ -184,6 +229,36 @@ class ContactPanelActivatedEventArgs(_winrt.Object):
     contact_panel: typing.Optional[winsdk.windows.applicationmodel.contacts.ContactPanel]
     @staticmethod
     def _from(obj: _winrt.Object) -> ContactPanelActivatedEventArgs: ...
+
+class ContactPickerActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    contact_picker_u_i: typing.Optional[winsdk.windows.applicationmodel.contacts.provider.ContactPickerUI]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ContactPickerActivatedEventArgs: ...
+
+class ContactPostActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    verb: str
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ContactPostActivatedEventArgs: ...
+
+class ContactVideoCallActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    verb: str
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ContactVideoCallActivatedEventArgs: ...
 
 class DeviceActivatedEventArgs(_winrt.Object):
     kind: ActivationKind
@@ -307,6 +382,18 @@ class LockScreenActivatedEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> LockScreenActivatedEventArgs: ...
 
+class LockScreenCallActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    currently_shown_application_view_id: _winrt.Int32
+    arguments: str
+    tile_id: str
+    call_u_i: typing.Optional[winsdk.windows.applicationmodel.calls.LockScreenCallUI]
+    view_switcher: typing.Optional[winsdk.windows.ui.viewmanagement.ActivationViewSwitcher]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> LockScreenCallActivatedEventArgs: ...
+
 class LockScreenComponentActivatedEventArgs(_winrt.Object):
     kind: ActivationKind
     previous_execution_state: ApplicationExecutionState
@@ -330,6 +417,22 @@ class PickerReturnedActivatedEventArgs(_winrt.Object):
     picker_operation_id: str
     @staticmethod
     def _from(obj: _winrt.Object) -> PickerReturnedActivatedEventArgs: ...
+
+class Print3DWorkflowActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    workflow: typing.Optional[winsdk.windows.devices.printers.extensions.Print3DWorkflow]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> Print3DWorkflowActivatedEventArgs: ...
+
+class PrintTaskSettingsActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    configuration: typing.Optional[winsdk.windows.devices.printers.extensions.PrintTaskConfiguration]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> PrintTaskSettingsActivatedEventArgs: ...
 
 class ProtocolActivatedEventArgs(_winrt.Object):
     kind: ActivationKind
@@ -437,6 +540,16 @@ class VoiceCommandActivatedEventArgs(_winrt.Object):
     result: typing.Optional[winsdk.windows.media.speechrecognition.SpeechRecognitionResult]
     @staticmethod
     def _from(obj: _winrt.Object) -> VoiceCommandActivatedEventArgs: ...
+
+class WalletActionActivatedEventArgs(_winrt.Object):
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    action_id: str
+    action_kind: winsdk.windows.applicationmodel.wallet.WalletActionKind
+    item_id: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> WalletActionActivatedEventArgs: ...
 
 class WebAccountProviderActivatedEventArgs(_winrt.Object):
     kind: ActivationKind
@@ -556,6 +669,15 @@ class ICachedFileUpdaterActivatedEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> ICachedFileUpdaterActivatedEventArgs: ...
 
+class ICameraSettingsActivatedEventArgs(_winrt.Object):
+    video_device_controller: typing.Optional[_winrt.Object]
+    video_device_extension: typing.Optional[_winrt.Object]
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ICameraSettingsActivatedEventArgs: ...
+
 class ICommandLineActivatedEventArgs(_winrt.Object):
     operation: typing.Optional[CommandLineActivationOperation]
     kind: ActivationKind
@@ -564,11 +686,89 @@ class ICommandLineActivatedEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> ICommandLineActivatedEventArgs: ...
 
+class IContactActivatedEventArgs(_winrt.Object):
+    verb: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactActivatedEventArgs: ...
+
+class IContactCallActivatedEventArgs(_winrt.Object):
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    verb: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactCallActivatedEventArgs: ...
+
+class IContactMapActivatedEventArgs(_winrt.Object):
+    address: typing.Optional[winsdk.windows.applicationmodel.contacts.ContactAddress]
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    verb: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactMapActivatedEventArgs: ...
+
+class IContactMessageActivatedEventArgs(_winrt.Object):
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    verb: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactMessageActivatedEventArgs: ...
+
 class IContactPanelActivatedEventArgs(_winrt.Object):
     contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
     contact_panel: typing.Optional[winsdk.windows.applicationmodel.contacts.ContactPanel]
     @staticmethod
     def _from(obj: _winrt.Object) -> IContactPanelActivatedEventArgs: ...
+
+class IContactPickerActivatedEventArgs(_winrt.Object):
+    contact_picker_u_i: typing.Optional[winsdk.windows.applicationmodel.contacts.provider.ContactPickerUI]
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactPickerActivatedEventArgs: ...
+
+class IContactPostActivatedEventArgs(_winrt.Object):
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    verb: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactPostActivatedEventArgs: ...
+
+class IContactVideoCallActivatedEventArgs(_winrt.Object):
+    contact: typing.Optional[winsdk.windows.applicationmodel.contacts.Contact]
+    service_id: str
+    service_user_id: str
+    verb: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactVideoCallActivatedEventArgs: ...
+
+class IContactsProviderActivatedEventArgs(_winrt.Object):
+    verb: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IContactsProviderActivatedEventArgs: ...
 
 class IContinuationActivatedEventArgs(_winrt.Object):
     continuation_data: typing.Optional[winsdk.windows.foundation.collections.ValueSet]
@@ -713,6 +913,16 @@ class ILockScreenActivatedEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> ILockScreenActivatedEventArgs: ...
 
+class ILockScreenCallActivatedEventArgs(_winrt.Object):
+    call_u_i: typing.Optional[winsdk.windows.applicationmodel.calls.LockScreenCallUI]
+    arguments: str
+    tile_id: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ILockScreenCallActivatedEventArgs: ...
+
 class IPhoneCallActivatedEventArgs(_winrt.Object):
     line_id: uuid.UUID
     kind: ActivationKind
@@ -736,6 +946,22 @@ class IPrelaunchActivatedEventArgs(_winrt.Object):
     splash_screen: typing.Optional[SplashScreen]
     @staticmethod
     def _from(obj: _winrt.Object) -> IPrelaunchActivatedEventArgs: ...
+
+class IPrint3DWorkflowActivatedEventArgs(_winrt.Object):
+    workflow: typing.Optional[winsdk.windows.devices.printers.extensions.Print3DWorkflow]
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IPrint3DWorkflowActivatedEventArgs: ...
+
+class IPrintTaskSettingsActivatedEventArgs(_winrt.Object):
+    configuration: typing.Optional[winsdk.windows.devices.printers.extensions.PrintTaskConfiguration]
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IPrintTaskSettingsActivatedEventArgs: ...
 
 class IProtocolActivatedEventArgs(_winrt.Object):
     uri: typing.Optional[winsdk.windows.foundation.Uri]
@@ -832,6 +1058,16 @@ class IVoiceCommandActivatedEventArgs(_winrt.Object):
     splash_screen: typing.Optional[SplashScreen]
     @staticmethod
     def _from(obj: _winrt.Object) -> IVoiceCommandActivatedEventArgs: ...
+
+class IWalletActionActivatedEventArgs(_winrt.Object):
+    action_id: str
+    action_kind: winsdk.windows.applicationmodel.wallet.WalletActionKind
+    item_id: str
+    kind: ActivationKind
+    previous_execution_state: ApplicationExecutionState
+    splash_screen: typing.Optional[SplashScreen]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IWalletActionActivatedEventArgs: ...
 
 class IWebAccountProviderActivatedEventArgs(_winrt.Object):
     operation: typing.Optional[winsdk.windows.security.authentication.web.provider.IWebAccountProviderOperation]

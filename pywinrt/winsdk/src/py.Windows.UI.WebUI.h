@@ -20,8 +20,16 @@
 #include "py.Windows.ApplicationModel.Background.h"
 #endif
 
+#if __has_include("py.Windows.ApplicationModel.Calls.h")
+#include "py.Windows.ApplicationModel.Calls.h"
+#endif
+
 #if __has_include("py.Windows.ApplicationModel.Contacts.h")
 #include "py.Windows.ApplicationModel.Contacts.h"
+#endif
+
+#if __has_include("py.Windows.ApplicationModel.Contacts.Provider.h")
+#include "py.Windows.ApplicationModel.Contacts.Provider.h"
 #endif
 
 #if __has_include("py.Windows.ApplicationModel.Core.h")
@@ -36,12 +44,24 @@
 #include "py.Windows.ApplicationModel.DataTransfer.ShareTarget.h"
 #endif
 
+#if __has_include("py.Windows.ApplicationModel.Search.h")
+#include "py.Windows.ApplicationModel.Search.h"
+#endif
+
 #if __has_include("py.Windows.ApplicationModel.UserDataAccounts.Provider.h")
 #include "py.Windows.ApplicationModel.UserDataAccounts.Provider.h"
 #endif
 
+#if __has_include("py.Windows.ApplicationModel.Wallet.h")
+#include "py.Windows.ApplicationModel.Wallet.h"
+#endif
+
 #if __has_include("py.Windows.Devices.Enumeration.h")
 #include "py.Windows.Devices.Enumeration.h"
+#endif
+
+#if __has_include("py.Windows.Devices.Printers.Extensions.h")
+#include "py.Windows.Devices.Printers.Extensions.h"
 #endif
 
 #if __has_include("py.Windows.Foundation.h")
@@ -350,8 +370,15 @@ namespace py::wrapper::Windows::UI::WebUI
     using WebUIBackgroundTaskInstanceRuntimeClass = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIBackgroundTaskInstanceRuntimeClass>;
     using WebUIBarcodeScannerPreviewActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIBarcodeScannerPreviewActivatedEventArgs>;
     using WebUICachedFileUpdaterActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUICachedFileUpdaterActivatedEventArgs>;
+    using WebUICameraSettingsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs>;
     using WebUICommandLineActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUICommandLineActivatedEventArgs>;
+    using WebUIContactCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs>;
+    using WebUIContactMapActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs>;
+    using WebUIContactMessageActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs>;
     using WebUIContactPanelActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIContactPanelActivatedEventArgs>;
+    using WebUIContactPickerActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs>;
+    using WebUIContactPostActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs>;
+    using WebUIContactVideoCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs>;
     using WebUIDeviceActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIDeviceActivatedEventArgs>;
     using WebUIDevicePairingActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIDevicePairingActivatedEventArgs>;
     using WebUIDialReceiverActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIDialReceiverActivatedEventArgs>;
@@ -363,21 +390,26 @@ namespace py::wrapper::Windows::UI::WebUI
     using WebUIFolderPickerContinuationEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIFolderPickerContinuationEventArgs>;
     using WebUILaunchActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUILaunchActivatedEventArgs>;
     using WebUILockScreenActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUILockScreenActivatedEventArgs>;
+    using WebUILockScreenCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs>;
     using WebUILockScreenComponentActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUILockScreenComponentActivatedEventArgs>;
     using WebUINavigatedDeferral = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUINavigatedDeferral>;
     using WebUINavigatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUINavigatedEventArgs>;
     using WebUINavigatedOperation = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUINavigatedOperation>;
     using WebUIPhoneCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIPhoneCallActivatedEventArgs>;
+    using WebUIPrint3DWorkflowActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs>;
+    using WebUIPrintTaskSettingsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs>;
     using WebUIPrintWorkflowForegroundTaskActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIPrintWorkflowForegroundTaskActivatedEventArgs>;
     using WebUIProtocolActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIProtocolActivatedEventArgs>;
     using WebUIProtocolForResultsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIProtocolForResultsActivatedEventArgs>;
     using WebUIRestrictedLaunchActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIRestrictedLaunchActivatedEventArgs>;
+    using WebUISearchActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUISearchActivatedEventArgs>;
     using WebUIShareTargetActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIShareTargetActivatedEventArgs>;
     using WebUIStartupTaskActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIStartupTaskActivatedEventArgs>;
     using WebUIToastNotificationActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIToastNotificationActivatedEventArgs>;
     using WebUIUserDataAccountProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIUserDataAccountProviderActivatedEventArgs>;
     using WebUIView = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIView>;
     using WebUIVoiceCommandActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIVoiceCommandActivatedEventArgs>;
+    using WebUIWalletActionActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs>;
     using WebUIWebAccountProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIWebAccountProviderActivatedEventArgs>;
     using WebUIWebAuthenticationBrokerContinuationEventArgs = py::winrt_wrapper<winrt::Windows::UI::WebUI::WebUIWebAuthenticationBrokerContinuationEventArgs>;
     using IActivatedEventArgsDeferral = py::winrt_wrapper<winrt::Windows::UI::WebUI::IActivatedEventArgsDeferral>;
@@ -515,13 +547,55 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUICameraSettingsActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::UI::WebUI::WebUICommandLineActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
 
     template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIContactCallActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIContactMapActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIContactMessageActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::UI::WebUI::WebUIContactPanelActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIContactPickerActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIContactPostActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIContactVideoCallActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -593,6 +667,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUILockScreenCallActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::UI::WebUI::WebUILockScreenComponentActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -623,6 +703,18 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIPrint3DWorkflowActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIPrintTaskSettingsActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::UI::WebUI::WebUIPrintWorkflowForegroundTaskActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -642,6 +734,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::UI::WebUI::WebUIRestrictedLaunchActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUISearchActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -678,6 +776,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::UI::WebUI::WebUIVoiceCommandActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::WebUI::WebUIWalletActionActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

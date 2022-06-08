@@ -57,6 +57,7 @@ namespace py::wrapper::Windows::Networking::NetworkOperators
     using ESimServiceInfo = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::ESimServiceInfo>;
     using ESimUpdatedEventArgs = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::ESimUpdatedEventArgs>;
     using ESimWatcher = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::ESimWatcher>;
+    using FdnAccessManager = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::FdnAccessManager>;
     using HotspotAuthenticationContext = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationContext>;
     using HotspotAuthenticationEventDetails = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationEventDetails>;
     using HotspotCredentialsAuthenticationResult = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::HotspotCredentialsAuthenticationResult>;
@@ -111,6 +112,7 @@ namespace py::wrapper::Windows::Networking::NetworkOperators
     using MobileBroadbandUiccAppRecordDetailsResult = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppRecordDetailsResult>;
     using MobileBroadbandUiccAppsResult = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppsResult>;
     using NetworkOperatorDataUsageTriggerDetails = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::NetworkOperatorDataUsageTriggerDetails>;
+    using NetworkOperatorNotificationEventDetails = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails>;
     using NetworkOperatorTetheringAccessPointConfiguration = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringAccessPointConfiguration>;
     using NetworkOperatorTetheringClient = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringClient>;
     using NetworkOperatorTetheringManager = py::winrt_wrapper<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringManager>;
@@ -407,6 +409,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Networking::NetworkOperators::ESimWatcher>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Networking::NetworkOperators::FdnAccessManager>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -731,6 +739,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Networking::NetworkOperators::NetworkOperatorDataUsageTriggerDetails>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

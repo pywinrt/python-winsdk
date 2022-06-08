@@ -29,12 +29,355 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
         IAdvancedPhotoCapture(std::nullptr_t = nullptr) noexcept {}
         IAdvancedPhotoCapture(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAppBroadcastBackgroundService :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastBackgroundService>
+    {
+        IAppBroadcastBackgroundService(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastBackgroundService(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastBackgroundService2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastBackgroundService2>
+    {
+        IAppBroadcastBackgroundService2(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastBackgroundService2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastBackgroundServiceSignInInfo :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastBackgroundServiceSignInInfo>
+    {
+        IAppBroadcastBackgroundServiceSignInInfo(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastBackgroundServiceSignInInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastBackgroundServiceSignInInfo2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastBackgroundServiceSignInInfo2>
+    {
+        IAppBroadcastBackgroundServiceSignInInfo2(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastBackgroundServiceSignInInfo2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastBackgroundServiceStreamInfo :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastBackgroundServiceStreamInfo>
+    {
+        IAppBroadcastBackgroundServiceStreamInfo(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastBackgroundServiceStreamInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastBackgroundServiceStreamInfo2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastBackgroundServiceStreamInfo2>
+    {
+        IAppBroadcastBackgroundServiceStreamInfo2(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastBackgroundServiceStreamInfo2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastCameraCaptureStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastCameraCaptureStateChangedEventArgs>
+    {
+        IAppBroadcastCameraCaptureStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastCameraCaptureStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastGlobalSettings :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastGlobalSettings>
+    {
+        IAppBroadcastGlobalSettings(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastGlobalSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastHeartbeatRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastHeartbeatRequestedEventArgs>
+    {
+        IAppBroadcastHeartbeatRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastHeartbeatRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastManagerStatics>
+    {
+        IAppBroadcastManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastMicrophoneCaptureStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastMicrophoneCaptureStateChangedEventArgs>
+    {
+        IAppBroadcastMicrophoneCaptureStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastMicrophoneCaptureStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPlugIn :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPlugIn>
+    {
+        IAppBroadcastPlugIn(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPlugIn(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPlugInManager :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPlugInManager>
+    {
+        IAppBroadcastPlugInManager(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPlugInManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPlugInManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPlugInManagerStatics>
+    {
+        IAppBroadcastPlugInManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPlugInManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPlugInStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPlugInStateChangedEventArgs>
+    {
+        IAppBroadcastPlugInStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPlugInStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPreview :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPreview>
+    {
+        IAppBroadcastPreview(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPreview(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPreviewStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPreviewStateChangedEventArgs>
+    {
+        IAppBroadcastPreviewStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPreviewStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPreviewStreamReader :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPreviewStreamReader>
+    {
+        IAppBroadcastPreviewStreamReader(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPreviewStreamReader(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPreviewStreamVideoFrame :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPreviewStreamVideoFrame>
+    {
+        IAppBroadcastPreviewStreamVideoFrame(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPreviewStreamVideoFrame(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastPreviewStreamVideoHeader :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastPreviewStreamVideoHeader>
+    {
+        IAppBroadcastPreviewStreamVideoHeader(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastPreviewStreamVideoHeader(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastProviderSettings :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastProviderSettings>
+    {
+        IAppBroadcastProviderSettings(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastProviderSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastServices :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastServices>
+    {
+        IAppBroadcastServices(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastServices(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastSignInStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastSignInStateChangedEventArgs>
+    {
+        IAppBroadcastSignInStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastSignInStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastState :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastState>
+    {
+        IAppBroadcastState(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastState(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastStreamAudioFrame :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastStreamAudioFrame>
+    {
+        IAppBroadcastStreamAudioFrame(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastStreamAudioFrame(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastStreamAudioHeader :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastStreamAudioHeader>
+    {
+        IAppBroadcastStreamAudioHeader(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastStreamAudioHeader(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastStreamReader :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastStreamReader>
+    {
+        IAppBroadcastStreamReader(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastStreamReader(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastStreamStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastStreamStateChangedEventArgs>
+    {
+        IAppBroadcastStreamStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastStreamStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastStreamVideoFrame :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastStreamVideoFrame>
+    {
+        IAppBroadcastStreamVideoFrame(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastStreamVideoFrame(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastStreamVideoHeader :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastStreamVideoHeader>
+    {
+        IAppBroadcastStreamVideoHeader(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastStreamVideoHeader(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastTriggerDetails :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastTriggerDetails>
+    {
+        IAppBroadcastTriggerDetails(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastTriggerDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppBroadcastViewerCountChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppBroadcastViewerCountChangedEventArgs>
+    {
+        IAppBroadcastViewerCountChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppBroadcastViewerCountChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IAppCapture :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAppCapture>
     {
         IAppCapture(std::nullptr_t = nullptr) noexcept {}
         IAppCapture(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureAlternateShortcutKeys :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureAlternateShortcutKeys>
+    {
+        IAppCaptureAlternateShortcutKeys(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureAlternateShortcutKeys(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureAlternateShortcutKeys2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureAlternateShortcutKeys2>
+    {
+        IAppCaptureAlternateShortcutKeys2(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureAlternateShortcutKeys2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureAlternateShortcutKeys3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureAlternateShortcutKeys3>
+    {
+        IAppCaptureAlternateShortcutKeys3(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureAlternateShortcutKeys3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureDurationGeneratedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureDurationGeneratedEventArgs>
+    {
+        IAppCaptureDurationGeneratedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureDurationGeneratedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureFileGeneratedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureFileGeneratedEventArgs>
+    {
+        IAppCaptureFileGeneratedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureFileGeneratedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureManagerStatics>
+    {
+        IAppCaptureManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureMetadataWriter :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureMetadataWriter>
+    {
+        IAppCaptureMetadataWriter(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureMetadataWriter(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureMicrophoneCaptureStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureMicrophoneCaptureStateChangedEventArgs>
+    {
+        IAppCaptureMicrophoneCaptureStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureMicrophoneCaptureStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureRecordOperation :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureRecordOperation>
+    {
+        IAppCaptureRecordOperation(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureRecordOperation(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureRecordingStateChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureRecordingStateChangedEventArgs>
+    {
+        IAppCaptureRecordingStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureRecordingStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureServices :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureServices>
+    {
+        IAppCaptureServices(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureServices(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureSettings :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureSettings>
+    {
+        IAppCaptureSettings(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureSettings2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureSettings2>
+    {
+        IAppCaptureSettings2(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureSettings2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureSettings3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureSettings3>
+    {
+        IAppCaptureSettings3(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureSettings3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureSettings4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureSettings4>
+    {
+        IAppCaptureSettings4(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureSettings4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureSettings5 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureSettings5>
+    {
+        IAppCaptureSettings5(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureSettings5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppCaptureState :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCaptureState>
+    {
+        IAppCaptureState(std::nullptr_t = nullptr) noexcept {}
+        IAppCaptureState(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IAppCaptureStatics :
         winrt::Windows::Foundation::IInspectable,
@@ -70,6 +413,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     {
         ICameraCaptureUIVideoCaptureSettings(std::nullptr_t = nullptr) noexcept {}
         ICameraCaptureUIVideoCaptureSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICameraOptionsUIStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICameraOptionsUIStatics>
+    {
+        ICameraOptionsUIStatics(std::nullptr_t = nullptr) noexcept {}
+        ICameraOptionsUIStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ICapturedFrame :
         winrt::Windows::Foundation::IInspectable,
@@ -113,6 +463,48 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     {
         ICapturedPhoto(std::nullptr_t = nullptr) noexcept {}
         ICapturedPhoto(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGameBarServices :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGameBarServices>
+    {
+        IGameBarServices(std::nullptr_t = nullptr) noexcept {}
+        IGameBarServices(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGameBarServicesCommandEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGameBarServicesCommandEventArgs>
+    {
+        IGameBarServicesCommandEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IGameBarServicesCommandEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGameBarServicesManager :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGameBarServicesManager>
+    {
+        IGameBarServicesManager(std::nullptr_t = nullptr) noexcept {}
+        IGameBarServicesManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGameBarServicesManagerGameBarServicesCreatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGameBarServicesManagerGameBarServicesCreatedEventArgs>
+    {
+        IGameBarServicesManagerGameBarServicesCreatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IGameBarServicesManagerGameBarServicesCreatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGameBarServicesManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGameBarServicesManagerStatics>
+    {
+        IGameBarServicesManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IGameBarServicesManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGameBarServicesTargetInfo :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGameBarServicesTargetInfo>
+    {
+        IGameBarServicesTargetInfo(std::nullptr_t = nullptr) noexcept {}
+        IGameBarServicesTargetInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ILowLagMediaRecording :
         winrt::Windows::Foundation::IInspectable,
@@ -372,6 +764,27 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     {
         IPhotoConfirmationCapturedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IPhotoConfirmationCapturedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IScreenCapture :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IScreenCapture>
+    {
+        IScreenCapture(std::nullptr_t = nullptr) noexcept {}
+        IScreenCapture(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IScreenCaptureStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IScreenCaptureStatics>
+    {
+        IScreenCaptureStatics(std::nullptr_t = nullptr) noexcept {}
+        IScreenCaptureStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISourceSuspensionChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISourceSuspensionChangedEventArgs>
+    {
+        ISourceSuspensionChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ISourceSuspensionChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IVideoStreamConfiguration :
         winrt::Windows::Foundation::IInspectable,

@@ -52,6 +52,10 @@
 #include "py.Windows.Media.MediaProperties.h"
 #endif
 
+#if __has_include("py.Windows.Security.Authentication.Web.h")
+#include "py.Windows.Security.Authentication.Web.h"
+#endif
+
 #if __has_include("py.Windows.Security.Credentials.h")
 #include "py.Windows.Security.Credentials.h"
 #endif
@@ -62,6 +66,10 @@
 
 #if __has_include("py.Windows.Storage.Streams.h")
 #include "py.Windows.Storage.Streams.h"
+#endif
+
+#if __has_include("py.Windows.System.h")
+#include "py.Windows.System.h"
 #endif
 
 #if __has_include("py.Windows.UI.WindowManagement.h")
@@ -141,13 +149,58 @@ namespace py::wrapper::Windows::Media::Capture
 {
     using AdvancedCapturedPhoto = py::winrt_wrapper<winrt::Windows::Media::Capture::AdvancedCapturedPhoto>;
     using AdvancedPhotoCapture = py::winrt_wrapper<winrt::Windows::Media::Capture::AdvancedPhotoCapture>;
+    using AppBroadcastBackgroundService = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastBackgroundService>;
+    using AppBroadcastBackgroundServiceSignInInfo = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo>;
+    using AppBroadcastBackgroundServiceStreamInfo = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo>;
+    using AppBroadcastCameraCaptureStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs>;
+    using AppBroadcastGlobalSettings = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings>;
+    using AppBroadcastHeartbeatRequestedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs>;
+    using AppBroadcastManager = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastManager>;
+    using AppBroadcastMicrophoneCaptureStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs>;
+    using AppBroadcastPlugIn = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPlugIn>;
+    using AppBroadcastPlugInManager = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPlugInManager>;
+    using AppBroadcastPlugInStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs>;
+    using AppBroadcastPreview = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPreview>;
+    using AppBroadcastPreviewStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs>;
+    using AppBroadcastPreviewStreamReader = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader>;
+    using AppBroadcastPreviewStreamVideoFrame = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame>;
+    using AppBroadcastPreviewStreamVideoHeader = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader>;
+    using AppBroadcastProviderSettings = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastProviderSettings>;
+    using AppBroadcastServices = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastServices>;
+    using AppBroadcastSignInStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs>;
+    using AppBroadcastState = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastState>;
+    using AppBroadcastStreamAudioFrame = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame>;
+    using AppBroadcastStreamAudioHeader = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader>;
+    using AppBroadcastStreamReader = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastStreamReader>;
+    using AppBroadcastStreamStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs>;
+    using AppBroadcastStreamVideoFrame = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame>;
+    using AppBroadcastStreamVideoHeader = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader>;
+    using AppBroadcastTriggerDetails = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastTriggerDetails>;
+    using AppBroadcastViewerCountChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs>;
     using AppCapture = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCapture>;
+    using AppCaptureAlternateShortcutKeys = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys>;
+    using AppCaptureDurationGeneratedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs>;
+    using AppCaptureFileGeneratedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs>;
+    using AppCaptureManager = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureManager>;
+    using AppCaptureMetadataWriter = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureMetadataWriter>;
+    using AppCaptureMicrophoneCaptureStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs>;
+    using AppCaptureRecordOperation = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureRecordOperation>;
+    using AppCaptureRecordingStateChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs>;
+    using AppCaptureServices = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureServices>;
+    using AppCaptureSettings = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureSettings>;
+    using AppCaptureState = py::winrt_wrapper<winrt::Windows::Media::Capture::AppCaptureState>;
     using CameraCaptureUI = py::winrt_wrapper<winrt::Windows::Media::Capture::CameraCaptureUI>;
     using CameraCaptureUIPhotoCaptureSettings = py::winrt_wrapper<winrt::Windows::Media::Capture::CameraCaptureUIPhotoCaptureSettings>;
     using CameraCaptureUIVideoCaptureSettings = py::winrt_wrapper<winrt::Windows::Media::Capture::CameraCaptureUIVideoCaptureSettings>;
+    using CameraOptionsUI = py::winrt_wrapper<winrt::Windows::Media::Capture::CameraOptionsUI>;
     using CapturedFrame = py::winrt_wrapper<winrt::Windows::Media::Capture::CapturedFrame>;
     using CapturedFrameControlValues = py::winrt_wrapper<winrt::Windows::Media::Capture::CapturedFrameControlValues>;
     using CapturedPhoto = py::winrt_wrapper<winrt::Windows::Media::Capture::CapturedPhoto>;
+    using GameBarServices = py::winrt_wrapper<winrt::Windows::Media::Capture::GameBarServices>;
+    using GameBarServicesCommandEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs>;
+    using GameBarServicesManager = py::winrt_wrapper<winrt::Windows::Media::Capture::GameBarServicesManager>;
+    using GameBarServicesManagerGameBarServicesCreatedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs>;
+    using GameBarServicesTargetInfo = py::winrt_wrapper<winrt::Windows::Media::Capture::GameBarServicesTargetInfo>;
     using LowLagMediaRecording = py::winrt_wrapper<winrt::Windows::Media::Capture::LowLagMediaRecording>;
     using LowLagPhotoCapture = py::winrt_wrapper<winrt::Windows::Media::Capture::LowLagPhotoCapture>;
     using LowLagPhotoSequenceCapture = py::winrt_wrapper<winrt::Windows::Media::Capture::LowLagPhotoSequenceCapture>;
@@ -165,12 +218,140 @@ namespace py::wrapper::Windows::Media::Capture
     using OptionalReferencePhotoCapturedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::OptionalReferencePhotoCapturedEventArgs>;
     using PhotoCapturedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::PhotoCapturedEventArgs>;
     using PhotoConfirmationCapturedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::PhotoConfirmationCapturedEventArgs>;
+    using ScreenCapture = py::winrt_wrapper<winrt::Windows::Media::Capture::ScreenCapture>;
+    using SourceSuspensionChangedEventArgs = py::winrt_wrapper<winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs>;
     using VideoStreamConfiguration = py::winrt_wrapper<winrt::Windows::Media::Capture::VideoStreamConfiguration>;
     using WhiteBalanceGain = py::winrt_struct_wrapper<winrt::Windows::Media::Capture::WhiteBalanceGain>;
 }
 
 namespace py
 {
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastExitBroadcastModeReason>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastPlugInState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastPreviewState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastSignInResult>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastSignInState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastStreamState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastTerminationReason>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppCaptureMetadataPriority>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppCaptureRecordingState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
 
     template<>
     struct py_type<winrt::Windows::Media::Capture::CameraCaptureUIMaxPhotoResolution>
@@ -198,6 +379,36 @@ namespace py
 
     template<>
     struct py_type<winrt::Windows::Media::Capture::CameraCaptureUIVideoFormat>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::ForegroundActivationArgument>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::GameBarCommand>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::GameBarCommandOrigin>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::GameBarServicesDisplayMode>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Media::Capture::GameBarTargetCapturePolicy>
     {
         static PyObject* get_python_type() noexcept;
     };
@@ -287,7 +498,241 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastBackgroundService>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPlugIn>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPlugInManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPreview>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastProviderSettings>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastServices>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastState>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastStreamReader>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastTriggerDetails>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Media::Capture::AppCapture>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureMetadataWriter>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureRecordOperation>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureServices>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureSettings>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::AppCaptureState>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -311,6 +756,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Media::Capture::CameraOptionsUI>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Media::Capture::CapturedFrame>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -324,6 +775,36 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::Capture::CapturedPhoto>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::GameBarServices>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::GameBarServicesManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::GameBarServicesTargetInfo>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -426,6 +907,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::Capture::PhotoConfirmationCapturedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::ScreenCapture>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

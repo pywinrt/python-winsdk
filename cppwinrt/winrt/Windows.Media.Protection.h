@@ -25,6 +25,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Protection::IComponentLoadFailedEventArgs)->get_Completion(&value));
         return winrt::Windows::Media::Protection::MediaProtectionServiceCompletion{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Media_Protection_IComponentRenewalStatics<D>::RenewSystemComponentsAsync(winrt::Windows::Media::Protection::RevocationAndRenewalInformation const& information) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Protection::IComponentRenewalStatics)->RenewSystemComponentsAsync(*(void**)(&information), &operation));
+        return winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Windows::Media::Protection::RenewalStatus, uint32_t>{ operation, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Media_Protection_IHdcpSession<D>::IsEffectiveProtectionAtLeast(winrt::Windows::Media::Protection::HdcpProtection const& protection) const
     {
         bool value{};
@@ -243,6 +249,20 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Media::Protection::MediaProtectionServiceCompletion>(this->shim().Completion());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Protection::IComponentRenewalStatics> : produce_base<D, winrt::Windows::Media::Protection::IComponentRenewalStatics>
+    {
+        int32_t __stdcall RenewSystemComponentsAsync(void* information, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperationWithProgress<winrt::Windows::Media::Protection::RenewalStatus, uint32_t>>(this->shim().RenewSystemComponentsAsync(*reinterpret_cast<winrt::Windows::Media::Protection::RevocationAndRenewalInformation const*>(&information)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -548,6 +568,10 @@ WINRT_EXPORT namespace winrt::Windows::Media::Protection
         left = left ^ right;
         return left;
     }
+    inline auto ComponentRenewal::RenewSystemComponentsAsync(winrt::Windows::Media::Protection::RevocationAndRenewalInformation const& information)
+    {
+        return impl::call_factory<ComponentRenewal, IComponentRenewalStatics>([&](IComponentRenewalStatics const& f) { return f.RenewSystemComponentsAsync(information); });
+    }
     inline HdcpSession::HdcpSession() :
         HdcpSession(impl::call_factory_cast<HdcpSession(*)(winrt::Windows::Foundation::IActivationFactory const&), HdcpSession>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<HdcpSession>(); }))
     {
@@ -641,6 +665,7 @@ namespace std
 {
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::Media::Protection::IComponentLoadFailedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Protection::IComponentRenewalStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::IHdcpSession> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::IMediaProtectionManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::IMediaProtectionPMPServer> : winrt::impl::hash_base {};
@@ -653,6 +678,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Protection::IServiceRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::IServiceRequestedEventArgs2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::ComponentLoadFailedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Protection::ComponentRenewal> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::HdcpSession> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::MediaProtectionManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Protection::MediaProtectionPMPServer> : winrt::impl::hash_base {};

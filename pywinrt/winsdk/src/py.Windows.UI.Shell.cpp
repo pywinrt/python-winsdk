@@ -8,14 +8,90 @@ namespace py::cpp::Windows::UI::Shell
 {
     struct module_state
     {
+        PyObject* type_SecurityAppKind;
+        PyObject* type_SecurityAppState;
+        PyObject* type_SecurityAppSubstatus;
         PyObject* type_ShareWindowCommand;
         PyTypeObject* type_AdaptiveCardBuilder;
+        PyTypeObject* type_SecurityAppManager;
         PyTypeObject* type_ShareWindowCommandEventArgs;
         PyTypeObject* type_ShareWindowCommandSource;
         PyTypeObject* type_TaskbarManager;
         PyTypeObject* type_IAdaptiveCard;
         PyTypeObject* type_IAdaptiveCardBuilderStatics;
     };
+
+    static PyObject* register_SecurityAppKind(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SecurityAppKind)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SecurityAppKind = type;
+        Py_INCREF(state->type_SecurityAppKind);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_SecurityAppState(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SecurityAppState)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SecurityAppState = type;
+        Py_INCREF(state->type_SecurityAppState);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_SecurityAppSubstatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SecurityAppSubstatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SecurityAppSubstatus = type;
+        Py_INCREF(state->type_SecurityAppSubstatus);
+
+
+        Py_RETURN_NONE;
+    }
 
     static PyObject* register_ShareWindowCommand(PyObject* module, PyObject* type)
     {
@@ -99,6 +175,175 @@ namespace py::cpp::Windows::UI::Shell
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_AdaptiveCardBuilder
+    };
+
+    // ----- SecurityAppManager class --------------------
+    constexpr const char* const type_name_SecurityAppManager = "SecurityAppManager";
+
+    static PyObject* _new_SecurityAppManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::UI::Shell::SecurityAppManager instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_SecurityAppManager(py::wrapper::Windows::UI::Shell::SecurityAppManager* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SecurityAppManager_Register(py::wrapper::Windows::UI::Shell::SecurityAppManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::SecurityAppKind>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Foundation::Uri>(args, 2);
+                auto param3 = py::convert_to<bool>(args, 3);
+
+                return py::convert(self->obj.Register(param0, param1, param2, param3));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SecurityAppManager_Unregister(py::wrapper::Windows::UI::Shell::SecurityAppManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::SecurityAppKind>(args, 0);
+                auto param1 = py::convert_to<winrt::guid>(args, 1);
+
+                self->obj.Unregister(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SecurityAppManager_UpdateState(py::wrapper::Windows::UI::Shell::SecurityAppManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::SecurityAppKind>(args, 0);
+                auto param1 = py::convert_to<winrt::guid>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::UI::Shell::SecurityAppState>(args, 2);
+                auto param3 = py::convert_to<winrt::Windows::UI::Shell::SecurityAppSubstatus>(args, 3);
+                auto param4 = py::convert_to<winrt::Windows::Foundation::Uri>(args, 4);
+
+                self->obj.UpdateState(param0, param1, param2, param3, param4);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SecurityAppManager(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::SecurityAppManager>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SecurityAppManager[] = {
+        { "register", reinterpret_cast<PyCFunction>(SecurityAppManager_Register), METH_VARARGS, nullptr },
+        { "unregister", reinterpret_cast<PyCFunction>(SecurityAppManager_Unregister), METH_VARARGS, nullptr },
+        { "update_state", reinterpret_cast<PyCFunction>(SecurityAppManager_UpdateState), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SecurityAppManager), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SecurityAppManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_SecurityAppManager[] = 
+    {
+        { Py_tp_new, _new_SecurityAppManager },
+        { Py_tp_dealloc, _dealloc_SecurityAppManager },
+        { Py_tp_methods, _methods_SecurityAppManager },
+        { Py_tp_getset, _getset_SecurityAppManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_SecurityAppManager =
+    {
+        "_winsdk_Windows_UI_Shell.SecurityAppManager",
+        sizeof(py::wrapper::Windows::UI::Shell::SecurityAppManager),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SecurityAppManager
     };
 
     // ----- ShareWindowCommandEventArgs class --------------------
@@ -890,6 +1135,9 @@ namespace py::cpp::Windows::UI::Shell
     PyDoc_STRVAR(module_doc, "Windows::UI::Shell");
 
     static PyMethodDef module_methods[] = {
+        {"_register_SecurityAppKind", register_SecurityAppKind, METH_O, "registers type"},
+        {"_register_SecurityAppState", register_SecurityAppState, METH_O, "registers type"},
+        {"_register_SecurityAppSubstatus", register_SecurityAppSubstatus, METH_O, "registers type"},
         {"_register_ShareWindowCommand", register_ShareWindowCommand, METH_O, "registers type"},
         {}};
 
@@ -903,8 +1151,12 @@ namespace py::cpp::Windows::UI::Shell
             return 0;
         }
 
+        Py_VISIT(state->type_SecurityAppKind);
+        Py_VISIT(state->type_SecurityAppState);
+        Py_VISIT(state->type_SecurityAppSubstatus);
         Py_VISIT(state->type_ShareWindowCommand);
         Py_VISIT(state->type_AdaptiveCardBuilder);
+        Py_VISIT(state->type_SecurityAppManager);
         Py_VISIT(state->type_ShareWindowCommandEventArgs);
         Py_VISIT(state->type_ShareWindowCommandSource);
         Py_VISIT(state->type_TaskbarManager);
@@ -923,8 +1175,12 @@ namespace py::cpp::Windows::UI::Shell
             return 0;
         }
 
+        Py_CLEAR(state->type_SecurityAppKind);
+        Py_CLEAR(state->type_SecurityAppState);
+        Py_CLEAR(state->type_SecurityAppSubstatus);
         Py_CLEAR(state->type_ShareWindowCommand);
         Py_CLEAR(state->type_AdaptiveCardBuilder);
+        Py_CLEAR(state->type_SecurityAppManager);
         Py_CLEAR(state->type_ShareWindowCommandEventArgs);
         Py_CLEAR(state->type_ShareWindowCommandSource);
         Py_CLEAR(state->type_TaskbarManager);
@@ -1046,6 +1302,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_Shell(void) noexcept
 
     Py_INCREF(state->type_AdaptiveCardBuilder);
 
+    state->type_SecurityAppManager = py::register_python_type(module.get(), type_name_SecurityAppManager, &type_spec_SecurityAppManager, bases.get());
+    if (!state->type_SecurityAppManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SecurityAppManager);
+
     state->type_ShareWindowCommandEventArgs = py::register_python_type(module.get(), type_name_ShareWindowCommandEventArgs, &type_spec_ShareWindowCommandEventArgs, bases.get());
     if (!state->type_ShareWindowCommandEventArgs)
     {
@@ -1090,6 +1354,75 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_Shell(void) noexcept
     return module.detach();
 }
 
+PyObject* py::py_type<winrt::Windows::UI::Shell::SecurityAppKind>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SecurityAppKind;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::SecurityAppKind is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::UI::Shell::SecurityAppState>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SecurityAppState;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::SecurityAppState is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::UI::Shell::SecurityAppSubstatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SecurityAppSubstatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::SecurityAppSubstatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::UI::Shell::ShareWindowCommand>::get_python_type() noexcept {
     using namespace py::cpp::Windows::UI::Shell;
 
@@ -1130,6 +1463,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::AdaptiveCardBuilder>::ge
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::AdaptiveCardBuilder is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::SecurityAppManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SecurityAppManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::SecurityAppManager is not registered");
         return nullptr;
     }
 

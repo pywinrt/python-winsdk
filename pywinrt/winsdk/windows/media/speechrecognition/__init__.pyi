@@ -237,6 +237,20 @@ class SpeechRecognizerUIOptions(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> SpeechRecognizerUIOptions: ...
 
+class VoiceCommandManager(_winrt.Object):
+    installed_command_sets: typing.Optional[winsdk.windows.foundation.collections.IMapView[str, VoiceCommandSet]]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> VoiceCommandManager: ...
+    @staticmethod
+    def install_command_sets_from_storage_file_async(file: typing.Optional[winsdk.windows.storage.StorageFile]) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+
+class VoiceCommandSet(_winrt.Object):
+    language: str
+    name: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> VoiceCommandSet: ...
+    def set_phrase_list_async(self, phrase_list_name: str, phrase_list: typing.Iterable[str]) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+
 class ISpeechRecognitionConstraint(_winrt.Object):
     is_enabled: _winrt.Boolean
     probability: SpeechRecognitionConstraintProbability

@@ -19,9 +19,11 @@ static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.220607.4"), "Mismatche
 #include "winrt/impl/Windows.Media.Devices.2.h"
 #include "winrt/impl/Windows.Media.Effects.2.h"
 #include "winrt/impl/Windows.Media.MediaProperties.2.h"
+#include "winrt/impl/Windows.Security.Authentication.Web.2.h"
 #include "winrt/impl/Windows.Security.Credentials.2.h"
 #include "winrt/impl/Windows.Storage.2.h"
 #include "winrt/impl/Windows.Storage.Streams.2.h"
+#include "winrt/impl/Windows.System.2.h"
 #include "winrt/impl/Windows.UI.WindowManagement.2.h"
 #include "winrt/impl/Windows.Media.Capture.2.h"
 namespace winrt::impl
@@ -96,6 +98,1240 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAdvancedPhotoCapture)->FinishAsync(&operation));
         return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::PlugInState(winrt::Windows::Media::Capture::AppBroadcastPlugInState const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->put_PlugInState(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::PlugInState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastPlugInState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->get_PlugInState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::SignInInfo(winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->put_SignInInfo(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::SignInInfo() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->get_SignInInfo(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::StreamInfo(winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->put_StreamInfo(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::StreamInfo() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->get_StreamInfo(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::AppId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->get_AppId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::BroadcastTitle() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->get_BroadcastTitle(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::ViewerCount(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->put_ViewerCount(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::ViewerCount() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->get_ViewerCount(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::TerminateBroadcast(winrt::Windows::Media::Capture::AppBroadcastTerminationReason const& reason, uint32_t providerSpecificReason) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->TerminateBroadcast(static_cast<int32_t>(reason), providerSpecificReason));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::HeartbeatRequested(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->add_HeartbeatRequested(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::HeartbeatRequested(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, HeartbeatRequested_revoker>(this, HeartbeatRequested(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::HeartbeatRequested(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->remove_HeartbeatRequested(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>::TitleId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService)->get_TitleId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastTitle(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->put_BroadcastTitle(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastLanguage() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->get_BroadcastLanguage(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastLanguage(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->put_BroadcastLanguage(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastChannel() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->get_BroadcastChannel(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastChannel(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->put_BroadcastChannel(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastTitleChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->add_BroadcastTitleChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastTitleChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, BroadcastTitleChanged_revoker>(this, BroadcastTitleChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastTitleChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->remove_BroadcastTitleChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastLanguageChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->add_BroadcastLanguageChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastLanguageChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, BroadcastLanguageChanged_revoker>(this, BroadcastLanguageChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastLanguageChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->remove_BroadcastLanguageChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastChannelChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->add_BroadcastChannelChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastChannelChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, BroadcastChannelChanged_revoker>(this, BroadcastChannelChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>::BroadcastChannelChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2)->remove_BroadcastChannelChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::SignInState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastSignInState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->get_SignInState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::OAuthRequestUri(winrt::Windows::Foundation::Uri const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->put_OAuthRequestUri(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::OAuthRequestUri() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->get_OAuthRequestUri(&value));
+        return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::OAuthCallbackUri(winrt::Windows::Foundation::Uri const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->put_OAuthCallbackUri(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::OAuthCallbackUri() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->get_OAuthCallbackUri(&value));
+        return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::AuthenticationResult() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->get_AuthenticationResult(&value));
+        return winrt::Windows::Security::Authentication::Web::WebAuthenticationResult{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::UserName(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->put_UserName(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::UserName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->get_UserName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::SignInStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->add_SignInStateChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::SignInStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, SignInStateChanged_revoker>(this, SignInStateChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>::SignInStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo)->remove_SignInStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo2<D>::UserNameChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2)->add_UserNameChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo2<D>::UserNameChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, UserNameChanged_revoker>(this, UserNameChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo2<D>::UserNameChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2)->remove_UserNameChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::StreamState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastStreamState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->get_StreamState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::DesiredVideoEncodingBitrate(uint64_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->put_DesiredVideoEncodingBitrate(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::DesiredVideoEncodingBitrate() const
+    {
+        uint64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->get_DesiredVideoEncodingBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::BandwidthTestBitrate(uint64_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->put_BandwidthTestBitrate(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::BandwidthTestBitrate() const
+    {
+        uint64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->get_BandwidthTestBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::AudioCodec(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->put_AudioCodec(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::AudioCodec() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->get_AudioCodec(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::BroadcastStreamReader() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->get_BroadcastStreamReader(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastStreamReader{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::StreamStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->add_StreamStateChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::StreamStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, StreamStateChanged_revoker>(this, StreamStateChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::StreamStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->remove_StreamStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::VideoEncodingResolutionChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->add_VideoEncodingResolutionChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::VideoEncodingResolutionChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, VideoEncodingResolutionChanged_revoker>(this, VideoEncodingResolutionChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::VideoEncodingResolutionChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->remove_VideoEncodingResolutionChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::VideoEncodingBitrateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->add_VideoEncodingBitrateChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::VideoEncodingBitrateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, VideoEncodingBitrateChanged_revoker>(this, VideoEncodingBitrateChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>::VideoEncodingBitrateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo)->remove_VideoEncodingBitrateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo2<D>::ReportProblemWithStream() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2)->ReportProblemWithStream());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastCameraCaptureStateChangedEventArgs<D>::State() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastCameraCaptureState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs)->get_State(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastCameraCaptureStateChangedEventArgs<D>::ErrorCode() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs)->get_ErrorCode(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsBroadcastEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsBroadcastEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsDisabledByPolicy() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsDisabledByPolicy(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsGpuConstrained() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsGpuConstrained(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::HasHardwareEncoder() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_HasHardwareEncoder(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsAudioCaptureEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_IsAudioCaptureEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsAudioCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsAudioCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsMicrophoneCaptureEnabledByDefault(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_IsMicrophoneCaptureEnabledByDefault(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsMicrophoneCaptureEnabledByDefault() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsMicrophoneCaptureEnabledByDefault(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsEchoCancellationEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_IsEchoCancellationEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsEchoCancellationEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsEchoCancellationEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::SystemAudioGain(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_SystemAudioGain(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::SystemAudioGain() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_SystemAudioGain(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::MicrophoneGain(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_MicrophoneGain(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::MicrophoneGain() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_MicrophoneGain(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsCameraCaptureEnabledByDefault(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_IsCameraCaptureEnabledByDefault(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsCameraCaptureEnabledByDefault() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsCameraCaptureEnabledByDefault(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::SelectedCameraId(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_SelectedCameraId(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::SelectedCameraId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_SelectedCameraId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::CameraOverlayLocation(winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_CameraOverlayLocation(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::CameraOverlayLocation() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_CameraOverlayLocation(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::CameraOverlaySize(winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_CameraOverlaySize(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::CameraOverlaySize() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_CameraOverlaySize(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsCursorImageCaptureEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->put_IsCursorImageCaptureEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>::IsCursorImageCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings)->get_IsCursorImageCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastHeartbeatRequestedEventArgs<D>::Handled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs)->put_Handled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastHeartbeatRequestedEventArgs<D>::Handled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs)->get_Handled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastManagerStatics<D>::GetGlobalSettings() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastManagerStatics)->GetGlobalSettings(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastGlobalSettings{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastManagerStatics<D>::ApplyGlobalSettings(winrt::Windows::Media::Capture::AppBroadcastGlobalSettings const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastManagerStatics)->ApplyGlobalSettings(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastManagerStatics<D>::GetProviderSettings() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastManagerStatics)->GetProviderSettings(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastProviderSettings{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastManagerStatics<D>::ApplyProviderSettings(winrt::Windows::Media::Capture::AppBroadcastProviderSettings const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastManagerStatics)->ApplyProviderSettings(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastMicrophoneCaptureStateChangedEventArgs<D>::State() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs)->get_State(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastMicrophoneCaptureStateChangedEventArgs<D>::ErrorCode() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs)->get_ErrorCode(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugIn<D>::AppId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugIn)->get_AppId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugIn<D>::ProviderSettings() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugIn)->get_ProviderSettings(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastProviderSettings{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugIn<D>::Logo() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugIn)->get_Logo(&value));
+        return winrt::Windows::Storage::Streams::IRandomAccessStreamReference{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugIn<D>::DisplayName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugIn)->get_DisplayName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugInManager<D>::IsBroadcastProviderAvailable() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugInManager)->get_IsBroadcastProviderAvailable(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugInManager<D>::PlugInList() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugInManager)->get_PlugInList(&value));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Media::Capture::AppBroadcastPlugIn>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugInManager<D>::DefaultPlugIn() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugInManager)->get_DefaultPlugIn(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastPlugIn{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugInManager<D>::DefaultPlugIn(winrt::Windows::Media::Capture::AppBroadcastPlugIn const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugInManager)->put_DefaultPlugIn(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugInManagerStatics<D>::GetDefault() const
+    {
+        void* ppInstance{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics)->GetDefault(&ppInstance));
+        return winrt::Windows::Media::Capture::AppBroadcastPlugInManager{ ppInstance, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugInManagerStatics<D>::GetForUser(winrt::Windows::System::User const& user) const
+    {
+        void* ppInstance{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics)->GetForUser(*(void**)(&user), &ppInstance));
+        return winrt::Windows::Media::Capture::AppBroadcastPlugInManager{ ppInstance, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPlugInStateChangedEventArgs<D>::PlugInState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastPlugInState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs)->get_PlugInState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreview<D>::StopPreview() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreview)->StopPreview());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreview<D>::PreviewState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastPreviewState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreview)->get_PreviewState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreview<D>::ErrorCode() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreview)->get_ErrorCode(&value));
+        return winrt::Windows::Foundation::IReference<uint32_t>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreview<D>::PreviewStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreview, winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreview)->add_PreviewStateChanged(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreview<D>::PreviewStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreview, winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, PreviewStateChanged_revoker>(this, PreviewStateChanged(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreview<D>::PreviewStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreview)->remove_PreviewStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreview<D>::PreviewStreamReader() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreview)->get_PreviewStreamReader(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStateChangedEventArgs<D>::PreviewState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastPreviewState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs)->get_PreviewState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStateChangedEventArgs<D>::ErrorCode() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs)->get_ErrorCode(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoWidth() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->get_VideoWidth(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoHeight() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->get_VideoHeight(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoStride() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->get_VideoStride(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoBitmapPixelFormat() const
+    {
+        winrt::Windows::Graphics::Imaging::BitmapPixelFormat value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->get_VideoBitmapPixelFormat(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoBitmapAlphaMode() const
+    {
+        winrt::Windows::Graphics::Imaging::BitmapAlphaMode value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->get_VideoBitmapAlphaMode(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::TryGetNextVideoFrame() const
+    {
+        void* frame{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->TryGetNextVideoFrame(&frame));
+        return winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame{ frame, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoFrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->add_VideoFrameArrived(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoFrameArrived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        return impl::make_event_revoker<D, VideoFrameArrived_revoker>(this, VideoFrameArrived(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>::VideoFrameArrived(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader)->remove_VideoFrameArrived(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoFrame<D>::VideoHeader() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame)->get_VideoHeader(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoFrame<D>::VideoBuffer() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame)->get_VideoBuffer(&value));
+        return winrt::Windows::Storage::Streams::IBuffer{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoHeader<D>::AbsoluteTimestamp() const
+    {
+        winrt::Windows::Foundation::DateTime value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader)->get_AbsoluteTimestamp(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoHeader<D>::RelativeTimestamp() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader)->get_RelativeTimestamp(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoHeader<D>::Duration() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader)->get_Duration(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoHeader<D>::FrameId() const
+    {
+        uint64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader)->get_FrameId(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::DefaultBroadcastTitle(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->put_DefaultBroadcastTitle(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::DefaultBroadcastTitle() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->get_DefaultBroadcastTitle(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::AudioEncodingBitrate(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->put_AudioEncodingBitrate(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::AudioEncodingBitrate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->get_AudioEncodingBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::CustomVideoEncodingBitrate(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->put_CustomVideoEncodingBitrate(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::CustomVideoEncodingBitrate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->get_CustomVideoEncodingBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::CustomVideoEncodingHeight(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->put_CustomVideoEncodingHeight(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::CustomVideoEncodingHeight() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->get_CustomVideoEncodingHeight(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::CustomVideoEncodingWidth(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->put_CustomVideoEncodingWidth(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::CustomVideoEncodingWidth() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->get_CustomVideoEncodingWidth(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::VideoEncodingBitrateMode(winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->put_VideoEncodingBitrateMode(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::VideoEncodingBitrateMode() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->get_VideoEncodingBitrateMode(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::VideoEncodingResolutionMode(winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->put_VideoEncodingResolutionMode(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>::VideoEncodingResolutionMode() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastProviderSettings)->get_VideoEncodingResolutionMode(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::CaptureTargetType() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->get_CaptureTargetType(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::CaptureTargetType(winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->put_CaptureTargetType(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::BroadcastTitle() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->get_BroadcastTitle(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::BroadcastTitle(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->put_BroadcastTitle(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::BroadcastLanguage() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->get_BroadcastLanguage(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::BroadcastLanguage(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->put_BroadcastLanguage(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::UserName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->get_UserName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::CanCapture() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->get_CanCapture(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::EnterBroadcastModeAsync(winrt::Windows::Media::Capture::AppBroadcastPlugIn const& plugIn) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->EnterBroadcastModeAsync(*(void**)(&plugIn), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<uint32_t>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::ExitBroadcastMode(winrt::Windows::Media::Capture::AppBroadcastExitBroadcastModeReason const& reason) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->ExitBroadcastMode(static_cast<int32_t>(reason)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::StartBroadcast() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->StartBroadcast());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::PauseBroadcast() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->PauseBroadcast());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::ResumeBroadcast() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->ResumeBroadcast());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::StartPreview(winrt::Windows::Foundation::Size const& desiredSize) const
+    {
+        void* preview{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->StartPreview(impl::bind_in(desiredSize), &preview));
+        return winrt::Windows::Media::Capture::AppBroadcastPreview{ preview, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastServices<D>::State() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastServices)->get_State(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastState{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastSignInStateChangedEventArgs<D>::SignInState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastSignInState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs)->get_SignInState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastSignInStateChangedEventArgs<D>::Result() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastSignInResult value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs)->get_Result(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::IsCaptureTargetRunning() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_IsCaptureTargetRunning(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ViewerCount() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_ViewerCount(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ShouldCaptureMicrophone() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_ShouldCaptureMicrophone(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ShouldCaptureMicrophone(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->put_ShouldCaptureMicrophone(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::RestartMicrophoneCapture() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->RestartMicrophoneCapture());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ShouldCaptureCamera() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_ShouldCaptureCamera(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ShouldCaptureCamera(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->put_ShouldCaptureCamera(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::RestartCameraCapture() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->RestartCameraCapture());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::EncodedVideoSize() const
+    {
+        winrt::Windows::Foundation::Size value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_EncodedVideoSize(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::MicrophoneCaptureState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_MicrophoneCaptureState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::MicrophoneCaptureError() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_MicrophoneCaptureError(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CameraCaptureState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastCameraCaptureState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_CameraCaptureState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CameraCaptureError() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_CameraCaptureError(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::StreamState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastStreamState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_StreamState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::PlugInState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastPlugInState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_PlugInState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::OAuthRequestUri() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_OAuthRequestUri(&value));
+        return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::OAuthCallbackUri() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_OAuthCallbackUri(&value));
+        return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::AuthenticationResult() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_AuthenticationResult(&value));
+        return winrt::Windows::Security::Authentication::Web::WebAuthenticationResult{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::AuthenticationResult(winrt::Windows::Security::Authentication::Web::WebAuthenticationResult const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->put_AuthenticationResult(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::SignInState(winrt::Windows::Media::Capture::AppBroadcastSignInState const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->put_SignInState(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::SignInState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastSignInState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_SignInState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::TerminationReason() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastTerminationReason value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_TerminationReason(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::TerminationReasonPlugInSpecific() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->get_TerminationReasonPlugInSpecific(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ViewerCountChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->add_ViewerCountChanged(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ViewerCountChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, ViewerCountChanged_revoker>(this, ViewerCountChanged(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::ViewerCountChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->remove_ViewerCountChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::MicrophoneCaptureStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->add_MicrophoneCaptureStateChanged(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::MicrophoneCaptureStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, MicrophoneCaptureStateChanged_revoker>(this, MicrophoneCaptureStateChanged(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::MicrophoneCaptureStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->remove_MicrophoneCaptureStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CameraCaptureStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->add_CameraCaptureStateChanged(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CameraCaptureStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, CameraCaptureStateChanged_revoker>(this, CameraCaptureStateChanged(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CameraCaptureStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->remove_CameraCaptureStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::PlugInStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->add_PlugInStateChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::PlugInStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, PlugInStateChanged_revoker>(this, PlugInStateChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::PlugInStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->remove_PlugInStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::StreamStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->add_StreamStateChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::StreamStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, StreamStateChanged_revoker>(this, StreamStateChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::StreamStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->remove_StreamStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CaptureTargetClosed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->add_CaptureTargetClosed(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CaptureTargetClosed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        return impl::make_event_revoker<D, CaptureTargetClosed_revoker>(this, CaptureTargetClosed(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastState<D>::CaptureTargetClosed(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastState)->remove_CaptureTargetClosed(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamAudioFrame<D>::AudioHeader() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame)->get_AudioHeader(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamAudioFrame<D>::AudioBuffer() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame)->get_AudioBuffer(&value));
+        return winrt::Windows::Storage::Streams::IBuffer{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamAudioHeader<D>::AbsoluteTimestamp() const
+    {
+        winrt::Windows::Foundation::DateTime value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader)->get_AbsoluteTimestamp(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamAudioHeader<D>::RelativeTimestamp() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader)->get_RelativeTimestamp(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamAudioHeader<D>::Duration() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader)->get_Duration(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamAudioHeader<D>::HasDiscontinuity() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader)->get_HasDiscontinuity(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamAudioHeader<D>::FrameId() const
+    {
+        uint64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader)->get_FrameId(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::AudioChannels() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->get_AudioChannels(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::AudioSampleRate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->get_AudioSampleRate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::AudioAacSequence() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->get_AudioAacSequence(&value));
+        return winrt::Windows::Storage::Streams::IBuffer{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::AudioBitrate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->get_AudioBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::TryGetNextAudioFrame() const
+    {
+        void* frame{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->TryGetNextAudioFrame(&frame));
+        return winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame{ frame, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::VideoWidth() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->get_VideoWidth(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::VideoHeight() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->get_VideoHeight(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::VideoBitrate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->get_VideoBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::TryGetNextVideoFrame() const
+    {
+        void* frame{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->TryGetNextVideoFrame(&frame));
+        return winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame{ frame, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::AudioFrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->add_AudioFrameArrived(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::AudioFrameArrived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        return impl::make_event_revoker<D, AudioFrameArrived_revoker>(this, AudioFrameArrived(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::AudioFrameArrived(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->remove_AudioFrameArrived(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::VideoFrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->add_VideoFrameArrived(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::VideoFrameArrived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        return impl::make_event_revoker<D, VideoFrameArrived_revoker>(this, VideoFrameArrived(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>::VideoFrameArrived(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamReader)->remove_VideoFrameArrived(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamStateChangedEventArgs<D>::StreamState() const
+    {
+        winrt::Windows::Media::Capture::AppBroadcastStreamState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs)->get_StreamState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoFrame<D>::VideoHeader() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame)->get_VideoHeader(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoFrame<D>::VideoBuffer() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame)->get_VideoBuffer(&value));
+        return winrt::Windows::Storage::Streams::IBuffer{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader<D>::AbsoluteTimestamp() const
+    {
+        winrt::Windows::Foundation::DateTime value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader)->get_AbsoluteTimestamp(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader<D>::RelativeTimestamp() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader)->get_RelativeTimestamp(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader<D>::Duration() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader)->get_Duration(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader<D>::IsKeyFrame() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader)->get_IsKeyFrame(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader<D>::HasDiscontinuity() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader)->get_HasDiscontinuity(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader<D>::FrameId() const
+    {
+        uint64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader)->get_FrameId(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastTriggerDetails<D>::BackgroundService() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails)->get_BackgroundService(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastBackgroundService{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppBroadcastViewerCountChangedEventArgs<D>::ViewerCount() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs)->get_ViewerCount(&value));
+        return value;
+    }
     template <typename D> auto consume_Windows_Media_Capture_IAppCapture<D>::IsCapturingAudio() const
     {
         bool value{};
@@ -121,6 +1357,696 @@ namespace winrt::impl
     template <typename D> auto consume_Windows_Media_Capture_IAppCapture<D>::CapturingChanged(winrt::event_token const& token) const noexcept
     {
         WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCapture)->remove_CapturingChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleGameBarKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_ToggleGameBarKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleGameBarKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_ToggleGameBarKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleGameBarKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_ToggleGameBarKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleGameBarKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_ToggleGameBarKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::SaveHistoricalVideoKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_SaveHistoricalVideoKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::SaveHistoricalVideoKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_SaveHistoricalVideoKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::SaveHistoricalVideoKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_SaveHistoricalVideoKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::SaveHistoricalVideoKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_SaveHistoricalVideoKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_ToggleRecordingKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_ToggleRecordingKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_ToggleRecordingKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_ToggleRecordingKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::TakeScreenshotKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_TakeScreenshotKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::TakeScreenshotKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_TakeScreenshotKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::TakeScreenshotKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_TakeScreenshotKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::TakeScreenshotKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_TakeScreenshotKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingIndicatorKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_ToggleRecordingIndicatorKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingIndicatorKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_ToggleRecordingIndicatorKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingIndicatorKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->put_ToggleRecordingIndicatorKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>::ToggleRecordingIndicatorKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys)->get_ToggleRecordingIndicatorKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys2<D>::ToggleMicrophoneCaptureKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2)->put_ToggleMicrophoneCaptureKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys2<D>::ToggleMicrophoneCaptureKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2)->get_ToggleMicrophoneCaptureKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys2<D>::ToggleMicrophoneCaptureKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2)->put_ToggleMicrophoneCaptureKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys2<D>::ToggleMicrophoneCaptureKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2)->get_ToggleMicrophoneCaptureKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleCameraCaptureKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->put_ToggleCameraCaptureKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleCameraCaptureKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->get_ToggleCameraCaptureKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleCameraCaptureKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->put_ToggleCameraCaptureKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleCameraCaptureKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->get_ToggleCameraCaptureKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleBroadcastKey(winrt::Windows::System::VirtualKey const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->put_ToggleBroadcastKey(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleBroadcastKey() const
+    {
+        winrt::Windows::System::VirtualKey value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->get_ToggleBroadcastKey(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleBroadcastKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->put_ToggleBroadcastKeyModifiers(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>::ToggleBroadcastKeyModifiers() const
+    {
+        winrt::Windows::System::VirtualKeyModifiers value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3)->get_ToggleBroadcastKeyModifiers(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureDurationGeneratedEventArgs<D>::Duration() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs)->get_Duration(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureFileGeneratedEventArgs<D>::File() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs)->get_File(&value));
+        return winrt::Windows::Storage::StorageFile{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureManagerStatics<D>::GetCurrentSettings() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureManagerStatics)->GetCurrentSettings(&value));
+        return winrt::Windows::Media::Capture::AppCaptureSettings{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureManagerStatics<D>::ApplySettings(winrt::Windows::Media::Capture::AppCaptureSettings const& appCaptureSettings) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureManagerStatics)->ApplySettings(*(void**)(&appCaptureSettings)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::AddStringEvent(param::hstring const& name, param::hstring const& value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->AddStringEvent(*(void**)(&name), *(void**)(&value), static_cast<int32_t>(priority)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::AddInt32Event(param::hstring const& name, int32_t value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->AddInt32Event(*(void**)(&name), value, static_cast<int32_t>(priority)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::AddDoubleEvent(param::hstring const& name, double value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->AddDoubleEvent(*(void**)(&name), value, static_cast<int32_t>(priority)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::StartStringState(param::hstring const& name, param::hstring const& value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->StartStringState(*(void**)(&name), *(void**)(&value), static_cast<int32_t>(priority)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::StartInt32State(param::hstring const& name, int32_t value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->StartInt32State(*(void**)(&name), value, static_cast<int32_t>(priority)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::StartDoubleState(param::hstring const& name, double value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->StartDoubleState(*(void**)(&name), value, static_cast<int32_t>(priority)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::StopState(param::hstring const& name) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->StopState(*(void**)(&name)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::StopAllStates() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->StopAllStates());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::RemainingStorageBytesAvailable() const
+    {
+        uint64_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->get_RemainingStorageBytesAvailable(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::MetadataPurged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureMetadataWriter, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->add_MetadataPurged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::MetadataPurged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureMetadataWriter, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, MetadataPurged_revoker>(this, MetadataPurged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>::MetadataPurged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMetadataWriter)->remove_MetadataPurged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMicrophoneCaptureStateChangedEventArgs<D>::State() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs)->get_State(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureMicrophoneCaptureStateChangedEventArgs<D>::ErrorCode() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs)->get_ErrorCode(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::StopRecording() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->StopRecording());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::State() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureRecordingState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->get_State(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::ErrorCode() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->get_ErrorCode(&value));
+        return winrt::Windows::Foundation::IReference<uint32_t>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::Duration() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->get_Duration(&value));
+        return winrt::Windows::Foundation::IReference<winrt::Windows::Foundation::TimeSpan>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::File() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->get_File(&value));
+        return winrt::Windows::Storage::StorageFile{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::IsFileTruncated() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->get_IsFileTruncated(&value));
+        return winrt::Windows::Foundation::IReference<bool>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::StateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->add_StateChanged(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::StateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, StateChanged_revoker>(this, StateChanged(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::StateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->remove_StateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::DurationGenerated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->add_DurationGenerated(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::DurationGenerated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, DurationGenerated_revoker>(this, DurationGenerated(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::DurationGenerated(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->remove_DurationGenerated(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::FileGenerated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->add_FileGenerated(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::FileGenerated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, FileGenerated_revoker>(this, FileGenerated(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>::FileGenerated(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordOperation)->remove_FileGenerated(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordingStateChangedEventArgs<D>::State() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureRecordingState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs)->get_State(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureRecordingStateChangedEventArgs<D>::ErrorCode() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs)->get_ErrorCode(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureServices<D>::Record() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureServices)->Record(&operation));
+        return winrt::Windows::Media::Capture::AppCaptureRecordOperation{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureServices<D>::RecordTimeSpan(winrt::Windows::Foundation::DateTime const& startTime, winrt::Windows::Foundation::TimeSpan const& duration) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureServices)->RecordTimeSpan(impl::bind_in(startTime), impl::bind_in(duration), &operation));
+        return winrt::Windows::Media::Capture::AppCaptureRecordOperation{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureServices<D>::CanCapture() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureServices)->get_CanCapture(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureServices<D>::State() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureServices)->get_State(&value));
+        return winrt::Windows::Media::Capture::AppCaptureState{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::AppCaptureDestinationFolder(winrt::Windows::Storage::StorageFolder const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_AppCaptureDestinationFolder(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::AppCaptureDestinationFolder() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_AppCaptureDestinationFolder(&value));
+        return winrt::Windows::Storage::StorageFolder{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::AudioEncodingBitrate(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_AudioEncodingBitrate(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::AudioEncodingBitrate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_AudioEncodingBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsAudioCaptureEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_IsAudioCaptureEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsAudioCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsAudioCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::CustomVideoEncodingBitrate(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_CustomVideoEncodingBitrate(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::CustomVideoEncodingBitrate() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_CustomVideoEncodingBitrate(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::CustomVideoEncodingHeight(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_CustomVideoEncodingHeight(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::CustomVideoEncodingHeight() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_CustomVideoEncodingHeight(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::CustomVideoEncodingWidth(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_CustomVideoEncodingWidth(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::CustomVideoEncodingWidth() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_CustomVideoEncodingWidth(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::HistoricalBufferLength(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_HistoricalBufferLength(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::HistoricalBufferLength() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_HistoricalBufferLength(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::HistoricalBufferLengthUnit(winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_HistoricalBufferLengthUnit(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::HistoricalBufferLengthUnit() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_HistoricalBufferLengthUnit(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsHistoricalCaptureEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_IsHistoricalCaptureEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsHistoricalCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsHistoricalCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsHistoricalCaptureOnBatteryAllowed(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_IsHistoricalCaptureOnBatteryAllowed(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsHistoricalCaptureOnBatteryAllowed() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsHistoricalCaptureOnBatteryAllowed(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsHistoricalCaptureOnWirelessDisplayAllowed(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_IsHistoricalCaptureOnWirelessDisplayAllowed(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsHistoricalCaptureOnWirelessDisplayAllowed() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsHistoricalCaptureOnWirelessDisplayAllowed(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::MaximumRecordLength(winrt::Windows::Foundation::TimeSpan const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_MaximumRecordLength(impl::bind_in(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::MaximumRecordLength() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_MaximumRecordLength(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::ScreenshotDestinationFolder(winrt::Windows::Storage::StorageFolder const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_ScreenshotDestinationFolder(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::ScreenshotDestinationFolder() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_ScreenshotDestinationFolder(&value));
+        return winrt::Windows::Storage::StorageFolder{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::VideoEncodingBitrateMode(winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_VideoEncodingBitrateMode(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::VideoEncodingBitrateMode() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_VideoEncodingBitrateMode(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::VideoEncodingResolutionMode(winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_VideoEncodingResolutionMode(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::VideoEncodingResolutionMode() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_VideoEncodingResolutionMode(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsAppCaptureEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->put_IsAppCaptureEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsAppCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsAppCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsCpuConstrained() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsCpuConstrained(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsDisabledByPolicy() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsDisabledByPolicy(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::IsMemoryConstrained() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_IsMemoryConstrained(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings<D>::HasHardwareEncoder() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings)->get_HasHardwareEncoder(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings2<D>::IsGpuConstrained() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings2)->get_IsGpuConstrained(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings2<D>::AlternateShortcutKeys() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings2)->get_AlternateShortcutKeys(&value));
+        return winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings3<D>::IsMicrophoneCaptureEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings3)->put_IsMicrophoneCaptureEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings3<D>::IsMicrophoneCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings3)->get_IsMicrophoneCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::IsMicrophoneCaptureEnabledByDefault(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->put_IsMicrophoneCaptureEnabledByDefault(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::IsMicrophoneCaptureEnabledByDefault() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->get_IsMicrophoneCaptureEnabledByDefault(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::SystemAudioGain(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->put_SystemAudioGain(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::SystemAudioGain() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->get_SystemAudioGain(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::MicrophoneGain(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->put_MicrophoneGain(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::MicrophoneGain() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->get_MicrophoneGain(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::VideoEncodingFrameRateMode(winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->put_VideoEncodingFrameRateMode(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings4<D>::VideoEncodingFrameRateMode() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings4)->get_VideoEncodingFrameRateMode(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings5<D>::IsEchoCancellationEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings5)->put_IsEchoCancellationEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings5<D>::IsEchoCancellationEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings5)->get_IsEchoCancellationEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings5<D>::IsCursorImageCaptureEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings5)->put_IsCursorImageCaptureEnabled(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureSettings5<D>::IsCursorImageCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureSettings5)->get_IsCursorImageCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::IsTargetRunning() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->get_IsTargetRunning(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::IsHistoricalCaptureEnabled() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->get_IsHistoricalCaptureEnabled(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::ShouldCaptureMicrophone() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->get_ShouldCaptureMicrophone(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::ShouldCaptureMicrophone(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->put_ShouldCaptureMicrophone(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::RestartMicrophoneCapture() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->RestartMicrophoneCapture());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::MicrophoneCaptureState() const
+    {
+        winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->get_MicrophoneCaptureState(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::MicrophoneCaptureError() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->get_MicrophoneCaptureError(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::MicrophoneCaptureStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->add_MicrophoneCaptureStateChanged(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::MicrophoneCaptureStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, MicrophoneCaptureStateChanged_revoker>(this, MicrophoneCaptureStateChanged(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::MicrophoneCaptureStateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->remove_MicrophoneCaptureStateChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::CaptureTargetClosed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->add_CaptureTargetClosed(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::CaptureTargetClosed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Foundation::IInspectable> const& value) const
+    {
+        return impl::make_event_revoker<D, CaptureTargetClosed_revoker>(this, CaptureTargetClosed(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IAppCaptureState<D>::CaptureTargetClosed(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IAppCaptureState)->remove_CaptureTargetClosed(impl::bind_in(token));
     }
     template <typename D> auto consume_Windows_Media_Capture_IAppCaptureStatics<D>::GetForCurrentView() const
     {
@@ -241,6 +2167,10 @@ namespace winrt::impl
     template <typename D> auto consume_Windows_Media_Capture_ICameraCaptureUIVideoCaptureSettings<D>::AllowTrimming(bool value) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::ICameraCaptureUIVideoCaptureSettings)->put_AllowTrimming(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_ICameraOptionsUIStatics<D>::Show(winrt::Windows::Media::Capture::MediaCapture const& mediaCapture) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::ICameraOptionsUIStatics)->Show(*(void**)(&mediaCapture)));
     }
     template <typename D> auto consume_Windows_Media_Capture_ICapturedFrame<D>::Width() const
     {
@@ -367,6 +2297,120 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::ICapturedPhoto)->get_Thumbnail(&value));
         return winrt::Windows::Media::Capture::CapturedFrame{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::TargetCapturePolicy() const
+    {
+        winrt::Windows::Media::Capture::GameBarTargetCapturePolicy value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->get_TargetCapturePolicy(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::EnableCapture() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->EnableCapture());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::DisableCapture() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->DisableCapture());
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::TargetInfo() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->get_TargetInfo(&value));
+        return winrt::Windows::Media::Capture::GameBarServicesTargetInfo{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::SessionId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->get_SessionId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::AppBroadcastServices() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->get_AppBroadcastServices(&value));
+        return winrt::Windows::Media::Capture::AppBroadcastServices{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::AppCaptureServices() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->get_AppCaptureServices(&value));
+        return winrt::Windows::Media::Capture::AppCaptureServices{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::CommandReceived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServices, winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->add_CommandReceived(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::CommandReceived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServices, winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, CommandReceived_revoker>(this, CommandReceived(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServices<D>::CommandReceived(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServices)->remove_CommandReceived(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesCommandEventArgs<D>::Command() const
+    {
+        winrt::Windows::Media::Capture::GameBarCommand value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs)->get_Command(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesCommandEventArgs<D>::Origin() const
+    {
+        winrt::Windows::Media::Capture::GameBarCommandOrigin value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs)->get_Origin(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesManager<D>::GameBarServicesCreated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServicesManager, winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs> const& value) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesManager)->add_GameBarServicesCreated(*(void**)(&value), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesManager<D>::GameBarServicesCreated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServicesManager, winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs> const& value) const
+    {
+        return impl::make_event_revoker<D, GameBarServicesCreated_revoker>(this, GameBarServicesCreated(value));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesManager<D>::GameBarServicesCreated(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesManager)->remove_GameBarServicesCreated(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesManagerGameBarServicesCreatedEventArgs<D>::GameBarServices() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs)->get_GameBarServices(&value));
+        return winrt::Windows::Media::Capture::GameBarServices{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesManagerStatics<D>::GetDefault() const
+    {
+        void* ppInstance{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesManagerStatics)->GetDefault(&ppInstance));
+        return winrt::Windows::Media::Capture::GameBarServicesManager{ ppInstance, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesTargetInfo<D>::DisplayName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesTargetInfo)->get_DisplayName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesTargetInfo<D>::AppId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesTargetInfo)->get_AppId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesTargetInfo<D>::TitleId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesTargetInfo)->get_TitleId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IGameBarServicesTargetInfo<D>::DisplayMode() const
+    {
+        winrt::Windows::Media::Capture::GameBarServicesDisplayMode value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IGameBarServicesTargetInfo)->get_DisplayMode(reinterpret_cast<int32_t*>(&value)));
+        return value;
     }
     template <typename D> auto consume_Windows_Media_Capture_ILowLagMediaRecording<D>::StartAsync() const
     {
@@ -1358,6 +3402,62 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IPhotoConfirmationCapturedEventArgs)->get_CaptureTimeOffset(put_abi(value)));
         return value;
     }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCapture<D>::AudioSource() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IScreenCapture)->get_AudioSource(&value));
+        return winrt::Windows::Media::Core::IMediaSource{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCapture<D>::VideoSource() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IScreenCapture)->get_VideoSource(&value));
+        return winrt::Windows::Media::Core::IMediaSource{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCapture<D>::IsAudioSuspended() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IScreenCapture)->get_IsAudioSuspended(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCapture<D>::IsVideoSuspended() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IScreenCapture)->get_IsVideoSuspended(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCapture<D>::SourceSuspensionChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::ScreenCapture, winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IScreenCapture)->add_SourceSuspensionChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCapture<D>::SourceSuspensionChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::ScreenCapture, winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, SourceSuspensionChanged_revoker>(this, SourceSuspensionChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCapture<D>::SourceSuspensionChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IScreenCapture)->remove_SourceSuspensionChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Capture_IScreenCaptureStatics<D>::GetForCurrentView() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IScreenCaptureStatics)->GetForCurrentView(&value));
+        return winrt::Windows::Media::Capture::ScreenCapture{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Capture_ISourceSuspensionChangedEventArgs<D>::IsAudioSuspended() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs)->get_IsAudioSuspended(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Capture_ISourceSuspensionChangedEventArgs<D>::IsVideoSuspended() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs)->get_IsVideoSuspended(&value));
+        return value;
+    }
     template <typename D> auto consume_Windows_Media_Capture_IVideoStreamConfiguration<D>::InputProperties() const
     {
         void* value{};
@@ -1495,6 +3595,1767 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundService> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundService>
+    {
+        int32_t __stdcall put_PlugInState(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PlugInState(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastPlugInState const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_PlugInState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPlugInState>(this->shim().PlugInState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_SignInInfo(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SignInInfo(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SignInInfo(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo>(this->shim().SignInInfo());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_StreamInfo(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StreamInfo(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_StreamInfo(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo>(this->shim().StreamInfo());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AppId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().AppId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BroadcastTitle(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().BroadcastTitle());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ViewerCount(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ViewerCount(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ViewerCount(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ViewerCount());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TerminateBroadcast(int32_t reason, uint32_t providerSpecificReason) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TerminateBroadcast(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastTerminationReason const*>(&reason), providerSpecificReason);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_HeartbeatRequested(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().HeartbeatRequested(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_HeartbeatRequested(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().HeartbeatRequested(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall get_TitleId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().TitleId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>
+    {
+        int32_t __stdcall put_BroadcastTitle(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastTitle(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BroadcastLanguage(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().BroadcastLanguage());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_BroadcastLanguage(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastLanguage(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BroadcastChannel(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().BroadcastChannel());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_BroadcastChannel(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastChannel(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_BroadcastTitleChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().BroadcastTitleChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_BroadcastTitleChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastTitleChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_BroadcastLanguageChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().BroadcastLanguageChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_BroadcastLanguageChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastLanguageChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_BroadcastChannelChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().BroadcastChannelChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_BroadcastChannelChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastChannelChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo>
+    {
+        int32_t __stdcall get_SignInState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastSignInState>(this->shim().SignInState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_OAuthRequestUri(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().OAuthRequestUri(*reinterpret_cast<winrt::Windows::Foundation::Uri const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_OAuthRequestUri(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().OAuthRequestUri());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_OAuthCallbackUri(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().OAuthCallbackUri(*reinterpret_cast<winrt::Windows::Foundation::Uri const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_OAuthCallbackUri(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().OAuthCallbackUri());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AuthenticationResult(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Security::Authentication::Web::WebAuthenticationResult>(this->shim().AuthenticationResult());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_UserName(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().UserName(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UserName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().UserName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_SignInStateChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().SignInStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_SignInStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SignInStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2>
+    {
+        int32_t __stdcall add_UserNameChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().UserNameChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_UserNameChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().UserNameChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>
+    {
+        int32_t __stdcall get_StreamState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamState>(this->shim().StreamState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_DesiredVideoEncodingBitrate(uint64_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DesiredVideoEncodingBitrate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DesiredVideoEncodingBitrate(uint64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint64_t>(this->shim().DesiredVideoEncodingBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_BandwidthTestBitrate(uint64_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BandwidthTestBitrate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BandwidthTestBitrate(uint64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint64_t>(this->shim().BandwidthTestBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AudioCodec(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AudioCodec(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AudioCodec(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().AudioCodec());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BroadcastStreamReader(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamReader>(this->shim().BroadcastStreamReader());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_StreamStateChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().StreamStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_StreamStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StreamStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_VideoEncodingResolutionChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().VideoEncodingResolutionChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_VideoEncodingResolutionChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoEncodingResolutionChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_VideoEncodingBitrateChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().VideoEncodingBitrateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_VideoEncodingBitrateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoEncodingBitrateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2>
+    {
+        int32_t __stdcall ReportProblemWithStream() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ReportProblemWithStream();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs>
+    {
+        int32_t __stdcall get_State(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ErrorCode(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ErrorCode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings>
+    {
+        int32_t __stdcall get_IsBroadcastEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsBroadcastEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsDisabledByPolicy(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsDisabledByPolicy());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsGpuConstrained(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsGpuConstrained());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HasHardwareEncoder(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().HasHardwareEncoder());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsAudioCaptureEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsAudioCaptureEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsAudioCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsAudioCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsMicrophoneCaptureEnabledByDefault(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsMicrophoneCaptureEnabledByDefault(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsMicrophoneCaptureEnabledByDefault(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsMicrophoneCaptureEnabledByDefault());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsEchoCancellationEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsEchoCancellationEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsEchoCancellationEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsEchoCancellationEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_SystemAudioGain(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SystemAudioGain(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemAudioGain(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().SystemAudioGain());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_MicrophoneGain(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MicrophoneGain(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MicrophoneGain(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().MicrophoneGain());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsCameraCaptureEnabledByDefault(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsCameraCaptureEnabledByDefault(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsCameraCaptureEnabledByDefault(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsCameraCaptureEnabledByDefault());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_SelectedCameraId(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SelectedCameraId(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SelectedCameraId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().SelectedCameraId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CameraOverlayLocation(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CameraOverlayLocation(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CameraOverlayLocation(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation>(this->shim().CameraOverlayLocation());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CameraOverlaySize(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CameraOverlaySize(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CameraOverlaySize(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize>(this->shim().CameraOverlaySize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsCursorImageCaptureEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsCursorImageCaptureEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsCursorImageCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsCursorImageCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs>
+    {
+        int32_t __stdcall put_Handled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Handled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Handled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().Handled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastManagerStatics> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastManagerStatics>
+    {
+        int32_t __stdcall GetGlobalSettings(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings>(this->shim().GetGlobalSettings());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ApplyGlobalSettings(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ApplyGlobalSettings(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetProviderSettings(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastProviderSettings>(this->shim().GetProviderSettings());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ApplyProviderSettings(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ApplyProviderSettings(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastProviderSettings const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs>
+    {
+        int32_t __stdcall get_State(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ErrorCode(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ErrorCode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPlugIn> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPlugIn>
+    {
+        int32_t __stdcall get_AppId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().AppId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ProviderSettings(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastProviderSettings>(this->shim().ProviderSettings());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Logo(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::Streams::IRandomAccessStreamReference>(this->shim().Logo());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DisplayName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().DisplayName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPlugInManager> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPlugInManager>
+    {
+        int32_t __stdcall get_IsBroadcastProviderAvailable(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsBroadcastProviderAvailable());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_PlugInList(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Media::Capture::AppBroadcastPlugIn>>(this->shim().PlugInList());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DefaultPlugIn(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPlugIn>(this->shim().DefaultPlugIn());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_DefaultPlugIn(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DefaultPlugIn(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastPlugIn const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics>
+    {
+        int32_t __stdcall GetDefault(void** ppInstance) noexcept final try
+        {
+            clear_abi(ppInstance);
+            typename D::abi_guard guard(this->shim());
+            *ppInstance = detach_from<winrt::Windows::Media::Capture::AppBroadcastPlugInManager>(this->shim().GetDefault());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetForUser(void* user, void** ppInstance) noexcept final try
+        {
+            clear_abi(ppInstance);
+            typename D::abi_guard guard(this->shim());
+            *ppInstance = detach_from<winrt::Windows::Media::Capture::AppBroadcastPlugInManager>(this->shim().GetForUser(*reinterpret_cast<winrt::Windows::System::User const*>(&user)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs>
+    {
+        int32_t __stdcall get_PlugInState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPlugInState>(this->shim().PlugInState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPreview> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPreview>
+    {
+        int32_t __stdcall StopPreview() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StopPreview();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_PreviewState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPreviewState>(this->shim().PreviewState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ErrorCode(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<uint32_t>>(this->shim().ErrorCode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_PreviewStateChanged(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().PreviewStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreview, winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PreviewStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PreviewStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall get_PreviewStreamReader(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader>(this->shim().PreviewStreamReader());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs>
+    {
+        int32_t __stdcall get_PreviewState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPreviewState>(this->shim().PreviewState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ErrorCode(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ErrorCode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader>
+    {
+        int32_t __stdcall get_VideoWidth(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().VideoWidth());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoHeight(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().VideoHeight());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoStride(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().VideoStride());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoBitmapPixelFormat(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Graphics::Imaging::BitmapPixelFormat>(this->shim().VideoBitmapPixelFormat());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoBitmapAlphaMode(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Graphics::Imaging::BitmapAlphaMode>(this->shim().VideoBitmapAlphaMode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TryGetNextVideoFrame(void** frame) noexcept final try
+        {
+            clear_abi(frame);
+            typename D::abi_guard guard(this->shim());
+            *frame = detach_from<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame>(this->shim().TryGetNextVideoFrame());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_VideoFrameArrived(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().VideoFrameArrived(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader, winrt::Windows::Foundation::IInspectable> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_VideoFrameArrived(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoFrameArrived(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame>
+    {
+        int32_t __stdcall get_VideoHeader(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader>(this->shim().VideoHeader());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoBuffer(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::Streams::IBuffer>(this->shim().VideoBuffer());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader>
+    {
+        int32_t __stdcall get_AbsoluteTimestamp(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::DateTime>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::DateTime>(this->shim().AbsoluteTimestamp());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RelativeTimestamp(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().RelativeTimestamp());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Duration(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().Duration());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_FrameId(uint64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint64_t>(this->shim().FrameId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastProviderSettings> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastProviderSettings>
+    {
+        int32_t __stdcall put_DefaultBroadcastTitle(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DefaultBroadcastTitle(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DefaultBroadcastTitle(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().DefaultBroadcastTitle());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AudioEncodingBitrate(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AudioEncodingBitrate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AudioEncodingBitrate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().AudioEncodingBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CustomVideoEncodingBitrate(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CustomVideoEncodingBitrate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CustomVideoEncodingBitrate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CustomVideoEncodingBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CustomVideoEncodingHeight(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CustomVideoEncodingHeight(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CustomVideoEncodingHeight(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CustomVideoEncodingHeight());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CustomVideoEncodingWidth(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CustomVideoEncodingWidth(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CustomVideoEncodingWidth(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CustomVideoEncodingWidth());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_VideoEncodingBitrateMode(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoEncodingBitrateMode(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoEncodingBitrateMode(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode>(this->shim().VideoEncodingBitrateMode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_VideoEncodingResolutionMode(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoEncodingResolutionMode(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoEncodingResolutionMode(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode>(this->shim().VideoEncodingResolutionMode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastServices> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastServices>
+    {
+        int32_t __stdcall get_CaptureTargetType(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType>(this->shim().CaptureTargetType());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CaptureTargetType(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CaptureTargetType(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BroadcastTitle(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().BroadcastTitle());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_BroadcastTitle(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastTitle(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BroadcastLanguage(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().BroadcastLanguage());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_BroadcastLanguage(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BroadcastLanguage(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UserName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().UserName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CanCapture(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().CanCapture());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall EnterBroadcastModeAsync(void* plugIn, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<uint32_t>>(this->shim().EnterBroadcastModeAsync(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastPlugIn const*>(&plugIn)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ExitBroadcastMode(int32_t reason) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ExitBroadcastMode(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastExitBroadcastModeReason const*>(&reason));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StartBroadcast() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StartBroadcast();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall PauseBroadcast() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PauseBroadcast();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ResumeBroadcast() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ResumeBroadcast();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StartPreview(winrt::Windows::Foundation::Size desiredSize, void** preview) noexcept final try
+        {
+            clear_abi(preview);
+            typename D::abi_guard guard(this->shim());
+            *preview = detach_from<winrt::Windows::Media::Capture::AppBroadcastPreview>(this->shim().StartPreview(*reinterpret_cast<winrt::Windows::Foundation::Size const*>(&desiredSize)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_State(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs>
+    {
+        int32_t __stdcall get_SignInState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastSignInState>(this->shim().SignInState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Result(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastSignInResult>(this->shim().Result());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastState> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastState>
+    {
+        int32_t __stdcall get_IsCaptureTargetRunning(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsCaptureTargetRunning());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ViewerCount(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ViewerCount());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ShouldCaptureMicrophone(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().ShouldCaptureMicrophone());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ShouldCaptureMicrophone(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ShouldCaptureMicrophone(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RestartMicrophoneCapture() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RestartMicrophoneCapture();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ShouldCaptureCamera(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().ShouldCaptureCamera());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ShouldCaptureCamera(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ShouldCaptureCamera(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RestartCameraCapture() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RestartCameraCapture();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_EncodedVideoSize(winrt::Windows::Foundation::Size* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::Size>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Size>(this->shim().EncodedVideoSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MicrophoneCaptureState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureState>(this->shim().MicrophoneCaptureState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MicrophoneCaptureError(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().MicrophoneCaptureError());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CameraCaptureState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureState>(this->shim().CameraCaptureState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CameraCaptureError(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CameraCaptureError());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_StreamState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamState>(this->shim().StreamState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_PlugInState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastPlugInState>(this->shim().PlugInState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_OAuthRequestUri(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().OAuthRequestUri());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_OAuthCallbackUri(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().OAuthCallbackUri());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AuthenticationResult(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Security::Authentication::Web::WebAuthenticationResult>(this->shim().AuthenticationResult());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AuthenticationResult(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AuthenticationResult(*reinterpret_cast<winrt::Windows::Security::Authentication::Web::WebAuthenticationResult const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_SignInState(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SignInState(*reinterpret_cast<winrt::Windows::Media::Capture::AppBroadcastSignInState const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SignInState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastSignInState>(this->shim().SignInState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_TerminationReason(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastTerminationReason>(this->shim().TerminationReason());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_TerminationReasonPlugInSpecific(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().TerminationReasonPlugInSpecific());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_ViewerCountChanged(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().ViewerCountChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_ViewerCountChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ViewerCountChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_MicrophoneCaptureStateChanged(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().MicrophoneCaptureStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_MicrophoneCaptureStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MicrophoneCaptureStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_CameraCaptureStateChanged(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().CameraCaptureStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_CameraCaptureStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CameraCaptureStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_PlugInStateChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().PlugInStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PlugInStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PlugInStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_StreamStateChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().StreamStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_StreamStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StreamStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_CaptureTargetClosed(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().CaptureTargetClosed(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Foundation::IInspectable> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_CaptureTargetClosed(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CaptureTargetClosed(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame>
+    {
+        int32_t __stdcall get_AudioHeader(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader>(this->shim().AudioHeader());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AudioBuffer(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::Streams::IBuffer>(this->shim().AudioBuffer());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader>
+    {
+        int32_t __stdcall get_AbsoluteTimestamp(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::DateTime>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::DateTime>(this->shim().AbsoluteTimestamp());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RelativeTimestamp(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().RelativeTimestamp());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Duration(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().Duration());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HasDiscontinuity(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().HasDiscontinuity());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_FrameId(uint64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint64_t>(this->shim().FrameId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastStreamReader> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastStreamReader>
+    {
+        int32_t __stdcall get_AudioChannels(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().AudioChannels());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AudioSampleRate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().AudioSampleRate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AudioAacSequence(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::Streams::IBuffer>(this->shim().AudioAacSequence());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AudioBitrate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().AudioBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TryGetNextAudioFrame(void** frame) noexcept final try
+        {
+            clear_abi(frame);
+            typename D::abi_guard guard(this->shim());
+            *frame = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame>(this->shim().TryGetNextAudioFrame());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoWidth(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().VideoWidth());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoHeight(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().VideoHeight());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoBitrate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().VideoBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TryGetNextVideoFrame(void** frame) noexcept final try
+        {
+            clear_abi(frame);
+            typename D::abi_guard guard(this->shim());
+            *frame = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame>(this->shim().TryGetNextVideoFrame());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_AudioFrameArrived(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().AudioFrameArrived(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_AudioFrameArrived(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AudioFrameArrived(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_VideoFrameArrived(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().VideoFrameArrived(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_VideoFrameArrived(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoFrameArrived(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs>
+    {
+        int32_t __stdcall get_StreamState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamState>(this->shim().StreamState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame>
+    {
+        int32_t __stdcall get_VideoHeader(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader>(this->shim().VideoHeader());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoBuffer(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::Streams::IBuffer>(this->shim().VideoBuffer());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader>
+    {
+        int32_t __stdcall get_AbsoluteTimestamp(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::DateTime>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::DateTime>(this->shim().AbsoluteTimestamp());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RelativeTimestamp(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().RelativeTimestamp());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Duration(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().Duration());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsKeyFrame(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsKeyFrame());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HasDiscontinuity(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().HasDiscontinuity());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_FrameId(uint64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint64_t>(this->shim().FrameId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails>
+    {
+        int32_t __stdcall get_BackgroundService(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastBackgroundService>(this->shim().BackgroundService());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs>
+    {
+        int32_t __stdcall get_ViewerCount(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ViewerCount());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Capture::IAppCapture> : produce_base<D, winrt::Windows::Media::Capture::IAppCapture>
     {
         int32_t __stdcall get_IsCapturingAudio(bool* value) noexcept final try
@@ -1523,6 +5384,1032 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().CapturingChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys>
+    {
+        int32_t __stdcall put_ToggleGameBarKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleGameBarKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleGameBarKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().ToggleGameBarKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleGameBarKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleGameBarKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleGameBarKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().ToggleGameBarKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_SaveHistoricalVideoKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SaveHistoricalVideoKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SaveHistoricalVideoKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().SaveHistoricalVideoKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_SaveHistoricalVideoKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SaveHistoricalVideoKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SaveHistoricalVideoKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().SaveHistoricalVideoKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleRecordingKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleRecordingKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleRecordingKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().ToggleRecordingKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleRecordingKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleRecordingKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleRecordingKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().ToggleRecordingKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_TakeScreenshotKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TakeScreenshotKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_TakeScreenshotKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().TakeScreenshotKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_TakeScreenshotKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().TakeScreenshotKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_TakeScreenshotKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().TakeScreenshotKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleRecordingIndicatorKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleRecordingIndicatorKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleRecordingIndicatorKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().ToggleRecordingIndicatorKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleRecordingIndicatorKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleRecordingIndicatorKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleRecordingIndicatorKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().ToggleRecordingIndicatorKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2>
+    {
+        int32_t __stdcall put_ToggleMicrophoneCaptureKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleMicrophoneCaptureKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleMicrophoneCaptureKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().ToggleMicrophoneCaptureKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleMicrophoneCaptureKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleMicrophoneCaptureKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleMicrophoneCaptureKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().ToggleMicrophoneCaptureKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3>
+    {
+        int32_t __stdcall put_ToggleCameraCaptureKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleCameraCaptureKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleCameraCaptureKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().ToggleCameraCaptureKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleCameraCaptureKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleCameraCaptureKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleCameraCaptureKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().ToggleCameraCaptureKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleBroadcastKey(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleBroadcastKey(*reinterpret_cast<winrt::Windows::System::VirtualKey const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleBroadcastKey(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKey>(this->shim().ToggleBroadcastKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ToggleBroadcastKeyModifiers(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ToggleBroadcastKeyModifiers(*reinterpret_cast<winrt::Windows::System::VirtualKeyModifiers const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ToggleBroadcastKeyModifiers(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::System::VirtualKeyModifiers>(this->shim().ToggleBroadcastKeyModifiers());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs>
+    {
+        int32_t __stdcall get_Duration(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().Duration());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs>
+    {
+        int32_t __stdcall get_File(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::StorageFile>(this->shim().File());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureManagerStatics> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureManagerStatics>
+    {
+        int32_t __stdcall GetCurrentSettings(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureSettings>(this->shim().GetCurrentSettings());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ApplySettings(void* appCaptureSettings) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ApplySettings(*reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureSettings const*>(&appCaptureSettings));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureMetadataWriter> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureMetadataWriter>
+    {
+        int32_t __stdcall AddStringEvent(void* name, void* value, int32_t priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AddStringEvent(*reinterpret_cast<hstring const*>(&name), *reinterpret_cast<hstring const*>(&value), *reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureMetadataPriority const*>(&priority));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall AddInt32Event(void* name, int32_t value, int32_t priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AddInt32Event(*reinterpret_cast<hstring const*>(&name), value, *reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureMetadataPriority const*>(&priority));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall AddDoubleEvent(void* name, double value, int32_t priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AddDoubleEvent(*reinterpret_cast<hstring const*>(&name), value, *reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureMetadataPriority const*>(&priority));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StartStringState(void* name, void* value, int32_t priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StartStringState(*reinterpret_cast<hstring const*>(&name), *reinterpret_cast<hstring const*>(&value), *reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureMetadataPriority const*>(&priority));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StartInt32State(void* name, int32_t value, int32_t priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StartInt32State(*reinterpret_cast<hstring const*>(&name), value, *reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureMetadataPriority const*>(&priority));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StartDoubleState(void* name, double value, int32_t priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StartDoubleState(*reinterpret_cast<hstring const*>(&name), value, *reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureMetadataPriority const*>(&priority));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StopState(void* name) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StopState(*reinterpret_cast<hstring const*>(&name));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StopAllStates() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StopAllStates();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RemainingStorageBytesAvailable(uint64_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint64_t>(this->shim().RemainingStorageBytesAvailable());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_MetadataPurged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().MetadataPurged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureMetadataWriter, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_MetadataPurged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MetadataPurged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs>
+    {
+        int32_t __stdcall get_State(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ErrorCode(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ErrorCode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureRecordOperation> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureRecordOperation>
+    {
+        int32_t __stdcall StopRecording() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StopRecording();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_State(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureRecordingState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ErrorCode(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<uint32_t>>(this->shim().ErrorCode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Duration(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<winrt::Windows::Foundation::TimeSpan>>(this->shim().Duration());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_File(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::StorageFile>(this->shim().File());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsFileTruncated(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<bool>>(this->shim().IsFileTruncated());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_StateChanged(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().StateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_StateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_DurationGenerated(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().DurationGenerated(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_DurationGenerated(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DurationGenerated(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_FileGenerated(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().FileGenerated(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_FileGenerated(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().FileGenerated(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs>
+    {
+        int32_t __stdcall get_State(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureRecordingState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ErrorCode(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().ErrorCode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureServices> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureServices>
+    {
+        int32_t __stdcall Record(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Media::Capture::AppCaptureRecordOperation>(this->shim().Record());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RecordTimeSpan(int64_t startTime, int64_t duration, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Media::Capture::AppCaptureRecordOperation>(this->shim().RecordTimeSpan(*reinterpret_cast<winrt::Windows::Foundation::DateTime const*>(&startTime), *reinterpret_cast<winrt::Windows::Foundation::TimeSpan const*>(&duration)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CanCapture(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().CanCapture());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_State(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureSettings> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureSettings>
+    {
+        int32_t __stdcall put_AppCaptureDestinationFolder(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AppCaptureDestinationFolder(*reinterpret_cast<winrt::Windows::Storage::StorageFolder const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AppCaptureDestinationFolder(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::StorageFolder>(this->shim().AppCaptureDestinationFolder());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AudioEncodingBitrate(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AudioEncodingBitrate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AudioEncodingBitrate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().AudioEncodingBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsAudioCaptureEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsAudioCaptureEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsAudioCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsAudioCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CustomVideoEncodingBitrate(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CustomVideoEncodingBitrate(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CustomVideoEncodingBitrate(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CustomVideoEncodingBitrate());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CustomVideoEncodingHeight(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CustomVideoEncodingHeight(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CustomVideoEncodingHeight(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CustomVideoEncodingHeight());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CustomVideoEncodingWidth(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CustomVideoEncodingWidth(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CustomVideoEncodingWidth(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CustomVideoEncodingWidth());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_HistoricalBufferLength(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().HistoricalBufferLength(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HistoricalBufferLength(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().HistoricalBufferLength());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_HistoricalBufferLengthUnit(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().HistoricalBufferLengthUnit(*reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HistoricalBufferLengthUnit(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit>(this->shim().HistoricalBufferLengthUnit());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsHistoricalCaptureEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsHistoricalCaptureEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsHistoricalCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsHistoricalCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsHistoricalCaptureOnBatteryAllowed(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsHistoricalCaptureOnBatteryAllowed(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsHistoricalCaptureOnBatteryAllowed(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsHistoricalCaptureOnBatteryAllowed());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsHistoricalCaptureOnWirelessDisplayAllowed(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsHistoricalCaptureOnWirelessDisplayAllowed(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsHistoricalCaptureOnWirelessDisplayAllowed(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsHistoricalCaptureOnWirelessDisplayAllowed());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_MaximumRecordLength(int64_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MaximumRecordLength(*reinterpret_cast<winrt::Windows::Foundation::TimeSpan const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MaximumRecordLength(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().MaximumRecordLength());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ScreenshotDestinationFolder(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ScreenshotDestinationFolder(*reinterpret_cast<winrt::Windows::Storage::StorageFolder const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ScreenshotDestinationFolder(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::StorageFolder>(this->shim().ScreenshotDestinationFolder());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_VideoEncodingBitrateMode(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoEncodingBitrateMode(*reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoEncodingBitrateMode(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode>(this->shim().VideoEncodingBitrateMode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_VideoEncodingResolutionMode(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoEncodingResolutionMode(*reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoEncodingResolutionMode(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode>(this->shim().VideoEncodingResolutionMode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsAppCaptureEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsAppCaptureEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsAppCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsAppCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsCpuConstrained(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsCpuConstrained());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsDisabledByPolicy(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsDisabledByPolicy());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsMemoryConstrained(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsMemoryConstrained());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HasHardwareEncoder(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().HasHardwareEncoder());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureSettings2> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureSettings2>
+    {
+        int32_t __stdcall get_IsGpuConstrained(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsGpuConstrained());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AlternateShortcutKeys(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys>(this->shim().AlternateShortcutKeys());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureSettings3> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureSettings3>
+    {
+        int32_t __stdcall put_IsMicrophoneCaptureEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsMicrophoneCaptureEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsMicrophoneCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsMicrophoneCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureSettings4> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureSettings4>
+    {
+        int32_t __stdcall put_IsMicrophoneCaptureEnabledByDefault(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsMicrophoneCaptureEnabledByDefault(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsMicrophoneCaptureEnabledByDefault(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsMicrophoneCaptureEnabledByDefault());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_SystemAudioGain(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SystemAudioGain(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemAudioGain(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().SystemAudioGain());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_MicrophoneGain(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MicrophoneGain(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MicrophoneGain(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().MicrophoneGain());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_VideoEncodingFrameRateMode(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().VideoEncodingFrameRateMode(*reinterpret_cast<winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoEncodingFrameRateMode(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode>(this->shim().VideoEncodingFrameRateMode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureSettings5> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureSettings5>
+    {
+        int32_t __stdcall put_IsEchoCancellationEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsEchoCancellationEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsEchoCancellationEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsEchoCancellationEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsCursorImageCaptureEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsCursorImageCaptureEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsCursorImageCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsCursorImageCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IAppCaptureState> : produce_base<D, winrt::Windows::Media::Capture::IAppCaptureState>
+    {
+        int32_t __stdcall get_IsTargetRunning(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsTargetRunning());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsHistoricalCaptureEnabled(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsHistoricalCaptureEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ShouldCaptureMicrophone(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().ShouldCaptureMicrophone());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ShouldCaptureMicrophone(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ShouldCaptureMicrophone(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RestartMicrophoneCapture() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RestartMicrophoneCapture();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MicrophoneCaptureState(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureState>(this->shim().MicrophoneCaptureState());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MicrophoneCaptureError(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().MicrophoneCaptureError());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_MicrophoneCaptureStateChanged(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().MicrophoneCaptureStateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_MicrophoneCaptureStateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MicrophoneCaptureStateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_CaptureTargetClosed(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().CaptureTargetClosed(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Foundation::IInspectable> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_CaptureTargetClosed(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CaptureTargetClosed(*reinterpret_cast<winrt::event_token const*>(&token));
             return 0;
         }
     };
@@ -1727,6 +6614,19 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::ICameraOptionsUIStatics> : produce_base<D, winrt::Windows::Media::Capture::ICameraOptionsUIStatics>
+    {
+        int32_t __stdcall Show(void* mediaCapture) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Show(*reinterpret_cast<winrt::Windows::Media::Capture::MediaCapture const*>(&mediaCapture));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Capture::ICapturedFrame> : produce_base<D, winrt::Windows::Media::Capture::ICapturedFrame>
     {
         int32_t __stdcall get_Width(uint32_t* value) noexcept final try
@@ -1922,6 +6822,184 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Media::Capture::CapturedFrame>(this->shim().Thumbnail());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IGameBarServices> : produce_base<D, winrt::Windows::Media::Capture::IGameBarServices>
+    {
+        int32_t __stdcall get_TargetCapturePolicy(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::GameBarTargetCapturePolicy>(this->shim().TargetCapturePolicy());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall EnableCapture() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableCapture();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall DisableCapture() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DisableCapture();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_TargetInfo(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::GameBarServicesTargetInfo>(this->shim().TargetInfo());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SessionId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().SessionId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AppBroadcastServices(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppBroadcastServices>(this->shim().AppBroadcastServices());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AppCaptureServices(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::AppCaptureServices>(this->shim().AppCaptureServices());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_CommandReceived(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().CommandReceived(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServices, winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_CommandReceived(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CommandReceived(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs>
+    {
+        int32_t __stdcall get_Command(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::GameBarCommand>(this->shim().Command());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Origin(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::GameBarCommandOrigin>(this->shim().Origin());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IGameBarServicesManager> : produce_base<D, winrt::Windows::Media::Capture::IGameBarServicesManager>
+    {
+        int32_t __stdcall add_GameBarServicesCreated(void* value, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().GameBarServicesCreated(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServicesManager, winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs> const*>(&value)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_GameBarServicesCreated(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().GameBarServicesCreated(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs>
+    {
+        int32_t __stdcall get_GameBarServices(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::GameBarServices>(this->shim().GameBarServices());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IGameBarServicesManagerStatics> : produce_base<D, winrt::Windows::Media::Capture::IGameBarServicesManagerStatics>
+    {
+        int32_t __stdcall GetDefault(void** ppInstance) noexcept final try
+        {
+            clear_abi(ppInstance);
+            typename D::abi_guard guard(this->shim());
+            *ppInstance = detach_from<winrt::Windows::Media::Capture::GameBarServicesManager>(this->shim().GetDefault());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IGameBarServicesTargetInfo> : produce_base<D, winrt::Windows::Media::Capture::IGameBarServicesTargetInfo>
+    {
+        int32_t __stdcall get_DisplayName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().DisplayName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AppId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().AppId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_TitleId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().TitleId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DisplayMode(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::GameBarServicesDisplayMode>(this->shim().DisplayMode());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -3439,6 +8517,90 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IScreenCapture> : produce_base<D, winrt::Windows::Media::Capture::IScreenCapture>
+    {
+        int32_t __stdcall get_AudioSource(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Core::IMediaSource>(this->shim().AudioSource());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VideoSource(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Core::IMediaSource>(this->shim().VideoSource());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsAudioSuspended(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsAudioSuspended());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsVideoSuspended(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsVideoSuspended());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_SourceSuspensionChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().SourceSuspensionChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::ScreenCapture, winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_SourceSuspensionChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SourceSuspensionChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IScreenCaptureStatics> : produce_base<D, winrt::Windows::Media::Capture::IScreenCaptureStatics>
+    {
+        int32_t __stdcall GetForCurrentView(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Capture::ScreenCapture>(this->shim().GetForCurrentView());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs>
+    {
+        int32_t __stdcall get_IsAudioSuspended(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsAudioSuspended());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsVideoSuspended(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsVideoSuspended());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Capture::IVideoStreamConfiguration> : produce_base<D, winrt::Windows::Media::Capture::IVideoStreamConfiguration>
     {
         int32_t __stdcall get_InputProperties(void** value) noexcept final try
@@ -3462,6 +8624,30 @@ namespace winrt::impl
 }
 WINRT_EXPORT namespace winrt::Windows::Media::Capture
 {
+    inline auto AppBroadcastManager::GetGlobalSettings()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings(*)(IAppBroadcastManagerStatics const&), AppBroadcastManager, IAppBroadcastManagerStatics>([](IAppBroadcastManagerStatics const& f) { return f.GetGlobalSettings(); });
+    }
+    inline auto AppBroadcastManager::ApplyGlobalSettings(winrt::Windows::Media::Capture::AppBroadcastGlobalSettings const& value)
+    {
+        impl::call_factory<AppBroadcastManager, IAppBroadcastManagerStatics>([&](IAppBroadcastManagerStatics const& f) { return f.ApplyGlobalSettings(value); });
+    }
+    inline auto AppBroadcastManager::GetProviderSettings()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::Capture::AppBroadcastProviderSettings(*)(IAppBroadcastManagerStatics const&), AppBroadcastManager, IAppBroadcastManagerStatics>([](IAppBroadcastManagerStatics const& f) { return f.GetProviderSettings(); });
+    }
+    inline auto AppBroadcastManager::ApplyProviderSettings(winrt::Windows::Media::Capture::AppBroadcastProviderSettings const& value)
+    {
+        impl::call_factory<AppBroadcastManager, IAppBroadcastManagerStatics>([&](IAppBroadcastManagerStatics const& f) { return f.ApplyProviderSettings(value); });
+    }
+    inline auto AppBroadcastPlugInManager::GetDefault()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::Capture::AppBroadcastPlugInManager(*)(IAppBroadcastPlugInManagerStatics const&), AppBroadcastPlugInManager, IAppBroadcastPlugInManagerStatics>([](IAppBroadcastPlugInManagerStatics const& f) { return f.GetDefault(); });
+    }
+    inline auto AppBroadcastPlugInManager::GetForUser(winrt::Windows::System::User const& user)
+    {
+        return impl::call_factory<AppBroadcastPlugInManager, IAppBroadcastPlugInManagerStatics>([&](IAppBroadcastPlugInManagerStatics const& f) { return f.GetForUser(user); });
+    }
     inline auto AppCapture::GetForCurrentView()
     {
         return impl::call_factory_cast<winrt::Windows::Media::Capture::AppCapture(*)(IAppCaptureStatics const&), AppCapture, IAppCaptureStatics>([](IAppCaptureStatics const& f) { return f.GetForCurrentView(); });
@@ -3470,9 +8656,29 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     {
         return impl::call_factory<AppCapture, IAppCaptureStatics2>([&](IAppCaptureStatics2 const& f) { return f.SetAllowedAsync(allowed); });
     }
+    inline auto AppCaptureManager::GetCurrentSettings()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::Capture::AppCaptureSettings(*)(IAppCaptureManagerStatics const&), AppCaptureManager, IAppCaptureManagerStatics>([](IAppCaptureManagerStatics const& f) { return f.GetCurrentSettings(); });
+    }
+    inline auto AppCaptureManager::ApplySettings(winrt::Windows::Media::Capture::AppCaptureSettings const& appCaptureSettings)
+    {
+        impl::call_factory<AppCaptureManager, IAppCaptureManagerStatics>([&](IAppCaptureManagerStatics const& f) { return f.ApplySettings(appCaptureSettings); });
+    }
+    inline AppCaptureMetadataWriter::AppCaptureMetadataWriter() :
+        AppCaptureMetadataWriter(impl::call_factory_cast<AppCaptureMetadataWriter(*)(winrt::Windows::Foundation::IActivationFactory const&), AppCaptureMetadataWriter>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<AppCaptureMetadataWriter>(); }))
+    {
+    }
     inline CameraCaptureUI::CameraCaptureUI() :
         CameraCaptureUI(impl::call_factory_cast<CameraCaptureUI(*)(winrt::Windows::Foundation::IActivationFactory const&), CameraCaptureUI>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<CameraCaptureUI>(); }))
     {
+    }
+    inline auto CameraOptionsUI::Show(winrt::Windows::Media::Capture::MediaCapture const& mediaCapture)
+    {
+        impl::call_factory<CameraOptionsUI, ICameraOptionsUIStatics>([&](ICameraOptionsUIStatics const& f) { return f.Show(mediaCapture); });
+    }
+    inline auto GameBarServicesManager::GetDefault()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::Capture::GameBarServicesManager(*)(IGameBarServicesManagerStatics const&), GameBarServicesManager, IGameBarServicesManagerStatics>([](IGameBarServicesManagerStatics const& f) { return f.GetDefault(); });
     }
     inline MediaCapture::MediaCapture() :
         MediaCapture(impl::call_factory_cast<MediaCapture(*)(winrt::Windows::Foundation::IActivationFactory const&), MediaCapture>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<MediaCapture>(); }))
@@ -3497,6 +8703,10 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     inline MediaCaptureInitializationSettings::MediaCaptureInitializationSettings() :
         MediaCaptureInitializationSettings(impl::call_factory_cast<MediaCaptureInitializationSettings(*)(winrt::Windows::Foundation::IActivationFactory const&), MediaCaptureInitializationSettings>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<MediaCaptureInitializationSettings>(); }))
     {
+    }
+    inline auto ScreenCapture::GetForCurrentView()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::Capture::ScreenCapture(*)(IScreenCaptureStatics const&), ScreenCapture, IScreenCaptureStatics>([](IScreenCaptureStatics const& f) { return f.GetForCurrentView(); });
     }
     template <typename L> MediaCaptureFailedEventHandler::MediaCaptureFailedEventHandler(L handler) :
         MediaCaptureFailedEventHandler(impl::make_delegate<MediaCaptureFailedEventHandler>(std::forward<L>(handler)))
@@ -3553,18 +8763,74 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IAdvancedPhotoCapture> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastManagerStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPlugIn> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPlugInManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPreview> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastProviderSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastServices> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastState> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastStreamReader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IAppCapture> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureManagerStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureRecordOperation> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureServices> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureSettings2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureSettings3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureSettings4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureSettings5> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureState> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IAppCaptureStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICameraCaptureUI> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICameraCaptureUIPhotoCaptureSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICameraCaptureUIVideoCaptureSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::ICameraOptionsUIStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICapturedFrame> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICapturedFrame2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICapturedFrameControlValues> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICapturedFrameControlValues2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICapturedFrameWithSoftwareBitmap> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ICapturedPhoto> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IGameBarServices> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IGameBarServicesManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IGameBarServicesManagerStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IGameBarServicesTargetInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ILowLagMediaRecording> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ILowLagMediaRecording2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::ILowLagMediaRecording3> : winrt::impl::hash_base {};
@@ -3602,16 +8868,64 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::IOptionalReferencePhotoCapturedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IPhotoCapturedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IPhotoConfirmationCapturedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IScreenCapture> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IScreenCaptureStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IVideoStreamConfiguration> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::AdvancedCapturedPhoto> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::AdvancedPhotoCapture> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastBackgroundService> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPlugIn> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPlugInManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPreview> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastProviderSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastServices> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastState> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastStreamReader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastTriggerDetails> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::AppCapture> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureMetadataWriter> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureRecordOperation> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureServices> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::AppCaptureState> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::CameraCaptureUI> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::CameraCaptureUIPhotoCaptureSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::CameraCaptureUIVideoCaptureSettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::CameraOptionsUI> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::CapturedFrame> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::CapturedFrameControlValues> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::CapturedPhoto> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::GameBarServices> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::GameBarServicesManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::GameBarServicesTargetInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::LowLagMediaRecording> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::LowLagPhotoCapture> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::LowLagPhotoSequenceCapture> : winrt::impl::hash_base {};
@@ -3629,6 +8943,8 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::OptionalReferencePhotoCapturedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::PhotoCapturedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::PhotoConfirmationCapturedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::ScreenCapture> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::VideoStreamConfiguration> : winrt::impl::hash_base {};
 #endif
 #ifdef __cpp_lib_format

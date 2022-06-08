@@ -15,6 +15,7 @@ namespace py::impl::Windows::Management::Workplace
 namespace py::wrapper::Windows::Management::Workplace
 {
     using MdmPolicy = py::winrt_wrapper<winrt::Windows::Management::Workplace::MdmPolicy>;
+    using WorkplaceSettings = py::winrt_wrapper<winrt::Windows::Management::Workplace::WorkplaceSettings>;
 }
 
 namespace py
@@ -28,6 +29,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Management::Workplace::MdmPolicy>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Workplace::WorkplaceSettings>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

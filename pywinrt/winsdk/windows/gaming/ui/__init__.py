@@ -7,7 +7,17 @@ import winsdk
 _ns_module = winsdk._import_ns_module("Windows.Gaming.UI")
 
 try:
+    import winsdk.windows.applicationmodel.activation
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.foundation
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.foundation.collections
 except ImportError:
     pass
 
@@ -29,4 +39,7 @@ _ns_module._register_GameChatMessageOrigin(GameChatMessageOrigin)
 _ns_module._register_GameChatOverlayPosition(GameChatOverlayPosition)
 
 GameBar = _ns_module.GameBar
+GameChatMessageReceivedEventArgs = _ns_module.GameChatMessageReceivedEventArgs
 GameChatOverlay = _ns_module.GameChatOverlay
+GameChatOverlayMessageSource = _ns_module.GameChatOverlayMessageSource
+GameUIProviderActivatedEventArgs = _ns_module.GameUIProviderActivatedEventArgs

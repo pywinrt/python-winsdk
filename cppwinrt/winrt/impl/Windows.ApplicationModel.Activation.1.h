@@ -100,6 +100,14 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Activation
         ICachedFileUpdaterActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
         ICachedFileUpdaterActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ICameraSettingsActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICameraSettingsActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>
+    {
+        ICameraSettingsActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ICameraSettingsActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ICommandLineActivatedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ICommandLineActivatedEventArgs>,
@@ -115,12 +123,76 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Activation
         ICommandLineActivationOperation(std::nullptr_t = nullptr) noexcept {}
         ICommandLineActivationOperation(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IContactActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>
+    {
+        IContactActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IContactCallActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactCallActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>
+    {
+        IContactCallActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactCallActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IContactMapActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactMapActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>
+    {
+        IContactMapActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactMapActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IContactMessageActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactMessageActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>
+    {
+        IContactMessageActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactMessageActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IContactPanelActivatedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IContactPanelActivatedEventArgs>
     {
         IContactPanelActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IContactPanelActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IContactPickerActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactPickerActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>
+    {
+        IContactPickerActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactPickerActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IContactPostActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactPostActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>
+    {
+        IContactPostActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactPostActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IContactVideoCallActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactVideoCallActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>
+    {
+        IContactVideoCallActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactVideoCallActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IContactsProviderActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IContactsProviderActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>
+    {
+        IContactsProviderActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IContactsProviderActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IContinuationActivatedEventArgs :
         winrt::Windows::Foundation::IInspectable,
@@ -256,6 +328,14 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Activation
         ILockScreenActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
         ILockScreenActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ILockScreenCallActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILockScreenCallActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs>
+    {
+        ILockScreenCallActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ILockScreenCallActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IPhoneCallActivatedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IPhoneCallActivatedEventArgs>,
@@ -279,6 +359,22 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Activation
     {
         IPrelaunchActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IPrelaunchActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPrint3DWorkflowActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrint3DWorkflowActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>
+    {
+        IPrint3DWorkflowActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPrint3DWorkflowActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPrintTaskSettingsActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPrintTaskSettingsActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>
+    {
+        IPrintTaskSettingsActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPrintTaskSettingsActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IProtocolActivatedEventArgs :
         winrt::Windows::Foundation::IInspectable,
@@ -388,6 +484,14 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Activation
     {
         IVoiceCommandActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IVoiceCommandActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IWalletActionActivatedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWalletActionActivatedEventArgs>,
+        impl::require<winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs, winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>
+    {
+        IWalletActionActivatedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IWalletActionActivatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IWebAccountProviderActivatedEventArgs :
         winrt::Windows::Foundation::IInspectable,

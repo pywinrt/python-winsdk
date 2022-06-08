@@ -180,6 +180,9 @@ namespace py::impl::Windows::ApplicationModel::Background
 namespace py::wrapper::Windows::ApplicationModel::Background
 {
     using ActivitySensorTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger>;
+    using AlarmApplicationManager = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::AlarmApplicationManager>;
+    using AppBroadcastTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger>;
+    using AppBroadcastTriggerProviderInfo = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>;
     using ApplicationTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::ApplicationTrigger>;
     using ApplicationTriggerDetails = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::ApplicationTriggerDetails>;
     using AppointmentStoreNotificationTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::AppointmentStoreNotificationTrigger>;
@@ -257,6 +260,12 @@ namespace py
 {
 
     template<>
+    struct py_type<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::ApplicationModel::Background::ApplicationTriggerResult>
     {
         static PyObject* get_python_type() noexcept;
@@ -330,6 +339,24 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Background::AlarmApplicationManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

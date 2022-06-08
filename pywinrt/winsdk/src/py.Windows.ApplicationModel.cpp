@@ -69,6 +69,7 @@ namespace py::cpp::Windows::ApplicationModel
         PyObject* type_AddResourcePackageOptions;
         PyObject* type_AppExecutionContext;
         PyObject* type_AppInstallerPolicySource;
+        PyObject* type_FullTrustLaunchResult;
         PyObject* type_LimitedAccessFeatureStatus;
         PyObject* type_PackageContentGroupState;
         PyObject* type_PackageSignatureKind;
@@ -78,8 +79,11 @@ namespace py::cpp::Windows::ApplicationModel
         PyTypeObject* type_AppInfo;
         PyTypeObject* type_AppInstallerInfo;
         PyTypeObject* type_AppInstance;
+        PyTypeObject* type_CameraApplicationManager;
         PyTypeObject* type_DesignMode;
         PyTypeObject* type_EnteredBackgroundEventArgs;
+        PyTypeObject* type_FullTrustProcessLaunchResult;
+        PyTypeObject* type_FullTrustProcessLauncher;
         PyTypeObject* type_LeavingBackgroundEventArgs;
         PyTypeObject* type_LimitedAccessFeatureRequestResult;
         PyTypeObject* type_LimitedAccessFeatures;
@@ -179,6 +183,30 @@ namespace py::cpp::Windows::ApplicationModel
 
         state->type_AppInstallerPolicySource = type;
         Py_INCREF(state->type_AppInstallerPolicySource);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_FullTrustLaunchResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_FullTrustLaunchResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_FullTrustLaunchResult = type;
+        Py_INCREF(state->type_FullTrustLaunchResult);
 
 
         Py_RETURN_NONE;
@@ -1145,6 +1173,65 @@ namespace py::cpp::Windows::ApplicationModel
         _type_slots_AppInstance
     };
 
+    // ----- CameraApplicationManager class --------------------
+    constexpr const char* const type_name_CameraApplicationManager = "CameraApplicationManager";
+
+    static PyObject* _new_CameraApplicationManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_CameraApplicationManager);
+        return nullptr;
+    }
+
+    static PyObject* CameraApplicationManager_ShowInstalledApplicationsUI(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::ApplicationModel::CameraApplicationManager::ShowInstalledApplicationsUI();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CameraApplicationManager[] = {
+        { "show_installed_applications_u_i", reinterpret_cast<PyCFunction>(CameraApplicationManager_ShowInstalledApplicationsUI), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CameraApplicationManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_CameraApplicationManager[] = 
+    {
+        { Py_tp_new, _new_CameraApplicationManager },
+        { Py_tp_methods, _methods_CameraApplicationManager },
+        { Py_tp_getset, _getset_CameraApplicationManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_CameraApplicationManager =
+    {
+        "_winsdk_Windows_ApplicationModel.CameraApplicationManager",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CameraApplicationManager
+    };
+
     // ----- DesignMode class --------------------
     constexpr const char* const type_name_DesignMode = "DesignMode";
 
@@ -1287,6 +1374,258 @@ namespace py::cpp::Windows::ApplicationModel
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_EnteredBackgroundEventArgs
+    };
+
+    // ----- FullTrustProcessLaunchResult class --------------------
+    constexpr const char* const type_name_FullTrustProcessLaunchResult = "FullTrustProcessLaunchResult";
+
+    static PyObject* _new_FullTrustProcessLaunchResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FullTrustProcessLaunchResult);
+        return nullptr;
+    }
+
+    static void _dealloc_FullTrustProcessLaunchResult(py::wrapper::Windows::ApplicationModel::FullTrustProcessLaunchResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* FullTrustProcessLaunchResult_get_ExtendedError(py::wrapper::Windows::ApplicationModel::FullTrustProcessLaunchResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ExtendedError());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* FullTrustProcessLaunchResult_get_LaunchResult(py::wrapper::Windows::ApplicationModel::FullTrustProcessLaunchResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LaunchResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_FullTrustProcessLaunchResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FullTrustProcessLaunchResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_FullTrustProcessLaunchResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FullTrustProcessLaunchResult[] = {
+        { "extended_error", reinterpret_cast<getter>(FullTrustProcessLaunchResult_get_ExtendedError), nullptr, nullptr, nullptr },
+        { "launch_result", reinterpret_cast<getter>(FullTrustProcessLaunchResult_get_LaunchResult), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_FullTrustProcessLaunchResult[] = 
+    {
+        { Py_tp_new, _new_FullTrustProcessLaunchResult },
+        { Py_tp_dealloc, _dealloc_FullTrustProcessLaunchResult },
+        { Py_tp_methods, _methods_FullTrustProcessLaunchResult },
+        { Py_tp_getset, _getset_FullTrustProcessLaunchResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_FullTrustProcessLaunchResult =
+    {
+        "_winsdk_Windows_ApplicationModel.FullTrustProcessLaunchResult",
+        sizeof(py::wrapper::Windows::ApplicationModel::FullTrustProcessLaunchResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FullTrustProcessLaunchResult
+    };
+
+    // ----- FullTrustProcessLauncher class --------------------
+    constexpr const char* const type_name_FullTrustProcessLauncher = "FullTrustProcessLauncher";
+
+    static PyObject* _new_FullTrustProcessLauncher(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FullTrustProcessLauncher);
+        return nullptr;
+    }
+
+    static PyObject* FullTrustProcessLauncher_LaunchFullTrustProcessForAppAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForAppAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForAppAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FullTrustProcessLauncher_LaunchFullTrustProcessForAppWithArgumentsAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForAppWithArgumentsAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FullTrustProcessLauncher_LaunchFullTrustProcessForCurrentAppAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FullTrustProcessLauncher_LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::ApplicationModel::FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FullTrustProcessLauncher[] = {
+        { "launch_full_trust_process_for_app_async", reinterpret_cast<PyCFunction>(FullTrustProcessLauncher_LaunchFullTrustProcessForAppAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "launch_full_trust_process_for_app_with_arguments_async", reinterpret_cast<PyCFunction>(FullTrustProcessLauncher_LaunchFullTrustProcessForAppWithArgumentsAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "launch_full_trust_process_for_current_app_async", reinterpret_cast<PyCFunction>(FullTrustProcessLauncher_LaunchFullTrustProcessForCurrentAppAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "launch_full_trust_process_for_current_app_with_arguments_async", reinterpret_cast<PyCFunction>(FullTrustProcessLauncher_LaunchFullTrustProcessForCurrentAppWithArgumentsAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FullTrustProcessLauncher[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_FullTrustProcessLauncher[] = 
+    {
+        { Py_tp_new, _new_FullTrustProcessLauncher },
+        { Py_tp_methods, _methods_FullTrustProcessLauncher },
+        { Py_tp_getset, _getset_FullTrustProcessLauncher },
+        { },
+    };
+
+    static PyType_Spec type_spec_FullTrustProcessLauncher =
+    {
+        "_winsdk_Windows_ApplicationModel.FullTrustProcessLauncher",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FullTrustProcessLauncher
     };
 
     // ----- LeavingBackgroundEventArgs class --------------------
@@ -5694,6 +6033,7 @@ namespace py::cpp::Windows::ApplicationModel
         {"_register_AddResourcePackageOptions", register_AddResourcePackageOptions, METH_O, "registers type"},
         {"_register_AppExecutionContext", register_AppExecutionContext, METH_O, "registers type"},
         {"_register_AppInstallerPolicySource", register_AppInstallerPolicySource, METH_O, "registers type"},
+        {"_register_FullTrustLaunchResult", register_FullTrustLaunchResult, METH_O, "registers type"},
         {"_register_LimitedAccessFeatureStatus", register_LimitedAccessFeatureStatus, METH_O, "registers type"},
         {"_register_PackageContentGroupState", register_PackageContentGroupState, METH_O, "registers type"},
         {"_register_PackageSignatureKind", register_PackageSignatureKind, METH_O, "registers type"},
@@ -5714,6 +6054,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_VISIT(state->type_AddResourcePackageOptions);
         Py_VISIT(state->type_AppExecutionContext);
         Py_VISIT(state->type_AppInstallerPolicySource);
+        Py_VISIT(state->type_FullTrustLaunchResult);
         Py_VISIT(state->type_LimitedAccessFeatureStatus);
         Py_VISIT(state->type_PackageContentGroupState);
         Py_VISIT(state->type_PackageSignatureKind);
@@ -5723,8 +6064,11 @@ namespace py::cpp::Windows::ApplicationModel
         Py_VISIT(state->type_AppInfo);
         Py_VISIT(state->type_AppInstallerInfo);
         Py_VISIT(state->type_AppInstance);
+        Py_VISIT(state->type_CameraApplicationManager);
         Py_VISIT(state->type_DesignMode);
         Py_VISIT(state->type_EnteredBackgroundEventArgs);
+        Py_VISIT(state->type_FullTrustProcessLaunchResult);
+        Py_VISIT(state->type_FullTrustProcessLauncher);
         Py_VISIT(state->type_LeavingBackgroundEventArgs);
         Py_VISIT(state->type_LimitedAccessFeatureRequestResult);
         Py_VISIT(state->type_LimitedAccessFeatures);
@@ -5771,6 +6115,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_CLEAR(state->type_AddResourcePackageOptions);
         Py_CLEAR(state->type_AppExecutionContext);
         Py_CLEAR(state->type_AppInstallerPolicySource);
+        Py_CLEAR(state->type_FullTrustLaunchResult);
         Py_CLEAR(state->type_LimitedAccessFeatureStatus);
         Py_CLEAR(state->type_PackageContentGroupState);
         Py_CLEAR(state->type_PackageSignatureKind);
@@ -5780,8 +6125,11 @@ namespace py::cpp::Windows::ApplicationModel
         Py_CLEAR(state->type_AppInfo);
         Py_CLEAR(state->type_AppInstallerInfo);
         Py_CLEAR(state->type_AppInstance);
+        Py_CLEAR(state->type_CameraApplicationManager);
         Py_CLEAR(state->type_DesignMode);
         Py_CLEAR(state->type_EnteredBackgroundEventArgs);
+        Py_CLEAR(state->type_FullTrustProcessLaunchResult);
+        Py_CLEAR(state->type_FullTrustProcessLauncher);
         Py_CLEAR(state->type_LeavingBackgroundEventArgs);
         Py_CLEAR(state->type_LimitedAccessFeatureRequestResult);
         Py_CLEAR(state->type_LimitedAccessFeatures);
@@ -5952,6 +6300,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel(void) noexcept
 
     Py_INCREF(state->type_AppInstance);
 
+    state->type_CameraApplicationManager = py::register_python_type(module.get(), type_name_CameraApplicationManager, &type_spec_CameraApplicationManager, nullptr);
+    if (!state->type_CameraApplicationManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CameraApplicationManager);
+
     state->type_DesignMode = py::register_python_type(module.get(), type_name_DesignMode, &type_spec_DesignMode, nullptr);
     if (!state->type_DesignMode)
     {
@@ -5967,6 +6323,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel(void) noexcept
     }
 
     Py_INCREF(state->type_EnteredBackgroundEventArgs);
+
+    state->type_FullTrustProcessLaunchResult = py::register_python_type(module.get(), type_name_FullTrustProcessLaunchResult, &type_spec_FullTrustProcessLaunchResult, bases.get());
+    if (!state->type_FullTrustProcessLaunchResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FullTrustProcessLaunchResult);
+
+    state->type_FullTrustProcessLauncher = py::register_python_type(module.get(), type_name_FullTrustProcessLauncher, &type_spec_FullTrustProcessLauncher, nullptr);
+    if (!state->type_FullTrustProcessLauncher)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FullTrustProcessLauncher);
 
     state->type_LeavingBackgroundEventArgs = py::register_python_type(module.get(), type_name_LeavingBackgroundEventArgs, &type_spec_LeavingBackgroundEventArgs, bases.get());
     if (!state->type_LeavingBackgroundEventArgs)
@@ -6281,6 +6653,29 @@ PyObject* py::py_type<winrt::Windows::ApplicationModel::AppInstallerPolicySource
     return python_type;
 }
 
+PyObject* py::py_type<winrt::Windows::ApplicationModel::FullTrustLaunchResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FullTrustLaunchResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::FullTrustLaunchResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::ApplicationModel::LimitedAccessFeatureStatus>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel;
 
@@ -6488,6 +6883,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::AppInstance>::get
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::CameraApplicationManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CameraApplicationManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::CameraApplicationManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::DesignMode>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel;
 
@@ -6528,6 +6946,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::EnteredBackground
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FullTrustProcessLaunchResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::FullTrustProcessLauncher>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FullTrustProcessLauncher;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::FullTrustProcessLauncher is not registered");
         return nullptr;
     }
 

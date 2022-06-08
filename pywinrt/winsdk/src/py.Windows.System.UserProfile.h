@@ -20,6 +20,10 @@
 #include "py.Windows.Storage.h"
 #endif
 
+#if __has_include("py.Windows.Storage.Streams.h")
+#include "py.Windows.Storage.Streams.h"
+#endif
+
 #if __has_include("py.Windows.System.h")
 #include "py.Windows.System.h"
 #endif
@@ -41,11 +45,31 @@ namespace py::wrapper::Windows::System::UserProfile
     using FirstSignInSettings = py::winrt_wrapper<winrt::Windows::System::UserProfile::FirstSignInSettings>;
     using GlobalizationPreferences = py::winrt_wrapper<winrt::Windows::System::UserProfile::GlobalizationPreferences>;
     using GlobalizationPreferencesForUser = py::winrt_wrapper<winrt::Windows::System::UserProfile::GlobalizationPreferencesForUser>;
+    using LockScreen = py::winrt_wrapper<winrt::Windows::System::UserProfile::LockScreen>;
+    using UserInformation = py::winrt_wrapper<winrt::Windows::System::UserProfile::UserInformation>;
     using UserProfilePersonalizationSettings = py::winrt_wrapper<winrt::Windows::System::UserProfile::UserProfilePersonalizationSettings>;
 }
 
 namespace py
 {
+
+    template<>
+    struct py_type<winrt::Windows::System::UserProfile::AccountPictureKind>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::System::UserProfile::SetAccountPictureResult>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::System::UserProfile::SetImageFeedResult>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
 
     template<>
     struct winrt_type<winrt::Windows::System::UserProfile::AdvertisingManager>
@@ -85,6 +109,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::System::UserProfile::GlobalizationPreferencesForUser>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::System::UserProfile::LockScreen>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::System::UserProfile::UserInformation>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

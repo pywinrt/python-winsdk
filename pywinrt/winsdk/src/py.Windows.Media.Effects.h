@@ -74,6 +74,7 @@ namespace py::wrapper::Windows::Media::Effects
     using CompositeVideoFrameContext = py::winrt_wrapper<winrt::Windows::Media::Effects::CompositeVideoFrameContext>;
     using ProcessAudioFrameContext = py::winrt_wrapper<winrt::Windows::Media::Effects::ProcessAudioFrameContext>;
     using ProcessVideoFrameContext = py::winrt_wrapper<winrt::Windows::Media::Effects::ProcessVideoFrameContext>;
+    using SlowMotionEffectDefinition = py::winrt_wrapper<winrt::Windows::Media::Effects::SlowMotionEffectDefinition>;
     using VideoCompositorDefinition = py::winrt_wrapper<winrt::Windows::Media::Effects::VideoCompositorDefinition>;
     using VideoEffectDefinition = py::winrt_wrapper<winrt::Windows::Media::Effects::VideoEffectDefinition>;
     using VideoTransformEffectDefinition = py::winrt_wrapper<winrt::Windows::Media::Effects::VideoTransformEffectDefinition>;
@@ -151,6 +152,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Media::Effects::ProcessVideoFrameContext>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Media::Effects::SlowMotionEffectDefinition>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

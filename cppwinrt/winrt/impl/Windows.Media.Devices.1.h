@@ -126,6 +126,20 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         IAudioDeviceModulesManagerFactory(std::nullptr_t = nullptr) noexcept {}
         IAudioDeviceModulesManagerFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ICallControl :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICallControl>
+    {
+        ICallControl(std::nullptr_t = nullptr) noexcept {}
+        ICallControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICallControlStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICallControlStatics>
+    {
+        ICallControlStatics(std::nullptr_t = nullptr) noexcept {}
+        ICallControlStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ICameraOcclusionInfo :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ICameraOcclusionInfo>
@@ -153,6 +167,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     {
         IDefaultAudioDeviceChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IDefaultAudioDeviceChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IDialRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDialRequestedEventArgs>
+    {
+        IDialRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IDialRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IDigitalWindowBounds :
         winrt::Windows::Foundation::IInspectable,
@@ -259,6 +280,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         IIsoSpeedControl2(std::nullptr_t = nullptr) noexcept {}
         IIsoSpeedControl2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IKeypadPressedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IKeypadPressedEventArgs>
+    {
+        IKeypadPressedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IKeypadPressedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ILowLagPhotoControl :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ILowLagPhotoControl>
@@ -328,6 +356,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     {
         IPhotoConfirmationControl(std::nullptr_t = nullptr) noexcept {}
         IPhotoConfirmationControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IRedialRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IRedialRequestedEventArgs>
+    {
+        IRedialRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IRedialRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IRegionOfInterest :
         winrt::Windows::Foundation::IInspectable,

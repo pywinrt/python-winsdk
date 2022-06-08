@@ -177,6 +177,24 @@ class SendCommandStatus(enum.IntEnum):
     SUCCESS = 0
     DEVICE_NOT_AVAILABLE = 1
 
+class TelephonyKey(enum.IntEnum):
+    D0 = 0
+    D1 = 1
+    D2 = 2
+    D3 = 3
+    D4 = 4
+    D5 = 5
+    D6 = 6
+    D7 = 7
+    D8 = 8
+    D9 = 9
+    STAR = 10
+    POUND = 11
+    A = 12
+    B = 13
+    C = 14
+    D = 15
+
 class VideoDeviceControllerGetDevicePropertyStatus(enum.IntEnum):
     SUCCESS = 0
     UNKNOWN_FAILURE = 1
@@ -225,6 +243,7 @@ _ns_module._register_MediaCapturePauseBehavior(MediaCapturePauseBehavior)
 _ns_module._register_OpticalImageStabilizationMode(OpticalImageStabilizationMode)
 _ns_module._register_RegionOfInterestType(RegionOfInterestType)
 _ns_module._register_SendCommandStatus(SendCommandStatus)
+_ns_module._register_TelephonyKey(TelephonyKey)
 _ns_module._register_VideoDeviceControllerGetDevicePropertyStatus(VideoDeviceControllerGetDevicePropertyStatus)
 _ns_module._register_VideoDeviceControllerSetDevicePropertyStatus(VideoDeviceControllerSetDevicePropertyStatus)
 _ns_module._register_VideoTemporalDenoisingMode(VideoTemporalDenoisingMode)
@@ -236,11 +255,13 @@ AudioDeviceController = _ns_module.AudioDeviceController
 AudioDeviceModule = _ns_module.AudioDeviceModule
 AudioDeviceModuleNotificationEventArgs = _ns_module.AudioDeviceModuleNotificationEventArgs
 AudioDeviceModulesManager = _ns_module.AudioDeviceModulesManager
+CallControl = _ns_module.CallControl
 CameraOcclusionInfo = _ns_module.CameraOcclusionInfo
 CameraOcclusionState = _ns_module.CameraOcclusionState
 CameraOcclusionStateChangedEventArgs = _ns_module.CameraOcclusionStateChangedEventArgs
 DefaultAudioCaptureDeviceChangedEventArgs = _ns_module.DefaultAudioCaptureDeviceChangedEventArgs
 DefaultAudioRenderDeviceChangedEventArgs = _ns_module.DefaultAudioRenderDeviceChangedEventArgs
+DialRequestedEventArgs = _ns_module.DialRequestedEventArgs
 DigitalWindowBounds = _ns_module.DigitalWindowBounds
 DigitalWindowCapability = _ns_module.DigitalWindowCapability
 DigitalWindowControl = _ns_module.DigitalWindowControl
@@ -253,6 +274,7 @@ FocusSettings = _ns_module.FocusSettings
 HdrVideoControl = _ns_module.HdrVideoControl
 InfraredTorchControl = _ns_module.InfraredTorchControl
 IsoSpeedControl = _ns_module.IsoSpeedControl
+KeypadPressedEventArgs = _ns_module.KeypadPressedEventArgs
 LowLagPhotoControl = _ns_module.LowLagPhotoControl
 LowLagPhotoSequenceControl = _ns_module.LowLagPhotoSequenceControl
 MediaDevice = _ns_module.MediaDevice
@@ -262,6 +284,7 @@ ModuleCommandResult = _ns_module.ModuleCommandResult
 OpticalImageStabilizationControl = _ns_module.OpticalImageStabilizationControl
 PanelBasedOptimizationControl = _ns_module.PanelBasedOptimizationControl
 PhotoConfirmationControl = _ns_module.PhotoConfirmationControl
+RedialRequestedEventArgs = _ns_module.RedialRequestedEventArgs
 RegionOfInterest = _ns_module.RegionOfInterest
 RegionsOfInterestControl = _ns_module.RegionsOfInterestControl
 SceneModeControl = _ns_module.SceneModeControl

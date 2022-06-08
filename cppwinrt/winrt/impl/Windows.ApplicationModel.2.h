@@ -64,6 +64,11 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         static auto Unregister();
         static auto GetInstances();
     };
+    struct CameraApplicationManager
+    {
+        CameraApplicationManager() = delete;
+        static auto ShowInstalledApplicationsUI();
+    };
     struct DesignMode
     {
         DesignMode() = delete;
@@ -74,6 +79,21 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         EnteredBackgroundEventArgs(std::nullptr_t) noexcept {}
         EnteredBackgroundEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) FullTrustProcessLaunchResult : winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult
+    {
+        FullTrustProcessLaunchResult(std::nullptr_t) noexcept {}
+        FullTrustProcessLaunchResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult(ptr, take_ownership_from_abi) {}
+    };
+    struct FullTrustProcessLauncher
+    {
+        FullTrustProcessLauncher() = delete;
+        static auto LaunchFullTrustProcessForCurrentAppAsync();
+        static auto LaunchFullTrustProcessForCurrentAppAsync(param::hstring const& parameterGroupId);
+        static auto LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId);
+        static auto LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& parameterGroupId);
+        static auto LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param::hstring const& commandLine);
+        static auto LaunchFullTrustProcessForAppWithArgumentsAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& commandLine);
     };
     struct __declspec(empty_bases) LeavingBackgroundEventArgs : winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs
     {

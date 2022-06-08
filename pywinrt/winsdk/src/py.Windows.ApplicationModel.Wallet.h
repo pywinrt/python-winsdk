@@ -48,6 +48,12 @@ namespace py
 {
 
     template<>
+    struct py_type<winrt::Windows::ApplicationModel::Wallet::WalletActionKind>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::ApplicationModel::Wallet::WalletBarcodeSymbology>
     {
         static PyObject* get_python_type() noexcept;

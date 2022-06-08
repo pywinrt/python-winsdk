@@ -72,6 +72,19 @@ class RemovalOptions(enum.IntFlag):
     PRESERVE_ROAMABLE_APPLICATION_DATA = 0x80
     REMOVE_FOR_ALL_USERS = 0x80000
 
+class SharedPackageContainerCreationCollisionOptions(enum.IntEnum):
+    FAIL_IF_EXISTS = 0
+    MERGE_WITH_EXISTING = 1
+    REPLACE_EXISTING = 2
+
+class SharedPackageContainerOperationStatus(enum.IntEnum):
+    SUCCESS = 0
+    BLOCKED_BY_POLICY = 1
+    ALREADY_EXISTS = 2
+    PACKAGE_FAMILY_EXISTS_IN_ANOTHER_CONTAINER = 3
+    NOT_FOUND = 4
+    UNKNOWN_FAILURE = 5
+
 class StubPackageOption(enum.IntEnum):
     DEFAULT = 0
     INSTALL_FULL = 1
@@ -138,6 +151,34 @@ class AutoUpdateSettingsOptions(_winrt.Object):
     @staticmethod
     def create_from_app_installer_info(app_installer_info: typing.Optional[winsdk.windows.applicationmodel.AppInstallerInfo]) -> typing.Optional[AutoUpdateSettingsOptions]: ...
 
+class CreateSharedPackageContainerOptions(_winrt.Object):
+    force_app_shutdown: _winrt.Boolean
+    create_collision_option: SharedPackageContainerCreationCollisionOptions
+    members: typing.Optional[winsdk.windows.foundation.collections.IVector[SharedPackageContainerMember]]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CreateSharedPackageContainerOptions: ...
+    def __init__(self) -> None: ...
+
+class CreateSharedPackageContainerResult(_winrt.Object):
+    container: typing.Optional[SharedPackageContainer]
+    extended_error: winsdk.windows.foundation.HResult
+    status: SharedPackageContainerOperationStatus
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CreateSharedPackageContainerResult: ...
+
+class DeleteSharedPackageContainerOptions(_winrt.Object):
+    force_app_shutdown: _winrt.Boolean
+    all_users: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> DeleteSharedPackageContainerOptions: ...
+    def __init__(self) -> None: ...
+
+class DeleteSharedPackageContainerResult(_winrt.Object):
+    extended_error: winsdk.windows.foundation.HResult
+    status: SharedPackageContainerOperationStatus
+    @staticmethod
+    def _from(obj: _winrt.Object) -> DeleteSharedPackageContainerResult: ...
+
 class DeploymentResult(_winrt.Object):
     activity_id: uuid.UUID
     error_text: str
@@ -145,6 +186,13 @@ class DeploymentResult(_winrt.Object):
     is_registered: _winrt.Boolean
     @staticmethod
     def _from(obj: _winrt.Object) -> DeploymentResult: ...
+
+class FindSharedPackageContainerOptions(_winrt.Object):
+    package_family_name: str
+    name: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> FindSharedPackageContainerOptions: ...
+    def __init__(self) -> None: ...
 
 class PackageAllUserProvisioningOptions(_winrt.Object):
     optional_package_family_names: typing.Optional[winsdk.windows.foundation.collections.IVector[str]]
@@ -321,6 +369,38 @@ class RegisterPackageOptions(_winrt.Object):
     def _from(obj: _winrt.Object) -> RegisterPackageOptions: ...
     def __init__(self) -> None: ...
 
+class SharedPackageContainer(_winrt.Object):
+    id: str
+    name: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SharedPackageContainer: ...
+    def get_members(self) -> typing.Optional[winsdk.windows.foundation.collections.IVector[SharedPackageContainerMember]]: ...
+    def remove_package_family(self, package_family_name: str, options: typing.Optional[UpdateSharedPackageContainerOptions]) -> typing.Optional[UpdateSharedPackageContainerResult]: ...
+    def reset_data(self) -> typing.Optional[UpdateSharedPackageContainerResult]: ...
+
+class SharedPackageContainerManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SharedPackageContainerManager: ...
+    def create_container(self, name: str, options: typing.Optional[CreateSharedPackageContainerOptions]) -> typing.Optional[CreateSharedPackageContainerResult]: ...
+    def delete_container(self, id: str, options: typing.Optional[DeleteSharedPackageContainerOptions]) -> typing.Optional[DeleteSharedPackageContainerResult]: ...
+    @typing.overload
+    def find_containers(self) -> typing.Optional[winsdk.windows.foundation.collections.IVector[SharedPackageContainer]]: ...
+    @typing.overload
+    def find_containers(self, options: typing.Optional[FindSharedPackageContainerOptions]) -> typing.Optional[winsdk.windows.foundation.collections.IVector[SharedPackageContainer]]: ...
+    def get_container(self, id: str) -> typing.Optional[SharedPackageContainer]: ...
+    @staticmethod
+    def get_default() -> typing.Optional[SharedPackageContainerManager]: ...
+    @staticmethod
+    def get_for_provisioning() -> typing.Optional[SharedPackageContainerManager]: ...
+    @staticmethod
+    def get_for_user(user_sid: str) -> typing.Optional[SharedPackageContainerManager]: ...
+
+class SharedPackageContainerMember(_winrt.Object):
+    package_family_name: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SharedPackageContainerMember: ...
+    def __init__(self, package_family_name: str) -> None: ...
+
 class StagePackageOptions(_winrt.Object):
     target_volume: typing.Optional[PackageVolume]
     stub_package_option: StubPackageOption
@@ -338,4 +418,17 @@ class StagePackageOptions(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> StagePackageOptions: ...
     def __init__(self) -> None: ...
+
+class UpdateSharedPackageContainerOptions(_winrt.Object):
+    require_packages_present: _winrt.Boolean
+    force_app_shutdown: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> UpdateSharedPackageContainerOptions: ...
+    def __init__(self) -> None: ...
+
+class UpdateSharedPackageContainerResult(_winrt.Object):
+    extended_error: winsdk.windows.foundation.HResult
+    status: SharedPackageContainerOperationStatus
+    @staticmethod
+    def _from(obj: _winrt.Object) -> UpdateSharedPackageContainerResult: ...
 

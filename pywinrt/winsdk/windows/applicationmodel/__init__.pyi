@@ -29,6 +29,12 @@ class AppInstallerPolicySource(enum.IntEnum):
     DEFAULT = 0
     SYSTEM = 1
 
+class FullTrustLaunchResult(enum.IntEnum):
+    SUCCESS = 0
+    ACCESS_DENIED = 1
+    FILE_NOT_FOUND = 2
+    UNKNOWN = 3
+
 class LimitedAccessFeatureStatus(enum.IntEnum):
     UNAVAILABLE = 0
     AVAILABLE = 1
@@ -134,6 +140,12 @@ class AppInstance(_winrt.Object):
     @staticmethod
     def unregister() -> None: ...
 
+class CameraApplicationManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CameraApplicationManager: ...
+    @staticmethod
+    def show_installed_applications_u_i() -> None: ...
+
 class DesignMode(_winrt.Object):
     design_mode_enabled: _winrt.Boolean
     design_mode2_enabled: _winrt.Boolean
@@ -144,6 +156,32 @@ class EnteredBackgroundEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> EnteredBackgroundEventArgs: ...
     def get_deferral(self) -> typing.Optional[winsdk.windows.foundation.Deferral]: ...
+
+class FullTrustProcessLaunchResult(_winrt.Object):
+    extended_error: winsdk.windows.foundation.HResult
+    launch_result: FullTrustLaunchResult
+    @staticmethod
+    def _from(obj: _winrt.Object) -> FullTrustProcessLaunchResult: ...
+
+class FullTrustProcessLauncher(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> FullTrustProcessLauncher: ...
+    @typing.overload
+    @staticmethod
+    def launch_full_trust_process_for_app_async(full_trust_package_relative_app_id: str) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+    @typing.overload
+    @staticmethod
+    def launch_full_trust_process_for_app_async(full_trust_package_relative_app_id: str, parameter_group_id: str) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+    @staticmethod
+    def launch_full_trust_process_for_app_with_arguments_async(full_trust_package_relative_app_id: str, command_line: str) -> winsdk.windows.foundation.IAsyncOperation[FullTrustProcessLaunchResult]: ...
+    @typing.overload
+    @staticmethod
+    def launch_full_trust_process_for_current_app_async() -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+    @typing.overload
+    @staticmethod
+    def launch_full_trust_process_for_current_app_async(parameter_group_id: str) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+    @staticmethod
+    def launch_full_trust_process_for_current_app_with_arguments_async(command_line: str) -> winsdk.windows.foundation.IAsyncOperation[FullTrustProcessLaunchResult]: ...
 
 class LeavingBackgroundEventArgs(_winrt.Object):
     @staticmethod

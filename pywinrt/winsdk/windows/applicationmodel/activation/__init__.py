@@ -17,7 +17,17 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.applicationmodel.calls
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.applicationmodel.contacts
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.applicationmodel.contacts.provider
 except ImportError:
     pass
 
@@ -37,7 +47,17 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.applicationmodel.wallet
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.devices.enumeration
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.devices.printers.extensions
 except ImportError:
     pass
 
@@ -165,9 +185,16 @@ AppointmentsProviderShowTimeFrameActivatedEventArgs = _ns_module.AppointmentsPro
 BackgroundActivatedEventArgs = _ns_module.BackgroundActivatedEventArgs
 BarcodeScannerPreviewActivatedEventArgs = _ns_module.BarcodeScannerPreviewActivatedEventArgs
 CachedFileUpdaterActivatedEventArgs = _ns_module.CachedFileUpdaterActivatedEventArgs
+CameraSettingsActivatedEventArgs = _ns_module.CameraSettingsActivatedEventArgs
 CommandLineActivatedEventArgs = _ns_module.CommandLineActivatedEventArgs
 CommandLineActivationOperation = _ns_module.CommandLineActivationOperation
+ContactCallActivatedEventArgs = _ns_module.ContactCallActivatedEventArgs
+ContactMapActivatedEventArgs = _ns_module.ContactMapActivatedEventArgs
+ContactMessageActivatedEventArgs = _ns_module.ContactMessageActivatedEventArgs
 ContactPanelActivatedEventArgs = _ns_module.ContactPanelActivatedEventArgs
+ContactPickerActivatedEventArgs = _ns_module.ContactPickerActivatedEventArgs
+ContactPostActivatedEventArgs = _ns_module.ContactPostActivatedEventArgs
+ContactVideoCallActivatedEventArgs = _ns_module.ContactVideoCallActivatedEventArgs
 DeviceActivatedEventArgs = _ns_module.DeviceActivatedEventArgs
 DevicePairingActivatedEventArgs = _ns_module.DevicePairingActivatedEventArgs
 DialReceiverActivatedEventArgs = _ns_module.DialReceiverActivatedEventArgs
@@ -179,9 +206,12 @@ FileSavePickerContinuationEventArgs = _ns_module.FileSavePickerContinuationEvent
 FolderPickerContinuationEventArgs = _ns_module.FolderPickerContinuationEventArgs
 LaunchActivatedEventArgs = _ns_module.LaunchActivatedEventArgs
 LockScreenActivatedEventArgs = _ns_module.LockScreenActivatedEventArgs
+LockScreenCallActivatedEventArgs = _ns_module.LockScreenCallActivatedEventArgs
 LockScreenComponentActivatedEventArgs = _ns_module.LockScreenComponentActivatedEventArgs
 PhoneCallActivatedEventArgs = _ns_module.PhoneCallActivatedEventArgs
 PickerReturnedActivatedEventArgs = _ns_module.PickerReturnedActivatedEventArgs
+Print3DWorkflowActivatedEventArgs = _ns_module.Print3DWorkflowActivatedEventArgs
+PrintTaskSettingsActivatedEventArgs = _ns_module.PrintTaskSettingsActivatedEventArgs
 ProtocolActivatedEventArgs = _ns_module.ProtocolActivatedEventArgs
 ProtocolForResultsActivatedEventArgs = _ns_module.ProtocolForResultsActivatedEventArgs
 RestrictedLaunchActivatedEventArgs = _ns_module.RestrictedLaunchActivatedEventArgs
@@ -193,6 +223,7 @@ TileActivatedInfo = _ns_module.TileActivatedInfo
 ToastNotificationActivatedEventArgs = _ns_module.ToastNotificationActivatedEventArgs
 UserDataAccountProviderActivatedEventArgs = _ns_module.UserDataAccountProviderActivatedEventArgs
 VoiceCommandActivatedEventArgs = _ns_module.VoiceCommandActivatedEventArgs
+WalletActionActivatedEventArgs = _ns_module.WalletActionActivatedEventArgs
 WebAccountProviderActivatedEventArgs = _ns_module.WebAccountProviderActivatedEventArgs
 WebAuthenticationBrokerContinuationEventArgs = _ns_module.WebAuthenticationBrokerContinuationEventArgs
 IActivatedEventArgs = _ns_module.IActivatedEventArgs
@@ -207,8 +238,17 @@ IAppointmentsProviderShowTimeFrameActivatedEventArgs = _ns_module.IAppointmentsP
 IBackgroundActivatedEventArgs = _ns_module.IBackgroundActivatedEventArgs
 IBarcodeScannerPreviewActivatedEventArgs = _ns_module.IBarcodeScannerPreviewActivatedEventArgs
 ICachedFileUpdaterActivatedEventArgs = _ns_module.ICachedFileUpdaterActivatedEventArgs
+ICameraSettingsActivatedEventArgs = _ns_module.ICameraSettingsActivatedEventArgs
 ICommandLineActivatedEventArgs = _ns_module.ICommandLineActivatedEventArgs
+IContactActivatedEventArgs = _ns_module.IContactActivatedEventArgs
+IContactCallActivatedEventArgs = _ns_module.IContactCallActivatedEventArgs
+IContactMapActivatedEventArgs = _ns_module.IContactMapActivatedEventArgs
+IContactMessageActivatedEventArgs = _ns_module.IContactMessageActivatedEventArgs
 IContactPanelActivatedEventArgs = _ns_module.IContactPanelActivatedEventArgs
+IContactPickerActivatedEventArgs = _ns_module.IContactPickerActivatedEventArgs
+IContactPostActivatedEventArgs = _ns_module.IContactPostActivatedEventArgs
+IContactVideoCallActivatedEventArgs = _ns_module.IContactVideoCallActivatedEventArgs
+IContactsProviderActivatedEventArgs = _ns_module.IContactsProviderActivatedEventArgs
 IContinuationActivatedEventArgs = _ns_module.IContinuationActivatedEventArgs
 IDeviceActivatedEventArgs = _ns_module.IDeviceActivatedEventArgs
 IDevicePairingActivatedEventArgs = _ns_module.IDevicePairingActivatedEventArgs
@@ -226,9 +266,12 @@ IFolderPickerContinuationEventArgs = _ns_module.IFolderPickerContinuationEventAr
 ILaunchActivatedEventArgs = _ns_module.ILaunchActivatedEventArgs
 ILaunchActivatedEventArgs2 = _ns_module.ILaunchActivatedEventArgs2
 ILockScreenActivatedEventArgs = _ns_module.ILockScreenActivatedEventArgs
+ILockScreenCallActivatedEventArgs = _ns_module.ILockScreenCallActivatedEventArgs
 IPhoneCallActivatedEventArgs = _ns_module.IPhoneCallActivatedEventArgs
 IPickerReturnedActivatedEventArgs = _ns_module.IPickerReturnedActivatedEventArgs
 IPrelaunchActivatedEventArgs = _ns_module.IPrelaunchActivatedEventArgs
+IPrint3DWorkflowActivatedEventArgs = _ns_module.IPrint3DWorkflowActivatedEventArgs
+IPrintTaskSettingsActivatedEventArgs = _ns_module.IPrintTaskSettingsActivatedEventArgs
 IProtocolActivatedEventArgs = _ns_module.IProtocolActivatedEventArgs
 IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData = _ns_module.IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData
 IProtocolForResultsActivatedEventArgs = _ns_module.IProtocolForResultsActivatedEventArgs
@@ -241,5 +284,6 @@ IToastNotificationActivatedEventArgs = _ns_module.IToastNotificationActivatedEve
 IUserDataAccountProviderActivatedEventArgs = _ns_module.IUserDataAccountProviderActivatedEventArgs
 IViewSwitcherProvider = _ns_module.IViewSwitcherProvider
 IVoiceCommandActivatedEventArgs = _ns_module.IVoiceCommandActivatedEventArgs
+IWalletActionActivatedEventArgs = _ns_module.IWalletActionActivatedEventArgs
 IWebAccountProviderActivatedEventArgs = _ns_module.IWebAccountProviderActivatedEventArgs
 IWebAuthenticationBrokerContinuationEventArgs = _ns_module.IWebAuthenticationBrokerContinuationEventArgs

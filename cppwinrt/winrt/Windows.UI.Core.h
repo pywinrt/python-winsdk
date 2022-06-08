@@ -13,6 +13,7 @@ static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.220607.4"), "Mismatche
 #include "winrt/impl/Windows.UI.2.h"
 #include "winrt/impl/Windows.UI.Composition.2.h"
 #include "winrt/impl/Windows.UI.Input.2.h"
+#include "winrt/impl/Windows.UI.Popups.2.h"
 #include "winrt/impl/Windows.UI.Core.2.h"
 namespace winrt::impl
 {
@@ -950,6 +951,100 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindow5)->get_ActivationMode(reinterpret_cast<int32_t*>(&value)));
         return value;
     }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::Showing(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->add_Showing(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::Showing(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, Showing_revoker>(this, Showing(handler));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::Showing(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->remove_Showing(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::MaxSize() const
+    {
+        winrt::Windows::Foundation::Size value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_MaxSize(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::MinSize() const
+    {
+        winrt::Windows::Foundation::Size value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_MinSize(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::Title() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_Title(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::Title(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->put_Title(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::IsInteractionDelayed() const
+    {
+        int32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_IsInteractionDelayed(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::IsInteractionDelayed(int32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->put_IsInteractionDelayed(value));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::Commands() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_Commands(&value));
+        return winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Popups::IUICommand>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::DefaultCommandIndex() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_DefaultCommandIndex(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::DefaultCommandIndex(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->put_DefaultCommandIndex(value));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::CancelCommandIndex() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_CancelCommandIndex(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::CancelCommandIndex(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->put_CancelCommandIndex(value));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::BackButtonCommand() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->get_BackButtonCommand(&value));
+        return winrt::Windows::UI::Popups::UICommandInvokedHandler{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::BackButtonCommand(winrt::Windows::UI::Popups::UICommandInvokedHandler const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->put_BackButtonCommand(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialog<D>::ShowAsync() const
+    {
+        void* asyncInfo{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialog)->ShowAsync(&asyncInfo));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::Popups::IUICommand>{ asyncInfo, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowDialogFactory<D>::CreateWithTitle(param::hstring const& title) const
+    {
+        void* coreWindowDialog{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowDialogFactory)->CreateWithTitle(*(void**)(&title), &coreWindowDialog));
+        return winrt::Windows::UI::Core::CoreWindowDialog{ coreWindowDialog, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_UI_Core_ICoreWindowEventArgs<D>::Handled() const
     {
         bool value{};
@@ -959,6 +1054,100 @@ namespace winrt::impl
     template <typename D> auto consume_Windows_UI_Core_ICoreWindowEventArgs<D>::Handled(bool value) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowEventArgs)->put_Handled(value));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::Showing(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const
+    {
+        winrt::event_token cookie{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->add_Showing(*(void**)(&handler), put_abi(cookie)));
+        return cookie;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::Showing(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, Showing_revoker>(this, Showing(handler));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::Showing(winrt::event_token const& cookie) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->remove_Showing(impl::bind_in(cookie));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::MaxSize() const
+    {
+        winrt::Windows::Foundation::Size value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->get_MaxSize(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::MinSize() const
+    {
+        winrt::Windows::Foundation::Size value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->get_MinSize(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::Title() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->get_Title(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::Title(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->put_Title(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::IsInteractionDelayed() const
+    {
+        int32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->get_IsInteractionDelayed(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::IsInteractionDelayed(int32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->put_IsInteractionDelayed(value));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::Commands() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->get_Commands(&value));
+        return winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Popups::IUICommand>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::DefaultCommandIndex() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->get_DefaultCommandIndex(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::DefaultCommandIndex(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->put_DefaultCommandIndex(value));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::BackButtonCommand() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->get_BackButtonCommand(&value));
+        return winrt::Windows::UI::Popups::UICommandInvokedHandler{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::BackButtonCommand(winrt::Windows::UI::Popups::UICommandInvokedHandler const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->put_BackButtonCommand(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyout<D>::ShowAsync() const
+    {
+        void* asyncInfo{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyout)->ShowAsync(&asyncInfo));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::Popups::IUICommand>{ asyncInfo, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyoutFactory<D>::Create(winrt::Windows::Foundation::Point const& position) const
+    {
+        void* coreWindowFlyout{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyoutFactory)->Create(impl::bind_in(position), &coreWindowFlyout));
+        return winrt::Windows::UI::Core::CoreWindowFlyout{ coreWindowFlyout, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowFlyoutFactory<D>::CreateWithTitle(winrt::Windows::Foundation::Point const& position, param::hstring const& title) const
+    {
+        void* coreWindowFlyout{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowFlyoutFactory)->CreateWithTitle(impl::bind_in(position), *(void**)(&title), &coreWindowFlyout));
+        return winrt::Windows::UI::Core::CoreWindowFlyout{ coreWindowFlyout, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Core_ICoreWindowPopupShowingEventArgs<D>::SetDesiredSize(winrt::Windows::Foundation::Size const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs)->SetDesiredSize(impl::bind_in(value)));
     }
     template <typename D> auto consume_Windows_UI_Core_ICoreWindowResizeManager<D>::NotifyLayoutCompleted() const
     {
@@ -2382,6 +2571,144 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Core::ICoreWindowDialog> : produce_base<D, winrt::Windows::UI::Core::ICoreWindowDialog>
+    {
+        int32_t __stdcall add_Showing(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().Showing(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_Showing(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Showing(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall get_MaxSize(winrt::Windows::Foundation::Size* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::Size>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Size>(this->shim().MaxSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MinSize(winrt::Windows::Foundation::Size* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::Size>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Size>(this->shim().MinSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Title(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Title());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Title(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Title(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsInteractionDelayed(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<int32_t>(this->shim().IsInteractionDelayed());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsInteractionDelayed(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsInteractionDelayed(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Commands(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Popups::IUICommand>>(this->shim().Commands());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DefaultCommandIndex(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().DefaultCommandIndex());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_DefaultCommandIndex(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DefaultCommandIndex(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CancelCommandIndex(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().CancelCommandIndex());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CancelCommandIndex(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CancelCommandIndex(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BackButtonCommand(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::UI::Popups::UICommandInvokedHandler>(this->shim().BackButtonCommand());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_BackButtonCommand(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BackButtonCommand(*reinterpret_cast<winrt::Windows::UI::Popups::UICommandInvokedHandler const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ShowAsync(void** asyncInfo) noexcept final try
+        {
+            clear_abi(asyncInfo);
+            typename D::abi_guard guard(this->shim());
+            *asyncInfo = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::Popups::IUICommand>>(this->shim().ShowAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Core::ICoreWindowDialogFactory> : produce_base<D, winrt::Windows::UI::Core::ICoreWindowDialogFactory>
+    {
+        int32_t __stdcall CreateWithTitle(void* title, void** coreWindowDialog) noexcept final try
+        {
+            clear_abi(coreWindowDialog);
+            typename D::abi_guard guard(this->shim());
+            *coreWindowDialog = detach_from<winrt::Windows::UI::Core::CoreWindowDialog>(this->shim().CreateWithTitle(*reinterpret_cast<hstring const*>(&title)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
     template <typename D>
     struct produce<D, winrt::Windows::UI::Core::ICoreWindowEventArgs> : produce_base<D, winrt::Windows::UI::Core::ICoreWindowEventArgs>
     {
@@ -2400,6 +2727,151 @@ namespace winrt::impl
         }
         catch (...) { return to_hresult(); }
     };
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Core::ICoreWindowFlyout> : produce_base<D, winrt::Windows::UI::Core::ICoreWindowFlyout>
+    {
+        int32_t __stdcall add_Showing(void* handler, winrt::event_token* cookie) noexcept final try
+        {
+            zero_abi<winrt::event_token>(cookie);
+            typename D::abi_guard guard(this->shim());
+            *cookie = detach_from<winrt::event_token>(this->shim().Showing(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_Showing(winrt::event_token cookie) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Showing(*reinterpret_cast<winrt::event_token const*>(&cookie));
+            return 0;
+        }
+        int32_t __stdcall get_MaxSize(winrt::Windows::Foundation::Size* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::Size>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Size>(this->shim().MaxSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MinSize(winrt::Windows::Foundation::Size* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::Size>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Size>(this->shim().MinSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Title(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Title());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Title(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Title(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsInteractionDelayed(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<int32_t>(this->shim().IsInteractionDelayed());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsInteractionDelayed(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsInteractionDelayed(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Commands(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Popups::IUICommand>>(this->shim().Commands());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DefaultCommandIndex(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().DefaultCommandIndex());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_DefaultCommandIndex(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DefaultCommandIndex(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_BackButtonCommand(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::UI::Popups::UICommandInvokedHandler>(this->shim().BackButtonCommand());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_BackButtonCommand(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().BackButtonCommand(*reinterpret_cast<winrt::Windows::UI::Popups::UICommandInvokedHandler const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ShowAsync(void** asyncInfo) noexcept final try
+        {
+            clear_abi(asyncInfo);
+            typename D::abi_guard guard(this->shim());
+            *asyncInfo = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::Popups::IUICommand>>(this->shim().ShowAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Core::ICoreWindowFlyoutFactory> : produce_base<D, winrt::Windows::UI::Core::ICoreWindowFlyoutFactory>
+    {
+        int32_t __stdcall Create(winrt::Windows::Foundation::Point position, void** coreWindowFlyout) noexcept final try
+        {
+            clear_abi(coreWindowFlyout);
+            typename D::abi_guard guard(this->shim());
+            *coreWindowFlyout = detach_from<winrt::Windows::UI::Core::CoreWindowFlyout>(this->shim().Create(*reinterpret_cast<winrt::Windows::Foundation::Point const*>(&position)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall CreateWithTitle(winrt::Windows::Foundation::Point position, void* title, void** coreWindowFlyout) noexcept final try
+        {
+            clear_abi(coreWindowFlyout);
+            typename D::abi_guard guard(this->shim());
+            *coreWindowFlyout = detach_from<winrt::Windows::UI::Core::CoreWindowFlyout>(this->shim().CreateWithTitle(*reinterpret_cast<winrt::Windows::Foundation::Point const*>(&position), *reinterpret_cast<hstring const*>(&title)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs> : produce_base<D, winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs>
+    {
+        int32_t __stdcall SetDesiredSize(winrt::Windows::Foundation::Size value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetDesiredSize(*reinterpret_cast<winrt::Windows::Foundation::Size const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::UI::Core::ICoreWindowResizeManager> : produce_base<D, winrt::Windows::UI::Core::ICoreWindowResizeManager>
@@ -2835,6 +3307,22 @@ WINRT_EXPORT namespace winrt::Windows::UI::Core
     {
         return impl::call_factory_cast<winrt::Windows::UI::Core::CoreWindow(*)(ICoreWindowStatic const&), CoreWindow, ICoreWindowStatic>([](ICoreWindowStatic const& f) { return f.GetForCurrentThread(); });
     }
+    inline CoreWindowDialog::CoreWindowDialog() :
+        CoreWindowDialog(impl::call_factory_cast<CoreWindowDialog(*)(winrt::Windows::Foundation::IActivationFactory const&), CoreWindowDialog>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<CoreWindowDialog>(); }))
+    {
+    }
+    inline CoreWindowDialog::CoreWindowDialog(param::hstring const& title) :
+        CoreWindowDialog(impl::call_factory<CoreWindowDialog, ICoreWindowDialogFactory>([&](ICoreWindowDialogFactory const& f) { return f.CreateWithTitle(title); }))
+    {
+    }
+    inline CoreWindowFlyout::CoreWindowFlyout(winrt::Windows::Foundation::Point const& position) :
+        CoreWindowFlyout(impl::call_factory<CoreWindowFlyout, ICoreWindowFlyoutFactory>([&](ICoreWindowFlyoutFactory const& f) { return f.Create(position); }))
+    {
+    }
+    inline CoreWindowFlyout::CoreWindowFlyout(winrt::Windows::Foundation::Point const& position, param::hstring const& title) :
+        CoreWindowFlyout(impl::call_factory<CoreWindowFlyout, ICoreWindowFlyoutFactory>([&](ICoreWindowFlyoutFactory const& f) { return f.CreateWithTitle(position, title); }))
+    {
+    }
     inline auto CoreWindowResizeManager::GetForCurrentView()
     {
         return impl::call_factory_cast<winrt::Windows::UI::Core::CoreWindowResizeManager(*)(ICoreWindowResizeManagerStatics const&), CoreWindowResizeManager, ICoreWindowResizeManagerStatics>([](ICoreWindowResizeManagerStatics const& f) { return f.GetForCurrentView(); });
@@ -2923,7 +3411,12 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Core::ICoreWindow3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::ICoreWindow4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::ICoreWindow5> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::ICoreWindowDialog> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::ICoreWindowDialogFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::ICoreWindowEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::ICoreWindowFlyout> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::ICoreWindowFlyoutFactory> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::ICoreWindowResizeManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::ICoreWindowResizeManagerLayoutCapability> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::ICoreWindowResizeManagerStatics> : winrt::impl::hash_base {};
@@ -2954,7 +3447,10 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Core::CoreIndependentInputSource> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::CoreIndependentInputSourceController> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::CoreWindow> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::CoreWindowDialog> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::CoreWindowEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::CoreWindowFlyout> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::CoreWindowResizeManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::IdleDispatchedHandlerArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Core::InputEnabledEventArgs> : winrt::impl::hash_base {};

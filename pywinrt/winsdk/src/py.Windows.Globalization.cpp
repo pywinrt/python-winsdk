@@ -17,6 +17,8 @@ namespace py::cpp::Windows::Globalization
         PyTypeObject* type_CurrencyAmount;
         PyTypeObject* type_CurrencyIdentifiers;
         PyTypeObject* type_GeographicRegion;
+        PyTypeObject* type_JapanesePhoneme;
+        PyTypeObject* type_JapanesePhoneticAnalyzer;
         PyTypeObject* type_Language;
         PyTypeObject* type_NumeralSystemIdentifiers;
     };
@@ -5305,6 +5307,181 @@ namespace py::cpp::Windows::Globalization
         _type_slots_GeographicRegion
     };
 
+    // ----- JapanesePhoneme class --------------------
+    constexpr const char* const type_name_JapanesePhoneme = "JapanesePhoneme";
+
+    static PyObject* _new_JapanesePhoneme(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_JapanesePhoneme);
+        return nullptr;
+    }
+
+    static void _dealloc_JapanesePhoneme(py::wrapper::Windows::Globalization::JapanesePhoneme* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* JapanesePhoneme_get_DisplayText(py::wrapper::Windows::Globalization::JapanesePhoneme* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DisplayText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* JapanesePhoneme_get_IsPhraseStart(py::wrapper::Windows::Globalization::JapanesePhoneme* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsPhraseStart());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* JapanesePhoneme_get_YomiText(py::wrapper::Windows::Globalization::JapanesePhoneme* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.YomiText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_JapanesePhoneme(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Globalization::JapanesePhoneme>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_JapanesePhoneme[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_JapanesePhoneme), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_JapanesePhoneme[] = {
+        { "display_text", reinterpret_cast<getter>(JapanesePhoneme_get_DisplayText), nullptr, nullptr, nullptr },
+        { "is_phrase_start", reinterpret_cast<getter>(JapanesePhoneme_get_IsPhraseStart), nullptr, nullptr, nullptr },
+        { "yomi_text", reinterpret_cast<getter>(JapanesePhoneme_get_YomiText), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_JapanesePhoneme[] = 
+    {
+        { Py_tp_new, _new_JapanesePhoneme },
+        { Py_tp_dealloc, _dealloc_JapanesePhoneme },
+        { Py_tp_methods, _methods_JapanesePhoneme },
+        { Py_tp_getset, _getset_JapanesePhoneme },
+        { },
+    };
+
+    static PyType_Spec type_spec_JapanesePhoneme =
+    {
+        "_winsdk_Windows_Globalization.JapanesePhoneme",
+        sizeof(py::wrapper::Windows::Globalization::JapanesePhoneme),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_JapanesePhoneme
+    };
+
+    // ----- JapanesePhoneticAnalyzer class --------------------
+    constexpr const char* const type_name_JapanesePhoneticAnalyzer = "JapanesePhoneticAnalyzer";
+
+    static PyObject* _new_JapanesePhoneticAnalyzer(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_JapanesePhoneticAnalyzer);
+        return nullptr;
+    }
+
+    static PyObject* JapanesePhoneticAnalyzer_GetWords(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Globalization::JapanesePhoneticAnalyzer::GetWords(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<bool>(args, 1);
+
+                return py::convert(winrt::Windows::Globalization::JapanesePhoneticAnalyzer::GetWords(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_JapanesePhoneticAnalyzer[] = {
+        { "get_words", reinterpret_cast<PyCFunction>(JapanesePhoneticAnalyzer_GetWords), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_JapanesePhoneticAnalyzer[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_JapanesePhoneticAnalyzer[] = 
+    {
+        { Py_tp_new, _new_JapanesePhoneticAnalyzer },
+        { Py_tp_methods, _methods_JapanesePhoneticAnalyzer },
+        { Py_tp_getset, _getset_JapanesePhoneticAnalyzer },
+        { },
+    };
+
+    static PyType_Spec type_spec_JapanesePhoneticAnalyzer =
+    {
+        "_winsdk_Windows_Globalization.JapanesePhoneticAnalyzer",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_JapanesePhoneticAnalyzer
+    };
+
     // ----- Language class --------------------
     constexpr const char* const type_name_Language = "Language";
 
@@ -6323,6 +6500,8 @@ namespace py::cpp::Windows::Globalization
         Py_VISIT(state->type_CurrencyAmount);
         Py_VISIT(state->type_CurrencyIdentifiers);
         Py_VISIT(state->type_GeographicRegion);
+        Py_VISIT(state->type_JapanesePhoneme);
+        Py_VISIT(state->type_JapanesePhoneticAnalyzer);
         Py_VISIT(state->type_Language);
         Py_VISIT(state->type_NumeralSystemIdentifiers);
 
@@ -6347,6 +6526,8 @@ namespace py::cpp::Windows::Globalization
         Py_CLEAR(state->type_CurrencyAmount);
         Py_CLEAR(state->type_CurrencyIdentifiers);
         Py_CLEAR(state->type_GeographicRegion);
+        Py_CLEAR(state->type_JapanesePhoneme);
+        Py_CLEAR(state->type_JapanesePhoneticAnalyzer);
         Py_CLEAR(state->type_Language);
         Py_CLEAR(state->type_NumeralSystemIdentifiers);
 
@@ -6512,6 +6693,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Globalization(void) noexcept
     }
 
     Py_INCREF(state->type_GeographicRegion);
+
+    state->type_JapanesePhoneme = py::register_python_type(module.get(), type_name_JapanesePhoneme, &type_spec_JapanesePhoneme, bases.get());
+    if (!state->type_JapanesePhoneme)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_JapanesePhoneme);
+
+    state->type_JapanesePhoneticAnalyzer = py::register_python_type(module.get(), type_name_JapanesePhoneticAnalyzer, &type_spec_JapanesePhoneticAnalyzer, nullptr);
+    if (!state->type_JapanesePhoneticAnalyzer)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_JapanesePhoneticAnalyzer);
 
     state->type_Language = py::register_python_type(module.get(), type_name_Language, &type_spec_Language, bases.get());
     if (!state->type_Language)
@@ -6734,6 +6931,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::Globalization::GeographicRegion>::g
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Globalization::GeographicRegion is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Globalization::JapanesePhoneme>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Globalization;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Globalization");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_JapanesePhoneme;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Globalization::JapanesePhoneme is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Globalization::JapanesePhoneticAnalyzer>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Globalization;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Globalization");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_JapanesePhoneticAnalyzer;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Globalization::JapanesePhoneticAnalyzer is not registered");
         return nullptr;
     }
 

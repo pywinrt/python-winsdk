@@ -55,6 +55,23 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         ActivitySensorTrigger(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Background::IActivitySensorTrigger(ptr, take_ownership_from_abi) {}
         explicit ActivitySensorTrigger(uint32_t reportIntervalInMilliseconds);
     };
+    struct AlarmApplicationManager
+    {
+        AlarmApplicationManager() = delete;
+        static auto RequestAccessAsync();
+        static auto GetAccessStatus();
+    };
+    struct __declspec(empty_bases) AppBroadcastTrigger : winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger
+    {
+        AppBroadcastTrigger(std::nullptr_t) noexcept {}
+        AppBroadcastTrigger(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Background::IAppBroadcastTrigger(ptr, take_ownership_from_abi) {}
+        explicit AppBroadcastTrigger(param::hstring const& providerKey);
+    };
+    struct __declspec(empty_bases) AppBroadcastTriggerProviderInfo : winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo
+    {
+        AppBroadcastTriggerProviderInfo(std::nullptr_t) noexcept {}
+        AppBroadcastTriggerProviderInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Background::IAppBroadcastTriggerProviderInfo(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ApplicationTrigger : winrt::Windows::ApplicationModel::Background::IApplicationTrigger
     {
         ApplicationTrigger(std::nullptr_t) noexcept {}

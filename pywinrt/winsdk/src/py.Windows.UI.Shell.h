@@ -31,6 +31,7 @@ namespace py::impl::Windows::UI::Shell
 namespace py::wrapper::Windows::UI::Shell
 {
     using AdaptiveCardBuilder = py::winrt_wrapper<winrt::Windows::UI::Shell::AdaptiveCardBuilder>;
+    using SecurityAppManager = py::winrt_wrapper<winrt::Windows::UI::Shell::SecurityAppManager>;
     using ShareWindowCommandEventArgs = py::winrt_wrapper<winrt::Windows::UI::Shell::ShareWindowCommandEventArgs>;
     using ShareWindowCommandSource = py::winrt_wrapper<winrt::Windows::UI::Shell::ShareWindowCommandSource>;
     using TaskbarManager = py::winrt_wrapper<winrt::Windows::UI::Shell::TaskbarManager>;
@@ -42,6 +43,24 @@ namespace py
 {
 
     template<>
+    struct py_type<winrt::Windows::UI::Shell::SecurityAppKind>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::UI::Shell::SecurityAppState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::UI::Shell::SecurityAppSubstatus>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::UI::Shell::ShareWindowCommand>
     {
         static PyObject* get_python_type() noexcept;
@@ -49,6 +68,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::UI::Shell::AdaptiveCardBuilder>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::SecurityAppManager>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

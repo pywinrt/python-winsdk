@@ -67,6 +67,11 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.security.authentication.web
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.security.credentials
 except ImportError:
     pass
@@ -82,9 +87,137 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.system
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.ui.windowmanagement
 except ImportError:
     pass
+
+class AppBroadcastCameraCaptureState(enum.IntEnum):
+    STOPPED = 0
+    STARTED = 1
+    FAILED = 2
+
+class AppBroadcastCameraOverlayLocation(enum.IntEnum):
+    TOP_LEFT = 0
+    TOP_CENTER = 1
+    TOP_RIGHT = 2
+    MIDDLE_LEFT = 3
+    MIDDLE_CENTER = 4
+    MIDDLE_RIGHT = 5
+    BOTTOM_LEFT = 6
+    BOTTOM_CENTER = 7
+    BOTTOM_RIGHT = 8
+
+class AppBroadcastCameraOverlaySize(enum.IntEnum):
+    SMALL = 0
+    MEDIUM = 1
+    LARGE = 2
+
+class AppBroadcastCaptureTargetType(enum.IntEnum):
+    APP_VIEW = 0
+    ENTIRE_DISPLAY = 1
+
+class AppBroadcastExitBroadcastModeReason(enum.IntEnum):
+    NORMAL_EXIT = 0
+    USER_CANCELED = 1
+    AUTHORIZATION_FAIL = 2
+    FOREGROUND_APP_ACTIVATED = 3
+
+class AppBroadcastMicrophoneCaptureState(enum.IntEnum):
+    STOPPED = 0
+    STARTED = 1
+    FAILED = 2
+
+class AppBroadcastPlugInState(enum.IntEnum):
+    UNKNOWN = 0
+    INITIALIZED = 1
+    MICROSOFT_SIGN_IN_REQUIRED = 2
+    O_AUTH_SIGN_IN_REQUIRED = 3
+    PROVIDER_SIGN_IN_REQUIRED = 4
+    IN_BANDWIDTH_TEST = 5
+    READY_TO_BROADCAST = 6
+
+class AppBroadcastPreviewState(enum.IntEnum):
+    STARTED = 0
+    STOPPED = 1
+    FAILED = 2
+
+class AppBroadcastSignInResult(enum.IntEnum):
+    SUCCESS = 0
+    AUTHENTICATION_FAILED = 1
+    UNAUTHORIZED = 2
+    SERVICE_UNAVAILABLE = 3
+    UNKNOWN = 4
+
+class AppBroadcastSignInState(enum.IntEnum):
+    NOT_SIGNED_IN = 0
+    MICROSOFT_SIGN_IN_IN_PROGRESS = 1
+    MICROSOFT_SIGN_IN_COMPLETE = 2
+    O_AUTH_SIGN_IN_IN_PROGRESS = 3
+    O_AUTH_SIGN_IN_COMPLETE = 4
+
+class AppBroadcastStreamState(enum.IntEnum):
+    INITIALIZING = 0
+    STREAM_READY = 1
+    STARTED = 2
+    PAUSED = 3
+    TERMINATED = 4
+
+class AppBroadcastTerminationReason(enum.IntEnum):
+    NORMAL_TERMINATION = 0
+    LOST_CONNECTION_TO_SERVICE = 1
+    NO_NETWORK_CONNECTIVITY = 2
+    SERVICE_ABORT = 3
+    SERVICE_ERROR = 4
+    SERVICE_UNAVAILABLE = 5
+    INTERNAL_ERROR = 6
+    UNSUPPORTED_FORMAT = 7
+    BACKGROUND_TASK_TERMINATED = 8
+    BACKGROUND_TASK_UNRESPONSIVE = 9
+
+class AppBroadcastVideoEncodingBitrateMode(enum.IntEnum):
+    CUSTOM = 0
+    AUTO = 1
+
+class AppBroadcastVideoEncodingResolutionMode(enum.IntEnum):
+    CUSTOM = 0
+    AUTO = 1
+
+class AppCaptureHistoricalBufferLengthUnit(enum.IntEnum):
+    MEGABYTES = 0
+    SECONDS = 1
+
+class AppCaptureMetadataPriority(enum.IntEnum):
+    INFORMATIONAL = 0
+    IMPORTANT = 1
+
+class AppCaptureMicrophoneCaptureState(enum.IntEnum):
+    STOPPED = 0
+    STARTED = 1
+    FAILED = 2
+
+class AppCaptureRecordingState(enum.IntEnum):
+    IN_PROGRESS = 0
+    COMPLETED = 1
+    FAILED = 2
+
+class AppCaptureVideoEncodingBitrateMode(enum.IntEnum):
+    CUSTOM = 0
+    HIGH = 1
+    STANDARD = 2
+
+class AppCaptureVideoEncodingFrameRateMode(enum.IntEnum):
+    STANDARD = 0
+    HIGH = 1
+
+class AppCaptureVideoEncodingResolutionMode(enum.IntEnum):
+    CUSTOM = 0
+    HIGH = 1
+    STANDARD = 2
 
 class CameraCaptureUIMaxPhotoResolution(enum.IntEnum):
     HIGHEST_AVAILABLE = 0
@@ -113,6 +246,42 @@ class CameraCaptureUIPhotoFormat(enum.IntEnum):
 class CameraCaptureUIVideoFormat(enum.IntEnum):
     MP4 = 0
     WMV = 1
+
+class ForegroundActivationArgument(enum.IntEnum):
+    SIGN_IN_REQUIRED = 0
+    MORE_SETTINGS = 1
+
+class GameBarCommand(enum.IntEnum):
+    OPEN_GAME_BAR = 0
+    RECORD_HISTORICAL_BUFFER = 1
+    TOGGLE_START_STOP_RECORD = 2
+    START_RECORD = 3
+    STOP_RECORD = 4
+    TAKE_SCREENSHOT = 5
+    START_BROADCAST = 6
+    STOP_BROADCAST = 7
+    PAUSE_BROADCAST = 8
+    RESUME_BROADCAST = 9
+    TOGGLE_START_STOP_BROADCAST = 10
+    TOGGLE_MICROPHONE_CAPTURE = 11
+    TOGGLE_CAMERA_CAPTURE = 12
+    TOGGLE_RECORDING_INDICATOR = 13
+
+class GameBarCommandOrigin(enum.IntEnum):
+    SHORTCUT_KEY = 0
+    CORTANA = 1
+    APP_COMMAND = 2
+
+class GameBarServicesDisplayMode(enum.IntEnum):
+    WINDOWED = 0
+    FULL_SCREEN_EXCLUSIVE = 1
+
+class GameBarTargetCapturePolicy(enum.IntEnum):
+    ENABLED_BY_SYSTEM = 0
+    ENABLED_BY_USER = 1
+    NOT_ENABLED = 2
+    PROHIBITED_BY_SYSTEM = 3
+    PROHIBITED_BY_PUBLISHER = 4
 
 class KnownVideoProfile(enum.IntEnum):
     VIDEO_RECORDING = 0
@@ -189,11 +358,37 @@ class VideoRotation(enum.IntEnum):
     CLOCKWISE180_DEGREES = 2
     CLOCKWISE270_DEGREES = 3
 
+_ns_module._register_AppBroadcastCameraCaptureState(AppBroadcastCameraCaptureState)
+_ns_module._register_AppBroadcastCameraOverlayLocation(AppBroadcastCameraOverlayLocation)
+_ns_module._register_AppBroadcastCameraOverlaySize(AppBroadcastCameraOverlaySize)
+_ns_module._register_AppBroadcastCaptureTargetType(AppBroadcastCaptureTargetType)
+_ns_module._register_AppBroadcastExitBroadcastModeReason(AppBroadcastExitBroadcastModeReason)
+_ns_module._register_AppBroadcastMicrophoneCaptureState(AppBroadcastMicrophoneCaptureState)
+_ns_module._register_AppBroadcastPlugInState(AppBroadcastPlugInState)
+_ns_module._register_AppBroadcastPreviewState(AppBroadcastPreviewState)
+_ns_module._register_AppBroadcastSignInResult(AppBroadcastSignInResult)
+_ns_module._register_AppBroadcastSignInState(AppBroadcastSignInState)
+_ns_module._register_AppBroadcastStreamState(AppBroadcastStreamState)
+_ns_module._register_AppBroadcastTerminationReason(AppBroadcastTerminationReason)
+_ns_module._register_AppBroadcastVideoEncodingBitrateMode(AppBroadcastVideoEncodingBitrateMode)
+_ns_module._register_AppBroadcastVideoEncodingResolutionMode(AppBroadcastVideoEncodingResolutionMode)
+_ns_module._register_AppCaptureHistoricalBufferLengthUnit(AppCaptureHistoricalBufferLengthUnit)
+_ns_module._register_AppCaptureMetadataPriority(AppCaptureMetadataPriority)
+_ns_module._register_AppCaptureMicrophoneCaptureState(AppCaptureMicrophoneCaptureState)
+_ns_module._register_AppCaptureRecordingState(AppCaptureRecordingState)
+_ns_module._register_AppCaptureVideoEncodingBitrateMode(AppCaptureVideoEncodingBitrateMode)
+_ns_module._register_AppCaptureVideoEncodingFrameRateMode(AppCaptureVideoEncodingFrameRateMode)
+_ns_module._register_AppCaptureVideoEncodingResolutionMode(AppCaptureVideoEncodingResolutionMode)
 _ns_module._register_CameraCaptureUIMaxPhotoResolution(CameraCaptureUIMaxPhotoResolution)
 _ns_module._register_CameraCaptureUIMaxVideoResolution(CameraCaptureUIMaxVideoResolution)
 _ns_module._register_CameraCaptureUIMode(CameraCaptureUIMode)
 _ns_module._register_CameraCaptureUIPhotoFormat(CameraCaptureUIPhotoFormat)
 _ns_module._register_CameraCaptureUIVideoFormat(CameraCaptureUIVideoFormat)
+_ns_module._register_ForegroundActivationArgument(ForegroundActivationArgument)
+_ns_module._register_GameBarCommand(GameBarCommand)
+_ns_module._register_GameBarCommandOrigin(GameBarCommandOrigin)
+_ns_module._register_GameBarServicesDisplayMode(GameBarServicesDisplayMode)
+_ns_module._register_GameBarTargetCapturePolicy(GameBarTargetCapturePolicy)
 _ns_module._register_KnownVideoProfile(KnownVideoProfile)
 _ns_module._register_MediaCaptureDeviceExclusiveControlStatus(MediaCaptureDeviceExclusiveControlStatus)
 _ns_module._register_MediaCaptureMemoryPreference(MediaCaptureMemoryPreference)
@@ -210,13 +405,58 @@ _ns_module._register_VideoRotation(VideoRotation)
 WhiteBalanceGain = _ns_module.WhiteBalanceGain
 AdvancedCapturedPhoto = _ns_module.AdvancedCapturedPhoto
 AdvancedPhotoCapture = _ns_module.AdvancedPhotoCapture
+AppBroadcastBackgroundService = _ns_module.AppBroadcastBackgroundService
+AppBroadcastBackgroundServiceSignInInfo = _ns_module.AppBroadcastBackgroundServiceSignInInfo
+AppBroadcastBackgroundServiceStreamInfo = _ns_module.AppBroadcastBackgroundServiceStreamInfo
+AppBroadcastCameraCaptureStateChangedEventArgs = _ns_module.AppBroadcastCameraCaptureStateChangedEventArgs
+AppBroadcastGlobalSettings = _ns_module.AppBroadcastGlobalSettings
+AppBroadcastHeartbeatRequestedEventArgs = _ns_module.AppBroadcastHeartbeatRequestedEventArgs
+AppBroadcastManager = _ns_module.AppBroadcastManager
+AppBroadcastMicrophoneCaptureStateChangedEventArgs = _ns_module.AppBroadcastMicrophoneCaptureStateChangedEventArgs
+AppBroadcastPlugIn = _ns_module.AppBroadcastPlugIn
+AppBroadcastPlugInManager = _ns_module.AppBroadcastPlugInManager
+AppBroadcastPlugInStateChangedEventArgs = _ns_module.AppBroadcastPlugInStateChangedEventArgs
+AppBroadcastPreview = _ns_module.AppBroadcastPreview
+AppBroadcastPreviewStateChangedEventArgs = _ns_module.AppBroadcastPreviewStateChangedEventArgs
+AppBroadcastPreviewStreamReader = _ns_module.AppBroadcastPreviewStreamReader
+AppBroadcastPreviewStreamVideoFrame = _ns_module.AppBroadcastPreviewStreamVideoFrame
+AppBroadcastPreviewStreamVideoHeader = _ns_module.AppBroadcastPreviewStreamVideoHeader
+AppBroadcastProviderSettings = _ns_module.AppBroadcastProviderSettings
+AppBroadcastServices = _ns_module.AppBroadcastServices
+AppBroadcastSignInStateChangedEventArgs = _ns_module.AppBroadcastSignInStateChangedEventArgs
+AppBroadcastState = _ns_module.AppBroadcastState
+AppBroadcastStreamAudioFrame = _ns_module.AppBroadcastStreamAudioFrame
+AppBroadcastStreamAudioHeader = _ns_module.AppBroadcastStreamAudioHeader
+AppBroadcastStreamReader = _ns_module.AppBroadcastStreamReader
+AppBroadcastStreamStateChangedEventArgs = _ns_module.AppBroadcastStreamStateChangedEventArgs
+AppBroadcastStreamVideoFrame = _ns_module.AppBroadcastStreamVideoFrame
+AppBroadcastStreamVideoHeader = _ns_module.AppBroadcastStreamVideoHeader
+AppBroadcastTriggerDetails = _ns_module.AppBroadcastTriggerDetails
+AppBroadcastViewerCountChangedEventArgs = _ns_module.AppBroadcastViewerCountChangedEventArgs
 AppCapture = _ns_module.AppCapture
+AppCaptureAlternateShortcutKeys = _ns_module.AppCaptureAlternateShortcutKeys
+AppCaptureDurationGeneratedEventArgs = _ns_module.AppCaptureDurationGeneratedEventArgs
+AppCaptureFileGeneratedEventArgs = _ns_module.AppCaptureFileGeneratedEventArgs
+AppCaptureManager = _ns_module.AppCaptureManager
+AppCaptureMetadataWriter = _ns_module.AppCaptureMetadataWriter
+AppCaptureMicrophoneCaptureStateChangedEventArgs = _ns_module.AppCaptureMicrophoneCaptureStateChangedEventArgs
+AppCaptureRecordOperation = _ns_module.AppCaptureRecordOperation
+AppCaptureRecordingStateChangedEventArgs = _ns_module.AppCaptureRecordingStateChangedEventArgs
+AppCaptureServices = _ns_module.AppCaptureServices
+AppCaptureSettings = _ns_module.AppCaptureSettings
+AppCaptureState = _ns_module.AppCaptureState
 CameraCaptureUI = _ns_module.CameraCaptureUI
 CameraCaptureUIPhotoCaptureSettings = _ns_module.CameraCaptureUIPhotoCaptureSettings
 CameraCaptureUIVideoCaptureSettings = _ns_module.CameraCaptureUIVideoCaptureSettings
+CameraOptionsUI = _ns_module.CameraOptionsUI
 CapturedFrame = _ns_module.CapturedFrame
 CapturedFrameControlValues = _ns_module.CapturedFrameControlValues
 CapturedPhoto = _ns_module.CapturedPhoto
+GameBarServices = _ns_module.GameBarServices
+GameBarServicesCommandEventArgs = _ns_module.GameBarServicesCommandEventArgs
+GameBarServicesManager = _ns_module.GameBarServicesManager
+GameBarServicesManagerGameBarServicesCreatedEventArgs = _ns_module.GameBarServicesManagerGameBarServicesCreatedEventArgs
+GameBarServicesTargetInfo = _ns_module.GameBarServicesTargetInfo
 LowLagMediaRecording = _ns_module.LowLagMediaRecording
 LowLagPhotoCapture = _ns_module.LowLagPhotoCapture
 LowLagPhotoSequenceCapture = _ns_module.LowLagPhotoSequenceCapture
@@ -234,4 +474,6 @@ MediaCaptureVideoProfileMediaDescription = _ns_module.MediaCaptureVideoProfileMe
 OptionalReferencePhotoCapturedEventArgs = _ns_module.OptionalReferencePhotoCapturedEventArgs
 PhotoCapturedEventArgs = _ns_module.PhotoCapturedEventArgs
 PhotoConfirmationCapturedEventArgs = _ns_module.PhotoConfirmationCapturedEventArgs
+ScreenCapture = _ns_module.ScreenCapture
+SourceSuspensionChangedEventArgs = _ns_module.SourceSuspensionChangedEventArgs
 VideoStreamConfiguration = _ns_module.VideoStreamConfiguration

@@ -96,6 +96,12 @@ try:
 except ImportError:
     pass
 
+class AlarmAccessStatus(enum.IntEnum):
+    UNSPECIFIED = 0
+    ALLOWED_WITH_WAKEUP_CAPABILITY = 1
+    ALLOWED_WITHOUT_WAKEUP_CAPABILITY = 2
+    DENIED = 3
+
 class ApplicationTriggerResult(enum.IntEnum):
     ALLOWED = 0
     CURRENTLY_RUNNING = 1
@@ -188,6 +194,7 @@ class SystemTriggerType(enum.IntEnum):
     POWER_STATE_CHANGE = 14
     DEFAULT_SIGN_IN_ACCOUNT_CHANGE = 15
 
+_ns_module._register_AlarmAccessStatus(AlarmAccessStatus)
 _ns_module._register_ApplicationTriggerResult(ApplicationTriggerResult)
 _ns_module._register_BackgroundAccessRequestKind(BackgroundAccessRequestKind)
 _ns_module._register_BackgroundAccessStatus(BackgroundAccessStatus)
@@ -202,6 +209,9 @@ _ns_module._register_SystemConditionType(SystemConditionType)
 _ns_module._register_SystemTriggerType(SystemTriggerType)
 
 ActivitySensorTrigger = _ns_module.ActivitySensorTrigger
+AlarmApplicationManager = _ns_module.AlarmApplicationManager
+AppBroadcastTrigger = _ns_module.AppBroadcastTrigger
+AppBroadcastTriggerProviderInfo = _ns_module.AppBroadcastTriggerProviderInfo
 ApplicationTrigger = _ns_module.ApplicationTrigger
 ApplicationTriggerDetails = _ns_module.ApplicationTriggerDetails
 AppointmentStoreNotificationTrigger = _ns_module.AppointmentStoreNotificationTrigger

@@ -444,6 +444,12 @@ class ESimWatcher(_winrt.Object):
     def add_updated(self, handler: winsdk.windows.foundation.TypedEventHandler[ESimWatcher, ESimUpdatedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
     def remove_updated(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 
+class FdnAccessManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> FdnAccessManager: ...
+    @staticmethod
+    def request_unlock_async(contact_list_id: str) -> winsdk.windows.foundation.IAsyncOperation[_winrt.Boolean]: ...
+
 class HotspotAuthenticationContext(_winrt.Object):
     authentication_url: typing.Optional[winsdk.windows.foundation.Uri]
     network_adapter: typing.Optional[winsdk.windows.networking.connectivity.NetworkAdapter]
@@ -942,6 +948,17 @@ class NetworkOperatorDataUsageTriggerDetails(_winrt.Object):
     notification_kind: NetworkOperatorDataUsageNotificationKind
     @staticmethod
     def _from(obj: _winrt.Object) -> NetworkOperatorDataUsageTriggerDetails: ...
+
+class NetworkOperatorNotificationEventDetails(_winrt.Object):
+    encoding_type: _winrt.UInt8
+    message: str
+    network_account_id: str
+    notification_type: NetworkOperatorEventMessageType
+    rule_id: str
+    sms_message: typing.Optional[winsdk.windows.devices.sms.ISmsMessage]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> NetworkOperatorNotificationEventDetails: ...
+    def authorize_tethering(self, allow: _winrt.Boolean, entitlement_failure_reason: str) -> None: ...
 
 class NetworkOperatorTetheringAccessPointConfiguration(_winrt.Object):
     ssid: str

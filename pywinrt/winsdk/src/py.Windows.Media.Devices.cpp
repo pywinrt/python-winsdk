@@ -29,6 +29,7 @@ namespace py::cpp::Windows::Media::Devices
         PyObject* type_OpticalImageStabilizationMode;
         PyObject* type_RegionOfInterestType;
         PyObject* type_SendCommandStatus;
+        PyObject* type_TelephonyKey;
         PyObject* type_VideoDeviceControllerGetDevicePropertyStatus;
         PyObject* type_VideoDeviceControllerSetDevicePropertyStatus;
         PyObject* type_VideoTemporalDenoisingMode;
@@ -39,11 +40,13 @@ namespace py::cpp::Windows::Media::Devices
         PyTypeObject* type_AudioDeviceModule;
         PyTypeObject* type_AudioDeviceModuleNotificationEventArgs;
         PyTypeObject* type_AudioDeviceModulesManager;
+        PyTypeObject* type_CallControl;
         PyTypeObject* type_CameraOcclusionInfo;
         PyTypeObject* type_CameraOcclusionState;
         PyTypeObject* type_CameraOcclusionStateChangedEventArgs;
         PyTypeObject* type_DefaultAudioCaptureDeviceChangedEventArgs;
         PyTypeObject* type_DefaultAudioRenderDeviceChangedEventArgs;
+        PyTypeObject* type_DialRequestedEventArgs;
         PyTypeObject* type_DigitalWindowBounds;
         PyTypeObject* type_DigitalWindowCapability;
         PyTypeObject* type_DigitalWindowControl;
@@ -56,6 +59,7 @@ namespace py::cpp::Windows::Media::Devices
         PyTypeObject* type_HdrVideoControl;
         PyTypeObject* type_InfraredTorchControl;
         PyTypeObject* type_IsoSpeedControl;
+        PyTypeObject* type_KeypadPressedEventArgs;
         PyTypeObject* type_LowLagPhotoControl;
         PyTypeObject* type_LowLagPhotoSequenceControl;
         PyTypeObject* type_MediaDevice;
@@ -65,6 +69,7 @@ namespace py::cpp::Windows::Media::Devices
         PyTypeObject* type_OpticalImageStabilizationControl;
         PyTypeObject* type_PanelBasedOptimizationControl;
         PyTypeObject* type_PhotoConfirmationControl;
+        PyTypeObject* type_RedialRequestedEventArgs;
         PyTypeObject* type_RegionOfInterest;
         PyTypeObject* type_RegionsOfInterestControl;
         PyTypeObject* type_SceneModeControl;
@@ -578,6 +583,30 @@ namespace py::cpp::Windows::Media::Devices
 
         state->type_SendCommandStatus = type;
         Py_INCREF(state->type_SendCommandStatus);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_TelephonyKey(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_TelephonyKey)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_TelephonyKey = type;
+        Py_INCREF(state->type_TelephonyKey);
 
 
         Py_RETURN_NONE;
@@ -1538,6 +1567,431 @@ namespace py::cpp::Windows::Media::Devices
         _type_slots_AudioDeviceModulesManager
     };
 
+    // ----- CallControl class --------------------
+    constexpr const char* const type_name_CallControl = "CallControl";
+
+    static PyObject* _new_CallControl(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_CallControl);
+        return nullptr;
+    }
+
+    static void _dealloc_CallControl(py::wrapper::Windows::Media::Devices::CallControl* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* CallControl_EndCall(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<uint64_t>(args, 0);
+
+                self->obj.EndCall(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_FromId(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Media::Devices::CallControl::FromId(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_GetDefault(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Media::Devices::CallControl::GetDefault());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_IndicateActiveCall(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<uint64_t>(args, 0);
+
+                self->obj.IndicateActiveCall(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_IndicateNewIncomingCall(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<bool>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(self->obj.IndicateNewIncomingCall(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_IndicateNewOutgoingCall(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.IndicateNewOutgoingCall());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_get_HasRinger(py::wrapper::Windows::Media::Devices::CallControl* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.HasRinger());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_add_AnswerRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Media::Devices::CallControlEventHandler>(arg);
+
+            return py::convert(self->obj.AnswerRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_remove_AnswerRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.AnswerRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_add_AudioTransferRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Media::Devices::CallControlEventHandler>(arg);
+
+            return py::convert(self->obj.AudioTransferRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_remove_AudioTransferRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.AudioTransferRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_add_DialRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Media::Devices::DialRequestedEventHandler>(arg);
+
+            return py::convert(self->obj.DialRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_remove_DialRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.DialRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_add_HangUpRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Media::Devices::CallControlEventHandler>(arg);
+
+            return py::convert(self->obj.HangUpRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_remove_HangUpRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.HangUpRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_add_KeypadPressed(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Media::Devices::KeypadPressedEventHandler>(arg);
+
+            return py::convert(self->obj.KeypadPressed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_remove_KeypadPressed(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.KeypadPressed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_add_RedialRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Media::Devices::RedialRequestedEventHandler>(arg);
+
+            return py::convert(self->obj.RedialRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CallControl_remove_RedialRequested(py::wrapper::Windows::Media::Devices::CallControl* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.RedialRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_CallControl(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Media::Devices::CallControl>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CallControl[] = {
+        { "end_call", reinterpret_cast<PyCFunction>(CallControl_EndCall), METH_VARARGS, nullptr },
+        { "from_id", reinterpret_cast<PyCFunction>(CallControl_FromId), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_default", reinterpret_cast<PyCFunction>(CallControl_GetDefault), METH_VARARGS | METH_STATIC, nullptr },
+        { "indicate_active_call", reinterpret_cast<PyCFunction>(CallControl_IndicateActiveCall), METH_VARARGS, nullptr },
+        { "indicate_new_incoming_call", reinterpret_cast<PyCFunction>(CallControl_IndicateNewIncomingCall), METH_VARARGS, nullptr },
+        { "indicate_new_outgoing_call", reinterpret_cast<PyCFunction>(CallControl_IndicateNewOutgoingCall), METH_VARARGS, nullptr },
+        { "add_answer_requested", reinterpret_cast<PyCFunction>(CallControl_add_AnswerRequested), METH_O, nullptr },
+        { "remove_answer_requested", reinterpret_cast<PyCFunction>(CallControl_remove_AnswerRequested), METH_O, nullptr },
+        { "add_audio_transfer_requested", reinterpret_cast<PyCFunction>(CallControl_add_AudioTransferRequested), METH_O, nullptr },
+        { "remove_audio_transfer_requested", reinterpret_cast<PyCFunction>(CallControl_remove_AudioTransferRequested), METH_O, nullptr },
+        { "add_dial_requested", reinterpret_cast<PyCFunction>(CallControl_add_DialRequested), METH_O, nullptr },
+        { "remove_dial_requested", reinterpret_cast<PyCFunction>(CallControl_remove_DialRequested), METH_O, nullptr },
+        { "add_hang_up_requested", reinterpret_cast<PyCFunction>(CallControl_add_HangUpRequested), METH_O, nullptr },
+        { "remove_hang_up_requested", reinterpret_cast<PyCFunction>(CallControl_remove_HangUpRequested), METH_O, nullptr },
+        { "add_keypad_pressed", reinterpret_cast<PyCFunction>(CallControl_add_KeypadPressed), METH_O, nullptr },
+        { "remove_keypad_pressed", reinterpret_cast<PyCFunction>(CallControl_remove_KeypadPressed), METH_O, nullptr },
+        { "add_redial_requested", reinterpret_cast<PyCFunction>(CallControl_add_RedialRequested), METH_O, nullptr },
+        { "remove_redial_requested", reinterpret_cast<PyCFunction>(CallControl_remove_RedialRequested), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_CallControl), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CallControl[] = {
+        { "has_ringer", reinterpret_cast<getter>(CallControl_get_HasRinger), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_CallControl[] = 
+    {
+        { Py_tp_new, _new_CallControl },
+        { Py_tp_dealloc, _dealloc_CallControl },
+        { Py_tp_methods, _methods_CallControl },
+        { Py_tp_getset, _getset_CallControl },
+        { },
+    };
+
+    static PyType_Spec type_spec_CallControl =
+    {
+        "_winsdk_Windows_Media_Devices.CallControl",
+        sizeof(py::wrapper::Windows::Media::Devices::CallControl),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CallControl
+    };
+
     // ----- CameraOcclusionInfo class --------------------
     constexpr const char* const type_name_CameraOcclusionInfo = "CameraOcclusionInfo";
 
@@ -2019,6 +2473,103 @@ namespace py::cpp::Windows::Media::Devices
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_DefaultAudioRenderDeviceChangedEventArgs
+    };
+
+    // ----- DialRequestedEventArgs class --------------------
+    constexpr const char* const type_name_DialRequestedEventArgs = "DialRequestedEventArgs";
+
+    static PyObject* _new_DialRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_DialRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_DialRequestedEventArgs(py::wrapper::Windows::Media::Devices::DialRequestedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* DialRequestedEventArgs_Handled(py::wrapper::Windows::Media::Devices::DialRequestedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Handled();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* DialRequestedEventArgs_get_Contact(py::wrapper::Windows::Media::Devices::DialRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Contact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_DialRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Media::Devices::DialRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_DialRequestedEventArgs[] = {
+        { "handled", reinterpret_cast<PyCFunction>(DialRequestedEventArgs_Handled), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_DialRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_DialRequestedEventArgs[] = {
+        { "contact", reinterpret_cast<getter>(DialRequestedEventArgs_get_Contact), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_DialRequestedEventArgs[] = 
+    {
+        { Py_tp_new, _new_DialRequestedEventArgs },
+        { Py_tp_dealloc, _dealloc_DialRequestedEventArgs },
+        { Py_tp_methods, _methods_DialRequestedEventArgs },
+        { Py_tp_getset, _getset_DialRequestedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_DialRequestedEventArgs =
+    {
+        "_winsdk_Windows_Media_Devices.DialRequestedEventArgs",
+        sizeof(py::wrapper::Windows::Media::Devices::DialRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_DialRequestedEventArgs
     };
 
     // ----- DigitalWindowBounds class --------------------
@@ -4595,6 +5146,78 @@ namespace py::cpp::Windows::Media::Devices
         _type_slots_IsoSpeedControl
     };
 
+    // ----- KeypadPressedEventArgs class --------------------
+    constexpr const char* const type_name_KeypadPressedEventArgs = "KeypadPressedEventArgs";
+
+    static PyObject* _new_KeypadPressedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_KeypadPressedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_KeypadPressedEventArgs(py::wrapper::Windows::Media::Devices::KeypadPressedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* KeypadPressedEventArgs_get_TelephonyKey(py::wrapper::Windows::Media::Devices::KeypadPressedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.TelephonyKey());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_KeypadPressedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Media::Devices::KeypadPressedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_KeypadPressedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_KeypadPressedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_KeypadPressedEventArgs[] = {
+        { "telephony_key", reinterpret_cast<getter>(KeypadPressedEventArgs_get_TelephonyKey), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_KeypadPressedEventArgs[] = 
+    {
+        { Py_tp_new, _new_KeypadPressedEventArgs },
+        { Py_tp_dealloc, _dealloc_KeypadPressedEventArgs },
+        { Py_tp_methods, _methods_KeypadPressedEventArgs },
+        { Py_tp_getset, _getset_KeypadPressedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_KeypadPressedEventArgs =
+    {
+        "_winsdk_Windows_Media_Devices.KeypadPressedEventArgs",
+        sizeof(py::wrapper::Windows::Media::Devices::KeypadPressedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_KeypadPressedEventArgs
+    };
+
     // ----- LowLagPhotoControl class --------------------
     constexpr const char* const type_name_LowLagPhotoControl = "LowLagPhotoControl";
 
@@ -6193,6 +6816,89 @@ namespace py::cpp::Windows::Media::Devices
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_PhotoConfirmationControl
+    };
+
+    // ----- RedialRequestedEventArgs class --------------------
+    constexpr const char* const type_name_RedialRequestedEventArgs = "RedialRequestedEventArgs";
+
+    static PyObject* _new_RedialRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_RedialRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_RedialRequestedEventArgs(py::wrapper::Windows::Media::Devices::RedialRequestedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* RedialRequestedEventArgs_Handled(py::wrapper::Windows::Media::Devices::RedialRequestedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Handled();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_RedialRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Media::Devices::RedialRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_RedialRequestedEventArgs[] = {
+        { "handled", reinterpret_cast<PyCFunction>(RedialRequestedEventArgs_Handled), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_RedialRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_RedialRequestedEventArgs[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_RedialRequestedEventArgs[] = 
+    {
+        { Py_tp_new, _new_RedialRequestedEventArgs },
+        { Py_tp_dealloc, _dealloc_RedialRequestedEventArgs },
+        { Py_tp_methods, _methods_RedialRequestedEventArgs },
+        { Py_tp_getset, _getset_RedialRequestedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_RedialRequestedEventArgs =
+    {
+        "_winsdk_Windows_Media_Devices.RedialRequestedEventArgs",
+        sizeof(py::wrapper::Windows::Media::Devices::RedialRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_RedialRequestedEventArgs
     };
 
     // ----- RegionOfInterest class --------------------
@@ -8910,6 +9616,7 @@ namespace py::cpp::Windows::Media::Devices
         {"_register_OpticalImageStabilizationMode", register_OpticalImageStabilizationMode, METH_O, "registers type"},
         {"_register_RegionOfInterestType", register_RegionOfInterestType, METH_O, "registers type"},
         {"_register_SendCommandStatus", register_SendCommandStatus, METH_O, "registers type"},
+        {"_register_TelephonyKey", register_TelephonyKey, METH_O, "registers type"},
         {"_register_VideoDeviceControllerGetDevicePropertyStatus", register_VideoDeviceControllerGetDevicePropertyStatus, METH_O, "registers type"},
         {"_register_VideoDeviceControllerSetDevicePropertyStatus", register_VideoDeviceControllerSetDevicePropertyStatus, METH_O, "registers type"},
         {"_register_VideoTemporalDenoisingMode", register_VideoTemporalDenoisingMode, METH_O, "registers type"},
@@ -8947,6 +9654,7 @@ namespace py::cpp::Windows::Media::Devices
         Py_VISIT(state->type_OpticalImageStabilizationMode);
         Py_VISIT(state->type_RegionOfInterestType);
         Py_VISIT(state->type_SendCommandStatus);
+        Py_VISIT(state->type_TelephonyKey);
         Py_VISIT(state->type_VideoDeviceControllerGetDevicePropertyStatus);
         Py_VISIT(state->type_VideoDeviceControllerSetDevicePropertyStatus);
         Py_VISIT(state->type_VideoTemporalDenoisingMode);
@@ -8957,11 +9665,13 @@ namespace py::cpp::Windows::Media::Devices
         Py_VISIT(state->type_AudioDeviceModule);
         Py_VISIT(state->type_AudioDeviceModuleNotificationEventArgs);
         Py_VISIT(state->type_AudioDeviceModulesManager);
+        Py_VISIT(state->type_CallControl);
         Py_VISIT(state->type_CameraOcclusionInfo);
         Py_VISIT(state->type_CameraOcclusionState);
         Py_VISIT(state->type_CameraOcclusionStateChangedEventArgs);
         Py_VISIT(state->type_DefaultAudioCaptureDeviceChangedEventArgs);
         Py_VISIT(state->type_DefaultAudioRenderDeviceChangedEventArgs);
+        Py_VISIT(state->type_DialRequestedEventArgs);
         Py_VISIT(state->type_DigitalWindowBounds);
         Py_VISIT(state->type_DigitalWindowCapability);
         Py_VISIT(state->type_DigitalWindowControl);
@@ -8974,6 +9684,7 @@ namespace py::cpp::Windows::Media::Devices
         Py_VISIT(state->type_HdrVideoControl);
         Py_VISIT(state->type_InfraredTorchControl);
         Py_VISIT(state->type_IsoSpeedControl);
+        Py_VISIT(state->type_KeypadPressedEventArgs);
         Py_VISIT(state->type_LowLagPhotoControl);
         Py_VISIT(state->type_LowLagPhotoSequenceControl);
         Py_VISIT(state->type_MediaDevice);
@@ -8983,6 +9694,7 @@ namespace py::cpp::Windows::Media::Devices
         Py_VISIT(state->type_OpticalImageStabilizationControl);
         Py_VISIT(state->type_PanelBasedOptimizationControl);
         Py_VISIT(state->type_PhotoConfirmationControl);
+        Py_VISIT(state->type_RedialRequestedEventArgs);
         Py_VISIT(state->type_RegionOfInterest);
         Py_VISIT(state->type_RegionsOfInterestControl);
         Py_VISIT(state->type_SceneModeControl);
@@ -9029,6 +9741,7 @@ namespace py::cpp::Windows::Media::Devices
         Py_CLEAR(state->type_OpticalImageStabilizationMode);
         Py_CLEAR(state->type_RegionOfInterestType);
         Py_CLEAR(state->type_SendCommandStatus);
+        Py_CLEAR(state->type_TelephonyKey);
         Py_CLEAR(state->type_VideoDeviceControllerGetDevicePropertyStatus);
         Py_CLEAR(state->type_VideoDeviceControllerSetDevicePropertyStatus);
         Py_CLEAR(state->type_VideoTemporalDenoisingMode);
@@ -9039,11 +9752,13 @@ namespace py::cpp::Windows::Media::Devices
         Py_CLEAR(state->type_AudioDeviceModule);
         Py_CLEAR(state->type_AudioDeviceModuleNotificationEventArgs);
         Py_CLEAR(state->type_AudioDeviceModulesManager);
+        Py_CLEAR(state->type_CallControl);
         Py_CLEAR(state->type_CameraOcclusionInfo);
         Py_CLEAR(state->type_CameraOcclusionState);
         Py_CLEAR(state->type_CameraOcclusionStateChangedEventArgs);
         Py_CLEAR(state->type_DefaultAudioCaptureDeviceChangedEventArgs);
         Py_CLEAR(state->type_DefaultAudioRenderDeviceChangedEventArgs);
+        Py_CLEAR(state->type_DialRequestedEventArgs);
         Py_CLEAR(state->type_DigitalWindowBounds);
         Py_CLEAR(state->type_DigitalWindowCapability);
         Py_CLEAR(state->type_DigitalWindowControl);
@@ -9056,6 +9771,7 @@ namespace py::cpp::Windows::Media::Devices
         Py_CLEAR(state->type_HdrVideoControl);
         Py_CLEAR(state->type_InfraredTorchControl);
         Py_CLEAR(state->type_IsoSpeedControl);
+        Py_CLEAR(state->type_KeypadPressedEventArgs);
         Py_CLEAR(state->type_LowLagPhotoControl);
         Py_CLEAR(state->type_LowLagPhotoSequenceControl);
         Py_CLEAR(state->type_MediaDevice);
@@ -9065,6 +9781,7 @@ namespace py::cpp::Windows::Media::Devices
         Py_CLEAR(state->type_OpticalImageStabilizationControl);
         Py_CLEAR(state->type_PanelBasedOptimizationControl);
         Py_CLEAR(state->type_PhotoConfirmationControl);
+        Py_CLEAR(state->type_RedialRequestedEventArgs);
         Py_CLEAR(state->type_RegionOfInterest);
         Py_CLEAR(state->type_RegionsOfInterestControl);
         Py_CLEAR(state->type_SceneModeControl);
@@ -9233,6 +9950,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media_Devices(void) noexcept
 
     Py_INCREF(state->type_AudioDeviceModulesManager);
 
+    state->type_CallControl = py::register_python_type(module.get(), type_name_CallControl, &type_spec_CallControl, bases.get());
+    if (!state->type_CallControl)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CallControl);
+
     state->type_CameraOcclusionInfo = py::register_python_type(module.get(), type_name_CameraOcclusionInfo, &type_spec_CameraOcclusionInfo, bases.get());
     if (!state->type_CameraOcclusionInfo)
     {
@@ -9272,6 +9997,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media_Devices(void) noexcept
     }
 
     Py_INCREF(state->type_DefaultAudioRenderDeviceChangedEventArgs);
+
+    state->type_DialRequestedEventArgs = py::register_python_type(module.get(), type_name_DialRequestedEventArgs, &type_spec_DialRequestedEventArgs, bases.get());
+    if (!state->type_DialRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_DialRequestedEventArgs);
 
     state->type_DigitalWindowBounds = py::register_python_type(module.get(), type_name_DigitalWindowBounds, &type_spec_DigitalWindowBounds, bases.get());
     if (!state->type_DigitalWindowBounds)
@@ -9369,6 +10102,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media_Devices(void) noexcept
 
     Py_INCREF(state->type_IsoSpeedControl);
 
+    state->type_KeypadPressedEventArgs = py::register_python_type(module.get(), type_name_KeypadPressedEventArgs, &type_spec_KeypadPressedEventArgs, bases.get());
+    if (!state->type_KeypadPressedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_KeypadPressedEventArgs);
+
     state->type_LowLagPhotoControl = py::register_python_type(module.get(), type_name_LowLagPhotoControl, &type_spec_LowLagPhotoControl, bases.get());
     if (!state->type_LowLagPhotoControl)
     {
@@ -9440,6 +10181,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media_Devices(void) noexcept
     }
 
     Py_INCREF(state->type_PhotoConfirmationControl);
+
+    state->type_RedialRequestedEventArgs = py::register_python_type(module.get(), type_name_RedialRequestedEventArgs, &type_spec_RedialRequestedEventArgs, bases.get());
+    if (!state->type_RedialRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_RedialRequestedEventArgs);
 
     state->type_RegionOfInterest = py::register_python_type(module.get(), type_name_RegionOfInterest, &type_spec_RegionOfInterest, bases.get());
     if (!state->type_RegionOfInterest)
@@ -10024,6 +10773,29 @@ PyObject* py::py_type<winrt::Windows::Media::Devices::SendCommandStatus>::get_py
     return python_type;
 }
 
+PyObject* py::py_type<winrt::Windows::Media::Devices::TelephonyKey>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Devices;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Devices");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_TelephonyKey;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Devices::TelephonyKey is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::Media::Devices::VideoDeviceControllerGetDevicePropertyStatus>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Media::Devices;
 
@@ -10254,6 +11026,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::AudioDeviceModulesM
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::CallControl>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Devices;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Devices");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CallControl;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Devices::CallControl is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::CameraOcclusionInfo>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Media::Devices;
 
@@ -10363,6 +11158,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::DefaultAudioRenderD
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Devices::DefaultAudioRenderDeviceChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::DialRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Devices;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Devices");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DialRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Devices::DialRequestedEventArgs is not registered");
         return nullptr;
     }
 
@@ -10645,6 +11463,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::IsoSpeedControl>::g
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::KeypadPressedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Devices;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Devices");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_KeypadPressedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Devices::KeypadPressedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::LowLagPhotoControl>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Media::Devices;
 
@@ -10846,6 +11687,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::PhotoConfirmationCo
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Devices::PhotoConfirmationControl is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Media::Devices::RedialRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Devices;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Devices");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_RedialRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Devices::RedialRequestedEventArgs is not registered");
         return nullptr;
     }
 

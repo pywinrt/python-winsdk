@@ -19,6 +19,7 @@ namespace py::cpp::Windows::Media::Effects
         PyTypeObject* type_CompositeVideoFrameContext;
         PyTypeObject* type_ProcessAudioFrameContext;
         PyTypeObject* type_ProcessVideoFrameContext;
+        PyTypeObject* type_SlowMotionEffectDefinition;
         PyTypeObject* type_VideoCompositorDefinition;
         PyTypeObject* type_VideoEffectDefinition;
         PyTypeObject* type_VideoTransformEffectDefinition;
@@ -1001,6 +1002,151 @@ namespace py::cpp::Windows::Media::Effects
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ProcessVideoFrameContext
+    };
+
+    // ----- SlowMotionEffectDefinition class --------------------
+    constexpr const char* const type_name_SlowMotionEffectDefinition = "SlowMotionEffectDefinition";
+
+    static PyObject* _new_SlowMotionEffectDefinition(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Media::Effects::SlowMotionEffectDefinition instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_SlowMotionEffectDefinition(py::wrapper::Windows::Media::Effects::SlowMotionEffectDefinition* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SlowMotionEffectDefinition_get_TimeStretchRate(py::wrapper::Windows::Media::Effects::SlowMotionEffectDefinition* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.TimeStretchRate());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SlowMotionEffectDefinition_put_TimeStretchRate(py::wrapper::Windows::Media::Effects::SlowMotionEffectDefinition* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<double>(arg);
+
+            self->obj.TimeStretchRate(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SlowMotionEffectDefinition_get_ActivatableClassId(py::wrapper::Windows::Media::Effects::SlowMotionEffectDefinition* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActivatableClassId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SlowMotionEffectDefinition_get_Properties(py::wrapper::Windows::Media::Effects::SlowMotionEffectDefinition* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Properties());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SlowMotionEffectDefinition(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Media::Effects::SlowMotionEffectDefinition>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SlowMotionEffectDefinition[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SlowMotionEffectDefinition), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SlowMotionEffectDefinition[] = {
+        { "time_stretch_rate", reinterpret_cast<getter>(SlowMotionEffectDefinition_get_TimeStretchRate), reinterpret_cast<setter>(SlowMotionEffectDefinition_put_TimeStretchRate), nullptr, nullptr },
+        { "activatable_class_id", reinterpret_cast<getter>(SlowMotionEffectDefinition_get_ActivatableClassId), nullptr, nullptr, nullptr },
+        { "properties", reinterpret_cast<getter>(SlowMotionEffectDefinition_get_Properties), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SlowMotionEffectDefinition[] = 
+    {
+        { Py_tp_new, _new_SlowMotionEffectDefinition },
+        { Py_tp_dealloc, _dealloc_SlowMotionEffectDefinition },
+        { Py_tp_methods, _methods_SlowMotionEffectDefinition },
+        { Py_tp_getset, _getset_SlowMotionEffectDefinition },
+        { },
+    };
+
+    static PyType_Spec type_spec_SlowMotionEffectDefinition =
+    {
+        "_winsdk_Windows_Media_Effects.SlowMotionEffectDefinition",
+        sizeof(py::wrapper::Windows::Media::Effects::SlowMotionEffectDefinition),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SlowMotionEffectDefinition
     };
 
     // ----- VideoCompositorDefinition class --------------------
@@ -2795,6 +2941,7 @@ namespace py::cpp::Windows::Media::Effects
         Py_VISIT(state->type_CompositeVideoFrameContext);
         Py_VISIT(state->type_ProcessAudioFrameContext);
         Py_VISIT(state->type_ProcessVideoFrameContext);
+        Py_VISIT(state->type_SlowMotionEffectDefinition);
         Py_VISIT(state->type_VideoCompositorDefinition);
         Py_VISIT(state->type_VideoEffectDefinition);
         Py_VISIT(state->type_VideoTransformEffectDefinition);
@@ -2829,6 +2976,7 @@ namespace py::cpp::Windows::Media::Effects
         Py_CLEAR(state->type_CompositeVideoFrameContext);
         Py_CLEAR(state->type_ProcessAudioFrameContext);
         Py_CLEAR(state->type_ProcessVideoFrameContext);
+        Py_CLEAR(state->type_SlowMotionEffectDefinition);
         Py_CLEAR(state->type_VideoCompositorDefinition);
         Py_CLEAR(state->type_VideoEffectDefinition);
         Py_CLEAR(state->type_VideoTransformEffectDefinition);
@@ -3010,6 +3158,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media_Effects(void) noexcept
     }
 
     Py_INCREF(state->type_ProcessVideoFrameContext);
+
+    state->type_SlowMotionEffectDefinition = py::register_python_type(module.get(), type_name_SlowMotionEffectDefinition, &type_spec_SlowMotionEffectDefinition, bases.get());
+    if (!state->type_SlowMotionEffectDefinition)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SlowMotionEffectDefinition);
 
     state->type_VideoCompositorDefinition = py::register_python_type(module.get(), type_name_VideoCompositorDefinition, &type_spec_VideoCompositorDefinition, bases.get());
     if (!state->type_VideoCompositorDefinition)
@@ -3342,6 +3498,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::Effects::ProcessVideoFrameCo
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Effects::ProcessVideoFrameContext is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Media::Effects::SlowMotionEffectDefinition>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Effects;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Effects");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SlowMotionEffectDefinition;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Effects::SlowMotionEffectDefinition is not registered");
         return nullptr;
     }
 

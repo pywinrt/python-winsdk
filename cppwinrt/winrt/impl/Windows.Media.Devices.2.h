@@ -7,6 +7,50 @@
 #include "winrt/impl/Windows.Media.Devices.1.h"
 WINRT_EXPORT namespace winrt::Windows::Media::Devices
 {
+    struct CallControlEventHandler : winrt::Windows::Foundation::IUnknown
+    {
+        CallControlEventHandler(std::nullptr_t = nullptr) noexcept {}
+        CallControlEventHandler(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IUnknown(ptr, take_ownership_from_abi) {}
+        template <typename L> CallControlEventHandler(L lambda);
+        template <typename F> CallControlEventHandler(F* function);
+        template <typename O, typename M> CallControlEventHandler(O* object, M method);
+        template <typename O, typename M> CallControlEventHandler(com_ptr<O>&& object, M method);
+        template <typename O, typename M> CallControlEventHandler(weak_ref<O>&& object, M method);
+        auto operator()(winrt::Windows::Media::Devices::CallControl const& sender) const;
+    };
+    struct DialRequestedEventHandler : winrt::Windows::Foundation::IUnknown
+    {
+        DialRequestedEventHandler(std::nullptr_t = nullptr) noexcept {}
+        DialRequestedEventHandler(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IUnknown(ptr, take_ownership_from_abi) {}
+        template <typename L> DialRequestedEventHandler(L lambda);
+        template <typename F> DialRequestedEventHandler(F* function);
+        template <typename O, typename M> DialRequestedEventHandler(O* object, M method);
+        template <typename O, typename M> DialRequestedEventHandler(com_ptr<O>&& object, M method);
+        template <typename O, typename M> DialRequestedEventHandler(weak_ref<O>&& object, M method);
+        auto operator()(winrt::Windows::Media::Devices::CallControl const& sender, winrt::Windows::Media::Devices::DialRequestedEventArgs const& e) const;
+    };
+    struct KeypadPressedEventHandler : winrt::Windows::Foundation::IUnknown
+    {
+        KeypadPressedEventHandler(std::nullptr_t = nullptr) noexcept {}
+        KeypadPressedEventHandler(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IUnknown(ptr, take_ownership_from_abi) {}
+        template <typename L> KeypadPressedEventHandler(L lambda);
+        template <typename F> KeypadPressedEventHandler(F* function);
+        template <typename O, typename M> KeypadPressedEventHandler(O* object, M method);
+        template <typename O, typename M> KeypadPressedEventHandler(com_ptr<O>&& object, M method);
+        template <typename O, typename M> KeypadPressedEventHandler(weak_ref<O>&& object, M method);
+        auto operator()(winrt::Windows::Media::Devices::CallControl const& sender, winrt::Windows::Media::Devices::KeypadPressedEventArgs const& e) const;
+    };
+    struct RedialRequestedEventHandler : winrt::Windows::Foundation::IUnknown
+    {
+        RedialRequestedEventHandler(std::nullptr_t = nullptr) noexcept {}
+        RedialRequestedEventHandler(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IUnknown(ptr, take_ownership_from_abi) {}
+        template <typename L> RedialRequestedEventHandler(L lambda);
+        template <typename F> RedialRequestedEventHandler(F* function);
+        template <typename O, typename M> RedialRequestedEventHandler(O* object, M method);
+        template <typename O, typename M> RedialRequestedEventHandler(com_ptr<O>&& object, M method);
+        template <typename O, typename M> RedialRequestedEventHandler(weak_ref<O>&& object, M method);
+        auto operator()(winrt::Windows::Media::Devices::CallControl const& sender, winrt::Windows::Media::Devices::RedialRequestedEventArgs const& e) const;
+    };
     struct __declspec(empty_bases) AdvancedPhotoCaptureSettings : winrt::Windows::Media::Devices::IAdvancedPhotoCaptureSettings
     {
         AdvancedPhotoCaptureSettings(std::nullptr_t) noexcept {}
@@ -39,6 +83,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         AudioDeviceModulesManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IAudioDeviceModulesManager(ptr, take_ownership_from_abi) {}
         explicit AudioDeviceModulesManager(param::hstring const& deviceId);
     };
+    struct __declspec(empty_bases) CallControl : winrt::Windows::Media::Devices::ICallControl
+    {
+        CallControl(std::nullptr_t) noexcept {}
+        CallControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::ICallControl(ptr, take_ownership_from_abi) {}
+        static auto GetDefault();
+        static auto FromId(param::hstring const& deviceId);
+    };
     struct __declspec(empty_bases) CameraOcclusionInfo : winrt::Windows::Media::Devices::ICameraOcclusionInfo
     {
         CameraOcclusionInfo(std::nullptr_t) noexcept {}
@@ -63,6 +114,11 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     {
         DefaultAudioRenderDeviceChangedEventArgs(std::nullptr_t) noexcept {}
         DefaultAudioRenderDeviceChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IDefaultAudioDeviceChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) DialRequestedEventArgs : winrt::Windows::Media::Devices::IDialRequestedEventArgs
+    {
+        DialRequestedEventArgs(std::nullptr_t) noexcept {}
+        DialRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IDialRequestedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) DigitalWindowBounds : winrt::Windows::Media::Devices::IDigitalWindowBounds
     {
@@ -129,6 +185,11 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         IsoSpeedControl(std::nullptr_t) noexcept {}
         IsoSpeedControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IIsoSpeedControl(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) KeypadPressedEventArgs : winrt::Windows::Media::Devices::IKeypadPressedEventArgs
+    {
+        KeypadPressedEventArgs(std::nullptr_t) noexcept {}
+        KeypadPressedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IKeypadPressedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) LowLagPhotoControl : winrt::Windows::Media::Devices::ILowLagPhotoControl
     {
         LowLagPhotoControl(std::nullptr_t) noexcept {}
@@ -185,6 +246,11 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     {
         PhotoConfirmationControl(std::nullptr_t) noexcept {}
         PhotoConfirmationControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IPhotoConfirmationControl(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) RedialRequestedEventArgs : winrt::Windows::Media::Devices::IRedialRequestedEventArgs
+    {
+        RedialRequestedEventArgs(std::nullptr_t) noexcept {}
+        RedialRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IRedialRequestedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) RegionOfInterest : winrt::Windows::Media::Devices::IRegionOfInterest,
         impl::require<RegionOfInterest, winrt::Windows::Media::Devices::IRegionOfInterest2>

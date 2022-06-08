@@ -10,6 +10,7 @@ WINRT_EXPORT namespace winrt::Windows::Data::Xml::Dom
 WINRT_EXPORT namespace winrt::Windows::Devices::Sms
 {
     enum class CellularClass : int32_t;
+    struct ISmsMessage;
 }
 WINRT_EXPORT namespace winrt::Windows::Foundation
 {
@@ -361,6 +362,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     struct IESimServiceInfo;
     struct IESimUpdatedEventArgs;
     struct IESimWatcher;
+    struct IFdnAccessManagerStatics;
     struct IHotspotAuthenticationContext;
     struct IHotspotAuthenticationContext2;
     struct IHotspotAuthenticationContextStatics;
@@ -432,10 +434,12 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     struct IMobileBroadbandUiccAppRecordDetailsResult;
     struct IMobileBroadbandUiccAppsResult;
     struct INetworkOperatorDataUsageTriggerDetails;
+    struct INetworkOperatorNotificationEventDetails;
     struct INetworkOperatorTetheringAccessPointConfiguration;
     struct INetworkOperatorTetheringAccessPointConfiguration2;
     struct INetworkOperatorTetheringClient;
     struct INetworkOperatorTetheringClientManager;
+    struct INetworkOperatorTetheringEntitlementCheck;
     struct INetworkOperatorTetheringManager;
     struct INetworkOperatorTetheringManagerStatics;
     struct INetworkOperatorTetheringManagerStatics2;
@@ -467,6 +471,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     struct ESimServiceInfo;
     struct ESimUpdatedEventArgs;
     struct ESimWatcher;
+    struct FdnAccessManager;
     struct HotspotAuthenticationContext;
     struct HotspotAuthenticationEventDetails;
     struct HotspotCredentialsAuthenticationResult;
@@ -521,6 +526,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     struct MobileBroadbandUiccAppRecordDetailsResult;
     struct MobileBroadbandUiccAppsResult;
     struct NetworkOperatorDataUsageTriggerDetails;
+    struct NetworkOperatorNotificationEventDetails;
     struct NetworkOperatorTetheringAccessPointConfiguration;
     struct NetworkOperatorTetheringClient;
     struct NetworkOperatorTetheringManager;
@@ -553,6 +559,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IESimServiceInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IESimUpdatedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IESimWatcher>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContextStatics>{ using type = interface_category; };
@@ -624,10 +631,12 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppRecordDetailsResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppsResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClientManager>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManager>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics2>{ using type = interface_category; };
@@ -659,6 +668,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Networking::NetworkOperators::ESimServiceInfo>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::ESimUpdatedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::ESimWatcher>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Networking::NetworkOperators::FdnAccessManager>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationContext>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationEventDetails>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::HotspotCredentialsAuthenticationResult>{ using type = class_category; };
@@ -713,6 +723,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppRecordDetailsResult>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppsResult>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::NetworkOperatorDataUsageTriggerDetails>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringAccessPointConfiguration>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringClient>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringManager>{ using type = class_category; };
@@ -773,6 +784,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::ESimServiceInfo> = L"Windows.Networking.NetworkOperators.ESimServiceInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::ESimUpdatedEventArgs> = L"Windows.Networking.NetworkOperators.ESimUpdatedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::ESimWatcher> = L"Windows.Networking.NetworkOperators.ESimWatcher";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::FdnAccessManager> = L"Windows.Networking.NetworkOperators.FdnAccessManager";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationContext> = L"Windows.Networking.NetworkOperators.HotspotAuthenticationContext";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationEventDetails> = L"Windows.Networking.NetworkOperators.HotspotAuthenticationEventDetails";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::HotspotCredentialsAuthenticationResult> = L"Windows.Networking.NetworkOperators.HotspotCredentialsAuthenticationResult";
@@ -827,6 +839,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppRecordDetailsResult> = L"Windows.Networking.NetworkOperators.MobileBroadbandUiccAppRecordDetailsResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppsResult> = L"Windows.Networking.NetworkOperators.MobileBroadbandUiccAppsResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::NetworkOperatorDataUsageTriggerDetails> = L"Windows.Networking.NetworkOperators.NetworkOperatorDataUsageTriggerDetails";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails> = L"Windows.Networking.NetworkOperators.NetworkOperatorNotificationEventDetails";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringAccessPointConfiguration> = L"Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringClient> = L"Windows.Networking.NetworkOperators.NetworkOperatorTetheringClient";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringManager> = L"Windows.Networking.NetworkOperators.NetworkOperatorTetheringManager";
@@ -888,6 +901,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IESimServiceInfo> = L"Windows.Networking.NetworkOperators.IESimServiceInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IESimUpdatedEventArgs> = L"Windows.Networking.NetworkOperators.IESimUpdatedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IESimWatcher> = L"Windows.Networking.NetworkOperators.IESimWatcher";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics> = L"Windows.Networking.NetworkOperators.IFdnAccessManagerStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext> = L"Windows.Networking.NetworkOperators.IHotspotAuthenticationContext";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext2> = L"Windows.Networking.NetworkOperators.IHotspotAuthenticationContext2";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContextStatics> = L"Windows.Networking.NetworkOperators.IHotspotAuthenticationContextStatics";
@@ -959,10 +973,12 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppRecordDetailsResult> = L"Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppRecordDetailsResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppsResult> = L"Windows.Networking.NetworkOperators.IMobileBroadbandUiccAppsResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails> = L"Windows.Networking.NetworkOperators.INetworkOperatorDataUsageTriggerDetails";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails> = L"Windows.Networking.NetworkOperators.INetworkOperatorNotificationEventDetails";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration2";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringClient";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClientManager> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringClientManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringEntitlementCheck";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManager> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringManager";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics2> = L"Windows.Networking.NetworkOperators.INetworkOperatorTetheringManagerStatics2";
@@ -995,6 +1011,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IESimServiceInfo>{ 0xF16AABCF,0x7F59,0x4A51,{ 0x84,0x94,0xBD,0x89,0xD5,0xFF,0x50,0xEE } }; // F16AABCF-7F59-4A51-8494-BD89D5FF50EE
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IESimUpdatedEventArgs>{ 0x4C125CEC,0x508D,0x4B88,{ 0x83,0xCB,0x68,0xBE,0xF8,0x16,0x8D,0x12 } }; // 4C125CEC-508D-4B88-83CB-68BEF8168D12
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IESimWatcher>{ 0xC1F84CEB,0xA28D,0x4FBF,{ 0x97,0x71,0x6E,0x31,0xB8,0x1C,0xCF,0x22 } }; // C1F84CEB-A28D-4FBF-9771-6E31B81CCF22
+    template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics>{ 0xF2AA4395,0xF1E6,0x4319,{ 0xAA,0x3E,0x47,0x7C,0xA6,0x4B,0x2B,0xDF } }; // F2AA4395-F1E6-4319-AA3E-477CA64B2BDF
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext>{ 0xE756C791,0x1003,0x4DE5,{ 0x83,0xC7,0xDE,0x61,0xD8,0x88,0x31,0xD0 } }; // E756C791-1003-4DE5-83C7-DE61D88831D0
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext2>{ 0xE756C791,0x1004,0x4DE5,{ 0x83,0xC7,0xDE,0x61,0xD8,0x88,0x31,0xD0 } }; // E756C791-1004-4DE5-83C7-DE61D88831D0
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContextStatics>{ 0xE756C791,0x1002,0x4DE5,{ 0x83,0xC7,0xDE,0x61,0xD8,0x88,0x31,0xD0 } }; // E756C791-1002-4DE5-83C7-DE61D88831D0
@@ -1066,10 +1083,12 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppRecordDetailsResult>{ 0xD919682F,0xBE14,0x4934,{ 0x98,0x1D,0x2F,0x57,0xB9,0xED,0x83,0xE6 } }; // D919682F-BE14-4934-981D-2F57B9ED83E6
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppsResult>{ 0x744930EB,0x8157,0x4A41,{ 0x84,0x94,0x6B,0xF5,0x4C,0x9B,0x1D,0x2B } }; // 744930EB-8157-4A41-8494-6BF54C9B1D2B
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails>{ 0x50E3126D,0xA465,0x4EEB,{ 0x93,0x17,0x28,0xA1,0x67,0x63,0x0C,0xEA } }; // 50E3126D-A465-4EEB-9317-28A167630CEA
+    template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails>{ 0xBC68A9D1,0x82E1,0x4488,{ 0x9F,0x2C,0x12,0x76,0xC2,0x46,0x8F,0xAC } }; // BC68A9D1-82E1-4488-9F2C-1276C2468FAC
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration>{ 0x0BCC0284,0x412E,0x403D,{ 0xAC,0xC6,0xB7,0x57,0xE3,0x47,0x74,0xA4 } }; // 0BCC0284-412E-403D-ACC6-B757E34774A4
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2>{ 0xB1809142,0x7238,0x59A0,{ 0x92,0x8B,0x74,0xAB,0x46,0xFD,0x64,0xB6 } }; // B1809142-7238-59A0-928B-74AB46FD64B6
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient>{ 0x709D254C,0x595F,0x4847,{ 0xBB,0x30,0x64,0x69,0x35,0x54,0x29,0x18 } }; // 709D254C-595F-4847-BB30-646935542918
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClientManager>{ 0x91B14016,0x8DCA,0x4225,{ 0xBB,0xED,0xEE,0xF8,0xB8,0xD7,0x18,0xD7 } }; // 91B14016-8DCA-4225-BBED-EEF8B8D718D7
+    template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck>{ 0x0108916D,0x9E9A,0x4AF6,{ 0x8D,0xA3,0x60,0x49,0x3B,0x19,0xC2,0x04 } }; // 0108916D-9E9A-4AF6-8DA3-60493B19C204
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManager>{ 0xD45A8DA0,0x0E86,0x4D98,{ 0x8B,0xA4,0xDD,0x70,0xD4,0xB7,0x64,0xD3 } }; // D45A8DA0-0E86-4D98-8BA4-DD70D4B764D3
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics>{ 0x3EBCBACC,0xF8C3,0x405C,{ 0x99,0x64,0x70,0xA1,0xEE,0xAB,0xE1,0x94 } }; // 3EBCBACC-F8C3-405C-9964-70A1EEABE194
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics2>{ 0x5B235412,0x35F0,0x49E7,{ 0x9B,0x08,0x16,0xD2,0x78,0xFB,0xAA,0x42 } }; // 5B235412-35F0-49E7-9B08-16D278FBAA42
@@ -1150,6 +1169,7 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppRecordDetailsResult>{ using type = winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppRecordDetailsResult; };
     template <> struct default_interface<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppsResult>{ using type = winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppsResult; };
     template <> struct default_interface<winrt::Windows::Networking::NetworkOperators::NetworkOperatorDataUsageTriggerDetails>{ using type = winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails; };
+    template <> struct default_interface<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails>{ using type = winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails; };
     template <> struct default_interface<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringAccessPointConfiguration>{ using type = winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration; };
     template <> struct default_interface<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringClient>{ using type = winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient; };
     template <> struct default_interface<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringManager>{ using type = winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManager; };
@@ -1330,6 +1350,13 @@ namespace winrt::impl
             virtual int32_t __stdcall remove_Stopped(winrt::event_token) noexcept = 0;
             virtual int32_t __stdcall add_Updated(void*, winrt::event_token*) noexcept = 0;
             virtual int32_t __stdcall remove_Updated(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall RequestUnlockAsync(void*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext>
@@ -2035,6 +2062,18 @@ namespace winrt::impl
             virtual int32_t __stdcall get_NotificationKind(int32_t*) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_NotificationType(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_NetworkAccountId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_EncodingType(uint8_t*) noexcept = 0;
+            virtual int32_t __stdcall get_Message(void**) noexcept = 0;
+            virtual int32_t __stdcall get_RuleId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_SmsMessage(void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -2068,6 +2107,13 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall GetTetheringClients(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall AuthorizeTethering(bool, void*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManager>
@@ -2426,6 +2472,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Networking::NetworkOperators::IESimWatcher>
     {
         template <typename D> using type = consume_Windows_Networking_NetworkOperators_IESimWatcher<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Networking_NetworkOperators_IFdnAccessManagerStatics
+    {
+        auto RequestUnlockAsync(param::hstring const& contactListId) const;
+    };
+    template <> struct consume<winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics>
+    {
+        template <typename D> using type = consume_Windows_Networking_NetworkOperators_IFdnAccessManagerStatics<D>;
     };
     template <typename D>
     struct consume_Windows_Networking_NetworkOperators_IHotspotAuthenticationContext
@@ -3293,6 +3348,20 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Networking_NetworkOperators_INetworkOperatorDataUsageTriggerDetails<D>;
     };
     template <typename D>
+    struct consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails
+    {
+        [[nodiscard]] auto NotificationType() const;
+        [[nodiscard]] auto NetworkAccountId() const;
+        [[nodiscard]] auto EncodingType() const;
+        [[nodiscard]] auto Message() const;
+        [[nodiscard]] auto RuleId() const;
+        [[nodiscard]] auto SmsMessage() const;
+    };
+    template <> struct consume<winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails>
+    {
+        template <typename D> using type = consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails<D>;
+    };
+    template <typename D>
     struct consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringAccessPointConfiguration
     {
         [[nodiscard]] auto Ssid() const;
@@ -3334,6 +3403,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClientManager>
     {
         template <typename D> using type = consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringClientManager<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringEntitlementCheck
+    {
+        auto AuthorizeTethering(bool allow, param::hstring const& entitlementFailureReason) const;
+    };
+    template <> struct consume<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck>
+    {
+        template <typename D> using type = consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringEntitlementCheck<D>;
     };
     template <typename D>
     struct consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringManager

@@ -53,6 +53,8 @@ namespace py::wrapper::Windows::UI::ViewManagement
     using InputPane = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::InputPane>;
     using InputPaneVisibilityEventArgs = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::InputPaneVisibilityEventArgs>;
     using ProjectionManager = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::ProjectionManager>;
+    using StatusBar = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::StatusBar>;
+    using StatusBarProgressIndicator = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::StatusBarProgressIndicator>;
     using UISettings = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::UISettings>;
     using UISettingsAnimationsEnabledChangedEventArgs = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs>;
     using UISettingsAutoHideScrollBarsChangedEventArgs = py::winrt_wrapper<winrt::Windows::UI::ViewManagement::UISettingsAutoHideScrollBarsChangedEventArgs>;
@@ -198,6 +200,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::UI::ViewManagement::ProjectionManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::ViewManagement::StatusBar>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::ViewManagement::StatusBarProgressIndicator>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

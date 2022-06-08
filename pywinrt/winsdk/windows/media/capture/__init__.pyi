@@ -19,10 +19,135 @@ import winsdk.windows.media.core
 import winsdk.windows.media.devices
 import winsdk.windows.media.effects
 import winsdk.windows.media.mediaproperties
+import winsdk.windows.security.authentication.web
 import winsdk.windows.security.credentials
 import winsdk.windows.storage
 import winsdk.windows.storage.streams
+import winsdk.windows.system
 import winsdk.windows.ui.windowmanagement
+
+class AppBroadcastCameraCaptureState(enum.IntEnum):
+    STOPPED = 0
+    STARTED = 1
+    FAILED = 2
+
+class AppBroadcastCameraOverlayLocation(enum.IntEnum):
+    TOP_LEFT = 0
+    TOP_CENTER = 1
+    TOP_RIGHT = 2
+    MIDDLE_LEFT = 3
+    MIDDLE_CENTER = 4
+    MIDDLE_RIGHT = 5
+    BOTTOM_LEFT = 6
+    BOTTOM_CENTER = 7
+    BOTTOM_RIGHT = 8
+
+class AppBroadcastCameraOverlaySize(enum.IntEnum):
+    SMALL = 0
+    MEDIUM = 1
+    LARGE = 2
+
+class AppBroadcastCaptureTargetType(enum.IntEnum):
+    APP_VIEW = 0
+    ENTIRE_DISPLAY = 1
+
+class AppBroadcastExitBroadcastModeReason(enum.IntEnum):
+    NORMAL_EXIT = 0
+    USER_CANCELED = 1
+    AUTHORIZATION_FAIL = 2
+    FOREGROUND_APP_ACTIVATED = 3
+
+class AppBroadcastMicrophoneCaptureState(enum.IntEnum):
+    STOPPED = 0
+    STARTED = 1
+    FAILED = 2
+
+class AppBroadcastPlugInState(enum.IntEnum):
+    UNKNOWN = 0
+    INITIALIZED = 1
+    MICROSOFT_SIGN_IN_REQUIRED = 2
+    O_AUTH_SIGN_IN_REQUIRED = 3
+    PROVIDER_SIGN_IN_REQUIRED = 4
+    IN_BANDWIDTH_TEST = 5
+    READY_TO_BROADCAST = 6
+
+class AppBroadcastPreviewState(enum.IntEnum):
+    STARTED = 0
+    STOPPED = 1
+    FAILED = 2
+
+class AppBroadcastSignInResult(enum.IntEnum):
+    SUCCESS = 0
+    AUTHENTICATION_FAILED = 1
+    UNAUTHORIZED = 2
+    SERVICE_UNAVAILABLE = 3
+    UNKNOWN = 4
+
+class AppBroadcastSignInState(enum.IntEnum):
+    NOT_SIGNED_IN = 0
+    MICROSOFT_SIGN_IN_IN_PROGRESS = 1
+    MICROSOFT_SIGN_IN_COMPLETE = 2
+    O_AUTH_SIGN_IN_IN_PROGRESS = 3
+    O_AUTH_SIGN_IN_COMPLETE = 4
+
+class AppBroadcastStreamState(enum.IntEnum):
+    INITIALIZING = 0
+    STREAM_READY = 1
+    STARTED = 2
+    PAUSED = 3
+    TERMINATED = 4
+
+class AppBroadcastTerminationReason(enum.IntEnum):
+    NORMAL_TERMINATION = 0
+    LOST_CONNECTION_TO_SERVICE = 1
+    NO_NETWORK_CONNECTIVITY = 2
+    SERVICE_ABORT = 3
+    SERVICE_ERROR = 4
+    SERVICE_UNAVAILABLE = 5
+    INTERNAL_ERROR = 6
+    UNSUPPORTED_FORMAT = 7
+    BACKGROUND_TASK_TERMINATED = 8
+    BACKGROUND_TASK_UNRESPONSIVE = 9
+
+class AppBroadcastVideoEncodingBitrateMode(enum.IntEnum):
+    CUSTOM = 0
+    AUTO = 1
+
+class AppBroadcastVideoEncodingResolutionMode(enum.IntEnum):
+    CUSTOM = 0
+    AUTO = 1
+
+class AppCaptureHistoricalBufferLengthUnit(enum.IntEnum):
+    MEGABYTES = 0
+    SECONDS = 1
+
+class AppCaptureMetadataPriority(enum.IntEnum):
+    INFORMATIONAL = 0
+    IMPORTANT = 1
+
+class AppCaptureMicrophoneCaptureState(enum.IntEnum):
+    STOPPED = 0
+    STARTED = 1
+    FAILED = 2
+
+class AppCaptureRecordingState(enum.IntEnum):
+    IN_PROGRESS = 0
+    COMPLETED = 1
+    FAILED = 2
+
+class AppCaptureVideoEncodingBitrateMode(enum.IntEnum):
+    CUSTOM = 0
+    HIGH = 1
+    STANDARD = 2
+
+class AppCaptureVideoEncodingFrameRateMode(enum.IntEnum):
+    STANDARD = 0
+    HIGH = 1
+
+class AppCaptureVideoEncodingResolutionMode(enum.IntEnum):
+    CUSTOM = 0
+    HIGH = 1
+    STANDARD = 2
 
 class CameraCaptureUIMaxPhotoResolution(enum.IntEnum):
     HIGHEST_AVAILABLE = 0
@@ -51,6 +176,42 @@ class CameraCaptureUIPhotoFormat(enum.IntEnum):
 class CameraCaptureUIVideoFormat(enum.IntEnum):
     MP4 = 0
     WMV = 1
+
+class ForegroundActivationArgument(enum.IntEnum):
+    SIGN_IN_REQUIRED = 0
+    MORE_SETTINGS = 1
+
+class GameBarCommand(enum.IntEnum):
+    OPEN_GAME_BAR = 0
+    RECORD_HISTORICAL_BUFFER = 1
+    TOGGLE_START_STOP_RECORD = 2
+    START_RECORD = 3
+    STOP_RECORD = 4
+    TAKE_SCREENSHOT = 5
+    START_BROADCAST = 6
+    STOP_BROADCAST = 7
+    PAUSE_BROADCAST = 8
+    RESUME_BROADCAST = 9
+    TOGGLE_START_STOP_BROADCAST = 10
+    TOGGLE_MICROPHONE_CAPTURE = 11
+    TOGGLE_CAMERA_CAPTURE = 12
+    TOGGLE_RECORDING_INDICATOR = 13
+
+class GameBarCommandOrigin(enum.IntEnum):
+    SHORTCUT_KEY = 0
+    CORTANA = 1
+    APP_COMMAND = 2
+
+class GameBarServicesDisplayMode(enum.IntEnum):
+    WINDOWED = 0
+    FULL_SCREEN_EXCLUSIVE = 1
+
+class GameBarTargetCapturePolicy(enum.IntEnum):
+    ENABLED_BY_SYSTEM = 0
+    ENABLED_BY_USER = 1
+    NOT_ENABLED = 2
+    PROHIBITED_BY_SYSTEM = 3
+    PROHIBITED_BY_PUBLISHER = 4
 
 class KnownVideoProfile(enum.IntEnum):
     VIDEO_RECORDING = 0
@@ -156,6 +317,301 @@ class AdvancedPhotoCapture(_winrt.Object):
     def add_optional_reference_photo_captured(self, handler: winsdk.windows.foundation.TypedEventHandler[AdvancedPhotoCapture, OptionalReferencePhotoCapturedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
     def remove_optional_reference_photo_captured(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 
+class AppBroadcastBackgroundService(_winrt.Object):
+    viewer_count: _winrt.UInt32
+    stream_info: typing.Optional[AppBroadcastBackgroundServiceStreamInfo]
+    sign_in_info: typing.Optional[AppBroadcastBackgroundServiceSignInInfo]
+    plug_in_state: AppBroadcastPlugInState
+    broadcast_title: str
+    app_id: str
+    title_id: str
+    broadcast_language: str
+    broadcast_channel: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastBackgroundService: ...
+    def terminate_broadcast(self, reason: AppBroadcastTerminationReason, provider_specific_reason: _winrt.UInt32) -> None: ...
+    def add_heartbeat_requested(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundService, AppBroadcastHeartbeatRequestedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_heartbeat_requested(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_broadcast_channel_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundService, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_broadcast_channel_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_broadcast_language_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundService, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_broadcast_language_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_broadcast_title_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundService, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_broadcast_title_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppBroadcastBackgroundServiceSignInInfo(_winrt.Object):
+    user_name: str
+    o_auth_request_uri: typing.Optional[winsdk.windows.foundation.Uri]
+    o_auth_callback_uri: typing.Optional[winsdk.windows.foundation.Uri]
+    authentication_result: typing.Optional[winsdk.windows.security.authentication.web.WebAuthenticationResult]
+    sign_in_state: AppBroadcastSignInState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastBackgroundServiceSignInInfo: ...
+    def add_sign_in_state_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundServiceSignInInfo, AppBroadcastSignInStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_sign_in_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_user_name_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundServiceSignInInfo, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_user_name_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppBroadcastBackgroundServiceStreamInfo(_winrt.Object):
+    desired_video_encoding_bitrate: _winrt.UInt64
+    bandwidth_test_bitrate: _winrt.UInt64
+    audio_codec: str
+    broadcast_stream_reader: typing.Optional[AppBroadcastStreamReader]
+    stream_state: AppBroadcastStreamState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastBackgroundServiceStreamInfo: ...
+    def report_problem_with_stream(self) -> None: ...
+    def add_stream_state_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundServiceStreamInfo, AppBroadcastStreamStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_stream_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_video_encoding_bitrate_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundServiceStreamInfo, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_video_encoding_bitrate_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_video_encoding_resolution_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastBackgroundServiceStreamInfo, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_video_encoding_resolution_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppBroadcastCameraCaptureStateChangedEventArgs(_winrt.Object):
+    error_code: _winrt.UInt32
+    state: AppBroadcastCameraCaptureState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastCameraCaptureStateChangedEventArgs: ...
+
+class AppBroadcastGlobalSettings(_winrt.Object):
+    system_audio_gain: _winrt.Double
+    selected_camera_id: str
+    microphone_gain: _winrt.Double
+    is_microphone_capture_enabled_by_default: _winrt.Boolean
+    is_echo_cancellation_enabled: _winrt.Boolean
+    is_cursor_image_capture_enabled: _winrt.Boolean
+    is_camera_capture_enabled_by_default: _winrt.Boolean
+    is_audio_capture_enabled: _winrt.Boolean
+    camera_overlay_size: AppBroadcastCameraOverlaySize
+    camera_overlay_location: AppBroadcastCameraOverlayLocation
+    has_hardware_encoder: _winrt.Boolean
+    is_broadcast_enabled: _winrt.Boolean
+    is_disabled_by_policy: _winrt.Boolean
+    is_gpu_constrained: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastGlobalSettings: ...
+
+class AppBroadcastHeartbeatRequestedEventArgs(_winrt.Object):
+    handled: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastHeartbeatRequestedEventArgs: ...
+
+class AppBroadcastManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastManager: ...
+    @staticmethod
+    def apply_global_settings(value: typing.Optional[AppBroadcastGlobalSettings]) -> None: ...
+    @staticmethod
+    def apply_provider_settings(value: typing.Optional[AppBroadcastProviderSettings]) -> None: ...
+    @staticmethod
+    def get_global_settings() -> typing.Optional[AppBroadcastGlobalSettings]: ...
+    @staticmethod
+    def get_provider_settings() -> typing.Optional[AppBroadcastProviderSettings]: ...
+
+class AppBroadcastMicrophoneCaptureStateChangedEventArgs(_winrt.Object):
+    error_code: _winrt.UInt32
+    state: AppBroadcastMicrophoneCaptureState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastMicrophoneCaptureStateChangedEventArgs: ...
+
+class AppBroadcastPlugIn(_winrt.Object):
+    app_id: str
+    display_name: str
+    logo: typing.Optional[winsdk.windows.storage.streams.IRandomAccessStreamReference]
+    provider_settings: typing.Optional[AppBroadcastProviderSettings]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPlugIn: ...
+
+class AppBroadcastPlugInManager(_winrt.Object):
+    default_plug_in: typing.Optional[AppBroadcastPlugIn]
+    is_broadcast_provider_available: _winrt.Boolean
+    plug_in_list: typing.Optional[winsdk.windows.foundation.collections.IVectorView[AppBroadcastPlugIn]]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPlugInManager: ...
+    @staticmethod
+    def get_default() -> typing.Optional[AppBroadcastPlugInManager]: ...
+    @staticmethod
+    def get_for_user(user: typing.Optional[winsdk.windows.system.User]) -> typing.Optional[AppBroadcastPlugInManager]: ...
+
+class AppBroadcastPlugInStateChangedEventArgs(_winrt.Object):
+    plug_in_state: AppBroadcastPlugInState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPlugInStateChangedEventArgs: ...
+
+class AppBroadcastPreview(_winrt.Object):
+    error_code: typing.Optional[typing.Optional[_winrt.UInt32]]
+    preview_state: AppBroadcastPreviewState
+    preview_stream_reader: typing.Optional[AppBroadcastPreviewStreamReader]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPreview: ...
+    def stop_preview(self) -> None: ...
+    def add_preview_state_changed(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastPreview, AppBroadcastPreviewStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_preview_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppBroadcastPreviewStateChangedEventArgs(_winrt.Object):
+    error_code: _winrt.UInt32
+    preview_state: AppBroadcastPreviewState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPreviewStateChangedEventArgs: ...
+
+class AppBroadcastPreviewStreamReader(_winrt.Object):
+    video_bitmap_alpha_mode: winsdk.windows.graphics.imaging.BitmapAlphaMode
+    video_bitmap_pixel_format: winsdk.windows.graphics.imaging.BitmapPixelFormat
+    video_height: _winrt.UInt32
+    video_stride: _winrt.UInt32
+    video_width: _winrt.UInt32
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPreviewStreamReader: ...
+    def try_get_next_video_frame(self) -> typing.Optional[AppBroadcastPreviewStreamVideoFrame]: ...
+    def add_video_frame_arrived(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastPreviewStreamReader, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_video_frame_arrived(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppBroadcastPreviewStreamVideoFrame(_winrt.Object):
+    video_buffer: typing.Optional[winsdk.windows.storage.streams.IBuffer]
+    video_header: typing.Optional[AppBroadcastPreviewStreamVideoHeader]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPreviewStreamVideoFrame: ...
+
+class AppBroadcastPreviewStreamVideoHeader(_winrt.Object):
+    absolute_timestamp: winsdk.windows.foundation.DateTime
+    duration: winsdk.windows.foundation.TimeSpan
+    frame_id: _winrt.UInt64
+    relative_timestamp: winsdk.windows.foundation.TimeSpan
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastPreviewStreamVideoHeader: ...
+
+class AppBroadcastProviderSettings(_winrt.Object):
+    video_encoding_resolution_mode: AppBroadcastVideoEncodingResolutionMode
+    video_encoding_bitrate_mode: AppBroadcastVideoEncodingBitrateMode
+    default_broadcast_title: str
+    custom_video_encoding_width: _winrt.UInt32
+    custom_video_encoding_height: _winrt.UInt32
+    custom_video_encoding_bitrate: _winrt.UInt32
+    audio_encoding_bitrate: _winrt.UInt32
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastProviderSettings: ...
+
+class AppBroadcastServices(_winrt.Object):
+    capture_target_type: AppBroadcastCaptureTargetType
+    broadcast_title: str
+    broadcast_language: str
+    can_capture: _winrt.Boolean
+    state: typing.Optional[AppBroadcastState]
+    user_name: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastServices: ...
+    def enter_broadcast_mode_async(self, plug_in: typing.Optional[AppBroadcastPlugIn]) -> winsdk.windows.foundation.IAsyncOperation[_winrt.UInt32]: ...
+    def exit_broadcast_mode(self, reason: AppBroadcastExitBroadcastModeReason) -> None: ...
+    def pause_broadcast(self) -> None: ...
+    def resume_broadcast(self) -> None: ...
+    def start_broadcast(self) -> None: ...
+    def start_preview(self, desired_size: winsdk.windows.foundation.Size) -> typing.Optional[AppBroadcastPreview]: ...
+
+class AppBroadcastSignInStateChangedEventArgs(_winrt.Object):
+    result: AppBroadcastSignInResult
+    sign_in_state: AppBroadcastSignInState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastSignInStateChangedEventArgs: ...
+
+class AppBroadcastState(_winrt.Object):
+    sign_in_state: AppBroadcastSignInState
+    should_capture_microphone: _winrt.Boolean
+    should_capture_camera: _winrt.Boolean
+    authentication_result: typing.Optional[winsdk.windows.security.authentication.web.WebAuthenticationResult]
+    is_capture_target_running: _winrt.Boolean
+    microphone_capture_error: _winrt.UInt32
+    microphone_capture_state: AppBroadcastMicrophoneCaptureState
+    o_auth_callback_uri: typing.Optional[winsdk.windows.foundation.Uri]
+    o_auth_request_uri: typing.Optional[winsdk.windows.foundation.Uri]
+    plug_in_state: AppBroadcastPlugInState
+    camera_capture_error: _winrt.UInt32
+    camera_capture_state: AppBroadcastCameraCaptureState
+    encoded_video_size: winsdk.windows.foundation.Size
+    stream_state: AppBroadcastStreamState
+    termination_reason: AppBroadcastTerminationReason
+    termination_reason_plug_in_specific: _winrt.UInt32
+    viewer_count: _winrt.UInt32
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastState: ...
+    def restart_camera_capture(self) -> None: ...
+    def restart_microphone_capture(self) -> None: ...
+    def add_camera_capture_state_changed(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastState, AppBroadcastCameraCaptureStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_camera_capture_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_capture_target_closed(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastState, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_capture_target_closed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_microphone_capture_state_changed(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastState, AppBroadcastMicrophoneCaptureStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_microphone_capture_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_plug_in_state_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastState, AppBroadcastPlugInStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_plug_in_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_stream_state_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppBroadcastState, AppBroadcastStreamStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_stream_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_viewer_count_changed(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastState, AppBroadcastViewerCountChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_viewer_count_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppBroadcastStreamAudioFrame(_winrt.Object):
+    audio_buffer: typing.Optional[winsdk.windows.storage.streams.IBuffer]
+    audio_header: typing.Optional[AppBroadcastStreamAudioHeader]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastStreamAudioFrame: ...
+
+class AppBroadcastStreamAudioHeader(_winrt.Object):
+    absolute_timestamp: winsdk.windows.foundation.DateTime
+    duration: winsdk.windows.foundation.TimeSpan
+    frame_id: _winrt.UInt64
+    has_discontinuity: _winrt.Boolean
+    relative_timestamp: winsdk.windows.foundation.TimeSpan
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastStreamAudioHeader: ...
+
+class AppBroadcastStreamReader(_winrt.Object):
+    audio_aac_sequence: typing.Optional[winsdk.windows.storage.streams.IBuffer]
+    audio_bitrate: _winrt.UInt32
+    audio_channels: _winrt.UInt32
+    audio_sample_rate: _winrt.UInt32
+    video_bitrate: _winrt.UInt32
+    video_height: _winrt.UInt32
+    video_width: _winrt.UInt32
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastStreamReader: ...
+    def try_get_next_audio_frame(self) -> typing.Optional[AppBroadcastStreamAudioFrame]: ...
+    def try_get_next_video_frame(self) -> typing.Optional[AppBroadcastStreamVideoFrame]: ...
+    def add_audio_frame_arrived(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastStreamReader, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_audio_frame_arrived(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_video_frame_arrived(self, value: winsdk.windows.foundation.TypedEventHandler[AppBroadcastStreamReader, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_video_frame_arrived(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppBroadcastStreamStateChangedEventArgs(_winrt.Object):
+    stream_state: AppBroadcastStreamState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastStreamStateChangedEventArgs: ...
+
+class AppBroadcastStreamVideoFrame(_winrt.Object):
+    video_buffer: typing.Optional[winsdk.windows.storage.streams.IBuffer]
+    video_header: typing.Optional[AppBroadcastStreamVideoHeader]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastStreamVideoFrame: ...
+
+class AppBroadcastStreamVideoHeader(_winrt.Object):
+    absolute_timestamp: winsdk.windows.foundation.DateTime
+    duration: winsdk.windows.foundation.TimeSpan
+    frame_id: _winrt.UInt64
+    has_discontinuity: _winrt.Boolean
+    is_key_frame: _winrt.Boolean
+    relative_timestamp: winsdk.windows.foundation.TimeSpan
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastStreamVideoHeader: ...
+
+class AppBroadcastTriggerDetails(_winrt.Object):
+    background_service: typing.Optional[AppBroadcastBackgroundService]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastTriggerDetails: ...
+
+class AppBroadcastViewerCountChangedEventArgs(_winrt.Object):
+    viewer_count: _winrt.UInt32
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastViewerCountChangedEventArgs: ...
+
 class AppCapture(_winrt.Object):
     is_capturing_audio: _winrt.Boolean
     is_capturing_video: _winrt.Boolean
@@ -167,6 +623,146 @@ class AppCapture(_winrt.Object):
     def set_allowed_async(allowed: _winrt.Boolean) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
     def add_capturing_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[AppCapture, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
     def remove_capturing_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppCaptureAlternateShortcutKeys(_winrt.Object):
+    toggle_recording_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    toggle_recording_key: winsdk.windows.system.VirtualKey
+    toggle_recording_indicator_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    toggle_recording_indicator_key: winsdk.windows.system.VirtualKey
+    toggle_game_bar_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    toggle_game_bar_key: winsdk.windows.system.VirtualKey
+    take_screenshot_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    take_screenshot_key: winsdk.windows.system.VirtualKey
+    save_historical_video_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    save_historical_video_key: winsdk.windows.system.VirtualKey
+    toggle_microphone_capture_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    toggle_microphone_capture_key: winsdk.windows.system.VirtualKey
+    toggle_camera_capture_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    toggle_camera_capture_key: winsdk.windows.system.VirtualKey
+    toggle_broadcast_key_modifiers: winsdk.windows.system.VirtualKeyModifiers
+    toggle_broadcast_key: winsdk.windows.system.VirtualKey
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureAlternateShortcutKeys: ...
+
+class AppCaptureDurationGeneratedEventArgs(_winrt.Object):
+    duration: winsdk.windows.foundation.TimeSpan
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureDurationGeneratedEventArgs: ...
+
+class AppCaptureFileGeneratedEventArgs(_winrt.Object):
+    file: typing.Optional[winsdk.windows.storage.StorageFile]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureFileGeneratedEventArgs: ...
+
+class AppCaptureManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureManager: ...
+    @staticmethod
+    def apply_settings(app_capture_settings: typing.Optional[AppCaptureSettings]) -> None: ...
+    @staticmethod
+    def get_current_settings() -> typing.Optional[AppCaptureSettings]: ...
+
+class AppCaptureMetadataWriter(_winrt.Object):
+    remaining_storage_bytes_available: _winrt.UInt64
+    def __enter__(self: Self) -> Self: ...
+    def __exit__(self, *args) -> None: ...
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureMetadataWriter: ...
+    def __init__(self) -> None: ...
+    def add_double_event(self, name: str, value: _winrt.Double, priority: AppCaptureMetadataPriority) -> None: ...
+    def add_int32_event(self, name: str, value: _winrt.Int32, priority: AppCaptureMetadataPriority) -> None: ...
+    def add_string_event(self, name: str, value: str, priority: AppCaptureMetadataPriority) -> None: ...
+    def close(self) -> None: ...
+    def start_double_state(self, name: str, value: _winrt.Double, priority: AppCaptureMetadataPriority) -> None: ...
+    def start_int32_state(self, name: str, value: _winrt.Int32, priority: AppCaptureMetadataPriority) -> None: ...
+    def start_string_state(self, name: str, value: str, priority: AppCaptureMetadataPriority) -> None: ...
+    def stop_all_states(self) -> None: ...
+    def stop_state(self, name: str) -> None: ...
+    def add_metadata_purged(self, handler: winsdk.windows.foundation.TypedEventHandler[AppCaptureMetadataWriter, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_metadata_purged(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppCaptureMicrophoneCaptureStateChangedEventArgs(_winrt.Object):
+    error_code: _winrt.UInt32
+    state: AppCaptureMicrophoneCaptureState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureMicrophoneCaptureStateChangedEventArgs: ...
+
+class AppCaptureRecordOperation(_winrt.Object):
+    duration: typing.Optional[typing.Optional[winsdk.windows.foundation.TimeSpan]]
+    error_code: typing.Optional[typing.Optional[_winrt.UInt32]]
+    file: typing.Optional[winsdk.windows.storage.StorageFile]
+    is_file_truncated: typing.Optional[typing.Optional[_winrt.Boolean]]
+    state: AppCaptureRecordingState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureRecordOperation: ...
+    def stop_recording(self) -> None: ...
+    def add_duration_generated(self, value: winsdk.windows.foundation.TypedEventHandler[AppCaptureRecordOperation, AppCaptureDurationGeneratedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_duration_generated(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_file_generated(self, value: winsdk.windows.foundation.TypedEventHandler[AppCaptureRecordOperation, AppCaptureFileGeneratedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_file_generated(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_state_changed(self, value: winsdk.windows.foundation.TypedEventHandler[AppCaptureRecordOperation, AppCaptureRecordingStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class AppCaptureRecordingStateChangedEventArgs(_winrt.Object):
+    error_code: _winrt.UInt32
+    state: AppCaptureRecordingState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureRecordingStateChangedEventArgs: ...
+
+class AppCaptureServices(_winrt.Object):
+    can_capture: _winrt.Boolean
+    state: typing.Optional[AppCaptureState]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureServices: ...
+    def record(self) -> typing.Optional[AppCaptureRecordOperation]: ...
+    def record_time_span(self, start_time: winsdk.windows.foundation.DateTime, duration: winsdk.windows.foundation.TimeSpan) -> typing.Optional[AppCaptureRecordOperation]: ...
+
+class AppCaptureSettings(_winrt.Object):
+    is_historical_capture_on_wireless_display_allowed: _winrt.Boolean
+    video_encoding_bitrate_mode: AppCaptureVideoEncodingBitrateMode
+    is_historical_capture_on_battery_allowed: _winrt.Boolean
+    is_audio_capture_enabled: _winrt.Boolean
+    is_app_capture_enabled: _winrt.Boolean
+    app_capture_destination_folder: typing.Optional[winsdk.windows.storage.StorageFolder]
+    historical_buffer_length: _winrt.UInt32
+    is_historical_capture_enabled: _winrt.Boolean
+    custom_video_encoding_width: _winrt.UInt32
+    custom_video_encoding_height: _winrt.UInt32
+    custom_video_encoding_bitrate: _winrt.UInt32
+    audio_encoding_bitrate: _winrt.UInt32
+    historical_buffer_length_unit: AppCaptureHistoricalBufferLengthUnit
+    video_encoding_resolution_mode: AppCaptureVideoEncodingResolutionMode
+    screenshot_destination_folder: typing.Optional[winsdk.windows.storage.StorageFolder]
+    maximum_record_length: winsdk.windows.foundation.TimeSpan
+    has_hardware_encoder: _winrt.Boolean
+    is_cpu_constrained: _winrt.Boolean
+    is_memory_constrained: _winrt.Boolean
+    is_disabled_by_policy: _winrt.Boolean
+    alternate_shortcut_keys: typing.Optional[AppCaptureAlternateShortcutKeys]
+    is_gpu_constrained: _winrt.Boolean
+    is_microphone_capture_enabled: _winrt.Boolean
+    video_encoding_frame_rate_mode: AppCaptureVideoEncodingFrameRateMode
+    system_audio_gain: _winrt.Double
+    microphone_gain: _winrt.Double
+    is_microphone_capture_enabled_by_default: _winrt.Boolean
+    is_echo_cancellation_enabled: _winrt.Boolean
+    is_cursor_image_capture_enabled: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureSettings: ...
+
+class AppCaptureState(_winrt.Object):
+    should_capture_microphone: _winrt.Boolean
+    is_historical_capture_enabled: _winrt.Boolean
+    is_target_running: _winrt.Boolean
+    microphone_capture_error: _winrt.UInt32
+    microphone_capture_state: AppCaptureMicrophoneCaptureState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppCaptureState: ...
+    def restart_microphone_capture(self) -> None: ...
+    def add_capture_target_closed(self, value: winsdk.windows.foundation.TypedEventHandler[AppCaptureState, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_capture_target_closed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_microphone_capture_state_changed(self, value: winsdk.windows.foundation.TypedEventHandler[AppCaptureState, AppCaptureMicrophoneCaptureStateChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_microphone_capture_state_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 
 class CameraCaptureUI(_winrt.Object):
     photo_settings: typing.Optional[CameraCaptureUIPhotoCaptureSettings]
@@ -192,6 +788,12 @@ class CameraCaptureUIVideoCaptureSettings(_winrt.Object):
     allow_trimming: _winrt.Boolean
     @staticmethod
     def _from(obj: _winrt.Object) -> CameraCaptureUIVideoCaptureSettings: ...
+
+class CameraOptionsUI(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> CameraOptionsUI: ...
+    @staticmethod
+    def show(media_capture: typing.Optional[MediaCapture]) -> None: ...
 
 class CapturedFrame(_winrt.Object):
     height: _winrt.UInt32
@@ -240,6 +842,46 @@ class CapturedPhoto(_winrt.Object):
     thumbnail: typing.Optional[CapturedFrame]
     @staticmethod
     def _from(obj: _winrt.Object) -> CapturedPhoto: ...
+
+class GameBarServices(_winrt.Object):
+    app_broadcast_services: typing.Optional[AppBroadcastServices]
+    app_capture_services: typing.Optional[AppCaptureServices]
+    session_id: str
+    target_capture_policy: GameBarTargetCapturePolicy
+    target_info: typing.Optional[GameBarServicesTargetInfo]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameBarServices: ...
+    def disable_capture(self) -> None: ...
+    def enable_capture(self) -> None: ...
+    def add_command_received(self, value: winsdk.windows.foundation.TypedEventHandler[GameBarServices, GameBarServicesCommandEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_command_received(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class GameBarServicesCommandEventArgs(_winrt.Object):
+    command: GameBarCommand
+    origin: GameBarCommandOrigin
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameBarServicesCommandEventArgs: ...
+
+class GameBarServicesManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameBarServicesManager: ...
+    @staticmethod
+    def get_default() -> typing.Optional[GameBarServicesManager]: ...
+    def add_game_bar_services_created(self, value: winsdk.windows.foundation.TypedEventHandler[GameBarServicesManager, GameBarServicesManagerGameBarServicesCreatedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_game_bar_services_created(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class GameBarServicesManagerGameBarServicesCreatedEventArgs(_winrt.Object):
+    game_bar_services: typing.Optional[GameBarServices]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameBarServicesManagerGameBarServicesCreatedEventArgs: ...
+
+class GameBarServicesTargetInfo(_winrt.Object):
+    app_id: str
+    display_mode: GameBarServicesDisplayMode
+    display_name: str
+    title_id: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameBarServicesTargetInfo: ...
 
 class LowLagMediaRecording(_winrt.Object):
     @staticmethod
@@ -491,6 +1133,24 @@ class PhotoConfirmationCapturedEventArgs(_winrt.Object):
     frame: typing.Optional[CapturedFrame]
     @staticmethod
     def _from(obj: _winrt.Object) -> PhotoConfirmationCapturedEventArgs: ...
+
+class ScreenCapture(_winrt.Object):
+    audio_source: typing.Optional[winsdk.windows.media.core.IMediaSource]
+    is_audio_suspended: _winrt.Boolean
+    is_video_suspended: _winrt.Boolean
+    video_source: typing.Optional[winsdk.windows.media.core.IMediaSource]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ScreenCapture: ...
+    @staticmethod
+    def get_for_current_view() -> typing.Optional[ScreenCapture]: ...
+    def add_source_suspension_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[ScreenCapture, SourceSuspensionChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_source_suspension_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class SourceSuspensionChangedEventArgs(_winrt.Object):
+    is_audio_suspended: _winrt.Boolean
+    is_video_suspended: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SourceSuspensionChangedEventArgs: ...
 
 class VideoStreamConfiguration(_winrt.Object):
     input_properties: typing.Optional[winsdk.windows.media.mediaproperties.VideoEncodingProperties]

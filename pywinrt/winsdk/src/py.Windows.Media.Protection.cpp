@@ -12,8 +12,10 @@ namespace py::cpp::Windows::Media::Protection
         PyObject* type_HdcpProtection;
         PyObject* type_HdcpSetProtectionResult;
         PyObject* type_ProtectionCapabilityResult;
+        PyObject* type_RenewalStatus;
         PyObject* type_RevocationAndRenewalReasons;
         PyTypeObject* type_ComponentLoadFailedEventArgs;
+        PyTypeObject* type_ComponentRenewal;
         PyTypeObject* type_HdcpSession;
         PyTypeObject* type_MediaProtectionManager;
         PyTypeObject* type_MediaProtectionPMPServer;
@@ -116,6 +118,30 @@ namespace py::cpp::Windows::Media::Protection
 
         state->type_ProtectionCapabilityResult = type;
         Py_INCREF(state->type_ProtectionCapabilityResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_RenewalStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_RenewalStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_RenewalStatus = type;
+        Py_INCREF(state->type_RenewalStatus);
 
 
         Py_RETURN_NONE;
@@ -229,6 +255,66 @@ namespace py::cpp::Windows::Media::Protection
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ComponentLoadFailedEventArgs
+    };
+
+    // ----- ComponentRenewal class --------------------
+    constexpr const char* const type_name_ComponentRenewal = "ComponentRenewal";
+
+    static PyObject* _new_ComponentRenewal(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_ComponentRenewal);
+        return nullptr;
+    }
+
+    static PyObject* ComponentRenewal_RenewSystemComponentsAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Media::Protection::RevocationAndRenewalInformation>(args, 0);
+
+                return py::convert(winrt::Windows::Media::Protection::ComponentRenewal::RenewSystemComponentsAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ComponentRenewal[] = {
+        { "renew_system_components_async", reinterpret_cast<PyCFunction>(ComponentRenewal_RenewSystemComponentsAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ComponentRenewal[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_ComponentRenewal[] = 
+    {
+        { Py_tp_new, _new_ComponentRenewal },
+        { Py_tp_methods, _methods_ComponentRenewal },
+        { Py_tp_getset, _getset_ComponentRenewal },
+        { },
+    };
+
+    static PyType_Spec type_spec_ComponentRenewal =
+    {
+        "_winsdk_Windows_Media_Protection.ComponentRenewal",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ComponentRenewal
     };
 
     // ----- HdcpSession class --------------------
@@ -1346,6 +1432,7 @@ namespace py::cpp::Windows::Media::Protection
         {"_register_HdcpProtection", register_HdcpProtection, METH_O, "registers type"},
         {"_register_HdcpSetProtectionResult", register_HdcpSetProtectionResult, METH_O, "registers type"},
         {"_register_ProtectionCapabilityResult", register_ProtectionCapabilityResult, METH_O, "registers type"},
+        {"_register_RenewalStatus", register_RenewalStatus, METH_O, "registers type"},
         {"_register_RevocationAndRenewalReasons", register_RevocationAndRenewalReasons, METH_O, "registers type"},
         {}};
 
@@ -1363,8 +1450,10 @@ namespace py::cpp::Windows::Media::Protection
         Py_VISIT(state->type_HdcpProtection);
         Py_VISIT(state->type_HdcpSetProtectionResult);
         Py_VISIT(state->type_ProtectionCapabilityResult);
+        Py_VISIT(state->type_RenewalStatus);
         Py_VISIT(state->type_RevocationAndRenewalReasons);
         Py_VISIT(state->type_ComponentLoadFailedEventArgs);
+        Py_VISIT(state->type_ComponentRenewal);
         Py_VISIT(state->type_HdcpSession);
         Py_VISIT(state->type_MediaProtectionManager);
         Py_VISIT(state->type_MediaProtectionPMPServer);
@@ -1391,8 +1480,10 @@ namespace py::cpp::Windows::Media::Protection
         Py_CLEAR(state->type_HdcpProtection);
         Py_CLEAR(state->type_HdcpSetProtectionResult);
         Py_CLEAR(state->type_ProtectionCapabilityResult);
+        Py_CLEAR(state->type_RenewalStatus);
         Py_CLEAR(state->type_RevocationAndRenewalReasons);
         Py_CLEAR(state->type_ComponentLoadFailedEventArgs);
+        Py_CLEAR(state->type_ComponentRenewal);
         Py_CLEAR(state->type_HdcpSession);
         Py_CLEAR(state->type_MediaProtectionManager);
         Py_CLEAR(state->type_MediaProtectionPMPServer);
@@ -1517,6 +1608,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media_Protection(void) noexcept
     }
 
     Py_INCREF(state->type_ComponentLoadFailedEventArgs);
+
+    state->type_ComponentRenewal = py::register_python_type(module.get(), type_name_ComponentRenewal, &type_spec_ComponentRenewal, nullptr);
+    if (!state->type_ComponentRenewal)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ComponentRenewal);
 
     state->type_HdcpSession = py::register_python_type(module.get(), type_name_HdcpSession, &type_spec_HdcpSession, bases.get());
     if (!state->type_HdcpSession)
@@ -1686,6 +1785,29 @@ PyObject* py::py_type<winrt::Windows::Media::Protection::ProtectionCapabilityRes
     return python_type;
 }
 
+PyObject* py::py_type<winrt::Windows::Media::Protection::RenewalStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Protection;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Protection");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_RenewalStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Protection::RenewalStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::Media::Protection::RevocationAndRenewalReasons>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Media::Protection;
 
@@ -1726,6 +1848,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::Protection::ComponentLoadFai
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Protection::ComponentLoadFailedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Media::Protection::ComponentRenewal>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Protection;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Protection");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ComponentRenewal;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Protection::ComponentRenewal is not registered");
         return nullptr;
     }
 

@@ -113,6 +113,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         PyTypeObject* type_ESimServiceInfo;
         PyTypeObject* type_ESimUpdatedEventArgs;
         PyTypeObject* type_ESimWatcher;
+        PyTypeObject* type_FdnAccessManager;
         PyTypeObject* type_HotspotAuthenticationContext;
         PyTypeObject* type_HotspotAuthenticationEventDetails;
         PyTypeObject* type_HotspotCredentialsAuthenticationResult;
@@ -167,6 +168,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         PyTypeObject* type_MobileBroadbandUiccAppRecordDetailsResult;
         PyTypeObject* type_MobileBroadbandUiccAppsResult;
         PyTypeObject* type_NetworkOperatorDataUsageTriggerDetails;
+        PyTypeObject* type_NetworkOperatorNotificationEventDetails;
         PyTypeObject* type_NetworkOperatorTetheringAccessPointConfiguration;
         PyTypeObject* type_NetworkOperatorTetheringClient;
         PyTypeObject* type_NetworkOperatorTetheringManager;
@@ -3044,6 +3046,66 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ESimWatcher
+    };
+
+    // ----- FdnAccessManager class --------------------
+    constexpr const char* const type_name_FdnAccessManager = "FdnAccessManager";
+
+    static PyObject* _new_FdnAccessManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FdnAccessManager);
+        return nullptr;
+    }
+
+    static PyObject* FdnAccessManager_RequestUnlockAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Networking::NetworkOperators::FdnAccessManager::RequestUnlockAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FdnAccessManager[] = {
+        { "request_unlock_async", reinterpret_cast<PyCFunction>(FdnAccessManager_RequestUnlockAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FdnAccessManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_FdnAccessManager[] = 
+    {
+        { Py_tp_new, _new_FdnAccessManager },
+        { Py_tp_methods, _methods_FdnAccessManager },
+        { Py_tp_getset, _getset_FdnAccessManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_FdnAccessManager =
+    {
+        "_winsdk_Windows_Networking_NetworkOperators.FdnAccessManager",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FdnAccessManager
     };
 
     // ----- HotspotAuthenticationContext class --------------------
@@ -10668,6 +10730,176 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         _type_slots_NetworkOperatorDataUsageTriggerDetails
     };
 
+    // ----- NetworkOperatorNotificationEventDetails class --------------------
+    constexpr const char* const type_name_NetworkOperatorNotificationEventDetails = "NetworkOperatorNotificationEventDetails";
+
+    static PyObject* _new_NetworkOperatorNotificationEventDetails(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_NetworkOperatorNotificationEventDetails);
+        return nullptr;
+    }
+
+    static void _dealloc_NetworkOperatorNotificationEventDetails(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* NetworkOperatorNotificationEventDetails_AuthorizeTethering(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<bool>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                self->obj.AuthorizeTethering(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* NetworkOperatorNotificationEventDetails_get_EncodingType(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.EncodingType());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* NetworkOperatorNotificationEventDetails_get_Message(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Message());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* NetworkOperatorNotificationEventDetails_get_NetworkAccountId(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.NetworkAccountId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* NetworkOperatorNotificationEventDetails_get_NotificationType(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.NotificationType());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* NetworkOperatorNotificationEventDetails_get_RuleId(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.RuleId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* NetworkOperatorNotificationEventDetails_get_SmsMessage(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SmsMessage());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_NetworkOperatorNotificationEventDetails(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_NetworkOperatorNotificationEventDetails[] = {
+        { "authorize_tethering", reinterpret_cast<PyCFunction>(NetworkOperatorNotificationEventDetails_AuthorizeTethering), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_NetworkOperatorNotificationEventDetails), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_NetworkOperatorNotificationEventDetails[] = {
+        { "encoding_type", reinterpret_cast<getter>(NetworkOperatorNotificationEventDetails_get_EncodingType), nullptr, nullptr, nullptr },
+        { "message", reinterpret_cast<getter>(NetworkOperatorNotificationEventDetails_get_Message), nullptr, nullptr, nullptr },
+        { "network_account_id", reinterpret_cast<getter>(NetworkOperatorNotificationEventDetails_get_NetworkAccountId), nullptr, nullptr, nullptr },
+        { "notification_type", reinterpret_cast<getter>(NetworkOperatorNotificationEventDetails_get_NotificationType), nullptr, nullptr, nullptr },
+        { "rule_id", reinterpret_cast<getter>(NetworkOperatorNotificationEventDetails_get_RuleId), nullptr, nullptr, nullptr },
+        { "sms_message", reinterpret_cast<getter>(NetworkOperatorNotificationEventDetails_get_SmsMessage), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_NetworkOperatorNotificationEventDetails[] = 
+    {
+        { Py_tp_new, _new_NetworkOperatorNotificationEventDetails },
+        { Py_tp_dealloc, _dealloc_NetworkOperatorNotificationEventDetails },
+        { Py_tp_methods, _methods_NetworkOperatorNotificationEventDetails },
+        { Py_tp_getset, _getset_NetworkOperatorNotificationEventDetails },
+        { },
+    };
+
+    static PyType_Spec type_spec_NetworkOperatorNotificationEventDetails =
+    {
+        "_winsdk_Windows_Networking_NetworkOperators.NetworkOperatorNotificationEventDetails",
+        sizeof(py::wrapper::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_NetworkOperatorNotificationEventDetails
+    };
+
     // ----- NetworkOperatorTetheringAccessPointConfiguration class --------------------
     constexpr const char* const type_name_NetworkOperatorTetheringAccessPointConfiguration = "NetworkOperatorTetheringAccessPointConfiguration";
 
@@ -12880,6 +13112,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         Py_VISIT(state->type_ESimServiceInfo);
         Py_VISIT(state->type_ESimUpdatedEventArgs);
         Py_VISIT(state->type_ESimWatcher);
+        Py_VISIT(state->type_FdnAccessManager);
         Py_VISIT(state->type_HotspotAuthenticationContext);
         Py_VISIT(state->type_HotspotAuthenticationEventDetails);
         Py_VISIT(state->type_HotspotCredentialsAuthenticationResult);
@@ -12934,6 +13167,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         Py_VISIT(state->type_MobileBroadbandUiccAppRecordDetailsResult);
         Py_VISIT(state->type_MobileBroadbandUiccAppsResult);
         Py_VISIT(state->type_NetworkOperatorDataUsageTriggerDetails);
+        Py_VISIT(state->type_NetworkOperatorNotificationEventDetails);
         Py_VISIT(state->type_NetworkOperatorTetheringAccessPointConfiguration);
         Py_VISIT(state->type_NetworkOperatorTetheringClient);
         Py_VISIT(state->type_NetworkOperatorTetheringManager);
@@ -13007,6 +13241,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         Py_CLEAR(state->type_ESimServiceInfo);
         Py_CLEAR(state->type_ESimUpdatedEventArgs);
         Py_CLEAR(state->type_ESimWatcher);
+        Py_CLEAR(state->type_FdnAccessManager);
         Py_CLEAR(state->type_HotspotAuthenticationContext);
         Py_CLEAR(state->type_HotspotAuthenticationEventDetails);
         Py_CLEAR(state->type_HotspotCredentialsAuthenticationResult);
@@ -13061,6 +13296,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         Py_CLEAR(state->type_MobileBroadbandUiccAppRecordDetailsResult);
         Py_CLEAR(state->type_MobileBroadbandUiccAppsResult);
         Py_CLEAR(state->type_NetworkOperatorDataUsageTriggerDetails);
+        Py_CLEAR(state->type_NetworkOperatorNotificationEventDetails);
         Py_CLEAR(state->type_NetworkOperatorTetheringAccessPointConfiguration);
         Py_CLEAR(state->type_NetworkOperatorTetheringClient);
         Py_CLEAR(state->type_NetworkOperatorTetheringManager);
@@ -13301,6 +13537,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Networking_NetworkOperators(void) noexcept
     }
 
     Py_INCREF(state->type_ESimWatcher);
+
+    state->type_FdnAccessManager = py::register_python_type(module.get(), type_name_FdnAccessManager, &type_spec_FdnAccessManager, nullptr);
+    if (!state->type_FdnAccessManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FdnAccessManager);
 
     state->type_HotspotAuthenticationContext = py::register_python_type(module.get(), type_name_HotspotAuthenticationContext, &type_spec_HotspotAuthenticationContext, bases.get());
     if (!state->type_HotspotAuthenticationContext)
@@ -13733,6 +13977,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Networking_NetworkOperators(void) noexcept
     }
 
     Py_INCREF(state->type_NetworkOperatorDataUsageTriggerDetails);
+
+    state->type_NetworkOperatorNotificationEventDetails = py::register_python_type(module.get(), type_name_NetworkOperatorNotificationEventDetails, &type_spec_NetworkOperatorNotificationEventDetails, bases.get());
+    if (!state->type_NetworkOperatorNotificationEventDetails)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_NetworkOperatorNotificationEventDetails);
 
     state->type_NetworkOperatorTetheringAccessPointConfiguration = py::register_python_type(module.get(), type_name_NetworkOperatorTetheringAccessPointConfiguration, &type_spec_NetworkOperatorTetheringAccessPointConfiguration, bases.get());
     if (!state->type_NetworkOperatorTetheringAccessPointConfiguration)
@@ -14917,6 +15169,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Networking::NetworkOperators::ESimW
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Networking::NetworkOperators::ESimWatcher is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Networking::NetworkOperators::FdnAccessManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Networking::NetworkOperators;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Networking::NetworkOperators");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FdnAccessManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Networking::NetworkOperators::FdnAccessManager is not registered");
         return nullptr;
     }
 
@@ -16159,6 +16434,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Networking::NetworkOperators::Netwo
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Networking::NetworkOperators::NetworkOperatorDataUsageTriggerDetails is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Networking::NetworkOperators;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Networking::NetworkOperators");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_NetworkOperatorNotificationEventDetails;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails is not registered");
         return nullptr;
     }
 

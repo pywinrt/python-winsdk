@@ -46,18 +46,30 @@ namespace py::cpp::Windows::Management::Deployment
         PyObject* type_PackageStubPreference;
         PyObject* type_PackageTypes;
         PyObject* type_RemovalOptions;
+        PyObject* type_SharedPackageContainerCreationCollisionOptions;
+        PyObject* type_SharedPackageContainerOperationStatus;
         PyObject* type_StubPackageOption;
         PyTypeObject* type_AddPackageOptions;
         PyTypeObject* type_AppInstallerManager;
         PyTypeObject* type_AutoUpdateSettingsOptions;
+        PyTypeObject* type_CreateSharedPackageContainerOptions;
+        PyTypeObject* type_CreateSharedPackageContainerResult;
+        PyTypeObject* type_DeleteSharedPackageContainerOptions;
+        PyTypeObject* type_DeleteSharedPackageContainerResult;
         PyTypeObject* type_DeploymentResult;
+        PyTypeObject* type_FindSharedPackageContainerOptions;
         PyTypeObject* type_PackageAllUserProvisioningOptions;
         PyTypeObject* type_PackageManager;
         PyTypeObject* type_PackageManagerDebugSettings;
         PyTypeObject* type_PackageUserInformation;
         PyTypeObject* type_PackageVolume;
         PyTypeObject* type_RegisterPackageOptions;
+        PyTypeObject* type_SharedPackageContainer;
+        PyTypeObject* type_SharedPackageContainerManager;
+        PyTypeObject* type_SharedPackageContainerMember;
         PyTypeObject* type_StagePackageOptions;
+        PyTypeObject* type_UpdateSharedPackageContainerOptions;
+        PyTypeObject* type_UpdateSharedPackageContainerResult;
         PyTypeObject* type_DeploymentProgress;
     };
 
@@ -272,6 +284,54 @@ namespace py::cpp::Windows::Management::Deployment
 
         state->type_RemovalOptions = type;
         Py_INCREF(state->type_RemovalOptions);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_SharedPackageContainerCreationCollisionOptions(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SharedPackageContainerCreationCollisionOptions)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SharedPackageContainerCreationCollisionOptions = type;
+        Py_INCREF(state->type_SharedPackageContainerCreationCollisionOptions);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_SharedPackageContainerOperationStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SharedPackageContainerOperationStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SharedPackageContainerOperationStatus = type;
+        Py_INCREF(state->type_SharedPackageContainerOperationStatus);
 
 
         Py_RETURN_NONE;
@@ -1582,6 +1642,512 @@ namespace py::cpp::Windows::Management::Deployment
         _type_slots_AutoUpdateSettingsOptions
     };
 
+    // ----- CreateSharedPackageContainerOptions class --------------------
+    constexpr const char* const type_name_CreateSharedPackageContainerOptions = "CreateSharedPackageContainerOptions";
+
+    static PyObject* _new_CreateSharedPackageContainerOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Management::Deployment::CreateSharedPackageContainerOptions instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_CreateSharedPackageContainerOptions(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerOptions* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* CreateSharedPackageContainerOptions_get_ForceAppShutdown(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ForceAppShutdown());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CreateSharedPackageContainerOptions_put_ForceAppShutdown(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.ForceAppShutdown(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CreateSharedPackageContainerOptions_get_CreateCollisionOption(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CreateCollisionOption());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int CreateSharedPackageContainerOptions_put_CreateCollisionOption(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Management::Deployment::SharedPackageContainerCreationCollisionOptions>(arg);
+
+            self->obj.CreateCollisionOption(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* CreateSharedPackageContainerOptions_get_Members(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Members());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_CreateSharedPackageContainerOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::CreateSharedPackageContainerOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CreateSharedPackageContainerOptions[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_CreateSharedPackageContainerOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CreateSharedPackageContainerOptions[] = {
+        { "force_app_shutdown", reinterpret_cast<getter>(CreateSharedPackageContainerOptions_get_ForceAppShutdown), reinterpret_cast<setter>(CreateSharedPackageContainerOptions_put_ForceAppShutdown), nullptr, nullptr },
+        { "create_collision_option", reinterpret_cast<getter>(CreateSharedPackageContainerOptions_get_CreateCollisionOption), reinterpret_cast<setter>(CreateSharedPackageContainerOptions_put_CreateCollisionOption), nullptr, nullptr },
+        { "members", reinterpret_cast<getter>(CreateSharedPackageContainerOptions_get_Members), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_CreateSharedPackageContainerOptions[] = 
+    {
+        { Py_tp_new, _new_CreateSharedPackageContainerOptions },
+        { Py_tp_dealloc, _dealloc_CreateSharedPackageContainerOptions },
+        { Py_tp_methods, _methods_CreateSharedPackageContainerOptions },
+        { Py_tp_getset, _getset_CreateSharedPackageContainerOptions },
+        { },
+    };
+
+    static PyType_Spec type_spec_CreateSharedPackageContainerOptions =
+    {
+        "_winsdk_Windows_Management_Deployment.CreateSharedPackageContainerOptions",
+        sizeof(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CreateSharedPackageContainerOptions
+    };
+
+    // ----- CreateSharedPackageContainerResult class --------------------
+    constexpr const char* const type_name_CreateSharedPackageContainerResult = "CreateSharedPackageContainerResult";
+
+    static PyObject* _new_CreateSharedPackageContainerResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_CreateSharedPackageContainerResult);
+        return nullptr;
+    }
+
+    static void _dealloc_CreateSharedPackageContainerResult(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* CreateSharedPackageContainerResult_get_Container(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Container());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CreateSharedPackageContainerResult_get_ExtendedError(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ExtendedError());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* CreateSharedPackageContainerResult_get_Status(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_CreateSharedPackageContainerResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::CreateSharedPackageContainerResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_CreateSharedPackageContainerResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_CreateSharedPackageContainerResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_CreateSharedPackageContainerResult[] = {
+        { "container", reinterpret_cast<getter>(CreateSharedPackageContainerResult_get_Container), nullptr, nullptr, nullptr },
+        { "extended_error", reinterpret_cast<getter>(CreateSharedPackageContainerResult_get_ExtendedError), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(CreateSharedPackageContainerResult_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_CreateSharedPackageContainerResult[] = 
+    {
+        { Py_tp_new, _new_CreateSharedPackageContainerResult },
+        { Py_tp_dealloc, _dealloc_CreateSharedPackageContainerResult },
+        { Py_tp_methods, _methods_CreateSharedPackageContainerResult },
+        { Py_tp_getset, _getset_CreateSharedPackageContainerResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_CreateSharedPackageContainerResult =
+    {
+        "_winsdk_Windows_Management_Deployment.CreateSharedPackageContainerResult",
+        sizeof(py::wrapper::Windows::Management::Deployment::CreateSharedPackageContainerResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_CreateSharedPackageContainerResult
+    };
+
+    // ----- DeleteSharedPackageContainerOptions class --------------------
+    constexpr const char* const type_name_DeleteSharedPackageContainerOptions = "DeleteSharedPackageContainerOptions";
+
+    static PyObject* _new_DeleteSharedPackageContainerOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Management::Deployment::DeleteSharedPackageContainerOptions instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_DeleteSharedPackageContainerOptions(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerOptions* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* DeleteSharedPackageContainerOptions_get_ForceAppShutdown(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ForceAppShutdown());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int DeleteSharedPackageContainerOptions_put_ForceAppShutdown(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.ForceAppShutdown(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* DeleteSharedPackageContainerOptions_get_AllUsers(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AllUsers());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int DeleteSharedPackageContainerOptions_put_AllUsers(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.AllUsers(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_DeleteSharedPackageContainerOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_DeleteSharedPackageContainerOptions[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_DeleteSharedPackageContainerOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_DeleteSharedPackageContainerOptions[] = {
+        { "force_app_shutdown", reinterpret_cast<getter>(DeleteSharedPackageContainerOptions_get_ForceAppShutdown), reinterpret_cast<setter>(DeleteSharedPackageContainerOptions_put_ForceAppShutdown), nullptr, nullptr },
+        { "all_users", reinterpret_cast<getter>(DeleteSharedPackageContainerOptions_get_AllUsers), reinterpret_cast<setter>(DeleteSharedPackageContainerOptions_put_AllUsers), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_DeleteSharedPackageContainerOptions[] = 
+    {
+        { Py_tp_new, _new_DeleteSharedPackageContainerOptions },
+        { Py_tp_dealloc, _dealloc_DeleteSharedPackageContainerOptions },
+        { Py_tp_methods, _methods_DeleteSharedPackageContainerOptions },
+        { Py_tp_getset, _getset_DeleteSharedPackageContainerOptions },
+        { },
+    };
+
+    static PyType_Spec type_spec_DeleteSharedPackageContainerOptions =
+    {
+        "_winsdk_Windows_Management_Deployment.DeleteSharedPackageContainerOptions",
+        sizeof(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_DeleteSharedPackageContainerOptions
+    };
+
+    // ----- DeleteSharedPackageContainerResult class --------------------
+    constexpr const char* const type_name_DeleteSharedPackageContainerResult = "DeleteSharedPackageContainerResult";
+
+    static PyObject* _new_DeleteSharedPackageContainerResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_DeleteSharedPackageContainerResult);
+        return nullptr;
+    }
+
+    static void _dealloc_DeleteSharedPackageContainerResult(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* DeleteSharedPackageContainerResult_get_ExtendedError(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ExtendedError());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* DeleteSharedPackageContainerResult_get_Status(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_DeleteSharedPackageContainerResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_DeleteSharedPackageContainerResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_DeleteSharedPackageContainerResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_DeleteSharedPackageContainerResult[] = {
+        { "extended_error", reinterpret_cast<getter>(DeleteSharedPackageContainerResult_get_ExtendedError), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(DeleteSharedPackageContainerResult_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_DeleteSharedPackageContainerResult[] = 
+    {
+        { Py_tp_new, _new_DeleteSharedPackageContainerResult },
+        { Py_tp_dealloc, _dealloc_DeleteSharedPackageContainerResult },
+        { Py_tp_methods, _methods_DeleteSharedPackageContainerResult },
+        { Py_tp_getset, _getset_DeleteSharedPackageContainerResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_DeleteSharedPackageContainerResult =
+    {
+        "_winsdk_Windows_Management_Deployment.DeleteSharedPackageContainerResult",
+        sizeof(py::wrapper::Windows::Management::Deployment::DeleteSharedPackageContainerResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_DeleteSharedPackageContainerResult
+    };
+
     // ----- DeploymentResult class --------------------
     constexpr const char* const type_name_DeploymentResult = "DeploymentResult";
 
@@ -1694,6 +2260,159 @@ namespace py::cpp::Windows::Management::Deployment
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_DeploymentResult
+    };
+
+    // ----- FindSharedPackageContainerOptions class --------------------
+    constexpr const char* const type_name_FindSharedPackageContainerOptions = "FindSharedPackageContainerOptions";
+
+    static PyObject* _new_FindSharedPackageContainerOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Management::Deployment::FindSharedPackageContainerOptions instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_FindSharedPackageContainerOptions(py::wrapper::Windows::Management::Deployment::FindSharedPackageContainerOptions* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* FindSharedPackageContainerOptions_get_PackageFamilyName(py::wrapper::Windows::Management::Deployment::FindSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PackageFamilyName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FindSharedPackageContainerOptions_put_PackageFamilyName(py::wrapper::Windows::Management::Deployment::FindSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.PackageFamilyName(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* FindSharedPackageContainerOptions_get_Name(py::wrapper::Windows::Management::Deployment::FindSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Name());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FindSharedPackageContainerOptions_put_Name(py::wrapper::Windows::Management::Deployment::FindSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Name(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_FindSharedPackageContainerOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::FindSharedPackageContainerOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FindSharedPackageContainerOptions[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_FindSharedPackageContainerOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FindSharedPackageContainerOptions[] = {
+        { "package_family_name", reinterpret_cast<getter>(FindSharedPackageContainerOptions_get_PackageFamilyName), reinterpret_cast<setter>(FindSharedPackageContainerOptions_put_PackageFamilyName), nullptr, nullptr },
+        { "name", reinterpret_cast<getter>(FindSharedPackageContainerOptions_get_Name), reinterpret_cast<setter>(FindSharedPackageContainerOptions_put_Name), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_FindSharedPackageContainerOptions[] = 
+    {
+        { Py_tp_new, _new_FindSharedPackageContainerOptions },
+        { Py_tp_dealloc, _dealloc_FindSharedPackageContainerOptions },
+        { Py_tp_methods, _methods_FindSharedPackageContainerOptions },
+        { Py_tp_getset, _getset_FindSharedPackageContainerOptions },
+        { },
+    };
+
+    static PyType_Spec type_spec_FindSharedPackageContainerOptions =
+    {
+        "_winsdk_Windows_Management_Deployment.FindSharedPackageContainerOptions",
+        sizeof(py::wrapper::Windows::Management::Deployment::FindSharedPackageContainerOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FindSharedPackageContainerOptions
     };
 
     // ----- PackageAllUserProvisioningOptions class --------------------
@@ -4462,6 +5181,514 @@ namespace py::cpp::Windows::Management::Deployment
         _type_slots_RegisterPackageOptions
     };
 
+    // ----- SharedPackageContainer class --------------------
+    constexpr const char* const type_name_SharedPackageContainer = "SharedPackageContainer";
+
+    static PyObject* _new_SharedPackageContainer(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SharedPackageContainer);
+        return nullptr;
+    }
+
+    static void _dealloc_SharedPackageContainer(py::wrapper::Windows::Management::Deployment::SharedPackageContainer* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SharedPackageContainer_GetMembers(py::wrapper::Windows::Management::Deployment::SharedPackageContainer* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetMembers());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainer_RemovePackageFamily(py::wrapper::Windows::Management::Deployment::SharedPackageContainer* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerOptions>(args, 1);
+
+                return py::convert(self->obj.RemovePackageFamily(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainer_ResetData(py::wrapper::Windows::Management::Deployment::SharedPackageContainer* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.ResetData());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainer_get_Id(py::wrapper::Windows::Management::Deployment::SharedPackageContainer* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainer_get_Name(py::wrapper::Windows::Management::Deployment::SharedPackageContainer* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Name());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SharedPackageContainer(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::SharedPackageContainer>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SharedPackageContainer[] = {
+        { "get_members", reinterpret_cast<PyCFunction>(SharedPackageContainer_GetMembers), METH_VARARGS, nullptr },
+        { "remove_package_family", reinterpret_cast<PyCFunction>(SharedPackageContainer_RemovePackageFamily), METH_VARARGS, nullptr },
+        { "reset_data", reinterpret_cast<PyCFunction>(SharedPackageContainer_ResetData), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SharedPackageContainer), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SharedPackageContainer[] = {
+        { "id", reinterpret_cast<getter>(SharedPackageContainer_get_Id), nullptr, nullptr, nullptr },
+        { "name", reinterpret_cast<getter>(SharedPackageContainer_get_Name), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SharedPackageContainer[] = 
+    {
+        { Py_tp_new, _new_SharedPackageContainer },
+        { Py_tp_dealloc, _dealloc_SharedPackageContainer },
+        { Py_tp_methods, _methods_SharedPackageContainer },
+        { Py_tp_getset, _getset_SharedPackageContainer },
+        { },
+    };
+
+    static PyType_Spec type_spec_SharedPackageContainer =
+    {
+        "_winsdk_Windows_Management_Deployment.SharedPackageContainer",
+        sizeof(py::wrapper::Windows::Management::Deployment::SharedPackageContainer),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SharedPackageContainer
+    };
+
+    // ----- SharedPackageContainerManager class --------------------
+    constexpr const char* const type_name_SharedPackageContainerManager = "SharedPackageContainerManager";
+
+    static PyObject* _new_SharedPackageContainerManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SharedPackageContainerManager);
+        return nullptr;
+    }
+
+    static void _dealloc_SharedPackageContainerManager(py::wrapper::Windows::Management::Deployment::SharedPackageContainerManager* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SharedPackageContainerManager_CreateContainer(py::wrapper::Windows::Management::Deployment::SharedPackageContainerManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Management::Deployment::CreateSharedPackageContainerOptions>(args, 1);
+
+                return py::convert(self->obj.CreateContainer(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainerManager_DeleteContainer(py::wrapper::Windows::Management::Deployment::SharedPackageContainerManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerOptions>(args, 1);
+
+                return py::convert(self->obj.DeleteContainer(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainerManager_FindContainers(py::wrapper::Windows::Management::Deployment::SharedPackageContainerManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.FindContainers());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Management::Deployment::FindSharedPackageContainerOptions>(args, 0);
+
+                return py::convert(self->obj.FindContainers(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainerManager_GetContainer(py::wrapper::Windows::Management::Deployment::SharedPackageContainerManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(self->obj.GetContainer(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainerManager_GetDefault(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Management::Deployment::SharedPackageContainerManager::GetDefault());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainerManager_GetForProvisioning(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Management::Deployment::SharedPackageContainerManager::GetForProvisioning());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SharedPackageContainerManager_GetForUser(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Management::Deployment::SharedPackageContainerManager::GetForUser(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SharedPackageContainerManager(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::SharedPackageContainerManager>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SharedPackageContainerManager[] = {
+        { "create_container", reinterpret_cast<PyCFunction>(SharedPackageContainerManager_CreateContainer), METH_VARARGS, nullptr },
+        { "delete_container", reinterpret_cast<PyCFunction>(SharedPackageContainerManager_DeleteContainer), METH_VARARGS, nullptr },
+        { "find_containers", reinterpret_cast<PyCFunction>(SharedPackageContainerManager_FindContainers), METH_VARARGS, nullptr },
+        { "get_container", reinterpret_cast<PyCFunction>(SharedPackageContainerManager_GetContainer), METH_VARARGS, nullptr },
+        { "get_default", reinterpret_cast<PyCFunction>(SharedPackageContainerManager_GetDefault), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_for_provisioning", reinterpret_cast<PyCFunction>(SharedPackageContainerManager_GetForProvisioning), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_for_user", reinterpret_cast<PyCFunction>(SharedPackageContainerManager_GetForUser), METH_VARARGS | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SharedPackageContainerManager), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SharedPackageContainerManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_SharedPackageContainerManager[] = 
+    {
+        { Py_tp_new, _new_SharedPackageContainerManager },
+        { Py_tp_dealloc, _dealloc_SharedPackageContainerManager },
+        { Py_tp_methods, _methods_SharedPackageContainerManager },
+        { Py_tp_getset, _getset_SharedPackageContainerManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_SharedPackageContainerManager =
+    {
+        "_winsdk_Windows_Management_Deployment.SharedPackageContainerManager",
+        sizeof(py::wrapper::Windows::Management::Deployment::SharedPackageContainerManager),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SharedPackageContainerManager
+    };
+
+    // ----- SharedPackageContainerMember class --------------------
+    constexpr const char* const type_name_SharedPackageContainerMember = "SharedPackageContainerMember";
+
+    static PyObject* _new_SharedPackageContainerMember(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                winrt::Windows::Management::Deployment::SharedPackageContainerMember instance{ param0 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_SharedPackageContainerMember(py::wrapper::Windows::Management::Deployment::SharedPackageContainerMember* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SharedPackageContainerMember_get_PackageFamilyName(py::wrapper::Windows::Management::Deployment::SharedPackageContainerMember* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PackageFamilyName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SharedPackageContainerMember(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::SharedPackageContainerMember>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SharedPackageContainerMember[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SharedPackageContainerMember), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SharedPackageContainerMember[] = {
+        { "package_family_name", reinterpret_cast<getter>(SharedPackageContainerMember_get_PackageFamilyName), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SharedPackageContainerMember[] = 
+    {
+        { Py_tp_new, _new_SharedPackageContainerMember },
+        { Py_tp_dealloc, _dealloc_SharedPackageContainerMember },
+        { Py_tp_methods, _methods_SharedPackageContainerMember },
+        { Py_tp_getset, _getset_SharedPackageContainerMember },
+        { },
+    };
+
+    static PyType_Spec type_spec_SharedPackageContainerMember =
+    {
+        "_winsdk_Windows_Management_Deployment.SharedPackageContainerMember",
+        sizeof(py::wrapper::Windows::Management::Deployment::SharedPackageContainerMember),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SharedPackageContainerMember
+    };
+
     // ----- StagePackageOptions class --------------------
     constexpr const char* const type_name_StagePackageOptions = "StagePackageOptions";
 
@@ -4923,6 +6150,245 @@ namespace py::cpp::Windows::Management::Deployment
         _type_slots_StagePackageOptions
     };
 
+    // ----- UpdateSharedPackageContainerOptions class --------------------
+    constexpr const char* const type_name_UpdateSharedPackageContainerOptions = "UpdateSharedPackageContainerOptions";
+
+    static PyObject* _new_UpdateSharedPackageContainerOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Management::Deployment::UpdateSharedPackageContainerOptions instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_UpdateSharedPackageContainerOptions(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerOptions* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* UpdateSharedPackageContainerOptions_get_RequirePackagesPresent(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.RequirePackagesPresent());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int UpdateSharedPackageContainerOptions_put_RequirePackagesPresent(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.RequirePackagesPresent(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* UpdateSharedPackageContainerOptions_get_ForceAppShutdown(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ForceAppShutdown());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int UpdateSharedPackageContainerOptions_put_ForceAppShutdown(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.ForceAppShutdown(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_UpdateSharedPackageContainerOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_UpdateSharedPackageContainerOptions[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_UpdateSharedPackageContainerOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_UpdateSharedPackageContainerOptions[] = {
+        { "require_packages_present", reinterpret_cast<getter>(UpdateSharedPackageContainerOptions_get_RequirePackagesPresent), reinterpret_cast<setter>(UpdateSharedPackageContainerOptions_put_RequirePackagesPresent), nullptr, nullptr },
+        { "force_app_shutdown", reinterpret_cast<getter>(UpdateSharedPackageContainerOptions_get_ForceAppShutdown), reinterpret_cast<setter>(UpdateSharedPackageContainerOptions_put_ForceAppShutdown), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_UpdateSharedPackageContainerOptions[] = 
+    {
+        { Py_tp_new, _new_UpdateSharedPackageContainerOptions },
+        { Py_tp_dealloc, _dealloc_UpdateSharedPackageContainerOptions },
+        { Py_tp_methods, _methods_UpdateSharedPackageContainerOptions },
+        { Py_tp_getset, _getset_UpdateSharedPackageContainerOptions },
+        { },
+    };
+
+    static PyType_Spec type_spec_UpdateSharedPackageContainerOptions =
+    {
+        "_winsdk_Windows_Management_Deployment.UpdateSharedPackageContainerOptions",
+        sizeof(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_UpdateSharedPackageContainerOptions
+    };
+
+    // ----- UpdateSharedPackageContainerResult class --------------------
+    constexpr const char* const type_name_UpdateSharedPackageContainerResult = "UpdateSharedPackageContainerResult";
+
+    static PyObject* _new_UpdateSharedPackageContainerResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_UpdateSharedPackageContainerResult);
+        return nullptr;
+    }
+
+    static void _dealloc_UpdateSharedPackageContainerResult(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* UpdateSharedPackageContainerResult_get_ExtendedError(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ExtendedError());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* UpdateSharedPackageContainerResult_get_Status(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_UpdateSharedPackageContainerResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_UpdateSharedPackageContainerResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_UpdateSharedPackageContainerResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_UpdateSharedPackageContainerResult[] = {
+        { "extended_error", reinterpret_cast<getter>(UpdateSharedPackageContainerResult_get_ExtendedError), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(UpdateSharedPackageContainerResult_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_UpdateSharedPackageContainerResult[] = 
+    {
+        { Py_tp_new, _new_UpdateSharedPackageContainerResult },
+        { Py_tp_dealloc, _dealloc_UpdateSharedPackageContainerResult },
+        { Py_tp_methods, _methods_UpdateSharedPackageContainerResult },
+        { Py_tp_getset, _getset_UpdateSharedPackageContainerResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_UpdateSharedPackageContainerResult =
+    {
+        "_winsdk_Windows_Management_Deployment.UpdateSharedPackageContainerResult",
+        sizeof(py::wrapper::Windows::Management::Deployment::UpdateSharedPackageContainerResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_UpdateSharedPackageContainerResult
+    };
+
     // ----- DeploymentProgress struct --------------------
     constexpr const char* const type_name_DeploymentProgress = "DeploymentProgress";
 
@@ -5089,6 +6555,8 @@ namespace py::cpp::Windows::Management::Deployment
         {"_register_PackageStubPreference", register_PackageStubPreference, METH_O, "registers type"},
         {"_register_PackageTypes", register_PackageTypes, METH_O, "registers type"},
         {"_register_RemovalOptions", register_RemovalOptions, METH_O, "registers type"},
+        {"_register_SharedPackageContainerCreationCollisionOptions", register_SharedPackageContainerCreationCollisionOptions, METH_O, "registers type"},
+        {"_register_SharedPackageContainerOperationStatus", register_SharedPackageContainerOperationStatus, METH_O, "registers type"},
         {"_register_StubPackageOption", register_StubPackageOption, METH_O, "registers type"},
         {}};
 
@@ -5111,18 +6579,30 @@ namespace py::cpp::Windows::Management::Deployment
         Py_VISIT(state->type_PackageStubPreference);
         Py_VISIT(state->type_PackageTypes);
         Py_VISIT(state->type_RemovalOptions);
+        Py_VISIT(state->type_SharedPackageContainerCreationCollisionOptions);
+        Py_VISIT(state->type_SharedPackageContainerOperationStatus);
         Py_VISIT(state->type_StubPackageOption);
         Py_VISIT(state->type_AddPackageOptions);
         Py_VISIT(state->type_AppInstallerManager);
         Py_VISIT(state->type_AutoUpdateSettingsOptions);
+        Py_VISIT(state->type_CreateSharedPackageContainerOptions);
+        Py_VISIT(state->type_CreateSharedPackageContainerResult);
+        Py_VISIT(state->type_DeleteSharedPackageContainerOptions);
+        Py_VISIT(state->type_DeleteSharedPackageContainerResult);
         Py_VISIT(state->type_DeploymentResult);
+        Py_VISIT(state->type_FindSharedPackageContainerOptions);
         Py_VISIT(state->type_PackageAllUserProvisioningOptions);
         Py_VISIT(state->type_PackageManager);
         Py_VISIT(state->type_PackageManagerDebugSettings);
         Py_VISIT(state->type_PackageUserInformation);
         Py_VISIT(state->type_PackageVolume);
         Py_VISIT(state->type_RegisterPackageOptions);
+        Py_VISIT(state->type_SharedPackageContainer);
+        Py_VISIT(state->type_SharedPackageContainerManager);
+        Py_VISIT(state->type_SharedPackageContainerMember);
         Py_VISIT(state->type_StagePackageOptions);
+        Py_VISIT(state->type_UpdateSharedPackageContainerOptions);
+        Py_VISIT(state->type_UpdateSharedPackageContainerResult);
         Py_VISIT(state->type_DeploymentProgress);
 
         return 0;
@@ -5146,18 +6626,30 @@ namespace py::cpp::Windows::Management::Deployment
         Py_CLEAR(state->type_PackageStubPreference);
         Py_CLEAR(state->type_PackageTypes);
         Py_CLEAR(state->type_RemovalOptions);
+        Py_CLEAR(state->type_SharedPackageContainerCreationCollisionOptions);
+        Py_CLEAR(state->type_SharedPackageContainerOperationStatus);
         Py_CLEAR(state->type_StubPackageOption);
         Py_CLEAR(state->type_AddPackageOptions);
         Py_CLEAR(state->type_AppInstallerManager);
         Py_CLEAR(state->type_AutoUpdateSettingsOptions);
+        Py_CLEAR(state->type_CreateSharedPackageContainerOptions);
+        Py_CLEAR(state->type_CreateSharedPackageContainerResult);
+        Py_CLEAR(state->type_DeleteSharedPackageContainerOptions);
+        Py_CLEAR(state->type_DeleteSharedPackageContainerResult);
         Py_CLEAR(state->type_DeploymentResult);
+        Py_CLEAR(state->type_FindSharedPackageContainerOptions);
         Py_CLEAR(state->type_PackageAllUserProvisioningOptions);
         Py_CLEAR(state->type_PackageManager);
         Py_CLEAR(state->type_PackageManagerDebugSettings);
         Py_CLEAR(state->type_PackageUserInformation);
         Py_CLEAR(state->type_PackageVolume);
         Py_CLEAR(state->type_RegisterPackageOptions);
+        Py_CLEAR(state->type_SharedPackageContainer);
+        Py_CLEAR(state->type_SharedPackageContainerManager);
+        Py_CLEAR(state->type_SharedPackageContainerMember);
         Py_CLEAR(state->type_StagePackageOptions);
+        Py_CLEAR(state->type_UpdateSharedPackageContainerOptions);
+        Py_CLEAR(state->type_UpdateSharedPackageContainerResult);
         Py_CLEAR(state->type_DeploymentProgress);
 
         return 0;
@@ -5291,6 +6783,38 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Management_Deployment(void) noexcept
 
     Py_INCREF(state->type_AutoUpdateSettingsOptions);
 
+    state->type_CreateSharedPackageContainerOptions = py::register_python_type(module.get(), type_name_CreateSharedPackageContainerOptions, &type_spec_CreateSharedPackageContainerOptions, bases.get());
+    if (!state->type_CreateSharedPackageContainerOptions)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CreateSharedPackageContainerOptions);
+
+    state->type_CreateSharedPackageContainerResult = py::register_python_type(module.get(), type_name_CreateSharedPackageContainerResult, &type_spec_CreateSharedPackageContainerResult, bases.get());
+    if (!state->type_CreateSharedPackageContainerResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_CreateSharedPackageContainerResult);
+
+    state->type_DeleteSharedPackageContainerOptions = py::register_python_type(module.get(), type_name_DeleteSharedPackageContainerOptions, &type_spec_DeleteSharedPackageContainerOptions, bases.get());
+    if (!state->type_DeleteSharedPackageContainerOptions)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_DeleteSharedPackageContainerOptions);
+
+    state->type_DeleteSharedPackageContainerResult = py::register_python_type(module.get(), type_name_DeleteSharedPackageContainerResult, &type_spec_DeleteSharedPackageContainerResult, bases.get());
+    if (!state->type_DeleteSharedPackageContainerResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_DeleteSharedPackageContainerResult);
+
     state->type_DeploymentResult = py::register_python_type(module.get(), type_name_DeploymentResult, &type_spec_DeploymentResult, bases.get());
     if (!state->type_DeploymentResult)
     {
@@ -5298,6 +6822,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Management_Deployment(void) noexcept
     }
 
     Py_INCREF(state->type_DeploymentResult);
+
+    state->type_FindSharedPackageContainerOptions = py::register_python_type(module.get(), type_name_FindSharedPackageContainerOptions, &type_spec_FindSharedPackageContainerOptions, bases.get());
+    if (!state->type_FindSharedPackageContainerOptions)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FindSharedPackageContainerOptions);
 
     state->type_PackageAllUserProvisioningOptions = py::register_python_type(module.get(), type_name_PackageAllUserProvisioningOptions, &type_spec_PackageAllUserProvisioningOptions, bases.get());
     if (!state->type_PackageAllUserProvisioningOptions)
@@ -5347,6 +6879,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Management_Deployment(void) noexcept
 
     Py_INCREF(state->type_RegisterPackageOptions);
 
+    state->type_SharedPackageContainer = py::register_python_type(module.get(), type_name_SharedPackageContainer, &type_spec_SharedPackageContainer, bases.get());
+    if (!state->type_SharedPackageContainer)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SharedPackageContainer);
+
+    state->type_SharedPackageContainerManager = py::register_python_type(module.get(), type_name_SharedPackageContainerManager, &type_spec_SharedPackageContainerManager, bases.get());
+    if (!state->type_SharedPackageContainerManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SharedPackageContainerManager);
+
+    state->type_SharedPackageContainerMember = py::register_python_type(module.get(), type_name_SharedPackageContainerMember, &type_spec_SharedPackageContainerMember, bases.get());
+    if (!state->type_SharedPackageContainerMember)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SharedPackageContainerMember);
+
     state->type_StagePackageOptions = py::register_python_type(module.get(), type_name_StagePackageOptions, &type_spec_StagePackageOptions, bases.get());
     if (!state->type_StagePackageOptions)
     {
@@ -5354,6 +6910,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Management_Deployment(void) noexcept
     }
 
     Py_INCREF(state->type_StagePackageOptions);
+
+    state->type_UpdateSharedPackageContainerOptions = py::register_python_type(module.get(), type_name_UpdateSharedPackageContainerOptions, &type_spec_UpdateSharedPackageContainerOptions, bases.get());
+    if (!state->type_UpdateSharedPackageContainerOptions)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_UpdateSharedPackageContainerOptions);
+
+    state->type_UpdateSharedPackageContainerResult = py::register_python_type(module.get(), type_name_UpdateSharedPackageContainerResult, &type_spec_UpdateSharedPackageContainerResult, bases.get());
+    if (!state->type_UpdateSharedPackageContainerResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_UpdateSharedPackageContainerResult);
 
     state->type_DeploymentProgress = py::register_python_type(module.get(), type_name_DeploymentProgress, &type_spec_DeploymentProgress, bases.get());
     if (!state->type_DeploymentProgress)
@@ -5574,6 +7146,52 @@ PyObject* py::py_type<winrt::Windows::Management::Deployment::RemovalOptions>::g
     return python_type;
 }
 
+PyObject* py::py_type<winrt::Windows::Management::Deployment::SharedPackageContainerCreationCollisionOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SharedPackageContainerCreationCollisionOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::SharedPackageContainerCreationCollisionOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Management::Deployment::SharedPackageContainerOperationStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SharedPackageContainerOperationStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::SharedPackageContainerOperationStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::Management::Deployment::StubPackageOption>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Management::Deployment;
 
@@ -5666,6 +7284,98 @@ PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::AutoUpdateS
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::CreateSharedPackageContainerOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CreateSharedPackageContainerOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::CreateSharedPackageContainerOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::CreateSharedPackageContainerResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_CreateSharedPackageContainerResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::CreateSharedPackageContainerResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DeleteSharedPackageContainerOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::DeleteSharedPackageContainerOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DeleteSharedPackageContainerResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::DeleteSharedPackageContainerResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::DeploymentResult>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Management::Deployment;
 
@@ -5683,6 +7393,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::DeploymentR
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::DeploymentResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::FindSharedPackageContainerOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FindSharedPackageContainerOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::FindSharedPackageContainerOptions is not registered");
         return nullptr;
     }
 
@@ -5827,6 +7560,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::RegisterPac
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::SharedPackageContainer>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SharedPackageContainer;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::SharedPackageContainer is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::SharedPackageContainerManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SharedPackageContainerManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::SharedPackageContainerManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::SharedPackageContainerMember>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SharedPackageContainerMember;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::SharedPackageContainerMember is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::StagePackageOptions>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Management::Deployment;
 
@@ -5844,6 +7646,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::StagePackag
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::StagePackageOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_UpdateSharedPackageContainerOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::UpdateSharedPackageContainerOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Deployment;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Deployment");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_UpdateSharedPackageContainerResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Deployment::UpdateSharedPackageContainerResult is not registered");
         return nullptr;
     }
 

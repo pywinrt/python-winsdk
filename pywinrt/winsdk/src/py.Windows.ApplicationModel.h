@@ -46,8 +46,11 @@ namespace py::wrapper::Windows::ApplicationModel
     using AppInfo = py::winrt_wrapper<winrt::Windows::ApplicationModel::AppInfo>;
     using AppInstallerInfo = py::winrt_wrapper<winrt::Windows::ApplicationModel::AppInstallerInfo>;
     using AppInstance = py::winrt_wrapper<winrt::Windows::ApplicationModel::AppInstance>;
+    using CameraApplicationManager = py::winrt_wrapper<winrt::Windows::ApplicationModel::CameraApplicationManager>;
     using DesignMode = py::winrt_wrapper<winrt::Windows::ApplicationModel::DesignMode>;
     using EnteredBackgroundEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs>;
+    using FullTrustProcessLaunchResult = py::winrt_wrapper<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>;
+    using FullTrustProcessLauncher = py::winrt_wrapper<winrt::Windows::ApplicationModel::FullTrustProcessLauncher>;
     using LeavingBackgroundEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs>;
     using LimitedAccessFeatureRequestResult = py::winrt_wrapper<winrt::Windows::ApplicationModel::LimitedAccessFeatureRequestResult>;
     using LimitedAccessFeatures = py::winrt_wrapper<winrt::Windows::ApplicationModel::LimitedAccessFeatures>;
@@ -97,6 +100,12 @@ namespace py
 
     template<>
     struct py_type<winrt::Windows::ApplicationModel::AppInstallerPolicySource>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::ApplicationModel::FullTrustLaunchResult>
     {
         static PyObject* get_python_type() noexcept;
     };
@@ -156,6 +165,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::CameraApplicationManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::ApplicationModel::DesignMode>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -163,6 +178,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::FullTrustProcessLauncher>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

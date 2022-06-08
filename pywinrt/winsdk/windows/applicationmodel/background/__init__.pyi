@@ -26,6 +26,12 @@ import winsdk.windows.storage.provider
 import winsdk.windows.system
 import winsdk.windows.ui.notifications
 
+class AlarmAccessStatus(enum.IntEnum):
+    UNSPECIFIED = 0
+    ALLOWED_WITH_WAKEUP_CAPABILITY = 1
+    ALLOWED_WITHOUT_WAKEUP_CAPABILITY = 2
+    DENIED = 3
+
 class ApplicationTriggerResult(enum.IntEnum):
     ALLOWED = 0
     CURRENTLY_RUNNING = 1
@@ -128,6 +134,30 @@ class ActivitySensorTrigger(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> ActivitySensorTrigger: ...
     def __init__(self, report_interval_in_milliseconds: _winrt.UInt32) -> None: ...
+
+class AlarmApplicationManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AlarmApplicationManager: ...
+    @staticmethod
+    def get_access_status() -> AlarmAccessStatus: ...
+    @staticmethod
+    def request_access_async() -> winsdk.windows.foundation.IAsyncOperation[AlarmAccessStatus]: ...
+
+class AppBroadcastTrigger(_winrt.Object):
+    provider_info: typing.Optional[AppBroadcastTriggerProviderInfo]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastTrigger: ...
+    def __init__(self, provider_key: str) -> None: ...
+
+class AppBroadcastTriggerProviderInfo(_winrt.Object):
+    video_key_frame_interval: winsdk.windows.foundation.TimeSpan
+    max_video_width: _winrt.UInt32
+    max_video_height: _winrt.UInt32
+    max_video_bitrate: _winrt.UInt32
+    logo_resource: str
+    display_name_resource: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> AppBroadcastTriggerProviderInfo: ...
 
 class ApplicationTrigger(_winrt.Object):
     @staticmethod

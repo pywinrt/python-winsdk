@@ -13,6 +13,13 @@ import winsdk.windows.foundation.collections
 import winsdk.windows.storage.streams
 import winsdk.windows.ui
 
+class WalletActionKind(enum.IntEnum):
+    OPEN_ITEM = 0
+    TRANSACTION = 1
+    MORE_TRANSACTIONS = 2
+    MESSAGE = 3
+    VERB = 4
+
 class WalletBarcodeSymbology(enum.IntEnum):
     INVALID = 0
     UPCA = 1

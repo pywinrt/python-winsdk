@@ -26,6 +26,8 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::DirectX::Direct3D11
 }
 WINRT_EXPORT namespace winrt::Windows::Graphics::Imaging
 {
+    enum class BitmapAlphaMode : int32_t;
+    enum class BitmapPixelFormat : int32_t;
     struct BitmapPropertySet;
     struct BitmapSize;
     struct SoftwareBitmap;
@@ -68,6 +70,10 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
     struct MediaRatio;
     struct VideoEncodingProperties;
 }
+WINRT_EXPORT namespace winrt::Windows::Security::Authentication::Web
+{
+    struct WebAuthenticationResult;
+}
 WINRT_EXPORT namespace winrt::Windows::Security::Credentials
 {
     struct PasswordCredential;
@@ -75,10 +81,20 @@ WINRT_EXPORT namespace winrt::Windows::Security::Credentials
 WINRT_EXPORT namespace winrt::Windows::Storage
 {
     struct IStorageFile;
+    struct StorageFile;
+    struct StorageFolder;
 }
 WINRT_EXPORT namespace winrt::Windows::Storage::Streams
 {
+    struct IBuffer;
     struct IRandomAccessStream;
+    struct IRandomAccessStreamReference;
+}
+WINRT_EXPORT namespace winrt::Windows::System
+{
+    struct User;
+    enum class VirtualKey : int32_t;
+    enum class VirtualKeyModifiers : uint32_t;
 }
 WINRT_EXPORT namespace winrt::Windows::UI::WindowManagement
 {
@@ -86,6 +102,150 @@ WINRT_EXPORT namespace winrt::Windows::UI::WindowManagement
 }
 WINRT_EXPORT namespace winrt::Windows::Media::Capture
 {
+    enum class AppBroadcastCameraCaptureState : int32_t
+    {
+        Stopped = 0,
+        Started = 1,
+        Failed = 2,
+    };
+    enum class AppBroadcastCameraOverlayLocation : int32_t
+    {
+        TopLeft = 0,
+        TopCenter = 1,
+        TopRight = 2,
+        MiddleLeft = 3,
+        MiddleCenter = 4,
+        MiddleRight = 5,
+        BottomLeft = 6,
+        BottomCenter = 7,
+        BottomRight = 8,
+    };
+    enum class AppBroadcastCameraOverlaySize : int32_t
+    {
+        Small = 0,
+        Medium = 1,
+        Large = 2,
+    };
+    enum class AppBroadcastCaptureTargetType : int32_t
+    {
+        AppView = 0,
+        EntireDisplay = 1,
+    };
+    enum class AppBroadcastExitBroadcastModeReason : int32_t
+    {
+        NormalExit = 0,
+        UserCanceled = 1,
+        AuthorizationFail = 2,
+        ForegroundAppActivated = 3,
+    };
+    enum class AppBroadcastMicrophoneCaptureState : int32_t
+    {
+        Stopped = 0,
+        Started = 1,
+        Failed = 2,
+    };
+    enum class AppBroadcastPlugInState : int32_t
+    {
+        Unknown = 0,
+        Initialized = 1,
+        MicrosoftSignInRequired = 2,
+        OAuthSignInRequired = 3,
+        ProviderSignInRequired = 4,
+        InBandwidthTest = 5,
+        ReadyToBroadcast = 6,
+    };
+    enum class AppBroadcastPreviewState : int32_t
+    {
+        Started = 0,
+        Stopped = 1,
+        Failed = 2,
+    };
+    enum class AppBroadcastSignInResult : int32_t
+    {
+        Success = 0,
+        AuthenticationFailed = 1,
+        Unauthorized = 2,
+        ServiceUnavailable = 3,
+        Unknown = 4,
+    };
+    enum class AppBroadcastSignInState : int32_t
+    {
+        NotSignedIn = 0,
+        MicrosoftSignInInProgress = 1,
+        MicrosoftSignInComplete = 2,
+        OAuthSignInInProgress = 3,
+        OAuthSignInComplete = 4,
+    };
+    enum class AppBroadcastStreamState : int32_t
+    {
+        Initializing = 0,
+        StreamReady = 1,
+        Started = 2,
+        Paused = 3,
+        Terminated = 4,
+    };
+    enum class AppBroadcastTerminationReason : int32_t
+    {
+        NormalTermination = 0,
+        LostConnectionToService = 1,
+        NoNetworkConnectivity = 2,
+        ServiceAbort = 3,
+        ServiceError = 4,
+        ServiceUnavailable = 5,
+        InternalError = 6,
+        UnsupportedFormat = 7,
+        BackgroundTaskTerminated = 8,
+        BackgroundTaskUnresponsive = 9,
+    };
+    enum class AppBroadcastVideoEncodingBitrateMode : int32_t
+    {
+        Custom = 0,
+        Auto = 1,
+    };
+    enum class AppBroadcastVideoEncodingResolutionMode : int32_t
+    {
+        Custom = 0,
+        Auto = 1,
+    };
+    enum class AppCaptureHistoricalBufferLengthUnit : int32_t
+    {
+        Megabytes = 0,
+        Seconds = 1,
+    };
+    enum class AppCaptureMetadataPriority : int32_t
+    {
+        Informational = 0,
+        Important = 1,
+    };
+    enum class AppCaptureMicrophoneCaptureState : int32_t
+    {
+        Stopped = 0,
+        Started = 1,
+        Failed = 2,
+    };
+    enum class AppCaptureRecordingState : int32_t
+    {
+        InProgress = 0,
+        Completed = 1,
+        Failed = 2,
+    };
+    enum class AppCaptureVideoEncodingBitrateMode : int32_t
+    {
+        Custom = 0,
+        High = 1,
+        Standard = 2,
+    };
+    enum class AppCaptureVideoEncodingFrameRateMode : int32_t
+    {
+        Standard = 0,
+        High = 1,
+    };
+    enum class AppCaptureVideoEncodingResolutionMode : int32_t
+    {
+        Custom = 0,
+        High = 1,
+        Standard = 2,
+    };
     enum class CameraCaptureUIMaxPhotoResolution : int32_t
     {
         HighestAvailable = 0,
@@ -118,6 +278,47 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     {
         Mp4 = 0,
         Wmv = 1,
+    };
+    enum class ForegroundActivationArgument : int32_t
+    {
+        SignInRequired = 0,
+        MoreSettings = 1,
+    };
+    enum class GameBarCommand : int32_t
+    {
+        OpenGameBar = 0,
+        RecordHistoricalBuffer = 1,
+        ToggleStartStopRecord = 2,
+        StartRecord = 3,
+        StopRecord = 4,
+        TakeScreenshot = 5,
+        StartBroadcast = 6,
+        StopBroadcast = 7,
+        PauseBroadcast = 8,
+        ResumeBroadcast = 9,
+        ToggleStartStopBroadcast = 10,
+        ToggleMicrophoneCapture = 11,
+        ToggleCameraCapture = 12,
+        ToggleRecordingIndicator = 13,
+    };
+    enum class GameBarCommandOrigin : int32_t
+    {
+        ShortcutKey = 0,
+        Cortana = 1,
+        AppCommand = 2,
+    };
+    enum class GameBarServicesDisplayMode : int32_t
+    {
+        Windowed = 0,
+        FullScreenExclusive = 1,
+    };
+    enum class GameBarTargetCapturePolicy : int32_t
+    {
+        EnabledBySystem = 0,
+        EnabledByUser = 1,
+        NotEnabled = 2,
+        ProhibitedBySystem = 3,
+        ProhibitedByPublisher = 4,
     };
     enum class KnownVideoProfile : int32_t
     {
@@ -209,18 +410,74 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     struct IAdvancedCapturedPhoto;
     struct IAdvancedCapturedPhoto2;
     struct IAdvancedPhotoCapture;
+    struct IAppBroadcastBackgroundService;
+    struct IAppBroadcastBackgroundService2;
+    struct IAppBroadcastBackgroundServiceSignInInfo;
+    struct IAppBroadcastBackgroundServiceSignInInfo2;
+    struct IAppBroadcastBackgroundServiceStreamInfo;
+    struct IAppBroadcastBackgroundServiceStreamInfo2;
+    struct IAppBroadcastCameraCaptureStateChangedEventArgs;
+    struct IAppBroadcastGlobalSettings;
+    struct IAppBroadcastHeartbeatRequestedEventArgs;
+    struct IAppBroadcastManagerStatics;
+    struct IAppBroadcastMicrophoneCaptureStateChangedEventArgs;
+    struct IAppBroadcastPlugIn;
+    struct IAppBroadcastPlugInManager;
+    struct IAppBroadcastPlugInManagerStatics;
+    struct IAppBroadcastPlugInStateChangedEventArgs;
+    struct IAppBroadcastPreview;
+    struct IAppBroadcastPreviewStateChangedEventArgs;
+    struct IAppBroadcastPreviewStreamReader;
+    struct IAppBroadcastPreviewStreamVideoFrame;
+    struct IAppBroadcastPreviewStreamVideoHeader;
+    struct IAppBroadcastProviderSettings;
+    struct IAppBroadcastServices;
+    struct IAppBroadcastSignInStateChangedEventArgs;
+    struct IAppBroadcastState;
+    struct IAppBroadcastStreamAudioFrame;
+    struct IAppBroadcastStreamAudioHeader;
+    struct IAppBroadcastStreamReader;
+    struct IAppBroadcastStreamStateChangedEventArgs;
+    struct IAppBroadcastStreamVideoFrame;
+    struct IAppBroadcastStreamVideoHeader;
+    struct IAppBroadcastTriggerDetails;
+    struct IAppBroadcastViewerCountChangedEventArgs;
     struct IAppCapture;
+    struct IAppCaptureAlternateShortcutKeys;
+    struct IAppCaptureAlternateShortcutKeys2;
+    struct IAppCaptureAlternateShortcutKeys3;
+    struct IAppCaptureDurationGeneratedEventArgs;
+    struct IAppCaptureFileGeneratedEventArgs;
+    struct IAppCaptureManagerStatics;
+    struct IAppCaptureMetadataWriter;
+    struct IAppCaptureMicrophoneCaptureStateChangedEventArgs;
+    struct IAppCaptureRecordOperation;
+    struct IAppCaptureRecordingStateChangedEventArgs;
+    struct IAppCaptureServices;
+    struct IAppCaptureSettings;
+    struct IAppCaptureSettings2;
+    struct IAppCaptureSettings3;
+    struct IAppCaptureSettings4;
+    struct IAppCaptureSettings5;
+    struct IAppCaptureState;
     struct IAppCaptureStatics;
     struct IAppCaptureStatics2;
     struct ICameraCaptureUI;
     struct ICameraCaptureUIPhotoCaptureSettings;
     struct ICameraCaptureUIVideoCaptureSettings;
+    struct ICameraOptionsUIStatics;
     struct ICapturedFrame;
     struct ICapturedFrame2;
     struct ICapturedFrameControlValues;
     struct ICapturedFrameControlValues2;
     struct ICapturedFrameWithSoftwareBitmap;
     struct ICapturedPhoto;
+    struct IGameBarServices;
+    struct IGameBarServicesCommandEventArgs;
+    struct IGameBarServicesManager;
+    struct IGameBarServicesManagerGameBarServicesCreatedEventArgs;
+    struct IGameBarServicesManagerStatics;
+    struct IGameBarServicesTargetInfo;
     struct ILowLagMediaRecording;
     struct ILowLagMediaRecording2;
     struct ILowLagMediaRecording3;
@@ -258,16 +515,64 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     struct IOptionalReferencePhotoCapturedEventArgs;
     struct IPhotoCapturedEventArgs;
     struct IPhotoConfirmationCapturedEventArgs;
+    struct IScreenCapture;
+    struct IScreenCaptureStatics;
+    struct ISourceSuspensionChangedEventArgs;
     struct IVideoStreamConfiguration;
     struct AdvancedCapturedPhoto;
     struct AdvancedPhotoCapture;
+    struct AppBroadcastBackgroundService;
+    struct AppBroadcastBackgroundServiceSignInInfo;
+    struct AppBroadcastBackgroundServiceStreamInfo;
+    struct AppBroadcastCameraCaptureStateChangedEventArgs;
+    struct AppBroadcastGlobalSettings;
+    struct AppBroadcastHeartbeatRequestedEventArgs;
+    struct AppBroadcastManager;
+    struct AppBroadcastMicrophoneCaptureStateChangedEventArgs;
+    struct AppBroadcastPlugIn;
+    struct AppBroadcastPlugInManager;
+    struct AppBroadcastPlugInStateChangedEventArgs;
+    struct AppBroadcastPreview;
+    struct AppBroadcastPreviewStateChangedEventArgs;
+    struct AppBroadcastPreviewStreamReader;
+    struct AppBroadcastPreviewStreamVideoFrame;
+    struct AppBroadcastPreviewStreamVideoHeader;
+    struct AppBroadcastProviderSettings;
+    struct AppBroadcastServices;
+    struct AppBroadcastSignInStateChangedEventArgs;
+    struct AppBroadcastState;
+    struct AppBroadcastStreamAudioFrame;
+    struct AppBroadcastStreamAudioHeader;
+    struct AppBroadcastStreamReader;
+    struct AppBroadcastStreamStateChangedEventArgs;
+    struct AppBroadcastStreamVideoFrame;
+    struct AppBroadcastStreamVideoHeader;
+    struct AppBroadcastTriggerDetails;
+    struct AppBroadcastViewerCountChangedEventArgs;
     struct AppCapture;
+    struct AppCaptureAlternateShortcutKeys;
+    struct AppCaptureDurationGeneratedEventArgs;
+    struct AppCaptureFileGeneratedEventArgs;
+    struct AppCaptureManager;
+    struct AppCaptureMetadataWriter;
+    struct AppCaptureMicrophoneCaptureStateChangedEventArgs;
+    struct AppCaptureRecordOperation;
+    struct AppCaptureRecordingStateChangedEventArgs;
+    struct AppCaptureServices;
+    struct AppCaptureSettings;
+    struct AppCaptureState;
     struct CameraCaptureUI;
     struct CameraCaptureUIPhotoCaptureSettings;
     struct CameraCaptureUIVideoCaptureSettings;
+    struct CameraOptionsUI;
     struct CapturedFrame;
     struct CapturedFrameControlValues;
     struct CapturedPhoto;
+    struct GameBarServices;
+    struct GameBarServicesCommandEventArgs;
+    struct GameBarServicesManager;
+    struct GameBarServicesManagerGameBarServicesCreatedEventArgs;
+    struct GameBarServicesTargetInfo;
     struct LowLagMediaRecording;
     struct LowLagPhotoCapture;
     struct LowLagPhotoSequenceCapture;
@@ -285,6 +590,8 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     struct OptionalReferencePhotoCapturedEventArgs;
     struct PhotoCapturedEventArgs;
     struct PhotoConfirmationCapturedEventArgs;
+    struct ScreenCapture;
+    struct SourceSuspensionChangedEventArgs;
     struct VideoStreamConfiguration;
     struct WhiteBalanceGain;
     struct MediaCaptureFailedEventHandler;
@@ -295,18 +602,74 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IAdvancedPhotoCapture>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastManagerStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPlugIn>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPlugInManager>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPreview>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastProviderSettings>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastServices>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastState>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastStreamReader>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IAppCapture>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureManagerStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureRecordOperation>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureServices>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureSettings>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureSettings2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureSettings3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureSettings4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureSettings5>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IAppCaptureState>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IAppCaptureStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IAppCaptureStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICameraCaptureUI>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICameraCaptureUIPhotoCaptureSettings>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICameraCaptureUIVideoCaptureSettings>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::ICameraOptionsUIStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICapturedFrame>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICapturedFrame2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICapturedFrameControlValues>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICapturedFrameControlValues2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICapturedFrameWithSoftwareBitmap>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ICapturedPhoto>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IGameBarServices>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IGameBarServicesManager>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IGameBarServicesManagerStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IGameBarServicesTargetInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ILowLagMediaRecording>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ILowLagMediaRecording2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::ILowLagMediaRecording3>{ using type = interface_category; };
@@ -344,16 +707,64 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::IOptionalReferencePhotoCapturedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IPhotoCapturedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IPhotoConfirmationCapturedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IScreenCapture>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IScreenCaptureStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IVideoStreamConfiguration>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::AdvancedCapturedPhoto>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::AdvancedPhotoCapture>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastBackgroundService>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastManager>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPlugIn>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPlugInManager>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPreview>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastProviderSettings>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastServices>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastState>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastStreamReader>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastTriggerDetails>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::AppCapture>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureManager>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureMetadataWriter>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureRecordOperation>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureServices>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureSettings>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureState>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUI>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUIPhotoCaptureSettings>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUIVideoCaptureSettings>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::CameraOptionsUI>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::CapturedFrame>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::CapturedFrameControlValues>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::CapturedPhoto>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarServices>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarServicesManager>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarServicesTargetInfo>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::LowLagMediaRecording>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::LowLagPhotoCapture>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::LowLagPhotoSequenceCapture>{ using type = class_category; };
@@ -371,12 +782,40 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::OptionalReferencePhotoCapturedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::PhotoCapturedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::PhotoConfirmationCapturedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::ScreenCapture>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::VideoStreamConfiguration>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastExitBroadcastModeReason>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPlugInState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastPreviewState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastSignInResult>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastSignInState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastStreamState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastTerminationReason>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureMetadataPriority>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureRecordingState>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUIMaxPhotoResolution>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUIMaxVideoResolution>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUIMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUIPhotoFormat>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::CameraCaptureUIVideoFormat>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::ForegroundActivationArgument>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarCommand>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarCommandOrigin>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarServicesDisplayMode>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::GameBarTargetCapturePolicy>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::KnownVideoProfile>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureMemoryPreference>{ using type = enum_category; };
@@ -394,13 +833,58 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::RecordLimitationExceededEventHandler>{ using type = delegate_category; };
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AdvancedCapturedPhoto> = L"Windows.Media.Capture.AdvancedCapturedPhoto";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AdvancedPhotoCapture> = L"Windows.Media.Capture.AdvancedPhotoCapture";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastBackgroundService> = L"Windows.Media.Capture.AppBroadcastBackgroundService";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo> = L"Windows.Media.Capture.AppBroadcastBackgroundServiceSignInInfo";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo> = L"Windows.Media.Capture.AppBroadcastBackgroundServiceStreamInfo";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs> = L"Windows.Media.Capture.AppBroadcastCameraCaptureStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings> = L"Windows.Media.Capture.AppBroadcastGlobalSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs> = L"Windows.Media.Capture.AppBroadcastHeartbeatRequestedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastManager> = L"Windows.Media.Capture.AppBroadcastManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs> = L"Windows.Media.Capture.AppBroadcastMicrophoneCaptureStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPlugIn> = L"Windows.Media.Capture.AppBroadcastPlugIn";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPlugInManager> = L"Windows.Media.Capture.AppBroadcastPlugInManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs> = L"Windows.Media.Capture.AppBroadcastPlugInStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPreview> = L"Windows.Media.Capture.AppBroadcastPreview";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs> = L"Windows.Media.Capture.AppBroadcastPreviewStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader> = L"Windows.Media.Capture.AppBroadcastPreviewStreamReader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame> = L"Windows.Media.Capture.AppBroadcastPreviewStreamVideoFrame";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader> = L"Windows.Media.Capture.AppBroadcastPreviewStreamVideoHeader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastProviderSettings> = L"Windows.Media.Capture.AppBroadcastProviderSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastServices> = L"Windows.Media.Capture.AppBroadcastServices";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs> = L"Windows.Media.Capture.AppBroadcastSignInStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastState> = L"Windows.Media.Capture.AppBroadcastState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame> = L"Windows.Media.Capture.AppBroadcastStreamAudioFrame";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader> = L"Windows.Media.Capture.AppBroadcastStreamAudioHeader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastStreamReader> = L"Windows.Media.Capture.AppBroadcastStreamReader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> = L"Windows.Media.Capture.AppBroadcastStreamStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame> = L"Windows.Media.Capture.AppBroadcastStreamVideoFrame";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader> = L"Windows.Media.Capture.AppBroadcastStreamVideoHeader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastTriggerDetails> = L"Windows.Media.Capture.AppBroadcastTriggerDetails";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs> = L"Windows.Media.Capture.AppBroadcastViewerCountChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCapture> = L"Windows.Media.Capture.AppCapture";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys> = L"Windows.Media.Capture.AppCaptureAlternateShortcutKeys";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs> = L"Windows.Media.Capture.AppCaptureDurationGeneratedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs> = L"Windows.Media.Capture.AppCaptureFileGeneratedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureManager> = L"Windows.Media.Capture.AppCaptureManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureMetadataWriter> = L"Windows.Media.Capture.AppCaptureMetadataWriter";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs> = L"Windows.Media.Capture.AppCaptureMicrophoneCaptureStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureRecordOperation> = L"Windows.Media.Capture.AppCaptureRecordOperation";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs> = L"Windows.Media.Capture.AppCaptureRecordingStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureServices> = L"Windows.Media.Capture.AppCaptureServices";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureSettings> = L"Windows.Media.Capture.AppCaptureSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureState> = L"Windows.Media.Capture.AppCaptureState";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUI> = L"Windows.Media.Capture.CameraCaptureUI";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUIPhotoCaptureSettings> = L"Windows.Media.Capture.CameraCaptureUIPhotoCaptureSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUIVideoCaptureSettings> = L"Windows.Media.Capture.CameraCaptureUIVideoCaptureSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraOptionsUI> = L"Windows.Media.Capture.CameraOptionsUI";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CapturedFrame> = L"Windows.Media.Capture.CapturedFrame";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CapturedFrameControlValues> = L"Windows.Media.Capture.CapturedFrameControlValues";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CapturedPhoto> = L"Windows.Media.Capture.CapturedPhoto";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarServices> = L"Windows.Media.Capture.GameBarServices";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs> = L"Windows.Media.Capture.GameBarServicesCommandEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarServicesManager> = L"Windows.Media.Capture.GameBarServicesManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs> = L"Windows.Media.Capture.GameBarServicesManagerGameBarServicesCreatedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarServicesTargetInfo> = L"Windows.Media.Capture.GameBarServicesTargetInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::LowLagMediaRecording> = L"Windows.Media.Capture.LowLagMediaRecording";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::LowLagPhotoCapture> = L"Windows.Media.Capture.LowLagPhotoCapture";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::LowLagPhotoSequenceCapture> = L"Windows.Media.Capture.LowLagPhotoSequenceCapture";
@@ -418,12 +902,40 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::OptionalReferencePhotoCapturedEventArgs> = L"Windows.Media.Capture.OptionalReferencePhotoCapturedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::PhotoCapturedEventArgs> = L"Windows.Media.Capture.PhotoCapturedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::PhotoConfirmationCapturedEventArgs> = L"Windows.Media.Capture.PhotoConfirmationCapturedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ScreenCapture> = L"Windows.Media.Capture.ScreenCapture";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs> = L"Windows.Media.Capture.SourceSuspensionChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::VideoStreamConfiguration> = L"Windows.Media.Capture.VideoStreamConfiguration";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureState> = L"Windows.Media.Capture.AppBroadcastCameraCaptureState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation> = L"Windows.Media.Capture.AppBroadcastCameraOverlayLocation";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize> = L"Windows.Media.Capture.AppBroadcastCameraOverlaySize";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType> = L"Windows.Media.Capture.AppBroadcastCaptureTargetType";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastExitBroadcastModeReason> = L"Windows.Media.Capture.AppBroadcastExitBroadcastModeReason";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureState> = L"Windows.Media.Capture.AppBroadcastMicrophoneCaptureState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPlugInState> = L"Windows.Media.Capture.AppBroadcastPlugInState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastPreviewState> = L"Windows.Media.Capture.AppBroadcastPreviewState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastSignInResult> = L"Windows.Media.Capture.AppBroadcastSignInResult";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastSignInState> = L"Windows.Media.Capture.AppBroadcastSignInState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastStreamState> = L"Windows.Media.Capture.AppBroadcastStreamState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastTerminationReason> = L"Windows.Media.Capture.AppBroadcastTerminationReason";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode> = L"Windows.Media.Capture.AppBroadcastVideoEncodingBitrateMode";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode> = L"Windows.Media.Capture.AppBroadcastVideoEncodingResolutionMode";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit> = L"Windows.Media.Capture.AppCaptureHistoricalBufferLengthUnit";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureMetadataPriority> = L"Windows.Media.Capture.AppCaptureMetadataPriority";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureState> = L"Windows.Media.Capture.AppCaptureMicrophoneCaptureState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureRecordingState> = L"Windows.Media.Capture.AppCaptureRecordingState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode> = L"Windows.Media.Capture.AppCaptureVideoEncodingBitrateMode";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode> = L"Windows.Media.Capture.AppCaptureVideoEncodingFrameRateMode";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode> = L"Windows.Media.Capture.AppCaptureVideoEncodingResolutionMode";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUIMaxPhotoResolution> = L"Windows.Media.Capture.CameraCaptureUIMaxPhotoResolution";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUIMaxVideoResolution> = L"Windows.Media.Capture.CameraCaptureUIMaxVideoResolution";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUIMode> = L"Windows.Media.Capture.CameraCaptureUIMode";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUIPhotoFormat> = L"Windows.Media.Capture.CameraCaptureUIPhotoFormat";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::CameraCaptureUIVideoFormat> = L"Windows.Media.Capture.CameraCaptureUIVideoFormat";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ForegroundActivationArgument> = L"Windows.Media.Capture.ForegroundActivationArgument";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarCommand> = L"Windows.Media.Capture.GameBarCommand";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarCommandOrigin> = L"Windows.Media.Capture.GameBarCommandOrigin";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarServicesDisplayMode> = L"Windows.Media.Capture.GameBarServicesDisplayMode";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarTargetCapturePolicy> = L"Windows.Media.Capture.GameBarTargetCapturePolicy";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::KnownVideoProfile> = L"Windows.Media.Capture.KnownVideoProfile";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlStatus> = L"Windows.Media.Capture.MediaCaptureDeviceExclusiveControlStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureMemoryPreference> = L"Windows.Media.Capture.MediaCaptureMemoryPreference";
@@ -440,18 +952,74 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto> = L"Windows.Media.Capture.IAdvancedCapturedPhoto";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto2> = L"Windows.Media.Capture.IAdvancedCapturedPhoto2";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAdvancedPhotoCapture> = L"Windows.Media.Capture.IAdvancedPhotoCapture";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService> = L"Windows.Media.Capture.IAppBroadcastBackgroundService";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2> = L"Windows.Media.Capture.IAppBroadcastBackgroundService2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo> = L"Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2> = L"Windows.Media.Capture.IAppBroadcastBackgroundServiceSignInInfo2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo> = L"Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2> = L"Windows.Media.Capture.IAppBroadcastBackgroundServiceStreamInfo2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs> = L"Windows.Media.Capture.IAppBroadcastCameraCaptureStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings> = L"Windows.Media.Capture.IAppBroadcastGlobalSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs> = L"Windows.Media.Capture.IAppBroadcastHeartbeatRequestedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastManagerStatics> = L"Windows.Media.Capture.IAppBroadcastManagerStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs> = L"Windows.Media.Capture.IAppBroadcastMicrophoneCaptureStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPlugIn> = L"Windows.Media.Capture.IAppBroadcastPlugIn";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPlugInManager> = L"Windows.Media.Capture.IAppBroadcastPlugInManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics> = L"Windows.Media.Capture.IAppBroadcastPlugInManagerStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs> = L"Windows.Media.Capture.IAppBroadcastPlugInStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPreview> = L"Windows.Media.Capture.IAppBroadcastPreview";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs> = L"Windows.Media.Capture.IAppBroadcastPreviewStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader> = L"Windows.Media.Capture.IAppBroadcastPreviewStreamReader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame> = L"Windows.Media.Capture.IAppBroadcastPreviewStreamVideoFrame";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader> = L"Windows.Media.Capture.IAppBroadcastPreviewStreamVideoHeader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastProviderSettings> = L"Windows.Media.Capture.IAppBroadcastProviderSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastServices> = L"Windows.Media.Capture.IAppBroadcastServices";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs> = L"Windows.Media.Capture.IAppBroadcastSignInStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastState> = L"Windows.Media.Capture.IAppBroadcastState";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame> = L"Windows.Media.Capture.IAppBroadcastStreamAudioFrame";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader> = L"Windows.Media.Capture.IAppBroadcastStreamAudioHeader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastStreamReader> = L"Windows.Media.Capture.IAppBroadcastStreamReader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs> = L"Windows.Media.Capture.IAppBroadcastStreamStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame> = L"Windows.Media.Capture.IAppBroadcastStreamVideoFrame";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader> = L"Windows.Media.Capture.IAppBroadcastStreamVideoHeader";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails> = L"Windows.Media.Capture.IAppBroadcastTriggerDetails";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs> = L"Windows.Media.Capture.IAppBroadcastViewerCountChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCapture> = L"Windows.Media.Capture.IAppCapture";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys> = L"Windows.Media.Capture.IAppCaptureAlternateShortcutKeys";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2> = L"Windows.Media.Capture.IAppCaptureAlternateShortcutKeys2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3> = L"Windows.Media.Capture.IAppCaptureAlternateShortcutKeys3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs> = L"Windows.Media.Capture.IAppCaptureDurationGeneratedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs> = L"Windows.Media.Capture.IAppCaptureFileGeneratedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureManagerStatics> = L"Windows.Media.Capture.IAppCaptureManagerStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter> = L"Windows.Media.Capture.IAppCaptureMetadataWriter";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs> = L"Windows.Media.Capture.IAppCaptureMicrophoneCaptureStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureRecordOperation> = L"Windows.Media.Capture.IAppCaptureRecordOperation";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs> = L"Windows.Media.Capture.IAppCaptureRecordingStateChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureServices> = L"Windows.Media.Capture.IAppCaptureServices";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureSettings> = L"Windows.Media.Capture.IAppCaptureSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureSettings2> = L"Windows.Media.Capture.IAppCaptureSettings2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureSettings3> = L"Windows.Media.Capture.IAppCaptureSettings3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureSettings4> = L"Windows.Media.Capture.IAppCaptureSettings4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureSettings5> = L"Windows.Media.Capture.IAppCaptureSettings5";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureState> = L"Windows.Media.Capture.IAppCaptureState";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureStatics> = L"Windows.Media.Capture.IAppCaptureStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IAppCaptureStatics2> = L"Windows.Media.Capture.IAppCaptureStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICameraCaptureUI> = L"Windows.Media.Capture.ICameraCaptureUI";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICameraCaptureUIPhotoCaptureSettings> = L"Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICameraCaptureUIVideoCaptureSettings> = L"Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICameraOptionsUIStatics> = L"Windows.Media.Capture.ICameraOptionsUIStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICapturedFrame> = L"Windows.Media.Capture.ICapturedFrame";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICapturedFrame2> = L"Windows.Media.Capture.ICapturedFrame2";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICapturedFrameControlValues> = L"Windows.Media.Capture.ICapturedFrameControlValues";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICapturedFrameControlValues2> = L"Windows.Media.Capture.ICapturedFrameControlValues2";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICapturedFrameWithSoftwareBitmap> = L"Windows.Media.Capture.ICapturedFrameWithSoftwareBitmap";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ICapturedPhoto> = L"Windows.Media.Capture.ICapturedPhoto";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IGameBarServices> = L"Windows.Media.Capture.IGameBarServices";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs> = L"Windows.Media.Capture.IGameBarServicesCommandEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IGameBarServicesManager> = L"Windows.Media.Capture.IGameBarServicesManager";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs> = L"Windows.Media.Capture.IGameBarServicesManagerGameBarServicesCreatedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IGameBarServicesManagerStatics> = L"Windows.Media.Capture.IGameBarServicesManagerStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IGameBarServicesTargetInfo> = L"Windows.Media.Capture.IGameBarServicesTargetInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ILowLagMediaRecording> = L"Windows.Media.Capture.ILowLagMediaRecording";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ILowLagMediaRecording2> = L"Windows.Media.Capture.ILowLagMediaRecording2";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ILowLagMediaRecording3> = L"Windows.Media.Capture.ILowLagMediaRecording3";
@@ -489,24 +1057,83 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IOptionalReferencePhotoCapturedEventArgs> = L"Windows.Media.Capture.IOptionalReferencePhotoCapturedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IPhotoCapturedEventArgs> = L"Windows.Media.Capture.IPhotoCapturedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IPhotoConfirmationCapturedEventArgs> = L"Windows.Media.Capture.IPhotoConfirmationCapturedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IScreenCapture> = L"Windows.Media.Capture.IScreenCapture";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IScreenCaptureStatics> = L"Windows.Media.Capture.IScreenCaptureStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs> = L"Windows.Media.Capture.ISourceSuspensionChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IVideoStreamConfiguration> = L"Windows.Media.Capture.IVideoStreamConfiguration";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureFailedEventHandler> = L"Windows.Media.Capture.MediaCaptureFailedEventHandler";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::RecordLimitationExceededEventHandler> = L"Windows.Media.Capture.RecordLimitationExceededEventHandler";
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto>{ 0xF072728B,0xB292,0x4491,{ 0x9D,0x41,0x99,0x80,0x7A,0x55,0x0B,0xBF } }; // F072728B-B292-4491-9D41-99807A550BBF
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto2>{ 0x18CF6CD8,0xCFFE,0x42D8,{ 0x81,0x04,0x01,0x7B,0xB3,0x18,0xF4,0xA1 } }; // 18CF6CD8-CFFE-42D8-8104-017BB318F4A1
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAdvancedPhotoCapture>{ 0x83FFAAFA,0x6667,0x44DC,{ 0x97,0x3C,0xA6,0xBC,0xE5,0x96,0xAA,0x0F } }; // 83FFAAFA-6667-44DC-973C-A6BCE596AA0F
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService>{ 0xBAD1E72A,0xFA94,0x46F9,{ 0x95,0xFC,0xD7,0x15,0x11,0xCD,0xA7,0x0B } }; // BAD1E72A-FA94-46F9-95FC-D71511CDA70B
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>{ 0xFC8CCBBF,0x5549,0x4B87,{ 0x95,0x9F,0x23,0xCA,0x40,0x1F,0xD4,0x73 } }; // FC8CCBBF-5549-4B87-959F-23CA401FD473
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo>{ 0x5E735275,0x88C8,0x4ECA,{ 0x89,0xBA,0x48,0x25,0x98,0x5D,0xB8,0x80 } }; // 5E735275-88C8-4ECA-89BA-4825985DB880
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2>{ 0x9104285C,0x62CF,0x4A3C,{ 0xA7,0xEE,0xAE,0xB5,0x07,0x40,0x46,0x45 } }; // 9104285C-62CF-4A3C-A7EE-AEB507404645
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>{ 0x31DC02BC,0x990A,0x4904,{ 0xAA,0x96,0xFE,0x36,0x43,0x81,0xF1,0x36 } }; // 31DC02BC-990A-4904-AA96-FE364381F136
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2>{ 0xBD1E9F6D,0x94DC,0x4FCE,{ 0x95,0x41,0xA9,0xF1,0x29,0x59,0x63,0x34 } }; // BD1E9F6D-94DC-4FCE-9541-A9F129596334
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs>{ 0x1E334CD0,0xB882,0x4B88,{ 0x86,0x92,0x05,0x99,0x9A,0xCE,0xB7,0x0F } }; // 1E334CD0-B882-4B88-8692-05999ACEB70F
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings>{ 0xB2CB27A5,0x70FC,0x4E17,{ 0x80,0xBD,0x6B,0xA0,0xFD,0x3F,0xF3,0xA0 } }; // B2CB27A5-70FC-4E17-80BD-6BA0FD3FF3A0
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs>{ 0xCEA54283,0xEE51,0x4DBF,{ 0x94,0x72,0x79,0xA9,0xED,0x4E,0x21,0x65 } }; // CEA54283-EE51-4DBF-9472-79A9ED4E2165
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastManagerStatics>{ 0x364E018B,0x1E4E,0x411F,{ 0xAB,0x3E,0x92,0x95,0x98,0x44,0xC1,0x56 } }; // 364E018B-1E4E-411F-AB3E-92959844C156
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs>{ 0xA86AD5E9,0x9440,0x4908,{ 0x9D,0x09,0x65,0xB7,0xE3,0x15,0xD7,0x95 } }; // A86AD5E9-9440-4908-9D09-65B7E315D795
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPlugIn>{ 0x520C1E66,0x6513,0x4574,{ 0xAC,0x54,0x23,0xB7,0x97,0x29,0x61,0x5B } }; // 520C1E66-6513-4574-AC54-23B79729615B
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPlugInManager>{ 0xE550D979,0x27A1,0x49A7,{ 0xBB,0xF4,0xD7,0xA9,0xE9,0xD0,0x76,0x68 } }; // E550D979-27A1-49A7-BBF4-D7A9E9D07668
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics>{ 0xF2645C20,0x5C76,0x4CDC,{ 0x93,0x64,0x82,0xFE,0x9E,0xB6,0x53,0x4D } }; // F2645C20-5C76-4CDC-9364-82FE9EB6534D
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs>{ 0x4881D0F2,0xABC5,0x4FC6,{ 0x84,0xB0,0x89,0x37,0x0B,0xB4,0x72,0x12 } }; // 4881D0F2-ABC5-4FC6-84B0-89370BB47212
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPreview>{ 0x14B60F5A,0x6E4A,0x4B80,{ 0xA1,0x4F,0x67,0xEE,0x77,0xD1,0x53,0xE7 } }; // 14B60F5A-6E4A-4B80-A14F-67EE77D153E7
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs>{ 0x5A57F2DE,0x8DEA,0x4E86,{ 0x90,0xAD,0x03,0xFC,0x26,0xB9,0x65,0x3C } }; // 5A57F2DE-8DEA-4E86-90AD-03FC26B9653C
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader>{ 0x92228D50,0xDB3F,0x40A8,{ 0x8C,0xD4,0xF4,0xE3,0x71,0xDD,0xAB,0x37 } }; // 92228D50-DB3F-40A8-8CD4-F4E371DDAB37
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame>{ 0x010FBEA1,0x94FE,0x4499,{ 0xB8,0xC0,0x8D,0x24,0x42,0x79,0xFB,0x12 } }; // 010FBEA1-94FE-4499-B8C0-8D244279FB12
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader>{ 0x8BEF6113,0xDA84,0x4499,{ 0xA7,0xAB,0x87,0x11,0x8C,0xB4,0xA1,0x57 } }; // 8BEF6113-DA84-4499-A7AB-87118CB4A157
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastProviderSettings>{ 0xC30BDF62,0x9948,0x458F,{ 0xAD,0x50,0xAA,0x06,0xEC,0x03,0xDA,0x08 } }; // C30BDF62-9948-458F-AD50-AA06EC03DA08
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastServices>{ 0x8660B4D6,0x969B,0x4E3C,{ 0xAC,0x3A,0x8B,0x04,0x2E,0xE4,0xEE,0x63 } }; // 8660B4D6-969B-4E3C-AC3A-8B042EE4EE63
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs>{ 0x02B692A4,0x5919,0x4A9E,{ 0x8D,0x5E,0xC9,0xBB,0x0D,0xD3,0x37,0x7A } }; // 02B692A4-5919-4A9E-8D5E-C9BB0DD3377A
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastState>{ 0xEE08056D,0x8099,0x4DDD,{ 0x92,0x2E,0xC5,0x6D,0xAC,0x58,0xAB,0xFB } }; // EE08056D-8099-4DDD-922E-C56DAC58ABFB
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame>{ 0xEFAB4AC8,0x21BA,0x453F,{ 0x8B,0xB7,0x5E,0x93,0x8A,0x2E,0x9A,0x74 } }; // EFAB4AC8-21BA-453F-8BB7-5E938A2E9A74
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader>{ 0xBF21A570,0x6B78,0x4216,{ 0x9F,0x07,0x5A,0xFF,0x52,0x56,0xF1,0xB7 } }; // BF21A570-6B78-4216-9F07-5AFF5256F1B7
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastStreamReader>{ 0xB338BCF9,0x3364,0x4460,{ 0xB5,0xF1,0x3C,0xC2,0x79,0x6A,0x8A,0xA2 } }; // B338BCF9-3364-4460-B5F1-3CC2796A8AA2
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs>{ 0x5108A733,0xD008,0x4A89,{ 0x93,0xBE,0x58,0xAE,0xD9,0x61,0x37,0x4E } }; // 5108A733-D008-4A89-93BE-58AED961374E
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame>{ 0x0F97CF2B,0xC9E4,0x4E88,{ 0x81,0x94,0xD8,0x14,0xCB,0xD5,0x85,0xD8 } }; // 0F97CF2B-C9E4-4E88-8194-D814CBD585D8
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader>{ 0x0B9EBECE,0x7E32,0x432D,{ 0x8C,0xA2,0x36,0xBF,0x10,0xB9,0xF4,0x62 } }; // 0B9EBECE-7E32-432D-8CA2-36BF10B9F462
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails>{ 0xDEEBAB35,0xEC5E,0x4D8F,{ 0xB1,0xC0,0x5D,0xA6,0xE8,0xC7,0x56,0x38 } }; // DEEBAB35-EC5E-4D8F-B1C0-5DA6E8C75638
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs>{ 0xE6E11825,0x5401,0x4ADE,{ 0x8B,0xD2,0xC1,0x4E,0xCE,0xE6,0x80,0x7D } }; // E6E11825-5401-4ADE-8BD2-C14ECEE6807D
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCapture>{ 0x9749D453,0xA29A,0x45ED,{ 0x8F,0x29,0x22,0xD0,0x99,0x42,0xCF,0xF7 } }; // 9749D453-A29A-45ED-8F29-22D09942CFF7
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys>{ 0x19E8E0EF,0x236C,0x40F9,{ 0xB3,0x8F,0x9B,0x7D,0xD6,0x5D,0x1C,0xCC } }; // 19E8E0EF-236C-40F9-B38F-9B7DD65D1CCC
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2>{ 0xC3669090,0xDD17,0x47F0,{ 0x95,0xE5,0xCE,0x42,0x28,0x6C,0xF3,0x38 } }; // C3669090-DD17-47F0-95E5-CE42286CF338
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3>{ 0x7B81448C,0x418E,0x469C,{ 0xA4,0x9A,0x45,0xB5,0x97,0xC8,0x26,0xB6 } }; // 7B81448C-418E-469C-A49A-45B597C826B6
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs>{ 0xC1F5563B,0xFFA1,0x44C9,{ 0x97,0x5F,0x27,0xFB,0xEB,0x55,0x3B,0x35 } }; // C1F5563B-FFA1-44C9-975F-27FBEB553B35
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs>{ 0x4189FBF4,0x465E,0x45BF,{ 0x90,0x7F,0x16,0x5B,0x3F,0xB2,0x37,0x58 } }; // 4189FBF4-465E-45BF-907F-165B3FB23758
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureManagerStatics>{ 0x7D9E3EA7,0x6282,0x4735,{ 0x8D,0x4E,0xAA,0x45,0xF9,0x0F,0x67,0x23 } }; // 7D9E3EA7-6282-4735-8D4E-AA45F90F6723
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter>{ 0xE0CE4877,0x9AAF,0x46B4,{ 0xAD,0x31,0x6A,0x60,0xB4,0x41,0xC7,0x80 } }; // E0CE4877-9AAF-46B4-AD31-6A60B441C780
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs>{ 0x324D249E,0x45BC,0x4C35,{ 0xBC,0x35,0xE4,0x69,0xFC,0x7A,0x69,0xE0 } }; // 324D249E-45BC-4C35-BC35-E469FC7A69E0
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureRecordOperation>{ 0xC66020A9,0x1538,0x495C,{ 0x9B,0xBB,0x2B,0xA8,0x70,0xEC,0x58,0x61 } }; // C66020A9-1538-495C-9BBB-2BA870EC5861
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs>{ 0x24FC8712,0xE305,0x490D,{ 0xB4,0x15,0x6B,0x1C,0x90,0x49,0x73,0x6B } }; // 24FC8712-E305-490D-B415-6B1C9049736B
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureServices>{ 0x44FEC0B5,0x34F5,0x4F18,{ 0xAE,0x8C,0xB9,0x12,0x3A,0xBB,0xFC,0x0D } }; // 44FEC0B5-34F5-4F18-AE8C-B9123ABBFC0D
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureSettings>{ 0x14683A86,0x8807,0x48D3,{ 0x88,0x3A,0x97,0x0E,0xE4,0x53,0x2A,0x39 } }; // 14683A86-8807-48D3-883A-970EE4532A39
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureSettings2>{ 0xFCB8CEE7,0xE26B,0x476F,{ 0x9B,0x1A,0xEC,0x34,0x2D,0x2A,0x8F,0xDE } }; // FCB8CEE7-E26B-476F-9B1A-EC342D2A8FDE
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureSettings3>{ 0xA93502FE,0x88C2,0x42D6,{ 0xAA,0xAA,0x40,0xFE,0xFF,0xD7,0x5A,0xEC } }; // A93502FE-88C2-42D6-AAAA-40FEFFD75AEC
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureSettings4>{ 0x07C2774C,0x1A81,0x482F,{ 0xA2,0x44,0x04,0x9D,0x95,0xF2,0x5B,0x0B } }; // 07C2774C-1A81-482F-A244-049D95F25B0B
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureSettings5>{ 0x18894522,0xB0E8,0x4BA0,{ 0x8F,0x13,0x3E,0xAA,0x5F,0xA4,0x01,0x3B } }; // 18894522-B0E8-4BA0-8F13-3EAA5FA4013B
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureState>{ 0x73134372,0xD4EB,0x44CE,{ 0x95,0x38,0x46,0x5F,0x50,0x6A,0xC4,0xEA } }; // 73134372-D4EB-44CE-9538-465F506AC4EA
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureStatics>{ 0xF922DD6C,0x0A7E,0x4E74,{ 0x8B,0x20,0x9C,0x1F,0x90,0x2D,0x08,0xA1 } }; // F922DD6C-0A7E-4E74-8B20-9C1F902D08A1
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IAppCaptureStatics2>{ 0xB2D881D4,0x836C,0x4DA4,{ 0xAF,0xD7,0xFA,0xCC,0x04,0x1E,0x1C,0xF3 } }; // B2D881D4-836C-4DA4-AFD7-FACC041E1CF3
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICameraCaptureUI>{ 0x48587540,0x6F93,0x4BB4,{ 0xB8,0xF3,0xE8,0x9E,0x48,0x94,0x8C,0x91 } }; // 48587540-6F93-4BB4-B8F3-E89E48948C91
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICameraCaptureUIPhotoCaptureSettings>{ 0xB9F5BE97,0x3472,0x46A8,{ 0x8A,0x9E,0x04,0xCE,0x42,0xCC,0xC9,0x7D } }; // B9F5BE97-3472-46A8-8A9E-04CE42CCC97D
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICameraCaptureUIVideoCaptureSettings>{ 0x64E92D1F,0xA28D,0x425A,{ 0xB8,0x4F,0xE5,0x68,0x33,0x5F,0xF2,0x4E } }; // 64E92D1F-A28D-425A-B84F-E568335FF24E
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICameraOptionsUIStatics>{ 0x3B0D5E34,0x3906,0x4B7D,{ 0x94,0x6C,0x7B,0xDE,0x84,0x44,0x99,0xAE } }; // 3B0D5E34-3906-4B7D-946C-7BDE844499AE
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICapturedFrame>{ 0x1DD2DE1F,0x571B,0x44D8,{ 0x8E,0x80,0xA0,0x8A,0x15,0x78,0x76,0x6E } }; // 1DD2DE1F-571B-44D8-8E80-A08A1578766E
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICapturedFrame2>{ 0x543FA6D1,0xBD78,0x4866,{ 0xAD,0xDA,0x24,0x31,0x4B,0xC6,0x5D,0xEA } }; // 543FA6D1-BD78-4866-ADDA-24314BC65DEA
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICapturedFrameControlValues>{ 0x90C65B7F,0x4E0D,0x4CA4,{ 0x88,0x2D,0x7A,0x14,0x4F,0xED,0x0A,0x90 } }; // 90C65B7F-4E0D-4CA4-882D-7A144FED0A90
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICapturedFrameControlValues2>{ 0x500B2B88,0x06D2,0x4AA7,{ 0xA7,0xDB,0xD3,0x7A,0xF7,0x33,0x21,0xD8 } }; // 500B2B88-06D2-4AA7-A7DB-D37AF73321D8
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICapturedFrameWithSoftwareBitmap>{ 0xB58E8B6E,0x8503,0x49B5,{ 0x9E,0x86,0x89,0x7D,0x26,0xA3,0xFF,0x3D } }; // B58E8B6E-8503-49B5-9E86-897D26A3FF3D
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ICapturedPhoto>{ 0xB0CE7E5A,0xCFCC,0x4D6C,{ 0x8A,0xD1,0x08,0x69,0x20,0x8A,0xCA,0x16 } }; // B0CE7E5A-CFCC-4D6C-8AD1-0869208ACA16
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IGameBarServices>{ 0x2DBEAD57,0x50A6,0x499E,{ 0x8C,0x6C,0xD3,0x30,0xA7,0x31,0x17,0x96 } }; // 2DBEAD57-50A6-499E-8C6C-D330A7311796
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs>{ 0xA74226B2,0xF176,0x4FCF,{ 0x8F,0xBB,0xCF,0x69,0x8B,0x2E,0xB8,0xE0 } }; // A74226B2-F176-4FCF-8FBB-CF698B2EB8E0
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IGameBarServicesManager>{ 0x3A4B9CFA,0x7F8B,0x4C60,{ 0x9D,0xBB,0x0B,0xCD,0x26,0x2D,0xFF,0xC6 } }; // 3A4B9CFA-7F8B-4C60-9DBB-0BCD262DFFC6
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs>{ 0xEDEDBD9C,0x143E,0x49A3,{ 0xA5,0xEA,0x0B,0x19,0x95,0xC8,0xD4,0x6E } }; // EDEDBD9C-143E-49A3-A5EA-0B1995C8D46E
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IGameBarServicesManagerStatics>{ 0x34C1B616,0xFF25,0x4792,{ 0x98,0xF2,0xD3,0x75,0x3F,0x15,0xAC,0x13 } }; // 34C1B616-FF25-4792-98F2-D3753F15AC13
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IGameBarServicesTargetInfo>{ 0xB4202F92,0x1611,0x4E05,{ 0xB6,0xEF,0xDF,0xD7,0x37,0xAE,0x33,0xB0 } }; // B4202F92-1611-4E05-B6EF-DFD737AE33B0
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ILowLagMediaRecording>{ 0x41C8BAF7,0xFF3F,0x49F0,{ 0xA4,0x77,0xF1,0x95,0xE3,0xCE,0x51,0x08 } }; // 41C8BAF7-FF3F-49F0-A477-F195E3CE5108
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ILowLagMediaRecording2>{ 0x6369C758,0x5644,0x41E2,{ 0x97,0xAF,0x8E,0xF5,0x6A,0x25,0xE2,0x25 } }; // 6369C758-5644-41E2-97AF-8EF56A25E225
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ILowLagMediaRecording3>{ 0x5C33AB12,0x48F7,0x47DA,{ 0xB4,0x1E,0x90,0x88,0x0A,0x5F,0xE0,0xEC } }; // 5C33AB12-48F7-47DA-B41E-90880A5FE0EC
@@ -544,18 +1171,63 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IOptionalReferencePhotoCapturedEventArgs>{ 0x470F88B3,0x1E6D,0x4051,{ 0x9C,0x8B,0xF1,0xD8,0x5A,0xF0,0x47,0xB7 } }; // 470F88B3-1E6D-4051-9C8B-F1D85AF047B7
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IPhotoCapturedEventArgs>{ 0x373BFBC1,0x984E,0x4FF0,{ 0xBF,0x85,0x1C,0x00,0xAA,0xBC,0x5A,0x45 } }; // 373BFBC1-984E-4FF0-BF85-1C00AABC5A45
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IPhotoConfirmationCapturedEventArgs>{ 0xAB473672,0xC28A,0x4827,{ 0x8F,0x8D,0x36,0x36,0xD3,0xBE,0xB5,0x1E } }; // AB473672-C28A-4827-8F8D-3636D3BEB51E
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IScreenCapture>{ 0x89179EF7,0xCD12,0x4E0E,{ 0xA6,0xD4,0x5B,0x3D,0xE9,0x8B,0x2E,0x9B } }; // 89179EF7-CD12-4E0E-A6D4-5B3DE98B2E9B
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IScreenCaptureStatics>{ 0xC898C3B0,0xC8A5,0x11E2,{ 0x8B,0x8B,0x08,0x00,0x20,0x0C,0x9A,0x66 } }; // C898C3B0-C8A5-11E2-8B8B-0800200C9A66
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs>{ 0x2ECE7B5E,0xD49B,0x4394,{ 0xBC,0x32,0xF9,0x7D,0x6C,0xED,0xEC,0x1C } }; // 2ECE7B5E-D49B-4394-BC32-F97D6CEDEC1C
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IVideoStreamConfiguration>{ 0xD8770A6F,0x4390,0x4B5E,{ 0xAD,0x3E,0x0F,0x8A,0xF0,0x96,0x34,0x90 } }; // D8770A6F-4390-4B5E-AD3E-0F8AF0963490
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::MediaCaptureFailedEventHandler>{ 0x2014EFFB,0x5CD8,0x4F08,{ 0xA3,0x14,0x0D,0x36,0x0D,0xA5,0x9F,0x14 } }; // 2014EFFB-5CD8-4F08-A314-0D360DA59F14
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::RecordLimitationExceededEventHandler>{ 0x3FAE8F2E,0x4FE1,0x4FFD,{ 0xAA,0xBA,0xE1,0xF1,0x33,0x7D,0x4E,0x53 } }; // 3FAE8F2E-4FE1-4FFD-AABA-E1F1337D4E53
     template <> struct default_interface<winrt::Windows::Media::Capture::AdvancedCapturedPhoto>{ using type = winrt::Windows::Media::Capture::IAdvancedCapturedPhoto; };
     template <> struct default_interface<winrt::Windows::Media::Capture::AdvancedPhotoCapture>{ using type = winrt::Windows::Media::Capture::IAdvancedPhotoCapture; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastBackgroundService>{ using type = winrt::Windows::Media::Capture::IAppBroadcastBackgroundService; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo>{ using type = winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo>{ using type = winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastGlobalSettings>{ using type = winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPlugIn>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPlugIn; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPlugInManager>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPlugInManager; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPreview>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPreview; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoFrame>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamVideoHeader>{ using type = winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastProviderSettings>{ using type = winrt::Windows::Media::Capture::IAppBroadcastProviderSettings; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastServices>{ using type = winrt::Windows::Media::Capture::IAppBroadcastServices; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastState>{ using type = winrt::Windows::Media::Capture::IAppBroadcastState; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastStreamAudioFrame>{ using type = winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastStreamAudioHeader>{ using type = winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastStreamReader>{ using type = winrt::Windows::Media::Capture::IAppBroadcastStreamReader; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastStreamVideoFrame>{ using type = winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastStreamVideoHeader>{ using type = winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastTriggerDetails>{ using type = winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Media::Capture::AppCapture>{ using type = winrt::Windows::Media::Capture::IAppCapture; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureAlternateShortcutKeys>{ using type = winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureMetadataWriter>{ using type = winrt::Windows::Media::Capture::IAppCaptureMetadataWriter; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureRecordOperation>{ using type = winrt::Windows::Media::Capture::IAppCaptureRecordOperation; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureServices>{ using type = winrt::Windows::Media::Capture::IAppCaptureServices; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureSettings>{ using type = winrt::Windows::Media::Capture::IAppCaptureSettings; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::AppCaptureState>{ using type = winrt::Windows::Media::Capture::IAppCaptureState; };
     template <> struct default_interface<winrt::Windows::Media::Capture::CameraCaptureUI>{ using type = winrt::Windows::Media::Capture::ICameraCaptureUI; };
     template <> struct default_interface<winrt::Windows::Media::Capture::CameraCaptureUIPhotoCaptureSettings>{ using type = winrt::Windows::Media::Capture::ICameraCaptureUIPhotoCaptureSettings; };
     template <> struct default_interface<winrt::Windows::Media::Capture::CameraCaptureUIVideoCaptureSettings>{ using type = winrt::Windows::Media::Capture::ICameraCaptureUIVideoCaptureSettings; };
     template <> struct default_interface<winrt::Windows::Media::Capture::CapturedFrame>{ using type = winrt::Windows::Media::Capture::ICapturedFrame; };
     template <> struct default_interface<winrt::Windows::Media::Capture::CapturedFrameControlValues>{ using type = winrt::Windows::Media::Capture::ICapturedFrameControlValues; };
     template <> struct default_interface<winrt::Windows::Media::Capture::CapturedPhoto>{ using type = winrt::Windows::Media::Capture::ICapturedPhoto; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::GameBarServices>{ using type = winrt::Windows::Media::Capture::IGameBarServices; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs>{ using type = winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::GameBarServicesManager>{ using type = winrt::Windows::Media::Capture::IGameBarServicesManager; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs>{ using type = winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::GameBarServicesTargetInfo>{ using type = winrt::Windows::Media::Capture::IGameBarServicesTargetInfo; };
     template <> struct default_interface<winrt::Windows::Media::Capture::LowLagMediaRecording>{ using type = winrt::Windows::Media::Capture::ILowLagMediaRecording; };
     template <> struct default_interface<winrt::Windows::Media::Capture::LowLagPhotoCapture>{ using type = winrt::Windows::Media::Capture::ILowLagPhotoCapture; };
     template <> struct default_interface<winrt::Windows::Media::Capture::LowLagPhotoSequenceCapture>{ using type = winrt::Windows::Media::Capture::ILowLagPhotoSequenceCapture; };
@@ -573,6 +1245,8 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::Media::Capture::OptionalReferencePhotoCapturedEventArgs>{ using type = winrt::Windows::Media::Capture::IOptionalReferencePhotoCapturedEventArgs; };
     template <> struct default_interface<winrt::Windows::Media::Capture::PhotoCapturedEventArgs>{ using type = winrt::Windows::Media::Capture::IPhotoCapturedEventArgs; };
     template <> struct default_interface<winrt::Windows::Media::Capture::PhotoConfirmationCapturedEventArgs>{ using type = winrt::Windows::Media::Capture::IPhotoConfirmationCapturedEventArgs; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::ScreenCapture>{ using type = winrt::Windows::Media::Capture::IScreenCapture; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs>{ using type = winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Media::Capture::VideoStreamConfiguration>{ using type = winrt::Windows::Media::Capture::IVideoStreamConfiguration; };
     template <> struct abi<winrt::Windows::Media::Capture::IAdvancedCapturedPhoto>
     {
@@ -603,6 +1277,414 @@ namespace winrt::impl
             virtual int32_t __stdcall FinishAsync(void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_PlugInState(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_PlugInState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_SignInInfo(void*) noexcept = 0;
+            virtual int32_t __stdcall get_SignInInfo(void**) noexcept = 0;
+            virtual int32_t __stdcall put_StreamInfo(void*) noexcept = 0;
+            virtual int32_t __stdcall get_StreamInfo(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AppId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_BroadcastTitle(void**) noexcept = 0;
+            virtual int32_t __stdcall put_ViewerCount(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ViewerCount(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall TerminateBroadcast(int32_t, uint32_t) noexcept = 0;
+            virtual int32_t __stdcall add_HeartbeatRequested(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_HeartbeatRequested(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall get_TitleId(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_BroadcastTitle(void*) noexcept = 0;
+            virtual int32_t __stdcall get_BroadcastLanguage(void**) noexcept = 0;
+            virtual int32_t __stdcall put_BroadcastLanguage(void*) noexcept = 0;
+            virtual int32_t __stdcall get_BroadcastChannel(void**) noexcept = 0;
+            virtual int32_t __stdcall put_BroadcastChannel(void*) noexcept = 0;
+            virtual int32_t __stdcall add_BroadcastTitleChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_BroadcastTitleChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_BroadcastLanguageChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_BroadcastLanguageChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_BroadcastChannelChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_BroadcastChannelChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_SignInState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_OAuthRequestUri(void*) noexcept = 0;
+            virtual int32_t __stdcall get_OAuthRequestUri(void**) noexcept = 0;
+            virtual int32_t __stdcall put_OAuthCallbackUri(void*) noexcept = 0;
+            virtual int32_t __stdcall get_OAuthCallbackUri(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AuthenticationResult(void**) noexcept = 0;
+            virtual int32_t __stdcall put_UserName(void*) noexcept = 0;
+            virtual int32_t __stdcall get_UserName(void**) noexcept = 0;
+            virtual int32_t __stdcall add_SignInStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_SignInStateChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_UserNameChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_UserNameChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_StreamState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_DesiredVideoEncodingBitrate(uint64_t) noexcept = 0;
+            virtual int32_t __stdcall get_DesiredVideoEncodingBitrate(uint64_t*) noexcept = 0;
+            virtual int32_t __stdcall put_BandwidthTestBitrate(uint64_t) noexcept = 0;
+            virtual int32_t __stdcall get_BandwidthTestBitrate(uint64_t*) noexcept = 0;
+            virtual int32_t __stdcall put_AudioCodec(void*) noexcept = 0;
+            virtual int32_t __stdcall get_AudioCodec(void**) noexcept = 0;
+            virtual int32_t __stdcall get_BroadcastStreamReader(void**) noexcept = 0;
+            virtual int32_t __stdcall add_StreamStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_StreamStateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_VideoEncodingResolutionChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_VideoEncodingResolutionChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_VideoEncodingBitrateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_VideoEncodingBitrateChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall ReportProblemWithStream() noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_State(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ErrorCode(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsBroadcastEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsDisabledByPolicy(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsGpuConstrained(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_HasHardwareEncoder(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_IsAudioCaptureEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsAudioCaptureEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_IsMicrophoneCaptureEnabledByDefault(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsMicrophoneCaptureEnabledByDefault(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_IsEchoCancellationEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsEchoCancellationEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_SystemAudioGain(double) noexcept = 0;
+            virtual int32_t __stdcall get_SystemAudioGain(double*) noexcept = 0;
+            virtual int32_t __stdcall put_MicrophoneGain(double) noexcept = 0;
+            virtual int32_t __stdcall get_MicrophoneGain(double*) noexcept = 0;
+            virtual int32_t __stdcall put_IsCameraCaptureEnabledByDefault(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsCameraCaptureEnabledByDefault(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_SelectedCameraId(void*) noexcept = 0;
+            virtual int32_t __stdcall get_SelectedCameraId(void**) noexcept = 0;
+            virtual int32_t __stdcall put_CameraOverlayLocation(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CameraOverlayLocation(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CameraOverlaySize(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CameraOverlaySize(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_IsCursorImageCaptureEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsCursorImageCaptureEnabled(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_Handled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_Handled(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastManagerStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetGlobalSettings(void**) noexcept = 0;
+            virtual int32_t __stdcall ApplyGlobalSettings(void*) noexcept = 0;
+            virtual int32_t __stdcall GetProviderSettings(void**) noexcept = 0;
+            virtual int32_t __stdcall ApplyProviderSettings(void*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_State(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ErrorCode(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPlugIn>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AppId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_ProviderSettings(void**) noexcept = 0;
+            virtual int32_t __stdcall get_Logo(void**) noexcept = 0;
+            virtual int32_t __stdcall get_DisplayName(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPlugInManager>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsBroadcastProviderAvailable(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_PlugInList(void**) noexcept = 0;
+            virtual int32_t __stdcall get_DefaultPlugIn(void**) noexcept = 0;
+            virtual int32_t __stdcall put_DefaultPlugIn(void*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetDefault(void**) noexcept = 0;
+            virtual int32_t __stdcall GetForUser(void*, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_PlugInState(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPreview>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall StopPreview() noexcept = 0;
+            virtual int32_t __stdcall get_PreviewState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ErrorCode(void**) noexcept = 0;
+            virtual int32_t __stdcall add_PreviewStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_PreviewStateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall get_PreviewStreamReader(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_PreviewState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ErrorCode(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_VideoWidth(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_VideoHeight(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_VideoStride(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_VideoBitmapPixelFormat(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_VideoBitmapAlphaMode(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall TryGetNextVideoFrame(void**) noexcept = 0;
+            virtual int32_t __stdcall add_VideoFrameArrived(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_VideoFrameArrived(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_VideoHeader(void**) noexcept = 0;
+            virtual int32_t __stdcall get_VideoBuffer(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AbsoluteTimestamp(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_RelativeTimestamp(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_Duration(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_FrameId(uint64_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastProviderSettings>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_DefaultBroadcastTitle(void*) noexcept = 0;
+            virtual int32_t __stdcall get_DefaultBroadcastTitle(void**) noexcept = 0;
+            virtual int32_t __stdcall put_AudioEncodingBitrate(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_AudioEncodingBitrate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CustomVideoEncodingBitrate(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CustomVideoEncodingBitrate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CustomVideoEncodingHeight(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CustomVideoEncodingHeight(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CustomVideoEncodingWidth(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CustomVideoEncodingWidth(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_VideoEncodingBitrateMode(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_VideoEncodingBitrateMode(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_VideoEncodingResolutionMode(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_VideoEncodingResolutionMode(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastServices>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_CaptureTargetType(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CaptureTargetType(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_BroadcastTitle(void**) noexcept = 0;
+            virtual int32_t __stdcall put_BroadcastTitle(void*) noexcept = 0;
+            virtual int32_t __stdcall get_BroadcastLanguage(void**) noexcept = 0;
+            virtual int32_t __stdcall put_BroadcastLanguage(void*) noexcept = 0;
+            virtual int32_t __stdcall get_UserName(void**) noexcept = 0;
+            virtual int32_t __stdcall get_CanCapture(bool*) noexcept = 0;
+            virtual int32_t __stdcall EnterBroadcastModeAsync(void*, void**) noexcept = 0;
+            virtual int32_t __stdcall ExitBroadcastMode(int32_t) noexcept = 0;
+            virtual int32_t __stdcall StartBroadcast() noexcept = 0;
+            virtual int32_t __stdcall PauseBroadcast() noexcept = 0;
+            virtual int32_t __stdcall ResumeBroadcast() noexcept = 0;
+            virtual int32_t __stdcall StartPreview(winrt::Windows::Foundation::Size, void**) noexcept = 0;
+            virtual int32_t __stdcall get_State(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_SignInState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_Result(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastState>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsCaptureTargetRunning(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_ViewerCount(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ShouldCaptureMicrophone(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_ShouldCaptureMicrophone(bool) noexcept = 0;
+            virtual int32_t __stdcall RestartMicrophoneCapture() noexcept = 0;
+            virtual int32_t __stdcall get_ShouldCaptureCamera(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_ShouldCaptureCamera(bool) noexcept = 0;
+            virtual int32_t __stdcall RestartCameraCapture() noexcept = 0;
+            virtual int32_t __stdcall get_EncodedVideoSize(winrt::Windows::Foundation::Size*) noexcept = 0;
+            virtual int32_t __stdcall get_MicrophoneCaptureState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_MicrophoneCaptureError(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_CameraCaptureState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_CameraCaptureError(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_StreamState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_PlugInState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_OAuthRequestUri(void**) noexcept = 0;
+            virtual int32_t __stdcall get_OAuthCallbackUri(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AuthenticationResult(void**) noexcept = 0;
+            virtual int32_t __stdcall put_AuthenticationResult(void*) noexcept = 0;
+            virtual int32_t __stdcall put_SignInState(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_SignInState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_TerminationReason(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_TerminationReasonPlugInSpecific(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall add_ViewerCountChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_ViewerCountChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_MicrophoneCaptureStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_MicrophoneCaptureStateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_CameraCaptureStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_CameraCaptureStateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_PlugInStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_PlugInStateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_StreamStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_StreamStateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_CaptureTargetClosed(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_CaptureTargetClosed(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AudioHeader(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AudioBuffer(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AbsoluteTimestamp(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_RelativeTimestamp(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_Duration(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_HasDiscontinuity(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_FrameId(uint64_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastStreamReader>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AudioChannels(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_AudioSampleRate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_AudioAacSequence(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AudioBitrate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall TryGetNextAudioFrame(void**) noexcept = 0;
+            virtual int32_t __stdcall get_VideoWidth(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_VideoHeight(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_VideoBitrate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall TryGetNextVideoFrame(void**) noexcept = 0;
+            virtual int32_t __stdcall add_AudioFrameArrived(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_AudioFrameArrived(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_VideoFrameArrived(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_VideoFrameArrived(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_StreamState(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_VideoHeader(void**) noexcept = 0;
+            virtual int32_t __stdcall get_VideoBuffer(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AbsoluteTimestamp(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_RelativeTimestamp(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_Duration(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall get_IsKeyFrame(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_HasDiscontinuity(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_FrameId(uint64_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_BackgroundService(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ViewerCount(uint32_t*) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Media::Capture::IAppCapture>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -611,6 +1693,238 @@ namespace winrt::impl
             virtual int32_t __stdcall get_IsCapturingVideo(bool*) noexcept = 0;
             virtual int32_t __stdcall add_CapturingChanged(void*, winrt::event_token*) noexcept = 0;
             virtual int32_t __stdcall remove_CapturingChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_ToggleGameBarKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleGameBarKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleGameBarKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleGameBarKeyModifiers(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_SaveHistoricalVideoKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_SaveHistoricalVideoKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_SaveHistoricalVideoKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_SaveHistoricalVideoKeyModifiers(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleRecordingKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleRecordingKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleRecordingKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleRecordingKeyModifiers(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_TakeScreenshotKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_TakeScreenshotKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_TakeScreenshotKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_TakeScreenshotKeyModifiers(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleRecordingIndicatorKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleRecordingIndicatorKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleRecordingIndicatorKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleRecordingIndicatorKeyModifiers(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_ToggleMicrophoneCaptureKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleMicrophoneCaptureKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleMicrophoneCaptureKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleMicrophoneCaptureKeyModifiers(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_ToggleCameraCaptureKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleCameraCaptureKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleCameraCaptureKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleCameraCaptureKeyModifiers(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleBroadcastKey(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleBroadcastKey(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ToggleBroadcastKeyModifiers(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_ToggleBroadcastKeyModifiers(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Duration(int64_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_File(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureManagerStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetCurrentSettings(void**) noexcept = 0;
+            virtual int32_t __stdcall ApplySettings(void*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall AddStringEvent(void*, void*, int32_t) noexcept = 0;
+            virtual int32_t __stdcall AddInt32Event(void*, int32_t, int32_t) noexcept = 0;
+            virtual int32_t __stdcall AddDoubleEvent(void*, double, int32_t) noexcept = 0;
+            virtual int32_t __stdcall StartStringState(void*, void*, int32_t) noexcept = 0;
+            virtual int32_t __stdcall StartInt32State(void*, int32_t, int32_t) noexcept = 0;
+            virtual int32_t __stdcall StartDoubleState(void*, double, int32_t) noexcept = 0;
+            virtual int32_t __stdcall StopState(void*) noexcept = 0;
+            virtual int32_t __stdcall StopAllStates() noexcept = 0;
+            virtual int32_t __stdcall get_RemainingStorageBytesAvailable(uint64_t*) noexcept = 0;
+            virtual int32_t __stdcall add_MetadataPurged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_MetadataPurged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_State(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ErrorCode(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureRecordOperation>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall StopRecording() noexcept = 0;
+            virtual int32_t __stdcall get_State(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ErrorCode(void**) noexcept = 0;
+            virtual int32_t __stdcall get_Duration(void**) noexcept = 0;
+            virtual int32_t __stdcall get_File(void**) noexcept = 0;
+            virtual int32_t __stdcall get_IsFileTruncated(void**) noexcept = 0;
+            virtual int32_t __stdcall add_StateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_StateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_DurationGenerated(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_DurationGenerated(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_FileGenerated(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_FileGenerated(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_State(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ErrorCode(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureServices>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall Record(void**) noexcept = 0;
+            virtual int32_t __stdcall RecordTimeSpan(int64_t, int64_t, void**) noexcept = 0;
+            virtual int32_t __stdcall get_CanCapture(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_State(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureSettings>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_AppCaptureDestinationFolder(void*) noexcept = 0;
+            virtual int32_t __stdcall get_AppCaptureDestinationFolder(void**) noexcept = 0;
+            virtual int32_t __stdcall put_AudioEncodingBitrate(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_AudioEncodingBitrate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_IsAudioCaptureEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsAudioCaptureEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_CustomVideoEncodingBitrate(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CustomVideoEncodingBitrate(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CustomVideoEncodingHeight(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CustomVideoEncodingHeight(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CustomVideoEncodingWidth(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CustomVideoEncodingWidth(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_HistoricalBufferLength(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_HistoricalBufferLength(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_HistoricalBufferLengthUnit(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_HistoricalBufferLengthUnit(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_IsHistoricalCaptureEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsHistoricalCaptureEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_IsHistoricalCaptureOnBatteryAllowed(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsHistoricalCaptureOnBatteryAllowed(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_IsHistoricalCaptureOnWirelessDisplayAllowed(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsHistoricalCaptureOnWirelessDisplayAllowed(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_MaximumRecordLength(int64_t) noexcept = 0;
+            virtual int32_t __stdcall get_MaximumRecordLength(int64_t*) noexcept = 0;
+            virtual int32_t __stdcall put_ScreenshotDestinationFolder(void*) noexcept = 0;
+            virtual int32_t __stdcall get_ScreenshotDestinationFolder(void**) noexcept = 0;
+            virtual int32_t __stdcall put_VideoEncodingBitrateMode(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_VideoEncodingBitrateMode(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_VideoEncodingResolutionMode(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_VideoEncodingResolutionMode(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_IsAppCaptureEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsAppCaptureEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsCpuConstrained(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsDisabledByPolicy(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsMemoryConstrained(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_HasHardwareEncoder(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureSettings2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsGpuConstrained(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_AlternateShortcutKeys(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureSettings3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_IsMicrophoneCaptureEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsMicrophoneCaptureEnabled(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureSettings4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_IsMicrophoneCaptureEnabledByDefault(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsMicrophoneCaptureEnabledByDefault(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_SystemAudioGain(double) noexcept = 0;
+            virtual int32_t __stdcall get_SystemAudioGain(double*) noexcept = 0;
+            virtual int32_t __stdcall put_MicrophoneGain(double) noexcept = 0;
+            virtual int32_t __stdcall get_MicrophoneGain(double*) noexcept = 0;
+            virtual int32_t __stdcall put_VideoEncodingFrameRateMode(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_VideoEncodingFrameRateMode(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureSettings5>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall put_IsEchoCancellationEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsEchoCancellationEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_IsCursorImageCaptureEnabled(bool) noexcept = 0;
+            virtual int32_t __stdcall get_IsCursorImageCaptureEnabled(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureState>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsTargetRunning(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsHistoricalCaptureEnabled(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_ShouldCaptureMicrophone(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_ShouldCaptureMicrophone(bool) noexcept = 0;
+            virtual int32_t __stdcall RestartMicrophoneCapture() noexcept = 0;
+            virtual int32_t __stdcall get_MicrophoneCaptureState(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_MicrophoneCaptureError(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall add_MicrophoneCaptureStateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_MicrophoneCaptureStateChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_CaptureTargetClosed(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_CaptureTargetClosed(winrt::event_token) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Capture::IAppCaptureStatics>
@@ -664,6 +1978,13 @@ namespace winrt::impl
             virtual int32_t __stdcall put_MaxDurationInSeconds(float) noexcept = 0;
             virtual int32_t __stdcall get_AllowTrimming(bool*) noexcept = 0;
             virtual int32_t __stdcall put_AllowTrimming(bool) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::ICameraOptionsUIStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall Show(void*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Capture::ICapturedFrame>
@@ -721,6 +2042,61 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall get_Frame(void**) noexcept = 0;
             virtual int32_t __stdcall get_Thumbnail(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IGameBarServices>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_TargetCapturePolicy(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall EnableCapture() noexcept = 0;
+            virtual int32_t __stdcall DisableCapture() noexcept = 0;
+            virtual int32_t __stdcall get_TargetInfo(void**) noexcept = 0;
+            virtual int32_t __stdcall get_SessionId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AppBroadcastServices(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AppCaptureServices(void**) noexcept = 0;
+            virtual int32_t __stdcall add_CommandReceived(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_CommandReceived(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Command(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_Origin(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IGameBarServicesManager>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_GameBarServicesCreated(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_GameBarServicesCreated(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_GameBarServices(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IGameBarServicesManagerStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetDefault(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IGameBarServicesTargetInfo>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_DisplayName(void**) noexcept = 0;
+            virtual int32_t __stdcall get_AppId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_TitleId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_DisplayMode(int32_t*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Capture::ILowLagMediaRecording>
@@ -1115,6 +2491,33 @@ namespace winrt::impl
             virtual int32_t __stdcall get_CaptureTimeOffset(int64_t*) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Media::Capture::IScreenCapture>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AudioSource(void**) noexcept = 0;
+            virtual int32_t __stdcall get_VideoSource(void**) noexcept = 0;
+            virtual int32_t __stdcall get_IsAudioSuspended(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsVideoSuspended(bool*) noexcept = 0;
+            virtual int32_t __stdcall add_SourceSuspensionChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_SourceSuspensionChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IScreenCaptureStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetForCurrentView(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsAudioSuspended(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_IsVideoSuspended(bool*) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Media::Capture::IVideoStreamConfiguration>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -1177,6 +2580,516 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Media_Capture_IAdvancedPhotoCapture<D>;
     };
     template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastBackgroundService
+    {
+        auto PlugInState(winrt::Windows::Media::Capture::AppBroadcastPlugInState const& value) const;
+        [[nodiscard]] auto PlugInState() const;
+        auto SignInInfo(winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo const& value) const;
+        [[nodiscard]] auto SignInInfo() const;
+        auto StreamInfo(winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo const& value) const;
+        [[nodiscard]] auto StreamInfo() const;
+        [[nodiscard]] auto AppId() const;
+        [[nodiscard]] auto BroadcastTitle() const;
+        auto ViewerCount(uint32_t value) const;
+        [[nodiscard]] auto ViewerCount() const;
+        auto TerminateBroadcast(winrt::Windows::Media::Capture::AppBroadcastTerminationReason const& reason, uint32_t providerSpecificReason) const;
+        auto HeartbeatRequested(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs> const& handler) const;
+        using HeartbeatRequested_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService>::remove_HeartbeatRequested>;
+        [[nodiscard]] auto HeartbeatRequested(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Media::Capture::AppBroadcastHeartbeatRequestedEventArgs> const& handler) const;
+        auto HeartbeatRequested(winrt::event_token const& token) const noexcept;
+        [[nodiscard]] auto TitleId() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastBackgroundService<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastBackgroundService2
+    {
+        auto BroadcastTitle(param::hstring const& value) const;
+        [[nodiscard]] auto BroadcastLanguage() const;
+        auto BroadcastLanguage(param::hstring const& value) const;
+        [[nodiscard]] auto BroadcastChannel() const;
+        auto BroadcastChannel(param::hstring const& value) const;
+        auto BroadcastTitleChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using BroadcastTitleChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>::remove_BroadcastTitleChanged>;
+        [[nodiscard]] auto BroadcastTitleChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto BroadcastTitleChanged(winrt::event_token const& token) const noexcept;
+        auto BroadcastLanguageChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using BroadcastLanguageChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>::remove_BroadcastLanguageChanged>;
+        [[nodiscard]] auto BroadcastLanguageChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto BroadcastLanguageChanged(winrt::event_token const& token) const noexcept;
+        auto BroadcastChannelChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using BroadcastChannelChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>::remove_BroadcastChannelChanged>;
+        [[nodiscard]] auto BroadcastChannelChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundService, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto BroadcastChannelChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastBackgroundService2>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastBackgroundService2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo
+    {
+        [[nodiscard]] auto SignInState() const;
+        auto OAuthRequestUri(winrt::Windows::Foundation::Uri const& value) const;
+        [[nodiscard]] auto OAuthRequestUri() const;
+        auto OAuthCallbackUri(winrt::Windows::Foundation::Uri const& value) const;
+        [[nodiscard]] auto OAuthCallbackUri() const;
+        [[nodiscard]] auto AuthenticationResult() const;
+        auto UserName(param::hstring const& value) const;
+        [[nodiscard]] auto UserName() const;
+        auto SignInStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs> const& handler) const;
+        using SignInStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo>::remove_SignInStateChanged>;
+        [[nodiscard]] auto SignInStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Media::Capture::AppBroadcastSignInStateChangedEventArgs> const& handler) const;
+        auto SignInStateChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo2
+    {
+        auto UserNameChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using UserNameChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2>::remove_UserNameChanged>;
+        [[nodiscard]] auto UserNameChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceSignInInfo, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto UserNameChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceSignInInfo2>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceSignInInfo2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo
+    {
+        [[nodiscard]] auto StreamState() const;
+        auto DesiredVideoEncodingBitrate(uint64_t value) const;
+        [[nodiscard]] auto DesiredVideoEncodingBitrate() const;
+        auto BandwidthTestBitrate(uint64_t value) const;
+        [[nodiscard]] auto BandwidthTestBitrate() const;
+        auto AudioCodec(param::hstring const& value) const;
+        [[nodiscard]] auto AudioCodec() const;
+        [[nodiscard]] auto BroadcastStreamReader() const;
+        auto StreamStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const;
+        using StreamStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>::remove_StreamStateChanged>;
+        [[nodiscard]] auto StreamStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const;
+        auto StreamStateChanged(winrt::event_token const& token) const noexcept;
+        auto VideoEncodingResolutionChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using VideoEncodingResolutionChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>::remove_VideoEncodingResolutionChanged>;
+        [[nodiscard]] auto VideoEncodingResolutionChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto VideoEncodingResolutionChanged(winrt::event_token const& token) const noexcept;
+        auto VideoEncodingBitrateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using VideoEncodingBitrateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>::remove_VideoEncodingBitrateChanged>;
+        [[nodiscard]] auto VideoEncodingBitrateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastBackgroundServiceStreamInfo, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto VideoEncodingBitrateChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo2
+    {
+        auto ReportProblemWithStream() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastBackgroundServiceStreamInfo2>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastBackgroundServiceStreamInfo2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastCameraCaptureStateChangedEventArgs
+    {
+        [[nodiscard]] auto State() const;
+        [[nodiscard]] auto ErrorCode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastCameraCaptureStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastCameraCaptureStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastGlobalSettings
+    {
+        [[nodiscard]] auto IsBroadcastEnabled() const;
+        [[nodiscard]] auto IsDisabledByPolicy() const;
+        [[nodiscard]] auto IsGpuConstrained() const;
+        [[nodiscard]] auto HasHardwareEncoder() const;
+        auto IsAudioCaptureEnabled(bool value) const;
+        [[nodiscard]] auto IsAudioCaptureEnabled() const;
+        auto IsMicrophoneCaptureEnabledByDefault(bool value) const;
+        [[nodiscard]] auto IsMicrophoneCaptureEnabledByDefault() const;
+        auto IsEchoCancellationEnabled(bool value) const;
+        [[nodiscard]] auto IsEchoCancellationEnabled() const;
+        auto SystemAudioGain(double value) const;
+        [[nodiscard]] auto SystemAudioGain() const;
+        auto MicrophoneGain(double value) const;
+        [[nodiscard]] auto MicrophoneGain() const;
+        auto IsCameraCaptureEnabledByDefault(bool value) const;
+        [[nodiscard]] auto IsCameraCaptureEnabledByDefault() const;
+        auto SelectedCameraId(param::hstring const& value) const;
+        [[nodiscard]] auto SelectedCameraId() const;
+        auto CameraOverlayLocation(winrt::Windows::Media::Capture::AppBroadcastCameraOverlayLocation const& value) const;
+        [[nodiscard]] auto CameraOverlayLocation() const;
+        auto CameraOverlaySize(winrt::Windows::Media::Capture::AppBroadcastCameraOverlaySize const& value) const;
+        [[nodiscard]] auto CameraOverlaySize() const;
+        auto IsCursorImageCaptureEnabled(bool value) const;
+        [[nodiscard]] auto IsCursorImageCaptureEnabled() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastGlobalSettings>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastGlobalSettings<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastHeartbeatRequestedEventArgs
+    {
+        auto Handled(bool value) const;
+        [[nodiscard]] auto Handled() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastHeartbeatRequestedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastHeartbeatRequestedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastManagerStatics
+    {
+        auto GetGlobalSettings() const;
+        auto ApplyGlobalSettings(winrt::Windows::Media::Capture::AppBroadcastGlobalSettings const& value) const;
+        auto GetProviderSettings() const;
+        auto ApplyProviderSettings(winrt::Windows::Media::Capture::AppBroadcastProviderSettings const& value) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastManagerStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastManagerStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastMicrophoneCaptureStateChangedEventArgs
+    {
+        [[nodiscard]] auto State() const;
+        [[nodiscard]] auto ErrorCode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastMicrophoneCaptureStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastMicrophoneCaptureStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPlugIn
+    {
+        [[nodiscard]] auto AppId() const;
+        [[nodiscard]] auto ProviderSettings() const;
+        [[nodiscard]] auto Logo() const;
+        [[nodiscard]] auto DisplayName() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPlugIn>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPlugIn<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPlugInManager
+    {
+        [[nodiscard]] auto IsBroadcastProviderAvailable() const;
+        [[nodiscard]] auto PlugInList() const;
+        [[nodiscard]] auto DefaultPlugIn() const;
+        auto DefaultPlugIn(winrt::Windows::Media::Capture::AppBroadcastPlugIn const& value) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPlugInManager>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPlugInManager<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPlugInManagerStatics
+    {
+        auto GetDefault() const;
+        auto GetForUser(winrt::Windows::System::User const& user) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPlugInManagerStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPlugInManagerStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPlugInStateChangedEventArgs
+    {
+        [[nodiscard]] auto PlugInState() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPlugInStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPlugInStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPreview
+    {
+        auto StopPreview() const;
+        [[nodiscard]] auto PreviewState() const;
+        [[nodiscard]] auto ErrorCode() const;
+        auto PreviewStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreview, winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs> const& value) const;
+        using PreviewStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastPreview, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastPreview>::remove_PreviewStateChanged>;
+        [[nodiscard]] auto PreviewStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreview, winrt::Windows::Media::Capture::AppBroadcastPreviewStateChangedEventArgs> const& value) const;
+        auto PreviewStateChanged(winrt::event_token const& token) const noexcept;
+        [[nodiscard]] auto PreviewStreamReader() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPreview>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPreview<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPreviewStateChangedEventArgs
+    {
+        [[nodiscard]] auto PreviewState() const;
+        [[nodiscard]] auto ErrorCode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPreviewStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPreviewStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader
+    {
+        [[nodiscard]] auto VideoWidth() const;
+        [[nodiscard]] auto VideoHeight() const;
+        [[nodiscard]] auto VideoStride() const;
+        [[nodiscard]] auto VideoBitmapPixelFormat() const;
+        [[nodiscard]] auto VideoBitmapAlphaMode() const;
+        auto TryGetNextVideoFrame() const;
+        auto VideoFrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const;
+        using VideoFrameArrived_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader>::remove_VideoFrameArrived>;
+        [[nodiscard]] auto VideoFrameArrived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastPreviewStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const;
+        auto VideoFrameArrived(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamReader>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPreviewStreamReader<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoFrame
+    {
+        [[nodiscard]] auto VideoHeader() const;
+        [[nodiscard]] auto VideoBuffer() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoFrame>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoFrame<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoHeader
+    {
+        [[nodiscard]] auto AbsoluteTimestamp() const;
+        [[nodiscard]] auto RelativeTimestamp() const;
+        [[nodiscard]] auto Duration() const;
+        [[nodiscard]] auto FrameId() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastPreviewStreamVideoHeader>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastPreviewStreamVideoHeader<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastProviderSettings
+    {
+        auto DefaultBroadcastTitle(param::hstring const& value) const;
+        [[nodiscard]] auto DefaultBroadcastTitle() const;
+        auto AudioEncodingBitrate(uint32_t value) const;
+        [[nodiscard]] auto AudioEncodingBitrate() const;
+        auto CustomVideoEncodingBitrate(uint32_t value) const;
+        [[nodiscard]] auto CustomVideoEncodingBitrate() const;
+        auto CustomVideoEncodingHeight(uint32_t value) const;
+        [[nodiscard]] auto CustomVideoEncodingHeight() const;
+        auto CustomVideoEncodingWidth(uint32_t value) const;
+        [[nodiscard]] auto CustomVideoEncodingWidth() const;
+        auto VideoEncodingBitrateMode(winrt::Windows::Media::Capture::AppBroadcastVideoEncodingBitrateMode const& value) const;
+        [[nodiscard]] auto VideoEncodingBitrateMode() const;
+        auto VideoEncodingResolutionMode(winrt::Windows::Media::Capture::AppBroadcastVideoEncodingResolutionMode const& value) const;
+        [[nodiscard]] auto VideoEncodingResolutionMode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastProviderSettings>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastProviderSettings<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastServices
+    {
+        [[nodiscard]] auto CaptureTargetType() const;
+        auto CaptureTargetType(winrt::Windows::Media::Capture::AppBroadcastCaptureTargetType const& value) const;
+        [[nodiscard]] auto BroadcastTitle() const;
+        auto BroadcastTitle(param::hstring const& value) const;
+        [[nodiscard]] auto BroadcastLanguage() const;
+        auto BroadcastLanguage(param::hstring const& value) const;
+        [[nodiscard]] auto UserName() const;
+        [[nodiscard]] auto CanCapture() const;
+        auto EnterBroadcastModeAsync(winrt::Windows::Media::Capture::AppBroadcastPlugIn const& plugIn) const;
+        auto ExitBroadcastMode(winrt::Windows::Media::Capture::AppBroadcastExitBroadcastModeReason const& reason) const;
+        auto StartBroadcast() const;
+        auto PauseBroadcast() const;
+        auto ResumeBroadcast() const;
+        auto StartPreview(winrt::Windows::Foundation::Size const& desiredSize) const;
+        [[nodiscard]] auto State() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastServices>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastServices<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastSignInStateChangedEventArgs
+    {
+        [[nodiscard]] auto SignInState() const;
+        [[nodiscard]] auto Result() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastSignInStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastSignInStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastState
+    {
+        [[nodiscard]] auto IsCaptureTargetRunning() const;
+        [[nodiscard]] auto ViewerCount() const;
+        [[nodiscard]] auto ShouldCaptureMicrophone() const;
+        auto ShouldCaptureMicrophone(bool value) const;
+        auto RestartMicrophoneCapture() const;
+        [[nodiscard]] auto ShouldCaptureCamera() const;
+        auto ShouldCaptureCamera(bool value) const;
+        auto RestartCameraCapture() const;
+        [[nodiscard]] auto EncodedVideoSize() const;
+        [[nodiscard]] auto MicrophoneCaptureState() const;
+        [[nodiscard]] auto MicrophoneCaptureError() const;
+        [[nodiscard]] auto CameraCaptureState() const;
+        [[nodiscard]] auto CameraCaptureError() const;
+        [[nodiscard]] auto StreamState() const;
+        [[nodiscard]] auto PlugInState() const;
+        [[nodiscard]] auto OAuthRequestUri() const;
+        [[nodiscard]] auto OAuthCallbackUri() const;
+        [[nodiscard]] auto AuthenticationResult() const;
+        auto AuthenticationResult(winrt::Windows::Security::Authentication::Web::WebAuthenticationResult const& value) const;
+        auto SignInState(winrt::Windows::Media::Capture::AppBroadcastSignInState const& value) const;
+        [[nodiscard]] auto SignInState() const;
+        [[nodiscard]] auto TerminationReason() const;
+        [[nodiscard]] auto TerminationReasonPlugInSpecific() const;
+        auto ViewerCountChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs> const& value) const;
+        using ViewerCountChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastState, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastState>::remove_ViewerCountChanged>;
+        [[nodiscard]] auto ViewerCountChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastViewerCountChangedEventArgs> const& value) const;
+        auto ViewerCountChanged(winrt::event_token const& token) const noexcept;
+        auto MicrophoneCaptureStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs> const& value) const;
+        using MicrophoneCaptureStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastState, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastState>::remove_MicrophoneCaptureStateChanged>;
+        [[nodiscard]] auto MicrophoneCaptureStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastMicrophoneCaptureStateChangedEventArgs> const& value) const;
+        auto MicrophoneCaptureStateChanged(winrt::event_token const& token) const noexcept;
+        auto CameraCaptureStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs> const& value) const;
+        using CameraCaptureStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastState, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastState>::remove_CameraCaptureStateChanged>;
+        [[nodiscard]] auto CameraCaptureStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastCameraCaptureStateChangedEventArgs> const& value) const;
+        auto CameraCaptureStateChanged(winrt::event_token const& token) const noexcept;
+        auto PlugInStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs> const& handler) const;
+        using PlugInStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastState, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastState>::remove_PlugInStateChanged>;
+        [[nodiscard]] auto PlugInStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastPlugInStateChangedEventArgs> const& handler) const;
+        auto PlugInStateChanged(winrt::event_token const& token) const noexcept;
+        auto StreamStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const;
+        using StreamStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastState, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastState>::remove_StreamStateChanged>;
+        [[nodiscard]] auto StreamStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Media::Capture::AppBroadcastStreamStateChangedEventArgs> const& handler) const;
+        auto StreamStateChanged(winrt::event_token const& token) const noexcept;
+        auto CaptureTargetClosed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Foundation::IInspectable> const& value) const;
+        using CaptureTargetClosed_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastState, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastState>::remove_CaptureTargetClosed>;
+        [[nodiscard]] auto CaptureTargetClosed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastState, winrt::Windows::Foundation::IInspectable> const& value) const;
+        auto CaptureTargetClosed(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastState>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastState<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastStreamAudioFrame
+    {
+        [[nodiscard]] auto AudioHeader() const;
+        [[nodiscard]] auto AudioBuffer() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioFrame>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastStreamAudioFrame<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastStreamAudioHeader
+    {
+        [[nodiscard]] auto AbsoluteTimestamp() const;
+        [[nodiscard]] auto RelativeTimestamp() const;
+        [[nodiscard]] auto Duration() const;
+        [[nodiscard]] auto HasDiscontinuity() const;
+        [[nodiscard]] auto FrameId() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastStreamAudioHeader>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastStreamAudioHeader<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastStreamReader
+    {
+        [[nodiscard]] auto AudioChannels() const;
+        [[nodiscard]] auto AudioSampleRate() const;
+        [[nodiscard]] auto AudioAacSequence() const;
+        [[nodiscard]] auto AudioBitrate() const;
+        auto TryGetNextAudioFrame() const;
+        [[nodiscard]] auto VideoWidth() const;
+        [[nodiscard]] auto VideoHeight() const;
+        [[nodiscard]] auto VideoBitrate() const;
+        auto TryGetNextVideoFrame() const;
+        auto AudioFrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const;
+        using AudioFrameArrived_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastStreamReader, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastStreamReader>::remove_AudioFrameArrived>;
+        [[nodiscard]] auto AudioFrameArrived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const;
+        auto AudioFrameArrived(winrt::event_token const& token) const noexcept;
+        auto VideoFrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const;
+        using VideoFrameArrived_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppBroadcastStreamReader, &impl::abi_t<winrt::Windows::Media::Capture::IAppBroadcastStreamReader>::remove_VideoFrameArrived>;
+        [[nodiscard]] auto VideoFrameArrived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppBroadcastStreamReader, winrt::Windows::Foundation::IInspectable> const& value) const;
+        auto VideoFrameArrived(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastStreamReader>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastStreamReader<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastStreamStateChangedEventArgs
+    {
+        [[nodiscard]] auto StreamState() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastStreamStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastStreamStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastStreamVideoFrame
+    {
+        [[nodiscard]] auto VideoHeader() const;
+        [[nodiscard]] auto VideoBuffer() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoFrame>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastStreamVideoFrame<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader
+    {
+        [[nodiscard]] auto AbsoluteTimestamp() const;
+        [[nodiscard]] auto RelativeTimestamp() const;
+        [[nodiscard]] auto Duration() const;
+        [[nodiscard]] auto IsKeyFrame() const;
+        [[nodiscard]] auto HasDiscontinuity() const;
+        [[nodiscard]] auto FrameId() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastStreamVideoHeader>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastStreamVideoHeader<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastTriggerDetails
+    {
+        [[nodiscard]] auto BackgroundService() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastTriggerDetails>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastTriggerDetails<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppBroadcastViewerCountChangedEventArgs
+    {
+        [[nodiscard]] auto ViewerCount() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppBroadcastViewerCountChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppBroadcastViewerCountChangedEventArgs<D>;
+    };
+    template <typename D>
     struct consume_Windows_Media_Capture_IAppCapture
     {
         [[nodiscard]] auto IsCapturingAudio() const;
@@ -1189,6 +3102,284 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Capture::IAppCapture>
     {
         template <typename D> using type = consume_Windows_Media_Capture_IAppCapture<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys
+    {
+        auto ToggleGameBarKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto ToggleGameBarKey() const;
+        auto ToggleGameBarKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto ToggleGameBarKeyModifiers() const;
+        auto SaveHistoricalVideoKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto SaveHistoricalVideoKey() const;
+        auto SaveHistoricalVideoKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto SaveHistoricalVideoKeyModifiers() const;
+        auto ToggleRecordingKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto ToggleRecordingKey() const;
+        auto ToggleRecordingKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto ToggleRecordingKeyModifiers() const;
+        auto TakeScreenshotKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto TakeScreenshotKey() const;
+        auto TakeScreenshotKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto TakeScreenshotKeyModifiers() const;
+        auto ToggleRecordingIndicatorKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto ToggleRecordingIndicatorKey() const;
+        auto ToggleRecordingIndicatorKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto ToggleRecordingIndicatorKeyModifiers() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys2
+    {
+        auto ToggleMicrophoneCaptureKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto ToggleMicrophoneCaptureKey() const;
+        auto ToggleMicrophoneCaptureKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto ToggleMicrophoneCaptureKeyModifiers() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys2>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3
+    {
+        auto ToggleCameraCaptureKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto ToggleCameraCaptureKey() const;
+        auto ToggleCameraCaptureKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto ToggleCameraCaptureKeyModifiers() const;
+        auto ToggleBroadcastKey(winrt::Windows::System::VirtualKey const& value) const;
+        [[nodiscard]] auto ToggleBroadcastKey() const;
+        auto ToggleBroadcastKeyModifiers(winrt::Windows::System::VirtualKeyModifiers const& value) const;
+        [[nodiscard]] auto ToggleBroadcastKeyModifiers() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureAlternateShortcutKeys3>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureAlternateShortcutKeys3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureDurationGeneratedEventArgs
+    {
+        [[nodiscard]] auto Duration() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureDurationGeneratedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureDurationGeneratedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureFileGeneratedEventArgs
+    {
+        [[nodiscard]] auto File() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureFileGeneratedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureFileGeneratedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureManagerStatics
+    {
+        auto GetCurrentSettings() const;
+        auto ApplySettings(winrt::Windows::Media::Capture::AppCaptureSettings const& appCaptureSettings) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureManagerStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureManagerStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureMetadataWriter
+    {
+        auto AddStringEvent(param::hstring const& name, param::hstring const& value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const;
+        auto AddInt32Event(param::hstring const& name, int32_t value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const;
+        auto AddDoubleEvent(param::hstring const& name, double value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const;
+        auto StartStringState(param::hstring const& name, param::hstring const& value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const;
+        auto StartInt32State(param::hstring const& name, int32_t value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const;
+        auto StartDoubleState(param::hstring const& name, double value, winrt::Windows::Media::Capture::AppCaptureMetadataPriority const& priority) const;
+        auto StopState(param::hstring const& name) const;
+        auto StopAllStates() const;
+        [[nodiscard]] auto RemainingStorageBytesAvailable() const;
+        auto MetadataPurged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureMetadataWriter, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using MetadataPurged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter, &impl::abi_t<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter>::remove_MetadataPurged>;
+        [[nodiscard]] auto MetadataPurged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureMetadataWriter, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto MetadataPurged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureMetadataWriter>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureMetadataWriter<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureMicrophoneCaptureStateChangedEventArgs
+    {
+        [[nodiscard]] auto State() const;
+        [[nodiscard]] auto ErrorCode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureMicrophoneCaptureStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureMicrophoneCaptureStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureRecordOperation
+    {
+        auto StopRecording() const;
+        [[nodiscard]] auto State() const;
+        [[nodiscard]] auto ErrorCode() const;
+        [[nodiscard]] auto Duration() const;
+        [[nodiscard]] auto File() const;
+        [[nodiscard]] auto IsFileTruncated() const;
+        auto StateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs> const& value) const;
+        using StateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppCaptureRecordOperation, &impl::abi_t<winrt::Windows::Media::Capture::IAppCaptureRecordOperation>::remove_StateChanged>;
+        [[nodiscard]] auto StateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureRecordingStateChangedEventArgs> const& value) const;
+        auto StateChanged(winrt::event_token const& token) const noexcept;
+        auto DurationGenerated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs> const& value) const;
+        using DurationGenerated_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppCaptureRecordOperation, &impl::abi_t<winrt::Windows::Media::Capture::IAppCaptureRecordOperation>::remove_DurationGenerated>;
+        [[nodiscard]] auto DurationGenerated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureDurationGeneratedEventArgs> const& value) const;
+        auto DurationGenerated(winrt::event_token const& token) const noexcept;
+        auto FileGenerated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs> const& value) const;
+        using FileGenerated_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppCaptureRecordOperation, &impl::abi_t<winrt::Windows::Media::Capture::IAppCaptureRecordOperation>::remove_FileGenerated>;
+        [[nodiscard]] auto FileGenerated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureRecordOperation, winrt::Windows::Media::Capture::AppCaptureFileGeneratedEventArgs> const& value) const;
+        auto FileGenerated(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureRecordOperation>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureRecordOperation<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureRecordingStateChangedEventArgs
+    {
+        [[nodiscard]] auto State() const;
+        [[nodiscard]] auto ErrorCode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureRecordingStateChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureRecordingStateChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureServices
+    {
+        auto Record() const;
+        auto RecordTimeSpan(winrt::Windows::Foundation::DateTime const& startTime, winrt::Windows::Foundation::TimeSpan const& duration) const;
+        [[nodiscard]] auto CanCapture() const;
+        [[nodiscard]] auto State() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureServices>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureServices<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureSettings
+    {
+        auto AppCaptureDestinationFolder(winrt::Windows::Storage::StorageFolder const& value) const;
+        [[nodiscard]] auto AppCaptureDestinationFolder() const;
+        auto AudioEncodingBitrate(uint32_t value) const;
+        [[nodiscard]] auto AudioEncodingBitrate() const;
+        auto IsAudioCaptureEnabled(bool value) const;
+        [[nodiscard]] auto IsAudioCaptureEnabled() const;
+        auto CustomVideoEncodingBitrate(uint32_t value) const;
+        [[nodiscard]] auto CustomVideoEncodingBitrate() const;
+        auto CustomVideoEncodingHeight(uint32_t value) const;
+        [[nodiscard]] auto CustomVideoEncodingHeight() const;
+        auto CustomVideoEncodingWidth(uint32_t value) const;
+        [[nodiscard]] auto CustomVideoEncodingWidth() const;
+        auto HistoricalBufferLength(uint32_t value) const;
+        [[nodiscard]] auto HistoricalBufferLength() const;
+        auto HistoricalBufferLengthUnit(winrt::Windows::Media::Capture::AppCaptureHistoricalBufferLengthUnit const& value) const;
+        [[nodiscard]] auto HistoricalBufferLengthUnit() const;
+        auto IsHistoricalCaptureEnabled(bool value) const;
+        [[nodiscard]] auto IsHistoricalCaptureEnabled() const;
+        auto IsHistoricalCaptureOnBatteryAllowed(bool value) const;
+        [[nodiscard]] auto IsHistoricalCaptureOnBatteryAllowed() const;
+        auto IsHistoricalCaptureOnWirelessDisplayAllowed(bool value) const;
+        [[nodiscard]] auto IsHistoricalCaptureOnWirelessDisplayAllowed() const;
+        auto MaximumRecordLength(winrt::Windows::Foundation::TimeSpan const& value) const;
+        [[nodiscard]] auto MaximumRecordLength() const;
+        auto ScreenshotDestinationFolder(winrt::Windows::Storage::StorageFolder const& value) const;
+        [[nodiscard]] auto ScreenshotDestinationFolder() const;
+        auto VideoEncodingBitrateMode(winrt::Windows::Media::Capture::AppCaptureVideoEncodingBitrateMode const& value) const;
+        [[nodiscard]] auto VideoEncodingBitrateMode() const;
+        auto VideoEncodingResolutionMode(winrt::Windows::Media::Capture::AppCaptureVideoEncodingResolutionMode const& value) const;
+        [[nodiscard]] auto VideoEncodingResolutionMode() const;
+        auto IsAppCaptureEnabled(bool value) const;
+        [[nodiscard]] auto IsAppCaptureEnabled() const;
+        [[nodiscard]] auto IsCpuConstrained() const;
+        [[nodiscard]] auto IsDisabledByPolicy() const;
+        [[nodiscard]] auto IsMemoryConstrained() const;
+        [[nodiscard]] auto HasHardwareEncoder() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureSettings>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureSettings<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureSettings2
+    {
+        [[nodiscard]] auto IsGpuConstrained() const;
+        [[nodiscard]] auto AlternateShortcutKeys() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureSettings2>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureSettings2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureSettings3
+    {
+        auto IsMicrophoneCaptureEnabled(bool value) const;
+        [[nodiscard]] auto IsMicrophoneCaptureEnabled() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureSettings3>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureSettings3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureSettings4
+    {
+        auto IsMicrophoneCaptureEnabledByDefault(bool value) const;
+        [[nodiscard]] auto IsMicrophoneCaptureEnabledByDefault() const;
+        auto SystemAudioGain(double value) const;
+        [[nodiscard]] auto SystemAudioGain() const;
+        auto MicrophoneGain(double value) const;
+        [[nodiscard]] auto MicrophoneGain() const;
+        auto VideoEncodingFrameRateMode(winrt::Windows::Media::Capture::AppCaptureVideoEncodingFrameRateMode const& value) const;
+        [[nodiscard]] auto VideoEncodingFrameRateMode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureSettings4>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureSettings4<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureSettings5
+    {
+        auto IsEchoCancellationEnabled(bool value) const;
+        [[nodiscard]] auto IsEchoCancellationEnabled() const;
+        auto IsCursorImageCaptureEnabled(bool value) const;
+        [[nodiscard]] auto IsCursorImageCaptureEnabled() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureSettings5>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureSettings5<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IAppCaptureState
+    {
+        [[nodiscard]] auto IsTargetRunning() const;
+        [[nodiscard]] auto IsHistoricalCaptureEnabled() const;
+        [[nodiscard]] auto ShouldCaptureMicrophone() const;
+        auto ShouldCaptureMicrophone(bool value) const;
+        auto RestartMicrophoneCapture() const;
+        [[nodiscard]] auto MicrophoneCaptureState() const;
+        [[nodiscard]] auto MicrophoneCaptureError() const;
+        auto MicrophoneCaptureStateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs> const& value) const;
+        using MicrophoneCaptureStateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppCaptureState, &impl::abi_t<winrt::Windows::Media::Capture::IAppCaptureState>::remove_MicrophoneCaptureStateChanged>;
+        [[nodiscard]] auto MicrophoneCaptureStateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Media::Capture::AppCaptureMicrophoneCaptureStateChangedEventArgs> const& value) const;
+        auto MicrophoneCaptureStateChanged(winrt::event_token const& token) const noexcept;
+        auto CaptureTargetClosed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Foundation::IInspectable> const& value) const;
+        using CaptureTargetClosed_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IAppCaptureState, &impl::abi_t<winrt::Windows::Media::Capture::IAppCaptureState>::remove_CaptureTargetClosed>;
+        [[nodiscard]] auto CaptureTargetClosed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::AppCaptureState, winrt::Windows::Foundation::IInspectable> const& value) const;
+        auto CaptureTargetClosed(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IAppCaptureState>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IAppCaptureState<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Capture_IAppCaptureStatics
@@ -1252,6 +3443,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Capture::ICameraCaptureUIVideoCaptureSettings>
     {
         template <typename D> using type = consume_Windows_Media_Capture_ICameraCaptureUIVideoCaptureSettings<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_ICameraOptionsUIStatics
+    {
+        auto Show(winrt::Windows::Media::Capture::MediaCapture const& mediaCapture) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::ICameraOptionsUIStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_ICameraOptionsUIStatics<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Capture_ICapturedFrame
@@ -1321,6 +3521,77 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Capture::ICapturedPhoto>
     {
         template <typename D> using type = consume_Windows_Media_Capture_ICapturedPhoto<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IGameBarServices
+    {
+        [[nodiscard]] auto TargetCapturePolicy() const;
+        auto EnableCapture() const;
+        auto DisableCapture() const;
+        [[nodiscard]] auto TargetInfo() const;
+        [[nodiscard]] auto SessionId() const;
+        [[nodiscard]] auto AppBroadcastServices() const;
+        [[nodiscard]] auto AppCaptureServices() const;
+        auto CommandReceived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServices, winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs> const& value) const;
+        using CommandReceived_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IGameBarServices, &impl::abi_t<winrt::Windows::Media::Capture::IGameBarServices>::remove_CommandReceived>;
+        [[nodiscard]] auto CommandReceived(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServices, winrt::Windows::Media::Capture::GameBarServicesCommandEventArgs> const& value) const;
+        auto CommandReceived(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IGameBarServices>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IGameBarServices<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IGameBarServicesCommandEventArgs
+    {
+        [[nodiscard]] auto Command() const;
+        [[nodiscard]] auto Origin() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IGameBarServicesCommandEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IGameBarServicesCommandEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IGameBarServicesManager
+    {
+        auto GameBarServicesCreated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServicesManager, winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs> const& value) const;
+        using GameBarServicesCreated_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IGameBarServicesManager, &impl::abi_t<winrt::Windows::Media::Capture::IGameBarServicesManager>::remove_GameBarServicesCreated>;
+        [[nodiscard]] auto GameBarServicesCreated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::GameBarServicesManager, winrt::Windows::Media::Capture::GameBarServicesManagerGameBarServicesCreatedEventArgs> const& value) const;
+        auto GameBarServicesCreated(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IGameBarServicesManager>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IGameBarServicesManager<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IGameBarServicesManagerGameBarServicesCreatedEventArgs
+    {
+        [[nodiscard]] auto GameBarServices() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IGameBarServicesManagerGameBarServicesCreatedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IGameBarServicesManagerGameBarServicesCreatedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IGameBarServicesManagerStatics
+    {
+        auto GetDefault() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IGameBarServicesManagerStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IGameBarServicesManagerStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IGameBarServicesTargetInfo
+    {
+        [[nodiscard]] auto DisplayName() const;
+        [[nodiscard]] auto AppId() const;
+        [[nodiscard]] auto TitleId() const;
+        [[nodiscard]] auto DisplayMode() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IGameBarServicesTargetInfo>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IGameBarServicesTargetInfo<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Capture_ILowLagMediaRecording
@@ -1805,6 +4076,41 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Capture::IPhotoConfirmationCapturedEventArgs>
     {
         template <typename D> using type = consume_Windows_Media_Capture_IPhotoConfirmationCapturedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IScreenCapture
+    {
+        [[nodiscard]] auto AudioSource() const;
+        [[nodiscard]] auto VideoSource() const;
+        [[nodiscard]] auto IsAudioSuspended() const;
+        [[nodiscard]] auto IsVideoSuspended() const;
+        auto SourceSuspensionChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::ScreenCapture, winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs> const& handler) const;
+        using SourceSuspensionChanged_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IScreenCapture, &impl::abi_t<winrt::Windows::Media::Capture::IScreenCapture>::remove_SourceSuspensionChanged>;
+        [[nodiscard]] auto SourceSuspensionChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::ScreenCapture, winrt::Windows::Media::Capture::SourceSuspensionChangedEventArgs> const& handler) const;
+        auto SourceSuspensionChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IScreenCapture>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IScreenCapture<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IScreenCaptureStatics
+    {
+        auto GetForCurrentView() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IScreenCaptureStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IScreenCaptureStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_ISourceSuspensionChangedEventArgs
+    {
+        [[nodiscard]] auto IsAudioSuspended() const;
+        [[nodiscard]] auto IsVideoSuspended() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::ISourceSuspensionChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_ISourceSuspensionChangedEventArgs<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Capture_IVideoStreamConfiguration

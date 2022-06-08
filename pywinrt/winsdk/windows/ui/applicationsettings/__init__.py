@@ -31,6 +31,10 @@ try:
 except ImportError:
     pass
 
+class SettingsEdgeLocation(enum.IntEnum):
+    RIGHT = 0
+    LEFT = 1
+
 class SupportedWebAccountActions(enum.IntFlag):
     NONE = 0
     RECONNECT = 0x1
@@ -46,6 +50,7 @@ class WebAccountAction(enum.IntEnum):
     MANAGE = 3
     MORE = 4
 
+_ns_module._register_SettingsEdgeLocation(SettingsEdgeLocation)
 _ns_module._register_SupportedWebAccountActions(SupportedWebAccountActions)
 _ns_module._register_WebAccountAction(WebAccountAction)
 
@@ -54,6 +59,9 @@ AccountsSettingsPaneCommandsRequestedEventArgs = _ns_module.AccountsSettingsPane
 AccountsSettingsPaneEventDeferral = _ns_module.AccountsSettingsPaneEventDeferral
 CredentialCommand = _ns_module.CredentialCommand
 SettingsCommand = _ns_module.SettingsCommand
+SettingsPane = _ns_module.SettingsPane
+SettingsPaneCommandsRequest = _ns_module.SettingsPaneCommandsRequest
+SettingsPaneCommandsRequestedEventArgs = _ns_module.SettingsPaneCommandsRequestedEventArgs
 WebAccountCommand = _ns_module.WebAccountCommand
 WebAccountInvokedArgs = _ns_module.WebAccountInvokedArgs
 WebAccountProviderCommand = _ns_module.WebAccountProviderCommand

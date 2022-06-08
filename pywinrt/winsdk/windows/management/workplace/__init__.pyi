@@ -29,3 +29,8 @@ class MdmPolicy(_winrt.Object):
     @staticmethod
     def is_store_allowed() -> _winrt.Boolean: ...
 
+class WorkplaceSettings(_winrt.Object):
+    is_microsoft_account_optional: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> WorkplaceSettings: ...
+

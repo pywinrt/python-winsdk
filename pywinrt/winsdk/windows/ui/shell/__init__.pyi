@@ -12,6 +12,19 @@ import winsdk.windows.foundation
 import winsdk.windows.ui
 import winsdk.windows.ui.startscreen
 
+class SecurityAppKind(enum.IntEnum):
+    WEB_PROTECTION = 0
+
+class SecurityAppState(enum.IntEnum):
+    DISABLED = 0
+    ENABLED = 1
+
+class SecurityAppSubstatus(enum.IntEnum):
+    UNDETERMINED = 0
+    NO_ACTION_NEEDED = 1
+    ACTION_RECOMMENDED = 2
+    ACTION_NEEDED = 3
+
 class ShareWindowCommand(enum.IntEnum):
     NONE = 0
     START_SHARING = 1
@@ -24,6 +37,14 @@ class AdaptiveCardBuilder(_winrt.Object):
     def _from(obj: _winrt.Object) -> AdaptiveCardBuilder: ...
     @staticmethod
     def create_adaptive_card_from_json(value: str) -> typing.Optional[IAdaptiveCard]: ...
+
+class SecurityAppManager(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SecurityAppManager: ...
+    def __init__(self) -> None: ...
+    def register(self, kind: SecurityAppKind, display_name: str, details_uri: typing.Optional[winsdk.windows.foundation.Uri], register_per_user: _winrt.Boolean) -> uuid.UUID: ...
+    def unregister(self, kind: SecurityAppKind, guid_registration: uuid.UUID) -> None: ...
+    def update_state(self, kind: SecurityAppKind, guid_registration: uuid.UUID, state: SecurityAppState, substatus: SecurityAppSubstatus, details_uri: typing.Optional[winsdk.windows.foundation.Uri]) -> None: ...
 
 class ShareWindowCommandEventArgs(_winrt.Object):
     command: ShareWindowCommand

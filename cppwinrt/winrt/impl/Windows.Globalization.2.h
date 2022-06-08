@@ -232,6 +232,17 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
         explicit GeographicRegion(param::hstring const& geographicRegionCode);
         static auto IsSupported(param::hstring const& geographicRegionCode);
     };
+    struct __declspec(empty_bases) JapanesePhoneme : winrt::Windows::Globalization::IJapanesePhoneme
+    {
+        JapanesePhoneme(std::nullptr_t) noexcept {}
+        JapanesePhoneme(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Globalization::IJapanesePhoneme(ptr, take_ownership_from_abi) {}
+    };
+    struct JapanesePhoneticAnalyzer
+    {
+        JapanesePhoneticAnalyzer() = delete;
+        static auto GetWords(param::hstring const& input);
+        static auto GetWords(param::hstring const& input, bool monoRuby);
+    };
     struct __declspec(empty_bases) Language : winrt::Windows::Globalization::ILanguage,
         impl::require<Language, winrt::Windows::Globalization::ILanguageExtensionSubtags, winrt::Windows::Globalization::ILanguage2, winrt::Windows::Globalization::ILanguage3>
     {

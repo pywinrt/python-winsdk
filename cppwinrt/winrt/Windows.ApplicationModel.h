@@ -235,6 +235,10 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInstanceStatics)->GetInstances(&result));
         return winrt::Windows::Foundation::Collections::IVector<winrt::Windows::ApplicationModel::AppInstance>{ result, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_ApplicationModel_ICameraApplicationManagerStatics<D>::ShowInstalledApplicationsUI() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics)->ShowInstalledApplicationsUI());
+    }
     template <typename D> auto consume_Windows_ApplicationModel_IDesignModeStatics<D>::DesignModeEnabled() const
     {
         bool value{};
@@ -252,6 +256,54 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs)->GetDeferral(&value));
         return winrt::Windows::Foundation::Deferral{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLaunchResult<D>::LaunchResult() const
+    {
+        winrt::Windows::ApplicationModel::FullTrustLaunchResult value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult)->get_LaunchResult(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLaunchResult<D>::ExtendedError() const
+    {
+        winrt::hresult value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult)->get_ExtendedError(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics<D>::LaunchFullTrustProcessForCurrentAppAsync() const
+    {
+        void* asyncAction{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics)->LaunchFullTrustProcessForCurrentAppAsync(&asyncAction));
+        return winrt::Windows::Foundation::IAsyncAction{ asyncAction, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics<D>::LaunchFullTrustProcessForCurrentAppAsync(param::hstring const& parameterGroupId) const
+    {
+        void* asyncAction{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics)->LaunchFullTrustProcessForCurrentAppWithParametersAsync(*(void**)(&parameterGroupId), &asyncAction));
+        return winrt::Windows::Foundation::IAsyncAction{ asyncAction, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics<D>::LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId) const
+    {
+        void* asyncAction{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics)->LaunchFullTrustProcessForAppAsync(*(void**)(&fullTrustPackageRelativeAppId), &asyncAction));
+        return winrt::Windows::Foundation::IAsyncAction{ asyncAction, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics<D>::LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& parameterGroupId) const
+    {
+        void* asyncAction{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics)->LaunchFullTrustProcessForAppWithParametersAsync(*(void**)(&fullTrustPackageRelativeAppId), *(void**)(&parameterGroupId), &asyncAction));
+        return winrt::Windows::Foundation::IAsyncAction{ asyncAction, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics2<D>::LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param::hstring const& commandLine) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2)->LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(*(void**)(&commandLine), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLauncherStatics2<D>::LaunchFullTrustProcessForAppWithArgumentsAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& commandLine) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2)->LaunchFullTrustProcessForAppWithArgumentsAsync(*(void**)(&fullTrustPackageRelativeAppId), *(void**)(&commandLine), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>{ operation, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_ApplicationModel_ILeavingBackgroundEventArgs<D>::GetDeferral() const
     {
@@ -1463,6 +1515,19 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics> : produce_base<D, winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics>
+    {
+        int32_t __stdcall ShowInstalledApplicationsUI() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ShowInstalledApplicationsUI();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IDesignModeStatics> : produce_base<D, winrt::Windows::ApplicationModel::IDesignModeStatics>
     {
         int32_t __stdcall get_DesignModeEnabled(bool* value) noexcept final try
@@ -1499,6 +1564,87 @@ namespace winrt::impl
         }
         catch (...) { return to_hresult(); }
     };
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult> : produce_base<D, winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult>
+    {
+        int32_t __stdcall get_LaunchResult(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::FullTrustLaunchResult>(this->shim().LaunchResult());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ExtendedError(winrt::hresult* value) noexcept final try
+        {
+            zero_abi<winrt::hresult>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::hresult>(this->shim().ExtendedError());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics> : produce_base<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics>
+    {
+        int32_t __stdcall LaunchFullTrustProcessForCurrentAppAsync(void** asyncAction) noexcept final try
+        {
+            clear_abi(asyncAction);
+            typename D::abi_guard guard(this->shim());
+            *asyncAction = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().LaunchFullTrustProcessForCurrentAppAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall LaunchFullTrustProcessForCurrentAppWithParametersAsync(void* parameterGroupId, void** asyncAction) noexcept final try
+        {
+            clear_abi(asyncAction);
+            typename D::abi_guard guard(this->shim());
+            *asyncAction = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().LaunchFullTrustProcessForCurrentAppAsync(*reinterpret_cast<hstring const*>(&parameterGroupId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall LaunchFullTrustProcessForAppAsync(void* fullTrustPackageRelativeAppId, void** asyncAction) noexcept final try
+        {
+            clear_abi(asyncAction);
+            typename D::abi_guard guard(this->shim());
+            *asyncAction = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().LaunchFullTrustProcessForAppAsync(*reinterpret_cast<hstring const*>(&fullTrustPackageRelativeAppId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall LaunchFullTrustProcessForAppWithParametersAsync(void* fullTrustPackageRelativeAppId, void* parameterGroupId, void** asyncAction) noexcept final try
+        {
+            clear_abi(asyncAction);
+            typename D::abi_guard guard(this->shim());
+            *asyncAction = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().LaunchFullTrustProcessForAppAsync(*reinterpret_cast<hstring const*>(&fullTrustPackageRelativeAppId), *reinterpret_cast<hstring const*>(&parameterGroupId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2> : produce_base<D, winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2>
+    {
+        int32_t __stdcall LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(void* commandLine, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>>(this->shim().LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(*reinterpret_cast<hstring const*>(&commandLine)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall LaunchFullTrustProcessForAppWithArgumentsAsync(void* fullTrustPackageRelativeAppId, void* commandLine, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>>(this->shim().LaunchFullTrustProcessForAppWithArgumentsAsync(*reinterpret_cast<hstring const*>(&fullTrustPackageRelativeAppId), *reinterpret_cast<hstring const*>(&commandLine)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
     template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs> : produce_base<D, winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs>
     {
@@ -2883,6 +3029,10 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         return impl::call_factory_cast<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::ApplicationModel::AppInstance>(*)(IAppInstanceStatics const&), AppInstance, IAppInstanceStatics>([](IAppInstanceStatics const& f) { return f.GetInstances(); });
     }
+    inline auto CameraApplicationManager::ShowInstalledApplicationsUI()
+    {
+        impl::call_factory_cast<void(*)(ICameraApplicationManagerStatics const&), CameraApplicationManager, ICameraApplicationManagerStatics>([](ICameraApplicationManagerStatics const& f) { return f.ShowInstalledApplicationsUI(); });
+    }
     inline auto DesignMode::DesignModeEnabled()
     {
         return impl::call_factory_cast<bool(*)(IDesignModeStatics const&), DesignMode, IDesignModeStatics>([](IDesignModeStatics const& f) { return f.DesignModeEnabled(); });
@@ -2890,6 +3040,30 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     inline auto DesignMode::DesignMode2Enabled()
     {
         return impl::call_factory_cast<bool(*)(IDesignModeStatics2 const&), DesignMode, IDesignModeStatics2>([](IDesignModeStatics2 const& f) { return f.DesignMode2Enabled(); });
+    }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncAction(*)(IFullTrustProcessLauncherStatics const&), FullTrustProcessLauncher, IFullTrustProcessLauncherStatics>([](IFullTrustProcessLauncherStatics const& f) { return f.LaunchFullTrustProcessForCurrentAppAsync(); });
+    }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync(param::hstring const& parameterGroupId)
+    {
+        return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics>([&](IFullTrustProcessLauncherStatics const& f) { return f.LaunchFullTrustProcessForCurrentAppAsync(parameterGroupId); });
+    }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId)
+    {
+        return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics>([&](IFullTrustProcessLauncherStatics const& f) { return f.LaunchFullTrustProcessForAppAsync(fullTrustPackageRelativeAppId); });
+    }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForAppAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& parameterGroupId)
+    {
+        return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics>([&](IFullTrustProcessLauncherStatics const& f) { return f.LaunchFullTrustProcessForAppAsync(fullTrustPackageRelativeAppId, parameterGroupId); });
+    }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(param::hstring const& commandLine)
+    {
+        return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics2>([&](IFullTrustProcessLauncherStatics2 const& f) { return f.LaunchFullTrustProcessForCurrentAppWithArgumentsAsync(commandLine); });
+    }
+    inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForAppWithArgumentsAsync(param::hstring const& fullTrustPackageRelativeAppId, param::hstring const& commandLine)
+    {
+        return impl::call_factory<FullTrustProcessLauncher, IFullTrustProcessLauncherStatics2>([&](IFullTrustProcessLauncherStatics2 const& f) { return f.LaunchFullTrustProcessForAppWithArgumentsAsync(fullTrustPackageRelativeAppId, commandLine); });
     }
     inline auto LimitedAccessFeatures::TryUnlockFeature(param::hstring const& featureId, param::hstring const& token, param::hstring const& attestation)
     {
@@ -2933,9 +3107,13 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstallerInfo2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstance> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstanceStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::ICameraApplicationManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IDesignModeStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IDesignModeStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::ILimitedAccessFeatureRequestResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::ILimitedAccessFeaturesStatics> : winrt::impl::hash_base {};
@@ -2980,8 +3158,11 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::AppInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::AppInstallerInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::AppInstance> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::CameraApplicationManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DesignMode> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::FullTrustProcessLauncher> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::LimitedAccessFeatureRequestResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::LimitedAccessFeatures> : winrt::impl::hash_base {};

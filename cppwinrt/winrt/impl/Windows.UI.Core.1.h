@@ -208,12 +208,47 @@ WINRT_EXPORT namespace winrt::Windows::UI::Core
         ICoreWindow5(std::nullptr_t = nullptr) noexcept {}
         ICoreWindow5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ICoreWindowDialog :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICoreWindowDialog>
+    {
+        ICoreWindowDialog(std::nullptr_t = nullptr) noexcept {}
+        ICoreWindowDialog(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICoreWindowDialogFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICoreWindowDialogFactory>
+    {
+        ICoreWindowDialogFactory(std::nullptr_t = nullptr) noexcept {}
+        ICoreWindowDialogFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ICoreWindowEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ICoreWindowEventArgs>
     {
         ICoreWindowEventArgs(std::nullptr_t = nullptr) noexcept {}
         ICoreWindowEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICoreWindowFlyout :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICoreWindowFlyout>
+    {
+        ICoreWindowFlyout(std::nullptr_t = nullptr) noexcept {}
+        ICoreWindowFlyout(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICoreWindowFlyoutFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICoreWindowFlyoutFactory>
+    {
+        ICoreWindowFlyoutFactory(std::nullptr_t = nullptr) noexcept {}
+        ICoreWindowFlyoutFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICoreWindowPopupShowingEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICoreWindowPopupShowingEventArgs>
+    {
+        ICoreWindowPopupShowingEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ICoreWindowPopupShowingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ICoreWindowResizeManager :
         winrt::Windows::Foundation::IInspectable,

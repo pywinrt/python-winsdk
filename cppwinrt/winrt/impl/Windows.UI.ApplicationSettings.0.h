@@ -26,6 +26,11 @@ WINRT_EXPORT namespace winrt::Windows::UI::Popups
 }
 WINRT_EXPORT namespace winrt::Windows::UI::ApplicationSettings
 {
+    enum class SettingsEdgeLocation : int32_t
+    {
+        Right = 0,
+        Left = 1,
+    };
     enum class SupportedWebAccountActions : uint32_t
     {
         None = 0,
@@ -54,6 +59,10 @@ WINRT_EXPORT namespace winrt::Windows::UI::ApplicationSettings
     struct ICredentialCommandFactory;
     struct ISettingsCommandFactory;
     struct ISettingsCommandStatics;
+    struct ISettingsPane;
+    struct ISettingsPaneCommandsRequest;
+    struct ISettingsPaneCommandsRequestedEventArgs;
+    struct ISettingsPaneStatics;
     struct IWebAccountCommand;
     struct IWebAccountCommandFactory;
     struct IWebAccountInvokedArgs;
@@ -64,6 +73,9 @@ WINRT_EXPORT namespace winrt::Windows::UI::ApplicationSettings
     struct AccountsSettingsPaneEventDeferral;
     struct CredentialCommand;
     struct SettingsCommand;
+    struct SettingsPane;
+    struct SettingsPaneCommandsRequest;
+    struct SettingsPaneCommandsRequestedEventArgs;
     struct WebAccountCommand;
     struct WebAccountInvokedArgs;
     struct WebAccountProviderCommand;
@@ -84,6 +96,10 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::ApplicationSettings::ICredentialCommandFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::ISettingsCommandFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::ISettingsCommandStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::ISettingsPane>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::IWebAccountCommand>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::IWebAccountCommandFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::IWebAccountInvokedArgs>{ using type = interface_category; };
@@ -94,9 +110,13 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::ApplicationSettings::AccountsSettingsPaneEventDeferral>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::CredentialCommand>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::SettingsCommand>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::SettingsPane>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::WebAccountCommand>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::WebAccountInvokedArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::WebAccountProviderCommand>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::SupportedWebAccountActions>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::WebAccountAction>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ApplicationSettings::CredentialCommandCredentialDeletedHandler>{ using type = delegate_category; };
@@ -107,9 +127,13 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::AccountsSettingsPaneEventDeferral> = L"Windows.UI.ApplicationSettings.AccountsSettingsPaneEventDeferral";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::CredentialCommand> = L"Windows.UI.ApplicationSettings.CredentialCommand";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::SettingsCommand> = L"Windows.UI.ApplicationSettings.SettingsCommand";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::SettingsPane> = L"Windows.UI.ApplicationSettings.SettingsPane";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest> = L"Windows.UI.ApplicationSettings.SettingsPaneCommandsRequest";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs> = L"Windows.UI.ApplicationSettings.SettingsPaneCommandsRequestedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::WebAccountCommand> = L"Windows.UI.ApplicationSettings.WebAccountCommand";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::WebAccountInvokedArgs> = L"Windows.UI.ApplicationSettings.WebAccountInvokedArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::WebAccountProviderCommand> = L"Windows.UI.ApplicationSettings.WebAccountProviderCommand";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation> = L"Windows.UI.ApplicationSettings.SettingsEdgeLocation";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::SupportedWebAccountActions> = L"Windows.UI.ApplicationSettings.SupportedWebAccountActions";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::WebAccountAction> = L"Windows.UI.ApplicationSettings.WebAccountAction";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::IAccountsSettingsPane> = L"Windows.UI.ApplicationSettings.IAccountsSettingsPane";
@@ -123,6 +147,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::ICredentialCommandFactory> = L"Windows.UI.ApplicationSettings.ICredentialCommandFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::ISettingsCommandFactory> = L"Windows.UI.ApplicationSettings.ISettingsCommandFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::ISettingsCommandStatics> = L"Windows.UI.ApplicationSettings.ISettingsCommandStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::ISettingsPane> = L"Windows.UI.ApplicationSettings.ISettingsPane";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest> = L"Windows.UI.ApplicationSettings.ISettingsPaneCommandsRequest";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs> = L"Windows.UI.ApplicationSettings.ISettingsPaneCommandsRequestedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics> = L"Windows.UI.ApplicationSettings.ISettingsPaneStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::IWebAccountCommand> = L"Windows.UI.ApplicationSettings.IWebAccountCommand";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::IWebAccountCommandFactory> = L"Windows.UI.ApplicationSettings.IWebAccountCommandFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ApplicationSettings::IWebAccountInvokedArgs> = L"Windows.UI.ApplicationSettings.IWebAccountInvokedArgs";
@@ -142,6 +170,10 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::ICredentialCommandFactory>{ 0x27E88C17,0xBC3E,0x4B80,{ 0x94,0x95,0x4E,0xD7,0x20,0xE4,0x8A,0x91 } }; // 27E88C17-BC3E-4B80-9495-4ED720E48A91
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::ISettingsCommandFactory>{ 0x68E15B33,0x1C83,0x433A,{ 0xAA,0x5A,0xCE,0xEE,0xA5,0xBD,0x47,0x64 } }; // 68E15B33-1C83-433A-AA5A-CEEEA5BD4764
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::ISettingsCommandStatics>{ 0x749AE954,0x2F69,0x4B17,{ 0x8A,0xBA,0xD0,0x5C,0xE5,0x77,0x8E,0x46 } }; // 749AE954-2F69-4B17-8ABA-D05CE5778E46
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::ISettingsPane>{ 0xB1CD0932,0x4570,0x4C69,{ 0x8D,0x38,0x89,0x44,0x65,0x61,0xAC,0xE0 } }; // B1CD0932-4570-4C69-8D38-89446561ACE0
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest>{ 0x44DF23AE,0x5D6E,0x4068,{ 0xA1,0x68,0xF4,0x76,0x43,0x18,0x21,0x14 } }; // 44DF23AE-5D6E-4068-A168-F47643182114
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs>{ 0x205F5D24,0x1B48,0x4629,{ 0xA6,0xCA,0x2F,0xDF,0xED,0xAF,0xB7,0x5D } }; // 205F5D24-1B48-4629-A6CA-2FDFEDAFB75D
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics>{ 0x1C6A52C5,0xFF19,0x471B,{ 0xBA,0x6B,0xF8,0xF3,0x56,0x94,0xAD,0x9A } }; // 1C6A52C5-FF19-471B-BA6B-F8F35694AD9A
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::IWebAccountCommand>{ 0xCAA39398,0x9CFA,0x4246,{ 0xB0,0xC4,0xA9,0x13,0xA3,0x89,0x65,0x41 } }; // CAA39398-9CFA-4246-B0C4-A913A3896541
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::IWebAccountCommandFactory>{ 0xBFA6CDFF,0x2F2D,0x42F5,{ 0x81,0xDE,0x1D,0x56,0xBA,0xFC,0x49,0x6D } }; // BFA6CDFF-2F2D-42F5-81DE-1D56BAFC496D
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ApplicationSettings::IWebAccountInvokedArgs>{ 0xE7ABCC40,0xA1D8,0x4C5D,{ 0x9A,0x7F,0x1D,0x34,0xB2,0xF9,0x0A,0xD2 } }; // E7ABCC40-A1D8-4C5D-9A7F-1D34B2F90AD2
@@ -155,6 +187,9 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::AccountsSettingsPaneEventDeferral>{ using type = winrt::Windows::UI::ApplicationSettings::IAccountsSettingsPaneEventDeferral; };
     template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::CredentialCommand>{ using type = winrt::Windows::UI::ApplicationSettings::ICredentialCommand; };
     template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::SettingsCommand>{ using type = winrt::Windows::UI::Popups::IUICommand; };
+    template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::SettingsPane>{ using type = winrt::Windows::UI::ApplicationSettings::ISettingsPane; };
+    template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest>{ using type = winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest; };
+    template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs>{ using type = winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::WebAccountCommand>{ using type = winrt::Windows::UI::ApplicationSettings::IWebAccountCommand; };
     template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::WebAccountInvokedArgs>{ using type = winrt::Windows::UI::ApplicationSettings::IWebAccountInvokedArgs; };
     template <> struct default_interface<winrt::Windows::UI::ApplicationSettings::WebAccountProviderCommand>{ using type = winrt::Windows::UI::ApplicationSettings::IWebAccountProviderCommand; };
@@ -245,6 +280,37 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_AccountsCommand(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::ApplicationSettings::ISettingsPane>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_CommandsRequested(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_CommandsRequested(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ApplicationCommands(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Request(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetForCurrentView(void**) noexcept = 0;
+            virtual int32_t __stdcall Show() noexcept = 0;
+            virtual int32_t __stdcall get_Edge(int32_t*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::ApplicationSettings::IWebAccountCommand>
@@ -418,6 +484,47 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::ApplicationSettings::ISettingsCommandStatics>
     {
         template <typename D> using type = consume_Windows_UI_ApplicationSettings_ISettingsCommandStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_ApplicationSettings_ISettingsPane
+    {
+        auto CommandsRequested(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ApplicationSettings::SettingsPane, winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs> const& handler) const;
+        using CommandsRequested_revoker = impl::event_revoker<winrt::Windows::UI::ApplicationSettings::ISettingsPane, &impl::abi_t<winrt::Windows::UI::ApplicationSettings::ISettingsPane>::remove_CommandsRequested>;
+        [[nodiscard]] auto CommandsRequested(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ApplicationSettings::SettingsPane, winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs> const& handler) const;
+        auto CommandsRequested(winrt::event_token const& cookie) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::UI::ApplicationSettings::ISettingsPane>
+    {
+        template <typename D> using type = consume_Windows_UI_ApplicationSettings_ISettingsPane<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_ApplicationSettings_ISettingsPaneCommandsRequest
+    {
+        [[nodiscard]] auto ApplicationCommands() const;
+    };
+    template <> struct consume<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequest>
+    {
+        template <typename D> using type = consume_Windows_UI_ApplicationSettings_ISettingsPaneCommandsRequest<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_ApplicationSettings_ISettingsPaneCommandsRequestedEventArgs
+    {
+        [[nodiscard]] auto Request() const;
+    };
+    template <> struct consume<winrt::Windows::UI::ApplicationSettings::ISettingsPaneCommandsRequestedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_UI_ApplicationSettings_ISettingsPaneCommandsRequestedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_ApplicationSettings_ISettingsPaneStatics
+    {
+        auto GetForCurrentView() const;
+        auto Show() const;
+        [[nodiscard]] auto Edge() const;
+    };
+    template <> struct consume<winrt::Windows::UI::ApplicationSettings::ISettingsPaneStatics>
+    {
+        template <typename D> using type = consume_Windows_UI_ApplicationSettings_ISettingsPaneStatics<D>;
     };
     template <typename D>
     struct consume_Windows_UI_ApplicationSettings_IWebAccountCommand

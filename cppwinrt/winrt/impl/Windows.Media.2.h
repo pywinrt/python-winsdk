@@ -44,6 +44,67 @@ WINRT_EXPORT namespace winrt::Windows::Media
         ImageDisplayProperties(std::nullptr_t) noexcept {}
         ImageDisplayProperties(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::IImageDisplayProperties(ptr, take_ownership_from_abi) {}
     };
+    struct MediaControl
+    {
+        MediaControl() = delete;
+        static auto SoundLevelChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using SoundLevelChanged_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_SoundLevelChanged>;
+        [[nodiscard]] static auto SoundLevelChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto SoundLevelChanged(winrt::event_token const& cookie);
+        static auto PlayPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using PlayPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_PlayPressed>;
+        [[nodiscard]] static auto PlayPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto PlayPressed(winrt::event_token const& cookie);
+        static auto PausePressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using PausePressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_PausePressed>;
+        [[nodiscard]] static auto PausePressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto PausePressed(winrt::event_token const& cookie);
+        static auto StopPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using StopPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_StopPressed>;
+        [[nodiscard]] static auto StopPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto StopPressed(winrt::event_token const& cookie);
+        static auto PlayPauseTogglePressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using PlayPauseTogglePressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_PlayPauseTogglePressed>;
+        [[nodiscard]] static auto PlayPauseTogglePressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto PlayPauseTogglePressed(winrt::event_token const& cookie);
+        static auto RecordPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using RecordPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_RecordPressed>;
+        [[nodiscard]] static auto RecordPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto RecordPressed(winrt::event_token const& cookie);
+        static auto NextTrackPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using NextTrackPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_NextTrackPressed>;
+        [[nodiscard]] static auto NextTrackPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto NextTrackPressed(winrt::event_token const& cookie);
+        static auto PreviousTrackPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using PreviousTrackPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_PreviousTrackPressed>;
+        [[nodiscard]] static auto PreviousTrackPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto PreviousTrackPressed(winrt::event_token const& cookie);
+        static auto FastForwardPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using FastForwardPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_FastForwardPressed>;
+        [[nodiscard]] static auto FastForwardPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto FastForwardPressed(winrt::event_token const& cookie);
+        static auto RewindPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using RewindPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_RewindPressed>;
+        [[nodiscard]] static auto RewindPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto RewindPressed(winrt::event_token const& cookie);
+        static auto ChannelUpPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using ChannelUpPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_ChannelUpPressed>;
+        [[nodiscard]] static auto ChannelUpPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto ChannelUpPressed(winrt::event_token const& cookie);
+        static auto ChannelDownPressed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using ChannelDownPressed_revoker = impl::factory_event_revoker<winrt::Windows::Media::IMediaControl, &impl::abi_t<winrt::Windows::Media::IMediaControl>::remove_ChannelDownPressed>;
+        [[nodiscard]] static auto ChannelDownPressed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto ChannelDownPressed(winrt::event_token const& cookie);
+        [[nodiscard]] static auto SoundLevel();
+        static auto TrackName(param::hstring const& value);
+        [[nodiscard]] static auto TrackName();
+        static auto ArtistName(param::hstring const& value);
+        [[nodiscard]] static auto ArtistName();
+        static auto IsPlaying(bool value);
+        [[nodiscard]] static auto IsPlaying();
+        static auto AlbumArt(winrt::Windows::Foundation::Uri const& value);
+        [[nodiscard]] static auto AlbumArt();
+    };
     struct __declspec(empty_bases) MediaExtensionManager : winrt::Windows::Media::IMediaExtensionManager,
         impl::require<MediaExtensionManager, winrt::Windows::Media::IMediaExtensionManager2>
     {

@@ -99,6 +99,27 @@ WINRT_EXPORT namespace winrt::Windows::System::UserProfile
         IGlobalizationPreferencesStatics3(std::nullptr_t = nullptr) noexcept {}
         IGlobalizationPreferencesStatics3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ILockScreenImageFeedStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILockScreenImageFeedStatics>
+    {
+        ILockScreenImageFeedStatics(std::nullptr_t = nullptr) noexcept {}
+        ILockScreenImageFeedStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ILockScreenStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILockScreenStatics>
+    {
+        ILockScreenStatics(std::nullptr_t = nullptr) noexcept {}
+        ILockScreenStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IUserInformationStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUserInformationStatics>
+    {
+        IUserInformationStatics(std::nullptr_t = nullptr) noexcept {}
+        IUserInformationStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IUserProfilePersonalizationSettings :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IUserProfilePersonalizationSettings>

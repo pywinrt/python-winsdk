@@ -36,6 +36,10 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
 {
     struct PointerPoint;
 }
+WINRT_EXPORT namespace winrt::Windows::UI::Popups
+{
+    struct UICommandInvokedHandler;
+}
 WINRT_EXPORT namespace winrt::Windows::UI::Core
 {
     enum class AppViewBackButtonVisibility : int32_t
@@ -162,7 +166,12 @@ WINRT_EXPORT namespace winrt::Windows::UI::Core
     struct ICoreWindow3;
     struct ICoreWindow4;
     struct ICoreWindow5;
+    struct ICoreWindowDialog;
+    struct ICoreWindowDialogFactory;
     struct ICoreWindowEventArgs;
+    struct ICoreWindowFlyout;
+    struct ICoreWindowFlyoutFactory;
+    struct ICoreWindowPopupShowingEventArgs;
     struct ICoreWindowResizeManager;
     struct ICoreWindowResizeManagerLayoutCapability;
     struct ICoreWindowResizeManagerStatics;
@@ -193,7 +202,10 @@ WINRT_EXPORT namespace winrt::Windows::UI::Core
     struct CoreIndependentInputSource;
     struct CoreIndependentInputSourceController;
     struct CoreWindow;
+    struct CoreWindowDialog;
     struct CoreWindowEventArgs;
+    struct CoreWindowFlyout;
+    struct CoreWindowPopupShowingEventArgs;
     struct CoreWindowResizeManager;
     struct IdleDispatchedHandlerArgs;
     struct InputEnabledEventArgs;
@@ -239,7 +251,12 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Core::ICoreWindow3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Core::ICoreWindow4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Core::ICoreWindow5>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Core::ICoreWindowDialog>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Core::ICoreWindowDialogFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Core::ICoreWindowEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Core::ICoreWindowFlyout>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Core::ICoreWindowFlyoutFactory>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Core::ICoreWindowResizeManager>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Core::ICoreWindowResizeManagerLayoutCapability>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Core::ICoreWindowResizeManagerStatics>{ using type = interface_category; };
@@ -270,7 +287,10 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Core::CoreIndependentInputSource>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::Core::CoreIndependentInputSourceController>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::Core::CoreWindow>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::Core::CoreWindowDialog>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::Core::CoreWindowEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::Core::CoreWindowFlyout>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::Core::CoreWindowResizeManager>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::Core::IdleDispatchedHandlerArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::Core::InputEnabledEventArgs>{ using type = class_category; };
@@ -309,7 +329,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreIndependentInputSource> = L"Windows.UI.Core.CoreIndependentInputSource";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreIndependentInputSourceController> = L"Windows.UI.Core.CoreIndependentInputSourceController";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreWindow> = L"Windows.UI.Core.CoreWindow";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreWindowDialog> = L"Windows.UI.Core.CoreWindowDialog";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreWindowEventArgs> = L"Windows.UI.Core.CoreWindowEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreWindowFlyout> = L"Windows.UI.Core.CoreWindowFlyout";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> = L"Windows.UI.Core.CoreWindowPopupShowingEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::CoreWindowResizeManager> = L"Windows.UI.Core.CoreWindowResizeManager";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::IdleDispatchedHandlerArgs> = L"Windows.UI.Core.IdleDispatchedHandlerArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::InputEnabledEventArgs> = L"Windows.UI.Core.InputEnabledEventArgs";
@@ -362,7 +385,12 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindow3> = L"Windows.UI.Core.ICoreWindow3";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindow4> = L"Windows.UI.Core.ICoreWindow4";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindow5> = L"Windows.UI.Core.ICoreWindow5";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowDialog> = L"Windows.UI.Core.ICoreWindowDialog";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowDialogFactory> = L"Windows.UI.Core.ICoreWindowDialogFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowEventArgs> = L"Windows.UI.Core.ICoreWindowEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowFlyout> = L"Windows.UI.Core.ICoreWindowFlyout";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowFlyoutFactory> = L"Windows.UI.Core.ICoreWindowFlyoutFactory";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs> = L"Windows.UI.Core.ICoreWindowPopupShowingEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowResizeManager> = L"Windows.UI.Core.ICoreWindowResizeManager";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowResizeManagerLayoutCapability> = L"Windows.UI.Core.ICoreWindowResizeManagerLayoutCapability";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Core::ICoreWindowResizeManagerStatics> = L"Windows.UI.Core.ICoreWindowResizeManagerStatics";
@@ -411,7 +439,12 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindow3>{ 0x32C20DD8,0xFAEF,0x4375,{ 0xA2,0xAB,0x32,0x64,0x0E,0x48,0x15,0xC7 } }; // 32C20DD8-FAEF-4375-A2AB-32640E4815C7
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindow4>{ 0x35CAF0D0,0x47F0,0x436C,{ 0xAF,0x97,0x0D,0xD8,0x8F,0x6F,0x5F,0x02 } }; // 35CAF0D0-47F0-436C-AF97-0DD88F6F5F02
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindow5>{ 0x4B4AE1E1,0x2E6D,0x4EAA,{ 0xBD,0xA1,0x1C,0x5C,0xC1,0xBE,0xE1,0x41 } }; // 4B4AE1E1-2E6D-4EAA-BDA1-1C5CC1BEE141
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowDialog>{ 0xE7392CE0,0xC78D,0x427E,{ 0x8B,0x2C,0x01,0xFF,0x42,0x0C,0x69,0xD5 } }; // E7392CE0-C78D-427E-8B2C-01FF420C69D5
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowDialogFactory>{ 0xCFB2A855,0x1C59,0x4B13,{ 0xB1,0xE5,0x16,0xE2,0x98,0x05,0xF7,0xC4 } }; // CFB2A855-1C59-4B13-B1E5-16E29805F7C4
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowEventArgs>{ 0x272B1EF3,0xC633,0x4DA5,{ 0xA2,0x6C,0xC6,0xD0,0xF5,0x6B,0x29,0xDA } }; // 272B1EF3-C633-4DA5-A26C-C6D0F56B29DA
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowFlyout>{ 0xE89D854D,0x2050,0x40BB,{ 0xB3,0x44,0xF6,0xF3,0x55,0xEE,0xB3,0x14 } }; // E89D854D-2050-40BB-B344-F6F355EEB314
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowFlyoutFactory>{ 0xDEC4C6C4,0x93E8,0x4F7C,{ 0xBE,0x27,0xCE,0xFA,0xA1,0xAF,0x68,0xA7 } }; // DEC4C6C4-93E8-4F7C-BE27-CEFAA1AF68A7
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs>{ 0x26155FA2,0x5BA5,0x4EA4,{ 0xA3,0xB4,0x2D,0xC7,0xD6,0x3C,0x8E,0x26 } }; // 26155FA2-5BA5-4EA4-A3B4-2DC7D63C8E26
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowResizeManager>{ 0xB8F0B925,0xB350,0x48B3,{ 0xA1,0x98,0x5C,0x1A,0x84,0x70,0x02,0x43 } }; // B8F0B925-B350-48B3-A198-5C1A84700243
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowResizeManagerLayoutCapability>{ 0xBB74F27B,0xA544,0x4301,{ 0x80,0xE6,0x0A,0xE0,0x33,0xEF,0x45,0x36 } }; // BB74F27B-A544-4301-80E6-0AE033EF4536
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Core::ICoreWindowResizeManagerStatics>{ 0xAE4A9045,0x6D70,0x49DB,{ 0x8E,0x68,0x46,0xFF,0xBD,0x17,0xD3,0x8D } }; // AE4A9045-6D70-49DB-8E68-46FFBD17D38D
@@ -444,7 +477,10 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::UI::Core::CoreIndependentInputSource>{ using type = winrt::Windows::UI::Core::ICoreInputSourceBase; };
     template <> struct default_interface<winrt::Windows::UI::Core::CoreIndependentInputSourceController>{ using type = winrt::Windows::UI::Core::ICoreIndependentInputSourceController; };
     template <> struct default_interface<winrt::Windows::UI::Core::CoreWindow>{ using type = winrt::Windows::UI::Core::ICoreWindow; };
+    template <> struct default_interface<winrt::Windows::UI::Core::CoreWindowDialog>{ using type = winrt::Windows::UI::Core::ICoreWindowDialog; };
     template <> struct default_interface<winrt::Windows::UI::Core::CoreWindowEventArgs>{ using type = winrt::Windows::UI::Core::ICoreWindowEventArgs; };
+    template <> struct default_interface<winrt::Windows::UI::Core::CoreWindowFlyout>{ using type = winrt::Windows::UI::Core::ICoreWindowFlyout; };
+    template <> struct default_interface<winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs>{ using type = winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::Core::CoreWindowResizeManager>{ using type = winrt::Windows::UI::Core::ICoreWindowResizeManager; };
     template <> struct default_interface<winrt::Windows::UI::Core::IdleDispatchedHandlerArgs>{ using type = winrt::Windows::UI::Core::IIdleDispatchedHandlerArgs; };
     template <> struct default_interface<winrt::Windows::UI::Core::InputEnabledEventArgs>{ using type = winrt::Windows::UI::Core::IInputEnabledEventArgs; };
@@ -773,12 +809,76 @@ namespace winrt::impl
             virtual int32_t __stdcall get_ActivationMode(int32_t*) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::UI::Core::ICoreWindowDialog>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_Showing(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_Showing(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall get_MaxSize(winrt::Windows::Foundation::Size*) noexcept = 0;
+            virtual int32_t __stdcall get_MinSize(winrt::Windows::Foundation::Size*) noexcept = 0;
+            virtual int32_t __stdcall get_Title(void**) noexcept = 0;
+            virtual int32_t __stdcall put_Title(void*) noexcept = 0;
+            virtual int32_t __stdcall get_IsInteractionDelayed(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_IsInteractionDelayed(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_Commands(void**) noexcept = 0;
+            virtual int32_t __stdcall get_DefaultCommandIndex(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_DefaultCommandIndex(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_CancelCommandIndex(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_CancelCommandIndex(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_BackButtonCommand(void**) noexcept = 0;
+            virtual int32_t __stdcall put_BackButtonCommand(void*) noexcept = 0;
+            virtual int32_t __stdcall ShowAsync(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Core::ICoreWindowDialogFactory>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreateWithTitle(void*, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::UI::Core::ICoreWindowEventArgs>
     {
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_Handled(bool*) noexcept = 0;
             virtual int32_t __stdcall put_Handled(bool) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Core::ICoreWindowFlyout>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_Showing(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_Showing(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall get_MaxSize(winrt::Windows::Foundation::Size*) noexcept = 0;
+            virtual int32_t __stdcall get_MinSize(winrt::Windows::Foundation::Size*) noexcept = 0;
+            virtual int32_t __stdcall get_Title(void**) noexcept = 0;
+            virtual int32_t __stdcall put_Title(void*) noexcept = 0;
+            virtual int32_t __stdcall get_IsInteractionDelayed(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_IsInteractionDelayed(int32_t) noexcept = 0;
+            virtual int32_t __stdcall get_Commands(void**) noexcept = 0;
+            virtual int32_t __stdcall get_DefaultCommandIndex(uint32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_DefaultCommandIndex(uint32_t) noexcept = 0;
+            virtual int32_t __stdcall get_BackButtonCommand(void**) noexcept = 0;
+            virtual int32_t __stdcall put_BackButtonCommand(void*) noexcept = 0;
+            virtual int32_t __stdcall ShowAsync(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Core::ICoreWindowFlyoutFactory>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall Create(winrt::Windows::Foundation::Point, void**) noexcept = 0;
+            virtual int32_t __stdcall CreateWithTitle(winrt::Windows::Foundation::Point, void*, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall SetDesiredSize(winrt::Windows::Foundation::Size) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::Core::ICoreWindowResizeManager>
@@ -1385,6 +1485,41 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_UI_Core_ICoreWindow5<D>;
     };
     template <typename D>
+    struct consume_Windows_UI_Core_ICoreWindowDialog
+    {
+        auto Showing(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const;
+        using Showing_revoker = impl::event_revoker<winrt::Windows::UI::Core::ICoreWindowDialog, &impl::abi_t<winrt::Windows::UI::Core::ICoreWindowDialog>::remove_Showing>;
+        [[nodiscard]] auto Showing(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const;
+        auto Showing(winrt::event_token const& cookie) const noexcept;
+        [[nodiscard]] auto MaxSize() const;
+        [[nodiscard]] auto MinSize() const;
+        [[nodiscard]] auto Title() const;
+        auto Title(param::hstring const& value) const;
+        [[nodiscard]] auto IsInteractionDelayed() const;
+        auto IsInteractionDelayed(int32_t value) const;
+        [[nodiscard]] auto Commands() const;
+        [[nodiscard]] auto DefaultCommandIndex() const;
+        auto DefaultCommandIndex(uint32_t value) const;
+        [[nodiscard]] auto CancelCommandIndex() const;
+        auto CancelCommandIndex(uint32_t value) const;
+        [[nodiscard]] auto BackButtonCommand() const;
+        auto BackButtonCommand(winrt::Windows::UI::Popups::UICommandInvokedHandler const& value) const;
+        auto ShowAsync() const;
+    };
+    template <> struct consume<winrt::Windows::UI::Core::ICoreWindowDialog>
+    {
+        template <typename D> using type = consume_Windows_UI_Core_ICoreWindowDialog<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Core_ICoreWindowDialogFactory
+    {
+        auto CreateWithTitle(param::hstring const& title) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Core::ICoreWindowDialogFactory>
+    {
+        template <typename D> using type = consume_Windows_UI_Core_ICoreWindowDialogFactory<D>;
+    };
+    template <typename D>
     struct consume_Windows_UI_Core_ICoreWindowEventArgs
     {
         [[nodiscard]] auto Handled() const;
@@ -1393,6 +1528,49 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::Core::ICoreWindowEventArgs>
     {
         template <typename D> using type = consume_Windows_UI_Core_ICoreWindowEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Core_ICoreWindowFlyout
+    {
+        auto Showing(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const;
+        using Showing_revoker = impl::event_revoker<winrt::Windows::UI::Core::ICoreWindowFlyout, &impl::abi_t<winrt::Windows::UI::Core::ICoreWindowFlyout>::remove_Showing>;
+        [[nodiscard]] auto Showing(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Core::CoreWindow, winrt::Windows::UI::Core::CoreWindowPopupShowingEventArgs> const& handler) const;
+        auto Showing(winrt::event_token const& cookie) const noexcept;
+        [[nodiscard]] auto MaxSize() const;
+        [[nodiscard]] auto MinSize() const;
+        [[nodiscard]] auto Title() const;
+        auto Title(param::hstring const& value) const;
+        [[nodiscard]] auto IsInteractionDelayed() const;
+        auto IsInteractionDelayed(int32_t value) const;
+        [[nodiscard]] auto Commands() const;
+        [[nodiscard]] auto DefaultCommandIndex() const;
+        auto DefaultCommandIndex(uint32_t value) const;
+        [[nodiscard]] auto BackButtonCommand() const;
+        auto BackButtonCommand(winrt::Windows::UI::Popups::UICommandInvokedHandler const& value) const;
+        auto ShowAsync() const;
+    };
+    template <> struct consume<winrt::Windows::UI::Core::ICoreWindowFlyout>
+    {
+        template <typename D> using type = consume_Windows_UI_Core_ICoreWindowFlyout<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Core_ICoreWindowFlyoutFactory
+    {
+        auto Create(winrt::Windows::Foundation::Point const& position) const;
+        auto CreateWithTitle(winrt::Windows::Foundation::Point const& position, param::hstring const& title) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Core::ICoreWindowFlyoutFactory>
+    {
+        template <typename D> using type = consume_Windows_UI_Core_ICoreWindowFlyoutFactory<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Core_ICoreWindowPopupShowingEventArgs
+    {
+        auto SetDesiredSize(winrt::Windows::Foundation::Size const& value) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Core::ICoreWindowPopupShowingEventArgs>
+    {
+        template <typename D> using type = consume_Windows_UI_Core_ICoreWindowPopupShowingEventArgs<D>;
     };
     template <typename D>
     struct consume_Windows_UI_Core_ICoreWindowResizeManager

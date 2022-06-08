@@ -45,6 +45,13 @@ class ProtectionCapabilityResult(enum.IntEnum):
     MAYBE = 1
     PROBABLY = 2
 
+class RenewalStatus(enum.IntEnum):
+    NOT_STARTED = 0
+    UPDATES_IN_PROGRESS = 1
+    USER_CANCELLED = 2
+    APP_COMPONENTS_MAY_NEED_UPDATING = 3
+    NO_COMPONENTS_FOUND = 4
+
 class RevocationAndRenewalReasons(enum.IntFlag):
     USER_MODE_COMPONENT_LOAD = 0x1
     KERNEL_MODE_COMPONENT_LOAD = 0x2
@@ -66,9 +73,11 @@ _ns_module._register_GraphicsTrustStatus(GraphicsTrustStatus)
 _ns_module._register_HdcpProtection(HdcpProtection)
 _ns_module._register_HdcpSetProtectionResult(HdcpSetProtectionResult)
 _ns_module._register_ProtectionCapabilityResult(ProtectionCapabilityResult)
+_ns_module._register_RenewalStatus(RenewalStatus)
 _ns_module._register_RevocationAndRenewalReasons(RevocationAndRenewalReasons)
 
 ComponentLoadFailedEventArgs = _ns_module.ComponentLoadFailedEventArgs
+ComponentRenewal = _ns_module.ComponentRenewal
 HdcpSession = _ns_module.HdcpSession
 MediaProtectionManager = _ns_module.MediaProtectionManager
 MediaProtectionPMPServer = _ns_module.MediaProtectionPMPServer

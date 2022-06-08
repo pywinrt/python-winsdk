@@ -13,6 +13,12 @@ namespace py::cpp::Windows::Devices::Printers::Extensions
         PyTypeObject* type_Print3DWorkflow;
         PyTypeObject* type_Print3DWorkflowPrintRequestedEventArgs;
         PyTypeObject* type_Print3DWorkflowPrinterChangedEventArgs;
+        PyTypeObject* type_PrintExtensionContext;
+        PyTypeObject* type_PrintNotificationEventDetails;
+        PyTypeObject* type_PrintTaskConfiguration;
+        PyTypeObject* type_PrintTaskConfigurationSaveRequest;
+        PyTypeObject* type_PrintTaskConfigurationSaveRequestedDeferral;
+        PyTypeObject* type_PrintTaskConfigurationSaveRequestedEventArgs;
     };
 
     static PyObject* register_Print3DWorkflowDetail(PyObject* module, PyObject* type)
@@ -486,6 +492,582 @@ namespace py::cpp::Windows::Devices::Printers::Extensions
         _type_slots_Print3DWorkflowPrinterChangedEventArgs
     };
 
+    // ----- PrintExtensionContext class --------------------
+    constexpr const char* const type_name_PrintExtensionContext = "PrintExtensionContext";
+
+    static PyObject* _new_PrintExtensionContext(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintExtensionContext);
+        return nullptr;
+    }
+
+    static PyObject* PrintExtensionContext_FromDeviceId(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Printers::Extensions::PrintExtensionContext::FromDeviceId(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintExtensionContext[] = {
+        { "from_device_id", reinterpret_cast<PyCFunction>(PrintExtensionContext_FromDeviceId), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintExtensionContext[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintExtensionContext[] = 
+    {
+        { Py_tp_new, _new_PrintExtensionContext },
+        { Py_tp_methods, _methods_PrintExtensionContext },
+        { Py_tp_getset, _getset_PrintExtensionContext },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintExtensionContext =
+    {
+        "_winsdk_Windows_Devices_Printers_Extensions.PrintExtensionContext",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintExtensionContext
+    };
+
+    // ----- PrintNotificationEventDetails class --------------------
+    constexpr const char* const type_name_PrintNotificationEventDetails = "PrintNotificationEventDetails";
+
+    static PyObject* _new_PrintNotificationEventDetails(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintNotificationEventDetails);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintNotificationEventDetails(py::wrapper::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintNotificationEventDetails_get_EventData(py::wrapper::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.EventData());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int PrintNotificationEventDetails_put_EventData(py::wrapper::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.EventData(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* PrintNotificationEventDetails_get_PrinterName(py::wrapper::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PrinterName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintNotificationEventDetails(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintNotificationEventDetails[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintNotificationEventDetails), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintNotificationEventDetails[] = {
+        { "event_data", reinterpret_cast<getter>(PrintNotificationEventDetails_get_EventData), reinterpret_cast<setter>(PrintNotificationEventDetails_put_EventData), nullptr, nullptr },
+        { "printer_name", reinterpret_cast<getter>(PrintNotificationEventDetails_get_PrinterName), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintNotificationEventDetails[] = 
+    {
+        { Py_tp_new, _new_PrintNotificationEventDetails },
+        { Py_tp_dealloc, _dealloc_PrintNotificationEventDetails },
+        { Py_tp_methods, _methods_PrintNotificationEventDetails },
+        { Py_tp_getset, _getset_PrintNotificationEventDetails },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintNotificationEventDetails =
+    {
+        "_winsdk_Windows_Devices_Printers_Extensions.PrintNotificationEventDetails",
+        sizeof(py::wrapper::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintNotificationEventDetails
+    };
+
+    // ----- PrintTaskConfiguration class --------------------
+    constexpr const char* const type_name_PrintTaskConfiguration = "PrintTaskConfiguration";
+
+    static PyObject* _new_PrintTaskConfiguration(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintTaskConfiguration);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintTaskConfiguration(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfiguration* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintTaskConfiguration_get_PrinterExtensionContext(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfiguration* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PrinterExtensionContext());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskConfiguration_add_SaveRequested(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfiguration* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration, winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.SaveRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskConfiguration_remove_SaveRequested(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfiguration* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.SaveRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintTaskConfiguration(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintTaskConfiguration[] = {
+        { "add_save_requested", reinterpret_cast<PyCFunction>(PrintTaskConfiguration_add_SaveRequested), METH_O, nullptr },
+        { "remove_save_requested", reinterpret_cast<PyCFunction>(PrintTaskConfiguration_remove_SaveRequested), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintTaskConfiguration), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintTaskConfiguration[] = {
+        { "printer_extension_context", reinterpret_cast<getter>(PrintTaskConfiguration_get_PrinterExtensionContext), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintTaskConfiguration[] = 
+    {
+        { Py_tp_new, _new_PrintTaskConfiguration },
+        { Py_tp_dealloc, _dealloc_PrintTaskConfiguration },
+        { Py_tp_methods, _methods_PrintTaskConfiguration },
+        { Py_tp_getset, _getset_PrintTaskConfiguration },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintTaskConfiguration =
+    {
+        "_winsdk_Windows_Devices_Printers_Extensions.PrintTaskConfiguration",
+        sizeof(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfiguration),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintTaskConfiguration
+    };
+
+    // ----- PrintTaskConfigurationSaveRequest class --------------------
+    constexpr const char* const type_name_PrintTaskConfigurationSaveRequest = "PrintTaskConfigurationSaveRequest";
+
+    static PyObject* _new_PrintTaskConfigurationSaveRequest(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintTaskConfigurationSaveRequest);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintTaskConfigurationSaveRequest(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintTaskConfigurationSaveRequest_Cancel(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Cancel();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskConfigurationSaveRequest_GetDeferral(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskConfigurationSaveRequest_Save(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::IInspectable>(args, 0);
+
+                self->obj.Save(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintTaskConfigurationSaveRequest_get_Deadline(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Deadline());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintTaskConfigurationSaveRequest(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintTaskConfigurationSaveRequest[] = {
+        { "cancel", reinterpret_cast<PyCFunction>(PrintTaskConfigurationSaveRequest_Cancel), METH_VARARGS, nullptr },
+        { "get_deferral", reinterpret_cast<PyCFunction>(PrintTaskConfigurationSaveRequest_GetDeferral), METH_VARARGS, nullptr },
+        { "save", reinterpret_cast<PyCFunction>(PrintTaskConfigurationSaveRequest_Save), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintTaskConfigurationSaveRequest), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintTaskConfigurationSaveRequest[] = {
+        { "deadline", reinterpret_cast<getter>(PrintTaskConfigurationSaveRequest_get_Deadline), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintTaskConfigurationSaveRequest[] = 
+    {
+        { Py_tp_new, _new_PrintTaskConfigurationSaveRequest },
+        { Py_tp_dealloc, _dealloc_PrintTaskConfigurationSaveRequest },
+        { Py_tp_methods, _methods_PrintTaskConfigurationSaveRequest },
+        { Py_tp_getset, _getset_PrintTaskConfigurationSaveRequest },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintTaskConfigurationSaveRequest =
+    {
+        "_winsdk_Windows_Devices_Printers_Extensions.PrintTaskConfigurationSaveRequest",
+        sizeof(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintTaskConfigurationSaveRequest
+    };
+
+    // ----- PrintTaskConfigurationSaveRequestedDeferral class --------------------
+    constexpr const char* const type_name_PrintTaskConfigurationSaveRequestedDeferral = "PrintTaskConfigurationSaveRequestedDeferral";
+
+    static PyObject* _new_PrintTaskConfigurationSaveRequestedDeferral(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintTaskConfigurationSaveRequestedDeferral);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintTaskConfigurationSaveRequestedDeferral(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintTaskConfigurationSaveRequestedDeferral_Complete(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Complete();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintTaskConfigurationSaveRequestedDeferral(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintTaskConfigurationSaveRequestedDeferral[] = {
+        { "complete", reinterpret_cast<PyCFunction>(PrintTaskConfigurationSaveRequestedDeferral_Complete), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintTaskConfigurationSaveRequestedDeferral), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintTaskConfigurationSaveRequestedDeferral[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintTaskConfigurationSaveRequestedDeferral[] = 
+    {
+        { Py_tp_new, _new_PrintTaskConfigurationSaveRequestedDeferral },
+        { Py_tp_dealloc, _dealloc_PrintTaskConfigurationSaveRequestedDeferral },
+        { Py_tp_methods, _methods_PrintTaskConfigurationSaveRequestedDeferral },
+        { Py_tp_getset, _getset_PrintTaskConfigurationSaveRequestedDeferral },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintTaskConfigurationSaveRequestedDeferral =
+    {
+        "_winsdk_Windows_Devices_Printers_Extensions.PrintTaskConfigurationSaveRequestedDeferral",
+        sizeof(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintTaskConfigurationSaveRequestedDeferral
+    };
+
+    // ----- PrintTaskConfigurationSaveRequestedEventArgs class --------------------
+    constexpr const char* const type_name_PrintTaskConfigurationSaveRequestedEventArgs = "PrintTaskConfigurationSaveRequestedEventArgs";
+
+    static PyObject* _new_PrintTaskConfigurationSaveRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintTaskConfigurationSaveRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintTaskConfigurationSaveRequestedEventArgs(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintTaskConfigurationSaveRequestedEventArgs_get_Request(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Request());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintTaskConfigurationSaveRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintTaskConfigurationSaveRequestedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintTaskConfigurationSaveRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintTaskConfigurationSaveRequestedEventArgs[] = {
+        { "request", reinterpret_cast<getter>(PrintTaskConfigurationSaveRequestedEventArgs_get_Request), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintTaskConfigurationSaveRequestedEventArgs[] = 
+    {
+        { Py_tp_new, _new_PrintTaskConfigurationSaveRequestedEventArgs },
+        { Py_tp_dealloc, _dealloc_PrintTaskConfigurationSaveRequestedEventArgs },
+        { Py_tp_methods, _methods_PrintTaskConfigurationSaveRequestedEventArgs },
+        { Py_tp_getset, _getset_PrintTaskConfigurationSaveRequestedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintTaskConfigurationSaveRequestedEventArgs =
+    {
+        "_winsdk_Windows_Devices_Printers_Extensions.PrintTaskConfigurationSaveRequestedEventArgs",
+        sizeof(py::wrapper::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintTaskConfigurationSaveRequestedEventArgs
+    };
+
     // ----- Windows.Devices.Printers.Extensions Initialization --------------------
     PyDoc_STRVAR(module_doc, "Windows::Devices::Printers::Extensions");
 
@@ -509,6 +1091,12 @@ namespace py::cpp::Windows::Devices::Printers::Extensions
         Py_VISIT(state->type_Print3DWorkflow);
         Py_VISIT(state->type_Print3DWorkflowPrintRequestedEventArgs);
         Py_VISIT(state->type_Print3DWorkflowPrinterChangedEventArgs);
+        Py_VISIT(state->type_PrintExtensionContext);
+        Py_VISIT(state->type_PrintNotificationEventDetails);
+        Py_VISIT(state->type_PrintTaskConfiguration);
+        Py_VISIT(state->type_PrintTaskConfigurationSaveRequest);
+        Py_VISIT(state->type_PrintTaskConfigurationSaveRequestedDeferral);
+        Py_VISIT(state->type_PrintTaskConfigurationSaveRequestedEventArgs);
 
         return 0;
     }
@@ -527,6 +1115,12 @@ namespace py::cpp::Windows::Devices::Printers::Extensions
         Py_CLEAR(state->type_Print3DWorkflow);
         Py_CLEAR(state->type_Print3DWorkflowPrintRequestedEventArgs);
         Py_CLEAR(state->type_Print3DWorkflowPrinterChangedEventArgs);
+        Py_CLEAR(state->type_PrintExtensionContext);
+        Py_CLEAR(state->type_PrintNotificationEventDetails);
+        Py_CLEAR(state->type_PrintTaskConfiguration);
+        Py_CLEAR(state->type_PrintTaskConfigurationSaveRequest);
+        Py_CLEAR(state->type_PrintTaskConfigurationSaveRequestedDeferral);
+        Py_CLEAR(state->type_PrintTaskConfigurationSaveRequestedEventArgs);
 
         return 0;
     }
@@ -659,6 +1253,54 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Printers_Extensions(void) noexcept
 
     Py_INCREF(state->type_Print3DWorkflowPrinterChangedEventArgs);
 
+    state->type_PrintExtensionContext = py::register_python_type(module.get(), type_name_PrintExtensionContext, &type_spec_PrintExtensionContext, nullptr);
+    if (!state->type_PrintExtensionContext)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintExtensionContext);
+
+    state->type_PrintNotificationEventDetails = py::register_python_type(module.get(), type_name_PrintNotificationEventDetails, &type_spec_PrintNotificationEventDetails, bases.get());
+    if (!state->type_PrintNotificationEventDetails)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintNotificationEventDetails);
+
+    state->type_PrintTaskConfiguration = py::register_python_type(module.get(), type_name_PrintTaskConfiguration, &type_spec_PrintTaskConfiguration, bases.get());
+    if (!state->type_PrintTaskConfiguration)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintTaskConfiguration);
+
+    state->type_PrintTaskConfigurationSaveRequest = py::register_python_type(module.get(), type_name_PrintTaskConfigurationSaveRequest, &type_spec_PrintTaskConfigurationSaveRequest, bases.get());
+    if (!state->type_PrintTaskConfigurationSaveRequest)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintTaskConfigurationSaveRequest);
+
+    state->type_PrintTaskConfigurationSaveRequestedDeferral = py::register_python_type(module.get(), type_name_PrintTaskConfigurationSaveRequestedDeferral, &type_spec_PrintTaskConfigurationSaveRequestedDeferral, bases.get());
+    if (!state->type_PrintTaskConfigurationSaveRequestedDeferral)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintTaskConfigurationSaveRequestedDeferral);
+
+    state->type_PrintTaskConfigurationSaveRequestedEventArgs = py::register_python_type(module.get(), type_name_PrintTaskConfigurationSaveRequestedEventArgs, &type_spec_PrintTaskConfigurationSaveRequestedEventArgs, bases.get());
+    if (!state->type_PrintTaskConfigurationSaveRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintTaskConfigurationSaveRequestedEventArgs);
+
 
     return module.detach();
 }
@@ -772,6 +1414,144 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::Extensions::Prin
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::Extensions::Print3DWorkflowPrinterChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintExtensionContext>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers::Extensions;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers::Extensions");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintExtensionContext;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::Extensions::PrintExtensionContext is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers::Extensions;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers::Extensions");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintNotificationEventDetails;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::Extensions::PrintNotificationEventDetails is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers::Extensions;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers::Extensions");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintTaskConfiguration;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::Extensions::PrintTaskConfiguration is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers::Extensions;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers::Extensions");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintTaskConfigurationSaveRequest;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequest is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers::Extensions;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers::Extensions");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintTaskConfigurationSaveRequestedDeferral;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedDeferral is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers::Extensions;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers::Extensions");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintTaskConfigurationSaveRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::Extensions::PrintTaskConfigurationSaveRequestedEventArgs is not registered");
         return nullptr;
     }
 

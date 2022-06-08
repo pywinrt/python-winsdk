@@ -11,6 +11,12 @@ WINRT_EXPORT namespace winrt::Windows::UI::Shell
         AdaptiveCardBuilder() = delete;
         static auto CreateAdaptiveCardFromJson(param::hstring const& value);
     };
+    struct __declspec(empty_bases) SecurityAppManager : winrt::Windows::UI::Shell::ISecurityAppManager
+    {
+        SecurityAppManager(std::nullptr_t) noexcept {}
+        SecurityAppManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Shell::ISecurityAppManager(ptr, take_ownership_from_abi) {}
+        SecurityAppManager();
+    };
     struct __declspec(empty_bases) ShareWindowCommandEventArgs : winrt::Windows::UI::Shell::IShareWindowCommandEventArgs
     {
         ShareWindowCommandEventArgs(std::nullptr_t) noexcept {}

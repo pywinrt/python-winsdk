@@ -33,6 +33,8 @@ namespace py::wrapper::Windows::Globalization
     using CurrencyAmount = py::winrt_wrapper<winrt::Windows::Globalization::CurrencyAmount>;
     using CurrencyIdentifiers = py::winrt_wrapper<winrt::Windows::Globalization::CurrencyIdentifiers>;
     using GeographicRegion = py::winrt_wrapper<winrt::Windows::Globalization::GeographicRegion>;
+    using JapanesePhoneme = py::winrt_wrapper<winrt::Windows::Globalization::JapanesePhoneme>;
+    using JapanesePhoneticAnalyzer = py::winrt_wrapper<winrt::Windows::Globalization::JapanesePhoneticAnalyzer>;
     using Language = py::winrt_wrapper<winrt::Windows::Globalization::Language>;
     using NumeralSystemIdentifiers = py::winrt_wrapper<winrt::Windows::Globalization::NumeralSystemIdentifiers>;
 }
@@ -90,6 +92,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Globalization::GeographicRegion>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Globalization::JapanesePhoneme>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Globalization::JapanesePhoneticAnalyzer>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

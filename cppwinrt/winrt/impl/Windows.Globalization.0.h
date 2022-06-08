@@ -50,6 +50,8 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
     struct IGeographicRegion;
     struct IGeographicRegionFactory;
     struct IGeographicRegionStatics;
+    struct IJapanesePhoneme;
+    struct IJapanesePhoneticAnalyzerStatics;
     struct ILanguage;
     struct ILanguage2;
     struct ILanguage3;
@@ -68,6 +70,8 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
     struct CurrencyAmount;
     struct CurrencyIdentifiers;
     struct GeographicRegion;
+    struct JapanesePhoneme;
+    struct JapanesePhoneticAnalyzer;
     struct Language;
     struct NumeralSystemIdentifiers;
 }
@@ -90,6 +94,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Globalization::IGeographicRegion>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::IGeographicRegionFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::IGeographicRegionStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Globalization::IJapanesePhoneme>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguage>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguage2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguage3>{ using type = interface_category; };
@@ -108,6 +114,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Globalization::CurrencyAmount>{ using type = class_category; };
     template <> struct category<winrt::Windows::Globalization::CurrencyIdentifiers>{ using type = class_category; };
     template <> struct category<winrt::Windows::Globalization::GeographicRegion>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Globalization::JapanesePhoneme>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Globalization::JapanesePhoneticAnalyzer>{ using type = class_category; };
     template <> struct category<winrt::Windows::Globalization::Language>{ using type = class_category; };
     template <> struct category<winrt::Windows::Globalization::NumeralSystemIdentifiers>{ using type = class_category; };
     template <> struct category<winrt::Windows::Globalization::DayOfWeek>{ using type = enum_category; };
@@ -119,6 +127,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::CurrencyAmount> = L"Windows.Globalization.CurrencyAmount";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::CurrencyIdentifiers> = L"Windows.Globalization.CurrencyIdentifiers";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::GeographicRegion> = L"Windows.Globalization.GeographicRegion";
+    template <> inline constexpr auto& name_v<winrt::Windows::Globalization::JapanesePhoneme> = L"Windows.Globalization.JapanesePhoneme";
+    template <> inline constexpr auto& name_v<winrt::Windows::Globalization::JapanesePhoneticAnalyzer> = L"Windows.Globalization.JapanesePhoneticAnalyzer";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::Language> = L"Windows.Globalization.Language";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::NumeralSystemIdentifiers> = L"Windows.Globalization.NumeralSystemIdentifiers";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::DayOfWeek> = L"Windows.Globalization.DayOfWeek";
@@ -140,6 +150,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::IGeographicRegion> = L"Windows.Globalization.IGeographicRegion";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::IGeographicRegionFactory> = L"Windows.Globalization.IGeographicRegionFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::IGeographicRegionStatics> = L"Windows.Globalization.IGeographicRegionStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Globalization::IJapanesePhoneme> = L"Windows.Globalization.IJapanesePhoneme";
+    template <> inline constexpr auto& name_v<winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics> = L"Windows.Globalization.IJapanesePhoneticAnalyzerStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguage> = L"Windows.Globalization.ILanguage";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguage2> = L"Windows.Globalization.ILanguage2";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguage3> = L"Windows.Globalization.ILanguage3";
@@ -168,6 +180,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::IGeographicRegion>{ 0x01E9A621,0x4A64,0x4ED9,{ 0x95,0x4F,0x9E,0xDE,0xB0,0x7B,0xD9,0x03 } }; // 01E9A621-4A64-4ED9-954F-9EDEB07BD903
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::IGeographicRegionFactory>{ 0x53425270,0x77B4,0x426B,{ 0x85,0x9F,0x81,0xE1,0x9D,0x51,0x25,0x46 } }; // 53425270-77B4-426B-859F-81E19D512546
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::IGeographicRegionStatics>{ 0x29E28974,0x7AD9,0x4EF4,{ 0x87,0x99,0xB3,0xB4,0x4F,0xAD,0xEC,0x08 } }; // 29E28974-7AD9-4EF4-8799-B3B44FADEC08
+    template <> inline constexpr guid guid_v<winrt::Windows::Globalization::IJapanesePhoneme>{ 0x2F6A9300,0xE85B,0x43E6,{ 0x89,0x7D,0x5D,0x82,0xF8,0x62,0xDF,0x21 } }; // 2F6A9300-E85B-43E6-897D-5D82F862DF21
+    template <> inline constexpr guid guid_v<winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics>{ 0x88AB9E90,0x93DE,0x41B2,{ 0xB4,0xD5,0x8E,0xDB,0x22,0x7F,0xD1,0xC2 } }; // 88AB9E90-93DE-41B2-B4D5-8EDB227FD1C2
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguage>{ 0xEA79A752,0xF7C2,0x4265,{ 0xB1,0xBD,0xC4,0xDE,0xC4,0xE4,0xF0,0x80 } }; // EA79A752-F7C2-4265-B1BD-C4DEC4E4F080
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguage2>{ 0x6A47E5B5,0xD94D,0x4886,{ 0xA4,0x04,0xA5,0xA5,0xB9,0xD5,0xB4,0x94 } }; // 6A47E5B5-D94D-4886-A404-A5A5B9D5B494
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguage3>{ 0xC6AF3D10,0x641A,0x5BA4,{ 0xBB,0x43,0x5E,0x12,0xAE,0xD7,0x59,0x54 } }; // C6AF3D10-641A-5BA4-BB43-5E12AED75954
@@ -182,6 +196,7 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::Globalization::Calendar>{ using type = winrt::Windows::Globalization::ICalendar; };
     template <> struct default_interface<winrt::Windows::Globalization::CurrencyAmount>{ using type = winrt::Windows::Globalization::ICurrencyAmount; };
     template <> struct default_interface<winrt::Windows::Globalization::GeographicRegion>{ using type = winrt::Windows::Globalization::IGeographicRegion; };
+    template <> struct default_interface<winrt::Windows::Globalization::JapanesePhoneme>{ using type = winrt::Windows::Globalization::IJapanesePhoneme; };
     template <> struct default_interface<winrt::Windows::Globalization::Language>{ using type = winrt::Windows::Globalization::ILanguage; };
     template <> struct abi<winrt::Windows::Globalization::IApplicationLanguagesStatics>
     {
@@ -580,6 +595,23 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall IsSupported(void*, bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Globalization::IJapanesePhoneme>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_DisplayText(void**) noexcept = 0;
+            virtual int32_t __stdcall get_YomiText(void**) noexcept = 0;
+            virtual int32_t __stdcall get_IsPhraseStart(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetWords(void*, void**) noexcept = 0;
+            virtual int32_t __stdcall GetWordsWithMonoRubyOption(void*, bool, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Globalization::ILanguage>
@@ -1144,6 +1176,27 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Globalization::IGeographicRegionStatics>
     {
         template <typename D> using type = consume_Windows_Globalization_IGeographicRegionStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Globalization_IJapanesePhoneme
+    {
+        [[nodiscard]] auto DisplayText() const;
+        [[nodiscard]] auto YomiText() const;
+        [[nodiscard]] auto IsPhraseStart() const;
+    };
+    template <> struct consume<winrt::Windows::Globalization::IJapanesePhoneme>
+    {
+        template <typename D> using type = consume_Windows_Globalization_IJapanesePhoneme<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Globalization_IJapanesePhoneticAnalyzerStatics
+    {
+        auto GetWords(param::hstring const& input) const;
+        auto GetWords(param::hstring const& input, bool monoRuby) const;
+    };
+    template <> struct consume<winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics>
+    {
+        template <typename D> using type = consume_Windows_Globalization_IJapanesePhoneticAnalyzerStatics<D>;
     };
     template <typename D>
     struct consume_Windows_Globalization_ILanguage

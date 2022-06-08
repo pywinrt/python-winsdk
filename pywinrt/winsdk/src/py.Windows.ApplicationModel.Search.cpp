@@ -9,11 +9,20 @@ namespace py::cpp::Windows::ApplicationModel::Search
     struct module_state
     {
         PyTypeObject* type_LocalContentSuggestionSettings;
+        PyTypeObject* type_SearchPane;
+        PyTypeObject* type_SearchPaneQueryChangedEventArgs;
         PyTypeObject* type_SearchPaneQueryLinguisticDetails;
+        PyTypeObject* type_SearchPaneQuerySubmittedEventArgs;
+        PyTypeObject* type_SearchPaneResultSuggestionChosenEventArgs;
+        PyTypeObject* type_SearchPaneSuggestionsRequest;
+        PyTypeObject* type_SearchPaneSuggestionsRequestDeferral;
+        PyTypeObject* type_SearchPaneSuggestionsRequestedEventArgs;
+        PyTypeObject* type_SearchPaneVisibilityChangedEventArgs;
         PyTypeObject* type_SearchQueryLinguisticDetails;
         PyTypeObject* type_SearchSuggestionCollection;
         PyTypeObject* type_SearchSuggestionsRequest;
         PyTypeObject* type_SearchSuggestionsRequestDeferral;
+        PyTypeObject* type_ISearchPaneQueryChangedEventArgs;
     };
 
     // ----- LocalContentSuggestionSettings class --------------------
@@ -197,6 +206,657 @@ namespace py::cpp::Windows::ApplicationModel::Search
         _type_slots_LocalContentSuggestionSettings
     };
 
+    // ----- SearchPane class --------------------
+    constexpr const char* const type_name_SearchPane = "SearchPane";
+
+    static PyObject* _new_SearchPane(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPane);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPane(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPane_GetForCurrentView(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::ApplicationModel::Search::SearchPane::GetForCurrentView());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_HideThisApplication(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::ApplicationModel::Search::SearchPane::HideThisApplication();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_SetLocalContentSuggestionSettings(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::ApplicationModel::Search::LocalContentSuggestionSettings>(args, 0);
+
+                self->obj.SetLocalContentSuggestionSettings(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_Show(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Show();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                self->obj.Show(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_TrySetQueryText(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(self->obj.TrySetQueryText(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_get_ShowOnKeyboardInput(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ShowOnKeyboardInput());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SearchPane_put_ShowOnKeyboardInput(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.ShowOnKeyboardInput(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SearchPane_get_SearchHistoryEnabled(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SearchHistoryEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SearchPane_put_SearchHistoryEnabled(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.SearchHistoryEnabled(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SearchPane_get_SearchHistoryContext(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SearchHistoryContext());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SearchPane_put_SearchHistoryContext(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.SearchHistoryContext(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SearchPane_get_PlaceholderText(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PlaceholderText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int SearchPane_put_PlaceholderText(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.PlaceholderText(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* SearchPane_get_Language(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Language());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_get_QueryText(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QueryText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_get_Visible(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Visible());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_add_QueryChanged(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Search::SearchPane, winrt::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs>>(arg);
+
+            return py::convert(self->obj.QueryChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_remove_QueryChanged(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.QueryChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_add_QuerySubmitted(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Search::SearchPane, winrt::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs>>(arg);
+
+            return py::convert(self->obj.QuerySubmitted(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_remove_QuerySubmitted(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.QuerySubmitted(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_add_ResultSuggestionChosen(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Search::SearchPane, winrt::Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs>>(arg);
+
+            return py::convert(self->obj.ResultSuggestionChosen(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_remove_ResultSuggestionChosen(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.ResultSuggestionChosen(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_add_SuggestionsRequested(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Search::SearchPane, winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.SuggestionsRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_remove_SuggestionsRequested(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.SuggestionsRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_add_VisibilityChanged(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::Search::SearchPane, winrt::Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs>>(arg);
+
+            return py::convert(self->obj.VisibilityChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPane_remove_VisibilityChanged(py::wrapper::Windows::ApplicationModel::Search::SearchPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.VisibilityChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPane(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPane>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPane[] = {
+        { "get_for_current_view", reinterpret_cast<PyCFunction>(SearchPane_GetForCurrentView), METH_VARARGS | METH_STATIC, nullptr },
+        { "hide_this_application", reinterpret_cast<PyCFunction>(SearchPane_HideThisApplication), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_local_content_suggestion_settings", reinterpret_cast<PyCFunction>(SearchPane_SetLocalContentSuggestionSettings), METH_VARARGS, nullptr },
+        { "show", reinterpret_cast<PyCFunction>(SearchPane_Show), METH_VARARGS, nullptr },
+        { "try_set_query_text", reinterpret_cast<PyCFunction>(SearchPane_TrySetQueryText), METH_VARARGS, nullptr },
+        { "add_query_changed", reinterpret_cast<PyCFunction>(SearchPane_add_QueryChanged), METH_O, nullptr },
+        { "remove_query_changed", reinterpret_cast<PyCFunction>(SearchPane_remove_QueryChanged), METH_O, nullptr },
+        { "add_query_submitted", reinterpret_cast<PyCFunction>(SearchPane_add_QuerySubmitted), METH_O, nullptr },
+        { "remove_query_submitted", reinterpret_cast<PyCFunction>(SearchPane_remove_QuerySubmitted), METH_O, nullptr },
+        { "add_result_suggestion_chosen", reinterpret_cast<PyCFunction>(SearchPane_add_ResultSuggestionChosen), METH_O, nullptr },
+        { "remove_result_suggestion_chosen", reinterpret_cast<PyCFunction>(SearchPane_remove_ResultSuggestionChosen), METH_O, nullptr },
+        { "add_suggestions_requested", reinterpret_cast<PyCFunction>(SearchPane_add_SuggestionsRequested), METH_O, nullptr },
+        { "remove_suggestions_requested", reinterpret_cast<PyCFunction>(SearchPane_remove_SuggestionsRequested), METH_O, nullptr },
+        { "add_visibility_changed", reinterpret_cast<PyCFunction>(SearchPane_add_VisibilityChanged), METH_O, nullptr },
+        { "remove_visibility_changed", reinterpret_cast<PyCFunction>(SearchPane_remove_VisibilityChanged), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPane), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPane[] = {
+        { "show_on_keyboard_input", reinterpret_cast<getter>(SearchPane_get_ShowOnKeyboardInput), reinterpret_cast<setter>(SearchPane_put_ShowOnKeyboardInput), nullptr, nullptr },
+        { "search_history_enabled", reinterpret_cast<getter>(SearchPane_get_SearchHistoryEnabled), reinterpret_cast<setter>(SearchPane_put_SearchHistoryEnabled), nullptr, nullptr },
+        { "search_history_context", reinterpret_cast<getter>(SearchPane_get_SearchHistoryContext), reinterpret_cast<setter>(SearchPane_put_SearchHistoryContext), nullptr, nullptr },
+        { "placeholder_text", reinterpret_cast<getter>(SearchPane_get_PlaceholderText), reinterpret_cast<setter>(SearchPane_put_PlaceholderText), nullptr, nullptr },
+        { "language", reinterpret_cast<getter>(SearchPane_get_Language), nullptr, nullptr, nullptr },
+        { "query_text", reinterpret_cast<getter>(SearchPane_get_QueryText), nullptr, nullptr, nullptr },
+        { "visible", reinterpret_cast<getter>(SearchPane_get_Visible), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPane[] = 
+    {
+        { Py_tp_new, _new_SearchPane },
+        { Py_tp_dealloc, _dealloc_SearchPane },
+        { Py_tp_methods, _methods_SearchPane },
+        { Py_tp_getset, _getset_SearchPane },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPane =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPane",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPane),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPane
+    };
+
+    // ----- SearchPaneQueryChangedEventArgs class --------------------
+    constexpr const char* const type_name_SearchPaneQueryChangedEventArgs = "SearchPaneQueryChangedEventArgs";
+
+    static PyObject* _new_SearchPaneQueryChangedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPaneQueryChangedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPaneQueryChangedEventArgs(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPaneQueryChangedEventArgs_get_Language(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Language());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneQueryChangedEventArgs_get_LinguisticDetails(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LinguisticDetails());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneQueryChangedEventArgs_get_QueryText(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QueryText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPaneQueryChangedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPaneQueryChangedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPaneQueryChangedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPaneQueryChangedEventArgs[] = {
+        { "language", reinterpret_cast<getter>(SearchPaneQueryChangedEventArgs_get_Language), nullptr, nullptr, nullptr },
+        { "linguistic_details", reinterpret_cast<getter>(SearchPaneQueryChangedEventArgs_get_LinguisticDetails), nullptr, nullptr, nullptr },
+        { "query_text", reinterpret_cast<getter>(SearchPaneQueryChangedEventArgs_get_QueryText), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPaneQueryChangedEventArgs[] = 
+    {
+        { Py_tp_new, _new_SearchPaneQueryChangedEventArgs },
+        { Py_tp_dealloc, _dealloc_SearchPaneQueryChangedEventArgs },
+        { Py_tp_methods, _methods_SearchPaneQueryChangedEventArgs },
+        { Py_tp_getset, _getset_SearchPaneQueryChangedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPaneQueryChangedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPaneQueryChangedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPaneQueryChangedEventArgs
+    };
+
     // ----- SearchPaneQueryLinguisticDetails class --------------------
     constexpr const char* const type_name_SearchPaneQueryLinguisticDetails = "SearchPaneQueryLinguisticDetails";
 
@@ -295,6 +955,557 @@ namespace py::cpp::Windows::ApplicationModel::Search
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_SearchPaneQueryLinguisticDetails
+    };
+
+    // ----- SearchPaneQuerySubmittedEventArgs class --------------------
+    constexpr const char* const type_name_SearchPaneQuerySubmittedEventArgs = "SearchPaneQuerySubmittedEventArgs";
+
+    static PyObject* _new_SearchPaneQuerySubmittedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPaneQuerySubmittedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPaneQuerySubmittedEventArgs(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPaneQuerySubmittedEventArgs_get_Language(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Language());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneQuerySubmittedEventArgs_get_QueryText(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QueryText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneQuerySubmittedEventArgs_get_LinguisticDetails(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LinguisticDetails());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPaneQuerySubmittedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPaneQuerySubmittedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPaneQuerySubmittedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPaneQuerySubmittedEventArgs[] = {
+        { "language", reinterpret_cast<getter>(SearchPaneQuerySubmittedEventArgs_get_Language), nullptr, nullptr, nullptr },
+        { "query_text", reinterpret_cast<getter>(SearchPaneQuerySubmittedEventArgs_get_QueryText), nullptr, nullptr, nullptr },
+        { "linguistic_details", reinterpret_cast<getter>(SearchPaneQuerySubmittedEventArgs_get_LinguisticDetails), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPaneQuerySubmittedEventArgs[] = 
+    {
+        { Py_tp_new, _new_SearchPaneQuerySubmittedEventArgs },
+        { Py_tp_dealloc, _dealloc_SearchPaneQuerySubmittedEventArgs },
+        { Py_tp_methods, _methods_SearchPaneQuerySubmittedEventArgs },
+        { Py_tp_getset, _getset_SearchPaneQuerySubmittedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPaneQuerySubmittedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPaneQuerySubmittedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPaneQuerySubmittedEventArgs
+    };
+
+    // ----- SearchPaneResultSuggestionChosenEventArgs class --------------------
+    constexpr const char* const type_name_SearchPaneResultSuggestionChosenEventArgs = "SearchPaneResultSuggestionChosenEventArgs";
+
+    static PyObject* _new_SearchPaneResultSuggestionChosenEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPaneResultSuggestionChosenEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPaneResultSuggestionChosenEventArgs(py::wrapper::Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPaneResultSuggestionChosenEventArgs_get_Tag(py::wrapper::Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Tag());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPaneResultSuggestionChosenEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPaneResultSuggestionChosenEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPaneResultSuggestionChosenEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPaneResultSuggestionChosenEventArgs[] = {
+        { "tag", reinterpret_cast<getter>(SearchPaneResultSuggestionChosenEventArgs_get_Tag), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPaneResultSuggestionChosenEventArgs[] = 
+    {
+        { Py_tp_new, _new_SearchPaneResultSuggestionChosenEventArgs },
+        { Py_tp_dealloc, _dealloc_SearchPaneResultSuggestionChosenEventArgs },
+        { Py_tp_methods, _methods_SearchPaneResultSuggestionChosenEventArgs },
+        { Py_tp_getset, _getset_SearchPaneResultSuggestionChosenEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPaneResultSuggestionChosenEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPaneResultSuggestionChosenEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPaneResultSuggestionChosenEventArgs
+    };
+
+    // ----- SearchPaneSuggestionsRequest class --------------------
+    constexpr const char* const type_name_SearchPaneSuggestionsRequest = "SearchPaneSuggestionsRequest";
+
+    static PyObject* _new_SearchPaneSuggestionsRequest(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPaneSuggestionsRequest);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPaneSuggestionsRequest(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPaneSuggestionsRequest_GetDeferral(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneSuggestionsRequest_get_IsCanceled(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsCanceled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneSuggestionsRequest_get_SearchSuggestionCollection(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SearchSuggestionCollection());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPaneSuggestionsRequest(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPaneSuggestionsRequest[] = {
+        { "get_deferral", reinterpret_cast<PyCFunction>(SearchPaneSuggestionsRequest_GetDeferral), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPaneSuggestionsRequest), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPaneSuggestionsRequest[] = {
+        { "is_canceled", reinterpret_cast<getter>(SearchPaneSuggestionsRequest_get_IsCanceled), nullptr, nullptr, nullptr },
+        { "search_suggestion_collection", reinterpret_cast<getter>(SearchPaneSuggestionsRequest_get_SearchSuggestionCollection), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPaneSuggestionsRequest[] = 
+    {
+        { Py_tp_new, _new_SearchPaneSuggestionsRequest },
+        { Py_tp_dealloc, _dealloc_SearchPaneSuggestionsRequest },
+        { Py_tp_methods, _methods_SearchPaneSuggestionsRequest },
+        { Py_tp_getset, _getset_SearchPaneSuggestionsRequest },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPaneSuggestionsRequest =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPaneSuggestionsRequest",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPaneSuggestionsRequest
+    };
+
+    // ----- SearchPaneSuggestionsRequestDeferral class --------------------
+    constexpr const char* const type_name_SearchPaneSuggestionsRequestDeferral = "SearchPaneSuggestionsRequestDeferral";
+
+    static PyObject* _new_SearchPaneSuggestionsRequestDeferral(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPaneSuggestionsRequestDeferral);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPaneSuggestionsRequestDeferral(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestDeferral* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPaneSuggestionsRequestDeferral_Complete(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestDeferral* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Complete();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPaneSuggestionsRequestDeferral(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestDeferral>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPaneSuggestionsRequestDeferral[] = {
+        { "complete", reinterpret_cast<PyCFunction>(SearchPaneSuggestionsRequestDeferral_Complete), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPaneSuggestionsRequestDeferral), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPaneSuggestionsRequestDeferral[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPaneSuggestionsRequestDeferral[] = 
+    {
+        { Py_tp_new, _new_SearchPaneSuggestionsRequestDeferral },
+        { Py_tp_dealloc, _dealloc_SearchPaneSuggestionsRequestDeferral },
+        { Py_tp_methods, _methods_SearchPaneSuggestionsRequestDeferral },
+        { Py_tp_getset, _getset_SearchPaneSuggestionsRequestDeferral },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPaneSuggestionsRequestDeferral =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPaneSuggestionsRequestDeferral",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestDeferral),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPaneSuggestionsRequestDeferral
+    };
+
+    // ----- SearchPaneSuggestionsRequestedEventArgs class --------------------
+    constexpr const char* const type_name_SearchPaneSuggestionsRequestedEventArgs = "SearchPaneSuggestionsRequestedEventArgs";
+
+    static PyObject* _new_SearchPaneSuggestionsRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPaneSuggestionsRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPaneSuggestionsRequestedEventArgs(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPaneSuggestionsRequestedEventArgs_get_Language(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Language());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneSuggestionsRequestedEventArgs_get_LinguisticDetails(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LinguisticDetails());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneSuggestionsRequestedEventArgs_get_QueryText(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QueryText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SearchPaneSuggestionsRequestedEventArgs_get_Request(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Request());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPaneSuggestionsRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPaneSuggestionsRequestedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPaneSuggestionsRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPaneSuggestionsRequestedEventArgs[] = {
+        { "language", reinterpret_cast<getter>(SearchPaneSuggestionsRequestedEventArgs_get_Language), nullptr, nullptr, nullptr },
+        { "linguistic_details", reinterpret_cast<getter>(SearchPaneSuggestionsRequestedEventArgs_get_LinguisticDetails), nullptr, nullptr, nullptr },
+        { "query_text", reinterpret_cast<getter>(SearchPaneSuggestionsRequestedEventArgs_get_QueryText), nullptr, nullptr, nullptr },
+        { "request", reinterpret_cast<getter>(SearchPaneSuggestionsRequestedEventArgs_get_Request), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPaneSuggestionsRequestedEventArgs[] = 
+    {
+        { Py_tp_new, _new_SearchPaneSuggestionsRequestedEventArgs },
+        { Py_tp_dealloc, _dealloc_SearchPaneSuggestionsRequestedEventArgs },
+        { Py_tp_methods, _methods_SearchPaneSuggestionsRequestedEventArgs },
+        { Py_tp_getset, _getset_SearchPaneSuggestionsRequestedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPaneSuggestionsRequestedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPaneSuggestionsRequestedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPaneSuggestionsRequestedEventArgs
+    };
+
+    // ----- SearchPaneVisibilityChangedEventArgs class --------------------
+    constexpr const char* const type_name_SearchPaneVisibilityChangedEventArgs = "SearchPaneVisibilityChangedEventArgs";
+
+    static PyObject* _new_SearchPaneVisibilityChangedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SearchPaneVisibilityChangedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_SearchPaneVisibilityChangedEventArgs(py::wrapper::Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SearchPaneVisibilityChangedEventArgs_get_Visible(py::wrapper::Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Visible());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SearchPaneVisibilityChangedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SearchPaneVisibilityChangedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SearchPaneVisibilityChangedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SearchPaneVisibilityChangedEventArgs[] = {
+        { "visible", reinterpret_cast<getter>(SearchPaneVisibilityChangedEventArgs_get_Visible), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SearchPaneVisibilityChangedEventArgs[] = 
+    {
+        { Py_tp_new, _new_SearchPaneVisibilityChangedEventArgs },
+        { Py_tp_dealloc, _dealloc_SearchPaneVisibilityChangedEventArgs },
+        { Py_tp_methods, _methods_SearchPaneVisibilityChangedEventArgs },
+        { Py_tp_getset, _getset_SearchPaneVisibilityChangedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_SearchPaneVisibilityChangedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.SearchPaneVisibilityChangedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SearchPaneVisibilityChangedEventArgs
     };
 
     // ----- SearchQueryLinguisticDetails class --------------------
@@ -801,6 +2012,106 @@ namespace py::cpp::Windows::ApplicationModel::Search
         _type_slots_SearchSuggestionsRequestDeferral
     };
 
+    // ----- ISearchPaneQueryChangedEventArgs interface --------------------
+    constexpr const char* const type_name_ISearchPaneQueryChangedEventArgs = "ISearchPaneQueryChangedEventArgs";
+
+    static PyObject* _new_ISearchPaneQueryChangedEventArgs(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_ISearchPaneQueryChangedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_ISearchPaneQueryChangedEventArgs(py::wrapper::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* ISearchPaneQueryChangedEventArgs_get_Language(py::wrapper::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Language());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISearchPaneQueryChangedEventArgs_get_LinguisticDetails(py::wrapper::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LinguisticDetails());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ISearchPaneQueryChangedEventArgs_get_QueryText(py::wrapper::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QueryText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_ISearchPaneQueryChangedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_ISearchPaneQueryChangedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_ISearchPaneQueryChangedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_ISearchPaneQueryChangedEventArgs[] = {
+        { "language", reinterpret_cast<getter>(ISearchPaneQueryChangedEventArgs_get_Language), nullptr, nullptr, nullptr },
+        { "linguistic_details", reinterpret_cast<getter>(ISearchPaneQueryChangedEventArgs_get_LinguisticDetails), nullptr, nullptr, nullptr },
+        { "query_text", reinterpret_cast<getter>(ISearchPaneQueryChangedEventArgs_get_QueryText), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_ISearchPaneQueryChangedEventArgs[] = 
+    {
+        { Py_tp_new, _new_ISearchPaneQueryChangedEventArgs },
+        { Py_tp_dealloc, _dealloc_ISearchPaneQueryChangedEventArgs },
+        { Py_tp_methods, _methods_ISearchPaneQueryChangedEventArgs },
+        { Py_tp_getset, _getset_ISearchPaneQueryChangedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_ISearchPaneQueryChangedEventArgs =
+    {
+        "_winsdk_Windows_ApplicationModel_Search.ISearchPaneQueryChangedEventArgs",
+        sizeof(py::wrapper::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_ISearchPaneQueryChangedEventArgs
+    };
+
     // ----- Windows.ApplicationModel.Search Initialization --------------------
     PyDoc_STRVAR(module_doc, "Windows::ApplicationModel::Search");
 
@@ -818,11 +2129,20 @@ namespace py::cpp::Windows::ApplicationModel::Search
         }
 
         Py_VISIT(state->type_LocalContentSuggestionSettings);
+        Py_VISIT(state->type_SearchPane);
+        Py_VISIT(state->type_SearchPaneQueryChangedEventArgs);
         Py_VISIT(state->type_SearchPaneQueryLinguisticDetails);
+        Py_VISIT(state->type_SearchPaneQuerySubmittedEventArgs);
+        Py_VISIT(state->type_SearchPaneResultSuggestionChosenEventArgs);
+        Py_VISIT(state->type_SearchPaneSuggestionsRequest);
+        Py_VISIT(state->type_SearchPaneSuggestionsRequestDeferral);
+        Py_VISIT(state->type_SearchPaneSuggestionsRequestedEventArgs);
+        Py_VISIT(state->type_SearchPaneVisibilityChangedEventArgs);
         Py_VISIT(state->type_SearchQueryLinguisticDetails);
         Py_VISIT(state->type_SearchSuggestionCollection);
         Py_VISIT(state->type_SearchSuggestionsRequest);
         Py_VISIT(state->type_SearchSuggestionsRequestDeferral);
+        Py_VISIT(state->type_ISearchPaneQueryChangedEventArgs);
 
         return 0;
     }
@@ -837,11 +2157,20 @@ namespace py::cpp::Windows::ApplicationModel::Search
         }
 
         Py_CLEAR(state->type_LocalContentSuggestionSettings);
+        Py_CLEAR(state->type_SearchPane);
+        Py_CLEAR(state->type_SearchPaneQueryChangedEventArgs);
         Py_CLEAR(state->type_SearchPaneQueryLinguisticDetails);
+        Py_CLEAR(state->type_SearchPaneQuerySubmittedEventArgs);
+        Py_CLEAR(state->type_SearchPaneResultSuggestionChosenEventArgs);
+        Py_CLEAR(state->type_SearchPaneSuggestionsRequest);
+        Py_CLEAR(state->type_SearchPaneSuggestionsRequestDeferral);
+        Py_CLEAR(state->type_SearchPaneSuggestionsRequestedEventArgs);
+        Py_CLEAR(state->type_SearchPaneVisibilityChangedEventArgs);
         Py_CLEAR(state->type_SearchQueryLinguisticDetails);
         Py_CLEAR(state->type_SearchSuggestionCollection);
         Py_CLEAR(state->type_SearchSuggestionsRequest);
         Py_CLEAR(state->type_SearchSuggestionsRequestDeferral);
+        Py_CLEAR(state->type_ISearchPaneQueryChangedEventArgs);
 
         return 0;
     }
@@ -958,6 +2287,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Search(void) noexcept
 
     Py_INCREF(state->type_LocalContentSuggestionSettings);
 
+    state->type_SearchPane = py::register_python_type(module.get(), type_name_SearchPane, &type_spec_SearchPane, bases.get());
+    if (!state->type_SearchPane)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPane);
+
+    state->type_SearchPaneQueryChangedEventArgs = py::register_python_type(module.get(), type_name_SearchPaneQueryChangedEventArgs, &type_spec_SearchPaneQueryChangedEventArgs, bases.get());
+    if (!state->type_SearchPaneQueryChangedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPaneQueryChangedEventArgs);
+
     state->type_SearchPaneQueryLinguisticDetails = py::register_python_type(module.get(), type_name_SearchPaneQueryLinguisticDetails, &type_spec_SearchPaneQueryLinguisticDetails, bases.get());
     if (!state->type_SearchPaneQueryLinguisticDetails)
     {
@@ -965,6 +2310,54 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Search(void) noexcept
     }
 
     Py_INCREF(state->type_SearchPaneQueryLinguisticDetails);
+
+    state->type_SearchPaneQuerySubmittedEventArgs = py::register_python_type(module.get(), type_name_SearchPaneQuerySubmittedEventArgs, &type_spec_SearchPaneQuerySubmittedEventArgs, bases.get());
+    if (!state->type_SearchPaneQuerySubmittedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPaneQuerySubmittedEventArgs);
+
+    state->type_SearchPaneResultSuggestionChosenEventArgs = py::register_python_type(module.get(), type_name_SearchPaneResultSuggestionChosenEventArgs, &type_spec_SearchPaneResultSuggestionChosenEventArgs, bases.get());
+    if (!state->type_SearchPaneResultSuggestionChosenEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPaneResultSuggestionChosenEventArgs);
+
+    state->type_SearchPaneSuggestionsRequest = py::register_python_type(module.get(), type_name_SearchPaneSuggestionsRequest, &type_spec_SearchPaneSuggestionsRequest, bases.get());
+    if (!state->type_SearchPaneSuggestionsRequest)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPaneSuggestionsRequest);
+
+    state->type_SearchPaneSuggestionsRequestDeferral = py::register_python_type(module.get(), type_name_SearchPaneSuggestionsRequestDeferral, &type_spec_SearchPaneSuggestionsRequestDeferral, bases.get());
+    if (!state->type_SearchPaneSuggestionsRequestDeferral)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPaneSuggestionsRequestDeferral);
+
+    state->type_SearchPaneSuggestionsRequestedEventArgs = py::register_python_type(module.get(), type_name_SearchPaneSuggestionsRequestedEventArgs, &type_spec_SearchPaneSuggestionsRequestedEventArgs, bases.get());
+    if (!state->type_SearchPaneSuggestionsRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPaneSuggestionsRequestedEventArgs);
+
+    state->type_SearchPaneVisibilityChangedEventArgs = py::register_python_type(module.get(), type_name_SearchPaneVisibilityChangedEventArgs, &type_spec_SearchPaneVisibilityChangedEventArgs, bases.get());
+    if (!state->type_SearchPaneVisibilityChangedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SearchPaneVisibilityChangedEventArgs);
 
     state->type_SearchQueryLinguisticDetails = py::register_python_type(module.get(), type_name_SearchQueryLinguisticDetails, &type_spec_SearchQueryLinguisticDetails, bases.get());
     if (!state->type_SearchQueryLinguisticDetails)
@@ -998,6 +2391,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Search(void) noexcept
 
     Py_INCREF(state->type_SearchSuggestionsRequestDeferral);
 
+    state->type_ISearchPaneQueryChangedEventArgs = py::register_python_type(module.get(), type_name_ISearchPaneQueryChangedEventArgs, &type_spec_ISearchPaneQueryChangedEventArgs, bases.get());
+    if (!state->type_ISearchPaneQueryChangedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_ISearchPaneQueryChangedEventArgs);
+
 
     return module.detach();
 }
@@ -1025,6 +2426,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::LocalCont
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPane>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPane;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPane is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPaneQueryChangedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneQueryChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneQueryLinguisticDetails>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Search;
 
@@ -1042,6 +2489,144 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPan
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneQueryLinguisticDetails is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPaneQuerySubmittedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneQuerySubmittedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPaneResultSuggestionChosenEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneResultSuggestionChosenEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPaneSuggestionsRequest;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequest is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestDeferral>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPaneSuggestionsRequestDeferral;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestDeferral is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPaneSuggestionsRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneSuggestionsRequestedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SearchPaneVisibilityChangedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchPaneVisibilityChangedEventArgs is not registered");
         return nullptr;
     }
 
@@ -1134,6 +2719,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::SearchSug
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::SearchSuggestionsRequestDeferral is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Search;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Search");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ISearchPaneQueryChangedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Search::ISearchPaneQueryChangedEventArgs is not registered");
         return nullptr;
     }
 

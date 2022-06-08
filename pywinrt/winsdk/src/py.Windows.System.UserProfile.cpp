@@ -8,6 +8,9 @@ namespace py::cpp::Windows::System::UserProfile
 {
     struct module_state
     {
+        PyObject* type_AccountPictureKind;
+        PyObject* type_SetAccountPictureResult;
+        PyObject* type_SetImageFeedResult;
         PyTypeObject* type_AdvertisingManager;
         PyTypeObject* type_AdvertisingManagerForUser;
         PyTypeObject* type_AssignedAccessSettings;
@@ -15,8 +18,82 @@ namespace py::cpp::Windows::System::UserProfile
         PyTypeObject* type_FirstSignInSettings;
         PyTypeObject* type_GlobalizationPreferences;
         PyTypeObject* type_GlobalizationPreferencesForUser;
+        PyTypeObject* type_LockScreen;
+        PyTypeObject* type_UserInformation;
         PyTypeObject* type_UserProfilePersonalizationSettings;
     };
+
+    static PyObject* register_AccountPictureKind(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_AccountPictureKind)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_AccountPictureKind = type;
+        Py_INCREF(state->type_AccountPictureKind);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_SetAccountPictureResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SetAccountPictureResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SetAccountPictureResult = type;
+        Py_INCREF(state->type_SetAccountPictureResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_SetImageFeedResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SetImageFeedResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SetImageFeedResult = type;
+        Py_INCREF(state->type_SetImageFeedResult);
+
+
+        Py_RETURN_NONE;
+    }
 
     // ----- AdvertisingManager class --------------------
     constexpr const char* const type_name_AdvertisingManager = "AdvertisingManager";
@@ -1091,6 +1168,553 @@ namespace py::cpp::Windows::System::UserProfile
         _type_slots_GlobalizationPreferencesForUser
     };
 
+    // ----- LockScreen class --------------------
+    constexpr const char* const type_name_LockScreen = "LockScreen";
+
+    static PyObject* _new_LockScreen(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_LockScreen);
+        return nullptr;
+    }
+
+    static PyObject* LockScreen_GetImageStream(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::LockScreen::GetImageStream());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreen_RequestSetImageFeedAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Uri>(args, 0);
+
+                return py::convert(winrt::Windows::System::UserProfile::LockScreen::RequestSetImageFeedAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreen_SetImageFileAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+
+                return py::convert(winrt::Windows::System::UserProfile::LockScreen::SetImageFileAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreen_SetImageStreamAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IRandomAccessStream>(args, 0);
+
+                return py::convert(winrt::Windows::System::UserProfile::LockScreen::SetImageStreamAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreen_TryRemoveImageFeed(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::LockScreen::TryRemoveImageFeed());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* LockScreen_get_OriginalImageFile(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::System::UserProfile::LockScreen::OriginalImageFile());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_LockScreen[] = {
+        { "get_image_stream", reinterpret_cast<PyCFunction>(LockScreen_GetImageStream), METH_VARARGS | METH_STATIC, nullptr },
+        { "request_set_image_feed_async", reinterpret_cast<PyCFunction>(LockScreen_RequestSetImageFeedAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_image_file_async", reinterpret_cast<PyCFunction>(LockScreen_SetImageFileAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_image_stream_async", reinterpret_cast<PyCFunction>(LockScreen_SetImageStreamAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "try_remove_image_feed", reinterpret_cast<PyCFunction>(LockScreen_TryRemoveImageFeed), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_original_image_file", reinterpret_cast<PyCFunction>(LockScreen_get_OriginalImageFile), METH_NOARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_LockScreen[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_LockScreen[] = 
+    {
+        { Py_tp_new, _new_LockScreen },
+        { Py_tp_methods, _methods_LockScreen },
+        { Py_tp_getset, _getset_LockScreen },
+        { },
+    };
+
+    static PyType_Spec type_spec_LockScreen =
+    {
+        "_winsdk_Windows_System_UserProfile.LockScreen",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_LockScreen
+    };
+
+    // ----- UserInformation class --------------------
+    constexpr const char* const type_name_UserInformation = "UserInformation";
+
+    static PyObject* _new_UserInformation(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_UserInformation);
+        return nullptr;
+    }
+
+    static PyObject* UserInformation_GetAccountPicture(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::System::UserProfile::AccountPictureKind>(args, 0);
+
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::GetAccountPicture(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_GetDisplayNameAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::GetDisplayNameAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_GetDomainNameAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::GetDomainNameAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_GetFirstNameAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::GetFirstNameAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_GetLastNameAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::GetLastNameAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_GetPrincipalNameAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::GetPrincipalNameAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_GetSessionInitiationProtocolUriAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::GetSessionInitiationProtocolUriAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_SetAccountPictureAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::SetAccountPictureAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_SetAccountPictureFromStreamAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IRandomAccessStream>(args, 0);
+
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::SetAccountPictureFromStreamAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_SetAccountPicturesAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Storage::IStorageFile>(args, 2);
+
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::SetAccountPicturesAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_SetAccountPicturesFromStreamsAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 3)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IRandomAccessStream>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::Streams::IRandomAccessStream>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Storage::Streams::IRandomAccessStream>(args, 2);
+
+                return py::convert(winrt::Windows::System::UserProfile::UserInformation::SetAccountPicturesFromStreamsAsync(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_get_AccountPictureChangeEnabled(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::System::UserProfile::UserInformation::AccountPictureChangeEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_get_NameAccessAllowed(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::System::UserProfile::UserInformation::NameAccessAllowed());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_add_AccountPictureChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::System::UserProfile::UserInformation::AccountPictureChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* UserInformation_remove_AccountPictureChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::System::UserProfile::UserInformation::AccountPictureChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_UserInformation[] = {
+        { "get_account_picture", reinterpret_cast<PyCFunction>(UserInformation_GetAccountPicture), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_display_name_async", reinterpret_cast<PyCFunction>(UserInformation_GetDisplayNameAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_domain_name_async", reinterpret_cast<PyCFunction>(UserInformation_GetDomainNameAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_first_name_async", reinterpret_cast<PyCFunction>(UserInformation_GetFirstNameAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_last_name_async", reinterpret_cast<PyCFunction>(UserInformation_GetLastNameAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_principal_name_async", reinterpret_cast<PyCFunction>(UserInformation_GetPrincipalNameAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_session_initiation_protocol_uri_async", reinterpret_cast<PyCFunction>(UserInformation_GetSessionInitiationProtocolUriAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_account_picture_async", reinterpret_cast<PyCFunction>(UserInformation_SetAccountPictureAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_account_picture_from_stream_async", reinterpret_cast<PyCFunction>(UserInformation_SetAccountPictureFromStreamAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_account_pictures_async", reinterpret_cast<PyCFunction>(UserInformation_SetAccountPicturesAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_account_pictures_from_streams_async", reinterpret_cast<PyCFunction>(UserInformation_SetAccountPicturesFromStreamsAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_account_picture_change_enabled", reinterpret_cast<PyCFunction>(UserInformation_get_AccountPictureChangeEnabled), METH_NOARGS | METH_STATIC, nullptr },
+        { "get_name_access_allowed", reinterpret_cast<PyCFunction>(UserInformation_get_NameAccessAllowed), METH_NOARGS | METH_STATIC, nullptr },
+        { "add_account_picture_changed", reinterpret_cast<PyCFunction>(UserInformation_add_AccountPictureChanged), METH_O | METH_STATIC, nullptr },
+        { "remove_account_picture_changed", reinterpret_cast<PyCFunction>(UserInformation_remove_AccountPictureChanged), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_UserInformation[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_UserInformation[] = 
+    {
+        { Py_tp_new, _new_UserInformation },
+        { Py_tp_methods, _methods_UserInformation },
+        { Py_tp_getset, _getset_UserInformation },
+        { },
+    };
+
+    static PyType_Spec type_spec_UserInformation =
+    {
+        "_winsdk_Windows_System_UserProfile.UserInformation",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_UserInformation
+    };
+
     // ----- UserProfilePersonalizationSettings class --------------------
     constexpr const char* const type_name_UserProfilePersonalizationSettings = "UserProfilePersonalizationSettings";
 
@@ -1243,6 +1867,9 @@ namespace py::cpp::Windows::System::UserProfile
     PyDoc_STRVAR(module_doc, "Windows::System::UserProfile");
 
     static PyMethodDef module_methods[] = {
+        {"_register_AccountPictureKind", register_AccountPictureKind, METH_O, "registers type"},
+        {"_register_SetAccountPictureResult", register_SetAccountPictureResult, METH_O, "registers type"},
+        {"_register_SetImageFeedResult", register_SetImageFeedResult, METH_O, "registers type"},
         {}};
 
 
@@ -1255,6 +1882,9 @@ namespace py::cpp::Windows::System::UserProfile
             return 0;
         }
 
+        Py_VISIT(state->type_AccountPictureKind);
+        Py_VISIT(state->type_SetAccountPictureResult);
+        Py_VISIT(state->type_SetImageFeedResult);
         Py_VISIT(state->type_AdvertisingManager);
         Py_VISIT(state->type_AdvertisingManagerForUser);
         Py_VISIT(state->type_AssignedAccessSettings);
@@ -1262,6 +1892,8 @@ namespace py::cpp::Windows::System::UserProfile
         Py_VISIT(state->type_FirstSignInSettings);
         Py_VISIT(state->type_GlobalizationPreferences);
         Py_VISIT(state->type_GlobalizationPreferencesForUser);
+        Py_VISIT(state->type_LockScreen);
+        Py_VISIT(state->type_UserInformation);
         Py_VISIT(state->type_UserProfilePersonalizationSettings);
 
         return 0;
@@ -1276,6 +1908,9 @@ namespace py::cpp::Windows::System::UserProfile
             return 0;
         }
 
+        Py_CLEAR(state->type_AccountPictureKind);
+        Py_CLEAR(state->type_SetAccountPictureResult);
+        Py_CLEAR(state->type_SetImageFeedResult);
         Py_CLEAR(state->type_AdvertisingManager);
         Py_CLEAR(state->type_AdvertisingManagerForUser);
         Py_CLEAR(state->type_AssignedAccessSettings);
@@ -1283,6 +1918,8 @@ namespace py::cpp::Windows::System::UserProfile
         Py_CLEAR(state->type_FirstSignInSettings);
         Py_CLEAR(state->type_GlobalizationPreferences);
         Py_CLEAR(state->type_GlobalizationPreferencesForUser);
+        Py_CLEAR(state->type_LockScreen);
+        Py_CLEAR(state->type_UserInformation);
         Py_CLEAR(state->type_UserProfilePersonalizationSettings);
 
         return 0;
@@ -1448,6 +2085,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_System_UserProfile(void) noexcept
 
     Py_INCREF(state->type_GlobalizationPreferencesForUser);
 
+    state->type_LockScreen = py::register_python_type(module.get(), type_name_LockScreen, &type_spec_LockScreen, nullptr);
+    if (!state->type_LockScreen)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_LockScreen);
+
+    state->type_UserInformation = py::register_python_type(module.get(), type_name_UserInformation, &type_spec_UserInformation, nullptr);
+    if (!state->type_UserInformation)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_UserInformation);
+
     state->type_UserProfilePersonalizationSettings = py::register_python_type(module.get(), type_name_UserProfilePersonalizationSettings, &type_spec_UserProfilePersonalizationSettings, bases.get());
     if (!state->type_UserProfilePersonalizationSettings)
     {
@@ -1458,6 +2111,75 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_System_UserProfile(void) noexcept
 
 
     return module.detach();
+}
+
+PyObject* py::py_type<winrt::Windows::System::UserProfile::AccountPictureKind>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::System::UserProfile;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::System::UserProfile");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_AccountPictureKind;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::UserProfile::AccountPictureKind is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::System::UserProfile::SetAccountPictureResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::System::UserProfile;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::System::UserProfile");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SetAccountPictureResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::UserProfile::SetAccountPictureResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::System::UserProfile::SetImageFeedResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::System::UserProfile;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::System::UserProfile");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SetImageFeedResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::UserProfile::SetImageFeedResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
 }
 
 PyTypeObject* py::winrt_type<winrt::Windows::System::UserProfile::AdvertisingManager>::get_python_type() noexcept {
@@ -1615,6 +2337,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::System::UserProfile::GlobalizationP
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::UserProfile::GlobalizationPreferencesForUser is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::System::UserProfile::LockScreen>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::System::UserProfile;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::System::UserProfile");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_LockScreen;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::UserProfile::LockScreen is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::System::UserProfile::UserInformation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::System::UserProfile;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::System::UserProfile");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_UserInformation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::UserProfile::UserInformation is not registered");
         return nullptr;
     }
 

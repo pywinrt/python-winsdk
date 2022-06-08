@@ -46,5 +46,7 @@ ClockIdentifiers = _ns_module.ClockIdentifiers
 CurrencyAmount = _ns_module.CurrencyAmount
 CurrencyIdentifiers = _ns_module.CurrencyIdentifiers
 GeographicRegion = _ns_module.GeographicRegion
+JapanesePhoneme = _ns_module.JapanesePhoneme
+JapanesePhoneticAnalyzer = _ns_module.JapanesePhoneticAnalyzer
 Language = _ns_module.Language
 NumeralSystemIdentifiers = _ns_module.NumeralSystemIdentifiers

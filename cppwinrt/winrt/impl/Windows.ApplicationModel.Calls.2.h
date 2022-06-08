@@ -24,6 +24,21 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Calls
         CallStateChangeEventArgs(std::nullptr_t) noexcept {}
         CallStateChangeEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Calls::ICallStateChangeEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) LockScreenCallEndCallDeferral : winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral
+    {
+        LockScreenCallEndCallDeferral(std::nullptr_t) noexcept {}
+        LockScreenCallEndCallDeferral(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndCallDeferral(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) LockScreenCallEndRequestedEventArgs : winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs
+    {
+        LockScreenCallEndRequestedEventArgs(std::nullptr_t) noexcept {}
+        LockScreenCallEndRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Calls::ILockScreenCallEndRequestedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) LockScreenCallUI : winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI
+    {
+        LockScreenCallUI(std::nullptr_t) noexcept {}
+        LockScreenCallUI(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Calls::ILockScreenCallUI(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) MuteChangeEventArgs : winrt::Windows::ApplicationModel::Calls::IMuteChangeEventArgs
     {
         MuteChangeEventArgs(std::nullptr_t) noexcept {}

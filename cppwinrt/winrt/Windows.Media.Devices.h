@@ -347,6 +347,128 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IAudioDeviceModulesManagerFactory)->Create(*(void**)(&deviceId), &result));
         return winrt::Windows::Media::Devices::AudioDeviceModulesManager{ result, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::IndicateNewIncomingCall(bool enableRinger, param::hstring const& callerId) const
+    {
+        uint64_t callToken{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->IndicateNewIncomingCall(enableRinger, *(void**)(&callerId), &callToken));
+        return callToken;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::IndicateNewOutgoingCall() const
+    {
+        uint64_t callToken{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->IndicateNewOutgoingCall(&callToken));
+        return callToken;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::IndicateActiveCall(uint64_t callToken) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->IndicateActiveCall(callToken));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::EndCall(uint64_t callToken) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->EndCall(callToken));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::HasRinger() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->get_HasRinger(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::AnswerRequested(winrt::Windows::Media::Devices::CallControlEventHandler const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->add_AnswerRequested(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::AnswerRequested(auto_revoke_t, winrt::Windows::Media::Devices::CallControlEventHandler const& handler) const
+    {
+        return impl::make_event_revoker<D, AnswerRequested_revoker>(this, AnswerRequested(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::AnswerRequested(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->remove_AnswerRequested(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::HangUpRequested(winrt::Windows::Media::Devices::CallControlEventHandler const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->add_HangUpRequested(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::HangUpRequested(auto_revoke_t, winrt::Windows::Media::Devices::CallControlEventHandler const& handler) const
+    {
+        return impl::make_event_revoker<D, HangUpRequested_revoker>(this, HangUpRequested(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::HangUpRequested(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->remove_HangUpRequested(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::DialRequested(winrt::Windows::Media::Devices::DialRequestedEventHandler const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->add_DialRequested(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::DialRequested(auto_revoke_t, winrt::Windows::Media::Devices::DialRequestedEventHandler const& handler) const
+    {
+        return impl::make_event_revoker<D, DialRequested_revoker>(this, DialRequested(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::DialRequested(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->remove_DialRequested(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::RedialRequested(winrt::Windows::Media::Devices::RedialRequestedEventHandler const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->add_RedialRequested(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::RedialRequested(auto_revoke_t, winrt::Windows::Media::Devices::RedialRequestedEventHandler const& handler) const
+    {
+        return impl::make_event_revoker<D, RedialRequested_revoker>(this, RedialRequested(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::RedialRequested(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->remove_RedialRequested(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::KeypadPressed(winrt::Windows::Media::Devices::KeypadPressedEventHandler const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->add_KeypadPressed(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::KeypadPressed(auto_revoke_t, winrt::Windows::Media::Devices::KeypadPressedEventHandler const& handler) const
+    {
+        return impl::make_event_revoker<D, KeypadPressed_revoker>(this, KeypadPressed(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::KeypadPressed(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->remove_KeypadPressed(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::AudioTransferRequested(winrt::Windows::Media::Devices::CallControlEventHandler const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->add_AudioTransferRequested(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::AudioTransferRequested(auto_revoke_t, winrt::Windows::Media::Devices::CallControlEventHandler const& handler) const
+    {
+        return impl::make_event_revoker<D, AudioTransferRequested_revoker>(this, AudioTransferRequested(handler));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControl<D>::AudioTransferRequested(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControl)->remove_AudioTransferRequested(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControlStatics<D>::GetDefault() const
+    {
+        void* callControl{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControlStatics)->GetDefault(&callControl));
+        return winrt::Windows::Media::Devices::CallControl{ callControl, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Media_Devices_ICallControlStatics<D>::FromId(param::hstring const& deviceId) const
+    {
+        void* callControl{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::ICallControlStatics)->FromId(*(void**)(&deviceId), &callControl));
+        return winrt::Windows::Media::Devices::CallControl{ callControl, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Media_Devices_ICameraOcclusionInfo<D>::GetState() const
     {
         void* result{};
@@ -402,6 +524,16 @@ namespace winrt::impl
         winrt::Windows::Media::Devices::AudioDeviceRole value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IDefaultAudioDeviceChangedEventArgs)->get_Role(reinterpret_cast<int32_t*>(&value)));
         return value;
+    }
+    template <typename D> auto consume_Windows_Media_Devices_IDialRequestedEventArgs<D>::Handled() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IDialRequestedEventArgs)->Handled());
+    }
+    template <typename D> auto consume_Windows_Media_Devices_IDialRequestedEventArgs<D>::Contact() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IDialRequestedEventArgs)->get_Contact(&value));
+        return winrt::Windows::Foundation::IInspectable{ value, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_Media_Devices_IDigitalWindowBounds<D>::NormalizedOriginTop() const
     {
@@ -1010,6 +1142,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IIsoSpeedControl2)->SetAutoAsync(&asyncInfo));
         return winrt::Windows::Foundation::IAsyncAction{ asyncInfo, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Media_Devices_IKeypadPressedEventArgs<D>::TelephonyKey() const
+    {
+        winrt::Windows::Media::Devices::TelephonyKey telephonyKey{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IKeypadPressedEventArgs)->get_TelephonyKey(reinterpret_cast<int32_t*>(&telephonyKey)));
+        return telephonyKey;
+    }
     template <typename D> auto consume_Windows_Media_Devices_ILowLagPhotoControl<D>::GetHighestConcurrentFrameRate(winrt::Windows::Media::MediaProperties::IMediaEncodingProperties const& captureProperties) const
     {
         void* value{};
@@ -1361,6 +1499,10 @@ namespace winrt::impl
     template <typename D> auto consume_Windows_Media_Devices_IPhotoConfirmationControl<D>::PixelFormat(winrt::Windows::Media::MediaProperties::MediaPixelFormat const& format) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IPhotoConfirmationControl)->put_PixelFormat(static_cast<int32_t>(format)));
+    }
+    template <typename D> auto consume_Windows_Media_Devices_IRedialRequestedEventArgs<D>::Handled() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IRedialRequestedEventArgs)->Handled());
     }
     template <typename D> auto consume_Windows_Media_Devices_IRegionOfInterest<D>::AutoFocusEnabled() const
     {
@@ -1754,6 +1896,50 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IZoomSettings)->put_Value(value));
     }
+    template <typename H> struct delegate<winrt::Windows::Media::Devices::CallControlEventHandler, H> final : implements_delegate<winrt::Windows::Media::Devices::CallControlEventHandler, H>
+    {
+        delegate(H&& handler) : implements_delegate<winrt::Windows::Media::Devices::CallControlEventHandler, H>(std::forward<H>(handler)) {}
+
+        int32_t __stdcall Invoke(void* sender) noexcept final try
+        {
+            (*this)(*reinterpret_cast<winrt::Windows::Media::Devices::CallControl const*>(&sender));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename H> struct delegate<winrt::Windows::Media::Devices::DialRequestedEventHandler, H> final : implements_delegate<winrt::Windows::Media::Devices::DialRequestedEventHandler, H>
+    {
+        delegate(H&& handler) : implements_delegate<winrt::Windows::Media::Devices::DialRequestedEventHandler, H>(std::forward<H>(handler)) {}
+
+        int32_t __stdcall Invoke(void* sender, void* e) noexcept final try
+        {
+            (*this)(*reinterpret_cast<winrt::Windows::Media::Devices::CallControl const*>(&sender), *reinterpret_cast<winrt::Windows::Media::Devices::DialRequestedEventArgs const*>(&e));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename H> struct delegate<winrt::Windows::Media::Devices::KeypadPressedEventHandler, H> final : implements_delegate<winrt::Windows::Media::Devices::KeypadPressedEventHandler, H>
+    {
+        delegate(H&& handler) : implements_delegate<winrt::Windows::Media::Devices::KeypadPressedEventHandler, H>(std::forward<H>(handler)) {}
+
+        int32_t __stdcall Invoke(void* sender, void* e) noexcept final try
+        {
+            (*this)(*reinterpret_cast<winrt::Windows::Media::Devices::CallControl const*>(&sender), *reinterpret_cast<winrt::Windows::Media::Devices::KeypadPressedEventArgs const*>(&e));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+    template <typename H> struct delegate<winrt::Windows::Media::Devices::RedialRequestedEventHandler, H> final : implements_delegate<winrt::Windows::Media::Devices::RedialRequestedEventHandler, H>
+    {
+        delegate(H&& handler) : implements_delegate<winrt::Windows::Media::Devices::RedialRequestedEventHandler, H>(std::forward<H>(handler)) {}
+
+        int32_t __stdcall Invoke(void* sender, void* e) noexcept final try
+        {
+            (*this)(*reinterpret_cast<winrt::Windows::Media::Devices::CallControl const*>(&sender), *reinterpret_cast<winrt::Windows::Media::Devices::RedialRequestedEventArgs const*>(&e));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::Media::Devices::IAdvancedPhotoCaptureSettings> : produce_base<D, winrt::Windows::Media::Devices::IAdvancedPhotoCaptureSettings>
@@ -2293,6 +2479,153 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::ICallControl> : produce_base<D, winrt::Windows::Media::Devices::ICallControl>
+    {
+        int32_t __stdcall IndicateNewIncomingCall(bool enableRinger, void* callerId, uint64_t* callToken) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *callToken = detach_from<uint64_t>(this->shim().IndicateNewIncomingCall(enableRinger, *reinterpret_cast<hstring const*>(&callerId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall IndicateNewOutgoingCall(uint64_t* callToken) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *callToken = detach_from<uint64_t>(this->shim().IndicateNewOutgoingCall());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall IndicateActiveCall(uint64_t callToken) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IndicateActiveCall(callToken);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall EndCall(uint64_t callToken) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().EndCall(callToken);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_HasRinger(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().HasRinger());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_AnswerRequested(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().AnswerRequested(*reinterpret_cast<winrt::Windows::Media::Devices::CallControlEventHandler const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_AnswerRequested(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AnswerRequested(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_HangUpRequested(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().HangUpRequested(*reinterpret_cast<winrt::Windows::Media::Devices::CallControlEventHandler const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_HangUpRequested(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().HangUpRequested(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_DialRequested(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().DialRequested(*reinterpret_cast<winrt::Windows::Media::Devices::DialRequestedEventHandler const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_DialRequested(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DialRequested(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_RedialRequested(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().RedialRequested(*reinterpret_cast<winrt::Windows::Media::Devices::RedialRequestedEventHandler const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_RedialRequested(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RedialRequested(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_KeypadPressed(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().KeypadPressed(*reinterpret_cast<winrt::Windows::Media::Devices::KeypadPressedEventHandler const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_KeypadPressed(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().KeypadPressed(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_AudioTransferRequested(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().AudioTransferRequested(*reinterpret_cast<winrt::Windows::Media::Devices::CallControlEventHandler const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_AudioTransferRequested(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AudioTransferRequested(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::ICallControlStatics> : produce_base<D, winrt::Windows::Media::Devices::ICallControlStatics>
+    {
+        int32_t __stdcall GetDefault(void** callControl) noexcept final try
+        {
+            clear_abi(callControl);
+            typename D::abi_guard guard(this->shim());
+            *callControl = detach_from<winrt::Windows::Media::Devices::CallControl>(this->shim().GetDefault());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall FromId(void* deviceId, void** callControl) noexcept final try
+        {
+            clear_abi(callControl);
+            typename D::abi_guard guard(this->shim());
+            *callControl = detach_from<winrt::Windows::Media::Devices::CallControl>(this->shim().FromId(*reinterpret_cast<hstring const*>(&deviceId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Devices::ICameraOcclusionInfo> : produce_base<D, winrt::Windows::Media::Devices::ICameraOcclusionInfo>
     {
         int32_t __stdcall GetState(void** result) noexcept final try
@@ -2379,6 +2712,27 @@ namespace winrt::impl
         }
         catch (...) { return to_hresult(); }
     };
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::IDialRequestedEventArgs> : produce_base<D, winrt::Windows::Media::Devices::IDialRequestedEventArgs>
+    {
+        int32_t __stdcall Handled() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Handled();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Contact(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IInspectable>(this->shim().Contact());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::Media::Devices::IDigitalWindowBounds> : produce_base<D, winrt::Windows::Media::Devices::IDigitalWindowBounds>
@@ -3257,6 +3611,19 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::IKeypadPressedEventArgs> : produce_base<D, winrt::Windows::Media::Devices::IKeypadPressedEventArgs>
+    {
+        int32_t __stdcall get_TelephonyKey(int32_t* telephonyKey) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *telephonyKey = detach_from<winrt::Windows::Media::Devices::TelephonyKey>(this->shim().TelephonyKey());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Devices::ILowLagPhotoControl> : produce_base<D, winrt::Windows::Media::Devices::ILowLagPhotoControl>
     {
         int32_t __stdcall GetHighestConcurrentFrameRate(void* captureProperties, void** value) noexcept final try
@@ -3757,6 +4124,19 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().PixelFormat(*reinterpret_cast<winrt::Windows::Media::MediaProperties::MediaPixelFormat const*>(&format));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::IRedialRequestedEventArgs> : produce_base<D, winrt::Windows::Media::Devices::IRedialRequestedEventArgs>
+    {
+        int32_t __stdcall Handled() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Handled();
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -4357,6 +4737,14 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         AudioDeviceModulesManager(impl::call_factory<AudioDeviceModulesManager, IAudioDeviceModulesManagerFactory>([&](IAudioDeviceModulesManagerFactory const& f) { return f.Create(deviceId); }))
     {
     }
+    inline auto CallControl::GetDefault()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::Devices::CallControl(*)(ICallControlStatics const&), CallControl, ICallControlStatics>([](ICallControlStatics const& f) { return f.GetDefault(); });
+    }
+    inline auto CallControl::FromId(param::hstring const& deviceId)
+    {
+        return impl::call_factory<CallControl, ICallControlStatics>([&](ICallControlStatics const& f) { return f.FromId(deviceId); });
+    }
     inline DigitalWindowBounds::DigitalWindowBounds() :
         DigitalWindowBounds(impl::call_factory_cast<DigitalWindowBounds(*)(winrt::Windows::Foundation::IActivationFactory const&), DigitalWindowBounds>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<DigitalWindowBounds>(); }))
     {
@@ -4419,6 +4807,102 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         ZoomSettings(impl::call_factory_cast<ZoomSettings(*)(winrt::Windows::Foundation::IActivationFactory const&), ZoomSettings>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<ZoomSettings>(); }))
     {
     }
+    template <typename L> CallControlEventHandler::CallControlEventHandler(L handler) :
+        CallControlEventHandler(impl::make_delegate<CallControlEventHandler>(std::forward<L>(handler)))
+    {
+    }
+    template <typename F> CallControlEventHandler::CallControlEventHandler(F* handler) :
+        CallControlEventHandler([=](auto&&... args) { return handler(args...); })
+    {
+    }
+    template <typename O, typename M> CallControlEventHandler::CallControlEventHandler(O* object, M method) :
+        CallControlEventHandler([=](auto&&... args) { return ((*object).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> CallControlEventHandler::CallControlEventHandler(com_ptr<O>&& object, M method) :
+        CallControlEventHandler([o = std::move(object), method](auto&&... args) { return ((*o).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> CallControlEventHandler::CallControlEventHandler(weak_ref<O>&& object, M method) :
+        CallControlEventHandler([o = std::move(object), method](auto&&... args) { if (auto s = o.get()) { ((*s).*(method))(args...); } })
+    {
+    }
+    inline auto CallControlEventHandler::operator()(winrt::Windows::Media::Devices::CallControl const& sender) const
+    {
+        check_hresult((*(impl::abi_t<CallControlEventHandler>**)this)->Invoke(*(void**)(&sender)));
+    }
+    template <typename L> DialRequestedEventHandler::DialRequestedEventHandler(L handler) :
+        DialRequestedEventHandler(impl::make_delegate<DialRequestedEventHandler>(std::forward<L>(handler)))
+    {
+    }
+    template <typename F> DialRequestedEventHandler::DialRequestedEventHandler(F* handler) :
+        DialRequestedEventHandler([=](auto&&... args) { return handler(args...); })
+    {
+    }
+    template <typename O, typename M> DialRequestedEventHandler::DialRequestedEventHandler(O* object, M method) :
+        DialRequestedEventHandler([=](auto&&... args) { return ((*object).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> DialRequestedEventHandler::DialRequestedEventHandler(com_ptr<O>&& object, M method) :
+        DialRequestedEventHandler([o = std::move(object), method](auto&&... args) { return ((*o).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> DialRequestedEventHandler::DialRequestedEventHandler(weak_ref<O>&& object, M method) :
+        DialRequestedEventHandler([o = std::move(object), method](auto&&... args) { if (auto s = o.get()) { ((*s).*(method))(args...); } })
+    {
+    }
+    inline auto DialRequestedEventHandler::operator()(winrt::Windows::Media::Devices::CallControl const& sender, winrt::Windows::Media::Devices::DialRequestedEventArgs const& e) const
+    {
+        check_hresult((*(impl::abi_t<DialRequestedEventHandler>**)this)->Invoke(*(void**)(&sender), *(void**)(&e)));
+    }
+    template <typename L> KeypadPressedEventHandler::KeypadPressedEventHandler(L handler) :
+        KeypadPressedEventHandler(impl::make_delegate<KeypadPressedEventHandler>(std::forward<L>(handler)))
+    {
+    }
+    template <typename F> KeypadPressedEventHandler::KeypadPressedEventHandler(F* handler) :
+        KeypadPressedEventHandler([=](auto&&... args) { return handler(args...); })
+    {
+    }
+    template <typename O, typename M> KeypadPressedEventHandler::KeypadPressedEventHandler(O* object, M method) :
+        KeypadPressedEventHandler([=](auto&&... args) { return ((*object).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> KeypadPressedEventHandler::KeypadPressedEventHandler(com_ptr<O>&& object, M method) :
+        KeypadPressedEventHandler([o = std::move(object), method](auto&&... args) { return ((*o).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> KeypadPressedEventHandler::KeypadPressedEventHandler(weak_ref<O>&& object, M method) :
+        KeypadPressedEventHandler([o = std::move(object), method](auto&&... args) { if (auto s = o.get()) { ((*s).*(method))(args...); } })
+    {
+    }
+    inline auto KeypadPressedEventHandler::operator()(winrt::Windows::Media::Devices::CallControl const& sender, winrt::Windows::Media::Devices::KeypadPressedEventArgs const& e) const
+    {
+        check_hresult((*(impl::abi_t<KeypadPressedEventHandler>**)this)->Invoke(*(void**)(&sender), *(void**)(&e)));
+    }
+    template <typename L> RedialRequestedEventHandler::RedialRequestedEventHandler(L handler) :
+        RedialRequestedEventHandler(impl::make_delegate<RedialRequestedEventHandler>(std::forward<L>(handler)))
+    {
+    }
+    template <typename F> RedialRequestedEventHandler::RedialRequestedEventHandler(F* handler) :
+        RedialRequestedEventHandler([=](auto&&... args) { return handler(args...); })
+    {
+    }
+    template <typename O, typename M> RedialRequestedEventHandler::RedialRequestedEventHandler(O* object, M method) :
+        RedialRequestedEventHandler([=](auto&&... args) { return ((*object).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> RedialRequestedEventHandler::RedialRequestedEventHandler(com_ptr<O>&& object, M method) :
+        RedialRequestedEventHandler([o = std::move(object), method](auto&&... args) { return ((*o).*(method))(args...); })
+    {
+    }
+    template <typename O, typename M> RedialRequestedEventHandler::RedialRequestedEventHandler(weak_ref<O>&& object, M method) :
+        RedialRequestedEventHandler([o = std::move(object), method](auto&&... args) { if (auto s = o.get()) { ((*s).*(method))(args...); } })
+    {
+    }
+    inline auto RedialRequestedEventHandler::operator()(winrt::Windows::Media::Devices::CallControl const& sender, winrt::Windows::Media::Devices::RedialRequestedEventArgs const& e) const
+    {
+        check_hresult((*(impl::abi_t<RedialRequestedEventHandler>**)this)->Invoke(*(void**)(&sender), *(void**)(&e)));
+    }
 }
 namespace std
 {
@@ -4440,10 +4924,13 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::IAudioDeviceModuleNotificationEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAudioDeviceModulesManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAudioDeviceModulesManagerFactory> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::ICallControl> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::ICallControlStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::ICameraOcclusionInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::ICameraOcclusionState> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::ICameraOcclusionStateChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IDefaultAudioDeviceChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::IDialRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IDigitalWindowBounds> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IDigitalWindowCapability> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IDigitalWindowControl> : winrt::impl::hash_base {};
@@ -4459,6 +4946,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::IInfraredTorchControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IIsoSpeedControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IIsoSpeedControl2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::IKeypadPressedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::ILowLagPhotoControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::ILowLagPhotoSequenceControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IMediaDeviceControl> : winrt::impl::hash_base {};
@@ -4469,6 +4957,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::IOpticalImageStabilizationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IPanelBasedOptimizationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IPhotoConfirmationControl> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::IRedialRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IRegionOfInterest> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IRegionOfInterest2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IRegionsOfInterestControl> : winrt::impl::hash_base {};
@@ -4487,11 +4976,13 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::AudioDeviceModule> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::AudioDeviceModuleNotificationEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::AudioDeviceModulesManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::CallControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::CameraOcclusionInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::CameraOcclusionState> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::CameraOcclusionStateChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::DefaultAudioCaptureDeviceChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::DefaultAudioRenderDeviceChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::DialRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::DigitalWindowBounds> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::DigitalWindowCapability> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::DigitalWindowControl> : winrt::impl::hash_base {};
@@ -4504,6 +4995,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::HdrVideoControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::InfraredTorchControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IsoSpeedControl> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::KeypadPressedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::LowLagPhotoControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::LowLagPhotoSequenceControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::MediaDevice> : winrt::impl::hash_base {};
@@ -4513,6 +5005,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::OpticalImageStabilizationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::PanelBasedOptimizationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::PhotoConfirmationControl> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::RedialRequestedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::RegionOfInterest> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::RegionsOfInterestControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::SceneModeControl> : winrt::impl::hash_base {};

@@ -2,7 +2,7 @@ param ([switch]$skipNugetInstall)
 
 $pywinrt_version = '1.0.0-beta.5'
 $cppwinrt_version = '2.0.220607.4'
-$windows_sdk_version = '10.0.22000.0'
+$windows_sdk_version = '10.0.22000.0+'
 $repoRootPath = (Get-Item $PSScriptRoot).FullName
 $nugetPath = "$repoRootPath\_nuget"
 $projectionPath = "$PSScriptRoot"

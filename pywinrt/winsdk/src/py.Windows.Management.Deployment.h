@@ -29,14 +29,24 @@ namespace py::wrapper::Windows::Management::Deployment
     using AddPackageOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::AddPackageOptions>;
     using AppInstallerManager = py::winrt_wrapper<winrt::Windows::Management::Deployment::AppInstallerManager>;
     using AutoUpdateSettingsOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::AutoUpdateSettingsOptions>;
+    using CreateSharedPackageContainerOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::CreateSharedPackageContainerOptions>;
+    using CreateSharedPackageContainerResult = py::winrt_wrapper<winrt::Windows::Management::Deployment::CreateSharedPackageContainerResult>;
+    using DeleteSharedPackageContainerOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerOptions>;
+    using DeleteSharedPackageContainerResult = py::winrt_wrapper<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerResult>;
     using DeploymentResult = py::winrt_wrapper<winrt::Windows::Management::Deployment::DeploymentResult>;
+    using FindSharedPackageContainerOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::FindSharedPackageContainerOptions>;
     using PackageAllUserProvisioningOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::PackageAllUserProvisioningOptions>;
     using PackageManager = py::winrt_wrapper<winrt::Windows::Management::Deployment::PackageManager>;
     using PackageManagerDebugSettings = py::winrt_wrapper<winrt::Windows::Management::Deployment::PackageManagerDebugSettings>;
     using PackageUserInformation = py::winrt_wrapper<winrt::Windows::Management::Deployment::PackageUserInformation>;
     using PackageVolume = py::winrt_wrapper<winrt::Windows::Management::Deployment::PackageVolume>;
     using RegisterPackageOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::RegisterPackageOptions>;
+    using SharedPackageContainer = py::winrt_wrapper<winrt::Windows::Management::Deployment::SharedPackageContainer>;
+    using SharedPackageContainerManager = py::winrt_wrapper<winrt::Windows::Management::Deployment::SharedPackageContainerManager>;
+    using SharedPackageContainerMember = py::winrt_wrapper<winrt::Windows::Management::Deployment::SharedPackageContainerMember>;
     using StagePackageOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::StagePackageOptions>;
+    using UpdateSharedPackageContainerOptions = py::winrt_wrapper<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerOptions>;
+    using UpdateSharedPackageContainerResult = py::winrt_wrapper<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerResult>;
     using DeploymentProgress = py::winrt_struct_wrapper<winrt::Windows::Management::Deployment::DeploymentProgress>;
 }
 
@@ -98,6 +108,18 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::Management::Deployment::SharedPackageContainerCreationCollisionOptions>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Management::Deployment::SharedPackageContainerOperationStatus>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Management::Deployment::StubPackageOption>
     {
         static PyObject* get_python_type() noexcept;
@@ -122,7 +144,37 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::CreateSharedPackageContainerOptions>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::CreateSharedPackageContainerResult>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerOptions>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::DeleteSharedPackageContainerResult>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Management::Deployment::DeploymentResult>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::FindSharedPackageContainerOptions>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -164,7 +216,37 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::SharedPackageContainer>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::SharedPackageContainerManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::SharedPackageContainerMember>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Management::Deployment::StagePackageOptions>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerOptions>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Management::Deployment::UpdateSharedPackageContainerResult>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

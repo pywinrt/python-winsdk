@@ -31,6 +31,8 @@ namespace py::cpp::Windows::UI::ViewManagement
         PyTypeObject* type_InputPane;
         PyTypeObject* type_InputPaneVisibilityEventArgs;
         PyTypeObject* type_ProjectionManager;
+        PyTypeObject* type_StatusBar;
+        PyTypeObject* type_StatusBarProgressIndicator;
         PyTypeObject* type_UISettings;
         PyTypeObject* type_UISettingsAnimationsEnabledChangedEventArgs;
         PyTypeObject* type_UISettingsAutoHideScrollBarsChangedEventArgs;
@@ -3307,6 +3309,516 @@ namespace py::cpp::Windows::UI::ViewManagement
         _type_slots_ProjectionManager
     };
 
+    // ----- StatusBar class --------------------
+    constexpr const char* const type_name_StatusBar = "StatusBar";
+
+    static PyObject* _new_StatusBar(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_StatusBar);
+        return nullptr;
+    }
+
+    static void _dealloc_StatusBar(py::wrapper::Windows::UI::ViewManagement::StatusBar* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* StatusBar_GetForCurrentView(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::UI::ViewManagement::StatusBar::GetForCurrentView());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_HideAsync(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.HideAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_ShowAsync(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.ShowAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_get_ForegroundColor(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ForegroundColor());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StatusBar_put_ForegroundColor(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<winrt::Windows::UI::Color>>(arg);
+
+            self->obj.ForegroundColor(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StatusBar_get_BackgroundOpacity(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.BackgroundOpacity());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StatusBar_put_BackgroundOpacity(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<double>(arg);
+
+            self->obj.BackgroundOpacity(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StatusBar_get_BackgroundColor(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.BackgroundColor());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StatusBar_put_BackgroundColor(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<winrt::Windows::UI::Color>>(arg);
+
+            self->obj.BackgroundColor(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StatusBar_get_OccludedRect(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.OccludedRect());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_get_ProgressIndicator(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProgressIndicator());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_add_Hiding(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::StatusBar, winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(self->obj.Hiding(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_remove_Hiding(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.Hiding(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_add_Showing(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::StatusBar, winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(self->obj.Showing(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBar_remove_Showing(py::wrapper::Windows::UI::ViewManagement::StatusBar* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.Showing(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_StatusBar(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::ViewManagement::StatusBar>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_StatusBar[] = {
+        { "get_for_current_view", reinterpret_cast<PyCFunction>(StatusBar_GetForCurrentView), METH_VARARGS | METH_STATIC, nullptr },
+        { "hide_async", reinterpret_cast<PyCFunction>(StatusBar_HideAsync), METH_VARARGS, nullptr },
+        { "show_async", reinterpret_cast<PyCFunction>(StatusBar_ShowAsync), METH_VARARGS, nullptr },
+        { "add_hiding", reinterpret_cast<PyCFunction>(StatusBar_add_Hiding), METH_O, nullptr },
+        { "remove_hiding", reinterpret_cast<PyCFunction>(StatusBar_remove_Hiding), METH_O, nullptr },
+        { "add_showing", reinterpret_cast<PyCFunction>(StatusBar_add_Showing), METH_O, nullptr },
+        { "remove_showing", reinterpret_cast<PyCFunction>(StatusBar_remove_Showing), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_StatusBar), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_StatusBar[] = {
+        { "foreground_color", reinterpret_cast<getter>(StatusBar_get_ForegroundColor), reinterpret_cast<setter>(StatusBar_put_ForegroundColor), nullptr, nullptr },
+        { "background_opacity", reinterpret_cast<getter>(StatusBar_get_BackgroundOpacity), reinterpret_cast<setter>(StatusBar_put_BackgroundOpacity), nullptr, nullptr },
+        { "background_color", reinterpret_cast<getter>(StatusBar_get_BackgroundColor), reinterpret_cast<setter>(StatusBar_put_BackgroundColor), nullptr, nullptr },
+        { "occluded_rect", reinterpret_cast<getter>(StatusBar_get_OccludedRect), nullptr, nullptr, nullptr },
+        { "progress_indicator", reinterpret_cast<getter>(StatusBar_get_ProgressIndicator), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_StatusBar[] = 
+    {
+        { Py_tp_new, _new_StatusBar },
+        { Py_tp_dealloc, _dealloc_StatusBar },
+        { Py_tp_methods, _methods_StatusBar },
+        { Py_tp_getset, _getset_StatusBar },
+        { },
+    };
+
+    static PyType_Spec type_spec_StatusBar =
+    {
+        "_winsdk_Windows_UI_ViewManagement.StatusBar",
+        sizeof(py::wrapper::Windows::UI::ViewManagement::StatusBar),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_StatusBar
+    };
+
+    // ----- StatusBarProgressIndicator class --------------------
+    constexpr const char* const type_name_StatusBarProgressIndicator = "StatusBarProgressIndicator";
+
+    static PyObject* _new_StatusBarProgressIndicator(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_StatusBarProgressIndicator);
+        return nullptr;
+    }
+
+    static void _dealloc_StatusBarProgressIndicator(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* StatusBarProgressIndicator_HideAsync(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.HideAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBarProgressIndicator_ShowAsync(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.ShowAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* StatusBarProgressIndicator_get_Text(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Text());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StatusBarProgressIndicator_put_Text(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Text(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StatusBarProgressIndicator_get_ProgressValue(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProgressValue());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StatusBarProgressIndicator_put_ProgressValue(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<double>>(arg);
+
+            self->obj.ProgressValue(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_StatusBarProgressIndicator(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::ViewManagement::StatusBarProgressIndicator>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_StatusBarProgressIndicator[] = {
+        { "hide_async", reinterpret_cast<PyCFunction>(StatusBarProgressIndicator_HideAsync), METH_VARARGS, nullptr },
+        { "show_async", reinterpret_cast<PyCFunction>(StatusBarProgressIndicator_ShowAsync), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_StatusBarProgressIndicator), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_StatusBarProgressIndicator[] = {
+        { "text", reinterpret_cast<getter>(StatusBarProgressIndicator_get_Text), reinterpret_cast<setter>(StatusBarProgressIndicator_put_Text), nullptr, nullptr },
+        { "progress_value", reinterpret_cast<getter>(StatusBarProgressIndicator_get_ProgressValue), reinterpret_cast<setter>(StatusBarProgressIndicator_put_ProgressValue), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_StatusBarProgressIndicator[] = 
+    {
+        { Py_tp_new, _new_StatusBarProgressIndicator },
+        { Py_tp_dealloc, _dealloc_StatusBarProgressIndicator },
+        { Py_tp_methods, _methods_StatusBarProgressIndicator },
+        { Py_tp_getset, _getset_StatusBarProgressIndicator },
+        { },
+    };
+
+    static PyType_Spec type_spec_StatusBarProgressIndicator =
+    {
+        "_winsdk_Windows_UI_ViewManagement.StatusBarProgressIndicator",
+        sizeof(py::wrapper::Windows::UI::ViewManagement::StatusBarProgressIndicator),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_StatusBarProgressIndicator
+    };
+
     // ----- UISettings class --------------------
     constexpr const char* const type_name_UISettings = "UISettings";
 
@@ -4325,6 +4837,8 @@ namespace py::cpp::Windows::UI::ViewManagement
         Py_VISIT(state->type_InputPane);
         Py_VISIT(state->type_InputPaneVisibilityEventArgs);
         Py_VISIT(state->type_ProjectionManager);
+        Py_VISIT(state->type_StatusBar);
+        Py_VISIT(state->type_StatusBarProgressIndicator);
         Py_VISIT(state->type_UISettings);
         Py_VISIT(state->type_UISettingsAnimationsEnabledChangedEventArgs);
         Py_VISIT(state->type_UISettingsAutoHideScrollBarsChangedEventArgs);
@@ -4367,6 +4881,8 @@ namespace py::cpp::Windows::UI::ViewManagement
         Py_CLEAR(state->type_InputPane);
         Py_CLEAR(state->type_InputPaneVisibilityEventArgs);
         Py_CLEAR(state->type_ProjectionManager);
+        Py_CLEAR(state->type_StatusBar);
+        Py_CLEAR(state->type_StatusBarProgressIndicator);
         Py_CLEAR(state->type_UISettings);
         Py_CLEAR(state->type_UISettingsAnimationsEnabledChangedEventArgs);
         Py_CLEAR(state->type_UISettingsAutoHideScrollBarsChangedEventArgs);
@@ -4568,6 +5084,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_ViewManagement(void) noexcept
     }
 
     Py_INCREF(state->type_ProjectionManager);
+
+    state->type_StatusBar = py::register_python_type(module.get(), type_name_StatusBar, &type_spec_StatusBar, bases.get());
+    if (!state->type_StatusBar)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_StatusBar);
+
+    state->type_StatusBarProgressIndicator = py::register_python_type(module.get(), type_name_StatusBarProgressIndicator, &type_spec_StatusBarProgressIndicator, bases.get());
+    if (!state->type_StatusBarProgressIndicator)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_StatusBarProgressIndicator);
 
     state->type_UISettings = py::register_python_type(module.get(), type_name_UISettings, &type_spec_UISettings, bases.get());
     if (!state->type_UISettings)
@@ -5144,6 +5676,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::ViewManagement::ProjectionManag
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ViewManagement::ProjectionManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::ViewManagement::StatusBar>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::ViewManagement;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::ViewManagement");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_StatusBar;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ViewManagement::StatusBar is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::ViewManagement::StatusBarProgressIndicator>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::ViewManagement;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::ViewManagement");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_StatusBarProgressIndicator;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ViewManagement::StatusBarProgressIndicator is not registered");
         return nullptr;
     }
 

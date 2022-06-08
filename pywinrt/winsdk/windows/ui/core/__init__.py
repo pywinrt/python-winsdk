@@ -36,6 +36,11 @@ try:
 except ImportError:
     pass
 
+try:
+    import winsdk.windows.ui.popups
+except ImportError:
+    pass
+
 class AppViewBackButtonVisibility(enum.IntEnum):
     VISIBLE = 0
     COLLAPSED = 1
@@ -147,7 +152,10 @@ CoreDispatcher = _ns_module.CoreDispatcher
 CoreIndependentInputSource = _ns_module.CoreIndependentInputSource
 CoreIndependentInputSourceController = _ns_module.CoreIndependentInputSourceController
 CoreWindow = _ns_module.CoreWindow
+CoreWindowDialog = _ns_module.CoreWindowDialog
 CoreWindowEventArgs = _ns_module.CoreWindowEventArgs
+CoreWindowFlyout = _ns_module.CoreWindowFlyout
+CoreWindowPopupShowingEventArgs = _ns_module.CoreWindowPopupShowingEventArgs
 CoreWindowResizeManager = _ns_module.CoreWindowResizeManager
 IdleDispatchedHandlerArgs = _ns_module.IdleDispatchedHandlerArgs
 InputEnabledEventArgs = _ns_module.InputEnabledEventArgs

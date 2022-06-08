@@ -12,8 +12,16 @@
 #include "py.Windows.ApplicationModel.Background.h"
 #endif
 
+#if __has_include("py.Windows.ApplicationModel.Calls.h")
+#include "py.Windows.ApplicationModel.Calls.h"
+#endif
+
 #if __has_include("py.Windows.ApplicationModel.Contacts.h")
 #include "py.Windows.ApplicationModel.Contacts.h"
+#endif
+
+#if __has_include("py.Windows.ApplicationModel.Contacts.Provider.h")
+#include "py.Windows.ApplicationModel.Contacts.Provider.h"
 #endif
 
 #if __has_include("py.Windows.ApplicationModel.DataTransfer.ShareTarget.h")
@@ -28,8 +36,16 @@
 #include "py.Windows.ApplicationModel.UserDataAccounts.Provider.h"
 #endif
 
+#if __has_include("py.Windows.ApplicationModel.Wallet.h")
+#include "py.Windows.ApplicationModel.Wallet.h"
+#endif
+
 #if __has_include("py.Windows.Devices.Enumeration.h")
 #include "py.Windows.Devices.Enumeration.h"
+#endif
+
+#if __has_include("py.Windows.Devices.Printers.Extensions.h")
+#include "py.Windows.Devices.Printers.Extensions.h"
 #endif
 
 #if __has_include("py.Windows.Foundation.h")
@@ -98,9 +114,16 @@ namespace py::wrapper::Windows::ApplicationModel::Activation
     using BackgroundActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::BackgroundActivatedEventArgs>;
     using BarcodeScannerPreviewActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::BarcodeScannerPreviewActivatedEventArgs>;
     using CachedFileUpdaterActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::CachedFileUpdaterActivatedEventArgs>;
+    using CameraSettingsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs>;
     using CommandLineActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::CommandLineActivatedEventArgs>;
     using CommandLineActivationOperation = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::CommandLineActivationOperation>;
+    using ContactCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs>;
+    using ContactMapActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs>;
+    using ContactMessageActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs>;
     using ContactPanelActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ContactPanelActivatedEventArgs>;
+    using ContactPickerActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs>;
+    using ContactPostActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs>;
+    using ContactVideoCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs>;
     using DeviceActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::DeviceActivatedEventArgs>;
     using DevicePairingActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::DevicePairingActivatedEventArgs>;
     using DialReceiverActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::DialReceiverActivatedEventArgs>;
@@ -112,9 +135,12 @@ namespace py::wrapper::Windows::ApplicationModel::Activation
     using FolderPickerContinuationEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::FolderPickerContinuationEventArgs>;
     using LaunchActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::LaunchActivatedEventArgs>;
     using LockScreenActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::LockScreenActivatedEventArgs>;
+    using LockScreenCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs>;
     using LockScreenComponentActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::LockScreenComponentActivatedEventArgs>;
     using PhoneCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::PhoneCallActivatedEventArgs>;
     using PickerReturnedActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::PickerReturnedActivatedEventArgs>;
+    using Print3DWorkflowActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs>;
+    using PrintTaskSettingsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs>;
     using ProtocolActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ProtocolActivatedEventArgs>;
     using ProtocolForResultsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ProtocolForResultsActivatedEventArgs>;
     using RestrictedLaunchActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::RestrictedLaunchActivatedEventArgs>;
@@ -126,6 +152,7 @@ namespace py::wrapper::Windows::ApplicationModel::Activation
     using ToastNotificationActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ToastNotificationActivatedEventArgs>;
     using UserDataAccountProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::UserDataAccountProviderActivatedEventArgs>;
     using VoiceCommandActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::VoiceCommandActivatedEventArgs>;
+    using WalletActionActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs>;
     using WebAccountProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::WebAccountProviderActivatedEventArgs>;
     using WebAuthenticationBrokerContinuationEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::WebAuthenticationBrokerContinuationEventArgs>;
     using IActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs>;
@@ -140,8 +167,17 @@ namespace py::wrapper::Windows::ApplicationModel::Activation
     using IBackgroundActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IBackgroundActivatedEventArgs>;
     using IBarcodeScannerPreviewActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IBarcodeScannerPreviewActivatedEventArgs>;
     using ICachedFileUpdaterActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ICachedFileUpdaterActivatedEventArgs>;
+    using ICameraSettingsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs>;
     using ICommandLineActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs>;
+    using IContactActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>;
+    using IContactCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs>;
+    using IContactMapActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs>;
+    using IContactMessageActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs>;
     using IContactPanelActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs>;
+    using IContactPickerActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs>;
+    using IContactPostActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs>;
+    using IContactVideoCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs>;
+    using IContactsProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs>;
     using IContinuationActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IContinuationActivatedEventArgs>;
     using IDeviceActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IDeviceActivatedEventArgs>;
     using IDevicePairingActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IDevicePairingActivatedEventArgs>;
@@ -159,9 +195,12 @@ namespace py::wrapper::Windows::ApplicationModel::Activation
     using ILaunchActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs>;
     using ILaunchActivatedEventArgs2 = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ILaunchActivatedEventArgs2>;
     using ILockScreenActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ILockScreenActivatedEventArgs>;
+    using ILockScreenCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs>;
     using IPhoneCallActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs>;
     using IPickerReturnedActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IPickerReturnedActivatedEventArgs>;
     using IPrelaunchActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IPrelaunchActivatedEventArgs>;
+    using IPrint3DWorkflowActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs>;
+    using IPrintTaskSettingsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs>;
     using IProtocolActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IProtocolActivatedEventArgs>;
     using IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData>;
     using IProtocolForResultsActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IProtocolForResultsActivatedEventArgs>;
@@ -174,6 +213,7 @@ namespace py::wrapper::Windows::ApplicationModel::Activation
     using IUserDataAccountProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IUserDataAccountProviderActivatedEventArgs>;
     using IViewSwitcherProvider = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IViewSwitcherProvider>;
     using IVoiceCommandActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IVoiceCommandActivatedEventArgs>;
+    using IWalletActionActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs>;
     using IWebAccountProviderActivatedEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IWebAccountProviderActivatedEventArgs>;
     using IWebAuthenticationBrokerContinuationEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::Activation::IWebAuthenticationBrokerContinuationEventArgs>;
 }
@@ -242,6 +282,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::CameraSettingsActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::CommandLineActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -254,7 +300,43 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ContactCallActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ContactMapActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ContactMessageActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::ContactPanelActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ContactPickerActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ContactPostActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ContactVideoCallActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -326,6 +408,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::LockScreenCallActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::LockScreenComponentActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -339,6 +427,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::PickerReturnedActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::Print3DWorkflowActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::PrintTaskSettingsActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -405,6 +505,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::VoiceCommandActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::WalletActionActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -494,13 +600,67 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ICameraSettingsActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::ICommandLineActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
 
     template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactCallActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactMapActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactMessageActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactPanelActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactPickerActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactPostActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactVideoCallActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IContactsProviderActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -608,6 +768,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::ILockScreenCallActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::IPhoneCallActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -621,6 +787,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::IPrelaunchActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IPrint3DWorkflowActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IPrintTaskSettingsActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -693,6 +871,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Activation::IVoiceCommandActivatedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Activation::IWalletActionActivatedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

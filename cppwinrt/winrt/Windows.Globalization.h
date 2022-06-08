@@ -1738,6 +1738,36 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::IGeographicRegionStatics)->IsSupported(*(void**)(&geographicRegionCode), &result));
         return result;
     }
+    template <typename D> auto consume_Windows_Globalization_IJapanesePhoneme<D>::DisplayText() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::IJapanesePhoneme)->get_DisplayText(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Globalization_IJapanesePhoneme<D>::YomiText() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::IJapanesePhoneme)->get_YomiText(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Globalization_IJapanesePhoneme<D>::IsPhraseStart() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::IJapanesePhoneme)->get_IsPhraseStart(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Globalization_IJapanesePhoneticAnalyzerStatics<D>::GetWords(param::hstring const& input) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics)->GetWords(*(void**)(&input), &result));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Globalization::JapanesePhoneme>{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Globalization_IJapanesePhoneticAnalyzerStatics<D>::GetWords(param::hstring const& input, bool monoRuby) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics)->GetWordsWithMonoRubyOption(*(void**)(&input), monoRuby, &result));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Globalization::JapanesePhoneme>{ result, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Globalization_ILanguage<D>::LanguageTag() const
     {
         void* value{};
@@ -4534,6 +4564,57 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Globalization::IJapanesePhoneme> : produce_base<D, winrt::Windows::Globalization::IJapanesePhoneme>
+    {
+        int32_t __stdcall get_DisplayText(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().DisplayText());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_YomiText(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().YomiText());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsPhraseStart(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsPhraseStart());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics> : produce_base<D, winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics>
+    {
+        int32_t __stdcall GetWords(void* input, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Globalization::JapanesePhoneme>>(this->shim().GetWords(*reinterpret_cast<hstring const*>(&input)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetWordsWithMonoRubyOption(void* input, bool monoRuby, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Globalization::JapanesePhoneme>>(this->shim().GetWords(*reinterpret_cast<hstring const*>(&input), monoRuby));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Globalization::ILanguage> : produce_base<D, winrt::Windows::Globalization::ILanguage>
     {
         int32_t __stdcall get_LanguageTag(void** value) noexcept final try
@@ -5877,6 +5958,14 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
     {
         return impl::call_factory<GeographicRegion, IGeographicRegionStatics>([&](IGeographicRegionStatics const& f) { return f.IsSupported(geographicRegionCode); });
     }
+    inline auto JapanesePhoneticAnalyzer::GetWords(param::hstring const& input)
+    {
+        return impl::call_factory<JapanesePhoneticAnalyzer, IJapanesePhoneticAnalyzerStatics>([&](IJapanesePhoneticAnalyzerStatics const& f) { return f.GetWords(input); });
+    }
+    inline auto JapanesePhoneticAnalyzer::GetWords(param::hstring const& input, bool monoRuby)
+    {
+        return impl::call_factory<JapanesePhoneticAnalyzer, IJapanesePhoneticAnalyzerStatics>([&](IJapanesePhoneticAnalyzerStatics const& f) { return f.GetWords(input, monoRuby); });
+    }
     inline Language::Language(param::hstring const& languageTag) :
         Language(impl::call_factory<Language, ILanguageFactory>([&](ILanguageFactory const& f) { return f.CreateLanguage(languageTag); }))
     {
@@ -6110,6 +6199,8 @@ namespace std
     template<> struct hash<winrt::Windows::Globalization::IGeographicRegion> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::IGeographicRegionFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::IGeographicRegionStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Globalization::IJapanesePhoneme> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Globalization::IJapanesePhoneticAnalyzerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguage> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguage2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguage3> : winrt::impl::hash_base {};
@@ -6128,6 +6219,8 @@ namespace std
     template<> struct hash<winrt::Windows::Globalization::CurrencyAmount> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::CurrencyIdentifiers> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::GeographicRegion> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Globalization::JapanesePhoneme> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Globalization::JapanesePhoneticAnalyzer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::Language> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::NumeralSystemIdentifiers> : winrt::impl::hash_base {};
 #endif

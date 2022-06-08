@@ -8,8 +8,235 @@ namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning
 {
     struct module_state
     {
+        PyObject* type_EasDisallowConvenienceLogonResult;
+        PyObject* type_EasEncryptionProviderType;
+        PyObject* type_EasMaxInactivityTimeLockResult;
+        PyObject* type_EasMaxPasswordFailedAttemptsResult;
+        PyObject* type_EasMinPasswordComplexCharactersResult;
+        PyObject* type_EasMinPasswordLengthResult;
+        PyObject* type_EasPasswordExpirationResult;
+        PyObject* type_EasPasswordHistoryResult;
+        PyObject* type_EasRequireEncryptionResult;
         PyTypeObject* type_EasClientDeviceInformation;
+        PyTypeObject* type_EasClientSecurityPolicy;
+        PyTypeObject* type_EasComplianceResults;
     };
+
+    static PyObject* register_EasDisallowConvenienceLogonResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasDisallowConvenienceLogonResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasDisallowConvenienceLogonResult = type;
+        Py_INCREF(state->type_EasDisallowConvenienceLogonResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasEncryptionProviderType(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasEncryptionProviderType)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasEncryptionProviderType = type;
+        Py_INCREF(state->type_EasEncryptionProviderType);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasMaxInactivityTimeLockResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasMaxInactivityTimeLockResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasMaxInactivityTimeLockResult = type;
+        Py_INCREF(state->type_EasMaxInactivityTimeLockResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasMaxPasswordFailedAttemptsResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasMaxPasswordFailedAttemptsResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasMaxPasswordFailedAttemptsResult = type;
+        Py_INCREF(state->type_EasMaxPasswordFailedAttemptsResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasMinPasswordComplexCharactersResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasMinPasswordComplexCharactersResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasMinPasswordComplexCharactersResult = type;
+        Py_INCREF(state->type_EasMinPasswordComplexCharactersResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasMinPasswordLengthResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasMinPasswordLengthResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasMinPasswordLengthResult = type;
+        Py_INCREF(state->type_EasMinPasswordLengthResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasPasswordExpirationResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasPasswordExpirationResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasPasswordExpirationResult = type;
+        Py_INCREF(state->type_EasPasswordExpirationResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasPasswordHistoryResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasPasswordHistoryResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasPasswordHistoryResult = type;
+        Py_INCREF(state->type_EasPasswordHistoryResult);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_EasRequireEncryptionResult(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_EasRequireEncryptionResult)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_EasRequireEncryptionResult = type;
+        Py_INCREF(state->type_EasRequireEncryptionResult);
+
+
+        Py_RETURN_NONE;
+    }
 
     // ----- EasClientDeviceInformation class --------------------
     constexpr const char* const type_name_EasClientDeviceInformation = "EasClientDeviceInformation";
@@ -204,10 +431,634 @@ namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning
         _type_slots_EasClientDeviceInformation
     };
 
+    // ----- EasClientSecurityPolicy class --------------------
+    constexpr const char* const type_name_EasClientSecurityPolicy = "EasClientSecurityPolicy";
+
+    static PyObject* _new_EasClientSecurityPolicy(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_EasClientSecurityPolicy(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* EasClientSecurityPolicy_ApplyAsync(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.ApplyAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_CheckCompliance(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.CheckCompliance());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_RequireEncryption(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.RequireEncryption());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_RequireEncryption(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.RequireEncryption(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_PasswordHistory(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PasswordHistory());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_PasswordHistory(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint32_t>(arg);
+
+            self->obj.PasswordHistory(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_PasswordExpiration(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PasswordExpiration());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_PasswordExpiration(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TimeSpan>(arg);
+
+            self->obj.PasswordExpiration(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_MinPasswordLength(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MinPasswordLength());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_MinPasswordLength(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint8_t>(arg);
+
+            self->obj.MinPasswordLength(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_MinPasswordComplexCharacters(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MinPasswordComplexCharacters());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_MinPasswordComplexCharacters(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint8_t>(arg);
+
+            self->obj.MinPasswordComplexCharacters(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_MaxPasswordFailedAttempts(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxPasswordFailedAttempts());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_MaxPasswordFailedAttempts(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint8_t>(arg);
+
+            self->obj.MaxPasswordFailedAttempts(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_MaxInactivityTimeLock(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxInactivityTimeLock());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_MaxInactivityTimeLock(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TimeSpan>(arg);
+
+            self->obj.MaxInactivityTimeLock(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* EasClientSecurityPolicy_get_DisallowConvenienceLogon(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DisallowConvenienceLogon());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int EasClientSecurityPolicy_put_DisallowConvenienceLogon(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.DisallowConvenienceLogon(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_EasClientSecurityPolicy(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_EasClientSecurityPolicy[] = {
+        { "apply_async", reinterpret_cast<PyCFunction>(EasClientSecurityPolicy_ApplyAsync), METH_VARARGS, nullptr },
+        { "check_compliance", reinterpret_cast<PyCFunction>(EasClientSecurityPolicy_CheckCompliance), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_EasClientSecurityPolicy), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_EasClientSecurityPolicy[] = {
+        { "require_encryption", reinterpret_cast<getter>(EasClientSecurityPolicy_get_RequireEncryption), reinterpret_cast<setter>(EasClientSecurityPolicy_put_RequireEncryption), nullptr, nullptr },
+        { "password_history", reinterpret_cast<getter>(EasClientSecurityPolicy_get_PasswordHistory), reinterpret_cast<setter>(EasClientSecurityPolicy_put_PasswordHistory), nullptr, nullptr },
+        { "password_expiration", reinterpret_cast<getter>(EasClientSecurityPolicy_get_PasswordExpiration), reinterpret_cast<setter>(EasClientSecurityPolicy_put_PasswordExpiration), nullptr, nullptr },
+        { "min_password_length", reinterpret_cast<getter>(EasClientSecurityPolicy_get_MinPasswordLength), reinterpret_cast<setter>(EasClientSecurityPolicy_put_MinPasswordLength), nullptr, nullptr },
+        { "min_password_complex_characters", reinterpret_cast<getter>(EasClientSecurityPolicy_get_MinPasswordComplexCharacters), reinterpret_cast<setter>(EasClientSecurityPolicy_put_MinPasswordComplexCharacters), nullptr, nullptr },
+        { "max_password_failed_attempts", reinterpret_cast<getter>(EasClientSecurityPolicy_get_MaxPasswordFailedAttempts), reinterpret_cast<setter>(EasClientSecurityPolicy_put_MaxPasswordFailedAttempts), nullptr, nullptr },
+        { "max_inactivity_time_lock", reinterpret_cast<getter>(EasClientSecurityPolicy_get_MaxInactivityTimeLock), reinterpret_cast<setter>(EasClientSecurityPolicy_put_MaxInactivityTimeLock), nullptr, nullptr },
+        { "disallow_convenience_logon", reinterpret_cast<getter>(EasClientSecurityPolicy_get_DisallowConvenienceLogon), reinterpret_cast<setter>(EasClientSecurityPolicy_put_DisallowConvenienceLogon), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_EasClientSecurityPolicy[] = 
+    {
+        { Py_tp_new, _new_EasClientSecurityPolicy },
+        { Py_tp_dealloc, _dealloc_EasClientSecurityPolicy },
+        { Py_tp_methods, _methods_EasClientSecurityPolicy },
+        { Py_tp_getset, _getset_EasClientSecurityPolicy },
+        { },
+    };
+
+    static PyType_Spec type_spec_EasClientSecurityPolicy =
+    {
+        "_winsdk_Windows_Security_ExchangeActiveSyncProvisioning.EasClientSecurityPolicy",
+        sizeof(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_EasClientSecurityPolicy
+    };
+
+    // ----- EasComplianceResults class --------------------
+    constexpr const char* const type_name_EasComplianceResults = "EasComplianceResults";
+
+    static PyObject* _new_EasComplianceResults(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_EasComplianceResults);
+        return nullptr;
+    }
+
+    static void _dealloc_EasComplianceResults(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* EasComplianceResults_get_Compliant(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Compliant());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_DisallowConvenienceLogonResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DisallowConvenienceLogonResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_MaxInactivityTimeLockResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxInactivityTimeLockResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_MaxPasswordFailedAttemptsResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxPasswordFailedAttemptsResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_MinPasswordComplexCharactersResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MinPasswordComplexCharactersResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_MinPasswordLengthResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MinPasswordLengthResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_PasswordExpirationResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PasswordExpirationResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_PasswordHistoryResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PasswordHistoryResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_RequireEncryptionResult(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.RequireEncryptionResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* EasComplianceResults_get_EncryptionProviderType(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.EncryptionProviderType());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_EasComplianceResults(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_EasComplianceResults[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_EasComplianceResults), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_EasComplianceResults[] = {
+        { "compliant", reinterpret_cast<getter>(EasComplianceResults_get_Compliant), nullptr, nullptr, nullptr },
+        { "disallow_convenience_logon_result", reinterpret_cast<getter>(EasComplianceResults_get_DisallowConvenienceLogonResult), nullptr, nullptr, nullptr },
+        { "max_inactivity_time_lock_result", reinterpret_cast<getter>(EasComplianceResults_get_MaxInactivityTimeLockResult), nullptr, nullptr, nullptr },
+        { "max_password_failed_attempts_result", reinterpret_cast<getter>(EasComplianceResults_get_MaxPasswordFailedAttemptsResult), nullptr, nullptr, nullptr },
+        { "min_password_complex_characters_result", reinterpret_cast<getter>(EasComplianceResults_get_MinPasswordComplexCharactersResult), nullptr, nullptr, nullptr },
+        { "min_password_length_result", reinterpret_cast<getter>(EasComplianceResults_get_MinPasswordLengthResult), nullptr, nullptr, nullptr },
+        { "password_expiration_result", reinterpret_cast<getter>(EasComplianceResults_get_PasswordExpirationResult), nullptr, nullptr, nullptr },
+        { "password_history_result", reinterpret_cast<getter>(EasComplianceResults_get_PasswordHistoryResult), nullptr, nullptr, nullptr },
+        { "require_encryption_result", reinterpret_cast<getter>(EasComplianceResults_get_RequireEncryptionResult), nullptr, nullptr, nullptr },
+        { "encryption_provider_type", reinterpret_cast<getter>(EasComplianceResults_get_EncryptionProviderType), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_EasComplianceResults[] = 
+    {
+        { Py_tp_new, _new_EasComplianceResults },
+        { Py_tp_dealloc, _dealloc_EasComplianceResults },
+        { Py_tp_methods, _methods_EasComplianceResults },
+        { Py_tp_getset, _getset_EasComplianceResults },
+        { },
+    };
+
+    static PyType_Spec type_spec_EasComplianceResults =
+    {
+        "_winsdk_Windows_Security_ExchangeActiveSyncProvisioning.EasComplianceResults",
+        sizeof(py::wrapper::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_EasComplianceResults
+    };
+
     // ----- Windows.Security.ExchangeActiveSyncProvisioning Initialization --------------------
     PyDoc_STRVAR(module_doc, "Windows::Security::ExchangeActiveSyncProvisioning");
 
     static PyMethodDef module_methods[] = {
+        {"_register_EasDisallowConvenienceLogonResult", register_EasDisallowConvenienceLogonResult, METH_O, "registers type"},
+        {"_register_EasEncryptionProviderType", register_EasEncryptionProviderType, METH_O, "registers type"},
+        {"_register_EasMaxInactivityTimeLockResult", register_EasMaxInactivityTimeLockResult, METH_O, "registers type"},
+        {"_register_EasMaxPasswordFailedAttemptsResult", register_EasMaxPasswordFailedAttemptsResult, METH_O, "registers type"},
+        {"_register_EasMinPasswordComplexCharactersResult", register_EasMinPasswordComplexCharactersResult, METH_O, "registers type"},
+        {"_register_EasMinPasswordLengthResult", register_EasMinPasswordLengthResult, METH_O, "registers type"},
+        {"_register_EasPasswordExpirationResult", register_EasPasswordExpirationResult, METH_O, "registers type"},
+        {"_register_EasPasswordHistoryResult", register_EasPasswordHistoryResult, METH_O, "registers type"},
+        {"_register_EasRequireEncryptionResult", register_EasRequireEncryptionResult, METH_O, "registers type"},
         {}};
 
 
@@ -220,7 +1071,18 @@ namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning
             return 0;
         }
 
+        Py_VISIT(state->type_EasDisallowConvenienceLogonResult);
+        Py_VISIT(state->type_EasEncryptionProviderType);
+        Py_VISIT(state->type_EasMaxInactivityTimeLockResult);
+        Py_VISIT(state->type_EasMaxPasswordFailedAttemptsResult);
+        Py_VISIT(state->type_EasMinPasswordComplexCharactersResult);
+        Py_VISIT(state->type_EasMinPasswordLengthResult);
+        Py_VISIT(state->type_EasPasswordExpirationResult);
+        Py_VISIT(state->type_EasPasswordHistoryResult);
+        Py_VISIT(state->type_EasRequireEncryptionResult);
         Py_VISIT(state->type_EasClientDeviceInformation);
+        Py_VISIT(state->type_EasClientSecurityPolicy);
+        Py_VISIT(state->type_EasComplianceResults);
 
         return 0;
     }
@@ -234,7 +1096,18 @@ namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning
             return 0;
         }
 
+        Py_CLEAR(state->type_EasDisallowConvenienceLogonResult);
+        Py_CLEAR(state->type_EasEncryptionProviderType);
+        Py_CLEAR(state->type_EasMaxInactivityTimeLockResult);
+        Py_CLEAR(state->type_EasMaxPasswordFailedAttemptsResult);
+        Py_CLEAR(state->type_EasMinPasswordComplexCharactersResult);
+        Py_CLEAR(state->type_EasMinPasswordLengthResult);
+        Py_CLEAR(state->type_EasPasswordExpirationResult);
+        Py_CLEAR(state->type_EasPasswordHistoryResult);
+        Py_CLEAR(state->type_EasRequireEncryptionResult);
         Py_CLEAR(state->type_EasClientDeviceInformation);
+        Py_CLEAR(state->type_EasClientSecurityPolicy);
+        Py_CLEAR(state->type_EasComplianceResults);
 
         return 0;
     }
@@ -351,8 +1224,231 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Security_ExchangeActiveSyncProvisioning(vo
 
     Py_INCREF(state->type_EasClientDeviceInformation);
 
+    state->type_EasClientSecurityPolicy = py::register_python_type(module.get(), type_name_EasClientSecurityPolicy, &type_spec_EasClientSecurityPolicy, bases.get());
+    if (!state->type_EasClientSecurityPolicy)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_EasClientSecurityPolicy);
+
+    state->type_EasComplianceResults = py::register_python_type(module.get(), type_name_EasComplianceResults, &type_spec_EasComplianceResults, bases.get());
+    if (!state->type_EasComplianceResults)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_EasComplianceResults);
+
 
     return module.detach();
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasDisallowConvenienceLogonResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasDisallowConvenienceLogonResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasDisallowConvenienceLogonResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasEncryptionProviderType>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasEncryptionProviderType;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasEncryptionProviderType is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMaxInactivityTimeLockResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasMaxInactivityTimeLockResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMaxInactivityTimeLockResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMaxPasswordFailedAttemptsResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasMaxPasswordFailedAttemptsResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMaxPasswordFailedAttemptsResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMinPasswordComplexCharactersResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasMinPasswordComplexCharactersResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMinPasswordComplexCharactersResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMinPasswordLengthResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasMinPasswordLengthResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasMinPasswordLengthResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasPasswordExpirationResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasPasswordExpirationResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasPasswordExpirationResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasPasswordHistoryResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasPasswordHistoryResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasPasswordHistoryResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasRequireEncryptionResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasRequireEncryptionResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasRequireEncryptionResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
 }
 
 PyTypeObject* py::winrt_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasClientDeviceInformation>::get_python_type() noexcept {
@@ -372,6 +1468,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::Security::ExchangeActiveSyncProvisi
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasClientDeviceInformation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasClientSecurityPolicy;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasClientSecurityPolicy is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::ExchangeActiveSyncProvisioning;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::ExchangeActiveSyncProvisioning");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_EasComplianceResults;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::ExchangeActiveSyncProvisioning::EasComplianceResults is not registered");
         return nullptr;
     }
 

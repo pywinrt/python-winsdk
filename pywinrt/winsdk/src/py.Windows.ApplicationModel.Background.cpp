@@ -8,6 +8,7 @@ namespace py::cpp::Windows::ApplicationModel::Background
 {
     struct module_state
     {
+        PyObject* type_AlarmAccessStatus;
         PyObject* type_ApplicationTriggerResult;
         PyObject* type_BackgroundAccessRequestKind;
         PyObject* type_BackgroundAccessStatus;
@@ -21,6 +22,9 @@ namespace py::cpp::Windows::ApplicationModel::Background
         PyObject* type_SystemConditionType;
         PyObject* type_SystemTriggerType;
         PyTypeObject* type_ActivitySensorTrigger;
+        PyTypeObject* type_AlarmApplicationManager;
+        PyTypeObject* type_AppBroadcastTrigger;
+        PyTypeObject* type_AppBroadcastTriggerProviderInfo;
         PyTypeObject* type_ApplicationTrigger;
         PyTypeObject* type_ApplicationTriggerDetails;
         PyTypeObject* type_AppointmentStoreNotificationTrigger;
@@ -93,6 +97,30 @@ namespace py::cpp::Windows::ApplicationModel::Background
         PyTypeObject* type_IBackgroundTaskRegistration3;
         PyTypeObject* type_IBackgroundTrigger;
     };
+
+    static PyObject* register_AlarmAccessStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_AlarmAccessStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_AlarmAccessStatus = type;
+        Py_INCREF(state->type_AlarmAccessStatus);
+
+
+        Py_RETURN_NONE;
+    }
 
     static PyObject* register_ApplicationTriggerResult(PyObject* module, PyObject* type)
     {
@@ -519,6 +547,481 @@ namespace py::cpp::Windows::ApplicationModel::Background
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ActivitySensorTrigger
+    };
+
+    // ----- AlarmApplicationManager class --------------------
+    constexpr const char* const type_name_AlarmApplicationManager = "AlarmApplicationManager";
+
+    static PyObject* _new_AlarmApplicationManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_AlarmApplicationManager);
+        return nullptr;
+    }
+
+    static PyObject* AlarmApplicationManager_GetAccessStatus(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::ApplicationModel::Background::AlarmApplicationManager::GetAccessStatus());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* AlarmApplicationManager_RequestAccessAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::ApplicationModel::Background::AlarmApplicationManager::RequestAccessAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_AlarmApplicationManager[] = {
+        { "get_access_status", reinterpret_cast<PyCFunction>(AlarmApplicationManager_GetAccessStatus), METH_VARARGS | METH_STATIC, nullptr },
+        { "request_access_async", reinterpret_cast<PyCFunction>(AlarmApplicationManager_RequestAccessAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_AlarmApplicationManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_AlarmApplicationManager[] = 
+    {
+        { Py_tp_new, _new_AlarmApplicationManager },
+        { Py_tp_methods, _methods_AlarmApplicationManager },
+        { Py_tp_getset, _getset_AlarmApplicationManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_AlarmApplicationManager =
+    {
+        "_winsdk_Windows_ApplicationModel_Background.AlarmApplicationManager",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_AlarmApplicationManager
+    };
+
+    // ----- AppBroadcastTrigger class --------------------
+    constexpr const char* const type_name_AppBroadcastTrigger = "AppBroadcastTrigger";
+
+    static PyObject* _new_AppBroadcastTrigger(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger instance{ param0 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_AppBroadcastTrigger(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTrigger* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* AppBroadcastTrigger_get_ProviderInfo(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTrigger* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderInfo());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppBroadcastTrigger_put_ProviderInfo(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTrigger* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>(arg);
+
+            self->obj.ProviderInfo(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_AppBroadcastTrigger(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_AppBroadcastTrigger[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_AppBroadcastTrigger), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_AppBroadcastTrigger[] = {
+        { "provider_info", reinterpret_cast<getter>(AppBroadcastTrigger_get_ProviderInfo), reinterpret_cast<setter>(AppBroadcastTrigger_put_ProviderInfo), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_AppBroadcastTrigger[] = 
+    {
+        { Py_tp_new, _new_AppBroadcastTrigger },
+        { Py_tp_dealloc, _dealloc_AppBroadcastTrigger },
+        { Py_tp_methods, _methods_AppBroadcastTrigger },
+        { Py_tp_getset, _getset_AppBroadcastTrigger },
+        { },
+    };
+
+    static PyType_Spec type_spec_AppBroadcastTrigger =
+    {
+        "_winsdk_Windows_ApplicationModel_Background.AppBroadcastTrigger",
+        sizeof(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTrigger),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_AppBroadcastTrigger
+    };
+
+    // ----- AppBroadcastTriggerProviderInfo class --------------------
+    constexpr const char* const type_name_AppBroadcastTriggerProviderInfo = "AppBroadcastTriggerProviderInfo";
+
+    static PyObject* _new_AppBroadcastTriggerProviderInfo(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_AppBroadcastTriggerProviderInfo);
+        return nullptr;
+    }
+
+    static void _dealloc_AppBroadcastTriggerProviderInfo(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* AppBroadcastTriggerProviderInfo_get_VideoKeyFrameInterval(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.VideoKeyFrameInterval());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppBroadcastTriggerProviderInfo_put_VideoKeyFrameInterval(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TimeSpan>(arg);
+
+            self->obj.VideoKeyFrameInterval(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* AppBroadcastTriggerProviderInfo_get_MaxVideoWidth(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxVideoWidth());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppBroadcastTriggerProviderInfo_put_MaxVideoWidth(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint32_t>(arg);
+
+            self->obj.MaxVideoWidth(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* AppBroadcastTriggerProviderInfo_get_MaxVideoHeight(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxVideoHeight());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppBroadcastTriggerProviderInfo_put_MaxVideoHeight(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint32_t>(arg);
+
+            self->obj.MaxVideoHeight(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* AppBroadcastTriggerProviderInfo_get_MaxVideoBitrate(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxVideoBitrate());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppBroadcastTriggerProviderInfo_put_MaxVideoBitrate(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint32_t>(arg);
+
+            self->obj.MaxVideoBitrate(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* AppBroadcastTriggerProviderInfo_get_LogoResource(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LogoResource());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppBroadcastTriggerProviderInfo_put_LogoResource(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.LogoResource(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* AppBroadcastTriggerProviderInfo_get_DisplayNameResource(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DisplayNameResource());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppBroadcastTriggerProviderInfo_put_DisplayNameResource(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.DisplayNameResource(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_AppBroadcastTriggerProviderInfo(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_AppBroadcastTriggerProviderInfo[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_AppBroadcastTriggerProviderInfo), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_AppBroadcastTriggerProviderInfo[] = {
+        { "video_key_frame_interval", reinterpret_cast<getter>(AppBroadcastTriggerProviderInfo_get_VideoKeyFrameInterval), reinterpret_cast<setter>(AppBroadcastTriggerProviderInfo_put_VideoKeyFrameInterval), nullptr, nullptr },
+        { "max_video_width", reinterpret_cast<getter>(AppBroadcastTriggerProviderInfo_get_MaxVideoWidth), reinterpret_cast<setter>(AppBroadcastTriggerProviderInfo_put_MaxVideoWidth), nullptr, nullptr },
+        { "max_video_height", reinterpret_cast<getter>(AppBroadcastTriggerProviderInfo_get_MaxVideoHeight), reinterpret_cast<setter>(AppBroadcastTriggerProviderInfo_put_MaxVideoHeight), nullptr, nullptr },
+        { "max_video_bitrate", reinterpret_cast<getter>(AppBroadcastTriggerProviderInfo_get_MaxVideoBitrate), reinterpret_cast<setter>(AppBroadcastTriggerProviderInfo_put_MaxVideoBitrate), nullptr, nullptr },
+        { "logo_resource", reinterpret_cast<getter>(AppBroadcastTriggerProviderInfo_get_LogoResource), reinterpret_cast<setter>(AppBroadcastTriggerProviderInfo_put_LogoResource), nullptr, nullptr },
+        { "display_name_resource", reinterpret_cast<getter>(AppBroadcastTriggerProviderInfo_get_DisplayNameResource), reinterpret_cast<setter>(AppBroadcastTriggerProviderInfo_put_DisplayNameResource), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_AppBroadcastTriggerProviderInfo[] = 
+    {
+        { Py_tp_new, _new_AppBroadcastTriggerProviderInfo },
+        { Py_tp_dealloc, _dealloc_AppBroadcastTriggerProviderInfo },
+        { Py_tp_methods, _methods_AppBroadcastTriggerProviderInfo },
+        { Py_tp_getset, _getset_AppBroadcastTriggerProviderInfo },
+        { },
+    };
+
+    static PyType_Spec type_spec_AppBroadcastTriggerProviderInfo =
+    {
+        "_winsdk_Windows_ApplicationModel_Background.AppBroadcastTriggerProviderInfo",
+        sizeof(py::wrapper::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_AppBroadcastTriggerProviderInfo
     };
 
     // ----- ApplicationTrigger class --------------------
@@ -8885,6 +9388,7 @@ namespace py::cpp::Windows::ApplicationModel::Background
     PyDoc_STRVAR(module_doc, "Windows::ApplicationModel::Background");
 
     static PyMethodDef module_methods[] = {
+        {"_register_AlarmAccessStatus", register_AlarmAccessStatus, METH_O, "registers type"},
         {"_register_ApplicationTriggerResult", register_ApplicationTriggerResult, METH_O, "registers type"},
         {"_register_BackgroundAccessRequestKind", register_BackgroundAccessRequestKind, METH_O, "registers type"},
         {"_register_BackgroundAccessStatus", register_BackgroundAccessStatus, METH_O, "registers type"},
@@ -8909,6 +9413,7 @@ namespace py::cpp::Windows::ApplicationModel::Background
             return 0;
         }
 
+        Py_VISIT(state->type_AlarmAccessStatus);
         Py_VISIT(state->type_ApplicationTriggerResult);
         Py_VISIT(state->type_BackgroundAccessRequestKind);
         Py_VISIT(state->type_BackgroundAccessStatus);
@@ -8922,6 +9427,9 @@ namespace py::cpp::Windows::ApplicationModel::Background
         Py_VISIT(state->type_SystemConditionType);
         Py_VISIT(state->type_SystemTriggerType);
         Py_VISIT(state->type_ActivitySensorTrigger);
+        Py_VISIT(state->type_AlarmApplicationManager);
+        Py_VISIT(state->type_AppBroadcastTrigger);
+        Py_VISIT(state->type_AppBroadcastTriggerProviderInfo);
         Py_VISIT(state->type_ApplicationTrigger);
         Py_VISIT(state->type_ApplicationTriggerDetails);
         Py_VISIT(state->type_AppointmentStoreNotificationTrigger);
@@ -9006,6 +9514,7 @@ namespace py::cpp::Windows::ApplicationModel::Background
             return 0;
         }
 
+        Py_CLEAR(state->type_AlarmAccessStatus);
         Py_CLEAR(state->type_ApplicationTriggerResult);
         Py_CLEAR(state->type_BackgroundAccessRequestKind);
         Py_CLEAR(state->type_BackgroundAccessStatus);
@@ -9019,6 +9528,9 @@ namespace py::cpp::Windows::ApplicationModel::Background
         Py_CLEAR(state->type_SystemConditionType);
         Py_CLEAR(state->type_SystemTriggerType);
         Py_CLEAR(state->type_ActivitySensorTrigger);
+        Py_CLEAR(state->type_AlarmApplicationManager);
+        Py_CLEAR(state->type_AppBroadcastTrigger);
+        Py_CLEAR(state->type_AppBroadcastTriggerProviderInfo);
         Py_CLEAR(state->type_ApplicationTrigger);
         Py_CLEAR(state->type_ApplicationTriggerDetails);
         Py_CLEAR(state->type_AppointmentStoreNotificationTrigger);
@@ -9205,6 +9717,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Background(void) noexcept
     }
 
     Py_INCREF(state->type_ActivitySensorTrigger);
+
+    state->type_AlarmApplicationManager = py::register_python_type(module.get(), type_name_AlarmApplicationManager, &type_spec_AlarmApplicationManager, nullptr);
+    if (!state->type_AlarmApplicationManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_AlarmApplicationManager);
+
+    state->type_AppBroadcastTrigger = py::register_python_type(module.get(), type_name_AppBroadcastTrigger, &type_spec_AppBroadcastTrigger, bases.get());
+    if (!state->type_AppBroadcastTrigger)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_AppBroadcastTrigger);
+
+    state->type_AppBroadcastTriggerProviderInfo = py::register_python_type(module.get(), type_name_AppBroadcastTriggerProviderInfo, &type_spec_AppBroadcastTriggerProviderInfo, bases.get());
+    if (!state->type_AppBroadcastTriggerProviderInfo)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_AppBroadcastTriggerProviderInfo);
 
     state->type_ApplicationTrigger = py::register_python_type(module.get(), type_name_ApplicationTrigger, &type_spec_ApplicationTrigger, bases.get());
     if (!state->type_ApplicationTrigger)
@@ -9778,6 +10314,29 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Background(void) noexcept
     return module.detach();
 }
 
+PyObject* py::py_type<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Background;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Background");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_AlarmAccessStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::AlarmAccessStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::ApplicationModel::Background::ApplicationTriggerResult>::get_python_type() noexcept {
     using namespace py::cpp::Windows::ApplicationModel::Background;
 
@@ -10071,6 +10630,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Background::Activ
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::ActivitySensorTrigger is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Background::AlarmApplicationManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Background;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Background");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_AlarmApplicationManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::AlarmApplicationManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Background;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Background");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_AppBroadcastTrigger;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::AppBroadcastTrigger is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Background;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Background");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_AppBroadcastTriggerProviderInfo;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::AppBroadcastTriggerProviderInfo is not registered");
         return nullptr;
     }
 

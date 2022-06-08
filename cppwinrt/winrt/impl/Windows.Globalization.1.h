@@ -125,6 +125,20 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
         IGeographicRegionStatics(std::nullptr_t = nullptr) noexcept {}
         IGeographicRegionStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IJapanesePhoneme :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IJapanesePhoneme>
+    {
+        IJapanesePhoneme(std::nullptr_t = nullptr) noexcept {}
+        IJapanesePhoneme(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IJapanesePhoneticAnalyzerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IJapanesePhoneticAnalyzerStatics>
+    {
+        IJapanesePhoneticAnalyzerStatics(std::nullptr_t = nullptr) noexcept {}
+        IJapanesePhoneticAnalyzerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ILanguage :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ILanguage>

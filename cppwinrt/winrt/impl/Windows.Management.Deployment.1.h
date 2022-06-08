@@ -41,6 +41,34 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
         IAutoUpdateSettingsOptionsStatics(std::nullptr_t = nullptr) noexcept {}
         IAutoUpdateSettingsOptionsStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ICreateSharedPackageContainerOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICreateSharedPackageContainerOptions>
+    {
+        ICreateSharedPackageContainerOptions(std::nullptr_t = nullptr) noexcept {}
+        ICreateSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICreateSharedPackageContainerResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICreateSharedPackageContainerResult>
+    {
+        ICreateSharedPackageContainerResult(std::nullptr_t = nullptr) noexcept {}
+        ICreateSharedPackageContainerResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IDeleteSharedPackageContainerOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDeleteSharedPackageContainerOptions>
+    {
+        IDeleteSharedPackageContainerOptions(std::nullptr_t = nullptr) noexcept {}
+        IDeleteSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IDeleteSharedPackageContainerResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDeleteSharedPackageContainerResult>
+    {
+        IDeleteSharedPackageContainerResult(std::nullptr_t = nullptr) noexcept {}
+        IDeleteSharedPackageContainerResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IDeploymentResult :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDeploymentResult>
@@ -54,6 +82,13 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
     {
         IDeploymentResult2(std::nullptr_t = nullptr) noexcept {}
         IDeploymentResult2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IFindSharedPackageContainerOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFindSharedPackageContainerOptions>
+    {
+        IFindSharedPackageContainerOptions(std::nullptr_t = nullptr) noexcept {}
+        IFindSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IPackageAllUserProvisioningOptions :
         winrt::Windows::Foundation::IInspectable,
@@ -167,12 +202,61 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
         IRegisterPackageOptions(std::nullptr_t = nullptr) noexcept {}
         IRegisterPackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ISharedPackageContainer :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISharedPackageContainer>
+    {
+        ISharedPackageContainer(std::nullptr_t = nullptr) noexcept {}
+        ISharedPackageContainer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISharedPackageContainerManager :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISharedPackageContainerManager>
+    {
+        ISharedPackageContainerManager(std::nullptr_t = nullptr) noexcept {}
+        ISharedPackageContainerManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISharedPackageContainerManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISharedPackageContainerManagerStatics>
+    {
+        ISharedPackageContainerManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        ISharedPackageContainerManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISharedPackageContainerMember :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISharedPackageContainerMember>
+    {
+        ISharedPackageContainerMember(std::nullptr_t = nullptr) noexcept {}
+        ISharedPackageContainerMember(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISharedPackageContainerMemberFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISharedPackageContainerMemberFactory>
+    {
+        ISharedPackageContainerMemberFactory(std::nullptr_t = nullptr) noexcept {}
+        ISharedPackageContainerMemberFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IStagePackageOptions :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IStagePackageOptions>
     {
         IStagePackageOptions(std::nullptr_t = nullptr) noexcept {}
         IStagePackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IUpdateSharedPackageContainerOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUpdateSharedPackageContainerOptions>
+    {
+        IUpdateSharedPackageContainerOptions(std::nullptr_t = nullptr) noexcept {}
+        IUpdateSharedPackageContainerOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IUpdateSharedPackageContainerResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUpdateSharedPackageContainerResult>
+    {
+        IUpdateSharedPackageContainerResult(std::nullptr_t = nullptr) noexcept {}
+        IUpdateSharedPackageContainerResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

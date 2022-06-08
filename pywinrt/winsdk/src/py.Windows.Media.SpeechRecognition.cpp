@@ -33,6 +33,8 @@ namespace py::cpp::Windows::Media::SpeechRecognition
         PyTypeObject* type_SpeechRecognizerStateChangedEventArgs;
         PyTypeObject* type_SpeechRecognizerTimeouts;
         PyTypeObject* type_SpeechRecognizerUIOptions;
+        PyTypeObject* type_VoiceCommandManager;
+        PyTypeObject* type_VoiceCommandSet;
         PyTypeObject* type_ISpeechRecognitionConstraint;
     };
 
@@ -3068,6 +3070,193 @@ namespace py::cpp::Windows::Media::SpeechRecognition
         _type_slots_SpeechRecognizerUIOptions
     };
 
+    // ----- VoiceCommandManager class --------------------
+    constexpr const char* const type_name_VoiceCommandManager = "VoiceCommandManager";
+
+    static PyObject* _new_VoiceCommandManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_VoiceCommandManager);
+        return nullptr;
+    }
+
+    static PyObject* VoiceCommandManager_InstallCommandSetsFromStorageFileAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::StorageFile>(args, 0);
+
+                return py::convert(winrt::Windows::Media::SpeechRecognition::VoiceCommandManager::InstallCommandSetsFromStorageFileAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* VoiceCommandManager_get_InstalledCommandSets(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Media::SpeechRecognition::VoiceCommandManager::InstalledCommandSets());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_VoiceCommandManager[] = {
+        { "install_command_sets_from_storage_file_async", reinterpret_cast<PyCFunction>(VoiceCommandManager_InstallCommandSetsFromStorageFileAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_installed_command_sets", reinterpret_cast<PyCFunction>(VoiceCommandManager_get_InstalledCommandSets), METH_NOARGS | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_VoiceCommandManager[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_VoiceCommandManager[] = 
+    {
+        { Py_tp_new, _new_VoiceCommandManager },
+        { Py_tp_methods, _methods_VoiceCommandManager },
+        { Py_tp_getset, _getset_VoiceCommandManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_VoiceCommandManager =
+    {
+        "_winsdk_Windows_Media_SpeechRecognition.VoiceCommandManager",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_VoiceCommandManager
+    };
+
+    // ----- VoiceCommandSet class --------------------
+    constexpr const char* const type_name_VoiceCommandSet = "VoiceCommandSet";
+
+    static PyObject* _new_VoiceCommandSet(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_VoiceCommandSet);
+        return nullptr;
+    }
+
+    static void _dealloc_VoiceCommandSet(py::wrapper::Windows::Media::SpeechRecognition::VoiceCommandSet* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* VoiceCommandSet_SetPhraseListAsync(py::wrapper::Windows::Media::SpeechRecognition::VoiceCommandSet* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::hstring>>(args, 1);
+
+                return py::convert(self->obj.SetPhraseListAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* VoiceCommandSet_get_Language(py::wrapper::Windows::Media::SpeechRecognition::VoiceCommandSet* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Language());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* VoiceCommandSet_get_Name(py::wrapper::Windows::Media::SpeechRecognition::VoiceCommandSet* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Name());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_VoiceCommandSet(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Media::SpeechRecognition::VoiceCommandSet>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_VoiceCommandSet[] = {
+        { "set_phrase_list_async", reinterpret_cast<PyCFunction>(VoiceCommandSet_SetPhraseListAsync), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_VoiceCommandSet), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_VoiceCommandSet[] = {
+        { "language", reinterpret_cast<getter>(VoiceCommandSet_get_Language), nullptr, nullptr, nullptr },
+        { "name", reinterpret_cast<getter>(VoiceCommandSet_get_Name), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_VoiceCommandSet[] = 
+    {
+        { Py_tp_new, _new_VoiceCommandSet },
+        { Py_tp_dealloc, _dealloc_VoiceCommandSet },
+        { Py_tp_methods, _methods_VoiceCommandSet },
+        { Py_tp_getset, _getset_VoiceCommandSet },
+        { },
+    };
+
+    static PyType_Spec type_spec_VoiceCommandSet =
+    {
+        "_winsdk_Windows_Media_SpeechRecognition.VoiceCommandSet",
+        sizeof(py::wrapper::Windows::Media::SpeechRecognition::VoiceCommandSet),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_VoiceCommandSet
+    };
+
     // ----- ISpeechRecognitionConstraint interface --------------------
     constexpr const char* const type_name_ISpeechRecognitionConstraint = "ISpeechRecognitionConstraint";
 
@@ -3297,6 +3486,8 @@ namespace py::cpp::Windows::Media::SpeechRecognition
         Py_VISIT(state->type_SpeechRecognizerStateChangedEventArgs);
         Py_VISIT(state->type_SpeechRecognizerTimeouts);
         Py_VISIT(state->type_SpeechRecognizerUIOptions);
+        Py_VISIT(state->type_VoiceCommandManager);
+        Py_VISIT(state->type_VoiceCommandSet);
         Py_VISIT(state->type_ISpeechRecognitionConstraint);
 
         return 0;
@@ -3336,6 +3527,8 @@ namespace py::cpp::Windows::Media::SpeechRecognition
         Py_CLEAR(state->type_SpeechRecognizerStateChangedEventArgs);
         Py_CLEAR(state->type_SpeechRecognizerTimeouts);
         Py_CLEAR(state->type_SpeechRecognizerUIOptions);
+        Py_CLEAR(state->type_VoiceCommandManager);
+        Py_CLEAR(state->type_VoiceCommandSet);
         Py_CLEAR(state->type_ISpeechRecognitionConstraint);
 
         return 0;
@@ -3580,6 +3773,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Media_SpeechRecognition(void) noexcept
     }
 
     Py_INCREF(state->type_SpeechRecognizerUIOptions);
+
+    state->type_VoiceCommandManager = py::register_python_type(module.get(), type_name_VoiceCommandManager, &type_spec_VoiceCommandManager, nullptr);
+    if (!state->type_VoiceCommandManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_VoiceCommandManager);
+
+    state->type_VoiceCommandSet = py::register_python_type(module.get(), type_name_VoiceCommandSet, &type_spec_VoiceCommandSet, bases.get());
+    if (!state->type_VoiceCommandSet)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_VoiceCommandSet);
 
     state->type_ISpeechRecognitionConstraint = py::register_python_type(module.get(), type_name_ISpeechRecognitionConstraint, &type_spec_ISpeechRecognitionConstraint, bases.get());
     if (!state->type_ISpeechRecognitionConstraint)
@@ -4162,6 +4371,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::Media::SpeechRecognition::SpeechRec
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::SpeechRecognition::SpeechRecognizerUIOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Media::SpeechRecognition::VoiceCommandManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::SpeechRecognition;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::SpeechRecognition");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_VoiceCommandManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::SpeechRecognition::VoiceCommandManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Media::SpeechRecognition::VoiceCommandSet>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::SpeechRecognition;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::SpeechRecognition");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_VoiceCommandSet;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::SpeechRecognition::VoiceCommandSet is not registered");
         return nullptr;
     }
 

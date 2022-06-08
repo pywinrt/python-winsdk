@@ -370,6 +370,23 @@ class GeographicRegion(_winrt.Object):
     @staticmethod
     def is_supported(geographic_region_code: str) -> _winrt.Boolean: ...
 
+class JapanesePhoneme(_winrt.Object):
+    display_text: str
+    is_phrase_start: _winrt.Boolean
+    yomi_text: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> JapanesePhoneme: ...
+
+class JapanesePhoneticAnalyzer(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> JapanesePhoneticAnalyzer: ...
+    @typing.overload
+    @staticmethod
+    def get_words(input: str) -> typing.Optional[winsdk.windows.foundation.collections.IVectorView[JapanesePhoneme]]: ...
+    @typing.overload
+    @staticmethod
+    def get_words(input: str, mono_ruby: _winrt.Boolean) -> typing.Optional[winsdk.windows.foundation.collections.IVectorView[JapanesePhoneme]]: ...
+
 class Language(_winrt.Object):
     display_name: str
     language_tag: str

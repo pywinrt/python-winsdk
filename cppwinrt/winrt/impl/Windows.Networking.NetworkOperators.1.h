@@ -118,6 +118,13 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
         IESimWatcher(std::nullptr_t = nullptr) noexcept {}
         IESimWatcher(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IFdnAccessManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFdnAccessManagerStatics>
+    {
+        IFdnAccessManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IFdnAccessManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IHotspotAuthenticationContext :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IHotspotAuthenticationContext>
@@ -615,6 +622,13 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
         INetworkOperatorDataUsageTriggerDetails(std::nullptr_t = nullptr) noexcept {}
         INetworkOperatorDataUsageTriggerDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) INetworkOperatorNotificationEventDetails :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<INetworkOperatorNotificationEventDetails>
+    {
+        INetworkOperatorNotificationEventDetails(std::nullptr_t = nullptr) noexcept {}
+        INetworkOperatorNotificationEventDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) INetworkOperatorTetheringAccessPointConfiguration :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<INetworkOperatorTetheringAccessPointConfiguration>
@@ -642,6 +656,13 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     {
         INetworkOperatorTetheringClientManager(std::nullptr_t = nullptr) noexcept {}
         INetworkOperatorTetheringClientManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) INetworkOperatorTetheringEntitlementCheck :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<INetworkOperatorTetheringEntitlementCheck>
+    {
+        INetworkOperatorTetheringEntitlementCheck(std::nullptr_t = nullptr) noexcept {}
+        INetworkOperatorTetheringEntitlementCheck(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) INetworkOperatorTetheringManager :
         winrt::Windows::Foundation::IInspectable,

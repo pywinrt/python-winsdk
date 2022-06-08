@@ -82,6 +82,19 @@ class RemovalOptions(enum.IntFlag):
     PRESERVE_ROAMABLE_APPLICATION_DATA = 0x80
     REMOVE_FOR_ALL_USERS = 0x80000
 
+class SharedPackageContainerCreationCollisionOptions(enum.IntEnum):
+    FAIL_IF_EXISTS = 0
+    MERGE_WITH_EXISTING = 1
+    REPLACE_EXISTING = 2
+
+class SharedPackageContainerOperationStatus(enum.IntEnum):
+    SUCCESS = 0
+    BLOCKED_BY_POLICY = 1
+    ALREADY_EXISTS = 2
+    PACKAGE_FAMILY_EXISTS_IN_ANOTHER_CONTAINER = 3
+    NOT_FOUND = 4
+    UNKNOWN_FAILURE = 5
+
 class StubPackageOption(enum.IntEnum):
     DEFAULT = 0
     INSTALL_FULL = 1
@@ -97,17 +110,29 @@ _ns_module._register_PackageStatus(PackageStatus)
 _ns_module._register_PackageStubPreference(PackageStubPreference)
 _ns_module._register_PackageTypes(PackageTypes)
 _ns_module._register_RemovalOptions(RemovalOptions)
+_ns_module._register_SharedPackageContainerCreationCollisionOptions(SharedPackageContainerCreationCollisionOptions)
+_ns_module._register_SharedPackageContainerOperationStatus(SharedPackageContainerOperationStatus)
 _ns_module._register_StubPackageOption(StubPackageOption)
 
 DeploymentProgress = _ns_module.DeploymentProgress
 AddPackageOptions = _ns_module.AddPackageOptions
 AppInstallerManager = _ns_module.AppInstallerManager
 AutoUpdateSettingsOptions = _ns_module.AutoUpdateSettingsOptions
+CreateSharedPackageContainerOptions = _ns_module.CreateSharedPackageContainerOptions
+CreateSharedPackageContainerResult = _ns_module.CreateSharedPackageContainerResult
+DeleteSharedPackageContainerOptions = _ns_module.DeleteSharedPackageContainerOptions
+DeleteSharedPackageContainerResult = _ns_module.DeleteSharedPackageContainerResult
 DeploymentResult = _ns_module.DeploymentResult
+FindSharedPackageContainerOptions = _ns_module.FindSharedPackageContainerOptions
 PackageAllUserProvisioningOptions = _ns_module.PackageAllUserProvisioningOptions
 PackageManager = _ns_module.PackageManager
 PackageManagerDebugSettings = _ns_module.PackageManagerDebugSettings
 PackageUserInformation = _ns_module.PackageUserInformation
 PackageVolume = _ns_module.PackageVolume
 RegisterPackageOptions = _ns_module.RegisterPackageOptions
+SharedPackageContainer = _ns_module.SharedPackageContainer
+SharedPackageContainerManager = _ns_module.SharedPackageContainerManager
+SharedPackageContainerMember = _ns_module.SharedPackageContainerMember
 StagePackageOptions = _ns_module.StagePackageOptions
+UpdateSharedPackageContainerOptions = _ns_module.UpdateSharedPackageContainerOptions
+UpdateSharedPackageContainerResult = _ns_module.UpdateSharedPackageContainerResult

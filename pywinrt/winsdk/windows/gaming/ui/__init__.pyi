@@ -7,7 +7,9 @@ import typing
 import uuid
 
 import winsdk._winrt as _winrt
+import winsdk.windows.applicationmodel.activation
 import winsdk.windows.foundation
+import winsdk.windows.foundation.collections
 
 class GameChatMessageOrigin(enum.IntEnum):
     VOICE = 0
@@ -39,6 +41,15 @@ class GameBar(_winrt.Object):
     @staticmethod
     def remove_visibility_changed(token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 
+class GameChatMessageReceivedEventArgs(_winrt.Object):
+    app_display_name: str
+    app_id: str
+    message: str
+    origin: GameChatMessageOrigin
+    sender_name: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameChatMessageReceivedEventArgs: ...
+
 class GameChatOverlay(_winrt.Object):
     desired_position: GameChatOverlayPosition
     @staticmethod
@@ -46,4 +57,21 @@ class GameChatOverlay(_winrt.Object):
     def add_message(self, sender: str, message: str, origin: GameChatMessageOrigin) -> None: ...
     @staticmethod
     def get_default() -> typing.Optional[GameChatOverlay]: ...
+
+class GameChatOverlayMessageSource(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameChatOverlayMessageSource: ...
+    def __init__(self) -> None: ...
+    def set_delay_before_closing_after_message_received(self, value: winsdk.windows.foundation.TimeSpan) -> None: ...
+    def add_message_received(self, handler: winsdk.windows.foundation.TypedEventHandler[GameChatOverlayMessageSource, GameChatMessageReceivedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_message_received(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class GameUIProviderActivatedEventArgs(_winrt.Object):
+    kind: winsdk.windows.applicationmodel.activation.ActivationKind
+    previous_execution_state: winsdk.windows.applicationmodel.activation.ApplicationExecutionState
+    splash_screen: typing.Optional[winsdk.windows.applicationmodel.activation.SplashScreen]
+    game_u_i_args: typing.Optional[winsdk.windows.foundation.collections.ValueSet]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> GameUIProviderActivatedEventArgs: ...
+    def report_completed(self, results: typing.Optional[winsdk.windows.foundation.collections.ValueSet]) -> None: ...
 

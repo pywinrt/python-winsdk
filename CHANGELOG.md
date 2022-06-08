@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- Added Windows Extension SDK APIs [python-winsdk#9](https://github.com/pywinrt/python-winsdk/issues/9).
+
 ### Changed
 - Update CppWinRT to 2.0.220607.4.
 - Update PyWinRT to [v1.0.0-beta.5](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.5).

@@ -84,6 +84,34 @@ WINRT_EXPORT namespace winrt::Windows::UI::ApplicationSettings
         ISettingsCommandStatics(std::nullptr_t = nullptr) noexcept {}
         ISettingsCommandStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ISettingsPane :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISettingsPane>
+    {
+        ISettingsPane(std::nullptr_t = nullptr) noexcept {}
+        ISettingsPane(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISettingsPaneCommandsRequest :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISettingsPaneCommandsRequest>
+    {
+        ISettingsPaneCommandsRequest(std::nullptr_t = nullptr) noexcept {}
+        ISettingsPaneCommandsRequest(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISettingsPaneCommandsRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISettingsPaneCommandsRequestedEventArgs>
+    {
+        ISettingsPaneCommandsRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ISettingsPaneCommandsRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISettingsPaneStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISettingsPaneStatics>
+    {
+        ISettingsPaneStatics(std::nullptr_t = nullptr) noexcept {}
+        ISettingsPaneStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IWebAccountCommand :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IWebAccountCommand>

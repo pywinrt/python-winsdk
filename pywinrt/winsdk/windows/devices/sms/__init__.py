@@ -93,6 +93,13 @@ class SmsMessageClass(enum.IntEnum):
     CLASS2 = 3
     CLASS3 = 4
 
+class SmsMessageFilter(enum.IntEnum):
+    ALL = 0
+    UNREAD = 1
+    READ = 2
+    SENT = 3
+    DRAFT = 4
+
 class SmsMessageType(enum.IntEnum):
     BINARY = 0
     TEXT = 1
@@ -124,20 +131,37 @@ _ns_module._register_SmsEncoding(SmsEncoding)
 _ns_module._register_SmsFilterActionType(SmsFilterActionType)
 _ns_module._register_SmsGeographicalScope(SmsGeographicalScope)
 _ns_module._register_SmsMessageClass(SmsMessageClass)
+_ns_module._register_SmsMessageFilter(SmsMessageFilter)
 _ns_module._register_SmsMessageType(SmsMessageType)
 _ns_module._register_SmsModemErrorCode(SmsModemErrorCode)
 
 SmsEncodedLength = _ns_module.SmsEncodedLength
+DeleteSmsMessageOperation = _ns_module.DeleteSmsMessageOperation
+DeleteSmsMessagesOperation = _ns_module.DeleteSmsMessagesOperation
+GetSmsDeviceOperation = _ns_module.GetSmsDeviceOperation
+GetSmsMessageOperation = _ns_module.GetSmsMessageOperation
+GetSmsMessagesOperation = _ns_module.GetSmsMessagesOperation
+SendSmsMessageOperation = _ns_module.SendSmsMessageOperation
 SmsAppMessage = _ns_module.SmsAppMessage
+SmsBinaryMessage = _ns_module.SmsBinaryMessage
 SmsBroadcastMessage = _ns_module.SmsBroadcastMessage
+SmsDevice = _ns_module.SmsDevice
 SmsDevice2 = _ns_module.SmsDevice2
+SmsDeviceMessageStore = _ns_module.SmsDeviceMessageStore
 SmsFilterRule = _ns_module.SmsFilterRule
 SmsFilterRules = _ns_module.SmsFilterRules
+SmsMessageReceivedEventArgs = _ns_module.SmsMessageReceivedEventArgs
 SmsMessageReceivedTriggerDetails = _ns_module.SmsMessageReceivedTriggerDetails
 SmsMessageRegistration = _ns_module.SmsMessageRegistration
+SmsReceivedEventDetails = _ns_module.SmsReceivedEventDetails
 SmsSendMessageResult = _ns_module.SmsSendMessageResult
 SmsStatusMessage = _ns_module.SmsStatusMessage
+SmsTextMessage = _ns_module.SmsTextMessage
 SmsTextMessage2 = _ns_module.SmsTextMessage2
 SmsVoicemailMessage = _ns_module.SmsVoicemailMessage
 SmsWapMessage = _ns_module.SmsWapMessage
+ISmsBinaryMessage = _ns_module.ISmsBinaryMessage
+ISmsDevice = _ns_module.ISmsDevice
+ISmsMessage = _ns_module.ISmsMessage
 ISmsMessageBase = _ns_module.ISmsMessageBase
+ISmsTextMessage = _ns_module.ISmsTextMessage

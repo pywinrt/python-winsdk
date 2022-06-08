@@ -8,6 +8,7 @@ namespace py::cpp::Windows::UI::ApplicationSettings
 {
     struct module_state
     {
+        PyObject* type_SettingsEdgeLocation;
         PyObject* type_SupportedWebAccountActions;
         PyObject* type_WebAccountAction;
         PyTypeObject* type_AccountsSettingsPane;
@@ -15,10 +16,37 @@ namespace py::cpp::Windows::UI::ApplicationSettings
         PyTypeObject* type_AccountsSettingsPaneEventDeferral;
         PyTypeObject* type_CredentialCommand;
         PyTypeObject* type_SettingsCommand;
+        PyTypeObject* type_SettingsPane;
+        PyTypeObject* type_SettingsPaneCommandsRequest;
+        PyTypeObject* type_SettingsPaneCommandsRequestedEventArgs;
         PyTypeObject* type_WebAccountCommand;
         PyTypeObject* type_WebAccountInvokedArgs;
         PyTypeObject* type_WebAccountProviderCommand;
     };
+
+    static PyObject* register_SettingsEdgeLocation(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_SettingsEdgeLocation)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_SettingsEdgeLocation = type;
+        Py_INCREF(state->type_SettingsEdgeLocation);
+
+
+        Py_RETURN_NONE;
+    }
 
     static PyObject* register_SupportedWebAccountActions(PyObject* module, PyObject* type)
     {
@@ -913,6 +941,304 @@ namespace py::cpp::Windows::UI::ApplicationSettings
         _type_slots_SettingsCommand
     };
 
+    // ----- SettingsPane class --------------------
+    constexpr const char* const type_name_SettingsPane = "SettingsPane";
+
+    static PyObject* _new_SettingsPane(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SettingsPane);
+        return nullptr;
+    }
+
+    static void _dealloc_SettingsPane(py::wrapper::Windows::UI::ApplicationSettings::SettingsPane* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SettingsPane_GetForCurrentView(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::UI::ApplicationSettings::SettingsPane::GetForCurrentView());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SettingsPane_Show(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::UI::ApplicationSettings::SettingsPane::Show();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* SettingsPane_get_Edge(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::UI::ApplicationSettings::SettingsPane::Edge());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SettingsPane_add_CommandsRequested(py::wrapper::Windows::UI::ApplicationSettings::SettingsPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ApplicationSettings::SettingsPane, winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.CommandsRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SettingsPane_remove_CommandsRequested(py::wrapper::Windows::UI::ApplicationSettings::SettingsPane* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.CommandsRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SettingsPane(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::ApplicationSettings::SettingsPane>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SettingsPane[] = {
+        { "get_for_current_view", reinterpret_cast<PyCFunction>(SettingsPane_GetForCurrentView), METH_VARARGS | METH_STATIC, nullptr },
+        { "show", reinterpret_cast<PyCFunction>(SettingsPane_Show), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_edge", reinterpret_cast<PyCFunction>(SettingsPane_get_Edge), METH_NOARGS | METH_STATIC, nullptr },
+        { "add_commands_requested", reinterpret_cast<PyCFunction>(SettingsPane_add_CommandsRequested), METH_O, nullptr },
+        { "remove_commands_requested", reinterpret_cast<PyCFunction>(SettingsPane_remove_CommandsRequested), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_SettingsPane), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SettingsPane[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_SettingsPane[] = 
+    {
+        { Py_tp_new, _new_SettingsPane },
+        { Py_tp_dealloc, _dealloc_SettingsPane },
+        { Py_tp_methods, _methods_SettingsPane },
+        { Py_tp_getset, _getset_SettingsPane },
+        { },
+    };
+
+    static PyType_Spec type_spec_SettingsPane =
+    {
+        "_winsdk_Windows_UI_ApplicationSettings.SettingsPane",
+        sizeof(py::wrapper::Windows::UI::ApplicationSettings::SettingsPane),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SettingsPane
+    };
+
+    // ----- SettingsPaneCommandsRequest class --------------------
+    constexpr const char* const type_name_SettingsPaneCommandsRequest = "SettingsPaneCommandsRequest";
+
+    static PyObject* _new_SettingsPaneCommandsRequest(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SettingsPaneCommandsRequest);
+        return nullptr;
+    }
+
+    static void _dealloc_SettingsPaneCommandsRequest(py::wrapper::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SettingsPaneCommandsRequest_get_ApplicationCommands(py::wrapper::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ApplicationCommands());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SettingsPaneCommandsRequest(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SettingsPaneCommandsRequest[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SettingsPaneCommandsRequest), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SettingsPaneCommandsRequest[] = {
+        { "application_commands", reinterpret_cast<getter>(SettingsPaneCommandsRequest_get_ApplicationCommands), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SettingsPaneCommandsRequest[] = 
+    {
+        { Py_tp_new, _new_SettingsPaneCommandsRequest },
+        { Py_tp_dealloc, _dealloc_SettingsPaneCommandsRequest },
+        { Py_tp_methods, _methods_SettingsPaneCommandsRequest },
+        { Py_tp_getset, _getset_SettingsPaneCommandsRequest },
+        { },
+    };
+
+    static PyType_Spec type_spec_SettingsPaneCommandsRequest =
+    {
+        "_winsdk_Windows_UI_ApplicationSettings.SettingsPaneCommandsRequest",
+        sizeof(py::wrapper::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SettingsPaneCommandsRequest
+    };
+
+    // ----- SettingsPaneCommandsRequestedEventArgs class --------------------
+    constexpr const char* const type_name_SettingsPaneCommandsRequestedEventArgs = "SettingsPaneCommandsRequestedEventArgs";
+
+    static PyObject* _new_SettingsPaneCommandsRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SettingsPaneCommandsRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_SettingsPaneCommandsRequestedEventArgs(py::wrapper::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* SettingsPaneCommandsRequestedEventArgs_get_Request(py::wrapper::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Request());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_SettingsPaneCommandsRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SettingsPaneCommandsRequestedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_SettingsPaneCommandsRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SettingsPaneCommandsRequestedEventArgs[] = {
+        { "request", reinterpret_cast<getter>(SettingsPaneCommandsRequestedEventArgs_get_Request), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_SettingsPaneCommandsRequestedEventArgs[] = 
+    {
+        { Py_tp_new, _new_SettingsPaneCommandsRequestedEventArgs },
+        { Py_tp_dealloc, _dealloc_SettingsPaneCommandsRequestedEventArgs },
+        { Py_tp_methods, _methods_SettingsPaneCommandsRequestedEventArgs },
+        { Py_tp_getset, _getset_SettingsPaneCommandsRequestedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_SettingsPaneCommandsRequestedEventArgs =
+    {
+        "_winsdk_Windows_UI_ApplicationSettings.SettingsPaneCommandsRequestedEventArgs",
+        sizeof(py::wrapper::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SettingsPaneCommandsRequestedEventArgs
+    };
+
     // ----- WebAccountCommand class --------------------
     constexpr const char* const type_name_WebAccountCommand = "WebAccountCommand";
 
@@ -1228,6 +1554,7 @@ namespace py::cpp::Windows::UI::ApplicationSettings
     PyDoc_STRVAR(module_doc, "Windows::UI::ApplicationSettings");
 
     static PyMethodDef module_methods[] = {
+        {"_register_SettingsEdgeLocation", register_SettingsEdgeLocation, METH_O, "registers type"},
         {"_register_SupportedWebAccountActions", register_SupportedWebAccountActions, METH_O, "registers type"},
         {"_register_WebAccountAction", register_WebAccountAction, METH_O, "registers type"},
         {}};
@@ -1242,6 +1569,7 @@ namespace py::cpp::Windows::UI::ApplicationSettings
             return 0;
         }
 
+        Py_VISIT(state->type_SettingsEdgeLocation);
         Py_VISIT(state->type_SupportedWebAccountActions);
         Py_VISIT(state->type_WebAccountAction);
         Py_VISIT(state->type_AccountsSettingsPane);
@@ -1249,6 +1577,9 @@ namespace py::cpp::Windows::UI::ApplicationSettings
         Py_VISIT(state->type_AccountsSettingsPaneEventDeferral);
         Py_VISIT(state->type_CredentialCommand);
         Py_VISIT(state->type_SettingsCommand);
+        Py_VISIT(state->type_SettingsPane);
+        Py_VISIT(state->type_SettingsPaneCommandsRequest);
+        Py_VISIT(state->type_SettingsPaneCommandsRequestedEventArgs);
         Py_VISIT(state->type_WebAccountCommand);
         Py_VISIT(state->type_WebAccountInvokedArgs);
         Py_VISIT(state->type_WebAccountProviderCommand);
@@ -1265,6 +1596,7 @@ namespace py::cpp::Windows::UI::ApplicationSettings
             return 0;
         }
 
+        Py_CLEAR(state->type_SettingsEdgeLocation);
         Py_CLEAR(state->type_SupportedWebAccountActions);
         Py_CLEAR(state->type_WebAccountAction);
         Py_CLEAR(state->type_AccountsSettingsPane);
@@ -1272,6 +1604,9 @@ namespace py::cpp::Windows::UI::ApplicationSettings
         Py_CLEAR(state->type_AccountsSettingsPaneEventDeferral);
         Py_CLEAR(state->type_CredentialCommand);
         Py_CLEAR(state->type_SettingsCommand);
+        Py_CLEAR(state->type_SettingsPane);
+        Py_CLEAR(state->type_SettingsPaneCommandsRequest);
+        Py_CLEAR(state->type_SettingsPaneCommandsRequestedEventArgs);
         Py_CLEAR(state->type_WebAccountCommand);
         Py_CLEAR(state->type_WebAccountInvokedArgs);
         Py_CLEAR(state->type_WebAccountProviderCommand);
@@ -1423,6 +1758,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_ApplicationSettings(void) noexcept
 
     Py_INCREF(state->type_SettingsCommand);
 
+    state->type_SettingsPane = py::register_python_type(module.get(), type_name_SettingsPane, &type_spec_SettingsPane, bases.get());
+    if (!state->type_SettingsPane)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SettingsPane);
+
+    state->type_SettingsPaneCommandsRequest = py::register_python_type(module.get(), type_name_SettingsPaneCommandsRequest, &type_spec_SettingsPaneCommandsRequest, bases.get());
+    if (!state->type_SettingsPaneCommandsRequest)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SettingsPaneCommandsRequest);
+
+    state->type_SettingsPaneCommandsRequestedEventArgs = py::register_python_type(module.get(), type_name_SettingsPaneCommandsRequestedEventArgs, &type_spec_SettingsPaneCommandsRequestedEventArgs, bases.get());
+    if (!state->type_SettingsPaneCommandsRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SettingsPaneCommandsRequestedEventArgs);
+
     state->type_WebAccountCommand = py::register_python_type(module.get(), type_name_WebAccountCommand, &type_spec_WebAccountCommand, bases.get());
     if (!state->type_WebAccountCommand)
     {
@@ -1449,6 +1808,29 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_ApplicationSettings(void) noexcept
 
 
     return module.detach();
+}
+
+PyObject* py::py_type<winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::ApplicationSettings;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::ApplicationSettings");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SettingsEdgeLocation;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ApplicationSettings::SettingsEdgeLocation is not registered");
+        return nullptr;
+    }
+
+    return python_type;
 }
 
 PyObject* py::py_type<winrt::Windows::UI::ApplicationSettings::SupportedWebAccountActions>::get_python_type() noexcept {
@@ -1606,6 +1988,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsCo
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ApplicationSettings::SettingsCommand is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsPane>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::ApplicationSettings;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::ApplicationSettings");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SettingsPane;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ApplicationSettings::SettingsPane is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::ApplicationSettings;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::ApplicationSettings");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SettingsPaneCommandsRequest;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequest is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::ApplicationSettings;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::ApplicationSettings");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SettingsPaneCommandsRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ApplicationSettings::SettingsPaneCommandsRequestedEventArgs is not registered");
         return nullptr;
     }
 

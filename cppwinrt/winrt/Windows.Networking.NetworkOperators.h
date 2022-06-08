@@ -479,6 +479,12 @@ namespace winrt::impl
     {
         WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::IESimWatcher)->remove_Updated(impl::bind_in(token));
     }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_IFdnAccessManagerStatics<D>::RequestUnlockAsync(param::hstring const& contactListId) const
+    {
+        void* returnValue{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics)->RequestUnlockAsync(*(void**)(&contactListId), &returnValue));
+        return winrt::Windows::Foundation::IAsyncOperation<bool>{ returnValue, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Networking_NetworkOperators_IHotspotAuthenticationContext<D>::WirelessNetworkId() const
     {
         uint32_t value_impl_size{};
@@ -2136,6 +2142,42 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails)->get_NotificationKind(reinterpret_cast<int32_t*>(&value)));
         return value;
     }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails<D>::NotificationType() const
+    {
+        winrt::Windows::Networking::NetworkOperators::NetworkOperatorEventMessageType value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails)->get_NotificationType(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails<D>::NetworkAccountId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails)->get_NetworkAccountId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails<D>::EncodingType() const
+    {
+        uint8_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails)->get_EncodingType(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails<D>::Message() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails)->get_Message(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails<D>::RuleId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails)->get_RuleId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorNotificationEventDetails<D>::SmsMessage() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails)->get_SmsMessage(&value));
+        return winrt::Windows::Devices::Sms::ISmsMessage{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringAccessPointConfiguration<D>::Ssid() const
     {
         void* value{};
@@ -2195,6 +2237,10 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClientManager)->GetTetheringClients(&value));
         return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringClient>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringEntitlementCheck<D>::AuthorizeTethering(bool allow, param::hstring const& entitlementFailureReason) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck)->AuthorizeTethering(allow, *(void**)(&entitlementFailureReason)));
     }
     template <typename D> auto consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringManager<D>::MaxClientCount() const
     {
@@ -3091,6 +3137,20 @@ namespace winrt::impl
             this->shim().Updated(*reinterpret_cast<winrt::event_token const*>(&token));
             return 0;
         }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics> : produce_base<D, winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics>
+    {
+        int32_t __stdcall RequestUnlockAsync(void* contactListId, void** returnValue) noexcept final try
+        {
+            clear_abi(returnValue);
+            typename D::abi_guard guard(this->shim());
+            *returnValue = detach_from<winrt::Windows::Foundation::IAsyncOperation<bool>>(this->shim().RequestUnlockAsync(*reinterpret_cast<hstring const*>(&contactListId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
     };
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
@@ -5644,6 +5704,58 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails> : produce_base<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails>
+    {
+        int32_t __stdcall get_NotificationType(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Networking::NetworkOperators::NetworkOperatorEventMessageType>(this->shim().NotificationType());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_NetworkAccountId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().NetworkAccountId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_EncodingType(uint8_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint8_t>(this->shim().EncodingType());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Message(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Message());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RuleId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().RuleId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SmsMessage(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sms::ISmsMessage>(this->shim().SmsMessage());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration> : produce_base<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration>
     {
         int32_t __stdcall get_Ssid(void** value) noexcept final try
@@ -5744,6 +5856,19 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringClient>>(this->shim().GetTetheringClients());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck> : produce_base<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck>
+    {
+        int32_t __stdcall AuthorizeTethering(bool allow, void* entitlementFailureReason) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AuthorizeTethering(allow, *reinterpret_cast<hstring const*>(&entitlementFailureReason));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -6216,6 +6341,10 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     {
         impl::call_factory<ESimManager, IESimManagerStatics>([&](IESimManagerStatics const& f) { return f.ServiceInfoChanged(token); });
     }
+    inline auto FdnAccessManager::RequestUnlockAsync(param::hstring const& contactListId)
+    {
+        return impl::call_factory<FdnAccessManager, IFdnAccessManagerStatics>([&](IFdnAccessManagerStatics const& f) { return f.RequestUnlockAsync(contactListId); });
+    }
     inline auto HotspotAuthenticationContext::TryGetAuthenticationContext(param::hstring const& evenToken, winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationContext& context)
     {
         return impl::call_factory<HotspotAuthenticationContext, IHotspotAuthenticationContextStatics>([&](IHotspotAuthenticationContextStatics const& f) { return f.TryGetAuthenticationContext(evenToken, context); });
@@ -6396,6 +6525,7 @@ namespace std
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IESimServiceInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IESimUpdatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IESimWatcher> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::NetworkOperators::IFdnAccessManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContext2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IHotspotAuthenticationContextStatics> : winrt::impl::hash_base {};
@@ -6467,10 +6597,12 @@ namespace std
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppRecordDetailsResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppsResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorNotificationEventDetails> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClientManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringEntitlementCheck> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics2> : winrt::impl::hash_base {};
@@ -6502,6 +6634,7 @@ namespace std
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::ESimServiceInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::ESimUpdatedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::ESimWatcher> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::NetworkOperators::FdnAccessManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationContext> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::HotspotAuthenticationEventDetails> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::HotspotCredentialsAuthenticationResult> : winrt::impl::hash_base {};
@@ -6556,6 +6689,7 @@ namespace std
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppRecordDetailsResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::MobileBroadbandUiccAppsResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::NetworkOperatorDataUsageTriggerDetails> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::NetworkOperators::NetworkOperatorNotificationEventDetails> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringAccessPointConfiguration> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringClient> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringManager> : winrt::impl::hash_base {};

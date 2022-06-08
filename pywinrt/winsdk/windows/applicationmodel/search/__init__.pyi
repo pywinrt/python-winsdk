@@ -6,6 +6,7 @@ import typing
 import uuid
 
 import winsdk._winrt as _winrt
+import winsdk.windows.foundation
 import winsdk.windows.foundation.collections
 import winsdk.windows.storage
 import winsdk.windows.storage.streams
@@ -21,12 +22,87 @@ class LocalContentSuggestionSettings(_winrt.Object):
     def _from(obj: _winrt.Object) -> LocalContentSuggestionSettings: ...
     def __init__(self) -> None: ...
 
+class SearchPane(_winrt.Object):
+    show_on_keyboard_input: _winrt.Boolean
+    search_history_enabled: _winrt.Boolean
+    search_history_context: str
+    placeholder_text: str
+    language: str
+    query_text: str
+    visible: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPane: ...
+    @staticmethod
+    def get_for_current_view() -> typing.Optional[SearchPane]: ...
+    @staticmethod
+    def hide_this_application() -> None: ...
+    def set_local_content_suggestion_settings(self, settings: typing.Optional[LocalContentSuggestionSettings]) -> None: ...
+    @typing.overload
+    def show(self) -> None: ...
+    @typing.overload
+    def show(self, query: str) -> None: ...
+    def try_set_query_text(self, query: str) -> _winrt.Boolean: ...
+    def add_query_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[SearchPane, SearchPaneQueryChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_query_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_query_submitted(self, handler: winsdk.windows.foundation.TypedEventHandler[SearchPane, SearchPaneQuerySubmittedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_query_submitted(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_result_suggestion_chosen(self, handler: winsdk.windows.foundation.TypedEventHandler[SearchPane, SearchPaneResultSuggestionChosenEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_result_suggestion_chosen(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_suggestions_requested(self, handler: winsdk.windows.foundation.TypedEventHandler[SearchPane, SearchPaneSuggestionsRequestedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_suggestions_requested(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def add_visibility_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[SearchPane, SearchPaneVisibilityChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_visibility_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class SearchPaneQueryChangedEventArgs(_winrt.Object):
+    language: str
+    linguistic_details: typing.Optional[SearchPaneQueryLinguisticDetails]
+    query_text: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPaneQueryChangedEventArgs: ...
+
 class SearchPaneQueryLinguisticDetails(_winrt.Object):
     query_text_alternatives: typing.Optional[winsdk.windows.foundation.collections.IVectorView[str]]
     query_text_composition_length: _winrt.UInt32
     query_text_composition_start: _winrt.UInt32
     @staticmethod
     def _from(obj: _winrt.Object) -> SearchPaneQueryLinguisticDetails: ...
+
+class SearchPaneQuerySubmittedEventArgs(_winrt.Object):
+    language: str
+    query_text: str
+    linguistic_details: typing.Optional[SearchPaneQueryLinguisticDetails]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPaneQuerySubmittedEventArgs: ...
+
+class SearchPaneResultSuggestionChosenEventArgs(_winrt.Object):
+    tag: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPaneResultSuggestionChosenEventArgs: ...
+
+class SearchPaneSuggestionsRequest(_winrt.Object):
+    is_canceled: _winrt.Boolean
+    search_suggestion_collection: typing.Optional[SearchSuggestionCollection]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPaneSuggestionsRequest: ...
+    def get_deferral(self) -> typing.Optional[SearchPaneSuggestionsRequestDeferral]: ...
+
+class SearchPaneSuggestionsRequestDeferral(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPaneSuggestionsRequestDeferral: ...
+    def complete(self) -> None: ...
+
+class SearchPaneSuggestionsRequestedEventArgs(_winrt.Object):
+    language: str
+    linguistic_details: typing.Optional[SearchPaneQueryLinguisticDetails]
+    query_text: str
+    request: typing.Optional[SearchPaneSuggestionsRequest]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPaneSuggestionsRequestedEventArgs: ...
+
+class SearchPaneVisibilityChangedEventArgs(_winrt.Object):
+    visible: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> SearchPaneVisibilityChangedEventArgs: ...
 
 class SearchQueryLinguisticDetails(_winrt.Object):
     query_text_alternatives: typing.Optional[winsdk.windows.foundation.collections.IVectorView[str]]
@@ -56,4 +132,11 @@ class SearchSuggestionsRequestDeferral(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> SearchSuggestionsRequestDeferral: ...
     def complete(self) -> None: ...
+
+class ISearchPaneQueryChangedEventArgs(_winrt.Object):
+    language: str
+    linguistic_details: typing.Optional[SearchPaneQueryLinguisticDetails]
+    query_text: str
+    @staticmethod
+    def _from(obj: _winrt.Object) -> ISearchPaneQueryChangedEventArgs: ...
 

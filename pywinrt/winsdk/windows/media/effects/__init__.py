@@ -116,6 +116,7 @@ AudioRenderEffectsManager = _ns_module.AudioRenderEffectsManager
 CompositeVideoFrameContext = _ns_module.CompositeVideoFrameContext
 ProcessAudioFrameContext = _ns_module.ProcessAudioFrameContext
 ProcessVideoFrameContext = _ns_module.ProcessVideoFrameContext
+SlowMotionEffectDefinition = _ns_module.SlowMotionEffectDefinition
 VideoCompositorDefinition = _ns_module.VideoCompositorDefinition
 VideoEffectDefinition = _ns_module.VideoEffectDefinition
 VideoTransformEffectDefinition = _ns_module.VideoTransformEffectDefinition

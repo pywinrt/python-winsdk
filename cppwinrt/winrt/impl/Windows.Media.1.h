@@ -44,6 +44,13 @@ WINRT_EXPORT namespace winrt::Windows::Media
         IImageDisplayProperties(std::nullptr_t = nullptr) noexcept {}
         IImageDisplayProperties(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IMediaControl :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMediaControl>
+    {
+        IMediaControl(std::nullptr_t = nullptr) noexcept {}
+        IMediaControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IMediaExtension :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IMediaExtension>
