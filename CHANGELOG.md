@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [v1.0.0b5] - 2022-06-07
+
 ### Added
 - Added Windows Extension SDK APIs [python-winsdk#9](https://github.com/pywinrt/python-winsdk/issues/9).
 - Added Windows SDK (10.0.22621) for Windows 11, version 22H2 APIs.
@@ -35,7 +37,8 @@
 - Initial release.
 
 
-[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b4...HEAD
+[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b5...HEAD
+[v1.0.0b5]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b4...v1.0.0b5
 [v1.0.0b4]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b3...v1.0.0b4
 [v1.0.0b3]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b2...v1.0.0b3
 [v1.0.0b2]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b1...v1.0.0b2
