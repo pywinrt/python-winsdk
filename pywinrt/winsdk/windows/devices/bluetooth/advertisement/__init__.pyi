@@ -95,6 +95,7 @@ class BluetoothLEAdvertisementDataTypes(_winrt.Object):
     incomplete_service16_bit_uuids: _winrt.UInt8
     incomplete_service32_bit_uuids: _winrt.UInt8
     manufacturer_specific_data: _winrt.UInt8
+    peripheral_connection_interval_range: _winrt.UInt8
     public_target_address: _winrt.UInt8
     random_target_address: _winrt.UInt8
     service_data128_bit_uuids: _winrt.UInt8
@@ -104,7 +105,6 @@ class BluetoothLEAdvertisementDataTypes(_winrt.Object):
     service_solicitation16_bit_uuids: _winrt.UInt8
     service_solicitation32_bit_uuids: _winrt.UInt8
     shortened_local_name: _winrt.UInt8
-    slave_connection_interval_range: _winrt.UInt8
     tx_power_level: _winrt.UInt8
     @staticmethod
     def _from(obj: _winrt.Object) -> BluetoothLEAdvertisementDataTypes: ...

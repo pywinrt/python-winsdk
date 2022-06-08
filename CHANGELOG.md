@@ -6,6 +6,7 @@
 
 ### Added
 - Added Windows Extension SDK APIs [python-winsdk#9](https://github.com/pywinrt/python-winsdk/issues/9).
+- Added Windows SDK (10.0.22621) for Windows 11, version 22H2 APIs.
 
 ### Changed
 - Update CppWinRT to 2.0.220607.4.

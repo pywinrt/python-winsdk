@@ -65,6 +65,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController10)->get_CameraOcclusionInfo(&value));
         return winrt::Windows::Media::Devices::CameraOcclusionInfo{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Media_Devices_IAdvancedVideoCaptureDeviceController11<D>::TryAcquireExclusiveControl(param::hstring const& deviceId, winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode const& mode) const
+    {
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController11)->TryAcquireExclusiveControl(*(void**)(&deviceId), static_cast<int32_t>(mode), &result));
+        return result;
+    }
     template <typename D> auto consume_Windows_Media_Devices_IAdvancedVideoCaptureDeviceController2<D>::LowLagPhotoSequence() const
     {
         void* value{};
@@ -2025,6 +2031,19 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Media::Devices::CameraOcclusionInfo>(this->shim().CameraOcclusionInfo());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController11> : produce_base<D, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController11>
+    {
+        int32_t __stdcall TryAcquireExclusiveControl(void* deviceId, int32_t mode, bool* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<bool>(this->shim().TryAcquireExclusiveControl(*reinterpret_cast<hstring const*>(&deviceId), *reinterpret_cast<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode const*>(&mode)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -4911,6 +4930,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedPhotoControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController10> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController11> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController4> : winrt::impl::hash_base {};

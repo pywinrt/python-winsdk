@@ -40,6 +40,7 @@ namespace py::wrapper::Windows::System::Profile
     using PlatformDiagnosticsAndUsageDataSettings = py::winrt_wrapper<winrt::Windows::System::Profile::PlatformDiagnosticsAndUsageDataSettings>;
     using RetailInfo = py::winrt_wrapper<winrt::Windows::System::Profile::RetailInfo>;
     using SharedModeSettings = py::winrt_wrapper<winrt::Windows::System::Profile::SharedModeSettings>;
+    using SmartAppControlPolicy = py::winrt_wrapper<winrt::Windows::System::Profile::SmartAppControlPolicy>;
     using SystemIdentification = py::winrt_wrapper<winrt::Windows::System::Profile::SystemIdentification>;
     using SystemIdentificationInfo = py::winrt_wrapper<winrt::Windows::System::Profile::SystemIdentificationInfo>;
     using SystemSetupInfo = py::winrt_wrapper<winrt::Windows::System::Profile::SystemSetupInfo>;
@@ -130,6 +131,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::System::Profile::SharedModeSettings>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::System::Profile::SmartAppControlPolicy>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

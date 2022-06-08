@@ -22,6 +22,7 @@ namespace py::cpp::Windows::System::Profile
         PyTypeObject* type_PlatformDiagnosticsAndUsageDataSettings;
         PyTypeObject* type_RetailInfo;
         PyTypeObject* type_SharedModeSettings;
+        PyTypeObject* type_SmartAppControlPolicy;
         PyTypeObject* type_SystemIdentification;
         PyTypeObject* type_SystemIdentificationInfo;
         PyTypeObject* type_SystemSetupInfo;
@@ -1154,6 +1155,87 @@ namespace py::cpp::Windows::System::Profile
         _type_slots_SharedModeSettings
     };
 
+    // ----- SmartAppControlPolicy class --------------------
+    constexpr const char* const type_name_SmartAppControlPolicy = "SmartAppControlPolicy";
+
+    static PyObject* _new_SmartAppControlPolicy(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_SmartAppControlPolicy);
+        return nullptr;
+    }
+
+    static PyObject* SmartAppControlPolicy_get_IsEnabled(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::System::Profile::SmartAppControlPolicy::IsEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmartAppControlPolicy_add_Changed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::System::Profile::SmartAppControlPolicy::Changed(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* SmartAppControlPolicy_remove_Changed(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::System::Profile::SmartAppControlPolicy::Changed(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_SmartAppControlPolicy[] = {
+        { "get_is_enabled", reinterpret_cast<PyCFunction>(SmartAppControlPolicy_get_IsEnabled), METH_NOARGS | METH_STATIC, nullptr },
+        { "add_changed", reinterpret_cast<PyCFunction>(SmartAppControlPolicy_add_Changed), METH_O | METH_STATIC, nullptr },
+        { "remove_changed", reinterpret_cast<PyCFunction>(SmartAppControlPolicy_remove_Changed), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_SmartAppControlPolicy[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_SmartAppControlPolicy[] = 
+    {
+        { Py_tp_new, _new_SmartAppControlPolicy },
+        { Py_tp_methods, _methods_SmartAppControlPolicy },
+        { Py_tp_getset, _getset_SmartAppControlPolicy },
+        { },
+    };
+
+    static PyType_Spec type_spec_SmartAppControlPolicy =
+    {
+        "_winsdk_Windows_System_Profile.SmartAppControlPolicy",
+        0,
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_SmartAppControlPolicy
+    };
+
     // ----- SystemIdentification class --------------------
     constexpr const char* const type_name_SystemIdentification = "SystemIdentification";
 
@@ -1648,6 +1730,7 @@ namespace py::cpp::Windows::System::Profile
         Py_VISIT(state->type_PlatformDiagnosticsAndUsageDataSettings);
         Py_VISIT(state->type_RetailInfo);
         Py_VISIT(state->type_SharedModeSettings);
+        Py_VISIT(state->type_SmartAppControlPolicy);
         Py_VISIT(state->type_SystemIdentification);
         Py_VISIT(state->type_SystemIdentificationInfo);
         Py_VISIT(state->type_SystemSetupInfo);
@@ -1680,6 +1763,7 @@ namespace py::cpp::Windows::System::Profile
         Py_CLEAR(state->type_PlatformDiagnosticsAndUsageDataSettings);
         Py_CLEAR(state->type_RetailInfo);
         Py_CLEAR(state->type_SharedModeSettings);
+        Py_CLEAR(state->type_SmartAppControlPolicy);
         Py_CLEAR(state->type_SystemIdentification);
         Py_CLEAR(state->type_SystemIdentificationInfo);
         Py_CLEAR(state->type_SystemSetupInfo);
@@ -1872,6 +1956,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_System_Profile(void) noexcept
     }
 
     Py_INCREF(state->type_SharedModeSettings);
+
+    state->type_SmartAppControlPolicy = py::register_python_type(module.get(), type_name_SmartAppControlPolicy, &type_spec_SmartAppControlPolicy, nullptr);
+    if (!state->type_SmartAppControlPolicy)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_SmartAppControlPolicy);
 
     state->type_SystemIdentification = py::register_python_type(module.get(), type_name_SystemIdentification, &type_spec_SystemIdentification, nullptr);
     if (!state->type_SystemIdentification)
@@ -2233,6 +2325,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::System::Profile::SharedModeSettings
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::Profile::SharedModeSettings is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::System::Profile::SmartAppControlPolicy>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::System::Profile;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::System::Profile");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_SmartAppControlPolicy;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::System::Profile::SmartAppControlPolicy is not registered");
         return nullptr;
     }
 

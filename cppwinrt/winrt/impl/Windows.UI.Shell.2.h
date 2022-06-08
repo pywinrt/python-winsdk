@@ -11,6 +11,18 @@ WINRT_EXPORT namespace winrt::Windows::UI::Shell
         AdaptiveCardBuilder() = delete;
         static auto CreateAdaptiveCardFromJson(param::hstring const& value);
     };
+    struct __declspec(empty_bases) FocusSession : winrt::Windows::UI::Shell::IFocusSession
+    {
+        FocusSession(std::nullptr_t) noexcept {}
+        FocusSession(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Shell::IFocusSession(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) FocusSessionManager : winrt::Windows::UI::Shell::IFocusSessionManager
+    {
+        FocusSessionManager(std::nullptr_t) noexcept {}
+        FocusSessionManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Shell::IFocusSessionManager(ptr, take_ownership_from_abi) {}
+        static auto GetDefault();
+        [[nodiscard]] static auto IsSupported();
+    };
     struct __declspec(empty_bases) SecurityAppManager : winrt::Windows::UI::Shell::ISecurityAppManager
     {
         SecurityAppManager(std::nullptr_t) noexcept {}

@@ -16,6 +16,7 @@ namespace py::cpp::Windows::UI::ViewManagement
         PyObject* type_ApplicationViewWindowingMode;
         PyObject* type_FullScreenSystemOverlayMode;
         PyObject* type_HandPreference;
+        PyObject* type_ScreenCaptureDisabledBehavior;
         PyObject* type_UIColorType;
         PyObject* type_UIElementType;
         PyObject* type_UserInteractionMode;
@@ -228,6 +229,30 @@ namespace py::cpp::Windows::UI::ViewManagement
 
         state->type_HandPreference = type;
         Py_INCREF(state->type_HandPreference);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_ScreenCaptureDisabledBehavior(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_ScreenCaptureDisabledBehavior)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_ScreenCaptureDisabledBehavior = type;
+        Py_INCREF(state->type_ScreenCaptureDisabledBehavior);
 
 
         Py_RETURN_NONE;
@@ -1259,11 +1284,11 @@ namespace py::cpp::Windows::UI::ViewManagement
         }
     }
 
-    static PyObject* ApplicationView_get_IsFullScreenMode(py::wrapper::Windows::UI::ViewManagement::ApplicationView* self, void* /*unused*/) noexcept
+    static PyObject* ApplicationView_get_TitleBar(py::wrapper::Windows::UI::ViewManagement::ApplicationView* self, void* /*unused*/) noexcept
     {
         try
         {
-            return py::convert(self->obj.IsFullScreenMode());
+            return py::convert(self->obj.TitleBar());
         }
         catch (...)
         {
@@ -1272,11 +1297,11 @@ namespace py::cpp::Windows::UI::ViewManagement
         }
     }
 
-    static PyObject* ApplicationView_get_TitleBar(py::wrapper::Windows::UI::ViewManagement::ApplicationView* self, void* /*unused*/) noexcept
+    static PyObject* ApplicationView_get_IsFullScreenMode(py::wrapper::Windows::UI::ViewManagement::ApplicationView* self, void* /*unused*/) noexcept
     {
         try
         {
-            return py::convert(self->obj.TitleBar());
+            return py::convert(self->obj.IsFullScreenMode());
         }
         catch (...)
         {
@@ -1580,8 +1605,8 @@ namespace py::cpp::Windows::UI::ViewManagement
         { "visible_bounds", reinterpret_cast<getter>(ApplicationView_get_VisibleBounds), nullptr, nullptr, nullptr },
         { "desired_bounds_mode", reinterpret_cast<getter>(ApplicationView_get_DesiredBoundsMode), nullptr, nullptr, nullptr },
         { "full_screen_system_overlay_mode", reinterpret_cast<getter>(ApplicationView_get_FullScreenSystemOverlayMode), reinterpret_cast<setter>(ApplicationView_put_FullScreenSystemOverlayMode), nullptr, nullptr },
-        { "is_full_screen_mode", reinterpret_cast<getter>(ApplicationView_get_IsFullScreenMode), nullptr, nullptr, nullptr },
         { "title_bar", reinterpret_cast<getter>(ApplicationView_get_TitleBar), nullptr, nullptr, nullptr },
+        { "is_full_screen_mode", reinterpret_cast<getter>(ApplicationView_get_IsFullScreenMode), nullptr, nullptr, nullptr },
         { "view_mode", reinterpret_cast<getter>(ApplicationView_get_ViewMode), nullptr, nullptr, nullptr },
         { "persisted_state_id", reinterpret_cast<getter>(ApplicationView_get_PersistedStateId), reinterpret_cast<setter>(ApplicationView_put_PersistedStateId), nullptr, nullptr },
         { "windowing_environment", reinterpret_cast<getter>(ApplicationView_get_WindowingEnvironment), nullptr, nullptr, nullptr },
@@ -4798,6 +4823,7 @@ namespace py::cpp::Windows::UI::ViewManagement
         {"_register_ApplicationViewWindowingMode", register_ApplicationViewWindowingMode, METH_O, "registers type"},
         {"_register_FullScreenSystemOverlayMode", register_FullScreenSystemOverlayMode, METH_O, "registers type"},
         {"_register_HandPreference", register_HandPreference, METH_O, "registers type"},
+        {"_register_ScreenCaptureDisabledBehavior", register_ScreenCaptureDisabledBehavior, METH_O, "registers type"},
         {"_register_UIColorType", register_UIColorType, METH_O, "registers type"},
         {"_register_UIElementType", register_UIElementType, METH_O, "registers type"},
         {"_register_UserInteractionMode", register_UserInteractionMode, METH_O, "registers type"},
@@ -4822,6 +4848,7 @@ namespace py::cpp::Windows::UI::ViewManagement
         Py_VISIT(state->type_ApplicationViewWindowingMode);
         Py_VISIT(state->type_FullScreenSystemOverlayMode);
         Py_VISIT(state->type_HandPreference);
+        Py_VISIT(state->type_ScreenCaptureDisabledBehavior);
         Py_VISIT(state->type_UIColorType);
         Py_VISIT(state->type_UIElementType);
         Py_VISIT(state->type_UserInteractionMode);
@@ -4866,6 +4893,7 @@ namespace py::cpp::Windows::UI::ViewManagement
         Py_CLEAR(state->type_ApplicationViewWindowingMode);
         Py_CLEAR(state->type_FullScreenSystemOverlayMode);
         Py_CLEAR(state->type_HandPreference);
+        Py_CLEAR(state->type_ScreenCaptureDisabledBehavior);
         Py_CLEAR(state->type_UIColorType);
         Py_CLEAR(state->type_UIElementType);
         Py_CLEAR(state->type_UserInteractionMode);
@@ -5331,6 +5359,29 @@ PyObject* py::py_type<winrt::Windows::UI::ViewManagement::HandPreference>::get_p
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ViewManagement::HandPreference is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::UI::ViewManagement::ScreenCaptureDisabledBehavior>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::ViewManagement;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::ViewManagement");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ScreenCaptureDisabledBehavior;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::ViewManagement::ScreenCaptureDisabledBehavior is not registered");
         return nullptr;
     }
 

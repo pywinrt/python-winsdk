@@ -2204,6 +2204,19 @@ namespace py::cpp::Windows::Media::Capture::Frames
         }
     }
 
+    static PyObject* MediaFrameSourceInfo_get_IsShareable(py::wrapper::Windows::Media::Capture::Frames::MediaFrameSourceInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsShareable());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_MediaFrameSourceInfo(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -2234,6 +2247,7 @@ namespace py::cpp::Windows::Media::Capture::Frames
         { "source_kind", reinterpret_cast<getter>(MediaFrameSourceInfo_get_SourceKind), nullptr, nullptr, nullptr },
         { "profile_id", reinterpret_cast<getter>(MediaFrameSourceInfo_get_ProfileId), nullptr, nullptr, nullptr },
         { "video_profile_media_description", reinterpret_cast<getter>(MediaFrameSourceInfo_get_VideoProfileMediaDescription), nullptr, nullptr, nullptr },
+        { "is_shareable", reinterpret_cast<getter>(MediaFrameSourceInfo_get_IsShareable), nullptr, nullptr, nullptr },
         { }
     };
 

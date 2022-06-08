@@ -220,6 +220,12 @@ WINRT_EXPORT namespace winrt::Windows::UI::Notifications
         Expired = 2,
         Added = 3,
     };
+    enum class ToastNotificationMode : int32_t
+    {
+        Unrestricted = 0,
+        PriorityOnly = 1,
+        AlarmsOnly = 2,
+    };
     enum class ToastNotificationPriority : int32_t
     {
         Default = 0,
@@ -297,6 +303,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Notifications
     struct IToastNotificationHistoryChangedTriggerDetail2;
     struct IToastNotificationManagerForUser;
     struct IToastNotificationManagerForUser2;
+    struct IToastNotificationManagerForUser3;
     struct IToastNotificationManagerStatics;
     struct IToastNotificationManagerStatics2;
     struct IToastNotificationManagerStatics4;
@@ -402,6 +409,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Notifications::IToastNotificationHistoryChangedTriggerDetail2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics4>{ using type = interface_category; };
@@ -459,6 +467,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Notifications::TileTemplateType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Notifications::ToastDismissalReason>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Notifications::ToastHistoryChangedType>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::UI::Notifications::ToastNotificationMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Notifications::ToastNotificationPriority>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Notifications::ToastTemplateType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Notifications::UserNotificationChangedKind>{ using type = enum_category; };
@@ -510,6 +519,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::TileTemplateType> = L"Windows.UI.Notifications.TileTemplateType";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::ToastDismissalReason> = L"Windows.UI.Notifications.ToastDismissalReason";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::ToastHistoryChangedType> = L"Windows.UI.Notifications.ToastHistoryChangedType";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::ToastNotificationMode> = L"Windows.UI.Notifications.ToastNotificationMode";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::ToastNotificationPriority> = L"Windows.UI.Notifications.ToastNotificationPriority";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::ToastTemplateType> = L"Windows.UI.Notifications.ToastTemplateType";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::UserNotificationChangedKind> = L"Windows.UI.Notifications.UserNotificationChangedKind";
@@ -569,6 +579,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::IToastNotificationHistoryChangedTriggerDetail2> = L"Windows.UI.Notifications.IToastNotificationHistoryChangedTriggerDetail2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser> = L"Windows.UI.Notifications.IToastNotificationManagerForUser";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser2> = L"Windows.UI.Notifications.IToastNotificationManagerForUser2";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3> = L"Windows.UI.Notifications.IToastNotificationManagerForUser3";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics> = L"Windows.UI.Notifications.IToastNotificationManagerStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics2> = L"Windows.UI.Notifications.IToastNotificationManagerStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics4> = L"Windows.UI.Notifications.IToastNotificationManagerStatics4";
@@ -634,6 +645,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Notifications::IToastNotificationHistoryChangedTriggerDetail2>{ 0x0B36E982,0xC871,0x49FB,{ 0xBA,0xBB,0x25,0xBD,0xBC,0x4C,0xC4,0x5B } }; // 0B36E982-C871-49FB-BABB-25BDBC4CC45B
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser>{ 0x79AB57F6,0x43FE,0x487B,{ 0x8A,0x7F,0x99,0x56,0x72,0x00,0xAE,0x94 } }; // 79AB57F6-43FE-487B-8A7F-99567200AE94
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser2>{ 0x679C64B7,0x81AB,0x42C2,{ 0x88,0x19,0xC9,0x58,0x76,0x77,0x53,0xF4 } }; // 679C64B7-81AB-42C2-8819-C958767753F4
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3>{ 0x3EFCB176,0x6CC1,0x56DC,{ 0x97,0x3B,0x25,0x1F,0x7A,0xAC,0xB1,0xC5 } }; // 3EFCB176-6CC1-56DC-973B-251F7AACB1C5
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics>{ 0x50AC103F,0xD235,0x4598,{ 0xBB,0xEF,0x98,0xFE,0x4D,0x1A,0x3A,0xD4 } }; // 50AC103F-D235-4598-BBEF-98FE4D1A3AD4
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics2>{ 0x7AB93C52,0x0E48,0x4750,{ 0xBA,0x9D,0x1A,0x41,0x13,0x98,0x18,0x47 } }; // 7AB93C52-0E48-4750-BA9D-1A4113981847
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics4>{ 0x8F993FD3,0xE516,0x45FB,{ 0x81,0x30,0x39,0x8E,0x93,0xFA,0x52,0xC3 } }; // 8F993FD3-E516-45FB-8130-398E93FA52C3
@@ -1220,6 +1232,15 @@ namespace winrt::impl
             virtual int32_t __stdcall GetHistoryForToastCollectionIdAsync(void*, void**) noexcept = 0;
             virtual int32_t __stdcall GetToastCollectionManager(void**) noexcept = 0;
             virtual int32_t __stdcall GetToastCollectionManagerWithAppId(void*, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_NotificationMode(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall add_NotificationModeChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_NotificationModeChanged(winrt::event_token) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::Notifications::IToastNotificationManagerStatics>
@@ -1965,6 +1986,19 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser2>
     {
         template <typename D> using type = consume_Windows_UI_Notifications_IToastNotificationManagerForUser2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Notifications_IToastNotificationManagerForUser3
+    {
+        [[nodiscard]] auto NotificationMode() const;
+        auto NotificationModeChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Notifications::ToastNotificationManagerForUser, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using NotificationModeChanged_revoker = impl::event_revoker<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3, &impl::abi_t<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3>::remove_NotificationModeChanged>;
+        [[nodiscard]] auto NotificationModeChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Notifications::ToastNotificationManagerForUser, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        auto NotificationModeChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3>
+    {
+        template <typename D> using type = consume_Windows_UI_Notifications_IToastNotificationManagerForUser3<D>;
     };
     template <typename D>
     struct consume_Windows_UI_Notifications_IToastNotificationManagerStatics

@@ -110,6 +110,12 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::Networking::Connectivity::DomainAuthenticationKind>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Networking::Connectivity::DomainConnectivityLevel>
     {
         static PyObject* get_python_type() noexcept;

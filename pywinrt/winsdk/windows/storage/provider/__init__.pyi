@@ -11,6 +11,7 @@ import winsdk.windows.foundation
 import winsdk.windows.foundation.collections
 import winsdk.windows.storage
 import winsdk.windows.storage.streams
+import winsdk.windows.ui
 
 class CachedFileOptions(enum.IntFlag):
     NONE = 0
@@ -81,6 +82,11 @@ class StorageProviderState(enum.IntEnum):
     WARNING = 4
     OFFLINE = 5
 
+class StorageProviderUICommandState(enum.IntEnum):
+    ENABLED = 0
+    DISABLED = 1
+    HIDDEN = 2
+
 class StorageProviderUriSourceStatus(enum.IntEnum):
     SUCCESS = 0
     NO_SYNC_ROOT = 1
@@ -138,25 +144,6 @@ class FileUpdateRequestedEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> FileUpdateRequestedEventArgs: ...
 
-class StorageProviderError(_winrt.Object):
-    secondary_action: typing.Optional[StorageProviderErrorCommand]
-    primary_action: typing.Optional[StorageProviderErrorCommand]
-    informational_link: typing.Optional[StorageProviderErrorCommand]
-    file_path: str
-    id: str
-    message: str
-    title: str
-    @staticmethod
-    def _from(obj: _winrt.Object) -> StorageProviderError: ...
-    def __init__(self, id: str, title: str, message: str) -> None: ...
-
-class StorageProviderErrorCommand(_winrt.Object):
-    action_uri: typing.Optional[winsdk.windows.foundation.Uri]
-    label: str
-    @staticmethod
-    def _from(obj: _winrt.Object) -> StorageProviderErrorCommand: ...
-    def __init__(self, label: str, action_uri: typing.Optional[winsdk.windows.foundation.Uri]) -> None: ...
-
 class StorageProviderFileTypeInfo(_winrt.Object):
     file_extension: str
     icon_resource: str
@@ -200,16 +187,34 @@ class StorageProviderItemPropertyDefinition(_winrt.Object):
     def _from(obj: _winrt.Object) -> StorageProviderItemPropertyDefinition: ...
     def __init__(self) -> None: ...
 
-class StorageProviderStatus(_winrt.Object):
-    error_messages: typing.Optional[winsdk.windows.foundation.collections.IVectorView[StorageProviderError]]
+class StorageProviderMoreInfoUI(_winrt.Object):
     message: str
-    state: StorageProviderState
+    command: typing.Optional[IStorageProviderUICommand]
     @staticmethod
-    def _from(obj: _winrt.Object) -> StorageProviderStatus: ...
-    @typing.overload
-    def __init__(self, state: StorageProviderState, message: str) -> None: ...
-    @typing.overload
-    def __init__(self, state: StorageProviderState, message: str, error_messages: typing.Iterable[StorageProviderError]) -> None: ...
+    def _from(obj: _winrt.Object) -> StorageProviderMoreInfoUI: ...
+    def __init__(self) -> None: ...
+
+class StorageProviderQuotaUI(_winrt.Object):
+    quota_used_label: str
+    quota_used_in_bytes: _winrt.UInt64
+    quota_used_color: typing.Optional[typing.Optional[winsdk.windows.ui.Color]]
+    quota_total_in_bytes: _winrt.UInt64
+    @staticmethod
+    def _from(obj: _winrt.Object) -> StorageProviderQuotaUI: ...
+    def __init__(self) -> None: ...
+
+class StorageProviderStatusUI(_winrt.Object):
+    sync_status_command: typing.Optional[IStorageProviderUICommand]
+    quota_u_i: typing.Optional[StorageProviderQuotaUI]
+    provider_state_label: str
+    provider_state_icon: typing.Optional[winsdk.windows.foundation.Uri]
+    provider_state: StorageProviderState
+    provider_secondary_commands: typing.Optional[winsdk.windows.foundation.collections.IVector[IStorageProviderUICommand]]
+    provider_primary_command: typing.Optional[IStorageProviderUICommand]
+    more_info_u_i: typing.Optional[StorageProviderMoreInfoUI]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> StorageProviderStatusUI: ...
+    def __init__(self) -> None: ...
 
 class StorageProviderSyncRootInfo(_winrt.Object):
     version: str
@@ -250,11 +255,6 @@ class StorageProviderSyncRootManager(_winrt.Object):
     @staticmethod
     def unregister(id: str) -> None: ...
 
-class IStorageProviderHandlerFactory(_winrt.Object):
-    @staticmethod
-    def _from(obj: _winrt.Object) -> IStorageProviderHandlerFactory: ...
-    def get_status_source(self, sync_root_id: str) -> typing.Optional[IStorageProviderStatusSource]: ...
-
 class IStorageProviderItemPropertySource(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> IStorageProviderItemPropertySource: ...
@@ -265,12 +265,26 @@ class IStorageProviderPropertyCapabilities(_winrt.Object):
     def _from(obj: _winrt.Object) -> IStorageProviderPropertyCapabilities: ...
     def is_property_supported(self, property_canonical_name: str) -> _winrt.Boolean: ...
 
-class IStorageProviderStatusSource(_winrt.Object):
+class IStorageProviderStatusUISource(_winrt.Object):
     @staticmethod
-    def _from(obj: _winrt.Object) -> IStorageProviderStatusSource: ...
-    def get_status(self) -> typing.Optional[StorageProviderStatus]: ...
-    def add_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[IStorageProviderStatusSource, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
-    def remove_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+    def _from(obj: _winrt.Object) -> IStorageProviderStatusUISource: ...
+    def get_status_u_i(self) -> typing.Optional[StorageProviderStatusUI]: ...
+    def add_status_u_i_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[IStorageProviderStatusUISource, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_status_u_i_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class IStorageProviderStatusUISourceFactory(_winrt.Object):
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IStorageProviderStatusUISourceFactory: ...
+    def get_status_u_i_source(self, sync_root_id: str) -> typing.Optional[IStorageProviderStatusUISource]: ...
+
+class IStorageProviderUICommand(_winrt.Object):
+    description: str
+    icon: typing.Optional[winsdk.windows.foundation.Uri]
+    label: str
+    state: StorageProviderUICommandState
+    @staticmethod
+    def _from(obj: _winrt.Object) -> IStorageProviderUICommand: ...
+    def invoke(self) -> None: ...
 
 class IStorageProviderUriSource(_winrt.Object):
     @staticmethod

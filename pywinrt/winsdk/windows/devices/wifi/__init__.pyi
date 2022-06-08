@@ -37,6 +37,39 @@ class WiFiNetworkKind(enum.IntEnum):
     INFRASTRUCTURE = 1
     ADHOC = 2
 
+class WiFiOnDemandHotspotAvailability(enum.IntEnum):
+    AVAILABLE = 0
+    UNAVAILABLE = 1
+
+class WiFiOnDemandHotspotCellularBars(enum.IntEnum):
+    ZERO_BARS = 0
+    ONE_BAR = 1
+    TWO_BARS = 2
+    THREE_BARS = 3
+    FOUR_BARS = 4
+    FIVE_BARS = 5
+
+class WiFiOnDemandHotspotConnectStatus(enum.IntEnum):
+    UNSPECIFIED_FAILURE = 0
+    SUCCESS = 1
+    APP_TIMED_OUT = 2
+    INVALID_CREDENTIAL = 3
+    NETWORK_NOT_AVAILABLE = 4
+    UNSUPPORTED_AUTHENTICATION_PROTOCOL = 5
+    BLUETOOTH_CONNECT_FAILED = 6
+    BLUETOOTH_TRANSMISSION_ERROR = 7
+    OPERATION_CANCELED_BY_USER = 8
+    ENTITLEMENT_CHECK_FAILED = 9
+    NO_CELLULAR_SIGNAL = 10
+    CELLULAR_DATA_TURNED_OFF = 11
+    WLAN_CONNECT_FAILED = 12
+    WLAN_NOT_VISIBLE = 13
+    ACCESS_POINT_CANNOT_CONNECT = 14
+    CELLULAR_CONNECT_TIMED_OUT = 15
+    ROAMING_NOT_ALLOWED = 16
+    PAIRING_REQUIRED = 17
+    DATA_LIMIT_REACHED = 18
+
 class WiFiPhyKind(enum.IntEnum):
     UNKNOWN = 0
     FHSS = 1
@@ -49,6 +82,7 @@ class WiFiPhyKind(enum.IntEnum):
     VHT = 8
     DMG = 9
     H_E = 10
+    EHT = 11
 
 class WiFiReconnectionKind(enum.IntEnum):
     AUTOMATIC = 0
@@ -121,6 +155,39 @@ class WiFiNetworkReport(_winrt.Object):
     timestamp: winsdk.windows.foundation.DateTime
     @staticmethod
     def _from(obj: _winrt.Object) -> WiFiNetworkReport: ...
+
+class WiFiOnDemandHotspotConnectTriggerDetails(_winrt.Object):
+    requested_network: typing.Optional[WiFiOnDemandHotspotNetwork]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> WiFiOnDemandHotspotConnectTriggerDetails: ...
+    def connect(self) -> typing.Optional[WiFiOnDemandHotspotConnectionResult]: ...
+    def connect_async(self) -> winsdk.windows.foundation.IAsyncOperation[WiFiOnDemandHotspotConnectionResult]: ...
+    def report_error(self, status: WiFiOnDemandHotspotConnectStatus) -> None: ...
+
+class WiFiOnDemandHotspotConnectionResult(_winrt.Object):
+    status: WiFiOnDemandHotspotConnectStatus
+    @staticmethod
+    def _from(obj: _winrt.Object) -> WiFiOnDemandHotspotConnectionResult: ...
+
+class WiFiOnDemandHotspotNetwork(_winrt.Object):
+    id: uuid.UUID
+    @staticmethod
+    def _from(obj: _winrt.Object) -> WiFiOnDemandHotspotNetwork: ...
+    @staticmethod
+    def get_or_create_by_id(network_id: uuid.UUID) -> typing.Optional[WiFiOnDemandHotspotNetwork]: ...
+    def get_properties(self) -> typing.Optional[WiFiOnDemandHotspotNetworkProperties]: ...
+    def update_properties(self, new_properties: typing.Optional[WiFiOnDemandHotspotNetworkProperties]) -> None: ...
+
+class WiFiOnDemandHotspotNetworkProperties(_winrt.Object):
+    ssid: str
+    remaining_battery_percent: typing.Optional[typing.Optional[_winrt.UInt32]]
+    password: typing.Optional[winsdk.windows.security.credentials.PasswordCredential]
+    is_metered: _winrt.Boolean
+    display_name: str
+    cellular_bars: typing.Optional[typing.Optional[WiFiOnDemandHotspotCellularBars]]
+    availability: WiFiOnDemandHotspotAvailability
+    @staticmethod
+    def _from(obj: _winrt.Object) -> WiFiOnDemandHotspotNetworkProperties: ...
 
 class WiFiWpsConfigurationResult(_winrt.Object):
     status: WiFiWpsConfigurationStatus

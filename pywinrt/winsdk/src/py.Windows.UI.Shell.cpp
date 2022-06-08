@@ -13,6 +13,8 @@ namespace py::cpp::Windows::UI::Shell
         PyObject* type_SecurityAppSubstatus;
         PyObject* type_ShareWindowCommand;
         PyTypeObject* type_AdaptiveCardBuilder;
+        PyTypeObject* type_FocusSession;
+        PyTypeObject* type_FocusSessionManager;
         PyTypeObject* type_SecurityAppManager;
         PyTypeObject* type_ShareWindowCommandEventArgs;
         PyTypeObject* type_ShareWindowCommandSource;
@@ -175,6 +177,335 @@ namespace py::cpp::Windows::UI::Shell
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_AdaptiveCardBuilder
+    };
+
+    // ----- FocusSession class --------------------
+    constexpr const char* const type_name_FocusSession = "FocusSession";
+
+    static PyObject* _new_FocusSession(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FocusSession);
+        return nullptr;
+    }
+
+    static void _dealloc_FocusSession(py::wrapper::Windows::UI::Shell::FocusSession* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* FocusSession_End(py::wrapper::Windows::UI::Shell::FocusSession* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.End();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSession_get_Id(py::wrapper::Windows::UI::Shell::FocusSession* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_FocusSession(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::FocusSession>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FocusSession[] = {
+        { "end", reinterpret_cast<PyCFunction>(FocusSession_End), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_FocusSession), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FocusSession[] = {
+        { "id", reinterpret_cast<getter>(FocusSession_get_Id), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_FocusSession[] = 
+    {
+        { Py_tp_new, _new_FocusSession },
+        { Py_tp_dealloc, _dealloc_FocusSession },
+        { Py_tp_methods, _methods_FocusSession },
+        { Py_tp_getset, _getset_FocusSession },
+        { },
+    };
+
+    static PyType_Spec type_spec_FocusSession =
+    {
+        "_winsdk_Windows_UI_Shell.FocusSession",
+        sizeof(py::wrapper::Windows::UI::Shell::FocusSession),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FocusSession
+    };
+
+    // ----- FocusSessionManager class --------------------
+    constexpr const char* const type_name_FocusSessionManager = "FocusSessionManager";
+
+    static PyObject* _new_FocusSessionManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_FocusSessionManager);
+        return nullptr;
+    }
+
+    static void _dealloc_FocusSessionManager(py::wrapper::Windows::UI::Shell::FocusSessionManager* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* FocusSessionManager_DeactivateFocus(py::wrapper::Windows::UI::Shell::FocusSessionManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.DeactivateFocus();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSessionManager_GetDefault(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::UI::Shell::FocusSessionManager::GetDefault());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSessionManager_GetSession(py::wrapper::Windows::UI::Shell::FocusSessionManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(self->obj.GetSession(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSessionManager_TryStartFocusSession(py::wrapper::Windows::UI::Shell::FocusSessionManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.TryStartFocusSession());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::DateTime>(args, 0);
+
+                return py::convert(self->obj.TryStartFocusSession(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSessionManager_get_IsFocusActive(py::wrapper::Windows::UI::Shell::FocusSessionManager* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsFocusActive());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSessionManager_get_IsSupported(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::UI::Shell::FocusSessionManager::IsSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSessionManager_add_IsFocusActiveChanged(py::wrapper::Windows::UI::Shell::FocusSessionManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::FocusSessionManager, winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(self->obj.IsFocusActiveChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* FocusSessionManager_remove_IsFocusActiveChanged(py::wrapper::Windows::UI::Shell::FocusSessionManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.IsFocusActiveChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_FocusSessionManager(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::FocusSessionManager>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FocusSessionManager[] = {
+        { "deactivate_focus", reinterpret_cast<PyCFunction>(FocusSessionManager_DeactivateFocus), METH_VARARGS, nullptr },
+        { "get_default", reinterpret_cast<PyCFunction>(FocusSessionManager_GetDefault), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_session", reinterpret_cast<PyCFunction>(FocusSessionManager_GetSession), METH_VARARGS, nullptr },
+        { "try_start_focus_session", reinterpret_cast<PyCFunction>(FocusSessionManager_TryStartFocusSession), METH_VARARGS, nullptr },
+        { "get_is_supported", reinterpret_cast<PyCFunction>(FocusSessionManager_get_IsSupported), METH_NOARGS | METH_STATIC, nullptr },
+        { "add_is_focus_active_changed", reinterpret_cast<PyCFunction>(FocusSessionManager_add_IsFocusActiveChanged), METH_O, nullptr },
+        { "remove_is_focus_active_changed", reinterpret_cast<PyCFunction>(FocusSessionManager_remove_IsFocusActiveChanged), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_FocusSessionManager), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FocusSessionManager[] = {
+        { "is_focus_active", reinterpret_cast<getter>(FocusSessionManager_get_IsFocusActive), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_FocusSessionManager[] = 
+    {
+        { Py_tp_new, _new_FocusSessionManager },
+        { Py_tp_dealloc, _dealloc_FocusSessionManager },
+        { Py_tp_methods, _methods_FocusSessionManager },
+        { Py_tp_getset, _getset_FocusSessionManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_FocusSessionManager =
+    {
+        "_winsdk_Windows_UI_Shell.FocusSessionManager",
+        sizeof(py::wrapper::Windows::UI::Shell::FocusSessionManager),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FocusSessionManager
     };
 
     // ----- SecurityAppManager class --------------------
@@ -1156,6 +1487,8 @@ namespace py::cpp::Windows::UI::Shell
         Py_VISIT(state->type_SecurityAppSubstatus);
         Py_VISIT(state->type_ShareWindowCommand);
         Py_VISIT(state->type_AdaptiveCardBuilder);
+        Py_VISIT(state->type_FocusSession);
+        Py_VISIT(state->type_FocusSessionManager);
         Py_VISIT(state->type_SecurityAppManager);
         Py_VISIT(state->type_ShareWindowCommandEventArgs);
         Py_VISIT(state->type_ShareWindowCommandSource);
@@ -1180,6 +1513,8 @@ namespace py::cpp::Windows::UI::Shell
         Py_CLEAR(state->type_SecurityAppSubstatus);
         Py_CLEAR(state->type_ShareWindowCommand);
         Py_CLEAR(state->type_AdaptiveCardBuilder);
+        Py_CLEAR(state->type_FocusSession);
+        Py_CLEAR(state->type_FocusSessionManager);
         Py_CLEAR(state->type_SecurityAppManager);
         Py_CLEAR(state->type_ShareWindowCommandEventArgs);
         Py_CLEAR(state->type_ShareWindowCommandSource);
@@ -1301,6 +1636,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_Shell(void) noexcept
     }
 
     Py_INCREF(state->type_AdaptiveCardBuilder);
+
+    state->type_FocusSession = py::register_python_type(module.get(), type_name_FocusSession, &type_spec_FocusSession, bases.get());
+    if (!state->type_FocusSession)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FocusSession);
+
+    state->type_FocusSessionManager = py::register_python_type(module.get(), type_name_FocusSessionManager, &type_spec_FocusSessionManager, bases.get());
+    if (!state->type_FocusSessionManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FocusSessionManager);
 
     state->type_SecurityAppManager = py::register_python_type(module.get(), type_name_SecurityAppManager, &type_spec_SecurityAppManager, bases.get());
     if (!state->type_SecurityAppManager)
@@ -1463,6 +1814,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::AdaptiveCardBuilder>::ge
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::AdaptiveCardBuilder is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::FocusSession>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FocusSession;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::FocusSession is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::FocusSessionManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FocusSessionManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::FocusSessionManager is not registered");
         return nullptr;
     }
 

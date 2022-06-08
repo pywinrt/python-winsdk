@@ -24,6 +24,7 @@ class IsolatedWindowsEnvironmentAllowedClipboardFormats(enum.IntFlag):
     NONE = 0
     TEXT = 0x1
     IMAGE = 0x2
+    RTF = 0x4
 
 class IsolatedWindowsEnvironmentAvailablePrinters(enum.IntFlag):
     NONE = 0
@@ -41,6 +42,10 @@ class IsolatedWindowsEnvironmentCreateStatus(enum.IntEnum):
     SUCCESS = 0
     FAILURE_BY_POLICY = 1
     UNKNOWN_FAILURE = 2
+
+class IsolatedWindowsEnvironmentCreationPriority(enum.IntEnum):
+    LOW = 0
+    NORMAL = 1
 
 class IsolatedWindowsEnvironmentHostError(enum.IntEnum):
     ADMIN_POLICY_IS_DISABLED_OR_NOT_PRESENT = 0
@@ -78,6 +83,10 @@ class IsolatedWindowsEnvironmentProgressState(enum.IntEnum):
     QUEUED = 0
     PROCESSING = 1
     COMPLETED = 2
+    CREATING = 3
+    RETRYING = 4
+    STARTING = 5
+    FINALIZING = 6
 
 class IsolatedWindowsEnvironmentShareFileStatus(enum.IntEnum):
     SUCCESS = 0
@@ -94,6 +103,14 @@ class IsolatedWindowsEnvironmentShareFolderStatus(enum.IntEnum):
     FOLDER_NOT_FOUND = 3
     ACCESS_DENIED = 4
 
+class IsolatedWindowsEnvironmentSignInProgress(enum.IntEnum):
+    CONNECTING = 0
+    CONNECTED = 1
+    AUTHENTICATING = 2
+    SETTING_UP_ACCOUNT = 3
+    FINALIZING = 4
+    COMPLETED = 5
+
 class IsolatedWindowsEnvironmentStartProcessStatus(enum.IntEnum):
     SUCCESS = 0
     UNKNOWN_FAILURE = 1
@@ -106,6 +123,7 @@ _ns_module._register_IsolatedWindowsEnvironmentAllowedClipboardFormats(IsolatedW
 _ns_module._register_IsolatedWindowsEnvironmentAvailablePrinters(IsolatedWindowsEnvironmentAvailablePrinters)
 _ns_module._register_IsolatedWindowsEnvironmentClipboardCopyPasteDirections(IsolatedWindowsEnvironmentClipboardCopyPasteDirections)
 _ns_module._register_IsolatedWindowsEnvironmentCreateStatus(IsolatedWindowsEnvironmentCreateStatus)
+_ns_module._register_IsolatedWindowsEnvironmentCreationPriority(IsolatedWindowsEnvironmentCreationPriority)
 _ns_module._register_IsolatedWindowsEnvironmentHostError(IsolatedWindowsEnvironmentHostError)
 _ns_module._register_IsolatedWindowsEnvironmentLaunchFileStatus(IsolatedWindowsEnvironmentLaunchFileStatus)
 _ns_module._register_IsolatedWindowsEnvironmentOwnerRegistrationStatus(IsolatedWindowsEnvironmentOwnerRegistrationStatus)
@@ -114,6 +132,7 @@ _ns_module._register_IsolatedWindowsEnvironmentProcessState(IsolatedWindowsEnvir
 _ns_module._register_IsolatedWindowsEnvironmentProgressState(IsolatedWindowsEnvironmentProgressState)
 _ns_module._register_IsolatedWindowsEnvironmentShareFileStatus(IsolatedWindowsEnvironmentShareFileStatus)
 _ns_module._register_IsolatedWindowsEnvironmentShareFolderStatus(IsolatedWindowsEnvironmentShareFolderStatus)
+_ns_module._register_IsolatedWindowsEnvironmentSignInProgress(IsolatedWindowsEnvironmentSignInProgress)
 _ns_module._register_IsolatedWindowsEnvironmentStartProcessStatus(IsolatedWindowsEnvironmentStartProcessStatus)
 
 IsolatedWindowsEnvironmentCreateProgress = _ns_module.IsolatedWindowsEnvironmentCreateProgress

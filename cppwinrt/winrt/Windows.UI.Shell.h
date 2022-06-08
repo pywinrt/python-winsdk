@@ -26,6 +26,70 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IAdaptiveCardBuilderStatics)->CreateAdaptiveCardFromJson(*(void**)(&value), &result));
         return winrt::Windows::UI::Shell::IAdaptiveCard{ result, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSession<D>::Id() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSession)->get_Id(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSession<D>::End() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSession)->End());
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::IsFocusActive() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManager)->get_IsFocusActive(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::GetSession(param::hstring const& id) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManager)->GetSession(*(void**)(&id), &result));
+        return winrt::Windows::UI::Shell::FocusSession{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::TryStartFocusSession() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManager)->TryStartFocusSession(&result));
+        return winrt::Windows::UI::Shell::FocusSession{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::TryStartFocusSession(winrt::Windows::Foundation::DateTime const& endTime) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManager)->TryStartFocusSession2(impl::bind_in(endTime), &result));
+        return winrt::Windows::UI::Shell::FocusSession{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::DeactivateFocus() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManager)->DeactivateFocus());
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::IsFocusActiveChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::FocusSessionManager, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManager)->add_IsFocusActiveChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::IsFocusActiveChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::FocusSessionManager, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, IsFocusActiveChanged_revoker>(this, IsFocusActiveChanged(handler));
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManager<D>::IsFocusActiveChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManager)->remove_IsFocusActiveChanged(impl::bind_in(token));
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManagerStatics<D>::GetDefault() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManagerStatics)->GetDefault(&result));
+        return winrt::Windows::UI::Shell::FocusSessionManager{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_UI_Shell_IFocusSessionManagerStatics<D>::IsSupported() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Shell::IFocusSessionManagerStatics)->get_IsSupported(&value));
+        return value;
+    }
     template <typename D> auto consume_Windows_UI_Shell_ISecurityAppManager<D>::Register(winrt::Windows::UI::Shell::SecurityAppKind const& kind, param::hstring const& displayName, winrt::Windows::Foundation::Uri const& detailsUri, bool registerPerUser) const
     {
         winrt::guid result{};
@@ -186,6 +250,106 @@ namespace winrt::impl
         }
         catch (...) { return to_hresult(); }
     };
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Shell::IFocusSession> : produce_base<D, winrt::Windows::UI::Shell::IFocusSession>
+    {
+        int32_t __stdcall get_Id(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Id());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall End() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().End();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Shell::IFocusSessionManager> : produce_base<D, winrt::Windows::UI::Shell::IFocusSessionManager>
+    {
+        int32_t __stdcall get_IsFocusActive(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsFocusActive());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetSession(void* id, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::UI::Shell::FocusSession>(this->shim().GetSession(*reinterpret_cast<hstring const*>(&id)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TryStartFocusSession(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::UI::Shell::FocusSession>(this->shim().TryStartFocusSession());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TryStartFocusSession2(int64_t endTime, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::UI::Shell::FocusSession>(this->shim().TryStartFocusSession(*reinterpret_cast<winrt::Windows::Foundation::DateTime const*>(&endTime)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall DeactivateFocus() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DeactivateFocus();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_IsFocusActiveChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().IsFocusActiveChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::FocusSessionManager, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_IsFocusActiveChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsFocusActiveChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Shell::IFocusSessionManagerStatics> : produce_base<D, winrt::Windows::UI::Shell::IFocusSessionManagerStatics>
+    {
+        int32_t __stdcall GetDefault(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::UI::Shell::FocusSessionManager>(this->shim().GetDefault());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsSupported(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsSupported());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::UI::Shell::ISecurityAppManager> : produce_base<D, winrt::Windows::UI::Shell::ISecurityAppManager>
@@ -413,6 +577,14 @@ WINRT_EXPORT namespace winrt::Windows::UI::Shell
     {
         return impl::call_factory<AdaptiveCardBuilder, IAdaptiveCardBuilderStatics>([&](IAdaptiveCardBuilderStatics const& f) { return f.CreateAdaptiveCardFromJson(value); });
     }
+    inline auto FocusSessionManager::GetDefault()
+    {
+        return impl::call_factory_cast<winrt::Windows::UI::Shell::FocusSessionManager(*)(IFocusSessionManagerStatics const&), FocusSessionManager, IFocusSessionManagerStatics>([](IFocusSessionManagerStatics const& f) { return f.GetDefault(); });
+    }
+    inline auto FocusSessionManager::IsSupported()
+    {
+        return impl::call_factory_cast<bool(*)(IFocusSessionManagerStatics const&), FocusSessionManager, IFocusSessionManagerStatics>([](IFocusSessionManagerStatics const& f) { return f.IsSupported(); });
+    }
     inline SecurityAppManager::SecurityAppManager() :
         SecurityAppManager(impl::call_factory_cast<SecurityAppManager(*)(winrt::Windows::Foundation::IActivationFactory const&), SecurityAppManager>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<SecurityAppManager>(); }))
     {
@@ -431,6 +603,9 @@ namespace std
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::UI::Shell::IAdaptiveCard> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IAdaptiveCardBuilderStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::IFocusSession> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::IFocusSessionManager> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::IFocusSessionManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ISecurityAppManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::IShareWindowCommandSource> : winrt::impl::hash_base {};
@@ -439,6 +614,8 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Shell::ITaskbarManager2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ITaskbarManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::AdaptiveCardBuilder> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::FocusSession> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Shell::FocusSessionManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::SecurityAppManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ShareWindowCommandEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Shell::ShareWindowCommandSource> : winrt::impl::hash_base {};

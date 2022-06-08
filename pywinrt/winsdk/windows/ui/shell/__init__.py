@@ -50,6 +50,8 @@ _ns_module._register_SecurityAppSubstatus(SecurityAppSubstatus)
 _ns_module._register_ShareWindowCommand(ShareWindowCommand)
 
 AdaptiveCardBuilder = _ns_module.AdaptiveCardBuilder
+FocusSession = _ns_module.FocusSession
+FocusSessionManager = _ns_module.FocusSessionManager
 SecurityAppManager = _ns_module.SecurityAppManager
 ShareWindowCommandEventArgs = _ns_module.ShareWindowCommandEventArgs
 ShareWindowCommandSource = _ns_module.ShareWindowCommandSource

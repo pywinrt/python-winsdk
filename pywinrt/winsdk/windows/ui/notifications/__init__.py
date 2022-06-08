@@ -207,6 +207,11 @@ class ToastHistoryChangedType(enum.IntEnum):
     EXPIRED = 2
     ADDED = 3
 
+class ToastNotificationMode(enum.IntEnum):
+    UNRESTRICTED = 0
+    PRIORITY_ONLY = 1
+    ALARMS_ONLY = 2
+
 class ToastNotificationPriority(enum.IntEnum):
     DEFAULT = 0
     HIGH = 1
@@ -236,6 +241,7 @@ _ns_module._register_TileFlyoutTemplateType(TileFlyoutTemplateType)
 _ns_module._register_TileTemplateType(TileTemplateType)
 _ns_module._register_ToastDismissalReason(ToastDismissalReason)
 _ns_module._register_ToastHistoryChangedType(ToastHistoryChangedType)
+_ns_module._register_ToastNotificationMode(ToastNotificationMode)
 _ns_module._register_ToastNotificationPriority(ToastNotificationPriority)
 _ns_module._register_ToastTemplateType(ToastTemplateType)
 _ns_module._register_UserNotificationChangedKind(UserNotificationChangedKind)

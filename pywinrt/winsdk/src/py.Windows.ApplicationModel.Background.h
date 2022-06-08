@@ -245,6 +245,8 @@ namespace py::wrapper::Windows::ApplicationModel::Background
     using ToastNotificationActionTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::ToastNotificationActionTrigger>;
     using ToastNotificationHistoryChangedTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::ToastNotificationHistoryChangedTrigger>;
     using UserNotificationChangedTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger>;
+    using WiFiOnDemandHotspotConnectTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger>;
+    using WiFiOnDemandHotspotUpdateMetadataTrigger = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger>;
     using IBackgroundCondition = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::IBackgroundCondition>;
     using IBackgroundTask = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::IBackgroundTask>;
     using IBackgroundTaskInstance = py::winrt_wrapper<winrt::Windows::ApplicationModel::Background::IBackgroundTaskInstance>;
@@ -729,6 +731,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

@@ -31,6 +31,8 @@ namespace py::impl::Windows::UI::Shell
 namespace py::wrapper::Windows::UI::Shell
 {
     using AdaptiveCardBuilder = py::winrt_wrapper<winrt::Windows::UI::Shell::AdaptiveCardBuilder>;
+    using FocusSession = py::winrt_wrapper<winrt::Windows::UI::Shell::FocusSession>;
+    using FocusSessionManager = py::winrt_wrapper<winrt::Windows::UI::Shell::FocusSessionManager>;
     using SecurityAppManager = py::winrt_wrapper<winrt::Windows::UI::Shell::SecurityAppManager>;
     using ShareWindowCommandEventArgs = py::winrt_wrapper<winrt::Windows::UI::Shell::ShareWindowCommandEventArgs>;
     using ShareWindowCommandSource = py::winrt_wrapper<winrt::Windows::UI::Shell::ShareWindowCommandSource>;
@@ -68,6 +70,18 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::UI::Shell::AdaptiveCardBuilder>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::FocusSession>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::FocusSessionManager>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

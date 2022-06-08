@@ -82,6 +82,11 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement
         LeftHanded = 0,
         RightHanded = 1,
     };
+    enum class ScreenCaptureDisabledBehavior : int32_t
+    {
+        DrawAsBlack = 0,
+        ExcludeFromCapture = 1,
+    };
     enum class UIColorType : int32_t
     {
         Background = 0,
@@ -286,6 +291,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::ViewManagement::ApplicationViewWindowingMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::FullScreenSystemOverlayMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::HandPreference>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::UI::ViewManagement::ScreenCaptureDisabledBehavior>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::UIColorType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::UIElementType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::UserInteractionMode>{ using type = enum_category; };
@@ -317,6 +323,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::ApplicationViewWindowingMode> = L"Windows.UI.ViewManagement.ApplicationViewWindowingMode";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::FullScreenSystemOverlayMode> = L"Windows.UI.ViewManagement.FullScreenSystemOverlayMode";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::HandPreference> = L"Windows.UI.ViewManagement.HandPreference";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::ScreenCaptureDisabledBehavior> = L"Windows.UI.ViewManagement.ScreenCaptureDisabledBehavior";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UIColorType> = L"Windows.UI.ViewManagement.UIColorType";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UIElementType> = L"Windows.UI.ViewManagement.UIElementType";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UserInteractionMode> = L"Windows.UI.ViewManagement.UserInteractionMode";

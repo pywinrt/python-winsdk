@@ -103,6 +103,10 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment3)->ShareFileWithTelemetryAsync(*(void**)(&filePath), *(void**)(&options), *(void**)(&telemetryParameters), &operation));
         return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentShareFileResult>{ operation, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironment4<D>::ChangePriority(winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority const& Priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment4)->ChangePriority(static_cast<int32_t>(Priority)));
+    }
     template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentCreateResult<D>::Status() const
     {
         winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreateStatus value{};
@@ -120,6 +124,10 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult)->get_Environment(&value));
         return winrt::Windows::Security::Isolation::IsolatedWindowsEnvironment{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentCreateResult2<D>::ChangeCreationPriority(winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority const& priority) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult2)->ChangeCreationPriority(static_cast<int32_t>(priority)));
     }
     template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentFactory<D>::CreateAsync(winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentOptions const& options) const
     {
@@ -298,6 +306,36 @@ namespace winrt::impl
     template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOptions2<D>::WindowAnnotationOverride(param::hstring const& value) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions2)->put_WindowAnnotationOverride(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOptions3<D>::AllowedClipboardFormatsToEnvironment() const
+    {
+        winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3)->get_AllowedClipboardFormatsToEnvironment(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOptions3<D>::AllowedClipboardFormatsToEnvironment(winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3)->put_AllowedClipboardFormatsToEnvironment(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOptions3<D>::AllowedClipboardFormatsToHost() const
+    {
+        winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3)->get_AllowedClipboardFormatsToHost(reinterpret_cast<uint32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOptions3<D>::AllowedClipboardFormatsToHost(winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3)->put_AllowedClipboardFormatsToHost(static_cast<uint32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOptions3<D>::CreationPriority() const
+    {
+        winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3)->get_CreationPriority(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOptions3<D>::CreationPriority(winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3)->put_CreationPriority(static_cast<int32_t>(value)));
     }
     template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentOwnerRegistrationData<D>::ShareableFolders() const
     {
@@ -478,6 +516,12 @@ namespace winrt::impl
         void* operation{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentUserInfo)->TryWaitForSignInAsync(&operation));
         return winrt::Windows::Foundation::IAsyncOperation<bool>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsEnvironmentUserInfo2<D>::TryWaitForSignInWithProgressAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentUserInfo2)->TryWaitForSignInWithProgressAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperationWithProgress<bool, winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentSignInProgress>{ operation, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_Security_Isolation_IIsolatedWindowsHostMessengerStatics<D>::PostMessageToReceiver(winrt::guid const& receiverId, param::vector_view<winrt::Windows::Foundation::IInspectable> const& message) const
     {
@@ -665,6 +709,19 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment4> : produce_base<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment4>
+    {
+        int32_t __stdcall ChangePriority(int32_t Priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ChangePriority(*reinterpret_cast<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority const*>(&Priority));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult> : produce_base<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult>
     {
         int32_t __stdcall get_Status(int32_t* value) noexcept final try
@@ -687,6 +744,19 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironment>(this->shim().Environment());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult2> : produce_base<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult2>
+    {
+        int32_t __stdcall ChangeCreationPriority(int32_t priority) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ChangeCreationPriority(*reinterpret_cast<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority const*>(&priority));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -973,6 +1043,54 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().WindowAnnotationOverride(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3> : produce_base<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3>
+    {
+        int32_t __stdcall get_AllowedClipboardFormatsToEnvironment(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats>(this->shim().AllowedClipboardFormatsToEnvironment());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AllowedClipboardFormatsToEnvironment(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AllowedClipboardFormatsToEnvironment(*reinterpret_cast<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AllowedClipboardFormatsToHost(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats>(this->shim().AllowedClipboardFormatsToHost());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AllowedClipboardFormatsToHost(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AllowedClipboardFormatsToHost(*reinterpret_cast<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CreationPriority(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority>(this->shim().CreationPriority());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CreationPriority(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CreationPriority(*reinterpret_cast<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority const*>(&value));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1292,6 +1410,20 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentUserInfo2> : produce_base<D, winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentUserInfo2>
+    {
+        int32_t __stdcall TryWaitForSignInWithProgressAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperationWithProgress<bool, winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentSignInProgress>>(this->shim().TryWaitForSignInWithProgressAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Security::Isolation::IIsolatedWindowsHostMessengerStatics> : produce_base<D, winrt::Windows::Security::Isolation::IIsolatedWindowsHostMessengerStatics>
     {
         int32_t __stdcall PostMessageToReceiver(winrt::guid receiverId, void* message) noexcept final try
@@ -1549,7 +1681,9 @@ namespace std
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironment4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentCreateResult2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentFile> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentFile2> : winrt::impl::hash_base {};
@@ -1557,6 +1691,7 @@ namespace std
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentLaunchFileResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOptions3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOwnerRegistrationData> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOwnerRegistrationResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentOwnerRegistrationStatics> : winrt::impl::hash_base {};
@@ -1569,6 +1704,7 @@ namespace std
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentStartProcessResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentTelemetryParameters> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentUserInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsEnvironmentUserInfo2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsHostMessengerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IIsolatedWindowsHostMessengerStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironment> : winrt::impl::hash_base {};

@@ -115,6 +115,12 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::UI::ViewManagement::ScreenCaptureDisabledBehavior>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::UI::ViewManagement::UIColorType>
     {
         static PyObject* get_python_type() noexcept;

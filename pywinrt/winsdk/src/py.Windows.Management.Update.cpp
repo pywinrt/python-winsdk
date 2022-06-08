@@ -8,9 +8,98 @@ namespace py::cpp::Windows::Management::Update
 {
     struct module_state
     {
+        PyObject* type_WindowsUpdateAdministratorOptions;
+        PyObject* type_WindowsUpdateAdministratorStatus;
+        PyObject* type_WindowsUpdateAttentionRequiredReason;
         PyTypeObject* type_PreviewBuildsManager;
         PyTypeObject* type_PreviewBuildsState;
+        PyTypeObject* type_WindowsUpdate;
+        PyTypeObject* type_WindowsUpdateActionCompletedEventArgs;
+        PyTypeObject* type_WindowsUpdateActionProgress;
+        PyTypeObject* type_WindowsUpdateActionResult;
+        PyTypeObject* type_WindowsUpdateAdministrator;
+        PyTypeObject* type_WindowsUpdateApprovalData;
+        PyTypeObject* type_WindowsUpdateAttentionRequiredInfo;
+        PyTypeObject* type_WindowsUpdateAttentionRequiredReasonChangedEventArgs;
+        PyTypeObject* type_WindowsUpdateGetAdministratorResult;
+        PyTypeObject* type_WindowsUpdateItem;
+        PyTypeObject* type_WindowsUpdateManager;
+        PyTypeObject* type_WindowsUpdateProgressChangedEventArgs;
+        PyTypeObject* type_WindowsUpdateRestartRequestOptions;
+        PyTypeObject* type_WindowsUpdateScanCompletedEventArgs;
     };
+
+    static PyObject* register_WindowsUpdateAdministratorOptions(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_WindowsUpdateAdministratorOptions)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_WindowsUpdateAdministratorOptions = type;
+        Py_INCREF(state->type_WindowsUpdateAdministratorOptions);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_WindowsUpdateAdministratorStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_WindowsUpdateAdministratorStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_WindowsUpdateAdministratorStatus = type;
+        Py_INCREF(state->type_WindowsUpdateAdministratorStatus);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_WindowsUpdateAttentionRequiredReason(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_WindowsUpdateAttentionRequiredReason)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_WindowsUpdateAttentionRequiredReason = type;
+        Py_INCREF(state->type_WindowsUpdateAttentionRequiredReason);
+
+
+        Py_RETURN_NONE;
+    }
 
     // ----- PreviewBuildsManager class --------------------
     constexpr const char* const type_name_PreviewBuildsManager = "PreviewBuildsManager";
@@ -274,10 +363,2785 @@ namespace py::cpp::Windows::Management::Update
         _type_slots_PreviewBuildsState
     };
 
+    // ----- WindowsUpdate class --------------------
+    constexpr const char* const type_name_WindowsUpdate = "WindowsUpdate";
+
+    static PyObject* _new_WindowsUpdate(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdate);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdate(py::wrapper::Windows::Management::Update::WindowsUpdate* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdate_AcceptEula(py::wrapper::Windows::Management::Update::WindowsUpdate* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.AcceptEula();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_GetPropertyValue(py::wrapper::Windows::Management::Update::WindowsUpdate* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(self->obj.GetPropertyValue(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_ActionProgress(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionProgress());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_ActionResult(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionResult());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_AttentionRequiredInfo(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AttentionRequiredInfo());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_CurrentAction(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CurrentAction());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_Deadline(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Deadline());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_Description(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Description());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_EulaText(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.EulaText());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsCritical(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsCritical());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsDriver(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsDriver());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsEulaAccepted(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsEulaAccepted());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsFeatureUpdate(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsFeatureUpdate());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsForOS(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsForOS());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsMandatory(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsMandatory());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsMinorImpact(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsMinorImpact());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsSecurity(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsSecurity());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsSeeker(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsSeeker());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_IsUrgent(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsUrgent());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_MoreInfoUrl(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MoreInfoUrl());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_ProviderId(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_SupportUrl(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SupportUrl());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_Title(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Title());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdate_get_UpdateId(py::wrapper::Windows::Management::Update::WindowsUpdate* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.UpdateId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdate(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdate>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdate[] = {
+        { "accept_eula", reinterpret_cast<PyCFunction>(WindowsUpdate_AcceptEula), METH_VARARGS, nullptr },
+        { "get_property_value", reinterpret_cast<PyCFunction>(WindowsUpdate_GetPropertyValue), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdate), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdate[] = {
+        { "action_progress", reinterpret_cast<getter>(WindowsUpdate_get_ActionProgress), nullptr, nullptr, nullptr },
+        { "action_result", reinterpret_cast<getter>(WindowsUpdate_get_ActionResult), nullptr, nullptr, nullptr },
+        { "attention_required_info", reinterpret_cast<getter>(WindowsUpdate_get_AttentionRequiredInfo), nullptr, nullptr, nullptr },
+        { "current_action", reinterpret_cast<getter>(WindowsUpdate_get_CurrentAction), nullptr, nullptr, nullptr },
+        { "deadline", reinterpret_cast<getter>(WindowsUpdate_get_Deadline), nullptr, nullptr, nullptr },
+        { "description", reinterpret_cast<getter>(WindowsUpdate_get_Description), nullptr, nullptr, nullptr },
+        { "eula_text", reinterpret_cast<getter>(WindowsUpdate_get_EulaText), nullptr, nullptr, nullptr },
+        { "is_critical", reinterpret_cast<getter>(WindowsUpdate_get_IsCritical), nullptr, nullptr, nullptr },
+        { "is_driver", reinterpret_cast<getter>(WindowsUpdate_get_IsDriver), nullptr, nullptr, nullptr },
+        { "is_eula_accepted", reinterpret_cast<getter>(WindowsUpdate_get_IsEulaAccepted), nullptr, nullptr, nullptr },
+        { "is_feature_update", reinterpret_cast<getter>(WindowsUpdate_get_IsFeatureUpdate), nullptr, nullptr, nullptr },
+        { "is_for_o_s", reinterpret_cast<getter>(WindowsUpdate_get_IsForOS), nullptr, nullptr, nullptr },
+        { "is_mandatory", reinterpret_cast<getter>(WindowsUpdate_get_IsMandatory), nullptr, nullptr, nullptr },
+        { "is_minor_impact", reinterpret_cast<getter>(WindowsUpdate_get_IsMinorImpact), nullptr, nullptr, nullptr },
+        { "is_security", reinterpret_cast<getter>(WindowsUpdate_get_IsSecurity), nullptr, nullptr, nullptr },
+        { "is_seeker", reinterpret_cast<getter>(WindowsUpdate_get_IsSeeker), nullptr, nullptr, nullptr },
+        { "is_urgent", reinterpret_cast<getter>(WindowsUpdate_get_IsUrgent), nullptr, nullptr, nullptr },
+        { "more_info_url", reinterpret_cast<getter>(WindowsUpdate_get_MoreInfoUrl), nullptr, nullptr, nullptr },
+        { "provider_id", reinterpret_cast<getter>(WindowsUpdate_get_ProviderId), nullptr, nullptr, nullptr },
+        { "support_url", reinterpret_cast<getter>(WindowsUpdate_get_SupportUrl), nullptr, nullptr, nullptr },
+        { "title", reinterpret_cast<getter>(WindowsUpdate_get_Title), nullptr, nullptr, nullptr },
+        { "update_id", reinterpret_cast<getter>(WindowsUpdate_get_UpdateId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdate[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdate },
+        { Py_tp_dealloc, _dealloc_WindowsUpdate },
+        { Py_tp_methods, _methods_WindowsUpdate },
+        { Py_tp_getset, _getset_WindowsUpdate },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdate =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdate",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdate),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdate
+    };
+
+    // ----- WindowsUpdateActionCompletedEventArgs class --------------------
+    constexpr const char* const type_name_WindowsUpdateActionCompletedEventArgs = "WindowsUpdateActionCompletedEventArgs";
+
+    static PyObject* _new_WindowsUpdateActionCompletedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateActionCompletedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateActionCompletedEventArgs(py::wrapper::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateActionCompletedEventArgs_get_Action(py::wrapper::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Action());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateActionCompletedEventArgs_get_ExtendedError(py::wrapper::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ExtendedError());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateActionCompletedEventArgs_get_Succeeded(py::wrapper::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Succeeded());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateActionCompletedEventArgs_get_Update(py::wrapper::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Update());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateActionCompletedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateActionCompletedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateActionCompletedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateActionCompletedEventArgs[] = {
+        { "action", reinterpret_cast<getter>(WindowsUpdateActionCompletedEventArgs_get_Action), nullptr, nullptr, nullptr },
+        { "extended_error", reinterpret_cast<getter>(WindowsUpdateActionCompletedEventArgs_get_ExtendedError), nullptr, nullptr, nullptr },
+        { "succeeded", reinterpret_cast<getter>(WindowsUpdateActionCompletedEventArgs_get_Succeeded), nullptr, nullptr, nullptr },
+        { "update", reinterpret_cast<getter>(WindowsUpdateActionCompletedEventArgs_get_Update), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateActionCompletedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateActionCompletedEventArgs },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateActionCompletedEventArgs },
+        { Py_tp_methods, _methods_WindowsUpdateActionCompletedEventArgs },
+        { Py_tp_getset, _getset_WindowsUpdateActionCompletedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateActionCompletedEventArgs =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateActionCompletedEventArgs",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateActionCompletedEventArgs
+    };
+
+    // ----- WindowsUpdateActionProgress class --------------------
+    constexpr const char* const type_name_WindowsUpdateActionProgress = "WindowsUpdateActionProgress";
+
+    static PyObject* _new_WindowsUpdateActionProgress(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateActionProgress);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateActionProgress(py::wrapper::Windows::Management::Update::WindowsUpdateActionProgress* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateActionProgress_get_Action(py::wrapper::Windows::Management::Update::WindowsUpdateActionProgress* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Action());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateActionProgress_get_Progress(py::wrapper::Windows::Management::Update::WindowsUpdateActionProgress* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Progress());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateActionProgress(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateActionProgress>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateActionProgress[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateActionProgress), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateActionProgress[] = {
+        { "action", reinterpret_cast<getter>(WindowsUpdateActionProgress_get_Action), nullptr, nullptr, nullptr },
+        { "progress", reinterpret_cast<getter>(WindowsUpdateActionProgress_get_Progress), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateActionProgress[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateActionProgress },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateActionProgress },
+        { Py_tp_methods, _methods_WindowsUpdateActionProgress },
+        { Py_tp_getset, _getset_WindowsUpdateActionProgress },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateActionProgress =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateActionProgress",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateActionProgress),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateActionProgress
+    };
+
+    // ----- WindowsUpdateActionResult class --------------------
+    constexpr const char* const type_name_WindowsUpdateActionResult = "WindowsUpdateActionResult";
+
+    static PyObject* _new_WindowsUpdateActionResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateActionResult);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateActionResult(py::wrapper::Windows::Management::Update::WindowsUpdateActionResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateActionResult_get_Action(py::wrapper::Windows::Management::Update::WindowsUpdateActionResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Action());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateActionResult_get_ExtendedError(py::wrapper::Windows::Management::Update::WindowsUpdateActionResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ExtendedError());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateActionResult_get_Succeeded(py::wrapper::Windows::Management::Update::WindowsUpdateActionResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Succeeded());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateActionResult_get_Timestamp(py::wrapper::Windows::Management::Update::WindowsUpdateActionResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Timestamp());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateActionResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateActionResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateActionResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateActionResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateActionResult[] = {
+        { "action", reinterpret_cast<getter>(WindowsUpdateActionResult_get_Action), nullptr, nullptr, nullptr },
+        { "extended_error", reinterpret_cast<getter>(WindowsUpdateActionResult_get_ExtendedError), nullptr, nullptr, nullptr },
+        { "succeeded", reinterpret_cast<getter>(WindowsUpdateActionResult_get_Succeeded), nullptr, nullptr, nullptr },
+        { "timestamp", reinterpret_cast<getter>(WindowsUpdateActionResult_get_Timestamp), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateActionResult[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateActionResult },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateActionResult },
+        { Py_tp_methods, _methods_WindowsUpdateActionResult },
+        { Py_tp_getset, _getset_WindowsUpdateActionResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateActionResult =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateActionResult",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateActionResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateActionResult
+    };
+
+    // ----- WindowsUpdateAdministrator class --------------------
+    constexpr const char* const type_name_WindowsUpdateAdministrator = "WindowsUpdateAdministrator";
+
+    static PyObject* _new_WindowsUpdateAdministrator(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateAdministrator);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateAdministrator(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateAdministrator_ApproveWindowsUpdate(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Management::Update::WindowsUpdateApprovalData>(args, 1);
+
+                self->obj.ApproveWindowsUpdate(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_ApproveWindowsUpdateAction(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                self->obj.ApproveWindowsUpdateAction(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_CancelRestartRequest(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                winrt::Windows::Management::Update::WindowsUpdateAdministrator::CancelRestartRequest(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_GetRegisteredAdministrator(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Management::Update::WindowsUpdateAdministrator::GetRegisteredAdministrator(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_GetRegisteredAdministratorName(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Management::Update::WindowsUpdateAdministrator::GetRegisteredAdministratorName());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_GetUpdates(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetUpdates());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_RegisterForAdministration(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Management::Update::WindowsUpdateAdministratorOptions>(args, 1);
+
+                return py::convert(winrt::Windows::Management::Update::WindowsUpdateAdministrator::RegisterForAdministration(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_RequestRestart(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Management::Update::WindowsUpdateRestartRequestOptions>(args, 0);
+
+                return py::convert(winrt::Windows::Management::Update::WindowsUpdateAdministrator::RequestRestart(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_RevokeWindowsUpdateActionApproval(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                self->obj.RevokeWindowsUpdateActionApproval(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_RevokeWindowsUpdateApproval(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                self->obj.RevokeWindowsUpdateApproval(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_StartAdministratorScan(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.StartAdministratorScan();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAdministrator_UnregisterForAdministration(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Management::Update::WindowsUpdateAdministrator::UnregisterForAdministration(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateAdministrator(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateAdministrator>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateAdministrator[] = {
+        { "approve_windows_update", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_ApproveWindowsUpdate), METH_VARARGS, nullptr },
+        { "approve_windows_update_action", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_ApproveWindowsUpdateAction), METH_VARARGS, nullptr },
+        { "cancel_restart_request", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_CancelRestartRequest), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_registered_administrator", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_GetRegisteredAdministrator), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_registered_administrator_name", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_GetRegisteredAdministratorName), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_updates", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_GetUpdates), METH_VARARGS, nullptr },
+        { "register_for_administration", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_RegisterForAdministration), METH_VARARGS | METH_STATIC, nullptr },
+        { "request_restart", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_RequestRestart), METH_VARARGS | METH_STATIC, nullptr },
+        { "revoke_windows_update_action_approval", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_RevokeWindowsUpdateActionApproval), METH_VARARGS, nullptr },
+        { "revoke_windows_update_approval", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_RevokeWindowsUpdateApproval), METH_VARARGS, nullptr },
+        { "start_administrator_scan", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_StartAdministratorScan), METH_VARARGS, nullptr },
+        { "unregister_for_administration", reinterpret_cast<PyCFunction>(WindowsUpdateAdministrator_UnregisterForAdministration), METH_VARARGS | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateAdministrator), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateAdministrator[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateAdministrator[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateAdministrator },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateAdministrator },
+        { Py_tp_methods, _methods_WindowsUpdateAdministrator },
+        { Py_tp_getset, _getset_WindowsUpdateAdministrator },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateAdministrator =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateAdministrator",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateAdministrator),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateAdministrator
+    };
+
+    // ----- WindowsUpdateApprovalData class --------------------
+    constexpr const char* const type_name_WindowsUpdateApprovalData = "WindowsUpdateApprovalData";
+
+    static PyObject* _new_WindowsUpdateApprovalData(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Management::Update::WindowsUpdateApprovalData instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_WindowsUpdateApprovalData(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateApprovalData_get_Seeker(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Seeker());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateApprovalData_put_Seeker(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<bool>>(arg);
+
+            self->obj.Seeker(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateApprovalData_get_OptOutOfAutoReboot(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.OptOutOfAutoReboot());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateApprovalData_put_OptOutOfAutoReboot(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<bool>>(arg);
+
+            self->obj.OptOutOfAutoReboot(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateApprovalData_get_ComplianceGracePeriodInDays(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ComplianceGracePeriodInDays());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateApprovalData_put_ComplianceGracePeriodInDays(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<int32_t>>(arg);
+
+            self->obj.ComplianceGracePeriodInDays(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateApprovalData_get_ComplianceDeadlineInDays(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ComplianceDeadlineInDays());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateApprovalData_put_ComplianceDeadlineInDays(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<int32_t>>(arg);
+
+            self->obj.ComplianceDeadlineInDays(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateApprovalData_get_AllowDownloadOnMetered(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AllowDownloadOnMetered());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateApprovalData_put_AllowDownloadOnMetered(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<bool>>(arg);
+
+            self->obj.AllowDownloadOnMetered(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateApprovalData(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateApprovalData>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateApprovalData[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateApprovalData), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateApprovalData[] = {
+        { "seeker", reinterpret_cast<getter>(WindowsUpdateApprovalData_get_Seeker), reinterpret_cast<setter>(WindowsUpdateApprovalData_put_Seeker), nullptr, nullptr },
+        { "opt_out_of_auto_reboot", reinterpret_cast<getter>(WindowsUpdateApprovalData_get_OptOutOfAutoReboot), reinterpret_cast<setter>(WindowsUpdateApprovalData_put_OptOutOfAutoReboot), nullptr, nullptr },
+        { "compliance_grace_period_in_days", reinterpret_cast<getter>(WindowsUpdateApprovalData_get_ComplianceGracePeriodInDays), reinterpret_cast<setter>(WindowsUpdateApprovalData_put_ComplianceGracePeriodInDays), nullptr, nullptr },
+        { "compliance_deadline_in_days", reinterpret_cast<getter>(WindowsUpdateApprovalData_get_ComplianceDeadlineInDays), reinterpret_cast<setter>(WindowsUpdateApprovalData_put_ComplianceDeadlineInDays), nullptr, nullptr },
+        { "allow_download_on_metered", reinterpret_cast<getter>(WindowsUpdateApprovalData_get_AllowDownloadOnMetered), reinterpret_cast<setter>(WindowsUpdateApprovalData_put_AllowDownloadOnMetered), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateApprovalData[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateApprovalData },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateApprovalData },
+        { Py_tp_methods, _methods_WindowsUpdateApprovalData },
+        { Py_tp_getset, _getset_WindowsUpdateApprovalData },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateApprovalData =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateApprovalData",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateApprovalData),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateApprovalData
+    };
+
+    // ----- WindowsUpdateAttentionRequiredInfo class --------------------
+    constexpr const char* const type_name_WindowsUpdateAttentionRequiredInfo = "WindowsUpdateAttentionRequiredInfo";
+
+    static PyObject* _new_WindowsUpdateAttentionRequiredInfo(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateAttentionRequiredInfo);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateAttentionRequiredInfo(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredInfo* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateAttentionRequiredInfo_get_Reason(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Reason());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAttentionRequiredInfo_get_Timestamp(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Timestamp());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateAttentionRequiredInfo(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredInfo>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateAttentionRequiredInfo[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateAttentionRequiredInfo), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateAttentionRequiredInfo[] = {
+        { "reason", reinterpret_cast<getter>(WindowsUpdateAttentionRequiredInfo_get_Reason), nullptr, nullptr, nullptr },
+        { "timestamp", reinterpret_cast<getter>(WindowsUpdateAttentionRequiredInfo_get_Timestamp), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateAttentionRequiredInfo[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateAttentionRequiredInfo },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateAttentionRequiredInfo },
+        { Py_tp_methods, _methods_WindowsUpdateAttentionRequiredInfo },
+        { Py_tp_getset, _getset_WindowsUpdateAttentionRequiredInfo },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateAttentionRequiredInfo =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateAttentionRequiredInfo",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredInfo),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateAttentionRequiredInfo
+    };
+
+    // ----- WindowsUpdateAttentionRequiredReasonChangedEventArgs class --------------------
+    constexpr const char* const type_name_WindowsUpdateAttentionRequiredReasonChangedEventArgs = "WindowsUpdateAttentionRequiredReasonChangedEventArgs";
+
+    static PyObject* _new_WindowsUpdateAttentionRequiredReasonChangedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateAttentionRequiredReasonChangedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateAttentionRequiredReasonChangedEventArgs(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateAttentionRequiredReasonChangedEventArgs_get_Reason(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Reason());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateAttentionRequiredReasonChangedEventArgs_get_Update(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Update());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateAttentionRequiredReasonChangedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateAttentionRequiredReasonChangedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateAttentionRequiredReasonChangedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateAttentionRequiredReasonChangedEventArgs[] = {
+        { "reason", reinterpret_cast<getter>(WindowsUpdateAttentionRequiredReasonChangedEventArgs_get_Reason), nullptr, nullptr, nullptr },
+        { "update", reinterpret_cast<getter>(WindowsUpdateAttentionRequiredReasonChangedEventArgs_get_Update), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateAttentionRequiredReasonChangedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateAttentionRequiredReasonChangedEventArgs },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateAttentionRequiredReasonChangedEventArgs },
+        { Py_tp_methods, _methods_WindowsUpdateAttentionRequiredReasonChangedEventArgs },
+        { Py_tp_getset, _getset_WindowsUpdateAttentionRequiredReasonChangedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateAttentionRequiredReasonChangedEventArgs =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateAttentionRequiredReasonChangedEventArgs",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateAttentionRequiredReasonChangedEventArgs
+    };
+
+    // ----- WindowsUpdateGetAdministratorResult class --------------------
+    constexpr const char* const type_name_WindowsUpdateGetAdministratorResult = "WindowsUpdateGetAdministratorResult";
+
+    static PyObject* _new_WindowsUpdateGetAdministratorResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateGetAdministratorResult);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateGetAdministratorResult(py::wrapper::Windows::Management::Update::WindowsUpdateGetAdministratorResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateGetAdministratorResult_get_Administrator(py::wrapper::Windows::Management::Update::WindowsUpdateGetAdministratorResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Administrator());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateGetAdministratorResult_get_Status(py::wrapper::Windows::Management::Update::WindowsUpdateGetAdministratorResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateGetAdministratorResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateGetAdministratorResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateGetAdministratorResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateGetAdministratorResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateGetAdministratorResult[] = {
+        { "administrator", reinterpret_cast<getter>(WindowsUpdateGetAdministratorResult_get_Administrator), nullptr, nullptr, nullptr },
+        { "status", reinterpret_cast<getter>(WindowsUpdateGetAdministratorResult_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateGetAdministratorResult[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateGetAdministratorResult },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateGetAdministratorResult },
+        { Py_tp_methods, _methods_WindowsUpdateGetAdministratorResult },
+        { Py_tp_getset, _getset_WindowsUpdateGetAdministratorResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateGetAdministratorResult =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateGetAdministratorResult",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateGetAdministratorResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateGetAdministratorResult
+    };
+
+    // ----- WindowsUpdateItem class --------------------
+    constexpr const char* const type_name_WindowsUpdateItem = "WindowsUpdateItem";
+
+    static PyObject* _new_WindowsUpdateItem(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateItem);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateItem(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateItem_get_Category(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Category());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateItem_get_Description(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Description());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateItem_get_MoreInfoUrl(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MoreInfoUrl());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateItem_get_Operation(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Operation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateItem_get_ProviderId(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateItem_get_Timestamp(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Timestamp());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateItem_get_Title(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Title());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateItem_get_UpdateId(py::wrapper::Windows::Management::Update::WindowsUpdateItem* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.UpdateId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateItem(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateItem>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateItem[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateItem), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateItem[] = {
+        { "category", reinterpret_cast<getter>(WindowsUpdateItem_get_Category), nullptr, nullptr, nullptr },
+        { "description", reinterpret_cast<getter>(WindowsUpdateItem_get_Description), nullptr, nullptr, nullptr },
+        { "more_info_url", reinterpret_cast<getter>(WindowsUpdateItem_get_MoreInfoUrl), nullptr, nullptr, nullptr },
+        { "operation", reinterpret_cast<getter>(WindowsUpdateItem_get_Operation), nullptr, nullptr, nullptr },
+        { "provider_id", reinterpret_cast<getter>(WindowsUpdateItem_get_ProviderId), nullptr, nullptr, nullptr },
+        { "timestamp", reinterpret_cast<getter>(WindowsUpdateItem_get_Timestamp), nullptr, nullptr, nullptr },
+        { "title", reinterpret_cast<getter>(WindowsUpdateItem_get_Title), nullptr, nullptr, nullptr },
+        { "update_id", reinterpret_cast<getter>(WindowsUpdateItem_get_UpdateId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateItem[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateItem },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateItem },
+        { Py_tp_methods, _methods_WindowsUpdateItem },
+        { Py_tp_getset, _getset_WindowsUpdateItem },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateItem =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateItem",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateItem),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateItem
+    };
+
+    // ----- WindowsUpdateManager class --------------------
+    constexpr const char* const type_name_WindowsUpdateManager = "WindowsUpdateManager";
+
+    static PyObject* _new_WindowsUpdateManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                winrt::Windows::Management::Update::WindowsUpdateManager instance{ param0 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_WindowsUpdateManager(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateManager_GetApplicableUpdates(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetApplicableUpdates());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_GetMostRecentCompletedUpdates(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<int32_t>(args, 0);
+
+                return py::convert(self->obj.GetMostRecentCompletedUpdates(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_GetMostRecentCompletedUpdatesAsync(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<int32_t>(args, 0);
+
+                return py::convert(self->obj.GetMostRecentCompletedUpdatesAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_StartScan(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<bool>(args, 0);
+
+                self->obj.StartScan(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_get_IsScanning(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsScanning());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_get_IsWorking(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsWorking());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_get_LastSuccessfulScanTimestamp(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LastSuccessfulScanTimestamp());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_add_ActionCompleted(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Management::Update::WindowsUpdateManager, winrt::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs>>(arg);
+
+            return py::convert(self->obj.ActionCompleted(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_remove_ActionCompleted(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.ActionCompleted(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_add_AttentionRequiredReasonChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Management::Update::WindowsUpdateManager, winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs>>(arg);
+
+            return py::convert(self->obj.AttentionRequiredReasonChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_remove_AttentionRequiredReasonChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.AttentionRequiredReasonChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_add_ProgressChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Management::Update::WindowsUpdateManager, winrt::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs>>(arg);
+
+            return py::convert(self->obj.ProgressChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_remove_ProgressChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.ProgressChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_add_ScanCompleted(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Management::Update::WindowsUpdateManager, winrt::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs>>(arg);
+
+            return py::convert(self->obj.ScanCompleted(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_remove_ScanCompleted(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.ScanCompleted(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_add_ScanningStateChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Management::Update::WindowsUpdateManager, winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(self->obj.ScanningStateChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_remove_ScanningStateChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.ScanningStateChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_add_WorkingStateChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Management::Update::WindowsUpdateManager, winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(self->obj.WorkingStateChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateManager_remove_WorkingStateChanged(py::wrapper::Windows::Management::Update::WindowsUpdateManager* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.WorkingStateChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateManager(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateManager>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateManager[] = {
+        { "get_applicable_updates", reinterpret_cast<PyCFunction>(WindowsUpdateManager_GetApplicableUpdates), METH_VARARGS, nullptr },
+        { "get_most_recent_completed_updates", reinterpret_cast<PyCFunction>(WindowsUpdateManager_GetMostRecentCompletedUpdates), METH_VARARGS, nullptr },
+        { "get_most_recent_completed_updates_async", reinterpret_cast<PyCFunction>(WindowsUpdateManager_GetMostRecentCompletedUpdatesAsync), METH_VARARGS, nullptr },
+        { "start_scan", reinterpret_cast<PyCFunction>(WindowsUpdateManager_StartScan), METH_VARARGS, nullptr },
+        { "add_action_completed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_add_ActionCompleted), METH_O, nullptr },
+        { "remove_action_completed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_remove_ActionCompleted), METH_O, nullptr },
+        { "add_attention_required_reason_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_add_AttentionRequiredReasonChanged), METH_O, nullptr },
+        { "remove_attention_required_reason_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_remove_AttentionRequiredReasonChanged), METH_O, nullptr },
+        { "add_progress_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_add_ProgressChanged), METH_O, nullptr },
+        { "remove_progress_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_remove_ProgressChanged), METH_O, nullptr },
+        { "add_scan_completed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_add_ScanCompleted), METH_O, nullptr },
+        { "remove_scan_completed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_remove_ScanCompleted), METH_O, nullptr },
+        { "add_scanning_state_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_add_ScanningStateChanged), METH_O, nullptr },
+        { "remove_scanning_state_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_remove_ScanningStateChanged), METH_O, nullptr },
+        { "add_working_state_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_add_WorkingStateChanged), METH_O, nullptr },
+        { "remove_working_state_changed", reinterpret_cast<PyCFunction>(WindowsUpdateManager_remove_WorkingStateChanged), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateManager), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateManager[] = {
+        { "is_scanning", reinterpret_cast<getter>(WindowsUpdateManager_get_IsScanning), nullptr, nullptr, nullptr },
+        { "is_working", reinterpret_cast<getter>(WindowsUpdateManager_get_IsWorking), nullptr, nullptr, nullptr },
+        { "last_successful_scan_timestamp", reinterpret_cast<getter>(WindowsUpdateManager_get_LastSuccessfulScanTimestamp), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateManager[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateManager },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateManager },
+        { Py_tp_methods, _methods_WindowsUpdateManager },
+        { Py_tp_getset, _getset_WindowsUpdateManager },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateManager =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateManager",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateManager),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateManager
+    };
+
+    // ----- WindowsUpdateProgressChangedEventArgs class --------------------
+    constexpr const char* const type_name_WindowsUpdateProgressChangedEventArgs = "WindowsUpdateProgressChangedEventArgs";
+
+    static PyObject* _new_WindowsUpdateProgressChangedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateProgressChangedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateProgressChangedEventArgs(py::wrapper::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateProgressChangedEventArgs_get_ActionProgress(py::wrapper::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ActionProgress());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateProgressChangedEventArgs_get_Update(py::wrapper::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Update());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateProgressChangedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateProgressChangedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateProgressChangedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateProgressChangedEventArgs[] = {
+        { "action_progress", reinterpret_cast<getter>(WindowsUpdateProgressChangedEventArgs_get_ActionProgress), nullptr, nullptr, nullptr },
+        { "update", reinterpret_cast<getter>(WindowsUpdateProgressChangedEventArgs_get_Update), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateProgressChangedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateProgressChangedEventArgs },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateProgressChangedEventArgs },
+        { Py_tp_methods, _methods_WindowsUpdateProgressChangedEventArgs },
+        { Py_tp_getset, _getset_WindowsUpdateProgressChangedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateProgressChangedEventArgs =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateProgressChangedEventArgs",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateProgressChangedEventArgs
+    };
+
+    // ----- WindowsUpdateRestartRequestOptions class --------------------
+    constexpr const char* const type_name_WindowsUpdateRestartRequestOptions = "WindowsUpdateRestartRequestOptions";
+
+    static PyObject* _new_WindowsUpdateRestartRequestOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Foundation::Uri>(args, 2);
+                auto param3 = py::convert_to<int32_t>(args, 3);
+                auto param4 = py::convert_to<int32_t>(args, 4);
+
+                winrt::Windows::Management::Update::WindowsUpdateRestartRequestOptions instance{ param0, param1, param2, param3, param4 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Management::Update::WindowsUpdateRestartRequestOptions instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_WindowsUpdateRestartRequestOptions(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateRestartRequestOptions_get_Title(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Title());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateRestartRequestOptions_put_Title(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Title(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateRestartRequestOptions_get_OrganizationName(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.OrganizationName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateRestartRequestOptions_put_OrganizationName(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.OrganizationName(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateRestartRequestOptions_get_OptOutOfAutoReboot(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.OptOutOfAutoReboot());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateRestartRequestOptions_put_OptOutOfAutoReboot(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.OptOutOfAutoReboot(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateRestartRequestOptions_get_MoreInfoUrl(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MoreInfoUrl());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateRestartRequestOptions_put_MoreInfoUrl(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::Uri>(arg);
+
+            self->obj.MoreInfoUrl(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateRestartRequestOptions_get_Description(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Description());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateRestartRequestOptions_put_Description(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Description(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateRestartRequestOptions_get_ComplianceGracePeriodInDays(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ComplianceGracePeriodInDays());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateRestartRequestOptions_put_ComplianceGracePeriodInDays(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<int32_t>(arg);
+
+            self->obj.ComplianceGracePeriodInDays(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowsUpdateRestartRequestOptions_get_ComplianceDeadlineInDays(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ComplianceDeadlineInDays());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowsUpdateRestartRequestOptions_put_ComplianceDeadlineInDays(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<int32_t>(arg);
+
+            self->obj.ComplianceDeadlineInDays(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateRestartRequestOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateRestartRequestOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateRestartRequestOptions[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateRestartRequestOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateRestartRequestOptions[] = {
+        { "title", reinterpret_cast<getter>(WindowsUpdateRestartRequestOptions_get_Title), reinterpret_cast<setter>(WindowsUpdateRestartRequestOptions_put_Title), nullptr, nullptr },
+        { "organization_name", reinterpret_cast<getter>(WindowsUpdateRestartRequestOptions_get_OrganizationName), reinterpret_cast<setter>(WindowsUpdateRestartRequestOptions_put_OrganizationName), nullptr, nullptr },
+        { "opt_out_of_auto_reboot", reinterpret_cast<getter>(WindowsUpdateRestartRequestOptions_get_OptOutOfAutoReboot), reinterpret_cast<setter>(WindowsUpdateRestartRequestOptions_put_OptOutOfAutoReboot), nullptr, nullptr },
+        { "more_info_url", reinterpret_cast<getter>(WindowsUpdateRestartRequestOptions_get_MoreInfoUrl), reinterpret_cast<setter>(WindowsUpdateRestartRequestOptions_put_MoreInfoUrl), nullptr, nullptr },
+        { "description", reinterpret_cast<getter>(WindowsUpdateRestartRequestOptions_get_Description), reinterpret_cast<setter>(WindowsUpdateRestartRequestOptions_put_Description), nullptr, nullptr },
+        { "compliance_grace_period_in_days", reinterpret_cast<getter>(WindowsUpdateRestartRequestOptions_get_ComplianceGracePeriodInDays), reinterpret_cast<setter>(WindowsUpdateRestartRequestOptions_put_ComplianceGracePeriodInDays), nullptr, nullptr },
+        { "compliance_deadline_in_days", reinterpret_cast<getter>(WindowsUpdateRestartRequestOptions_get_ComplianceDeadlineInDays), reinterpret_cast<setter>(WindowsUpdateRestartRequestOptions_put_ComplianceDeadlineInDays), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateRestartRequestOptions[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateRestartRequestOptions },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateRestartRequestOptions },
+        { Py_tp_methods, _methods_WindowsUpdateRestartRequestOptions },
+        { Py_tp_getset, _getset_WindowsUpdateRestartRequestOptions },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateRestartRequestOptions =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateRestartRequestOptions",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateRestartRequestOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateRestartRequestOptions
+    };
+
+    // ----- WindowsUpdateScanCompletedEventArgs class --------------------
+    constexpr const char* const type_name_WindowsUpdateScanCompletedEventArgs = "WindowsUpdateScanCompletedEventArgs";
+
+    static PyObject* _new_WindowsUpdateScanCompletedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowsUpdateScanCompletedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowsUpdateScanCompletedEventArgs(py::wrapper::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowsUpdateScanCompletedEventArgs_get_ExtendedError(py::wrapper::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ExtendedError());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateScanCompletedEventArgs_get_ProviderId(py::wrapper::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateScanCompletedEventArgs_get_Succeeded(py::wrapper::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Succeeded());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowsUpdateScanCompletedEventArgs_get_Updates(py::wrapper::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Updates());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WindowsUpdateScanCompletedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowsUpdateScanCompletedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowsUpdateScanCompletedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowsUpdateScanCompletedEventArgs[] = {
+        { "extended_error", reinterpret_cast<getter>(WindowsUpdateScanCompletedEventArgs_get_ExtendedError), nullptr, nullptr, nullptr },
+        { "provider_id", reinterpret_cast<getter>(WindowsUpdateScanCompletedEventArgs_get_ProviderId), nullptr, nullptr, nullptr },
+        { "succeeded", reinterpret_cast<getter>(WindowsUpdateScanCompletedEventArgs_get_Succeeded), nullptr, nullptr, nullptr },
+        { "updates", reinterpret_cast<getter>(WindowsUpdateScanCompletedEventArgs_get_Updates), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowsUpdateScanCompletedEventArgs[] = 
+    {
+        { Py_tp_new, _new_WindowsUpdateScanCompletedEventArgs },
+        { Py_tp_dealloc, _dealloc_WindowsUpdateScanCompletedEventArgs },
+        { Py_tp_methods, _methods_WindowsUpdateScanCompletedEventArgs },
+        { Py_tp_getset, _getset_WindowsUpdateScanCompletedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowsUpdateScanCompletedEventArgs =
+    {
+        "_winsdk_Windows_Management_Update.WindowsUpdateScanCompletedEventArgs",
+        sizeof(py::wrapper::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowsUpdateScanCompletedEventArgs
+    };
+
     // ----- Windows.Management.Update Initialization --------------------
     PyDoc_STRVAR(module_doc, "Windows::Management::Update");
 
     static PyMethodDef module_methods[] = {
+        {"_register_WindowsUpdateAdministratorOptions", register_WindowsUpdateAdministratorOptions, METH_O, "registers type"},
+        {"_register_WindowsUpdateAdministratorStatus", register_WindowsUpdateAdministratorStatus, METH_O, "registers type"},
+        {"_register_WindowsUpdateAttentionRequiredReason", register_WindowsUpdateAttentionRequiredReason, METH_O, "registers type"},
         {}};
 
 
@@ -290,8 +3154,25 @@ namespace py::cpp::Windows::Management::Update
             return 0;
         }
 
+        Py_VISIT(state->type_WindowsUpdateAdministratorOptions);
+        Py_VISIT(state->type_WindowsUpdateAdministratorStatus);
+        Py_VISIT(state->type_WindowsUpdateAttentionRequiredReason);
         Py_VISIT(state->type_PreviewBuildsManager);
         Py_VISIT(state->type_PreviewBuildsState);
+        Py_VISIT(state->type_WindowsUpdate);
+        Py_VISIT(state->type_WindowsUpdateActionCompletedEventArgs);
+        Py_VISIT(state->type_WindowsUpdateActionProgress);
+        Py_VISIT(state->type_WindowsUpdateActionResult);
+        Py_VISIT(state->type_WindowsUpdateAdministrator);
+        Py_VISIT(state->type_WindowsUpdateApprovalData);
+        Py_VISIT(state->type_WindowsUpdateAttentionRequiredInfo);
+        Py_VISIT(state->type_WindowsUpdateAttentionRequiredReasonChangedEventArgs);
+        Py_VISIT(state->type_WindowsUpdateGetAdministratorResult);
+        Py_VISIT(state->type_WindowsUpdateItem);
+        Py_VISIT(state->type_WindowsUpdateManager);
+        Py_VISIT(state->type_WindowsUpdateProgressChangedEventArgs);
+        Py_VISIT(state->type_WindowsUpdateRestartRequestOptions);
+        Py_VISIT(state->type_WindowsUpdateScanCompletedEventArgs);
 
         return 0;
     }
@@ -305,8 +3186,25 @@ namespace py::cpp::Windows::Management::Update
             return 0;
         }
 
+        Py_CLEAR(state->type_WindowsUpdateAdministratorOptions);
+        Py_CLEAR(state->type_WindowsUpdateAdministratorStatus);
+        Py_CLEAR(state->type_WindowsUpdateAttentionRequiredReason);
         Py_CLEAR(state->type_PreviewBuildsManager);
         Py_CLEAR(state->type_PreviewBuildsState);
+        Py_CLEAR(state->type_WindowsUpdate);
+        Py_CLEAR(state->type_WindowsUpdateActionCompletedEventArgs);
+        Py_CLEAR(state->type_WindowsUpdateActionProgress);
+        Py_CLEAR(state->type_WindowsUpdateActionResult);
+        Py_CLEAR(state->type_WindowsUpdateAdministrator);
+        Py_CLEAR(state->type_WindowsUpdateApprovalData);
+        Py_CLEAR(state->type_WindowsUpdateAttentionRequiredInfo);
+        Py_CLEAR(state->type_WindowsUpdateAttentionRequiredReasonChangedEventArgs);
+        Py_CLEAR(state->type_WindowsUpdateGetAdministratorResult);
+        Py_CLEAR(state->type_WindowsUpdateItem);
+        Py_CLEAR(state->type_WindowsUpdateManager);
+        Py_CLEAR(state->type_WindowsUpdateProgressChangedEventArgs);
+        Py_CLEAR(state->type_WindowsUpdateRestartRequestOptions);
+        Py_CLEAR(state->type_WindowsUpdateScanCompletedEventArgs);
 
         return 0;
     }
@@ -431,8 +3329,189 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Management_Update(void) noexcept
 
     Py_INCREF(state->type_PreviewBuildsState);
 
+    state->type_WindowsUpdate = py::register_python_type(module.get(), type_name_WindowsUpdate, &type_spec_WindowsUpdate, bases.get());
+    if (!state->type_WindowsUpdate)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdate);
+
+    state->type_WindowsUpdateActionCompletedEventArgs = py::register_python_type(module.get(), type_name_WindowsUpdateActionCompletedEventArgs, &type_spec_WindowsUpdateActionCompletedEventArgs, bases.get());
+    if (!state->type_WindowsUpdateActionCompletedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateActionCompletedEventArgs);
+
+    state->type_WindowsUpdateActionProgress = py::register_python_type(module.get(), type_name_WindowsUpdateActionProgress, &type_spec_WindowsUpdateActionProgress, bases.get());
+    if (!state->type_WindowsUpdateActionProgress)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateActionProgress);
+
+    state->type_WindowsUpdateActionResult = py::register_python_type(module.get(), type_name_WindowsUpdateActionResult, &type_spec_WindowsUpdateActionResult, bases.get());
+    if (!state->type_WindowsUpdateActionResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateActionResult);
+
+    state->type_WindowsUpdateAdministrator = py::register_python_type(module.get(), type_name_WindowsUpdateAdministrator, &type_spec_WindowsUpdateAdministrator, bases.get());
+    if (!state->type_WindowsUpdateAdministrator)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateAdministrator);
+
+    state->type_WindowsUpdateApprovalData = py::register_python_type(module.get(), type_name_WindowsUpdateApprovalData, &type_spec_WindowsUpdateApprovalData, bases.get());
+    if (!state->type_WindowsUpdateApprovalData)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateApprovalData);
+
+    state->type_WindowsUpdateAttentionRequiredInfo = py::register_python_type(module.get(), type_name_WindowsUpdateAttentionRequiredInfo, &type_spec_WindowsUpdateAttentionRequiredInfo, bases.get());
+    if (!state->type_WindowsUpdateAttentionRequiredInfo)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateAttentionRequiredInfo);
+
+    state->type_WindowsUpdateAttentionRequiredReasonChangedEventArgs = py::register_python_type(module.get(), type_name_WindowsUpdateAttentionRequiredReasonChangedEventArgs, &type_spec_WindowsUpdateAttentionRequiredReasonChangedEventArgs, bases.get());
+    if (!state->type_WindowsUpdateAttentionRequiredReasonChangedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateAttentionRequiredReasonChangedEventArgs);
+
+    state->type_WindowsUpdateGetAdministratorResult = py::register_python_type(module.get(), type_name_WindowsUpdateGetAdministratorResult, &type_spec_WindowsUpdateGetAdministratorResult, bases.get());
+    if (!state->type_WindowsUpdateGetAdministratorResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateGetAdministratorResult);
+
+    state->type_WindowsUpdateItem = py::register_python_type(module.get(), type_name_WindowsUpdateItem, &type_spec_WindowsUpdateItem, bases.get());
+    if (!state->type_WindowsUpdateItem)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateItem);
+
+    state->type_WindowsUpdateManager = py::register_python_type(module.get(), type_name_WindowsUpdateManager, &type_spec_WindowsUpdateManager, bases.get());
+    if (!state->type_WindowsUpdateManager)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateManager);
+
+    state->type_WindowsUpdateProgressChangedEventArgs = py::register_python_type(module.get(), type_name_WindowsUpdateProgressChangedEventArgs, &type_spec_WindowsUpdateProgressChangedEventArgs, bases.get());
+    if (!state->type_WindowsUpdateProgressChangedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateProgressChangedEventArgs);
+
+    state->type_WindowsUpdateRestartRequestOptions = py::register_python_type(module.get(), type_name_WindowsUpdateRestartRequestOptions, &type_spec_WindowsUpdateRestartRequestOptions, bases.get());
+    if (!state->type_WindowsUpdateRestartRequestOptions)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateRestartRequestOptions);
+
+    state->type_WindowsUpdateScanCompletedEventArgs = py::register_python_type(module.get(), type_name_WindowsUpdateScanCompletedEventArgs, &type_spec_WindowsUpdateScanCompletedEventArgs, bases.get());
+    if (!state->type_WindowsUpdateScanCompletedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WindowsUpdateScanCompletedEventArgs);
+
 
     return module.detach();
+}
+
+PyObject* py::py_type<winrt::Windows::Management::Update::WindowsUpdateAdministratorOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateAdministratorOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateAdministratorOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Management::Update::WindowsUpdateAdministratorStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateAdministratorStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateAdministratorStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredReason>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateAttentionRequiredReason;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredReason is not registered");
+        return nullptr;
+    }
+
+    return python_type;
 }
 
 PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::PreviewBuildsManager>::get_python_type() noexcept {
@@ -475,6 +3554,328 @@ PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::PreviewBuildsSt
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::PreviewBuildsState is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdate>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdate;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdate is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateActionCompletedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateActionCompletedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateActionProgress>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateActionProgress;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateActionProgress is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateActionResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateActionResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateActionResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateAdministrator>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateAdministrator;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateAdministrator is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateApprovalData>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateApprovalData;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateApprovalData is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredInfo>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateAttentionRequiredInfo;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredInfo is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateAttentionRequiredReasonChangedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateAttentionRequiredReasonChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateGetAdministratorResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateGetAdministratorResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateGetAdministratorResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateItem>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateItem;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateItem is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateProgressChangedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateProgressChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateRestartRequestOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateRestartRequestOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateRestartRequestOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Management::Update;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Management::Update");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowsUpdateScanCompletedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Management::Update::WindowsUpdateScanCompletedEventArgs is not registered");
         return nullptr;
     }
 

@@ -261,6 +261,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     struct ICompositionObject2;
     struct ICompositionObject3;
     struct ICompositionObject4;
+    struct ICompositionObject5;
     struct ICompositionObjectFactory;
     struct ICompositionObjectStatics;
     struct ICompositionPath;
@@ -304,6 +305,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     struct ICompositor5;
     struct ICompositor6;
     struct ICompositor7;
+    struct ICompositor8;
     struct ICompositorStatics;
     struct ICompositorWithBlurredWallpaperBackdropBrush;
     struct ICompositorWithProjectedShadow;
@@ -549,6 +551,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Composition::ICompositionObject2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositionObject3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositionObject4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Composition::ICompositionObject5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositionObjectFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositionObjectStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositionPath>{ using type = interface_category; };
@@ -592,6 +595,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Composition::ICompositor5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositor6>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositor7>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Composition::ICompositor8>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositorStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositorWithBlurredWallpaperBackdropBrush>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::ICompositorWithProjectedShadow>{ using type = interface_category; };
@@ -981,6 +985,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositionObject2> = L"Windows.UI.Composition.ICompositionObject2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositionObject3> = L"Windows.UI.Composition.ICompositionObject3";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositionObject4> = L"Windows.UI.Composition.ICompositionObject4";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositionObject5> = L"Windows.UI.Composition.ICompositionObject5";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositionObjectFactory> = L"Windows.UI.Composition.ICompositionObjectFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositionObjectStatics> = L"Windows.UI.Composition.ICompositionObjectStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositionPath> = L"Windows.UI.Composition.ICompositionPath";
@@ -1024,6 +1029,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositor5> = L"Windows.UI.Composition.ICompositor5";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositor6> = L"Windows.UI.Composition.ICompositor6";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositor7> = L"Windows.UI.Composition.ICompositor7";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositor8> = L"Windows.UI.Composition.ICompositor8";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositorStatics> = L"Windows.UI.Composition.ICompositorStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositorWithBlurredWallpaperBackdropBrush> = L"Windows.UI.Composition.ICompositorWithBlurredWallpaperBackdropBrush";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::ICompositorWithProjectedShadow> = L"Windows.UI.Composition.ICompositorWithProjectedShadow";
@@ -1161,6 +1167,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositionObject2>{ 0xEF874EA1,0x5CFF,0x4B68,{ 0x9E,0x30,0xA1,0x51,0x9D,0x08,0xBA,0x03 } }; // EF874EA1-5CFF-4B68-9E30-A1519D08BA03
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositionObject3>{ 0x4BC27925,0xDACD,0x4CF2,{ 0x98,0xB1,0x98,0x6B,0x76,0xE7,0xEB,0xE6 } }; // 4BC27925-DACD-4CF2-98B1-986B76E7EBE6
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositionObject4>{ 0x0BB3784C,0x346B,0x4A7C,{ 0x96,0x6B,0x73,0x10,0x96,0x65,0x53,0xD5 } }; // 0BB3784C-346B-4A7C-966B-7310966553D5
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositionObject5>{ 0x1D7F391B,0xA130,0x5265,{ 0xA6,0x2B,0x60,0xB8,0xE6,0x68,0x96,0x5A } }; // 1D7F391B-A130-5265-A62B-60B8E668965A
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositionObjectFactory>{ 0x51205C5E,0x558A,0x4F2A,{ 0x8D,0x39,0x37,0xBF,0xE1,0xE2,0x0D,0xDD } }; // 51205C5E-558A-4F2A-8D39-37BFE1E20DDD
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositionObjectStatics>{ 0xC1ED052F,0x1BA2,0x44BA,{ 0xA9,0x04,0x6A,0x88,0x2A,0x0A,0x5A,0xDB } }; // C1ED052F-1BA2-44BA-A904-6A882A0A5ADB
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositionPath>{ 0x66DA1D5F,0x2E10,0x4F22,{ 0x8A,0x06,0x0A,0x81,0x51,0x91,0x9E,0x60 } }; // 66DA1D5F-2E10-4F22-8A06-0A8151919E60
@@ -1204,6 +1211,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositor5>{ 0x48EA31AD,0x7FCD,0x4076,{ 0xA7,0x9C,0x90,0xCC,0x4B,0x85,0x2C,0x9B } }; // 48EA31AD-7FCD-4076-A79C-90CC4B852C9B
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositor6>{ 0x7A38B2BD,0xCEC8,0x4EEB,{ 0x83,0x0F,0xD8,0xD0,0x7A,0xED,0xEB,0xC3 } }; // 7A38B2BD-CEC8-4EEB-830F-D8D07AEDEBC3
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositor7>{ 0xD3483FAD,0x9A12,0x53BA,{ 0xBF,0xC8,0x88,0xB7,0xFF,0x79,0x77,0xC6 } }; // D3483FAD-9A12-53BA-BFC8-88B7FF7977C6
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositor8>{ 0x9A0BDEE2,0xFE7B,0x5F62,{ 0xA3,0x66,0x9C,0xF8,0xEF,0xFE,0x21,0x12 } }; // 9A0BDEE2-FE7B-5F62-A366-9CF8EFFE2112
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositorStatics>{ 0x080DB93E,0x121E,0x4D97,{ 0x8B,0x74,0x1D,0xFC,0xF9,0x19,0x87,0xEA } }; // 080DB93E-121E-4D97-8B74-1DFCF91987EA
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositorWithBlurredWallpaperBackdropBrush>{ 0x0D8FB190,0xF122,0x5B8D,{ 0x9F,0xDD,0x54,0x3B,0x0D,0x8E,0xB7,0xF3 } }; // 0D8FB190-F122-5B8D-9FDD-543B0D8EB7F3
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::ICompositorWithProjectedShadow>{ 0xA2E6330E,0x8A60,0x5A38,{ 0xBB,0x85,0xB4,0x4E,0xA9,0x01,0x67,0x7C } }; // A2E6330E-8A60-5A38-BB85-B44EA901677C
@@ -2015,6 +2023,13 @@ namespace winrt::impl
             virtual int32_t __stdcall TryGetAnimationController(void*, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::UI::Composition::ICompositionObject5>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall StartAnimationWithController(void*, void*, void*) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::UI::Composition::ICompositionObjectFactory>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -2502,6 +2517,13 @@ namespace winrt::impl
             virtual int32_t __stdcall CreateRectangleClip(void**) noexcept = 0;
             virtual int32_t __stdcall CreateRectangleClipWithSides(float, float, float, float, void**) noexcept = 0;
             virtual int32_t __stdcall CreateRectangleClipWithSidesAndRadius(float, float, float, float, winrt::Windows::Foundation::Numerics::float2, winrt::Windows::Foundation::Numerics::float2, winrt::Windows::Foundation::Numerics::float2, winrt::Windows::Foundation::Numerics::float2, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Composition::ICompositor8>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreateAnimationController(void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::Composition::ICompositorStatics>
@@ -3958,6 +3980,15 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_UI_Composition_ICompositionObject4<D>;
     };
     template <typename D>
+    struct consume_Windows_UI_Composition_ICompositionObject5
+    {
+        auto StartAnimation(param::hstring const& propertyName, winrt::Windows::UI::Composition::CompositionAnimation const& animation, winrt::Windows::UI::Composition::AnimationController const& animationController) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Composition::ICompositionObject5>
+    {
+        template <typename D> using type = consume_Windows_UI_Composition_ICompositionObject5<D>;
+    };
+    template <typename D>
     struct consume_Windows_UI_Composition_ICompositionObjectFactory
     {
     };
@@ -4533,6 +4564,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::Composition::ICompositor7>
     {
         template <typename D> using type = consume_Windows_UI_Composition_ICompositor7<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Composition_ICompositor8
+    {
+        auto CreateAnimationController() const;
+    };
+    template <> struct consume<winrt::Windows::UI::Composition::ICompositor8>
+    {
+        template <typename D> using type = consume_Windows_UI_Composition_ICompositor8<D>;
     };
     template <typename D>
     struct consume_Windows_UI_Composition_ICompositorStatics

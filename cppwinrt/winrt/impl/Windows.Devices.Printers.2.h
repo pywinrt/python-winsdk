@@ -64,10 +64,15 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Printers
         IppIntegerRange(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::IIppIntegerRange(ptr, take_ownership_from_abi) {}
         IppIntegerRange(int32_t start, int32_t end);
     };
-    struct __declspec(empty_bases) IppPrintDevice : winrt::Windows::Devices::Printers::IIppPrintDevice
+    struct __declspec(empty_bases) IppPrintDevice : winrt::Windows::Devices::Printers::IIppPrintDevice,
+        impl::require<IppPrintDevice, winrt::Windows::Devices::Printers::IIppPrintDevice2>
     {
         IppPrintDevice(std::nullptr_t) noexcept {}
         IppPrintDevice(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::IIppPrintDevice(ptr, take_ownership_from_abi) {}
+        static auto GetDeviceSelector();
+        static auto FromId(param::hstring const& deviceId);
+        static auto FromPrinterName(param::hstring const& printerName);
+        static auto IsIppPrinter(param::hstring const& printerName);
     };
     struct __declspec(empty_bases) IppResolution : winrt::Windows::Devices::Printers::IIppResolution
     {
@@ -85,6 +90,23 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Printers
         IppTextWithLanguage(std::nullptr_t) noexcept {}
         IppTextWithLanguage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::IIppTextWithLanguage(ptr, take_ownership_from_abi) {}
         IppTextWithLanguage(param::hstring const& language, param::hstring const& text);
+    };
+    struct __declspec(empty_bases) PageConfigurationSettings : winrt::Windows::Devices::Printers::IPageConfigurationSettings
+    {
+        PageConfigurationSettings(std::nullptr_t) noexcept {}
+        PageConfigurationSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::IPageConfigurationSettings(ptr, take_ownership_from_abi) {}
+        PageConfigurationSettings();
+    };
+    struct __declspec(empty_bases) PdlPassthroughProvider : winrt::Windows::Devices::Printers::IPdlPassthroughProvider
+    {
+        PdlPassthroughProvider(std::nullptr_t) noexcept {}
+        PdlPassthroughProvider(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::IPdlPassthroughProvider(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) PdlPassthroughTarget : winrt::Windows::Devices::Printers::IPdlPassthroughTarget,
+        impl::require<PdlPassthroughTarget, winrt::Windows::Foundation::IClosable>
+    {
+        PdlPassthroughTarget(std::nullptr_t) noexcept {}
+        PdlPassthroughTarget(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Printers::IPdlPassthroughTarget(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) Print3DDevice : winrt::Windows::Devices::Printers::IPrint3DDevice
     {

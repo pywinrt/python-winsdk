@@ -20,6 +20,10 @@
 #include "py.Windows.Storage.Streams.h"
 #endif
 
+#if __has_include("py.Windows.UI.h")
+#include "py.Windows.UI.h"
+#endif
+
 #include <winrt/Windows.Storage.Provider.h>
 
 namespace py::proj::Windows::Storage::Provider
@@ -35,21 +39,22 @@ namespace py::wrapper::Windows::Storage::Provider
     using FileUpdateRequest = py::winrt_wrapper<winrt::Windows::Storage::Provider::FileUpdateRequest>;
     using FileUpdateRequestDeferral = py::winrt_wrapper<winrt::Windows::Storage::Provider::FileUpdateRequestDeferral>;
     using FileUpdateRequestedEventArgs = py::winrt_wrapper<winrt::Windows::Storage::Provider::FileUpdateRequestedEventArgs>;
-    using StorageProviderError = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderError>;
-    using StorageProviderErrorCommand = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderErrorCommand>;
     using StorageProviderFileTypeInfo = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderFileTypeInfo>;
     using StorageProviderGetContentInfoForPathResult = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderGetContentInfoForPathResult>;
     using StorageProviderGetPathForContentUriResult = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderGetPathForContentUriResult>;
     using StorageProviderItemProperties = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderItemProperties>;
     using StorageProviderItemProperty = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderItemProperty>;
     using StorageProviderItemPropertyDefinition = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderItemPropertyDefinition>;
-    using StorageProviderStatus = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderStatus>;
+    using StorageProviderMoreInfoUI = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderMoreInfoUI>;
+    using StorageProviderQuotaUI = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderQuotaUI>;
+    using StorageProviderStatusUI = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderStatusUI>;
     using StorageProviderSyncRootInfo = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderSyncRootInfo>;
     using StorageProviderSyncRootManager = py::winrt_wrapper<winrt::Windows::Storage::Provider::StorageProviderSyncRootManager>;
-    using IStorageProviderHandlerFactory = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderHandlerFactory>;
     using IStorageProviderItemPropertySource = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderItemPropertySource>;
     using IStorageProviderPropertyCapabilities = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderPropertyCapabilities>;
-    using IStorageProviderStatusSource = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderStatusSource>;
+    using IStorageProviderStatusUISource = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderStatusUISource>;
+    using IStorageProviderStatusUISourceFactory = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory>;
+    using IStorageProviderUICommand = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderUICommand>;
     using IStorageProviderUriSource = py::winrt_wrapper<winrt::Windows::Storage::Provider::IStorageProviderUriSource>;
 }
 
@@ -123,6 +128,12 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::Storage::Provider::StorageProviderUICommandState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Storage::Provider::StorageProviderUriSourceStatus>
     {
         static PyObject* get_python_type() noexcept;
@@ -171,18 +182,6 @@ namespace py
     };
 
     template<>
-    struct winrt_type<winrt::Windows::Storage::Provider::StorageProviderError>
-    {
-        static PyTypeObject* get_python_type() noexcept;
-    };
-
-    template<>
-    struct winrt_type<winrt::Windows::Storage::Provider::StorageProviderErrorCommand>
-    {
-        static PyTypeObject* get_python_type() noexcept;
-    };
-
-    template<>
     struct winrt_type<winrt::Windows::Storage::Provider::StorageProviderFileTypeInfo>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -219,7 +218,19 @@ namespace py
     };
 
     template<>
-    struct winrt_type<winrt::Windows::Storage::Provider::StorageProviderStatus>
+    struct winrt_type<winrt::Windows::Storage::Provider::StorageProviderMoreInfoUI>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Storage::Provider::StorageProviderQuotaUI>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Storage::Provider::StorageProviderStatusUI>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -237,12 +248,6 @@ namespace py
     };
 
     template<>
-    struct winrt_type<winrt::Windows::Storage::Provider::IStorageProviderHandlerFactory>
-    {
-        static PyTypeObject* get_python_type() noexcept;
-    };
-
-    template<>
     struct winrt_type<winrt::Windows::Storage::Provider::IStorageProviderItemPropertySource>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -255,7 +260,19 @@ namespace py
     };
 
     template<>
-    struct winrt_type<winrt::Windows::Storage::Provider::IStorageProviderStatusSource>
+    struct winrt_type<winrt::Windows::Storage::Provider::IStorageProviderStatusUISource>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Storage::Provider::IStorageProviderUICommand>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

@@ -18,6 +18,7 @@ class IsolatedWindowsEnvironmentAllowedClipboardFormats(enum.IntFlag):
     NONE = 0
     TEXT = 0x1
     IMAGE = 0x2
+    RTF = 0x4
 
 class IsolatedWindowsEnvironmentAvailablePrinters(enum.IntFlag):
     NONE = 0
@@ -35,6 +36,10 @@ class IsolatedWindowsEnvironmentCreateStatus(enum.IntEnum):
     SUCCESS = 0
     FAILURE_BY_POLICY = 1
     UNKNOWN_FAILURE = 2
+
+class IsolatedWindowsEnvironmentCreationPriority(enum.IntEnum):
+    LOW = 0
+    NORMAL = 1
 
 class IsolatedWindowsEnvironmentHostError(enum.IntEnum):
     ADMIN_POLICY_IS_DISABLED_OR_NOT_PRESENT = 0
@@ -72,6 +77,10 @@ class IsolatedWindowsEnvironmentProgressState(enum.IntEnum):
     QUEUED = 0
     PROCESSING = 1
     COMPLETED = 2
+    CREATING = 3
+    RETRYING = 4
+    STARTING = 5
+    FINALIZING = 6
 
 class IsolatedWindowsEnvironmentShareFileStatus(enum.IntEnum):
     SUCCESS = 0
@@ -87,6 +96,14 @@ class IsolatedWindowsEnvironmentShareFolderStatus(enum.IntEnum):
     ENVIRONMENT_UNAVAILABLE = 2
     FOLDER_NOT_FOUND = 3
     ACCESS_DENIED = 4
+
+class IsolatedWindowsEnvironmentSignInProgress(enum.IntEnum):
+    CONNECTING = 0
+    CONNECTED = 1
+    AUTHENTICATING = 2
+    SETTING_UP_ACCOUNT = 3
+    FINALIZING = 4
+    COMPLETED = 5
 
 class IsolatedWindowsEnvironmentStartProcessStatus(enum.IntEnum):
     SUCCESS = 0
@@ -106,6 +123,7 @@ class IsolatedWindowsEnvironment(_winrt.Object):
     id: str
     @staticmethod
     def _from(obj: _winrt.Object) -> IsolatedWindowsEnvironment: ...
+    def change_priority(self, priority: IsolatedWindowsEnvironmentCreationPriority) -> None: ...
     @typing.overload
     @staticmethod
     def create_async(options: typing.Optional[IsolatedWindowsEnvironmentOptions]) -> winsdk.windows.foundation.IAsyncOperationWithProgress[IsolatedWindowsEnvironmentCreateResult, IsolatedWindowsEnvironmentCreateProgress]: ...
@@ -150,6 +168,7 @@ class IsolatedWindowsEnvironmentCreateResult(_winrt.Object):
     status: IsolatedWindowsEnvironmentCreateStatus
     @staticmethod
     def _from(obj: _winrt.Object) -> IsolatedWindowsEnvironmentCreateResult: ...
+    def change_creation_priority(self, priority: IsolatedWindowsEnvironmentCreationPriority) -> None: ...
 
 class IsolatedWindowsEnvironmentFile(_winrt.Object):
     host_path: str
@@ -184,6 +203,9 @@ class IsolatedWindowsEnvironmentOptions(_winrt.Object):
     shared_folder_name_in_environment: str
     shared_host_folder_path: str
     window_annotation_override: str
+    creation_priority: IsolatedWindowsEnvironmentCreationPriority
+    allowed_clipboard_formats_to_host: IsolatedWindowsEnvironmentAllowedClipboardFormats
+    allowed_clipboard_formats_to_environment: IsolatedWindowsEnvironmentAllowedClipboardFormats
     @staticmethod
     def _from(obj: _winrt.Object) -> IsolatedWindowsEnvironmentOptions: ...
     def __init__(self) -> None: ...
@@ -271,6 +293,7 @@ class IsolatedWindowsEnvironmentUserInfo(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> IsolatedWindowsEnvironmentUserInfo: ...
     def try_wait_for_sign_in_async(self) -> winsdk.windows.foundation.IAsyncOperation[_winrt.Boolean]: ...
+    def try_wait_for_sign_in_with_progress_async(self) -> winsdk.windows.foundation.IAsyncOperationWithProgress[_winrt.Boolean, IsolatedWindowsEnvironmentSignInProgress]: ...
 
 class IsolatedWindowsHostMessenger(_winrt.Object):
     @staticmethod

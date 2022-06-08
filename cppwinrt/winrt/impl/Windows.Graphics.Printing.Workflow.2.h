@@ -76,20 +76,28 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Printing::Workflow
         PrintWorkflowObjectModelTargetPackage(std::nullptr_t) noexcept {}
         PrintWorkflowObjectModelTargetPackage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelTargetPackage(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) PrintWorkflowPdlConverter : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter
+    struct __declspec(empty_bases) PrintWorkflowPdlConverter : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter,
+        impl::require<PrintWorkflowPdlConverter, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2>
     {
         PrintWorkflowPdlConverter(std::nullptr_t) noexcept {}
         PrintWorkflowPdlConverter(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter(ptr, take_ownership_from_abi) {}
+        using winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter::ConvertPdlAsync;
+        using impl::consume_t<PrintWorkflowPdlConverter, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2>::ConvertPdlAsync;
     };
     struct __declspec(empty_bases) PrintWorkflowPdlDataAvailableEventArgs : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs
     {
         PrintWorkflowPdlDataAvailableEventArgs(std::nullptr_t) noexcept {}
         PrintWorkflowPdlDataAvailableEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) PrintWorkflowPdlModificationRequestedEventArgs : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs
+    struct __declspec(empty_bases) PrintWorkflowPdlModificationRequestedEventArgs : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs,
+        impl::require<PrintWorkflowPdlModificationRequestedEventArgs, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>
     {
         PrintWorkflowPdlModificationRequestedEventArgs(std::nullptr_t) noexcept {}
         PrintWorkflowPdlModificationRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs(ptr, take_ownership_from_abi) {}
+        using winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs::CreateJobOnPrinterWithAttributes;
+        using impl::consume_t<PrintWorkflowPdlModificationRequestedEventArgs, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>::CreateJobOnPrinterWithAttributes;
+        using winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs::CreateJobOnPrinterWithAttributesBuffer;
+        using impl::consume_t<PrintWorkflowPdlModificationRequestedEventArgs, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>::CreateJobOnPrinterWithAttributesBuffer;
     };
     struct __declspec(empty_bases) PrintWorkflowPdlSourceContent : winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlSourceContent
     {

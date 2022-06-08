@@ -81,6 +81,18 @@ namespace py
 {
 
     template<>
+    struct py_type<winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowJobAbortReason>
     {
         static PyObject* get_python_type() noexcept;

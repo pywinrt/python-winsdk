@@ -226,6 +226,10 @@ class KnownVideoProfile(enum.IntEnum):
     VIDEO_HDR8 = 9
     COMPRESSED_CAMERA = 10
 
+class MediaCaptureDeviceExclusiveControlReleaseMode(enum.IntEnum):
+    ON_DISPOSE = 0
+    ON_ALL_STREAMS_STOPPED = 1
+
 class MediaCaptureDeviceExclusiveControlStatus(enum.IntEnum):
     EXCLUSIVE_CONTROL_AVAILABLE = 0
     SHARED_READ_ONLY_AVAILABLE = 1

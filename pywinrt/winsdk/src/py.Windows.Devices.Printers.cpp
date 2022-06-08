@@ -11,6 +11,7 @@ namespace py::cpp::Windows::Devices::Printers
         PyObject* type_IppAttributeErrorReason;
         PyObject* type_IppAttributeValueKind;
         PyObject* type_IppResolutionUnit;
+        PyObject* type_PageConfigurationSource;
         PyTypeObject* type_IppAttributeError;
         PyTypeObject* type_IppAttributeValue;
         PyTypeObject* type_IppIntegerRange;
@@ -18,6 +19,9 @@ namespace py::cpp::Windows::Devices::Printers
         PyTypeObject* type_IppResolution;
         PyTypeObject* type_IppSetAttributesResult;
         PyTypeObject* type_IppTextWithLanguage;
+        PyTypeObject* type_PageConfigurationSettings;
+        PyTypeObject* type_PdlPassthroughProvider;
+        PyTypeObject* type_PdlPassthroughTarget;
         PyTypeObject* type_Print3DDevice;
         PyTypeObject* type_PrintSchema;
     };
@@ -89,6 +93,30 @@ namespace py::cpp::Windows::Devices::Printers
 
         state->type_IppResolutionUnit = type;
         Py_INCREF(state->type_IppResolutionUnit);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_PageConfigurationSource(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_PageConfigurationSource)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_PageConfigurationSource = type;
+        Py_INCREF(state->type_PageConfigurationSource);
 
 
         Py_RETURN_NONE;
@@ -1845,6 +1873,148 @@ namespace py::cpp::Windows::Devices::Printers
         Py_DECREF(tp);
     }
 
+    static PyObject* IppPrintDevice_FromId(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Printers::IppPrintDevice::FromId(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IppPrintDevice_FromPrinterName(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Printers::IppPrintDevice::FromPrinterName(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IppPrintDevice_GetDeviceSelector(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Printers::IppPrintDevice::GetDeviceSelector());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IppPrintDevice_GetMaxSupportedPdfSize(py::wrapper::Windows::Devices::Printers::IppPrintDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetMaxSupportedPdfSize());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IppPrintDevice_GetMaxSupportedPdfVersion(py::wrapper::Windows::Devices::Printers::IppPrintDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetMaxSupportedPdfVersion());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IppPrintDevice_GetPdlPassthroughProvider(py::wrapper::Windows::Devices::Printers::IppPrintDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetPdlPassthroughProvider());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* IppPrintDevice_GetPrinterAttributes(py::wrapper::Windows::Devices::Printers::IppPrintDevice* self, PyObject* args) noexcept
     {
         Py_ssize_t arg_count = PyTuple_Size(args);
@@ -1881,6 +2051,56 @@ namespace py::cpp::Windows::Devices::Printers
                 auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::hstring>>(args, 0);
 
                 return py::convert(self->obj.GetPrinterAttributesAsBuffer(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IppPrintDevice_IsIppPrinter(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Printers::IppPrintDevice::IsIppPrinter(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IppPrintDevice_IsPdlPassthroughSupported(py::wrapper::Windows::Devices::Printers::IppPrintDevice* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(self->obj.IsPdlPassthroughSupported(param0));
             }
             catch (...)
             {
@@ -1986,8 +2206,16 @@ namespace py::cpp::Windows::Devices::Printers
     }
 
     static PyMethodDef _methods_IppPrintDevice[] = {
+        { "from_id", reinterpret_cast<PyCFunction>(IppPrintDevice_FromId), METH_VARARGS | METH_STATIC, nullptr },
+        { "from_printer_name", reinterpret_cast<PyCFunction>(IppPrintDevice_FromPrinterName), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_device_selector", reinterpret_cast<PyCFunction>(IppPrintDevice_GetDeviceSelector), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_max_supported_pdf_size", reinterpret_cast<PyCFunction>(IppPrintDevice_GetMaxSupportedPdfSize), METH_VARARGS, nullptr },
+        { "get_max_supported_pdf_version", reinterpret_cast<PyCFunction>(IppPrintDevice_GetMaxSupportedPdfVersion), METH_VARARGS, nullptr },
+        { "get_pdl_passthrough_provider", reinterpret_cast<PyCFunction>(IppPrintDevice_GetPdlPassthroughProvider), METH_VARARGS, nullptr },
         { "get_printer_attributes", reinterpret_cast<PyCFunction>(IppPrintDevice_GetPrinterAttributes), METH_VARARGS, nullptr },
         { "get_printer_attributes_as_buffer", reinterpret_cast<PyCFunction>(IppPrintDevice_GetPrinterAttributesAsBuffer), METH_VARARGS, nullptr },
+        { "is_ipp_printer", reinterpret_cast<PyCFunction>(IppPrintDevice_IsIppPrinter), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_pdl_passthrough_supported", reinterpret_cast<PyCFunction>(IppPrintDevice_IsPdlPassthroughSupported), METH_VARARGS, nullptr },
         { "set_printer_attributes", reinterpret_cast<PyCFunction>(IppPrintDevice_SetPrinterAttributes), METH_VARARGS, nullptr },
         { "set_printer_attributes_from_buffer", reinterpret_cast<PyCFunction>(IppPrintDevice_SetPrinterAttributesFromBuffer), METH_VARARGS, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_IppPrintDevice), METH_O | METH_STATIC, nullptr },
@@ -2343,6 +2571,457 @@ namespace py::cpp::Windows::Devices::Printers
         _type_slots_IppTextWithLanguage
     };
 
+    // ----- PageConfigurationSettings class --------------------
+    constexpr const char* const type_name_PageConfigurationSettings = "PageConfigurationSettings";
+
+    static PyObject* _new_PageConfigurationSettings(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Devices::Printers::PageConfigurationSettings instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_PageConfigurationSettings(py::wrapper::Windows::Devices::Printers::PageConfigurationSettings* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PageConfigurationSettings_get_SizeSource(py::wrapper::Windows::Devices::Printers::PageConfigurationSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SizeSource());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int PageConfigurationSettings_put_SizeSource(py::wrapper::Windows::Devices::Printers::PageConfigurationSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Printers::PageConfigurationSource>(arg);
+
+            self->obj.SizeSource(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* PageConfigurationSettings_get_OrientationSource(py::wrapper::Windows::Devices::Printers::PageConfigurationSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.OrientationSource());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int PageConfigurationSettings_put_OrientationSource(py::wrapper::Windows::Devices::Printers::PageConfigurationSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::Printers::PageConfigurationSource>(arg);
+
+            self->obj.OrientationSource(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_PageConfigurationSettings(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::PageConfigurationSettings>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PageConfigurationSettings[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_PageConfigurationSettings), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PageConfigurationSettings[] = {
+        { "size_source", reinterpret_cast<getter>(PageConfigurationSettings_get_SizeSource), reinterpret_cast<setter>(PageConfigurationSettings_put_SizeSource), nullptr, nullptr },
+        { "orientation_source", reinterpret_cast<getter>(PageConfigurationSettings_get_OrientationSource), reinterpret_cast<setter>(PageConfigurationSettings_put_OrientationSource), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PageConfigurationSettings[] = 
+    {
+        { Py_tp_new, _new_PageConfigurationSettings },
+        { Py_tp_dealloc, _dealloc_PageConfigurationSettings },
+        { Py_tp_methods, _methods_PageConfigurationSettings },
+        { Py_tp_getset, _getset_PageConfigurationSettings },
+        { },
+    };
+
+    static PyType_Spec type_spec_PageConfigurationSettings =
+    {
+        "_winsdk_Windows_Devices_Printers.PageConfigurationSettings",
+        sizeof(py::wrapper::Windows::Devices::Printers::PageConfigurationSettings),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PageConfigurationSettings
+    };
+
+    // ----- PdlPassthroughProvider class --------------------
+    constexpr const char* const type_name_PdlPassthroughProvider = "PdlPassthroughProvider";
+
+    static PyObject* _new_PdlPassthroughProvider(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PdlPassthroughProvider);
+        return nullptr;
+    }
+
+    static void _dealloc_PdlPassthroughProvider(py::wrapper::Windows::Devices::Printers::PdlPassthroughProvider* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PdlPassthroughProvider_StartPrintJobWithPrintTicket(py::wrapper::Windows::Devices::Printers::PdlPassthroughProvider* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Storage::Streams::IInputStream>(args, 2);
+                auto param3 = py::convert_to<winrt::Windows::Devices::Printers::PageConfigurationSettings>(args, 3);
+
+                return py::convert(self->obj.StartPrintJobWithPrintTicket(param0, param1, param2, param3));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PdlPassthroughProvider_StartPrintJobWithTaskOptions(py::wrapper::Windows::Devices::Printers::PdlPassthroughProvider* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Graphics::Printing::PrintTaskOptions>(args, 2);
+                auto param3 = py::convert_to<winrt::Windows::Devices::Printers::PageConfigurationSettings>(args, 3);
+
+                return py::convert(self->obj.StartPrintJobWithTaskOptions(param0, param1, param2, param3));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PdlPassthroughProvider_get_SupportedPdlContentTypes(py::wrapper::Windows::Devices::Printers::PdlPassthroughProvider* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SupportedPdlContentTypes());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PdlPassthroughProvider(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::PdlPassthroughProvider>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PdlPassthroughProvider[] = {
+        { "start_print_job_with_print_ticket", reinterpret_cast<PyCFunction>(PdlPassthroughProvider_StartPrintJobWithPrintTicket), METH_VARARGS, nullptr },
+        { "start_print_job_with_task_options", reinterpret_cast<PyCFunction>(PdlPassthroughProvider_StartPrintJobWithTaskOptions), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_PdlPassthroughProvider), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PdlPassthroughProvider[] = {
+        { "supported_pdl_content_types", reinterpret_cast<getter>(PdlPassthroughProvider_get_SupportedPdlContentTypes), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PdlPassthroughProvider[] = 
+    {
+        { Py_tp_new, _new_PdlPassthroughProvider },
+        { Py_tp_dealloc, _dealloc_PdlPassthroughProvider },
+        { Py_tp_methods, _methods_PdlPassthroughProvider },
+        { Py_tp_getset, _getset_PdlPassthroughProvider },
+        { },
+    };
+
+    static PyType_Spec type_spec_PdlPassthroughProvider =
+    {
+        "_winsdk_Windows_Devices_Printers.PdlPassthroughProvider",
+        sizeof(py::wrapper::Windows::Devices::Printers::PdlPassthroughProvider),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PdlPassthroughProvider
+    };
+
+    // ----- PdlPassthroughTarget class --------------------
+    constexpr const char* const type_name_PdlPassthroughTarget = "PdlPassthroughTarget";
+
+    static PyObject* _new_PdlPassthroughTarget(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PdlPassthroughTarget);
+        return nullptr;
+    }
+
+    static void _dealloc_PdlPassthroughTarget(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PdlPassthroughTarget_Close(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Close();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PdlPassthroughTarget_GetOutputStream(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetOutputStream());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PdlPassthroughTarget_Submit(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Submit();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PdlPassthroughTarget_get_PrintJobId(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PrintJobId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PdlPassthroughTarget(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Printers::PdlPassthroughTarget>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _enter_PdlPassthroughTarget(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget* self) noexcept
+    {
+        Py_INCREF(self);
+        return reinterpret_cast<PyObject*>(self);
+    }
+
+    static PyObject* _exit_PdlPassthroughTarget(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget* self) noexcept
+    {
+        try
+        {
+            self->obj.Close();
+            Py_RETURN_FALSE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PdlPassthroughTarget[] = {
+        { "close", reinterpret_cast<PyCFunction>(PdlPassthroughTarget_Close), METH_VARARGS, nullptr },
+        { "get_output_stream", reinterpret_cast<PyCFunction>(PdlPassthroughTarget_GetOutputStream), METH_VARARGS, nullptr },
+        { "submit", reinterpret_cast<PyCFunction>(PdlPassthroughTarget_Submit), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_PdlPassthroughTarget), METH_O | METH_STATIC, nullptr },
+        { "__enter__", reinterpret_cast<PyCFunction>(_enter_PdlPassthroughTarget), METH_NOARGS, nullptr },
+        { "__exit__",  reinterpret_cast<PyCFunction>(_exit_PdlPassthroughTarget), METH_VARARGS, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PdlPassthroughTarget[] = {
+        { "print_job_id", reinterpret_cast<getter>(PdlPassthroughTarget_get_PrintJobId), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PdlPassthroughTarget[] = 
+    {
+        { Py_tp_new, _new_PdlPassthroughTarget },
+        { Py_tp_dealloc, _dealloc_PdlPassthroughTarget },
+        { Py_tp_methods, _methods_PdlPassthroughTarget },
+        { Py_tp_getset, _getset_PdlPassthroughTarget },
+        { },
+    };
+
+    static PyType_Spec type_spec_PdlPassthroughTarget =
+    {
+        "_winsdk_Windows_Devices_Printers.PdlPassthroughTarget",
+        sizeof(py::wrapper::Windows::Devices::Printers::PdlPassthroughTarget),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PdlPassthroughTarget
+    };
+
     // ----- Print3DDevice class --------------------
     constexpr const char* const type_name_Print3DDevice = "Print3DDevice";
 
@@ -2606,6 +3285,7 @@ namespace py::cpp::Windows::Devices::Printers
         {"_register_IppAttributeErrorReason", register_IppAttributeErrorReason, METH_O, "registers type"},
         {"_register_IppAttributeValueKind", register_IppAttributeValueKind, METH_O, "registers type"},
         {"_register_IppResolutionUnit", register_IppResolutionUnit, METH_O, "registers type"},
+        {"_register_PageConfigurationSource", register_PageConfigurationSource, METH_O, "registers type"},
         {}};
 
 
@@ -2621,6 +3301,7 @@ namespace py::cpp::Windows::Devices::Printers
         Py_VISIT(state->type_IppAttributeErrorReason);
         Py_VISIT(state->type_IppAttributeValueKind);
         Py_VISIT(state->type_IppResolutionUnit);
+        Py_VISIT(state->type_PageConfigurationSource);
         Py_VISIT(state->type_IppAttributeError);
         Py_VISIT(state->type_IppAttributeValue);
         Py_VISIT(state->type_IppIntegerRange);
@@ -2628,6 +3309,9 @@ namespace py::cpp::Windows::Devices::Printers
         Py_VISIT(state->type_IppResolution);
         Py_VISIT(state->type_IppSetAttributesResult);
         Py_VISIT(state->type_IppTextWithLanguage);
+        Py_VISIT(state->type_PageConfigurationSettings);
+        Py_VISIT(state->type_PdlPassthroughProvider);
+        Py_VISIT(state->type_PdlPassthroughTarget);
         Py_VISIT(state->type_Print3DDevice);
         Py_VISIT(state->type_PrintSchema);
 
@@ -2646,6 +3330,7 @@ namespace py::cpp::Windows::Devices::Printers
         Py_CLEAR(state->type_IppAttributeErrorReason);
         Py_CLEAR(state->type_IppAttributeValueKind);
         Py_CLEAR(state->type_IppResolutionUnit);
+        Py_CLEAR(state->type_PageConfigurationSource);
         Py_CLEAR(state->type_IppAttributeError);
         Py_CLEAR(state->type_IppAttributeValue);
         Py_CLEAR(state->type_IppIntegerRange);
@@ -2653,6 +3338,9 @@ namespace py::cpp::Windows::Devices::Printers
         Py_CLEAR(state->type_IppResolution);
         Py_CLEAR(state->type_IppSetAttributesResult);
         Py_CLEAR(state->type_IppTextWithLanguage);
+        Py_CLEAR(state->type_PageConfigurationSettings);
+        Py_CLEAR(state->type_PdlPassthroughProvider);
+        Py_CLEAR(state->type_PdlPassthroughTarget);
         Py_CLEAR(state->type_Print3DDevice);
         Py_CLEAR(state->type_PrintSchema);
 
@@ -2819,6 +3507,30 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Printers(void) noexcept
 
     Py_INCREF(state->type_IppTextWithLanguage);
 
+    state->type_PageConfigurationSettings = py::register_python_type(module.get(), type_name_PageConfigurationSettings, &type_spec_PageConfigurationSettings, bases.get());
+    if (!state->type_PageConfigurationSettings)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PageConfigurationSettings);
+
+    state->type_PdlPassthroughProvider = py::register_python_type(module.get(), type_name_PdlPassthroughProvider, &type_spec_PdlPassthroughProvider, bases.get());
+    if (!state->type_PdlPassthroughProvider)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PdlPassthroughProvider);
+
+    state->type_PdlPassthroughTarget = py::register_python_type(module.get(), type_name_PdlPassthroughTarget, &type_spec_PdlPassthroughTarget, bases.get());
+    if (!state->type_PdlPassthroughTarget)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PdlPassthroughTarget);
+
     state->type_Print3DDevice = py::register_python_type(module.get(), type_name_Print3DDevice, &type_spec_Print3DDevice, bases.get());
     if (!state->type_Print3DDevice)
     {
@@ -2902,6 +3614,29 @@ PyObject* py::py_type<winrt::Windows::Devices::Printers::IppResolutionUnit>::get
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::IppResolutionUnit is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Devices::Printers::PageConfigurationSource>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PageConfigurationSource;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::PageConfigurationSource is not registered");
         return nullptr;
     }
 
@@ -3063,6 +3798,75 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::IppTextWithLangu
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::IppTextWithLanguage is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::PageConfigurationSettings>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PageConfigurationSettings;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::PageConfigurationSettings is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::PdlPassthroughProvider>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PdlPassthroughProvider;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::PdlPassthroughProvider is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Printers::PdlPassthroughTarget>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Printers;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Printers");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PdlPassthroughTarget;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Printers::PdlPassthroughTarget is not registered");
         return nullptr;
     }
 

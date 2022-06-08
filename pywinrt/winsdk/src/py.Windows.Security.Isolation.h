@@ -140,6 +140,12 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentHostError>
     {
         static PyObject* get_python_type() noexcept;
@@ -183,6 +189,12 @@ namespace py
 
     template<>
     struct py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentShareFolderStatus>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentSignInProgress>
     {
         static PyObject* get_python_type() noexcept;
     };

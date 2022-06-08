@@ -117,24 +117,21 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
     };
     struct __declspec(empty_bases) IBackgroundTaskBuilder2 :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBackgroundTaskBuilder2>,
-        impl::require<winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder2, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder>
+        impl::consume_t<IBackgroundTaskBuilder2>
     {
         IBackgroundTaskBuilder2(std::nullptr_t = nullptr) noexcept {}
         IBackgroundTaskBuilder2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IBackgroundTaskBuilder3 :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBackgroundTaskBuilder3>,
-        impl::require<winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder3, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder>
+        impl::consume_t<IBackgroundTaskBuilder3>
     {
         IBackgroundTaskBuilder3(std::nullptr_t = nullptr) noexcept {}
         IBackgroundTaskBuilder3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IBackgroundTaskBuilder4 :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IBackgroundTaskBuilder4>,
-        impl::require<winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder4, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder>
+        impl::consume_t<IBackgroundTaskBuilder4>
     {
         IBackgroundTaskBuilder4(std::nullptr_t = nullptr) noexcept {}
         IBackgroundTaskBuilder4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}

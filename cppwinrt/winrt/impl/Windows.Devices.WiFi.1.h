@@ -48,6 +48,41 @@ WINRT_EXPORT namespace winrt::Windows::Devices::WiFi
         IWiFiNetworkReport(std::nullptr_t = nullptr) noexcept {}
         IWiFiNetworkReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IWiFiOnDemandHotspotConnectTriggerDetails :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWiFiOnDemandHotspotConnectTriggerDetails>
+    {
+        IWiFiOnDemandHotspotConnectTriggerDetails(std::nullptr_t = nullptr) noexcept {}
+        IWiFiOnDemandHotspotConnectTriggerDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IWiFiOnDemandHotspotConnectionResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWiFiOnDemandHotspotConnectionResult>
+    {
+        IWiFiOnDemandHotspotConnectionResult(std::nullptr_t = nullptr) noexcept {}
+        IWiFiOnDemandHotspotConnectionResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IWiFiOnDemandHotspotNetwork :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWiFiOnDemandHotspotNetwork>
+    {
+        IWiFiOnDemandHotspotNetwork(std::nullptr_t = nullptr) noexcept {}
+        IWiFiOnDemandHotspotNetwork(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IWiFiOnDemandHotspotNetworkProperties :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWiFiOnDemandHotspotNetworkProperties>
+    {
+        IWiFiOnDemandHotspotNetworkProperties(std::nullptr_t = nullptr) noexcept {}
+        IWiFiOnDemandHotspotNetworkProperties(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IWiFiOnDemandHotspotNetworkStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWiFiOnDemandHotspotNetworkStatics>
+    {
+        IWiFiOnDemandHotspotNetworkStatics(std::nullptr_t = nullptr) noexcept {}
+        IWiFiOnDemandHotspotNetworkStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IWiFiWpsConfigurationResult :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IWiFiWpsConfigurationResult>

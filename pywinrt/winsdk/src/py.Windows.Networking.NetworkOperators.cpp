@@ -1219,6 +1219,19 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         }
     }
 
+    static PyObject* ESim_get_SlotIndex(py::wrapper::Windows::Networking::NetworkOperators::ESim* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SlotIndex());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* ESim_add_ProfileChanged(py::wrapper::Windows::Networking::NetworkOperators::ESim* self, PyObject* arg) noexcept
     {
         try
@@ -1284,6 +1297,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         { "mobile_broadband_modem_device_id", reinterpret_cast<getter>(ESim_get_MobileBroadbandModemDeviceId), nullptr, nullptr, nullptr },
         { "policy", reinterpret_cast<getter>(ESim_get_Policy), nullptr, nullptr, nullptr },
         { "state", reinterpret_cast<getter>(ESim_get_State), nullptr, nullptr, nullptr },
+        { "slot_index", reinterpret_cast<getter>(ESim_get_SlotIndex), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -7143,6 +7157,19 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         }
     }
 
+    static PyObject* MobileBroadbandDeviceServiceTriggerDetails_get_EventId(py::wrapper::Windows::Networking::NetworkOperators::MobileBroadbandDeviceServiceTriggerDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.EventId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_MobileBroadbandDeviceServiceTriggerDetails(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -7166,6 +7193,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         { "device_id", reinterpret_cast<getter>(MobileBroadbandDeviceServiceTriggerDetails_get_DeviceId), nullptr, nullptr, nullptr },
         { "device_service_id", reinterpret_cast<getter>(MobileBroadbandDeviceServiceTriggerDetails_get_DeviceServiceId), nullptr, nullptr, nullptr },
         { "received_data", reinterpret_cast<getter>(MobileBroadbandDeviceServiceTriggerDetails_get_ReceivedData), nullptr, nullptr, nullptr },
+        { "event_id", reinterpret_cast<getter>(MobileBroadbandDeviceServiceTriggerDetails_get_EventId), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -7323,6 +7351,31 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         }
     }
 
+    static PyObject* MobileBroadbandModem_GetIsPassthroughEnabled(py::wrapper::Windows::Networking::NetworkOperators::MobileBroadbandModem* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<int32_t>(args, 0);
+
+                return py::convert(self->obj.GetIsPassthroughEnabled(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* MobileBroadbandModem_GetIsPassthroughEnabledAsync(py::wrapper::Windows::Networking::NetworkOperators::MobileBroadbandModem* self, PyObject* args) noexcept
     {
         Py_ssize_t arg_count = PyTuple_Size(args);
@@ -7332,6 +7385,20 @@ namespace py::cpp::Windows::Networking::NetworkOperators
             try
             {
                 return py::convert(self->obj.GetIsPassthroughEnabledAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<int32_t>(args, 0);
+
+                return py::convert(self->obj.GetIsPassthroughEnabledAsync(param0));
             }
             catch (...)
             {
@@ -7369,6 +7436,32 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         }
     }
 
+    static PyObject* MobileBroadbandModem_SetIsPassthroughEnabled(py::wrapper::Windows::Networking::NetworkOperators::MobileBroadbandModem* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<bool>(args, 0);
+                auto param1 = py::convert_to<int32_t>(args, 1);
+
+                return py::convert(self->obj.SetIsPassthroughEnabled(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* MobileBroadbandModem_SetIsPassthroughEnabledAsync(py::wrapper::Windows::Networking::NetworkOperators::MobileBroadbandModem* self, PyObject* args) noexcept
     {
         Py_ssize_t arg_count = PyTuple_Size(args);
@@ -7380,6 +7473,21 @@ namespace py::cpp::Windows::Networking::NetworkOperators
                 auto param0 = py::convert_to<bool>(args, 0);
 
                 return py::convert(self->obj.SetIsPassthroughEnabledAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<bool>(args, 0);
+                auto param1 = py::convert_to<int32_t>(args, 1);
+
+                return py::convert(self->obj.SetIsPassthroughEnabledAsync(param0, param1));
             }
             catch (...)
             {
@@ -7572,8 +7680,10 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         { "get_default", reinterpret_cast<PyCFunction>(MobileBroadbandModem_GetDefault), METH_VARARGS | METH_STATIC, nullptr },
         { "get_device_selector", reinterpret_cast<PyCFunction>(MobileBroadbandModem_GetDeviceSelector), METH_VARARGS | METH_STATIC, nullptr },
         { "get_device_service", reinterpret_cast<PyCFunction>(MobileBroadbandModem_GetDeviceService), METH_VARARGS, nullptr },
+        { "get_is_passthrough_enabled", reinterpret_cast<PyCFunction>(MobileBroadbandModem_GetIsPassthroughEnabled), METH_VARARGS, nullptr },
         { "get_is_passthrough_enabled_async", reinterpret_cast<PyCFunction>(MobileBroadbandModem_GetIsPassthroughEnabledAsync), METH_VARARGS, nullptr },
         { "reset_async", reinterpret_cast<PyCFunction>(MobileBroadbandModem_ResetAsync), METH_VARARGS, nullptr },
+        { "set_is_passthrough_enabled", reinterpret_cast<PyCFunction>(MobileBroadbandModem_SetIsPassthroughEnabled), METH_VARARGS, nullptr },
         { "set_is_passthrough_enabled_async", reinterpret_cast<PyCFunction>(MobileBroadbandModem_SetIsPassthroughEnabledAsync), METH_VARARGS, nullptr },
         { "try_get_pco_async", reinterpret_cast<PyCFunction>(MobileBroadbandModem_TryGetPcoAsync), METH_VARARGS, nullptr },
         { "add_is_in_emergency_call_mode_changed", reinterpret_cast<PyCFunction>(MobileBroadbandModem_add_IsInEmergencyCallModeChanged), METH_O, nullptr },
@@ -9718,6 +9828,19 @@ namespace py::cpp::Windows::Networking::NetworkOperators
         }
     }
 
+    static PyObject* MobileBroadbandSlotInfo_get_IccId(py::wrapper::Windows::Networking::NetworkOperators::MobileBroadbandSlotInfo* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IccId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_MobileBroadbandSlotInfo(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -9740,6 +9863,7 @@ namespace py::cpp::Windows::Networking::NetworkOperators
     static PyGetSetDef _getset_MobileBroadbandSlotInfo[] = {
         { "index", reinterpret_cast<getter>(MobileBroadbandSlotInfo_get_Index), nullptr, nullptr, nullptr },
         { "state", reinterpret_cast<getter>(MobileBroadbandSlotInfo_get_State), nullptr, nullptr, nullptr },
+        { "icc_id", reinterpret_cast<getter>(MobileBroadbandSlotInfo_get_IccId), nullptr, nullptr, nullptr },
         { }
     };
 

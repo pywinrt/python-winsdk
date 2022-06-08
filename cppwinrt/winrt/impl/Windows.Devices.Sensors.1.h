@@ -440,6 +440,55 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         IHingeAngleSensorStatics(std::nullptr_t = nullptr) noexcept {}
         IHingeAngleSensorStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IHumanPresenceFeatures :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHumanPresenceFeatures>
+    {
+        IHumanPresenceFeatures(std::nullptr_t = nullptr) noexcept {}
+        IHumanPresenceFeatures(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHumanPresenceSensor :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHumanPresenceSensor>
+    {
+        IHumanPresenceSensor(std::nullptr_t = nullptr) noexcept {}
+        IHumanPresenceSensor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHumanPresenceSensorReading :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHumanPresenceSensorReading>
+    {
+        IHumanPresenceSensorReading(std::nullptr_t = nullptr) noexcept {}
+        IHumanPresenceSensorReading(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHumanPresenceSensorReadingChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHumanPresenceSensorReadingChangedEventArgs>
+    {
+        IHumanPresenceSensorReadingChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IHumanPresenceSensorReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHumanPresenceSensorStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHumanPresenceSensorStatics>
+    {
+        IHumanPresenceSensorStatics(std::nullptr_t = nullptr) noexcept {}
+        IHumanPresenceSensorStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHumanPresenceSettings :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHumanPresenceSettings>
+    {
+        IHumanPresenceSettings(std::nullptr_t = nullptr) noexcept {}
+        IHumanPresenceSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHumanPresenceSettingsStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHumanPresenceSettingsStatics>
+    {
+        IHumanPresenceSettingsStatics(std::nullptr_t = nullptr) noexcept {}
+        IHumanPresenceSettingsStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IInclinometer :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IInclinometer>

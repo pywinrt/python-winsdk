@@ -296,6 +296,10 @@ class KnownVideoProfile(enum.IntEnum):
     VIDEO_HDR8 = 9
     COMPRESSED_CAMERA = 10
 
+class MediaCaptureDeviceExclusiveControlReleaseMode(enum.IntEnum):
+    ON_DISPOSE = 0
+    ON_ALL_STREAMS_STOPPED = 1
+
 class MediaCaptureDeviceExclusiveControlStatus(enum.IntEnum):
     EXCLUSIVE_CONTROL_AVAILABLE = 0
     SHARED_READ_ONLY_AVAILABLE = 1
@@ -390,6 +394,7 @@ _ns_module._register_GameBarCommandOrigin(GameBarCommandOrigin)
 _ns_module._register_GameBarServicesDisplayMode(GameBarServicesDisplayMode)
 _ns_module._register_GameBarTargetCapturePolicy(GameBarTargetCapturePolicy)
 _ns_module._register_KnownVideoProfile(KnownVideoProfile)
+_ns_module._register_MediaCaptureDeviceExclusiveControlReleaseMode(MediaCaptureDeviceExclusiveControlReleaseMode)
 _ns_module._register_MediaCaptureDeviceExclusiveControlStatus(MediaCaptureDeviceExclusiveControlStatus)
 _ns_module._register_MediaCaptureMemoryPreference(MediaCaptureMemoryPreference)
 _ns_module._register_MediaCaptureSharingMode(MediaCaptureSharingMode)

@@ -44,6 +44,11 @@ class DataUsageGranularity(enum.IntEnum):
     PER_DAY = 2
     TOTAL = 3
 
+class DomainAuthenticationKind(enum.IntEnum):
+    NONE = 0
+    LDAP = 1
+    TLS = 2
+
 class DomainConnectivityLevel(enum.IntEnum):
     NONE = 0
     UNAUTHENTICATED = 1
@@ -143,6 +148,7 @@ class WwanNetworkRegistrationState(enum.IntEnum):
 _ns_module._register_CellularApnAuthenticationType(CellularApnAuthenticationType)
 _ns_module._register_ConnectionProfileDeleteStatus(ConnectionProfileDeleteStatus)
 _ns_module._register_DataUsageGranularity(DataUsageGranularity)
+_ns_module._register_DomainAuthenticationKind(DomainAuthenticationKind)
 _ns_module._register_DomainConnectivityLevel(DomainConnectivityLevel)
 _ns_module._register_NetworkAuthenticationType(NetworkAuthenticationType)
 _ns_module._register_NetworkConnectivityLevel(NetworkConnectivityLevel)

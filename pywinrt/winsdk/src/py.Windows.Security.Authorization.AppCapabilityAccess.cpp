@@ -229,6 +229,41 @@ namespace py::cpp::Windows::Security::Authorization::AppCapabilityAccess
         }
     }
 
+    static PyObject* AppCapability_get_DisplayMessage(py::wrapper::Windows::Security::Authorization::AppCapabilityAccess::AppCapability* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DisplayMessage());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AppCapability_put_DisplayMessage(py::wrapper::Windows::Security::Authorization::AppCapabilityAccess::AppCapability* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.DisplayMessage(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
     static PyObject* AppCapability_add_AccessChanged(py::wrapper::Windows::Security::Authorization::AppCapabilityAccess::AppCapability* self, PyObject* arg) noexcept
     {
         try
@@ -290,6 +325,7 @@ namespace py::cpp::Windows::Security::Authorization::AppCapabilityAccess
     static PyGetSetDef _getset_AppCapability[] = {
         { "capability_name", reinterpret_cast<getter>(AppCapability_get_CapabilityName), nullptr, nullptr, nullptr },
         { "user", reinterpret_cast<getter>(AppCapability_get_User), nullptr, nullptr, nullptr },
+        { "display_message", reinterpret_cast<getter>(AppCapability_get_DisplayMessage), reinterpret_cast<setter>(AppCapability_put_DisplayMessage), nullptr, nullptr },
         { }
     };
 

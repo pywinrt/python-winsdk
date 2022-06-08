@@ -445,6 +445,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3)->GetRelativePanel(*(void**)(&displayRegion), reinterpret_cast<int32_t*>(&result)));
         return result;
     }
+    template <typename D> auto consume_Windows_Media_Capture_Frames_IMediaFrameSourceInfo4<D>::IsShareable() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo4)->get_IsShareable(&value));
+        return value;
+    }
     template <typename D> auto consume_Windows_Media_Capture_Frames_IMultiSourceMediaFrameReader<D>::FrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::Frames::MultiSourceMediaFrameReader, winrt::Windows::Media::Capture::Frames::MultiSourceMediaFrameArrivedEventArgs> const& handler) const
     {
         winrt::event_token token{};
@@ -1250,6 +1256,19 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo4> : produce_base<D, winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo4>
+    {
+        int32_t __stdcall get_IsShareable(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsShareable());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs>
     {
     };
@@ -1480,6 +1499,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader2> : winrt::impl::hash_base {};

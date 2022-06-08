@@ -48,6 +48,12 @@ WINRT_EXPORT namespace winrt::Windows::Networking::Connectivity
         PerDay = 2,
         Total = 3,
     };
+    enum class DomainAuthenticationKind : int32_t
+    {
+        None = 0,
+        Ldap = 1,
+        Tls = 2,
+    };
     enum class DomainConnectivityLevel : int32_t
     {
         None = 0,
@@ -165,6 +171,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::Connectivity
     struct IConnectionProfile3;
     struct IConnectionProfile4;
     struct IConnectionProfile5;
+    struct IConnectionProfile6;
     struct IConnectionProfileFilter;
     struct IConnectionProfileFilter2;
     struct IConnectionProfileFilter3;
@@ -232,6 +239,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Networking::Connectivity::IConnectionProfile3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::IConnectionProfile4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::IConnectionProfile5>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Networking::Connectivity::IConnectionProfile6>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter3>{ using type = interface_category; };
@@ -287,6 +295,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Networking::Connectivity::CellularApnAuthenticationType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::ConnectionProfileDeleteStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::DataUsageGranularity>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Networking::Connectivity::DomainAuthenticationKind>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::DomainConnectivityLevel>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::NetworkAuthenticationType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Networking::Connectivity::NetworkConnectivityLevel>{ using type = enum_category; };
@@ -328,6 +337,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::CellularApnAuthenticationType> = L"Windows.Networking.Connectivity.CellularApnAuthenticationType";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::ConnectionProfileDeleteStatus> = L"Windows.Networking.Connectivity.ConnectionProfileDeleteStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::DataUsageGranularity> = L"Windows.Networking.Connectivity.DataUsageGranularity";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::DomainAuthenticationKind> = L"Windows.Networking.Connectivity.DomainAuthenticationKind";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::DomainConnectivityLevel> = L"Windows.Networking.Connectivity.DomainConnectivityLevel";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::NetworkAuthenticationType> = L"Windows.Networking.Connectivity.NetworkAuthenticationType";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::NetworkConnectivityLevel> = L"Windows.Networking.Connectivity.NetworkConnectivityLevel";
@@ -350,6 +360,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::IConnectionProfile3> = L"Windows.Networking.Connectivity.IConnectionProfile3";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::IConnectionProfile4> = L"Windows.Networking.Connectivity.IConnectionProfile4";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::IConnectionProfile5> = L"Windows.Networking.Connectivity.IConnectionProfile5";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::IConnectionProfile6> = L"Windows.Networking.Connectivity.IConnectionProfile6";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter> = L"Windows.Networking.Connectivity.IConnectionProfileFilter";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter2> = L"Windows.Networking.Connectivity.IConnectionProfileFilter2";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter3> = L"Windows.Networking.Connectivity.IConnectionProfileFilter3";
@@ -388,6 +399,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::Connectivity::IConnectionProfile3>{ 0x578C2528,0x4CD9,0x4161,{ 0x80,0x45,0x20,0x1C,0xFD,0x5B,0x11,0x5C } }; // 578C2528-4CD9-4161-8045-201CFD5B115C
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::Connectivity::IConnectionProfile4>{ 0x7A2D42CD,0x81E0,0x4AE6,{ 0xAB,0xED,0xAB,0x9C,0xA1,0x3E,0xB7,0x14 } }; // 7A2D42CD-81E0-4AE6-ABED-AB9CA13EB714
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::Connectivity::IConnectionProfile5>{ 0x85361EC7,0x9C73,0x4BE0,{ 0x8F,0x14,0x57,0x8E,0xEC,0x71,0xEE,0x0E } }; // 85361EC7-9C73-4BE0-8F14-578EEC71EE0E
+    template <> inline constexpr guid guid_v<winrt::Windows::Networking::Connectivity::IConnectionProfile6>{ 0xDC27DFE2,0x7A6F,0x5D0E,{ 0x95,0x89,0x2F,0xE2,0xE5,0xB6,0xF9,0xAA } }; // DC27DFE2-7A6F-5D0E-9589-2FE2E5B6F9AA
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter>{ 0x204C7CC8,0xBD2D,0x4E8D,{ 0xA4,0xB3,0x45,0x5E,0xC3,0x37,0x38,0x8A } }; // 204C7CC8-BD2D-4E8D-A4B3-455EC337388A
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter2>{ 0xCD068EE1,0xC3FC,0x4FAD,{ 0x9D,0xDC,0x59,0x3F,0xAA,0x4B,0x78,0x85 } }; // CD068EE1-C3FC-4FAD-9DDC-593FAA4B7885
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter3>{ 0x0AAA09C0,0x5014,0x447C,{ 0x88,0x09,0xAE,0xE4,0xCB,0x0A,0xF9,0x4A } }; // 0AAA09C0-5014-447C-8809-AEE4CB0AF94A
@@ -543,6 +555,13 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall get_CanDelete(bool*) noexcept = 0;
             virtual int32_t __stdcall TryDeleteAsync(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Networking::Connectivity::IConnectionProfile6>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall IsDomainAuthenticatedBy(int32_t, bool*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Networking::Connectivity::IConnectionProfileFilter>
@@ -927,6 +946,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Networking::Connectivity::IConnectionProfile5>
     {
         template <typename D> using type = consume_Windows_Networking_Connectivity_IConnectionProfile5<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Networking_Connectivity_IConnectionProfile6
+    {
+        auto IsDomainAuthenticatedBy(winrt::Windows::Networking::Connectivity::DomainAuthenticationKind const& kind) const;
+    };
+    template <> struct consume<winrt::Windows::Networking::Connectivity::IConnectionProfile6>
+    {
+        template <typename D> using type = consume_Windows_Networking_Connectivity_IConnectionProfile6<D>;
     };
     template <typename D>
     struct consume_Windows_Networking_Connectivity_IConnectionProfileFilter

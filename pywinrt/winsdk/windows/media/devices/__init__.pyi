@@ -621,15 +621,15 @@ class VideoDeviceController(_winrt.Object):
     infrared_torch_control: typing.Optional[InfraredTorchControl]
     panel_based_optimization_control: typing.Optional[PanelBasedOptimizationControl]
     digital_window_control: typing.Optional[DigitalWindowControl]
-    hue: typing.Optional[MediaDeviceControl]
     zoom: typing.Optional[MediaDeviceControl]
     contrast: typing.Optional[MediaDeviceControl]
-    white_balance: typing.Optional[MediaDeviceControl]
     backlight_compensation: typing.Optional[MediaDeviceControl]
+    white_balance: typing.Optional[MediaDeviceControl]
     brightness: typing.Optional[MediaDeviceControl]
     exposure: typing.Optional[MediaDeviceControl]
     tilt: typing.Optional[MediaDeviceControl]
     roll: typing.Optional[MediaDeviceControl]
+    hue: typing.Optional[MediaDeviceControl]
     pan: typing.Optional[MediaDeviceControl]
     focus: typing.Optional[MediaDeviceControl]
     @staticmethod
@@ -643,6 +643,7 @@ class VideoDeviceController(_winrt.Object):
     def set_device_property_by_extended_id(self, extended_property_id: typing.Sequence[_winrt.UInt8], property_value: typing.Sequence[_winrt.UInt8]) -> VideoDeviceControllerSetDevicePropertyStatus: ...
     def set_device_property_by_id(self, property_id: str, property_value: typing.Optional[_winrt.Object]) -> VideoDeviceControllerSetDevicePropertyStatus: ...
     def set_media_stream_properties_async(self, media_stream_type: winsdk.windows.media.capture.MediaStreamType, media_encoding_properties: typing.Optional[winsdk.windows.media.mediaproperties.IMediaEncodingProperties]) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+    def try_acquire_exclusive_control(self, device_id: str, mode: winsdk.windows.media.capture.MediaCaptureDeviceExclusiveControlReleaseMode) -> _winrt.Boolean: ...
     def try_get_powerline_frequency(self) -> typing.Tuple[_winrt.Boolean, winsdk.windows.media.capture.PowerlineFrequency]: ...
     def try_set_powerline_frequency(self, value: winsdk.windows.media.capture.PowerlineFrequency) -> _winrt.Boolean: ...
 

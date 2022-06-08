@@ -19,6 +19,7 @@ namespace py::cpp::Windows::UI::Notifications
         PyObject* type_TileTemplateType;
         PyObject* type_ToastDismissalReason;
         PyObject* type_ToastHistoryChangedType;
+        PyObject* type_ToastNotificationMode;
         PyObject* type_ToastNotificationPriority;
         PyObject* type_ToastTemplateType;
         PyObject* type_UserNotificationChangedKind;
@@ -321,6 +322,30 @@ namespace py::cpp::Windows::UI::Notifications
 
         state->type_ToastHistoryChangedType = type;
         Py_INCREF(state->type_ToastHistoryChangedType);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_ToastNotificationMode(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_ToastNotificationMode)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_ToastNotificationMode = type;
+        Py_INCREF(state->type_ToastNotificationMode);
 
 
         Py_RETURN_NONE;
@@ -6375,6 +6400,50 @@ namespace py::cpp::Windows::UI::Notifications
         }
     }
 
+    static PyObject* ToastNotificationManagerForUser_get_NotificationMode(py::wrapper::Windows::UI::Notifications::ToastNotificationManagerForUser* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.NotificationMode());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ToastNotificationManagerForUser_add_NotificationModeChanged(py::wrapper::Windows::UI::Notifications::ToastNotificationManagerForUser* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Notifications::ToastNotificationManagerForUser, winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(self->obj.NotificationModeChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ToastNotificationManagerForUser_remove_NotificationModeChanged(py::wrapper::Windows::UI::Notifications::ToastNotificationManagerForUser* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.NotificationModeChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_ToastNotificationManagerForUser(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -6394,6 +6463,8 @@ namespace py::cpp::Windows::UI::Notifications
         { "get_history_for_toast_collection_id_async", reinterpret_cast<PyCFunction>(ToastNotificationManagerForUser_GetHistoryForToastCollectionIdAsync), METH_VARARGS, nullptr },
         { "get_toast_collection_manager", reinterpret_cast<PyCFunction>(ToastNotificationManagerForUser_GetToastCollectionManager), METH_VARARGS, nullptr },
         { "get_toast_notifier_for_toast_collection_id_async", reinterpret_cast<PyCFunction>(ToastNotificationManagerForUser_GetToastNotifierForToastCollectionIdAsync), METH_VARARGS, nullptr },
+        { "add_notification_mode_changed", reinterpret_cast<PyCFunction>(ToastNotificationManagerForUser_add_NotificationModeChanged), METH_O, nullptr },
+        { "remove_notification_mode_changed", reinterpret_cast<PyCFunction>(ToastNotificationManagerForUser_remove_NotificationModeChanged), METH_O, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_ToastNotificationManagerForUser), METH_O | METH_STATIC, nullptr },
         { }
     };
@@ -6401,6 +6472,7 @@ namespace py::cpp::Windows::UI::Notifications
     static PyGetSetDef _getset_ToastNotificationManagerForUser[] = {
         { "history", reinterpret_cast<getter>(ToastNotificationManagerForUser_get_History), nullptr, nullptr, nullptr },
         { "user", reinterpret_cast<getter>(ToastNotificationManagerForUser_get_User), nullptr, nullptr, nullptr },
+        { "notification_mode", reinterpret_cast<getter>(ToastNotificationManagerForUser_get_NotificationMode), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -7003,6 +7075,7 @@ namespace py::cpp::Windows::UI::Notifications
         {"_register_TileTemplateType", register_TileTemplateType, METH_O, "registers type"},
         {"_register_ToastDismissalReason", register_ToastDismissalReason, METH_O, "registers type"},
         {"_register_ToastHistoryChangedType", register_ToastHistoryChangedType, METH_O, "registers type"},
+        {"_register_ToastNotificationMode", register_ToastNotificationMode, METH_O, "registers type"},
         {"_register_ToastNotificationPriority", register_ToastNotificationPriority, METH_O, "registers type"},
         {"_register_ToastTemplateType", register_ToastTemplateType, METH_O, "registers type"},
         {"_register_UserNotificationChangedKind", register_UserNotificationChangedKind, METH_O, "registers type"},
@@ -7029,6 +7102,7 @@ namespace py::cpp::Windows::UI::Notifications
         Py_VISIT(state->type_TileTemplateType);
         Py_VISIT(state->type_ToastDismissalReason);
         Py_VISIT(state->type_ToastHistoryChangedType);
+        Py_VISIT(state->type_ToastNotificationMode);
         Py_VISIT(state->type_ToastNotificationPriority);
         Py_VISIT(state->type_ToastTemplateType);
         Py_VISIT(state->type_UserNotificationChangedKind);
@@ -7094,6 +7168,7 @@ namespace py::cpp::Windows::UI::Notifications
         Py_CLEAR(state->type_TileTemplateType);
         Py_CLEAR(state->type_ToastDismissalReason);
         Py_CLEAR(state->type_ToastHistoryChangedType);
+        Py_CLEAR(state->type_ToastNotificationMode);
         Py_CLEAR(state->type_ToastNotificationPriority);
         Py_CLEAR(state->type_ToastTemplateType);
         Py_CLEAR(state->type_UserNotificationChangedKind);
@@ -7798,6 +7873,29 @@ PyObject* py::py_type<winrt::Windows::UI::Notifications::ToastHistoryChangedType
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Notifications::ToastHistoryChangedType is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::UI::Notifications::ToastNotificationMode>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Notifications;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Notifications");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_ToastNotificationMode;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Notifications::ToastNotificationMode is not registered");
         return nullptr;
     }
 

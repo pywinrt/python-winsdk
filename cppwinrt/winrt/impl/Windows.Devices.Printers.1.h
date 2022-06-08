@@ -48,6 +48,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Printers
         IIppPrintDevice(std::nullptr_t = nullptr) noexcept {}
         IIppPrintDevice(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IIppPrintDevice2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IIppPrintDevice2>
+    {
+        IIppPrintDevice2(std::nullptr_t = nullptr) noexcept {}
+        IIppPrintDevice2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IIppPrintDeviceStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IIppPrintDeviceStatics>
+    {
+        IIppPrintDeviceStatics(std::nullptr_t = nullptr) noexcept {}
+        IIppPrintDeviceStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IIppResolution :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IIppResolution>
@@ -82,6 +96,27 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Printers
     {
         IIppTextWithLanguageFactory(std::nullptr_t = nullptr) noexcept {}
         IIppTextWithLanguageFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPageConfigurationSettings :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPageConfigurationSettings>
+    {
+        IPageConfigurationSettings(std::nullptr_t = nullptr) noexcept {}
+        IPageConfigurationSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPdlPassthroughProvider :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPdlPassthroughProvider>
+    {
+        IPdlPassthroughProvider(std::nullptr_t = nullptr) noexcept {}
+        IPdlPassthroughProvider(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPdlPassthroughTarget :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPdlPassthroughTarget>
+    {
+        IPdlPassthroughTarget(std::nullptr_t = nullptr) noexcept {}
+        IPdlPassthroughTarget(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IPrint3DDevice :
         winrt::Windows::Foundation::IInspectable,

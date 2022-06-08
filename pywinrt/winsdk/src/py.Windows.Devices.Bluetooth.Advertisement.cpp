@@ -920,6 +920,19 @@ namespace py::cpp::Windows::Devices::Bluetooth::Advertisement
         }
     }
 
+    static PyObject* BluetoothLEAdvertisementDataTypes_get_PeripheralConnectionIntervalRange(PyObject* /*unused*/, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(winrt::Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementDataTypes::PeripheralConnectionIntervalRange());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* BluetoothLEAdvertisementDataTypes_get_PublicTargetAddress(PyObject* /*unused*/, void* /*unused*/) noexcept
     {
         try
@@ -1037,19 +1050,6 @@ namespace py::cpp::Windows::Devices::Bluetooth::Advertisement
         }
     }
 
-    static PyObject* BluetoothLEAdvertisementDataTypes_get_SlaveConnectionIntervalRange(PyObject* /*unused*/, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(winrt::Windows::Devices::Bluetooth::Advertisement::BluetoothLEAdvertisementDataTypes::SlaveConnectionIntervalRange());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
     static PyObject* BluetoothLEAdvertisementDataTypes_get_TxPowerLevel(PyObject* /*unused*/, void* /*unused*/) noexcept
     {
         try
@@ -1075,6 +1075,7 @@ namespace py::cpp::Windows::Devices::Bluetooth::Advertisement
         { "get_incomplete_service16_bit_uuids", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_IncompleteService16BitUuids), METH_NOARGS | METH_STATIC, nullptr },
         { "get_incomplete_service32_bit_uuids", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_IncompleteService32BitUuids), METH_NOARGS | METH_STATIC, nullptr },
         { "get_manufacturer_specific_data", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_ManufacturerSpecificData), METH_NOARGS | METH_STATIC, nullptr },
+        { "get_peripheral_connection_interval_range", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_PeripheralConnectionIntervalRange), METH_NOARGS | METH_STATIC, nullptr },
         { "get_public_target_address", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_PublicTargetAddress), METH_NOARGS | METH_STATIC, nullptr },
         { "get_random_target_address", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_RandomTargetAddress), METH_NOARGS | METH_STATIC, nullptr },
         { "get_service_data128_bit_uuids", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_ServiceData128BitUuids), METH_NOARGS | METH_STATIC, nullptr },
@@ -1084,7 +1085,6 @@ namespace py::cpp::Windows::Devices::Bluetooth::Advertisement
         { "get_service_solicitation16_bit_uuids", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_ServiceSolicitation16BitUuids), METH_NOARGS | METH_STATIC, nullptr },
         { "get_service_solicitation32_bit_uuids", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_ServiceSolicitation32BitUuids), METH_NOARGS | METH_STATIC, nullptr },
         { "get_shortened_local_name", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_ShortenedLocalName), METH_NOARGS | METH_STATIC, nullptr },
-        { "get_slave_connection_interval_range", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_SlaveConnectionIntervalRange), METH_NOARGS | METH_STATIC, nullptr },
         { "get_tx_power_level", reinterpret_cast<PyCFunction>(BluetoothLEAdvertisementDataTypes_get_TxPowerLevel), METH_NOARGS | METH_STATIC, nullptr },
         { }
     };

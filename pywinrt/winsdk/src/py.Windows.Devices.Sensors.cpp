@@ -11,6 +11,8 @@ namespace py::cpp::Windows::Devices::Sensors
         PyObject* type_AccelerometerReadingType;
         PyObject* type_ActivitySensorReadingConfidence;
         PyObject* type_ActivityType;
+        PyObject* type_HumanEngagement;
+        PyObject* type_HumanPresence;
         PyObject* type_MagnetometerAccuracy;
         PyObject* type_PedometerStepKind;
         PyObject* type_SensorOptimizationGoal;
@@ -45,6 +47,11 @@ namespace py::cpp::Windows::Devices::Sensors
         PyTypeObject* type_HingeAngleReading;
         PyTypeObject* type_HingeAngleSensor;
         PyTypeObject* type_HingeAngleSensorReadingChangedEventArgs;
+        PyTypeObject* type_HumanPresenceFeatures;
+        PyTypeObject* type_HumanPresenceSensor;
+        PyTypeObject* type_HumanPresenceSensorReading;
+        PyTypeObject* type_HumanPresenceSensorReadingChangedEventArgs;
+        PyTypeObject* type_HumanPresenceSettings;
         PyTypeObject* type_Inclinometer;
         PyTypeObject* type_InclinometerDataThreshold;
         PyTypeObject* type_InclinometerReading;
@@ -144,6 +151,54 @@ namespace py::cpp::Windows::Devices::Sensors
 
         state->type_ActivityType = type;
         Py_INCREF(state->type_ActivityType);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_HumanEngagement(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_HumanEngagement)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_HumanEngagement = type;
+        Py_INCREF(state->type_HumanEngagement);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_HumanPresence(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_HumanPresence)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_HumanPresence = type;
+        Py_INCREF(state->type_HumanPresence);
 
 
         Py_RETURN_NONE;
@@ -4667,6 +4722,1071 @@ namespace py::cpp::Windows::Devices::Sensors
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_HingeAngleSensorReadingChangedEventArgs
+    };
+
+    // ----- HumanPresenceFeatures class --------------------
+    constexpr const char* const type_name_HumanPresenceFeatures = "HumanPresenceFeatures";
+
+    static PyObject* _new_HumanPresenceFeatures(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_HumanPresenceFeatures);
+        return nullptr;
+    }
+
+    static void _dealloc_HumanPresenceFeatures(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* HumanPresenceFeatures_get_IsAttentionAwareDimmingSupported(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsAttentionAwareDimmingSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceFeatures_get_IsLockOnLeaveSupported(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsLockOnLeaveSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceFeatures_get_IsWakeOnApproachSupported(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsWakeOnApproachSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceFeatures_get_SensorId(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SensorId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceFeatures_get_SupportedWakeOrLockDistancesInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SupportedWakeOrLockDistancesInMillimeters());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_HumanPresenceFeatures(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::HumanPresenceFeatures>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_HumanPresenceFeatures[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_HumanPresenceFeatures), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_HumanPresenceFeatures[] = {
+        { "is_attention_aware_dimming_supported", reinterpret_cast<getter>(HumanPresenceFeatures_get_IsAttentionAwareDimmingSupported), nullptr, nullptr, nullptr },
+        { "is_lock_on_leave_supported", reinterpret_cast<getter>(HumanPresenceFeatures_get_IsLockOnLeaveSupported), nullptr, nullptr, nullptr },
+        { "is_wake_on_approach_supported", reinterpret_cast<getter>(HumanPresenceFeatures_get_IsWakeOnApproachSupported), nullptr, nullptr, nullptr },
+        { "sensor_id", reinterpret_cast<getter>(HumanPresenceFeatures_get_SensorId), nullptr, nullptr, nullptr },
+        { "supported_wake_or_lock_distances_in_millimeters", reinterpret_cast<getter>(HumanPresenceFeatures_get_SupportedWakeOrLockDistancesInMillimeters), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_HumanPresenceFeatures[] = 
+    {
+        { Py_tp_new, _new_HumanPresenceFeatures },
+        { Py_tp_dealloc, _dealloc_HumanPresenceFeatures },
+        { Py_tp_methods, _methods_HumanPresenceFeatures },
+        { Py_tp_getset, _getset_HumanPresenceFeatures },
+        { },
+    };
+
+    static PyType_Spec type_spec_HumanPresenceFeatures =
+    {
+        "_winsdk_Windows_Devices_Sensors.HumanPresenceFeatures",
+        sizeof(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_HumanPresenceFeatures
+    };
+
+    // ----- HumanPresenceSensor class --------------------
+    constexpr const char* const type_name_HumanPresenceSensor = "HumanPresenceSensor";
+
+    static PyObject* _new_HumanPresenceSensor(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_HumanPresenceSensor);
+        return nullptr;
+    }
+
+    static void _dealloc_HumanPresenceSensor(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* HumanPresenceSensor_FromIdAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSensor::FromIdAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_GetCurrentReading(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetCurrentReading());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_GetDefaultAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSensor::GetDefaultAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_GetDeviceSelector(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSensor::GetDeviceSelector());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_get_DeviceId(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DeviceId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_get_MaxDetectableDistanceInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MaxDetectableDistanceInMillimeters());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_get_MinDetectableDistanceInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MinDetectableDistanceInMillimeters());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_add_ReadingChanged(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Devices::Sensors::HumanPresenceSensor, winrt::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs>>(arg);
+
+            return py::convert(self->obj.ReadingChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_remove_ReadingChanged(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.ReadingChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_HumanPresenceSensor(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::HumanPresenceSensor>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_HumanPresenceSensor[] = {
+        { "from_id_async", reinterpret_cast<PyCFunction>(HumanPresenceSensor_FromIdAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_current_reading", reinterpret_cast<PyCFunction>(HumanPresenceSensor_GetCurrentReading), METH_VARARGS, nullptr },
+        { "get_default_async", reinterpret_cast<PyCFunction>(HumanPresenceSensor_GetDefaultAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_device_selector", reinterpret_cast<PyCFunction>(HumanPresenceSensor_GetDeviceSelector), METH_VARARGS | METH_STATIC, nullptr },
+        { "add_reading_changed", reinterpret_cast<PyCFunction>(HumanPresenceSensor_add_ReadingChanged), METH_O, nullptr },
+        { "remove_reading_changed", reinterpret_cast<PyCFunction>(HumanPresenceSensor_remove_ReadingChanged), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_HumanPresenceSensor), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_HumanPresenceSensor[] = {
+        { "device_id", reinterpret_cast<getter>(HumanPresenceSensor_get_DeviceId), nullptr, nullptr, nullptr },
+        { "max_detectable_distance_in_millimeters", reinterpret_cast<getter>(HumanPresenceSensor_get_MaxDetectableDistanceInMillimeters), nullptr, nullptr, nullptr },
+        { "min_detectable_distance_in_millimeters", reinterpret_cast<getter>(HumanPresenceSensor_get_MinDetectableDistanceInMillimeters), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_HumanPresenceSensor[] = 
+    {
+        { Py_tp_new, _new_HumanPresenceSensor },
+        { Py_tp_dealloc, _dealloc_HumanPresenceSensor },
+        { Py_tp_methods, _methods_HumanPresenceSensor },
+        { Py_tp_getset, _getset_HumanPresenceSensor },
+        { },
+    };
+
+    static PyType_Spec type_spec_HumanPresenceSensor =
+    {
+        "_winsdk_Windows_Devices_Sensors.HumanPresenceSensor",
+        sizeof(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_HumanPresenceSensor
+    };
+
+    // ----- HumanPresenceSensorReading class --------------------
+    constexpr const char* const type_name_HumanPresenceSensorReading = "HumanPresenceSensorReading";
+
+    static PyObject* _new_HumanPresenceSensorReading(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_HumanPresenceSensorReading);
+        return nullptr;
+    }
+
+    static void _dealloc_HumanPresenceSensorReading(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReading* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* HumanPresenceSensorReading_get_DistanceInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReading* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DistanceInMillimeters());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensorReading_get_Engagement(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReading* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Engagement());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensorReading_get_Presence(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReading* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Presence());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensorReading_get_Timestamp(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReading* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Timestamp());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_HumanPresenceSensorReading(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::HumanPresenceSensorReading>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_HumanPresenceSensorReading[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_HumanPresenceSensorReading), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_HumanPresenceSensorReading[] = {
+        { "distance_in_millimeters", reinterpret_cast<getter>(HumanPresenceSensorReading_get_DistanceInMillimeters), nullptr, nullptr, nullptr },
+        { "engagement", reinterpret_cast<getter>(HumanPresenceSensorReading_get_Engagement), nullptr, nullptr, nullptr },
+        { "presence", reinterpret_cast<getter>(HumanPresenceSensorReading_get_Presence), nullptr, nullptr, nullptr },
+        { "timestamp", reinterpret_cast<getter>(HumanPresenceSensorReading_get_Timestamp), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_HumanPresenceSensorReading[] = 
+    {
+        { Py_tp_new, _new_HumanPresenceSensorReading },
+        { Py_tp_dealloc, _dealloc_HumanPresenceSensorReading },
+        { Py_tp_methods, _methods_HumanPresenceSensorReading },
+        { Py_tp_getset, _getset_HumanPresenceSensorReading },
+        { },
+    };
+
+    static PyType_Spec type_spec_HumanPresenceSensorReading =
+    {
+        "_winsdk_Windows_Devices_Sensors.HumanPresenceSensorReading",
+        sizeof(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReading),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_HumanPresenceSensorReading
+    };
+
+    // ----- HumanPresenceSensorReadingChangedEventArgs class --------------------
+    constexpr const char* const type_name_HumanPresenceSensorReadingChangedEventArgs = "HumanPresenceSensorReadingChangedEventArgs";
+
+    static PyObject* _new_HumanPresenceSensorReadingChangedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_HumanPresenceSensorReadingChangedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_HumanPresenceSensorReadingChangedEventArgs(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* HumanPresenceSensorReadingChangedEventArgs_get_Reading(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Reading());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_HumanPresenceSensorReadingChangedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_HumanPresenceSensorReadingChangedEventArgs[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_HumanPresenceSensorReadingChangedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_HumanPresenceSensorReadingChangedEventArgs[] = {
+        { "reading", reinterpret_cast<getter>(HumanPresenceSensorReadingChangedEventArgs_get_Reading), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_HumanPresenceSensorReadingChangedEventArgs[] = 
+    {
+        { Py_tp_new, _new_HumanPresenceSensorReadingChangedEventArgs },
+        { Py_tp_dealloc, _dealloc_HumanPresenceSensorReadingChangedEventArgs },
+        { Py_tp_methods, _methods_HumanPresenceSensorReadingChangedEventArgs },
+        { Py_tp_getset, _getset_HumanPresenceSensorReadingChangedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_HumanPresenceSensorReadingChangedEventArgs =
+    {
+        "_winsdk_Windows_Devices_Sensors.HumanPresenceSensorReadingChangedEventArgs",
+        sizeof(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_HumanPresenceSensorReadingChangedEventArgs
+    };
+
+    // ----- HumanPresenceSettings class --------------------
+    constexpr const char* const type_name_HumanPresenceSettings = "HumanPresenceSettings";
+
+    static PyObject* _new_HumanPresenceSettings(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_HumanPresenceSettings);
+        return nullptr;
+    }
+
+    static void _dealloc_HumanPresenceSettings(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* HumanPresenceSettings_GetCurrentSettings(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSettings::GetCurrentSettings());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_GetCurrentSettingsAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSettings::GetCurrentSettingsAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_GetSupportedFeaturesForSensorId(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSettings::GetSupportedFeaturesForSensorId(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_GetSupportedFeaturesForSensorIdAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSettings::GetSupportedFeaturesForSensorIdAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_GetSupportedLockOnLeaveTimeouts(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSettings::GetSupportedLockOnLeaveTimeouts());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_UpdateSettings(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sensors::HumanPresenceSettings>(args, 0);
+
+                winrt::Windows::Devices::Sensors::HumanPresenceSettings::UpdateSettings(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_UpdateSettingsAsync(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::Sensors::HumanPresenceSettings>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSettings::UpdateSettingsAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_WakeOnApproachDistanceInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.WakeOnApproachDistanceInMillimeters());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_WakeOnApproachDistanceInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<uint32_t>>(arg);
+
+            self->obj.WakeOnApproachDistanceInMillimeters(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_SensorId(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SensorId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_SensorId(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.SensorId(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_LockOnLeaveTimeout(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LockOnLeaveTimeout());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_LockOnLeaveTimeout(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TimeSpan>(arg);
+
+            self->obj.LockOnLeaveTimeout(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_LockOnLeaveDistanceInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LockOnLeaveDistanceInMillimeters());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_LockOnLeaveDistanceInMillimeters(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<uint32_t>>(arg);
+
+            self->obj.LockOnLeaveDistanceInMillimeters(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_IsWakeOnApproachEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsWakeOnApproachEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_IsWakeOnApproachEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IsWakeOnApproachEnabled(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_IsLockOnLeaveEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsLockOnLeaveEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_IsLockOnLeaveEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IsLockOnLeaveEnabled(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_IsAttentionAwareDimmingEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsAttentionAwareDimmingEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_IsAttentionAwareDimmingEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IsAttentionAwareDimmingEnabled(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_add_SettingsChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSettings::SettingsChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_remove_SettingsChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Devices::Sensors::HumanPresenceSettings::SettingsChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_HumanPresenceSettings(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::HumanPresenceSettings>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_HumanPresenceSettings[] = {
+        { "get_current_settings", reinterpret_cast<PyCFunction>(HumanPresenceSettings_GetCurrentSettings), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_current_settings_async", reinterpret_cast<PyCFunction>(HumanPresenceSettings_GetCurrentSettingsAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_supported_features_for_sensor_id", reinterpret_cast<PyCFunction>(HumanPresenceSettings_GetSupportedFeaturesForSensorId), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_supported_features_for_sensor_id_async", reinterpret_cast<PyCFunction>(HumanPresenceSettings_GetSupportedFeaturesForSensorIdAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_supported_lock_on_leave_timeouts", reinterpret_cast<PyCFunction>(HumanPresenceSettings_GetSupportedLockOnLeaveTimeouts), METH_VARARGS | METH_STATIC, nullptr },
+        { "update_settings", reinterpret_cast<PyCFunction>(HumanPresenceSettings_UpdateSettings), METH_VARARGS | METH_STATIC, nullptr },
+        { "update_settings_async", reinterpret_cast<PyCFunction>(HumanPresenceSettings_UpdateSettingsAsync), METH_VARARGS | METH_STATIC, nullptr },
+        { "add_settings_changed", reinterpret_cast<PyCFunction>(HumanPresenceSettings_add_SettingsChanged), METH_O | METH_STATIC, nullptr },
+        { "remove_settings_changed", reinterpret_cast<PyCFunction>(HumanPresenceSettings_remove_SettingsChanged), METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_HumanPresenceSettings), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_HumanPresenceSettings[] = {
+        { "wake_on_approach_distance_in_millimeters", reinterpret_cast<getter>(HumanPresenceSettings_get_WakeOnApproachDistanceInMillimeters), reinterpret_cast<setter>(HumanPresenceSettings_put_WakeOnApproachDistanceInMillimeters), nullptr, nullptr },
+        { "sensor_id", reinterpret_cast<getter>(HumanPresenceSettings_get_SensorId), reinterpret_cast<setter>(HumanPresenceSettings_put_SensorId), nullptr, nullptr },
+        { "lock_on_leave_timeout", reinterpret_cast<getter>(HumanPresenceSettings_get_LockOnLeaveTimeout), reinterpret_cast<setter>(HumanPresenceSettings_put_LockOnLeaveTimeout), nullptr, nullptr },
+        { "lock_on_leave_distance_in_millimeters", reinterpret_cast<getter>(HumanPresenceSettings_get_LockOnLeaveDistanceInMillimeters), reinterpret_cast<setter>(HumanPresenceSettings_put_LockOnLeaveDistanceInMillimeters), nullptr, nullptr },
+        { "is_wake_on_approach_enabled", reinterpret_cast<getter>(HumanPresenceSettings_get_IsWakeOnApproachEnabled), reinterpret_cast<setter>(HumanPresenceSettings_put_IsWakeOnApproachEnabled), nullptr, nullptr },
+        { "is_lock_on_leave_enabled", reinterpret_cast<getter>(HumanPresenceSettings_get_IsLockOnLeaveEnabled), reinterpret_cast<setter>(HumanPresenceSettings_put_IsLockOnLeaveEnabled), nullptr, nullptr },
+        { "is_attention_aware_dimming_enabled", reinterpret_cast<getter>(HumanPresenceSettings_get_IsAttentionAwareDimmingEnabled), reinterpret_cast<setter>(HumanPresenceSettings_put_IsAttentionAwareDimmingEnabled), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_HumanPresenceSettings[] = 
+    {
+        { Py_tp_new, _new_HumanPresenceSettings },
+        { Py_tp_dealloc, _dealloc_HumanPresenceSettings },
+        { Py_tp_methods, _methods_HumanPresenceSettings },
+        { Py_tp_getset, _getset_HumanPresenceSettings },
+        { },
+    };
+
+    static PyType_Spec type_spec_HumanPresenceSettings =
+    {
+        "_winsdk_Windows_Devices_Sensors.HumanPresenceSettings",
+        sizeof(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_HumanPresenceSettings
     };
 
     // ----- Inclinometer class --------------------
@@ -9482,6 +10602,8 @@ namespace py::cpp::Windows::Devices::Sensors
         {"_register_AccelerometerReadingType", register_AccelerometerReadingType, METH_O, "registers type"},
         {"_register_ActivitySensorReadingConfidence", register_ActivitySensorReadingConfidence, METH_O, "registers type"},
         {"_register_ActivityType", register_ActivityType, METH_O, "registers type"},
+        {"_register_HumanEngagement", register_HumanEngagement, METH_O, "registers type"},
+        {"_register_HumanPresence", register_HumanPresence, METH_O, "registers type"},
         {"_register_MagnetometerAccuracy", register_MagnetometerAccuracy, METH_O, "registers type"},
         {"_register_PedometerStepKind", register_PedometerStepKind, METH_O, "registers type"},
         {"_register_SensorOptimizationGoal", register_SensorOptimizationGoal, METH_O, "registers type"},
@@ -9503,6 +10625,8 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_VISIT(state->type_AccelerometerReadingType);
         Py_VISIT(state->type_ActivitySensorReadingConfidence);
         Py_VISIT(state->type_ActivityType);
+        Py_VISIT(state->type_HumanEngagement);
+        Py_VISIT(state->type_HumanPresence);
         Py_VISIT(state->type_MagnetometerAccuracy);
         Py_VISIT(state->type_PedometerStepKind);
         Py_VISIT(state->type_SensorOptimizationGoal);
@@ -9537,6 +10661,11 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_VISIT(state->type_HingeAngleReading);
         Py_VISIT(state->type_HingeAngleSensor);
         Py_VISIT(state->type_HingeAngleSensorReadingChangedEventArgs);
+        Py_VISIT(state->type_HumanPresenceFeatures);
+        Py_VISIT(state->type_HumanPresenceSensor);
+        Py_VISIT(state->type_HumanPresenceSensorReading);
+        Py_VISIT(state->type_HumanPresenceSensorReadingChangedEventArgs);
+        Py_VISIT(state->type_HumanPresenceSettings);
         Py_VISIT(state->type_Inclinometer);
         Py_VISIT(state->type_InclinometerDataThreshold);
         Py_VISIT(state->type_InclinometerReading);
@@ -9583,6 +10712,8 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_CLEAR(state->type_AccelerometerReadingType);
         Py_CLEAR(state->type_ActivitySensorReadingConfidence);
         Py_CLEAR(state->type_ActivityType);
+        Py_CLEAR(state->type_HumanEngagement);
+        Py_CLEAR(state->type_HumanPresence);
         Py_CLEAR(state->type_MagnetometerAccuracy);
         Py_CLEAR(state->type_PedometerStepKind);
         Py_CLEAR(state->type_SensorOptimizationGoal);
@@ -9617,6 +10748,11 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_CLEAR(state->type_HingeAngleReading);
         Py_CLEAR(state->type_HingeAngleSensor);
         Py_CLEAR(state->type_HingeAngleSensorReadingChangedEventArgs);
+        Py_CLEAR(state->type_HumanPresenceFeatures);
+        Py_CLEAR(state->type_HumanPresenceSensor);
+        Py_CLEAR(state->type_HumanPresenceSensorReading);
+        Py_CLEAR(state->type_HumanPresenceSensorReadingChangedEventArgs);
+        Py_CLEAR(state->type_HumanPresenceSettings);
         Py_CLEAR(state->type_Inclinometer);
         Py_CLEAR(state->type_InclinometerDataThreshold);
         Py_CLEAR(state->type_InclinometerReading);
@@ -9979,6 +11115,46 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sensors(void) noexcept
 
     Py_INCREF(state->type_HingeAngleSensorReadingChangedEventArgs);
 
+    state->type_HumanPresenceFeatures = py::register_python_type(module.get(), type_name_HumanPresenceFeatures, &type_spec_HumanPresenceFeatures, bases.get());
+    if (!state->type_HumanPresenceFeatures)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_HumanPresenceFeatures);
+
+    state->type_HumanPresenceSensor = py::register_python_type(module.get(), type_name_HumanPresenceSensor, &type_spec_HumanPresenceSensor, bases.get());
+    if (!state->type_HumanPresenceSensor)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_HumanPresenceSensor);
+
+    state->type_HumanPresenceSensorReading = py::register_python_type(module.get(), type_name_HumanPresenceSensorReading, &type_spec_HumanPresenceSensorReading, bases.get());
+    if (!state->type_HumanPresenceSensorReading)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_HumanPresenceSensorReading);
+
+    state->type_HumanPresenceSensorReadingChangedEventArgs = py::register_python_type(module.get(), type_name_HumanPresenceSensorReadingChangedEventArgs, &type_spec_HumanPresenceSensorReadingChangedEventArgs, bases.get());
+    if (!state->type_HumanPresenceSensorReadingChangedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_HumanPresenceSensorReadingChangedEventArgs);
+
+    state->type_HumanPresenceSettings = py::register_python_type(module.get(), type_name_HumanPresenceSettings, &type_spec_HumanPresenceSettings, bases.get());
+    if (!state->type_HumanPresenceSettings)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_HumanPresenceSettings);
+
     state->type_Inclinometer = py::register_python_type(module.get(), type_name_Inclinometer, &type_spec_Inclinometer, bases.get());
     if (!state->type_Inclinometer)
     {
@@ -10286,6 +11462,52 @@ PyObject* py::py_type<winrt::Windows::Devices::Sensors::ActivityType>::get_pytho
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::ActivityType is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Devices::Sensors::HumanEngagement>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_HumanEngagement;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HumanEngagement is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Devices::Sensors::HumanPresence>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_HumanPresence;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HumanPresence is not registered");
         return nullptr;
     }
 
@@ -11068,6 +12290,121 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::HingeAngleSensorR
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HingeAngleSensorReadingChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceFeatures>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_HumanPresenceFeatures;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HumanPresenceFeatures is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSensor>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_HumanPresenceSensor;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HumanPresenceSensor is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSensorReading>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_HumanPresenceSensorReading;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HumanPresenceSensorReading is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_HumanPresenceSensorReadingChangedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSettings>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_HumanPresenceSettings;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::HumanPresenceSettings is not registered");
         return nullptr;
     }
 

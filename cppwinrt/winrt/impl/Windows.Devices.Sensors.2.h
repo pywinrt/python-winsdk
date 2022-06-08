@@ -180,6 +180,45 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         HingeAngleSensorReadingChangedEventArgs(std::nullptr_t) noexcept {}
         HingeAngleSensorReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IHingeAngleSensorReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) HumanPresenceFeatures : winrt::Windows::Devices::Sensors::IHumanPresenceFeatures
+    {
+        HumanPresenceFeatures(std::nullptr_t) noexcept {}
+        HumanPresenceFeatures(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IHumanPresenceFeatures(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) HumanPresenceSensor : winrt::Windows::Devices::Sensors::IHumanPresenceSensor
+    {
+        HumanPresenceSensor(std::nullptr_t) noexcept {}
+        HumanPresenceSensor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IHumanPresenceSensor(ptr, take_ownership_from_abi) {}
+        static auto GetDeviceSelector();
+        static auto FromIdAsync(param::hstring const& sensorId);
+        static auto GetDefaultAsync();
+    };
+    struct __declspec(empty_bases) HumanPresenceSensorReading : winrt::Windows::Devices::Sensors::IHumanPresenceSensorReading
+    {
+        HumanPresenceSensorReading(std::nullptr_t) noexcept {}
+        HumanPresenceSensorReading(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IHumanPresenceSensorReading(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) HumanPresenceSensorReadingChangedEventArgs : winrt::Windows::Devices::Sensors::IHumanPresenceSensorReadingChangedEventArgs
+    {
+        HumanPresenceSensorReadingChangedEventArgs(std::nullptr_t) noexcept {}
+        HumanPresenceSensorReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IHumanPresenceSensorReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) HumanPresenceSettings : winrt::Windows::Devices::Sensors::IHumanPresenceSettings
+    {
+        HumanPresenceSettings(std::nullptr_t) noexcept {}
+        HumanPresenceSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IHumanPresenceSettings(ptr, take_ownership_from_abi) {}
+        static auto GetCurrentSettingsAsync();
+        static auto GetCurrentSettings();
+        static auto UpdateSettingsAsync(winrt::Windows::Devices::Sensors::HumanPresenceSettings const& settings);
+        static auto UpdateSettings(winrt::Windows::Devices::Sensors::HumanPresenceSettings const& settings);
+        static auto GetSupportedFeaturesForSensorIdAsync(param::hstring const& sensorId);
+        static auto GetSupportedFeaturesForSensorId(param::hstring const& sensorId);
+        static auto GetSupportedLockOnLeaveTimeouts();
+        static auto SettingsChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using SettingsChanged_revoker = impl::factory_event_revoker<winrt::Windows::Devices::Sensors::IHumanPresenceSettingsStatics, &impl::abi_t<winrt::Windows::Devices::Sensors::IHumanPresenceSettingsStatics>::remove_SettingsChanged>;
+        [[nodiscard]] static auto SettingsChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto SettingsChanged(winrt::event_token const& token);
+    };
     struct __declspec(empty_bases) Inclinometer : winrt::Windows::Devices::Sensors::IInclinometer,
         impl::require<Inclinometer, winrt::Windows::Devices::Sensors::IInclinometerDeviceId, winrt::Windows::Devices::Sensors::IInclinometer2, winrt::Windows::Devices::Sensors::IInclinometer3, winrt::Windows::Devices::Sensors::IInclinometer4>
     {

@@ -72,6 +72,7 @@ namespace py::cpp::Windows::ApplicationModel
         PyObject* type_FullTrustLaunchResult;
         PyObject* type_LimitedAccessFeatureStatus;
         PyObject* type_PackageContentGroupState;
+        PyObject* type_PackageRelationship;
         PyObject* type_PackageSignatureKind;
         PyObject* type_PackageUpdateAvailability;
         PyObject* type_StartupTaskState;
@@ -82,6 +83,7 @@ namespace py::cpp::Windows::ApplicationModel
         PyTypeObject* type_CameraApplicationManager;
         PyTypeObject* type_DesignMode;
         PyTypeObject* type_EnteredBackgroundEventArgs;
+        PyTypeObject* type_FindRelatedPackagesOptions;
         PyTypeObject* type_FullTrustProcessLaunchResult;
         PyTypeObject* type_FullTrustProcessLauncher;
         PyTypeObject* type_LeavingBackgroundEventArgs;
@@ -109,6 +111,7 @@ namespace py::cpp::Windows::ApplicationModel
         PyTypeObject* type_SuspendingOperation;
         PyTypeObject* type_IEnteredBackgroundEventArgs;
         PyTypeObject* type_ILeavingBackgroundEventArgs;
+        PyTypeObject* type_IPackageCatalogStatics2;
         PyTypeObject* type_ISuspendingDeferral;
         PyTypeObject* type_ISuspendingEventArgs;
         PyTypeObject* type_ISuspendingOperation;
@@ -255,6 +258,30 @@ namespace py::cpp::Windows::ApplicationModel
 
         state->type_PackageContentGroupState = type;
         Py_INCREF(state->type_PackageContentGroupState);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_PackageRelationship(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_PackageRelationship)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_PackageRelationship = type;
+        Py_INCREF(state->type_PackageRelationship);
 
 
         Py_RETURN_NONE;
@@ -1376,6 +1403,269 @@ namespace py::cpp::Windows::ApplicationModel
         _type_slots_EnteredBackgroundEventArgs
     };
 
+    // ----- FindRelatedPackagesOptions class --------------------
+    constexpr const char* const type_name_FindRelatedPackagesOptions = "FindRelatedPackagesOptions";
+
+    static PyObject* _new_FindRelatedPackagesOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::ApplicationModel::PackageRelationship>(args, 0);
+
+                winrt::Windows::ApplicationModel::FindRelatedPackagesOptions instance{ param0 };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_FindRelatedPackagesOptions(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* FindRelatedPackagesOptions_get_Relationship(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Relationship());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FindRelatedPackagesOptions_put_Relationship(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::ApplicationModel::PackageRelationship>(arg);
+
+            self->obj.Relationship(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* FindRelatedPackagesOptions_get_IncludeResources(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IncludeResources());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FindRelatedPackagesOptions_put_IncludeResources(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IncludeResources(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* FindRelatedPackagesOptions_get_IncludeOptionals(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IncludeOptionals());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FindRelatedPackagesOptions_put_IncludeOptionals(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IncludeOptionals(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* FindRelatedPackagesOptions_get_IncludeHostRuntimes(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IncludeHostRuntimes());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FindRelatedPackagesOptions_put_IncludeHostRuntimes(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IncludeHostRuntimes(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* FindRelatedPackagesOptions_get_IncludeFrameworks(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IncludeFrameworks());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int FindRelatedPackagesOptions_put_IncludeFrameworks(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IncludeFrameworks(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_FindRelatedPackagesOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_FindRelatedPackagesOptions[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_FindRelatedPackagesOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_FindRelatedPackagesOptions[] = {
+        { "relationship", reinterpret_cast<getter>(FindRelatedPackagesOptions_get_Relationship), reinterpret_cast<setter>(FindRelatedPackagesOptions_put_Relationship), nullptr, nullptr },
+        { "include_resources", reinterpret_cast<getter>(FindRelatedPackagesOptions_get_IncludeResources), reinterpret_cast<setter>(FindRelatedPackagesOptions_put_IncludeResources), nullptr, nullptr },
+        { "include_optionals", reinterpret_cast<getter>(FindRelatedPackagesOptions_get_IncludeOptionals), reinterpret_cast<setter>(FindRelatedPackagesOptions_put_IncludeOptionals), nullptr, nullptr },
+        { "include_host_runtimes", reinterpret_cast<getter>(FindRelatedPackagesOptions_get_IncludeHostRuntimes), reinterpret_cast<setter>(FindRelatedPackagesOptions_put_IncludeHostRuntimes), nullptr, nullptr },
+        { "include_frameworks", reinterpret_cast<getter>(FindRelatedPackagesOptions_get_IncludeFrameworks), reinterpret_cast<setter>(FindRelatedPackagesOptions_put_IncludeFrameworks), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_FindRelatedPackagesOptions[] = 
+    {
+        { Py_tp_new, _new_FindRelatedPackagesOptions },
+        { Py_tp_dealloc, _dealloc_FindRelatedPackagesOptions },
+        { Py_tp_methods, _methods_FindRelatedPackagesOptions },
+        { Py_tp_getset, _getset_FindRelatedPackagesOptions },
+        { },
+    };
+
+    static PyType_Spec type_spec_FindRelatedPackagesOptions =
+    {
+        "_winsdk_Windows_ApplicationModel.FindRelatedPackagesOptions",
+        sizeof(py::wrapper::Windows::ApplicationModel::FindRelatedPackagesOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_FindRelatedPackagesOptions
+    };
+
     // ----- FullTrustProcessLaunchResult class --------------------
     constexpr const char* const type_name_FullTrustProcessLaunchResult = "FullTrustProcessLaunchResult";
 
@@ -1898,6 +2188,31 @@ namespace py::cpp::Windows::ApplicationModel
             try
             {
                 return py::convert(self->obj.CheckUpdateAvailabilityAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* Package_FindRelatedPackages(py::wrapper::Windows::ApplicationModel::Package* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions>(args, 0);
+
+                return py::convert(self->obj.FindRelatedPackages(param0));
             }
             catch (...)
             {
@@ -2542,6 +2857,19 @@ namespace py::cpp::Windows::ApplicationModel
         }
     }
 
+    static PyObject* Package_get_SourceUriSchemeName(py::wrapper::Windows::ApplicationModel::Package* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SourceUriSchemeName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* Package_get_InstallDate(py::wrapper::Windows::ApplicationModel::Package* self, void* /*unused*/) noexcept
     {
         try
@@ -2584,6 +2912,7 @@ namespace py::cpp::Windows::ApplicationModel
 
     static PyMethodDef _methods_Package[] = {
         { "check_update_availability_async", reinterpret_cast<PyCFunction>(Package_CheckUpdateAvailabilityAsync), METH_VARARGS, nullptr },
+        { "find_related_packages", reinterpret_cast<PyCFunction>(Package_FindRelatedPackages), METH_VARARGS, nullptr },
         { "get_app_installer_info", reinterpret_cast<PyCFunction>(Package_GetAppInstallerInfo), METH_VARARGS, nullptr },
         { "get_app_list_entries", reinterpret_cast<PyCFunction>(Package_GetAppListEntries), METH_VARARGS, nullptr },
         { "get_app_list_entries_async", reinterpret_cast<PyCFunction>(Package_GetAppListEntriesAsync), METH_VARARGS, nullptr },
@@ -2628,6 +2957,7 @@ namespace py::cpp::Windows::ApplicationModel
         { "mutable_path", reinterpret_cast<getter>(Package_get_MutablePath), nullptr, nullptr, nullptr },
         { "user_external_location", reinterpret_cast<getter>(Package_get_UserExternalLocation), nullptr, nullptr, nullptr },
         { "user_external_path", reinterpret_cast<getter>(Package_get_UserExternalPath), nullptr, nullptr, nullptr },
+        { "source_uri_scheme_name", reinterpret_cast<getter>(Package_get_SourceUriSchemeName), nullptr, nullptr, nullptr },
         { "install_date", reinterpret_cast<getter>(Package_get_InstallDate), nullptr, nullptr, nullptr },
         { }
     };
@@ -2751,6 +3081,31 @@ namespace py::cpp::Windows::ApplicationModel
             try
             {
                 return py::convert(winrt::Windows::ApplicationModel::PackageCatalog::OpenForCurrentUser());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PackageCatalog_OpenForPackage(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::ApplicationModel::Package>(args, 0);
+
+                return py::convert(winrt::Windows::ApplicationModel::PackageCatalog::OpenForPackage(param0));
             }
             catch (...)
             {
@@ -3020,6 +3375,7 @@ namespace py::cpp::Windows::ApplicationModel
         { "add_resource_package_async", reinterpret_cast<PyCFunction>(PackageCatalog_AddResourcePackageAsync), METH_VARARGS, nullptr },
         { "open_for_current_package", reinterpret_cast<PyCFunction>(PackageCatalog_OpenForCurrentPackage), METH_VARARGS | METH_STATIC, nullptr },
         { "open_for_current_user", reinterpret_cast<PyCFunction>(PackageCatalog_OpenForCurrentUser), METH_VARARGS | METH_STATIC, nullptr },
+        { "open_for_package", reinterpret_cast<PyCFunction>(PackageCatalog_OpenForPackage), METH_VARARGS | METH_STATIC, nullptr },
         { "remove_optional_packages_async", reinterpret_cast<PyCFunction>(PackageCatalog_RemoveOptionalPackagesAsync), METH_VARARGS, nullptr },
         { "remove_resource_packages_async", reinterpret_cast<PyCFunction>(PackageCatalog_RemoveResourcePackagesAsync), METH_VARARGS, nullptr },
         { "add_package_installing", reinterpret_cast<PyCFunction>(PackageCatalog_add_PackageInstalling), METH_O, nullptr },
@@ -5434,6 +5790,90 @@ namespace py::cpp::Windows::ApplicationModel
         _type_slots_ILeavingBackgroundEventArgs
     };
 
+    // ----- IPackageCatalogStatics2 interface --------------------
+    constexpr const char* const type_name_IPackageCatalogStatics2 = "IPackageCatalogStatics2";
+
+    static PyObject* _new_IPackageCatalogStatics2(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IPackageCatalogStatics2);
+        return nullptr;
+    }
+
+    static void _dealloc_IPackageCatalogStatics2(py::wrapper::Windows::ApplicationModel::IPackageCatalogStatics2* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IPackageCatalogStatics2_OpenForPackage(py::wrapper::Windows::ApplicationModel::IPackageCatalogStatics2* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::ApplicationModel::Package>(args, 0);
+
+                return py::convert(self->obj.OpenForPackage(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IPackageCatalogStatics2(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::IPackageCatalogStatics2>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IPackageCatalogStatics2[] = {
+        { "open_for_package", reinterpret_cast<PyCFunction>(IPackageCatalogStatics2_OpenForPackage), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_IPackageCatalogStatics2), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IPackageCatalogStatics2[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_IPackageCatalogStatics2[] = 
+    {
+        { Py_tp_new, _new_IPackageCatalogStatics2 },
+        { Py_tp_dealloc, _dealloc_IPackageCatalogStatics2 },
+        { Py_tp_methods, _methods_IPackageCatalogStatics2 },
+        { Py_tp_getset, _getset_IPackageCatalogStatics2 },
+        { },
+    };
+
+    static PyType_Spec type_spec_IPackageCatalogStatics2 =
+    {
+        "_winsdk_Windows_ApplicationModel.IPackageCatalogStatics2",
+        sizeof(py::wrapper::Windows::ApplicationModel::IPackageCatalogStatics2),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IPackageCatalogStatics2
+    };
+
     // ----- ISuspendingDeferral interface --------------------
     constexpr const char* const type_name_ISuspendingDeferral = "ISuspendingDeferral";
 
@@ -6036,6 +6476,7 @@ namespace py::cpp::Windows::ApplicationModel
         {"_register_FullTrustLaunchResult", register_FullTrustLaunchResult, METH_O, "registers type"},
         {"_register_LimitedAccessFeatureStatus", register_LimitedAccessFeatureStatus, METH_O, "registers type"},
         {"_register_PackageContentGroupState", register_PackageContentGroupState, METH_O, "registers type"},
+        {"_register_PackageRelationship", register_PackageRelationship, METH_O, "registers type"},
         {"_register_PackageSignatureKind", register_PackageSignatureKind, METH_O, "registers type"},
         {"_register_PackageUpdateAvailability", register_PackageUpdateAvailability, METH_O, "registers type"},
         {"_register_StartupTaskState", register_StartupTaskState, METH_O, "registers type"},
@@ -6057,6 +6498,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_VISIT(state->type_FullTrustLaunchResult);
         Py_VISIT(state->type_LimitedAccessFeatureStatus);
         Py_VISIT(state->type_PackageContentGroupState);
+        Py_VISIT(state->type_PackageRelationship);
         Py_VISIT(state->type_PackageSignatureKind);
         Py_VISIT(state->type_PackageUpdateAvailability);
         Py_VISIT(state->type_StartupTaskState);
@@ -6067,6 +6509,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_VISIT(state->type_CameraApplicationManager);
         Py_VISIT(state->type_DesignMode);
         Py_VISIT(state->type_EnteredBackgroundEventArgs);
+        Py_VISIT(state->type_FindRelatedPackagesOptions);
         Py_VISIT(state->type_FullTrustProcessLaunchResult);
         Py_VISIT(state->type_FullTrustProcessLauncher);
         Py_VISIT(state->type_LeavingBackgroundEventArgs);
@@ -6094,6 +6537,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_VISIT(state->type_SuspendingOperation);
         Py_VISIT(state->type_IEnteredBackgroundEventArgs);
         Py_VISIT(state->type_ILeavingBackgroundEventArgs);
+        Py_VISIT(state->type_IPackageCatalogStatics2);
         Py_VISIT(state->type_ISuspendingDeferral);
         Py_VISIT(state->type_ISuspendingEventArgs);
         Py_VISIT(state->type_ISuspendingOperation);
@@ -6118,6 +6562,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_CLEAR(state->type_FullTrustLaunchResult);
         Py_CLEAR(state->type_LimitedAccessFeatureStatus);
         Py_CLEAR(state->type_PackageContentGroupState);
+        Py_CLEAR(state->type_PackageRelationship);
         Py_CLEAR(state->type_PackageSignatureKind);
         Py_CLEAR(state->type_PackageUpdateAvailability);
         Py_CLEAR(state->type_StartupTaskState);
@@ -6128,6 +6573,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_CLEAR(state->type_CameraApplicationManager);
         Py_CLEAR(state->type_DesignMode);
         Py_CLEAR(state->type_EnteredBackgroundEventArgs);
+        Py_CLEAR(state->type_FindRelatedPackagesOptions);
         Py_CLEAR(state->type_FullTrustProcessLaunchResult);
         Py_CLEAR(state->type_FullTrustProcessLauncher);
         Py_CLEAR(state->type_LeavingBackgroundEventArgs);
@@ -6155,6 +6601,7 @@ namespace py::cpp::Windows::ApplicationModel
         Py_CLEAR(state->type_SuspendingOperation);
         Py_CLEAR(state->type_IEnteredBackgroundEventArgs);
         Py_CLEAR(state->type_ILeavingBackgroundEventArgs);
+        Py_CLEAR(state->type_IPackageCatalogStatics2);
         Py_CLEAR(state->type_ISuspendingDeferral);
         Py_CLEAR(state->type_ISuspendingEventArgs);
         Py_CLEAR(state->type_ISuspendingOperation);
@@ -6323,6 +6770,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel(void) noexcept
     }
 
     Py_INCREF(state->type_EnteredBackgroundEventArgs);
+
+    state->type_FindRelatedPackagesOptions = py::register_python_type(module.get(), type_name_FindRelatedPackagesOptions, &type_spec_FindRelatedPackagesOptions, bases.get());
+    if (!state->type_FindRelatedPackagesOptions)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_FindRelatedPackagesOptions);
 
     state->type_FullTrustProcessLaunchResult = py::register_python_type(module.get(), type_name_FullTrustProcessLaunchResult, &type_spec_FullTrustProcessLaunchResult, bases.get());
     if (!state->type_FullTrustProcessLaunchResult)
@@ -6540,6 +6995,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel(void) noexcept
 
     Py_INCREF(state->type_ILeavingBackgroundEventArgs);
 
+    state->type_IPackageCatalogStatics2 = py::register_python_type(module.get(), type_name_IPackageCatalogStatics2, &type_spec_IPackageCatalogStatics2, bases.get());
+    if (!state->type_IPackageCatalogStatics2)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IPackageCatalogStatics2);
+
     state->type_ISuspendingDeferral = py::register_python_type(module.get(), type_name_ISuspendingDeferral, &type_spec_ISuspendingDeferral, bases.get());
     if (!state->type_ISuspendingDeferral)
     {
@@ -6716,6 +7179,29 @@ PyObject* py::py_type<winrt::Windows::ApplicationModel::PackageContentGroupState
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::PackageContentGroupState is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::ApplicationModel::PackageRelationship>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PackageRelationship;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::PackageRelationship is not registered");
         return nullptr;
     }
 
@@ -6946,6 +7432,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::EnteredBackground
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_FindRelatedPackagesOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::FindRelatedPackagesOptions is not registered");
         return nullptr;
     }
 
@@ -7567,6 +8076,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::ILeavingBackgroun
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::IPackageCatalogStatics2>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IPackageCatalogStatics2;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::IPackageCatalogStatics2 is not registered");
         return nullptr;
     }
 

@@ -33,6 +33,21 @@ WINRT_EXPORT namespace winrt::Windows::Storage::Streams
 }
 WINRT_EXPORT namespace winrt::Windows::Graphics::Printing::Workflow
 {
+    enum class PdlConversionHostBasedProcessingOperations : uint32_t
+    {
+        None = 0,
+        PageRotation = 0x1,
+        PageOrdering = 0x2,
+        Copies = 0x4,
+        BlankPageInsertion = 0x8,
+        All = 0xffffffff,
+    };
+    enum class PrintWorkflowAttributesMergePolicy : int32_t
+    {
+        MergePreferPrintTicketOnConflict = 0,
+        MergePreferPsaOnConflict = 1,
+        DoNotMergeWithPrintTicket = 2,
+    };
     enum class PrintWorkflowJobAbortReason : int32_t
     {
         JobFailed = 0,
@@ -88,8 +103,10 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Printing::Workflow
     struct IPrintWorkflowObjectModelSourceFileContentFactory;
     struct IPrintWorkflowObjectModelTargetPackage;
     struct IPrintWorkflowPdlConverter;
+    struct IPrintWorkflowPdlConverter2;
     struct IPrintWorkflowPdlDataAvailableEventArgs;
     struct IPrintWorkflowPdlModificationRequestedEventArgs;
+    struct IPrintWorkflowPdlModificationRequestedEventArgs2;
     struct IPrintWorkflowPdlSourceContent;
     struct IPrintWorkflowPdlTargetStream;
     struct IPrintWorkflowPrinterJob;
@@ -151,8 +168,10 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelSourceFileContentFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelTargetPackage>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlSourceContent>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlTargetStream>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPrinterJob>{ using type = interface_category; };
@@ -195,6 +214,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowUIActivatedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowUILauncher>{ using type = class_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowXpsDataAvailableEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowJobAbortReason>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPdlConversionType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPrinterJobStatus>{ using type = enum_category; };
@@ -230,6 +251,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowUIActivatedEventArgs> = L"Windows.Graphics.Printing.Workflow.PrintWorkflowUIActivatedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowUILauncher> = L"Windows.Graphics.Printing.Workflow.PrintWorkflowUILauncher";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowXpsDataAvailableEventArgs> = L"Windows.Graphics.Printing.Workflow.PrintWorkflowXpsDataAvailableEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations> = L"Windows.Graphics.Printing.Workflow.PdlConversionHostBasedProcessingOperations";
+    template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy> = L"Windows.Graphics.Printing.Workflow.PrintWorkflowAttributesMergePolicy";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowJobAbortReason> = L"Windows.Graphics.Printing.Workflow.PrintWorkflowJobAbortReason";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPdlConversionType> = L"Windows.Graphics.Printing.Workflow.PrintWorkflowPdlConversionType";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPrinterJobStatus> = L"Windows.Graphics.Printing.Workflow.PrintWorkflowPrinterJobStatus";
@@ -252,8 +275,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelSourceFileContentFactory> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContentFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelTargetPackage> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelTargetPackage";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter";
+    template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlConverter2";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlDataAvailableEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlModificationRequestedEventArgs2";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlSourceContent> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlSourceContent";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlTargetStream> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPdlTargetStream";
     template <> inline constexpr auto& name_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPrinterJob> = L"Windows.Graphics.Printing.Workflow.IPrintWorkflowPrinterJob";
@@ -283,8 +308,10 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelSourceFileContentFactory>{ 0x93B1B903,0xF013,0x56D6,{ 0xB7,0x08,0x99,0xAC,0x2C,0xCB,0x12,0xEE } }; // 93B1B903-F013-56D6-B708-99AC2CCB12EE
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelTargetPackage>{ 0x7D96BC74,0x9B54,0x4CA1,{ 0xAD,0x3A,0x97,0x9C,0x3D,0x44,0xDD,0xAC } }; // 7D96BC74-9B54-4CA1-AD3A-979C3D44DDAC
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter>{ 0x40604B62,0x0AE4,0x51F1,{ 0x81,0x8F,0x73,0x1D,0xC0,0xB0,0x05,0xAB } }; // 40604B62-0AE4-51F1-818F-731DC0B005AB
+    template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2>{ 0x854CEEC1,0x7837,0x5B93,{ 0xB7,0xAF,0x57,0xA6,0x99,0x8C,0x2F,0x71 } }; // 854CEEC1-7837-5B93-B7AF-57A6998C2F71
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs>{ 0xD4AD6B50,0x1547,0x5991,{ 0xA0,0xEF,0xE2,0xEE,0x20,0x21,0x15,0x18 } }; // D4AD6B50-1547-5991-A0EF-E2EE20211518
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs>{ 0x1A339A61,0x2E13,0x5EDD,{ 0xA7,0x07,0xCE,0xEC,0x61,0xD7,0x33,0x3B } }; // 1A339A61-2E13-5EDD-A707-CEEC61D7333B
+    template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>{ 0x8D692147,0x6C62,0x5E31,{ 0xA0,0xE7,0xD4,0x9F,0x92,0xC1,0x11,0xC0 } }; // 8D692147-6C62-5E31-A0E7-D49F92C111C0
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlSourceContent>{ 0x92F7FC41,0x32B8,0x56AB,{ 0x84,0x5E,0xB1,0xE6,0x8B,0x3A,0xED,0xD5 } }; // 92F7FC41-32B8-56AB-845E-B1E68B3AEDD5
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlTargetStream>{ 0xA742DFE5,0x1EE3,0x52A9,{ 0x9F,0x9F,0x2E,0x20,0x43,0x18,0x0F,0xD1 } }; // A742DFE5-1EE3-52A9-9F9F-2E2043180FD1
     template <> inline constexpr guid guid_v<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPrinterJob>{ 0x12009F94,0x0D14,0x5443,{ 0xBC,0x09,0x25,0x03,0x11,0xCE,0x57,0x0B } }; // 12009F94-0D14-5443-BC09-250311CE570B
@@ -469,6 +496,13 @@ namespace winrt::impl
             virtual int32_t __stdcall ConvertPdlAsync(void*, void*, void*, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall ConvertPdlAsync(void*, void*, void*, uint32_t, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -492,6 +526,14 @@ namespace winrt::impl
             virtual int32_t __stdcall CreateJobOnPrinterWithAttributesBuffer(void*, void*, void**) noexcept = 0;
             virtual int32_t __stdcall GetPdlConverter(int32_t, void**) noexcept = 0;
             virtual int32_t __stdcall GetDeferral(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreateJobOnPrinterWithAttributes(void*, void*, void*, int32_t, int32_t, void**) noexcept = 0;
+            virtual int32_t __stdcall CreateJobOnPrinterWithAttributesBuffer(void*, void*, void*, int32_t, int32_t, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlSourceContent>
@@ -795,6 +837,15 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlConverter<D>;
     };
     template <typename D>
+    struct consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlConverter2
+    {
+        auto ConvertPdlAsync(winrt::Windows::Graphics::Printing::PrintTicket::WorkflowPrintTicket const& printTicket, winrt::Windows::Storage::Streams::IInputStream const& inputStream, winrt::Windows::Storage::Streams::IOutputStream const& outputStream, winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations const& hostBasedProcessingOperations) const;
+    };
+    template <> struct consume<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2>
+    {
+        template <typename D> using type = consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlConverter2<D>;
+    };
+    template <typename D>
     struct consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlDataAvailableEventArgs
     {
         [[nodiscard]] auto Configuration() const;
@@ -822,6 +873,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs>
     {
         template <typename D> using type = consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlModificationRequestedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlModificationRequestedEventArgs2
+    {
+        auto CreateJobOnPrinterWithAttributes(param::iterable<winrt::Windows::Foundation::Collections::IKeyValuePair<hstring, winrt::Windows::Devices::Printers::IppAttributeValue>> const& jobAttributes, param::hstring const& targetContentType, param::iterable<winrt::Windows::Foundation::Collections::IKeyValuePair<hstring, winrt::Windows::Devices::Printers::IppAttributeValue>> const& operationAttributes, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& jobAttributesMergePolicy, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& operationAttributesMergePolicy) const;
+        auto CreateJobOnPrinterWithAttributesBuffer(winrt::Windows::Storage::Streams::IBuffer const& jobAttributesBuffer, param::hstring const& targetContentType, winrt::Windows::Storage::Streams::IBuffer const& operationAttributesBuffer, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& jobAttributesMergePolicy, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& operationAttributesMergePolicy) const;
+    };
+    template <> struct consume<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>
+    {
+        template <typename D> using type = consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlModificationRequestedEventArgs2<D>;
     };
     template <typename D>
     struct consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlSourceContent

@@ -26,6 +26,11 @@ try:
 except ImportError:
     pass
 
+try:
+    import winsdk.windows.ui
+except ImportError:
+    pass
+
 class CachedFileOptions(enum.IntFlag):
     NONE = 0
     REQUIRE_UPDATE_ON_ACCESS = 0x1
@@ -95,6 +100,11 @@ class StorageProviderState(enum.IntEnum):
     WARNING = 4
     OFFLINE = 5
 
+class StorageProviderUICommandState(enum.IntEnum):
+    ENABLED = 0
+    DISABLED = 1
+    HIDDEN = 2
+
 class StorageProviderUriSourceStatus(enum.IntEnum):
     SUCCESS = 0
     NO_SYNC_ROOT = 1
@@ -122,6 +132,7 @@ _ns_module._register_StorageProviderInSyncPolicy(StorageProviderInSyncPolicy)
 _ns_module._register_StorageProviderPopulationPolicy(StorageProviderPopulationPolicy)
 _ns_module._register_StorageProviderProtectionMode(StorageProviderProtectionMode)
 _ns_module._register_StorageProviderState(StorageProviderState)
+_ns_module._register_StorageProviderUICommandState(StorageProviderUICommandState)
 _ns_module._register_StorageProviderUriSourceStatus(StorageProviderUriSourceStatus)
 _ns_module._register_UIStatus(UIStatus)
 _ns_module._register_WriteActivationMode(WriteActivationMode)
@@ -131,19 +142,20 @@ CachedFileUpdaterUI = _ns_module.CachedFileUpdaterUI
 FileUpdateRequest = _ns_module.FileUpdateRequest
 FileUpdateRequestDeferral = _ns_module.FileUpdateRequestDeferral
 FileUpdateRequestedEventArgs = _ns_module.FileUpdateRequestedEventArgs
-StorageProviderError = _ns_module.StorageProviderError
-StorageProviderErrorCommand = _ns_module.StorageProviderErrorCommand
 StorageProviderFileTypeInfo = _ns_module.StorageProviderFileTypeInfo
 StorageProviderGetContentInfoForPathResult = _ns_module.StorageProviderGetContentInfoForPathResult
 StorageProviderGetPathForContentUriResult = _ns_module.StorageProviderGetPathForContentUriResult
 StorageProviderItemProperties = _ns_module.StorageProviderItemProperties
 StorageProviderItemProperty = _ns_module.StorageProviderItemProperty
 StorageProviderItemPropertyDefinition = _ns_module.StorageProviderItemPropertyDefinition
-StorageProviderStatus = _ns_module.StorageProviderStatus
+StorageProviderMoreInfoUI = _ns_module.StorageProviderMoreInfoUI
+StorageProviderQuotaUI = _ns_module.StorageProviderQuotaUI
+StorageProviderStatusUI = _ns_module.StorageProviderStatusUI
 StorageProviderSyncRootInfo = _ns_module.StorageProviderSyncRootInfo
 StorageProviderSyncRootManager = _ns_module.StorageProviderSyncRootManager
-IStorageProviderHandlerFactory = _ns_module.IStorageProviderHandlerFactory
 IStorageProviderItemPropertySource = _ns_module.IStorageProviderItemPropertySource
 IStorageProviderPropertyCapabilities = _ns_module.IStorageProviderPropertyCapabilities
-IStorageProviderStatusSource = _ns_module.IStorageProviderStatusSource
+IStorageProviderStatusUISource = _ns_module.IStorageProviderStatusUISource
+IStorageProviderStatusUISourceFactory = _ns_module.IStorageProviderStatusUISourceFactory
+IStorageProviderUICommand = _ns_module.IStorageProviderUICommand
 IStorageProviderUriSource = _ns_module.IStorageProviderUriSource

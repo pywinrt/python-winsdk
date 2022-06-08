@@ -62,6 +62,7 @@ KnownRetailInfoProperties = _ns_module.KnownRetailInfoProperties
 PlatformDiagnosticsAndUsageDataSettings = _ns_module.PlatformDiagnosticsAndUsageDataSettings
 RetailInfo = _ns_module.RetailInfo
 SharedModeSettings = _ns_module.SharedModeSettings
+SmartAppControlPolicy = _ns_module.SmartAppControlPolicy
 SystemIdentification = _ns_module.SystemIdentification
 SystemIdentificationInfo = _ns_module.SystemIdentificationInfo
 SystemSetupInfo = _ns_module.SystemSetupInfo

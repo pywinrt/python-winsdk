@@ -104,6 +104,20 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         IEnteredBackgroundEventArgs(std::nullptr_t = nullptr) noexcept {}
         IEnteredBackgroundEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IFindRelatedPackagesOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFindRelatedPackagesOptions>
+    {
+        IFindRelatedPackagesOptions(std::nullptr_t = nullptr) noexcept {}
+        IFindRelatedPackagesOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IFindRelatedPackagesOptionsFactory :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IFindRelatedPackagesOptionsFactory>
+    {
+        IFindRelatedPackagesOptionsFactory(std::nullptr_t = nullptr) noexcept {}
+        IFindRelatedPackagesOptionsFactory(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IFullTrustProcessLaunchResult :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IFullTrustProcessLaunchResult>
@@ -202,6 +216,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         IPackage8(std::nullptr_t = nullptr) noexcept {}
         IPackage8(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IPackage9 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPackage9>
+    {
+        IPackage9(std::nullptr_t = nullptr) noexcept {}
+        IPackage9(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IPackageCatalog :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IPackageCatalog>
@@ -264,6 +285,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         IPackageCatalogStatics(std::nullptr_t = nullptr) noexcept {}
         IPackageCatalogStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPackageCatalogStatics2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPackageCatalogStatics2>
+    {
+        IPackageCatalogStatics2(std::nullptr_t = nullptr) noexcept {}
+        IPackageCatalogStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IPackageContentGroup :
         winrt::Windows::Foundation::IInspectable,

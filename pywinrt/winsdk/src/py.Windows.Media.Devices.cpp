@@ -7932,6 +7932,32 @@ namespace py::cpp::Windows::Media::Devices
         }
     }
 
+    static PyObject* VideoDeviceController_TryAcquireExclusiveControl(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode>(args, 1);
+
+                return py::convert(self->obj.TryAcquireExclusiveControl(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* VideoDeviceController_TryGetPowerlineFrequency(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, PyObject* args) noexcept
     {
         Py_ssize_t arg_count = PyTuple_Size(args);
@@ -8376,19 +8402,6 @@ namespace py::cpp::Windows::Media::Devices
         }
     }
 
-    static PyObject* VideoDeviceController_get_Hue(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.Hue());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
     static PyObject* VideoDeviceController_get_Zoom(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
     {
         try
@@ -8415,11 +8428,11 @@ namespace py::cpp::Windows::Media::Devices
         }
     }
 
-    static PyObject* VideoDeviceController_get_WhiteBalance(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
+    static PyObject* VideoDeviceController_get_BacklightCompensation(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
     {
         try
         {
-            return py::convert(self->obj.WhiteBalance());
+            return py::convert(self->obj.BacklightCompensation());
         }
         catch (...)
         {
@@ -8428,11 +8441,11 @@ namespace py::cpp::Windows::Media::Devices
         }
     }
 
-    static PyObject* VideoDeviceController_get_BacklightCompensation(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
+    static PyObject* VideoDeviceController_get_WhiteBalance(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
     {
         try
         {
-            return py::convert(self->obj.BacklightCompensation());
+            return py::convert(self->obj.WhiteBalance());
         }
         catch (...)
         {
@@ -8493,6 +8506,19 @@ namespace py::cpp::Windows::Media::Devices
         }
     }
 
+    static PyObject* VideoDeviceController_get_Hue(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Hue());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* VideoDeviceController_get_Pan(py::wrapper::Windows::Media::Devices::VideoDeviceController* self, void* /*unused*/) noexcept
     {
         try
@@ -8543,6 +8569,7 @@ namespace py::cpp::Windows::Media::Devices
         { "set_device_property_by_extended_id", reinterpret_cast<PyCFunction>(VideoDeviceController_SetDevicePropertyByExtendedId), METH_VARARGS, nullptr },
         { "set_device_property_by_id", reinterpret_cast<PyCFunction>(VideoDeviceController_SetDevicePropertyById), METH_VARARGS, nullptr },
         { "set_media_stream_properties_async", reinterpret_cast<PyCFunction>(VideoDeviceController_SetMediaStreamPropertiesAsync), METH_VARARGS, nullptr },
+        { "try_acquire_exclusive_control", reinterpret_cast<PyCFunction>(VideoDeviceController_TryAcquireExclusiveControl), METH_VARARGS, nullptr },
         { "try_get_powerline_frequency", reinterpret_cast<PyCFunction>(VideoDeviceController_TryGetPowerlineFrequency), METH_VARARGS, nullptr },
         { "try_set_powerline_frequency", reinterpret_cast<PyCFunction>(VideoDeviceController_TrySetPowerlineFrequency), METH_VARARGS, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_VideoDeviceController), METH_O | METH_STATIC, nullptr },
@@ -8576,15 +8603,15 @@ namespace py::cpp::Windows::Media::Devices
         { "infrared_torch_control", reinterpret_cast<getter>(VideoDeviceController_get_InfraredTorchControl), nullptr, nullptr, nullptr },
         { "panel_based_optimization_control", reinterpret_cast<getter>(VideoDeviceController_get_PanelBasedOptimizationControl), nullptr, nullptr, nullptr },
         { "digital_window_control", reinterpret_cast<getter>(VideoDeviceController_get_DigitalWindowControl), nullptr, nullptr, nullptr },
-        { "hue", reinterpret_cast<getter>(VideoDeviceController_get_Hue), nullptr, nullptr, nullptr },
         { "zoom", reinterpret_cast<getter>(VideoDeviceController_get_Zoom), nullptr, nullptr, nullptr },
         { "contrast", reinterpret_cast<getter>(VideoDeviceController_get_Contrast), nullptr, nullptr, nullptr },
-        { "white_balance", reinterpret_cast<getter>(VideoDeviceController_get_WhiteBalance), nullptr, nullptr, nullptr },
         { "backlight_compensation", reinterpret_cast<getter>(VideoDeviceController_get_BacklightCompensation), nullptr, nullptr, nullptr },
+        { "white_balance", reinterpret_cast<getter>(VideoDeviceController_get_WhiteBalance), nullptr, nullptr, nullptr },
         { "brightness", reinterpret_cast<getter>(VideoDeviceController_get_Brightness), nullptr, nullptr, nullptr },
         { "exposure", reinterpret_cast<getter>(VideoDeviceController_get_Exposure), nullptr, nullptr, nullptr },
         { "tilt", reinterpret_cast<getter>(VideoDeviceController_get_Tilt), nullptr, nullptr, nullptr },
         { "roll", reinterpret_cast<getter>(VideoDeviceController_get_Roll), nullptr, nullptr, nullptr },
+        { "hue", reinterpret_cast<getter>(VideoDeviceController_get_Hue), nullptr, nullptr, nullptr },
         { "pan", reinterpret_cast<getter>(VideoDeviceController_get_Pan), nullptr, nullptr, nullptr },
         { "focus", reinterpret_cast<getter>(VideoDeviceController_get_Focus), nullptr, nullptr, nullptr },
         { }

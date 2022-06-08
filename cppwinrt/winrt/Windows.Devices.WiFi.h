@@ -188,6 +188,126 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiNetworkReport)->get_AvailableNetworks(&value));
         return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Devices::WiFi::WiFiAvailableNetwork>{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotConnectTriggerDetails<D>::RequestedNetwork() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectTriggerDetails)->get_RequestedNetwork(&value));
+        return winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotConnectTriggerDetails<D>::ReportError(winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus const& status) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectTriggerDetails)->ReportError(static_cast<int32_t>(status)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotConnectTriggerDetails<D>::ConnectAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectTriggerDetails)->ConnectAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotConnectTriggerDetails<D>::Connect() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectTriggerDetails)->Connect(&result));
+        return winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotConnectionResult<D>::Status() const
+    {
+        winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectionResult)->get_Status(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetwork<D>::GetProperties() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetwork)->GetProperties(&result));
+        return winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetwork<D>::UpdateProperties(winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties const& newProperties) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetwork)->UpdateProperties(*(void**)(&newProperties)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetwork<D>::Id() const
+    {
+        winrt::guid value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetwork)->get_Id(put_abi(value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::DisplayName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->get_DisplayName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::DisplayName(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->put_DisplayName(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::Availability() const
+    {
+        winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->get_Availability(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::Availability(winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->put_Availability(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::RemainingBatteryPercent() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->get_RemainingBatteryPercent(&value));
+        return winrt::Windows::Foundation::IReference<uint32_t>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::RemainingBatteryPercent(winrt::Windows::Foundation::IReference<uint32_t> const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->put_RemainingBatteryPercent(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::CellularBars() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->get_CellularBars(&value));
+        return winrt::Windows::Foundation::IReference<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars>{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::CellularBars(winrt::Windows::Foundation::IReference<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars> const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->put_CellularBars(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::IsMetered() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->get_IsMetered(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::IsMetered(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->put_IsMetered(value));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::Ssid() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->get_Ssid(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::Ssid(param::hstring const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->put_Ssid(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::Password() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->get_Password(&value));
+        return winrt::Windows::Security::Credentials::PasswordCredential{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkProperties<D>::Password(winrt::Windows::Security::Credentials::PasswordCredential const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties)->put_Password(*(void**)(&value)));
+    }
+    template <typename D> auto consume_Windows_Devices_WiFi_IWiFiOnDemandHotspotNetworkStatics<D>::GetOrCreateById(winrt::guid const& networkId) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkStatics)->GetOrCreateById(impl::bind_in(networkId), &result));
+        return winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork{ result, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Devices_WiFi_IWiFiWpsConfigurationResult<D>::Status() const
     {
         winrt::Windows::Devices::WiFi::WiFiWpsConfigurationStatus value{};
@@ -460,6 +580,207 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectTriggerDetails> : produce_base<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectTriggerDetails>
+    {
+        int32_t __stdcall get_RequestedNetwork(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork>(this->shim().RequestedNetwork());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ReportError(int32_t status) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ReportError(*reinterpret_cast<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus const*>(&status));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall ConnectAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult>>(this->shim().ConnectAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall Connect(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult>(this->shim().Connect());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectionResult> : produce_base<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectionResult>
+    {
+        int32_t __stdcall get_Status(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus>(this->shim().Status());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetwork> : produce_base<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetwork>
+    {
+        int32_t __stdcall GetProperties(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties>(this->shim().GetProperties());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall UpdateProperties(void* newProperties) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().UpdateProperties(*reinterpret_cast<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties const*>(&newProperties));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Id(winrt::guid* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::guid>(this->shim().Id());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties> : produce_base<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties>
+    {
+        int32_t __stdcall get_DisplayName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().DisplayName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_DisplayName(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DisplayName(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Availability(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability>(this->shim().Availability());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Availability(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Availability(*reinterpret_cast<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RemainingBatteryPercent(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<uint32_t>>(this->shim().RemainingBatteryPercent());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_RemainingBatteryPercent(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemainingBatteryPercent(*reinterpret_cast<winrt::Windows::Foundation::IReference<uint32_t> const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_CellularBars(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::IReference<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars>>(this->shim().CellularBars());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CellularBars(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CellularBars(*reinterpret_cast<winrt::Windows::Foundation::IReference<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars> const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsMetered(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsMetered());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsMetered(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsMetered(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Ssid(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Ssid());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Ssid(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Ssid(*reinterpret_cast<hstring const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Password(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Security::Credentials::PasswordCredential>(this->shim().Password());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Password(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Password(*reinterpret_cast<winrt::Windows::Security::Credentials::PasswordCredential const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkStatics> : produce_base<D, winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkStatics>
+    {
+        int32_t __stdcall GetOrCreateById(winrt::guid networkId, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork>(this->shim().GetOrCreateById(*reinterpret_cast<winrt::guid const*>(&networkId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Devices::WiFi::IWiFiWpsConfigurationResult> : produce_base<D, winrt::Windows::Devices::WiFi::IWiFiWpsConfigurationResult>
     {
         int32_t __stdcall get_Status(int32_t* value) noexcept final try
@@ -498,6 +819,10 @@ WINRT_EXPORT namespace winrt::Windows::Devices::WiFi
     {
         return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Devices::WiFi::WiFiAccessStatus>(*)(IWiFiAdapterStatics const&), WiFiAdapter, IWiFiAdapterStatics>([](IWiFiAdapterStatics const& f) { return f.RequestAccessAsync(); });
     }
+    inline auto WiFiOnDemandHotspotNetwork::GetOrCreateById(winrt::guid const& networkId)
+    {
+        return impl::call_factory<WiFiOnDemandHotspotNetwork, IWiFiOnDemandHotspotNetworkStatics>([&](IWiFiOnDemandHotspotNetworkStatics const& f) { return f.GetOrCreateById(networkId); });
+    }
 }
 namespace std
 {
@@ -508,11 +833,20 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiAvailableNetwork> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiConnectionResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiNetworkReport> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectTriggerDetails> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotConnectionResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetwork> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkProperties> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiOnDemandHotspotNetworkStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::IWiFiWpsConfigurationResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::WiFiAdapter> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::WiFiAvailableNetwork> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::WiFiConnectionResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::WiFiNetworkReport> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::WiFi::WiFiWpsConfigurationResult> : winrt::impl::hash_base {};
 #endif
 #ifdef __cpp_lib_format

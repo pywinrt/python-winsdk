@@ -53,6 +53,10 @@ class HandPreference(enum.IntEnum):
     LEFT_HANDED = 0
     RIGHT_HANDED = 1
 
+class ScreenCaptureDisabledBehavior(enum.IntEnum):
+    DRAW_AS_BLACK = 0
+    EXCLUDE_FROM_CAPTURE = 1
+
 class UIColorType(enum.IntEnum):
     BACKGROUND = 0
     FOREGROUND = 1
@@ -139,8 +143,8 @@ class ApplicationView(_winrt.Object):
     visible_bounds: winsdk.windows.foundation.Rect
     desired_bounds_mode: ApplicationViewBoundsMode
     full_screen_system_overlay_mode: FullScreenSystemOverlayMode
-    is_full_screen_mode: _winrt.Boolean
     title_bar: typing.Optional[ApplicationViewTitleBar]
+    is_full_screen_mode: _winrt.Boolean
     view_mode: ApplicationViewMode
     persisted_state_id: str
     windowing_environment: typing.Optional[winsdk.windows.ui.windowmanagement.WindowingEnvironment]

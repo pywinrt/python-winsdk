@@ -189,6 +189,11 @@ class ToastHistoryChangedType(enum.IntEnum):
     EXPIRED = 2
     ADDED = 3
 
+class ToastNotificationMode(enum.IntEnum):
+    UNRESTRICTED = 0
+    PRIORITY_ONLY = 1
+    ALARMS_ONLY = 2
+
 class ToastNotificationPriority(enum.IntEnum):
     DEFAULT = 0
     HIGH = 1
@@ -576,6 +581,7 @@ class ToastNotificationManager(_winrt.Object):
 class ToastNotificationManagerForUser(_winrt.Object):
     history: typing.Optional[ToastNotificationHistory]
     user: typing.Optional[winsdk.windows.system.User]
+    notification_mode: ToastNotificationMode
     @staticmethod
     def _from(obj: _winrt.Object) -> ToastNotificationManagerForUser: ...
     @typing.overload
@@ -588,6 +594,8 @@ class ToastNotificationManagerForUser(_winrt.Object):
     @typing.overload
     def get_toast_collection_manager(self, app_id: str) -> typing.Optional[ToastCollectionManager]: ...
     def get_toast_notifier_for_toast_collection_id_async(self, collection_id: str) -> winsdk.windows.foundation.IAsyncOperation[ToastNotifier]: ...
+    def add_notification_mode_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[ToastNotificationManagerForUser, _winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_notification_mode_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 
 class ToastNotifier(_winrt.Object):
     setting: NotificationSetting

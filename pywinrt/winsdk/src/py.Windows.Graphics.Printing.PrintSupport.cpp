@@ -13,7 +13,10 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         PyTypeObject* type_PrintSupportExtensionSession;
         PyTypeObject* type_PrintSupportExtensionTriggerDetails;
         PyTypeObject* type_PrintSupportPrintDeviceCapabilitiesChangedEventArgs;
+        PyTypeObject* type_PrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+        PyTypeObject* type_PrintSupportPrintTicketElement;
         PyTypeObject* type_PrintSupportPrintTicketValidationRequestedEventArgs;
+        PyTypeObject* type_PrintSupportPrinterSelectedEventArgs;
         PyTypeObject* type_PrintSupportSessionInfo;
         PyTypeObject* type_PrintSupportSettingsActivatedEventArgs;
         PyTypeObject* type_PrintSupportSettingsUISession;
@@ -183,6 +186,37 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         }
     }
 
+    static PyObject* PrintSupportExtensionSession_add_PrinterSelected(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportExtensionSession* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportExtensionSession, winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs>>(arg);
+
+            return py::convert(self->obj.PrinterSelected(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportExtensionSession_remove_PrinterSelected(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportExtensionSession* self, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.PrinterSelected(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_PrintSupportExtensionSession(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -203,6 +237,8 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         { "remove_print_device_capabilities_changed", reinterpret_cast<PyCFunction>(PrintSupportExtensionSession_remove_PrintDeviceCapabilitiesChanged), METH_O, nullptr },
         { "add_print_ticket_validation_requested", reinterpret_cast<PyCFunction>(PrintSupportExtensionSession_add_PrintTicketValidationRequested), METH_O, nullptr },
         { "remove_print_ticket_validation_requested", reinterpret_cast<PyCFunction>(PrintSupportExtensionSession_remove_PrintTicketValidationRequested), METH_O, nullptr },
+        { "add_printer_selected", reinterpret_cast<PyCFunction>(PrintSupportExtensionSession_add_PrinterSelected), METH_O, nullptr },
+        { "remove_printer_selected", reinterpret_cast<PyCFunction>(PrintSupportExtensionSession_remove_PrinterSelected), METH_O, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_PrintSupportExtensionSession), METH_O | METH_STATIC, nullptr },
         { }
     };
@@ -342,6 +378,29 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         }
     }
 
+    static PyObject* PrintSupportPrintDeviceCapabilitiesChangedEventArgs_GetCurrentPrintDeviceResources(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesChangedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetCurrentPrintDeviceResources());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* PrintSupportPrintDeviceCapabilitiesChangedEventArgs_GetDeferral(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesChangedEventArgs* self, PyObject* args) noexcept
     {
         Py_ssize_t arg_count = PyTuple_Size(args);
@@ -351,6 +410,58 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
             try
             {
                 return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrintDeviceCapabilitiesChangedEventArgs_SetPrintDeviceCapabilitiesUpdatePolicy(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesChangedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy>(args, 0);
+
+                self->obj.SetPrintDeviceCapabilitiesUpdatePolicy(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrintDeviceCapabilitiesChangedEventArgs_SetSupportedPdlPassthroughContentTypes(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesChangedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::hstring>>(args, 0);
+
+                self->obj.SetSupportedPdlPassthroughContentTypes(param0);
+                Py_RETURN_NONE;
             }
             catch (...)
             {
@@ -391,6 +502,45 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         }
     }
 
+    static PyObject* PrintSupportPrintDeviceCapabilitiesChangedEventArgs_UpdatePrintDeviceResources(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesChangedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Data::Xml::Dom::XmlDocument>(args, 0);
+
+                self->obj.UpdatePrintDeviceResources(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrintDeviceCapabilitiesChangedEventArgs_get_ResourceLanguage(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesChangedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ResourceLanguage());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_PrintSupportPrintDeviceCapabilitiesChangedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -407,13 +557,18 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
 
     static PyMethodDef _methods_PrintSupportPrintDeviceCapabilitiesChangedEventArgs[] = {
         { "get_current_print_device_capabilities", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_GetCurrentPrintDeviceCapabilities), METH_VARARGS, nullptr },
+        { "get_current_print_device_resources", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_GetCurrentPrintDeviceResources), METH_VARARGS, nullptr },
         { "get_deferral", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_GetDeferral), METH_VARARGS, nullptr },
+        { "set_print_device_capabilities_update_policy", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_SetPrintDeviceCapabilitiesUpdatePolicy), METH_VARARGS, nullptr },
+        { "set_supported_pdl_passthrough_content_types", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_SetSupportedPdlPassthroughContentTypes), METH_VARARGS, nullptr },
         { "update_print_device_capabilities", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_UpdatePrintDeviceCapabilities), METH_VARARGS, nullptr },
+        { "update_print_device_resources", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_UpdatePrintDeviceResources), METH_VARARGS, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_PrintSupportPrintDeviceCapabilitiesChangedEventArgs), METH_O | METH_STATIC, nullptr },
         { }
     };
 
     static PyGetSetDef _getset_PrintSupportPrintDeviceCapabilitiesChangedEventArgs[] = {
+        { "resource_language", reinterpret_cast<getter>(PrintSupportPrintDeviceCapabilitiesChangedEventArgs_get_ResourceLanguage), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -433,6 +588,269 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_PrintSupportPrintDeviceCapabilitiesChangedEventArgs
+    };
+
+    // ----- PrintSupportPrintDeviceCapabilitiesUpdatePolicy class --------------------
+    constexpr const char* const type_name_PrintSupportPrintDeviceCapabilitiesUpdatePolicy = "PrintSupportPrintDeviceCapabilitiesUpdatePolicy";
+
+    static PyObject* _new_PrintSupportPrintDeviceCapabilitiesUpdatePolicy(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintSupportPrintDeviceCapabilitiesUpdatePolicy(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintSupportPrintDeviceCapabilitiesUpdatePolicy_CreatePeriodicRefresh(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::TimeSpan>(args, 0);
+
+                return py::convert(winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy::CreatePeriodicRefresh(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrintDeviceCapabilitiesUpdatePolicy_CreatePrintJobRefresh(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+
+                return py::convert(winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy::CreatePrintJobRefresh(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintSupportPrintDeviceCapabilitiesUpdatePolicy(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintSupportPrintDeviceCapabilitiesUpdatePolicy[] = {
+        { "create_periodic_refresh", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesUpdatePolicy_CreatePeriodicRefresh), METH_VARARGS | METH_STATIC, nullptr },
+        { "create_print_job_refresh", reinterpret_cast<PyCFunction>(PrintSupportPrintDeviceCapabilitiesUpdatePolicy_CreatePrintJobRefresh), METH_VARARGS | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintSupportPrintDeviceCapabilitiesUpdatePolicy), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintSupportPrintDeviceCapabilitiesUpdatePolicy[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintSupportPrintDeviceCapabilitiesUpdatePolicy[] = 
+    {
+        { Py_tp_new, _new_PrintSupportPrintDeviceCapabilitiesUpdatePolicy },
+        { Py_tp_dealloc, _dealloc_PrintSupportPrintDeviceCapabilitiesUpdatePolicy },
+        { Py_tp_methods, _methods_PrintSupportPrintDeviceCapabilitiesUpdatePolicy },
+        { Py_tp_getset, _getset_PrintSupportPrintDeviceCapabilitiesUpdatePolicy },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintSupportPrintDeviceCapabilitiesUpdatePolicy =
+    {
+        "_winsdk_Windows_Graphics_Printing_PrintSupport.PrintSupportPrintDeviceCapabilitiesUpdatePolicy",
+        sizeof(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintSupportPrintDeviceCapabilitiesUpdatePolicy
+    };
+
+    // ----- PrintSupportPrintTicketElement class --------------------
+    constexpr const char* const type_name_PrintSupportPrintTicketElement = "PrintSupportPrintTicketElement";
+
+    static PyObject* _new_PrintSupportPrintTicketElement(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_PrintSupportPrintTicketElement(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintSupportPrintTicketElement_get_NamespaceUri(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.NamespaceUri());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int PrintSupportPrintTicketElement_put_NamespaceUri(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.NamespaceUri(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* PrintSupportPrintTicketElement_get_LocalName(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.LocalName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int PrintSupportPrintTicketElement_put_LocalName(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.LocalName(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_PrintSupportPrintTicketElement(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintSupportPrintTicketElement[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintSupportPrintTicketElement), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintSupportPrintTicketElement[] = {
+        { "namespace_uri", reinterpret_cast<getter>(PrintSupportPrintTicketElement_get_NamespaceUri), reinterpret_cast<setter>(PrintSupportPrintTicketElement_put_NamespaceUri), nullptr, nullptr },
+        { "local_name", reinterpret_cast<getter>(PrintSupportPrintTicketElement_get_LocalName), reinterpret_cast<setter>(PrintSupportPrintTicketElement_put_LocalName), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintSupportPrintTicketElement[] = 
+    {
+        { Py_tp_new, _new_PrintSupportPrintTicketElement },
+        { Py_tp_dealloc, _dealloc_PrintSupportPrintTicketElement },
+        { Py_tp_methods, _methods_PrintSupportPrintTicketElement },
+        { Py_tp_getset, _getset_PrintSupportPrintTicketElement },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintSupportPrintTicketElement =
+    {
+        "_winsdk_Windows_Graphics_Printing_PrintSupport.PrintSupportPrintTicketElement",
+        sizeof(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintSupportPrintTicketElement
     };
 
     // ----- PrintSupportPrintTicketValidationRequestedEventArgs class --------------------
@@ -556,6 +974,233 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_PrintSupportPrintTicketValidationRequestedEventArgs
+    };
+
+    // ----- PrintSupportPrinterSelectedEventArgs class --------------------
+    constexpr const char* const type_name_PrintSupportPrinterSelectedEventArgs = "PrintSupportPrinterSelectedEventArgs";
+
+    static PyObject* _new_PrintSupportPrinterSelectedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_PrintSupportPrinterSelectedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_PrintSupportPrinterSelectedEventArgs(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* PrintSupportPrinterSelectedEventArgs_GetDeferral(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrinterSelectedEventArgs_SetAdaptiveCard(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::IAdaptiveCard>(args, 0);
+
+                self->obj.SetAdaptiveCard(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrinterSelectedEventArgs_SetAdditionalFeatures(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement>>(args, 0);
+
+                self->obj.SetAdditionalFeatures(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrinterSelectedEventArgs_SetAdditionalParameters(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement>>(args, 0);
+
+                self->obj.SetAdditionalParameters(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrinterSelectedEventArgs_get_PrintTicket(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PrintTicket());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int PrintSupportPrinterSelectedEventArgs_put_PrintTicket(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Graphics::Printing::PrintTicket::WorkflowPrintTicket>(arg);
+
+            self->obj.PrintTicket(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* PrintSupportPrinterSelectedEventArgs_get_AllowedAdditionalFeaturesAndParametersCount(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AllowedAdditionalFeaturesAndParametersCount());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* PrintSupportPrinterSelectedEventArgs_get_SourceAppInfo(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SourceAppInfo());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_PrintSupportPrinterSelectedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_PrintSupportPrinterSelectedEventArgs[] = {
+        { "get_deferral", reinterpret_cast<PyCFunction>(PrintSupportPrinterSelectedEventArgs_GetDeferral), METH_VARARGS, nullptr },
+        { "set_adaptive_card", reinterpret_cast<PyCFunction>(PrintSupportPrinterSelectedEventArgs_SetAdaptiveCard), METH_VARARGS, nullptr },
+        { "set_additional_features", reinterpret_cast<PyCFunction>(PrintSupportPrinterSelectedEventArgs_SetAdditionalFeatures), METH_VARARGS, nullptr },
+        { "set_additional_parameters", reinterpret_cast<PyCFunction>(PrintSupportPrinterSelectedEventArgs_SetAdditionalParameters), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_PrintSupportPrinterSelectedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_PrintSupportPrinterSelectedEventArgs[] = {
+        { "print_ticket", reinterpret_cast<getter>(PrintSupportPrinterSelectedEventArgs_get_PrintTicket), reinterpret_cast<setter>(PrintSupportPrinterSelectedEventArgs_put_PrintTicket), nullptr, nullptr },
+        { "allowed_additional_features_and_parameters_count", reinterpret_cast<getter>(PrintSupportPrinterSelectedEventArgs_get_AllowedAdditionalFeaturesAndParametersCount), nullptr, nullptr, nullptr },
+        { "source_app_info", reinterpret_cast<getter>(PrintSupportPrinterSelectedEventArgs_get_SourceAppInfo), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_PrintSupportPrinterSelectedEventArgs[] = 
+    {
+        { Py_tp_new, _new_PrintSupportPrinterSelectedEventArgs },
+        { Py_tp_dealloc, _dealloc_PrintSupportPrinterSelectedEventArgs },
+        { Py_tp_methods, _methods_PrintSupportPrinterSelectedEventArgs },
+        { Py_tp_getset, _getset_PrintSupportPrinterSelectedEventArgs },
+        { },
+    };
+
+    static PyType_Spec type_spec_PrintSupportPrinterSelectedEventArgs =
+    {
+        "_winsdk_Windows_Graphics_Printing_PrintSupport.PrintSupportPrinterSelectedEventArgs",
+        sizeof(py::wrapper::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_PrintSupportPrinterSelectedEventArgs
     };
 
     // ----- PrintSupportSessionInfo class --------------------
@@ -960,7 +1605,10 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         Py_VISIT(state->type_PrintSupportExtensionSession);
         Py_VISIT(state->type_PrintSupportExtensionTriggerDetails);
         Py_VISIT(state->type_PrintSupportPrintDeviceCapabilitiesChangedEventArgs);
+        Py_VISIT(state->type_PrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+        Py_VISIT(state->type_PrintSupportPrintTicketElement);
         Py_VISIT(state->type_PrintSupportPrintTicketValidationRequestedEventArgs);
+        Py_VISIT(state->type_PrintSupportPrinterSelectedEventArgs);
         Py_VISIT(state->type_PrintSupportSessionInfo);
         Py_VISIT(state->type_PrintSupportSettingsActivatedEventArgs);
         Py_VISIT(state->type_PrintSupportSettingsUISession);
@@ -982,7 +1630,10 @@ namespace py::cpp::Windows::Graphics::Printing::PrintSupport
         Py_CLEAR(state->type_PrintSupportExtensionSession);
         Py_CLEAR(state->type_PrintSupportExtensionTriggerDetails);
         Py_CLEAR(state->type_PrintSupportPrintDeviceCapabilitiesChangedEventArgs);
+        Py_CLEAR(state->type_PrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+        Py_CLEAR(state->type_PrintSupportPrintTicketElement);
         Py_CLEAR(state->type_PrintSupportPrintTicketValidationRequestedEventArgs);
+        Py_CLEAR(state->type_PrintSupportPrinterSelectedEventArgs);
         Py_CLEAR(state->type_PrintSupportSessionInfo);
         Py_CLEAR(state->type_PrintSupportSettingsActivatedEventArgs);
         Py_CLEAR(state->type_PrintSupportSettingsUISession);
@@ -1118,6 +1769,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Graphics_Printing_PrintSupport(void) noexc
 
     Py_INCREF(state->type_PrintSupportPrintDeviceCapabilitiesChangedEventArgs);
 
+    state->type_PrintSupportPrintDeviceCapabilitiesUpdatePolicy = py::register_python_type(module.get(), type_name_PrintSupportPrintDeviceCapabilitiesUpdatePolicy, &type_spec_PrintSupportPrintDeviceCapabilitiesUpdatePolicy, bases.get());
+    if (!state->type_PrintSupportPrintDeviceCapabilitiesUpdatePolicy)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+
+    state->type_PrintSupportPrintTicketElement = py::register_python_type(module.get(), type_name_PrintSupportPrintTicketElement, &type_spec_PrintSupportPrintTicketElement, bases.get());
+    if (!state->type_PrintSupportPrintTicketElement)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintSupportPrintTicketElement);
+
     state->type_PrintSupportPrintTicketValidationRequestedEventArgs = py::register_python_type(module.get(), type_name_PrintSupportPrintTicketValidationRequestedEventArgs, &type_spec_PrintSupportPrintTicketValidationRequestedEventArgs, bases.get());
     if (!state->type_PrintSupportPrintTicketValidationRequestedEventArgs)
     {
@@ -1125,6 +1792,14 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Graphics_Printing_PrintSupport(void) noexc
     }
 
     Py_INCREF(state->type_PrintSupportPrintTicketValidationRequestedEventArgs);
+
+    state->type_PrintSupportPrinterSelectedEventArgs = py::register_python_type(module.get(), type_name_PrintSupportPrinterSelectedEventArgs, &type_spec_PrintSupportPrinterSelectedEventArgs, bases.get());
+    if (!state->type_PrintSupportPrinterSelectedEventArgs)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_PrintSupportPrinterSelectedEventArgs);
 
     state->type_PrintSupportSessionInfo = py::register_python_type(module.get(), type_name_PrintSupportSessionInfo, &type_spec_PrintSupportSessionInfo, bases.get());
     if (!state->type_PrintSupportSessionInfo)
@@ -1269,6 +1944,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::Graphics::Printing::PrintSupport::P
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Graphics::Printing::PrintSupport;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Graphics::Printing::PrintSupport");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintSupportPrintDeviceCapabilitiesUpdatePolicy;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintDeviceCapabilitiesUpdatePolicy is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Graphics::Printing::PrintSupport;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Graphics::Printing::PrintSupport");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintSupportPrintTicketElement;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketElement is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketValidationRequestedEventArgs>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Graphics::Printing::PrintSupport;
 
@@ -1286,6 +2007,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Graphics::Printing::PrintSupport::P
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrintTicketValidationRequestedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Graphics::Printing::PrintSupport;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Graphics::Printing::PrintSupport");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintSupportPrinterSelectedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Graphics::Printing::PrintSupport::PrintSupportPrinterSelectedEventArgs is not registered");
         return nullptr;
     }
 

@@ -40,7 +40,7 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth::Advertisement
         [[nodiscard]] static auto ShortenedLocalName();
         [[nodiscard]] static auto CompleteLocalName();
         [[nodiscard]] static auto TxPowerLevel();
-        [[nodiscard]] static auto SlaveConnectionIntervalRange();
+        [[nodiscard]] static auto PeripheralConnectionIntervalRange();
         [[nodiscard]] static auto ServiceSolicitation16BitUuids();
         [[nodiscard]] static auto ServiceSolicitation32BitUuids();
         [[nodiscard]] static auto ServiceSolicitation128BitUuids();

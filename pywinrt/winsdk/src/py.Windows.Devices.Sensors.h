@@ -54,6 +54,11 @@ namespace py::wrapper::Windows::Devices::Sensors
     using HingeAngleReading = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HingeAngleReading>;
     using HingeAngleSensor = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HingeAngleSensor>;
     using HingeAngleSensorReadingChangedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HingeAngleSensorReadingChangedEventArgs>;
+    using HumanPresenceFeatures = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HumanPresenceFeatures>;
+    using HumanPresenceSensor = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HumanPresenceSensor>;
+    using HumanPresenceSensorReading = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HumanPresenceSensorReading>;
+    using HumanPresenceSensorReadingChangedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs>;
+    using HumanPresenceSettings = py::winrt_wrapper<winrt::Windows::Devices::Sensors::HumanPresenceSettings>;
     using Inclinometer = py::winrt_wrapper<winrt::Windows::Devices::Sensors::Inclinometer>;
     using InclinometerDataThreshold = py::winrt_wrapper<winrt::Windows::Devices::Sensors::InclinometerDataThreshold>;
     using InclinometerReading = py::winrt_wrapper<winrt::Windows::Devices::Sensors::InclinometerReading>;
@@ -103,6 +108,18 @@ namespace py
 
     template<>
     struct py_type<winrt::Windows::Devices::Sensors::ActivityType>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Devices::Sensors::HumanEngagement>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Devices::Sensors::HumanPresence>
     {
         static PyObject* get_python_type() noexcept;
     };
@@ -307,6 +324,36 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Devices::Sensors::HingeAngleSensorReadingChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceFeatures>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSensor>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSensorReading>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSensorReadingChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::HumanPresenceSettings>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

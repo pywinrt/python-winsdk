@@ -3269,6 +3269,14 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         UserNotificationChangedTrigger(impl::call_factory<UserNotificationChangedTrigger, IUserNotificationChangedTriggerFactory>([&](IUserNotificationChangedTriggerFactory const& f) { return f.Create(notificationKinds); }))
     {
     }
+    inline WiFiOnDemandHotspotConnectTrigger::WiFiOnDemandHotspotConnectTrigger() :
+        WiFiOnDemandHotspotConnectTrigger(impl::call_factory_cast<WiFiOnDemandHotspotConnectTrigger(*)(winrt::Windows::Foundation::IActivationFactory const&), WiFiOnDemandHotspotConnectTrigger>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<WiFiOnDemandHotspotConnectTrigger>(); }))
+    {
+    }
+    inline WiFiOnDemandHotspotUpdateMetadataTrigger::WiFiOnDemandHotspotUpdateMetadataTrigger() :
+        WiFiOnDemandHotspotUpdateMetadataTrigger(impl::call_factory_cast<WiFiOnDemandHotspotUpdateMetadataTrigger(*)(winrt::Windows::Foundation::IActivationFactory const&), WiFiOnDemandHotspotUpdateMetadataTrigger>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<WiFiOnDemandHotspotUpdateMetadataTrigger>(); }))
+    {
+    }
     template <typename L> BackgroundTaskCanceledEventHandler::BackgroundTaskCanceledEventHandler(L handler) :
         BackgroundTaskCanceledEventHandler(impl::make_delegate<BackgroundTaskCanceledEventHandler>(std::forward<L>(handler)))
     {
@@ -3507,6 +3515,8 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::Background::ToastNotificationActionTrigger> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::ToastNotificationHistoryChangedTrigger> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger> : winrt::impl::hash_base {};
 #endif
 #ifdef __cpp_lib_format
 #endif

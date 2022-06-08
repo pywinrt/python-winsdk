@@ -46,6 +46,19 @@ try:
 except ImportError:
     pass
 
+class PdlConversionHostBasedProcessingOperations(enum.IntFlag):
+    NONE = 0
+    PAGE_ROTATION = 0x1
+    PAGE_ORDERING = 0x2
+    COPIES = 0x4
+    BLANK_PAGE_INSERTION = 0x8
+    ALL = 0xffffffff
+
+class PrintWorkflowAttributesMergePolicy(enum.IntEnum):
+    MERGE_PREFER_PRINT_TICKET_ON_CONFLICT = 0
+    MERGE_PREFER_PSA_ON_CONFLICT = 1
+    DO_NOT_MERGE_WITH_PRINT_TICKET = 2
+
 class PrintWorkflowJobAbortReason(enum.IntEnum):
     JOB_FAILED = 0
     USER_CANCELED = 1
@@ -79,6 +92,8 @@ class PrintWorkflowUICompletionStatus(enum.IntEnum):
     JOB_FAILED = 2
     USER_CANCELED = 3
 
+_ns_module._register_PdlConversionHostBasedProcessingOperations(PdlConversionHostBasedProcessingOperations)
+_ns_module._register_PrintWorkflowAttributesMergePolicy(PrintWorkflowAttributesMergePolicy)
 _ns_module._register_PrintWorkflowJobAbortReason(PrintWorkflowJobAbortReason)
 _ns_module._register_PrintWorkflowPdlConversionType(PrintWorkflowPdlConversionType)
 _ns_module._register_PrintWorkflowPrinterJobStatus(PrintWorkflowPrinterJobStatus)

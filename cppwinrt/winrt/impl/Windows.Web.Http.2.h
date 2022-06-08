@@ -36,7 +36,7 @@ WINRT_EXPORT namespace winrt::Windows::Web::Http
         HttpBufferContent(winrt::Windows::Storage::Streams::IBuffer const& content, uint32_t offset, uint32_t count);
     };
     struct __declspec(empty_bases) HttpClient : winrt::Windows::Web::Http::IHttpClient,
-        impl::require<HttpClient, winrt::Windows::Web::Http::IHttpClient2, winrt::Windows::Foundation::IClosable, winrt::Windows::Foundation::IStringable>
+        impl::require<HttpClient, winrt::Windows::Web::Http::IHttpClient2, winrt::Windows::Web::Http::IHttpClient3, winrt::Windows::Foundation::IClosable, winrt::Windows::Foundation::IStringable>
     {
         HttpClient(std::nullptr_t) noexcept {}
         HttpClient(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Web::Http::IHttpClient(ptr, take_ownership_from_abi) {}
@@ -117,7 +117,7 @@ WINRT_EXPORT namespace winrt::Windows::Web::Http
         explicit HttpMultipartFormDataContent(param::hstring const& boundary);
     };
     struct __declspec(empty_bases) HttpRequestMessage : winrt::Windows::Web::Http::IHttpRequestMessage,
-        impl::require<HttpRequestMessage, winrt::Windows::Foundation::IClosable, winrt::Windows::Foundation::IStringable>
+        impl::require<HttpRequestMessage, winrt::Windows::Web::Http::IHttpRequestMessage2, winrt::Windows::Foundation::IClosable, winrt::Windows::Foundation::IStringable>
     {
         HttpRequestMessage(std::nullptr_t) noexcept {}
         HttpRequestMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Web::Http::IHttpRequestMessage(ptr, take_ownership_from_abi) {}

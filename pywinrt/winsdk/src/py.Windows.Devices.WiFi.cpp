@@ -12,6 +12,9 @@ namespace py::cpp::Windows::Devices::WiFi
         PyObject* type_WiFiConnectionMethod;
         PyObject* type_WiFiConnectionStatus;
         PyObject* type_WiFiNetworkKind;
+        PyObject* type_WiFiOnDemandHotspotAvailability;
+        PyObject* type_WiFiOnDemandHotspotCellularBars;
+        PyObject* type_WiFiOnDemandHotspotConnectStatus;
         PyObject* type_WiFiPhyKind;
         PyObject* type_WiFiReconnectionKind;
         PyObject* type_WiFiWpsConfigurationStatus;
@@ -20,6 +23,10 @@ namespace py::cpp::Windows::Devices::WiFi
         PyTypeObject* type_WiFiAvailableNetwork;
         PyTypeObject* type_WiFiConnectionResult;
         PyTypeObject* type_WiFiNetworkReport;
+        PyTypeObject* type_WiFiOnDemandHotspotConnectTriggerDetails;
+        PyTypeObject* type_WiFiOnDemandHotspotConnectionResult;
+        PyTypeObject* type_WiFiOnDemandHotspotNetwork;
+        PyTypeObject* type_WiFiOnDemandHotspotNetworkProperties;
         PyTypeObject* type_WiFiWpsConfigurationResult;
     };
 
@@ -114,6 +121,78 @@ namespace py::cpp::Windows::Devices::WiFi
 
         state->type_WiFiNetworkKind = type;
         Py_INCREF(state->type_WiFiNetworkKind);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_WiFiOnDemandHotspotAvailability(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_WiFiOnDemandHotspotAvailability)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_WiFiOnDemandHotspotAvailability = type;
+        Py_INCREF(state->type_WiFiOnDemandHotspotAvailability);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_WiFiOnDemandHotspotCellularBars(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_WiFiOnDemandHotspotCellularBars)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_WiFiOnDemandHotspotCellularBars = type;
+        Py_INCREF(state->type_WiFiOnDemandHotspotCellularBars);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_WiFiOnDemandHotspotConnectStatus(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_WiFiOnDemandHotspotConnectStatus)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_WiFiOnDemandHotspotConnectStatus = type;
+        Py_INCREF(state->type_WiFiOnDemandHotspotConnectStatus);
 
 
         Py_RETURN_NONE;
@@ -955,6 +1034,684 @@ namespace py::cpp::Windows::Devices::WiFi
         _type_slots_WiFiNetworkReport
     };
 
+    // ----- WiFiOnDemandHotspotConnectTriggerDetails class --------------------
+    constexpr const char* const type_name_WiFiOnDemandHotspotConnectTriggerDetails = "WiFiOnDemandHotspotConnectTriggerDetails";
+
+    static PyObject* _new_WiFiOnDemandHotspotConnectTriggerDetails(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WiFiOnDemandHotspotConnectTriggerDetails);
+        return nullptr;
+    }
+
+    static void _dealloc_WiFiOnDemandHotspotConnectTriggerDetails(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WiFiOnDemandHotspotConnectTriggerDetails_Connect(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.Connect());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotConnectTriggerDetails_ConnectAsync(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.ConnectAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotConnectTriggerDetails_ReportError(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus>(args, 0);
+
+                self->obj.ReportError(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotConnectTriggerDetails_get_RequestedNetwork(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.RequestedNetwork());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WiFiOnDemandHotspotConnectTriggerDetails(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WiFiOnDemandHotspotConnectTriggerDetails[] = {
+        { "connect", reinterpret_cast<PyCFunction>(WiFiOnDemandHotspotConnectTriggerDetails_Connect), METH_VARARGS, nullptr },
+        { "connect_async", reinterpret_cast<PyCFunction>(WiFiOnDemandHotspotConnectTriggerDetails_ConnectAsync), METH_VARARGS, nullptr },
+        { "report_error", reinterpret_cast<PyCFunction>(WiFiOnDemandHotspotConnectTriggerDetails_ReportError), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WiFiOnDemandHotspotConnectTriggerDetails), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WiFiOnDemandHotspotConnectTriggerDetails[] = {
+        { "requested_network", reinterpret_cast<getter>(WiFiOnDemandHotspotConnectTriggerDetails_get_RequestedNetwork), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WiFiOnDemandHotspotConnectTriggerDetails[] = 
+    {
+        { Py_tp_new, _new_WiFiOnDemandHotspotConnectTriggerDetails },
+        { Py_tp_dealloc, _dealloc_WiFiOnDemandHotspotConnectTriggerDetails },
+        { Py_tp_methods, _methods_WiFiOnDemandHotspotConnectTriggerDetails },
+        { Py_tp_getset, _getset_WiFiOnDemandHotspotConnectTriggerDetails },
+        { },
+    };
+
+    static PyType_Spec type_spec_WiFiOnDemandHotspotConnectTriggerDetails =
+    {
+        "_winsdk_Windows_Devices_WiFi.WiFiOnDemandHotspotConnectTriggerDetails",
+        sizeof(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WiFiOnDemandHotspotConnectTriggerDetails
+    };
+
+    // ----- WiFiOnDemandHotspotConnectionResult class --------------------
+    constexpr const char* const type_name_WiFiOnDemandHotspotConnectionResult = "WiFiOnDemandHotspotConnectionResult";
+
+    static PyObject* _new_WiFiOnDemandHotspotConnectionResult(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WiFiOnDemandHotspotConnectionResult);
+        return nullptr;
+    }
+
+    static void _dealloc_WiFiOnDemandHotspotConnectionResult(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WiFiOnDemandHotspotConnectionResult_get_Status(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Status());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WiFiOnDemandHotspotConnectionResult(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WiFiOnDemandHotspotConnectionResult[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WiFiOnDemandHotspotConnectionResult), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WiFiOnDemandHotspotConnectionResult[] = {
+        { "status", reinterpret_cast<getter>(WiFiOnDemandHotspotConnectionResult_get_Status), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WiFiOnDemandHotspotConnectionResult[] = 
+    {
+        { Py_tp_new, _new_WiFiOnDemandHotspotConnectionResult },
+        { Py_tp_dealloc, _dealloc_WiFiOnDemandHotspotConnectionResult },
+        { Py_tp_methods, _methods_WiFiOnDemandHotspotConnectionResult },
+        { Py_tp_getset, _getset_WiFiOnDemandHotspotConnectionResult },
+        { },
+    };
+
+    static PyType_Spec type_spec_WiFiOnDemandHotspotConnectionResult =
+    {
+        "_winsdk_Windows_Devices_WiFi.WiFiOnDemandHotspotConnectionResult",
+        sizeof(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WiFiOnDemandHotspotConnectionResult
+    };
+
+    // ----- WiFiOnDemandHotspotNetwork class --------------------
+    constexpr const char* const type_name_WiFiOnDemandHotspotNetwork = "WiFiOnDemandHotspotNetwork";
+
+    static PyObject* _new_WiFiOnDemandHotspotNetwork(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WiFiOnDemandHotspotNetwork);
+        return nullptr;
+    }
+
+    static void _dealloc_WiFiOnDemandHotspotNetwork(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetwork_GetOrCreateById(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::guid>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork::GetOrCreateById(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetwork_GetProperties(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.GetProperties());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetwork_UpdateProperties(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties>(args, 0);
+
+                self->obj.UpdateProperties(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetwork_get_Id(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Id());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_WiFiOnDemandHotspotNetwork(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WiFiOnDemandHotspotNetwork[] = {
+        { "get_or_create_by_id", reinterpret_cast<PyCFunction>(WiFiOnDemandHotspotNetwork_GetOrCreateById), METH_VARARGS | METH_STATIC, nullptr },
+        { "get_properties", reinterpret_cast<PyCFunction>(WiFiOnDemandHotspotNetwork_GetProperties), METH_VARARGS, nullptr },
+        { "update_properties", reinterpret_cast<PyCFunction>(WiFiOnDemandHotspotNetwork_UpdateProperties), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WiFiOnDemandHotspotNetwork), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WiFiOnDemandHotspotNetwork[] = {
+        { "id", reinterpret_cast<getter>(WiFiOnDemandHotspotNetwork_get_Id), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WiFiOnDemandHotspotNetwork[] = 
+    {
+        { Py_tp_new, _new_WiFiOnDemandHotspotNetwork },
+        { Py_tp_dealloc, _dealloc_WiFiOnDemandHotspotNetwork },
+        { Py_tp_methods, _methods_WiFiOnDemandHotspotNetwork },
+        { Py_tp_getset, _getset_WiFiOnDemandHotspotNetwork },
+        { },
+    };
+
+    static PyType_Spec type_spec_WiFiOnDemandHotspotNetwork =
+    {
+        "_winsdk_Windows_Devices_WiFi.WiFiOnDemandHotspotNetwork",
+        sizeof(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WiFiOnDemandHotspotNetwork
+    };
+
+    // ----- WiFiOnDemandHotspotNetworkProperties class --------------------
+    constexpr const char* const type_name_WiFiOnDemandHotspotNetworkProperties = "WiFiOnDemandHotspotNetworkProperties";
+
+    static PyObject* _new_WiFiOnDemandHotspotNetworkProperties(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WiFiOnDemandHotspotNetworkProperties);
+        return nullptr;
+    }
+
+    static void _dealloc_WiFiOnDemandHotspotNetworkProperties(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetworkProperties_get_Ssid(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Ssid());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WiFiOnDemandHotspotNetworkProperties_put_Ssid(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Ssid(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetworkProperties_get_RemainingBatteryPercent(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.RemainingBatteryPercent());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WiFiOnDemandHotspotNetworkProperties_put_RemainingBatteryPercent(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<uint32_t>>(arg);
+
+            self->obj.RemainingBatteryPercent(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetworkProperties_get_Password(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Password());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WiFiOnDemandHotspotNetworkProperties_put_Password(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Security::Credentials::PasswordCredential>(arg);
+
+            self->obj.Password(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetworkProperties_get_IsMetered(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.IsMetered());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WiFiOnDemandHotspotNetworkProperties_put_IsMetered(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IsMetered(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetworkProperties_get_DisplayName(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DisplayName());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WiFiOnDemandHotspotNetworkProperties_put_DisplayName(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.DisplayName(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetworkProperties_get_CellularBars(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CellularBars());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WiFiOnDemandHotspotNetworkProperties_put_CellularBars(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars>>(arg);
+
+            self->obj.CellularBars(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WiFiOnDemandHotspotNetworkProperties_get_Availability(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Availability());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WiFiOnDemandHotspotNetworkProperties_put_Availability(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability>(arg);
+
+            self->obj.Availability(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_WiFiOnDemandHotspotNetworkProperties(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WiFiOnDemandHotspotNetworkProperties[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WiFiOnDemandHotspotNetworkProperties), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WiFiOnDemandHotspotNetworkProperties[] = {
+        { "ssid", reinterpret_cast<getter>(WiFiOnDemandHotspotNetworkProperties_get_Ssid), reinterpret_cast<setter>(WiFiOnDemandHotspotNetworkProperties_put_Ssid), nullptr, nullptr },
+        { "remaining_battery_percent", reinterpret_cast<getter>(WiFiOnDemandHotspotNetworkProperties_get_RemainingBatteryPercent), reinterpret_cast<setter>(WiFiOnDemandHotspotNetworkProperties_put_RemainingBatteryPercent), nullptr, nullptr },
+        { "password", reinterpret_cast<getter>(WiFiOnDemandHotspotNetworkProperties_get_Password), reinterpret_cast<setter>(WiFiOnDemandHotspotNetworkProperties_put_Password), nullptr, nullptr },
+        { "is_metered", reinterpret_cast<getter>(WiFiOnDemandHotspotNetworkProperties_get_IsMetered), reinterpret_cast<setter>(WiFiOnDemandHotspotNetworkProperties_put_IsMetered), nullptr, nullptr },
+        { "display_name", reinterpret_cast<getter>(WiFiOnDemandHotspotNetworkProperties_get_DisplayName), reinterpret_cast<setter>(WiFiOnDemandHotspotNetworkProperties_put_DisplayName), nullptr, nullptr },
+        { "cellular_bars", reinterpret_cast<getter>(WiFiOnDemandHotspotNetworkProperties_get_CellularBars), reinterpret_cast<setter>(WiFiOnDemandHotspotNetworkProperties_put_CellularBars), nullptr, nullptr },
+        { "availability", reinterpret_cast<getter>(WiFiOnDemandHotspotNetworkProperties_get_Availability), reinterpret_cast<setter>(WiFiOnDemandHotspotNetworkProperties_put_Availability), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WiFiOnDemandHotspotNetworkProperties[] = 
+    {
+        { Py_tp_new, _new_WiFiOnDemandHotspotNetworkProperties },
+        { Py_tp_dealloc, _dealloc_WiFiOnDemandHotspotNetworkProperties },
+        { Py_tp_methods, _methods_WiFiOnDemandHotspotNetworkProperties },
+        { Py_tp_getset, _getset_WiFiOnDemandHotspotNetworkProperties },
+        { },
+    };
+
+    static PyType_Spec type_spec_WiFiOnDemandHotspotNetworkProperties =
+    {
+        "_winsdk_Windows_Devices_WiFi.WiFiOnDemandHotspotNetworkProperties",
+        sizeof(py::wrapper::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WiFiOnDemandHotspotNetworkProperties
+    };
+
     // ----- WiFiWpsConfigurationResult class --------------------
     constexpr const char* const type_name_WiFiWpsConfigurationResult = "WiFiWpsConfigurationResult";
 
@@ -1049,6 +1806,9 @@ namespace py::cpp::Windows::Devices::WiFi
         {"_register_WiFiConnectionMethod", register_WiFiConnectionMethod, METH_O, "registers type"},
         {"_register_WiFiConnectionStatus", register_WiFiConnectionStatus, METH_O, "registers type"},
         {"_register_WiFiNetworkKind", register_WiFiNetworkKind, METH_O, "registers type"},
+        {"_register_WiFiOnDemandHotspotAvailability", register_WiFiOnDemandHotspotAvailability, METH_O, "registers type"},
+        {"_register_WiFiOnDemandHotspotCellularBars", register_WiFiOnDemandHotspotCellularBars, METH_O, "registers type"},
+        {"_register_WiFiOnDemandHotspotConnectStatus", register_WiFiOnDemandHotspotConnectStatus, METH_O, "registers type"},
         {"_register_WiFiPhyKind", register_WiFiPhyKind, METH_O, "registers type"},
         {"_register_WiFiReconnectionKind", register_WiFiReconnectionKind, METH_O, "registers type"},
         {"_register_WiFiWpsConfigurationStatus", register_WiFiWpsConfigurationStatus, METH_O, "registers type"},
@@ -1069,6 +1829,9 @@ namespace py::cpp::Windows::Devices::WiFi
         Py_VISIT(state->type_WiFiConnectionMethod);
         Py_VISIT(state->type_WiFiConnectionStatus);
         Py_VISIT(state->type_WiFiNetworkKind);
+        Py_VISIT(state->type_WiFiOnDemandHotspotAvailability);
+        Py_VISIT(state->type_WiFiOnDemandHotspotCellularBars);
+        Py_VISIT(state->type_WiFiOnDemandHotspotConnectStatus);
         Py_VISIT(state->type_WiFiPhyKind);
         Py_VISIT(state->type_WiFiReconnectionKind);
         Py_VISIT(state->type_WiFiWpsConfigurationStatus);
@@ -1077,6 +1840,10 @@ namespace py::cpp::Windows::Devices::WiFi
         Py_VISIT(state->type_WiFiAvailableNetwork);
         Py_VISIT(state->type_WiFiConnectionResult);
         Py_VISIT(state->type_WiFiNetworkReport);
+        Py_VISIT(state->type_WiFiOnDemandHotspotConnectTriggerDetails);
+        Py_VISIT(state->type_WiFiOnDemandHotspotConnectionResult);
+        Py_VISIT(state->type_WiFiOnDemandHotspotNetwork);
+        Py_VISIT(state->type_WiFiOnDemandHotspotNetworkProperties);
         Py_VISIT(state->type_WiFiWpsConfigurationResult);
 
         return 0;
@@ -1095,6 +1862,9 @@ namespace py::cpp::Windows::Devices::WiFi
         Py_CLEAR(state->type_WiFiConnectionMethod);
         Py_CLEAR(state->type_WiFiConnectionStatus);
         Py_CLEAR(state->type_WiFiNetworkKind);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotAvailability);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotCellularBars);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotConnectStatus);
         Py_CLEAR(state->type_WiFiPhyKind);
         Py_CLEAR(state->type_WiFiReconnectionKind);
         Py_CLEAR(state->type_WiFiWpsConfigurationStatus);
@@ -1103,6 +1873,10 @@ namespace py::cpp::Windows::Devices::WiFi
         Py_CLEAR(state->type_WiFiAvailableNetwork);
         Py_CLEAR(state->type_WiFiConnectionResult);
         Py_CLEAR(state->type_WiFiNetworkReport);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotConnectTriggerDetails);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotConnectionResult);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotNetwork);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotNetworkProperties);
         Py_CLEAR(state->type_WiFiWpsConfigurationResult);
 
         return 0;
@@ -1244,6 +2018,38 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_WiFi(void) noexcept
 
     Py_INCREF(state->type_WiFiNetworkReport);
 
+    state->type_WiFiOnDemandHotspotConnectTriggerDetails = py::register_python_type(module.get(), type_name_WiFiOnDemandHotspotConnectTriggerDetails, &type_spec_WiFiOnDemandHotspotConnectTriggerDetails, bases.get());
+    if (!state->type_WiFiOnDemandHotspotConnectTriggerDetails)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WiFiOnDemandHotspotConnectTriggerDetails);
+
+    state->type_WiFiOnDemandHotspotConnectionResult = py::register_python_type(module.get(), type_name_WiFiOnDemandHotspotConnectionResult, &type_spec_WiFiOnDemandHotspotConnectionResult, bases.get());
+    if (!state->type_WiFiOnDemandHotspotConnectionResult)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WiFiOnDemandHotspotConnectionResult);
+
+    state->type_WiFiOnDemandHotspotNetwork = py::register_python_type(module.get(), type_name_WiFiOnDemandHotspotNetwork, &type_spec_WiFiOnDemandHotspotNetwork, bases.get());
+    if (!state->type_WiFiOnDemandHotspotNetwork)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WiFiOnDemandHotspotNetwork);
+
+    state->type_WiFiOnDemandHotspotNetworkProperties = py::register_python_type(module.get(), type_name_WiFiOnDemandHotspotNetworkProperties, &type_spec_WiFiOnDemandHotspotNetworkProperties, bases.get());
+    if (!state->type_WiFiOnDemandHotspotNetworkProperties)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WiFiOnDemandHotspotNetworkProperties);
+
     state->type_WiFiWpsConfigurationResult = py::register_python_type(module.get(), type_name_WiFiWpsConfigurationResult, &type_spec_WiFiWpsConfigurationResult, bases.get());
     if (!state->type_WiFiWpsConfigurationResult)
     {
@@ -1342,6 +2148,75 @@ PyObject* py::py_type<winrt::Windows::Devices::WiFi::WiFiNetworkKind>::get_pytho
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiNetworkKind is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::WiFi;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::WiFi");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotAvailability;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::WiFi;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::WiFi");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotCellularBars;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::WiFi;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::WiFi");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotConnectStatus;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus is not registered");
         return nullptr;
     }
 
@@ -1526,6 +2401,98 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::WiFi::WiFiNetworkReport>::
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiNetworkReport is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::WiFi;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::WiFi");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotConnectTriggerDetails;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::WiFi;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::WiFi");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotConnectionResult;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::WiFi;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::WiFi");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotNetwork;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::WiFi;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::WiFi");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotNetworkProperties;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties is not registered");
         return nullptr;
     }
 

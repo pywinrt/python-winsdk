@@ -87,6 +87,8 @@ namespace py::cpp::Windows::ApplicationModel::Background
         PyTypeObject* type_ToastNotificationActionTrigger;
         PyTypeObject* type_ToastNotificationHistoryChangedTrigger;
         PyTypeObject* type_UserNotificationChangedTrigger;
+        PyTypeObject* type_WiFiOnDemandHotspotConnectTrigger;
+        PyTypeObject* type_WiFiOnDemandHotspotUpdateMetadataTrigger;
         PyTypeObject* type_IBackgroundCondition;
         PyTypeObject* type_IBackgroundTask;
         PyTypeObject* type_IBackgroundTaskInstance;
@@ -7957,6 +7959,168 @@ namespace py::cpp::Windows::ApplicationModel::Background
         _type_slots_UserNotificationChangedTrigger
     };
 
+    // ----- WiFiOnDemandHotspotConnectTrigger class --------------------
+    constexpr const char* const type_name_WiFiOnDemandHotspotConnectTrigger = "WiFiOnDemandHotspotConnectTrigger";
+
+    static PyObject* _new_WiFiOnDemandHotspotConnectTrigger(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_WiFiOnDemandHotspotConnectTrigger(py::wrapper::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* _from_WiFiOnDemandHotspotConnectTrigger(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WiFiOnDemandHotspotConnectTrigger[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WiFiOnDemandHotspotConnectTrigger), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WiFiOnDemandHotspotConnectTrigger[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_WiFiOnDemandHotspotConnectTrigger[] = 
+    {
+        { Py_tp_new, _new_WiFiOnDemandHotspotConnectTrigger },
+        { Py_tp_dealloc, _dealloc_WiFiOnDemandHotspotConnectTrigger },
+        { Py_tp_methods, _methods_WiFiOnDemandHotspotConnectTrigger },
+        { Py_tp_getset, _getset_WiFiOnDemandHotspotConnectTrigger },
+        { },
+    };
+
+    static PyType_Spec type_spec_WiFiOnDemandHotspotConnectTrigger =
+    {
+        "_winsdk_Windows_ApplicationModel_Background.WiFiOnDemandHotspotConnectTrigger",
+        sizeof(py::wrapper::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WiFiOnDemandHotspotConnectTrigger
+    };
+
+    // ----- WiFiOnDemandHotspotUpdateMetadataTrigger class --------------------
+    constexpr const char* const type_name_WiFiOnDemandHotspotUpdateMetadataTrigger = "WiFiOnDemandHotspotUpdateMetadataTrigger";
+
+    static PyObject* _new_WiFiOnDemandHotspotUpdateMetadataTrigger(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_WiFiOnDemandHotspotUpdateMetadataTrigger(py::wrapper::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* _from_WiFiOnDemandHotspotUpdateMetadataTrigger(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WiFiOnDemandHotspotUpdateMetadataTrigger[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_WiFiOnDemandHotspotUpdateMetadataTrigger), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WiFiOnDemandHotspotUpdateMetadataTrigger[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_WiFiOnDemandHotspotUpdateMetadataTrigger[] = 
+    {
+        { Py_tp_new, _new_WiFiOnDemandHotspotUpdateMetadataTrigger },
+        { Py_tp_dealloc, _dealloc_WiFiOnDemandHotspotUpdateMetadataTrigger },
+        { Py_tp_methods, _methods_WiFiOnDemandHotspotUpdateMetadataTrigger },
+        { Py_tp_getset, _getset_WiFiOnDemandHotspotUpdateMetadataTrigger },
+        { },
+    };
+
+    static PyType_Spec type_spec_WiFiOnDemandHotspotUpdateMetadataTrigger =
+    {
+        "_winsdk_Windows_ApplicationModel_Background.WiFiOnDemandHotspotUpdateMetadataTrigger",
+        sizeof(py::wrapper::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WiFiOnDemandHotspotUpdateMetadataTrigger
+    };
+
     // ----- IBackgroundCondition interface --------------------
     constexpr const char* const type_name_IBackgroundCondition = "IBackgroundCondition";
 
@@ -9492,6 +9656,8 @@ namespace py::cpp::Windows::ApplicationModel::Background
         Py_VISIT(state->type_ToastNotificationActionTrigger);
         Py_VISIT(state->type_ToastNotificationHistoryChangedTrigger);
         Py_VISIT(state->type_UserNotificationChangedTrigger);
+        Py_VISIT(state->type_WiFiOnDemandHotspotConnectTrigger);
+        Py_VISIT(state->type_WiFiOnDemandHotspotUpdateMetadataTrigger);
         Py_VISIT(state->type_IBackgroundCondition);
         Py_VISIT(state->type_IBackgroundTask);
         Py_VISIT(state->type_IBackgroundTaskInstance);
@@ -9593,6 +9759,8 @@ namespace py::cpp::Windows::ApplicationModel::Background
         Py_CLEAR(state->type_ToastNotificationActionTrigger);
         Py_CLEAR(state->type_ToastNotificationHistoryChangedTrigger);
         Py_CLEAR(state->type_UserNotificationChangedTrigger);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotConnectTrigger);
+        Py_CLEAR(state->type_WiFiOnDemandHotspotUpdateMetadataTrigger);
         Py_CLEAR(state->type_IBackgroundCondition);
         Py_CLEAR(state->type_IBackgroundTask);
         Py_CLEAR(state->type_IBackgroundTaskInstance);
@@ -10237,6 +10405,22 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_ApplicationModel_Background(void) noexcept
     }
 
     Py_INCREF(state->type_UserNotificationChangedTrigger);
+
+    state->type_WiFiOnDemandHotspotConnectTrigger = py::register_python_type(module.get(), type_name_WiFiOnDemandHotspotConnectTrigger, &type_spec_WiFiOnDemandHotspotConnectTrigger, bases.get());
+    if (!state->type_WiFiOnDemandHotspotConnectTrigger)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WiFiOnDemandHotspotConnectTrigger);
+
+    state->type_WiFiOnDemandHotspotUpdateMetadataTrigger = py::register_python_type(module.get(), type_name_WiFiOnDemandHotspotUpdateMetadataTrigger, &type_spec_WiFiOnDemandHotspotUpdateMetadataTrigger, bases.get());
+    if (!state->type_WiFiOnDemandHotspotUpdateMetadataTrigger)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_WiFiOnDemandHotspotUpdateMetadataTrigger);
 
     state->type_IBackgroundCondition = py::register_python_type(module.get(), type_name_IBackgroundCondition, &type_spec_IBackgroundCondition, bases.get());
     if (!state->type_IBackgroundCondition)
@@ -12125,6 +12309,52 @@ PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Background::UserN
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Background;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Background");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotConnectTrigger;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::ApplicationModel::Background;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::ApplicationModel::Background");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WiFiOnDemandHotspotUpdateMetadataTrigger;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger is not registered");
         return nullptr;
     }
 

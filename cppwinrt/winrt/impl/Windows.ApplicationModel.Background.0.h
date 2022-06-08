@@ -361,6 +361,8 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
     struct ToastNotificationActionTrigger;
     struct ToastNotificationHistoryChangedTrigger;
     struct UserNotificationChangedTrigger;
+    struct WiFiOnDemandHotspotConnectTrigger;
+    struct WiFiOnDemandHotspotUpdateMetadataTrigger;
     struct BackgroundTaskCanceledEventHandler;
     struct BackgroundTaskCompletedEventHandler;
     struct BackgroundTaskProgressEventHandler;
@@ -529,6 +531,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::Background::ToastNotificationActionTrigger>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::ToastNotificationHistoryChangedTrigger>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger>{ using type = class_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger>{ using type = class_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::ApplicationTriggerResult>{ using type = enum_category; };
     template <> struct category<winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind>{ using type = enum_category; };
@@ -611,6 +615,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ToastNotificationActionTrigger> = L"Windows.ApplicationModel.Background.ToastNotificationActionTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ToastNotificationHistoryChangedTrigger> = L"Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger> = L"Windows.ApplicationModel.Background.UserNotificationChangedTrigger";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger> = L"Windows.ApplicationModel.Background.WiFiOnDemandHotspotConnectTrigger";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger> = L"Windows.ApplicationModel.Background.WiFiOnDemandHotspotUpdateMetadataTrigger";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::AlarmAccessStatus> = L"Windows.ApplicationModel.Background.AlarmAccessStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::ApplicationTriggerResult> = L"Windows.ApplicationModel.Background.ApplicationTriggerResult";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind> = L"Windows.ApplicationModel.Background.BackgroundAccessRequestKind";
@@ -885,6 +891,8 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::ApplicationModel::Background::ToastNotificationActionTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IBackgroundTrigger; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Background::ToastNotificationHistoryChangedTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IBackgroundTrigger; };
     template <> struct default_interface<winrt::Windows::ApplicationModel::Background::UserNotificationChangedTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IBackgroundTrigger; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotConnectTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IBackgroundTrigger; };
+    template <> struct default_interface<winrt::Windows::ApplicationModel::Background::WiFiOnDemandHotspotUpdateMetadataTrigger>{ using type = winrt::Windows::ApplicationModel::Background::IBackgroundTrigger; };
     template <> struct abi<winrt::Windows::ApplicationModel::Background::IActivitySensorTrigger>
     {
         struct __declspec(novtable) type : inspectable_abi

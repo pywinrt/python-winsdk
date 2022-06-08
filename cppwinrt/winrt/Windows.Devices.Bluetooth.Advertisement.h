@@ -186,10 +186,10 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Bluetooth::Advertisement::IBluetoothLEAdvertisementDataTypesStatics)->get_TxPowerLevel(&value));
         return value;
     }
-    template <typename D> auto consume_Windows_Devices_Bluetooth_Advertisement_IBluetoothLEAdvertisementDataTypesStatics<D>::SlaveConnectionIntervalRange() const
+    template <typename D> auto consume_Windows_Devices_Bluetooth_Advertisement_IBluetoothLEAdvertisementDataTypesStatics<D>::PeripheralConnectionIntervalRange() const
     {
         uint8_t value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Bluetooth::Advertisement::IBluetoothLEAdvertisementDataTypesStatics)->get_SlaveConnectionIntervalRange(&value));
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Bluetooth::Advertisement::IBluetoothLEAdvertisementDataTypesStatics)->get_PeripheralConnectionIntervalRange(&value));
         return value;
     }
     template <typename D> auto consume_Windows_Devices_Bluetooth_Advertisement_IBluetoothLEAdvertisementDataTypesStatics<D>::ServiceSolicitation16BitUuids() const
@@ -850,10 +850,10 @@ namespace winrt::impl
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall get_SlaveConnectionIntervalRange(uint8_t* value) noexcept final try
+        int32_t __stdcall get_PeripheralConnectionIntervalRange(uint8_t* value) noexcept final try
         {
             typename D::abi_guard guard(this->shim());
-            *value = detach_from<uint8_t>(this->shim().SlaveConnectionIntervalRange());
+            *value = detach_from<uint8_t>(this->shim().PeripheralConnectionIntervalRange());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1545,9 +1545,9 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth::Advertisement
     {
         return impl::call_factory_cast<uint8_t(*)(IBluetoothLEAdvertisementDataTypesStatics const&), BluetoothLEAdvertisementDataTypes, IBluetoothLEAdvertisementDataTypesStatics>([](IBluetoothLEAdvertisementDataTypesStatics const& f) { return f.TxPowerLevel(); });
     }
-    inline auto BluetoothLEAdvertisementDataTypes::SlaveConnectionIntervalRange()
+    inline auto BluetoothLEAdvertisementDataTypes::PeripheralConnectionIntervalRange()
     {
-        return impl::call_factory_cast<uint8_t(*)(IBluetoothLEAdvertisementDataTypesStatics const&), BluetoothLEAdvertisementDataTypes, IBluetoothLEAdvertisementDataTypesStatics>([](IBluetoothLEAdvertisementDataTypesStatics const& f) { return f.SlaveConnectionIntervalRange(); });
+        return impl::call_factory_cast<uint8_t(*)(IBluetoothLEAdvertisementDataTypesStatics const&), BluetoothLEAdvertisementDataTypes, IBluetoothLEAdvertisementDataTypesStatics>([](IBluetoothLEAdvertisementDataTypesStatics const& f) { return f.PeripheralConnectionIntervalRange(); });
     }
     inline auto BluetoothLEAdvertisementDataTypes::ServiceSolicitation16BitUuids()
     {

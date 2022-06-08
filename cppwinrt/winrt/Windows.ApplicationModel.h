@@ -257,6 +257,62 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs)->GetDeferral(&value));
         return winrt::Windows::Foundation::Deferral{ value, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::Relationship() const
+    {
+        winrt::Windows::ApplicationModel::PackageRelationship value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->get_Relationship(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::Relationship(winrt::Windows::ApplicationModel::PackageRelationship const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->put_Relationship(static_cast<int32_t>(value)));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeFrameworks() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->get_IncludeFrameworks(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeFrameworks(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->put_IncludeFrameworks(value));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeHostRuntimes() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->get_IncludeHostRuntimes(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeHostRuntimes(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->put_IncludeHostRuntimes(value));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeOptionals() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->get_IncludeOptionals(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeOptionals(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->put_IncludeOptionals(value));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeResources() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->get_IncludeResources(&value));
+        return value;
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptions<D>::IncludeResources(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions)->put_IncludeResources(value));
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IFindRelatedPackagesOptionsFactory<D>::CreateInstance(winrt::Windows::ApplicationModel::PackageRelationship const& Relationship) const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IFindRelatedPackagesOptionsFactory)->CreateInstance(static_cast<int32_t>(Relationship), &value));
+        return winrt::Windows::ApplicationModel::FindRelatedPackagesOptions{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_ApplicationModel_IFullTrustProcessLaunchResult<D>::LaunchResult() const
     {
         winrt::Windows::ApplicationModel::FullTrustLaunchResult value{};
@@ -563,6 +619,18 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_IsStub(&value));
         return value;
     }
+    template <typename D> auto consume_Windows_ApplicationModel_IPackage9<D>::FindRelatedPackages(winrt::Windows::ApplicationModel::FindRelatedPackagesOptions const& options) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage9)->FindRelatedPackages(*(void**)(&options), &result));
+        return winrt::Windows::Foundation::Collections::IVector<winrt::Windows::ApplicationModel::Package>{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IPackage9<D>::SourceUriSchemeName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage9)->get_SourceUriSchemeName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_ApplicationModel_IPackageCatalog<D>::PackageStaging(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::PackageCatalog, winrt::Windows::ApplicationModel::PackageStagingEventArgs> const& handler) const
     {
         winrt::event_token token{};
@@ -736,6 +804,12 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackageCatalogStatics)->OpenForCurrentUser(&value));
         return winrt::Windows::ApplicationModel::PackageCatalog{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_ApplicationModel_IPackageCatalogStatics2<D>::OpenForPackage(winrt::Windows::ApplicationModel::Package const& package) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackageCatalogStatics2)->OpenForPackage(*(void**)(&package), &result));
+        return winrt::Windows::ApplicationModel::PackageCatalog{ result, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_ApplicationModel_IPackageContentGroup<D>::Package() const
     {
@@ -1566,6 +1640,96 @@ namespace winrt::impl
     };
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions> : produce_base<D, winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions>
+    {
+        int32_t __stdcall get_Relationship(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::PackageRelationship>(this->shim().Relationship());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Relationship(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Relationship(*reinterpret_cast<winrt::Windows::ApplicationModel::PackageRelationship const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IncludeFrameworks(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IncludeFrameworks());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IncludeFrameworks(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IncludeFrameworks(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IncludeHostRuntimes(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IncludeHostRuntimes());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IncludeHostRuntimes(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IncludeHostRuntimes(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IncludeOptionals(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IncludeOptionals());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IncludeOptionals(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IncludeOptionals(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IncludeResources(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IncludeResources());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IncludeResources(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IncludeResources(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IFindRelatedPackagesOptionsFactory> : produce_base<D, winrt::Windows::ApplicationModel::IFindRelatedPackagesOptionsFactory>
+    {
+        int32_t __stdcall CreateInstance(int32_t Relationship, void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions>(this->shim().CreateInstance(*reinterpret_cast<winrt::Windows::ApplicationModel::PackageRelationship const*>(&Relationship)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult> : produce_base<D, winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult>
     {
         int32_t __stdcall get_LaunchResult(int32_t* value) noexcept final try
@@ -2047,6 +2211,28 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IPackage9> : produce_base<D, winrt::Windows::ApplicationModel::IPackage9>
+    {
+        int32_t __stdcall FindRelatedPackages(void* options, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::ApplicationModel::Package>>(this->shim().FindRelatedPackages(*reinterpret_cast<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions const*>(&options)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SourceUriSchemeName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().SourceUriSchemeName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IPackageCatalog> : produce_base<D, winrt::Windows::ApplicationModel::IPackageCatalog>
     {
         int32_t __stdcall add_PackageStaging(void* handler, winrt::event_token* token) noexcept final try
@@ -2302,6 +2488,18 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IPackageCatalogStatics2> : produce_base<D, winrt::Windows::ApplicationModel::IPackageCatalogStatics2>
+    {
+        int32_t __stdcall OpenForPackage(void* package, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::ApplicationModel::PackageCatalog>(this->shim().OpenForPackage(*reinterpret_cast<winrt::Windows::ApplicationModel::Package const*>(&package)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IPackageContentGroup> : produce_base<D, winrt::Windows::ApplicationModel::IPackageContentGroup>
@@ -3041,6 +3239,10 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         return impl::call_factory_cast<bool(*)(IDesignModeStatics2 const&), DesignMode, IDesignModeStatics2>([](IDesignModeStatics2 const& f) { return f.DesignMode2Enabled(); });
     }
+    inline FindRelatedPackagesOptions::FindRelatedPackagesOptions(winrt::Windows::ApplicationModel::PackageRelationship const& Relationship) :
+        FindRelatedPackagesOptions(impl::call_factory<FindRelatedPackagesOptions, IFindRelatedPackagesOptionsFactory>([&](IFindRelatedPackagesOptionsFactory const& f) { return f.CreateInstance(Relationship); }))
+    {
+    }
     inline auto FullTrustProcessLauncher::LaunchFullTrustProcessForCurrentAppAsync()
     {
         return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncAction(*)(IFullTrustProcessLauncherStatics const&), FullTrustProcessLauncher, IFullTrustProcessLauncherStatics>([](IFullTrustProcessLauncherStatics const& f) { return f.LaunchFullTrustProcessForCurrentAppAsync(); });
@@ -3081,6 +3283,10 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         return impl::call_factory_cast<winrt::Windows::ApplicationModel::PackageCatalog(*)(IPackageCatalogStatics const&), PackageCatalog, IPackageCatalogStatics>([](IPackageCatalogStatics const& f) { return f.OpenForCurrentUser(); });
     }
+    inline auto PackageCatalog::OpenForPackage(winrt::Windows::ApplicationModel::Package const& package)
+    {
+        return impl::call_factory<PackageCatalog, IPackageCatalogStatics2>([&](IPackageCatalogStatics2 const& f) { return f.OpenForPackage(package); });
+    }
     inline auto PackageContentGroup::RequiredGroupName()
     {
         return impl::call_factory_cast<hstring(*)(IPackageContentGroupStatics const&), PackageContentGroup, IPackageContentGroupStatics>([](IPackageContentGroupStatics const& f) { return f.RequiredGroupName(); });
@@ -3111,6 +3317,8 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::IDesignModeStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IDesignModeStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IFindRelatedPackagesOptions> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IFindRelatedPackagesOptionsFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLaunchResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IFullTrustProcessLauncherStatics2> : winrt::impl::hash_base {};
@@ -3125,6 +3333,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::IPackage6> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackage7> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackage8> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IPackage9> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalog> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalog2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalog3> : winrt::impl::hash_base {};
@@ -3134,6 +3343,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalogRemoveOptionalPackagesResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalogRemoveResourcePackagesResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalogStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalogStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageContentGroup> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageContentGroupStagingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageContentGroupStatics> : winrt::impl::hash_base {};
@@ -3161,6 +3371,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::CameraApplicationManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DesignMode> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::FullTrustProcessLauncher> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs> : winrt::impl::hash_base {};

@@ -13,6 +13,13 @@ WINRT_EXPORT namespace winrt::Windows::Security::Authorization::AppCapabilityAcc
         IAppCapability(std::nullptr_t = nullptr) noexcept {}
         IAppCapability(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAppCapability2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppCapability2>
+    {
+        IAppCapability2(std::nullptr_t = nullptr) noexcept {}
+        IAppCapability2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IAppCapabilityAccessChangedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAppCapabilityAccessChangedEventArgs>

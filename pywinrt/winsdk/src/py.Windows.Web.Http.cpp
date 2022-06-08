@@ -1122,6 +1122,41 @@ namespace py::cpp::Windows::Web::Http
         }
     }
 
+    static PyObject* HttpClient_get_DefaultPrivacyAnnotation(py::wrapper::Windows::Web::Http::HttpClient* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.DefaultPrivacyAnnotation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HttpClient_put_DefaultPrivacyAnnotation(py::wrapper::Windows::Web::Http::HttpClient* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.DefaultPrivacyAnnotation(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
     static PyObject* _from_HttpClient(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -1196,6 +1231,7 @@ namespace py::cpp::Windows::Web::Http
 
     static PyGetSetDef _getset_HttpClient[] = {
         { "default_request_headers", reinterpret_cast<getter>(HttpClient_get_DefaultRequestHeaders), nullptr, nullptr, nullptr },
+        { "default_privacy_annotation", reinterpret_cast<getter>(HttpClient_get_DefaultPrivacyAnnotation), reinterpret_cast<setter>(HttpClient_put_DefaultPrivacyAnnotation), nullptr, nullptr },
         { }
     };
 
@@ -4277,6 +4313,41 @@ namespace py::cpp::Windows::Web::Http
         }
     }
 
+    static PyObject* HttpRequestMessage_get_PrivacyAnnotation(py::wrapper::Windows::Web::Http::HttpRequestMessage* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.PrivacyAnnotation());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HttpRequestMessage_put_PrivacyAnnotation(py::wrapper::Windows::Web::Http::HttpRequestMessage* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.PrivacyAnnotation(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
     static PyObject* _from_HttpRequestMessage(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -4340,6 +4411,7 @@ namespace py::cpp::Windows::Web::Http
         { "headers", reinterpret_cast<getter>(HttpRequestMessage_get_Headers), nullptr, nullptr, nullptr },
         { "properties", reinterpret_cast<getter>(HttpRequestMessage_get_Properties), nullptr, nullptr, nullptr },
         { "transport_information", reinterpret_cast<getter>(HttpRequestMessage_get_TransportInformation), nullptr, nullptr, nullptr },
+        { "privacy_annotation", reinterpret_cast<getter>(HttpRequestMessage_get_PrivacyAnnotation), reinterpret_cast<setter>(HttpRequestMessage_put_PrivacyAnnotation), nullptr, nullptr },
         { }
     };
 

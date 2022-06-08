@@ -16,6 +16,19 @@ import winsdk.windows.storage
 import winsdk.windows.storage.streams
 import winsdk.windows.system
 
+class PdlConversionHostBasedProcessingOperations(enum.IntFlag):
+    NONE = 0
+    PAGE_ROTATION = 0x1
+    PAGE_ORDERING = 0x2
+    COPIES = 0x4
+    BLANK_PAGE_INSERTION = 0x8
+    ALL = 0xffffffff
+
+class PrintWorkflowAttributesMergePolicy(enum.IntEnum):
+    MERGE_PREFER_PRINT_TICKET_ON_CONFLICT = 0
+    MERGE_PREFER_PSA_ON_CONFLICT = 1
+    DO_NOT_MERGE_WITH_PRINT_TICKET = 2
+
 class PrintWorkflowJobAbortReason(enum.IntEnum):
     JOB_FAILED = 0
     USER_CANCELED = 1
@@ -155,7 +168,10 @@ class PrintWorkflowObjectModelTargetPackage(_winrt.Object):
 class PrintWorkflowPdlConverter(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> PrintWorkflowPdlConverter: ...
+    @typing.overload
     def convert_pdl_async(self, print_ticket: typing.Optional[winsdk.windows.graphics.printing.printticket.WorkflowPrintTicket], input_stream: typing.Optional[winsdk.windows.storage.streams.IInputStream], output_stream: typing.Optional[winsdk.windows.storage.streams.IOutputStream]) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+    @typing.overload
+    def convert_pdl_async(self, print_ticket: typing.Optional[winsdk.windows.graphics.printing.printticket.WorkflowPrintTicket], input_stream: typing.Optional[winsdk.windows.storage.streams.IInputStream], output_stream: typing.Optional[winsdk.windows.storage.streams.IOutputStream], host_based_processing_operations: PdlConversionHostBasedProcessingOperations) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
 
 class PrintWorkflowPdlDataAvailableEventArgs(_winrt.Object):
     configuration: typing.Optional[PrintWorkflowConfiguration]
@@ -173,8 +189,14 @@ class PrintWorkflowPdlModificationRequestedEventArgs(_winrt.Object):
     @staticmethod
     def _from(obj: _winrt.Object) -> PrintWorkflowPdlModificationRequestedEventArgs: ...
     def create_job_on_printer(self, target_content_type: str) -> typing.Optional[PrintWorkflowPdlTargetStream]: ...
+    @typing.overload
     def create_job_on_printer_with_attributes(self, job_attributes: typing.Iterable[winsdk.windows.foundation.collections.IKeyValuePair[str, winsdk.windows.devices.printers.IppAttributeValue]], target_content_type: str) -> typing.Optional[PrintWorkflowPdlTargetStream]: ...
+    @typing.overload
+    def create_job_on_printer_with_attributes(self, job_attributes: typing.Iterable[winsdk.windows.foundation.collections.IKeyValuePair[str, winsdk.windows.devices.printers.IppAttributeValue]], target_content_type: str, operation_attributes: typing.Iterable[winsdk.windows.foundation.collections.IKeyValuePair[str, winsdk.windows.devices.printers.IppAttributeValue]], job_attributes_merge_policy: PrintWorkflowAttributesMergePolicy, operation_attributes_merge_policy: PrintWorkflowAttributesMergePolicy) -> typing.Optional[PrintWorkflowPdlTargetStream]: ...
+    @typing.overload
     def create_job_on_printer_with_attributes_buffer(self, job_attributes_buffer: typing.Optional[winsdk.windows.storage.streams.IBuffer], target_content_type: str) -> typing.Optional[PrintWorkflowPdlTargetStream]: ...
+    @typing.overload
+    def create_job_on_printer_with_attributes_buffer(self, job_attributes_buffer: typing.Optional[winsdk.windows.storage.streams.IBuffer], target_content_type: str, operation_attributes_buffer: typing.Optional[winsdk.windows.storage.streams.IBuffer], job_attributes_merge_policy: PrintWorkflowAttributesMergePolicy, operation_attributes_merge_policy: PrintWorkflowAttributesMergePolicy) -> typing.Optional[PrintWorkflowPdlTargetStream]: ...
     def get_deferral(self) -> typing.Optional[winsdk.windows.foundation.Deferral]: ...
     def get_pdl_converter(self, conversion_type: PrintWorkflowPdlConversionType) -> typing.Optional[PrintWorkflowPdlConverter]: ...
 

@@ -42,6 +42,7 @@ namespace py::cpp::Windows::Security::Isolation
         PyObject* type_IsolatedWindowsEnvironmentAvailablePrinters;
         PyObject* type_IsolatedWindowsEnvironmentClipboardCopyPasteDirections;
         PyObject* type_IsolatedWindowsEnvironmentCreateStatus;
+        PyObject* type_IsolatedWindowsEnvironmentCreationPriority;
         PyObject* type_IsolatedWindowsEnvironmentHostError;
         PyObject* type_IsolatedWindowsEnvironmentLaunchFileStatus;
         PyObject* type_IsolatedWindowsEnvironmentOwnerRegistrationStatus;
@@ -50,6 +51,7 @@ namespace py::cpp::Windows::Security::Isolation
         PyObject* type_IsolatedWindowsEnvironmentProgressState;
         PyObject* type_IsolatedWindowsEnvironmentShareFileStatus;
         PyObject* type_IsolatedWindowsEnvironmentShareFolderStatus;
+        PyObject* type_IsolatedWindowsEnvironmentSignInProgress;
         PyObject* type_IsolatedWindowsEnvironmentStartProcessStatus;
         PyTypeObject* type_IsolatedWindowsEnvironment;
         PyTypeObject* type_IsolatedWindowsEnvironmentCreateResult;
@@ -188,6 +190,30 @@ namespace py::cpp::Windows::Security::Isolation
 
         state->type_IsolatedWindowsEnvironmentCreateStatus = type;
         Py_INCREF(state->type_IsolatedWindowsEnvironmentCreateStatus);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_IsolatedWindowsEnvironmentCreationPriority(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_IsolatedWindowsEnvironmentCreationPriority)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_IsolatedWindowsEnvironmentCreationPriority = type;
+        Py_INCREF(state->type_IsolatedWindowsEnvironmentCreationPriority);
 
 
         Py_RETURN_NONE;
@@ -385,6 +411,30 @@ namespace py::cpp::Windows::Security::Isolation
         Py_RETURN_NONE;
     }
 
+    static PyObject* register_IsolatedWindowsEnvironmentSignInProgress(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_IsolatedWindowsEnvironmentSignInProgress)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_IsolatedWindowsEnvironmentSignInProgress = type;
+        Py_INCREF(state->type_IsolatedWindowsEnvironmentSignInProgress);
+
+
+        Py_RETURN_NONE;
+    }
+
     static PyObject* register_IsolatedWindowsEnvironmentStartProcessStatus(PyObject* module, PyObject* type)
     {
         auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
@@ -424,6 +474,32 @@ namespace py::cpp::Windows::Security::Isolation
         self->obj = nullptr;
         tp->tp_free(self);
         Py_DECREF(tp);
+    }
+
+    static PyObject* IsolatedWindowsEnvironment_ChangePriority(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironment* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority>(args, 0);
+
+                self->obj.ChangePriority(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
     }
 
     static PyObject* IsolatedWindowsEnvironment_CreateAsync(PyObject* /*unused*/, PyObject* args) noexcept
@@ -871,6 +947,7 @@ namespace py::cpp::Windows::Security::Isolation
     }
 
     static PyMethodDef _methods_IsolatedWindowsEnvironment[] = {
+        { "change_priority", reinterpret_cast<PyCFunction>(IsolatedWindowsEnvironment_ChangePriority), METH_VARARGS, nullptr },
         { "create_async", reinterpret_cast<PyCFunction>(IsolatedWindowsEnvironment_CreateAsync), METH_VARARGS | METH_STATIC, nullptr },
         { "find_by_owner_id", reinterpret_cast<PyCFunction>(IsolatedWindowsEnvironment_FindByOwnerId), METH_VARARGS | METH_STATIC, nullptr },
         { "get_by_id", reinterpret_cast<PyCFunction>(IsolatedWindowsEnvironment_GetById), METH_VARARGS | METH_STATIC, nullptr },
@@ -927,6 +1004,32 @@ namespace py::cpp::Windows::Security::Isolation
         Py_DECREF(tp);
     }
 
+    static PyObject* IsolatedWindowsEnvironmentCreateResult_ChangeCreationPriority(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreateResult* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority>(args, 0);
+
+                self->obj.ChangeCreationPriority(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* IsolatedWindowsEnvironmentCreateResult_get_Environment(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreateResult* self, void* /*unused*/) noexcept
     {
         try
@@ -981,6 +1084,7 @@ namespace py::cpp::Windows::Security::Isolation
     }
 
     static PyMethodDef _methods_IsolatedWindowsEnvironmentCreateResult[] = {
+        { "change_creation_priority", reinterpret_cast<PyCFunction>(IsolatedWindowsEnvironmentCreateResult_ChangeCreationPriority), METH_VARARGS, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_IsolatedWindowsEnvironmentCreateResult), METH_O | METH_STATIC, nullptr },
         { }
     };
@@ -1684,6 +1788,111 @@ namespace py::cpp::Windows::Security::Isolation
         }
     }
 
+    static PyObject* IsolatedWindowsEnvironmentOptions_get_CreationPriority(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.CreationPriority());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int IsolatedWindowsEnvironmentOptions_put_CreationPriority(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority>(arg);
+
+            self->obj.CreationPriority(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* IsolatedWindowsEnvironmentOptions_get_AllowedClipboardFormatsToHost(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AllowedClipboardFormatsToHost());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int IsolatedWindowsEnvironmentOptions_put_AllowedClipboardFormatsToHost(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats>(arg);
+
+            self->obj.AllowedClipboardFormatsToHost(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* IsolatedWindowsEnvironmentOptions_get_AllowedClipboardFormatsToEnvironment(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentOptions* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.AllowedClipboardFormatsToEnvironment());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int IsolatedWindowsEnvironmentOptions_put_AllowedClipboardFormatsToEnvironment(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentAllowedClipboardFormats>(arg);
+
+            self->obj.AllowedClipboardFormatsToEnvironment(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
     static PyObject* _from_IsolatedWindowsEnvironmentOptions(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -1715,6 +1924,9 @@ namespace py::cpp::Windows::Security::Isolation
         { "shared_folder_name_in_environment", reinterpret_cast<getter>(IsolatedWindowsEnvironmentOptions_get_SharedFolderNameInEnvironment), nullptr, nullptr, nullptr },
         { "shared_host_folder_path", reinterpret_cast<getter>(IsolatedWindowsEnvironmentOptions_get_SharedHostFolderPath), nullptr, nullptr, nullptr },
         { "window_annotation_override", reinterpret_cast<getter>(IsolatedWindowsEnvironmentOptions_get_WindowAnnotationOverride), reinterpret_cast<setter>(IsolatedWindowsEnvironmentOptions_put_WindowAnnotationOverride), nullptr, nullptr },
+        { "creation_priority", reinterpret_cast<getter>(IsolatedWindowsEnvironmentOptions_get_CreationPriority), reinterpret_cast<setter>(IsolatedWindowsEnvironmentOptions_put_CreationPriority), nullptr, nullptr },
+        { "allowed_clipboard_formats_to_host", reinterpret_cast<getter>(IsolatedWindowsEnvironmentOptions_get_AllowedClipboardFormatsToHost), reinterpret_cast<setter>(IsolatedWindowsEnvironmentOptions_put_AllowedClipboardFormatsToHost), nullptr, nullptr },
+        { "allowed_clipboard_formats_to_environment", reinterpret_cast<getter>(IsolatedWindowsEnvironmentOptions_get_AllowedClipboardFormatsToEnvironment), reinterpret_cast<setter>(IsolatedWindowsEnvironmentOptions_put_AllowedClipboardFormatsToEnvironment), nullptr, nullptr },
         { }
     };
 
@@ -2972,6 +3184,29 @@ namespace py::cpp::Windows::Security::Isolation
         }
     }
 
+    static PyObject* IsolatedWindowsEnvironmentUserInfo_TryWaitForSignInWithProgressAsync(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentUserInfo* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                return py::convert(self->obj.TryWaitForSignInWithProgressAsync());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* IsolatedWindowsEnvironmentUserInfo_get_EnvironmentUserName(py::wrapper::Windows::Security::Isolation::IsolatedWindowsEnvironmentUserInfo* self, void* /*unused*/) noexcept
     {
         try
@@ -3014,6 +3249,7 @@ namespace py::cpp::Windows::Security::Isolation
 
     static PyMethodDef _methods_IsolatedWindowsEnvironmentUserInfo[] = {
         { "try_wait_for_sign_in_async", reinterpret_cast<PyCFunction>(IsolatedWindowsEnvironmentUserInfo_TryWaitForSignInAsync), METH_VARARGS, nullptr },
+        { "try_wait_for_sign_in_with_progress_async", reinterpret_cast<PyCFunction>(IsolatedWindowsEnvironmentUserInfo_TryWaitForSignInWithProgressAsync), METH_VARARGS, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_IsolatedWindowsEnvironmentUserInfo), METH_O | METH_STATIC, nullptr },
         { }
     };
@@ -3347,6 +3583,7 @@ namespace py::cpp::Windows::Security::Isolation
         {"_register_IsolatedWindowsEnvironmentAvailablePrinters", register_IsolatedWindowsEnvironmentAvailablePrinters, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentClipboardCopyPasteDirections", register_IsolatedWindowsEnvironmentClipboardCopyPasteDirections, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentCreateStatus", register_IsolatedWindowsEnvironmentCreateStatus, METH_O, "registers type"},
+        {"_register_IsolatedWindowsEnvironmentCreationPriority", register_IsolatedWindowsEnvironmentCreationPriority, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentHostError", register_IsolatedWindowsEnvironmentHostError, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentLaunchFileStatus", register_IsolatedWindowsEnvironmentLaunchFileStatus, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentOwnerRegistrationStatus", register_IsolatedWindowsEnvironmentOwnerRegistrationStatus, METH_O, "registers type"},
@@ -3355,6 +3592,7 @@ namespace py::cpp::Windows::Security::Isolation
         {"_register_IsolatedWindowsEnvironmentProgressState", register_IsolatedWindowsEnvironmentProgressState, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentShareFileStatus", register_IsolatedWindowsEnvironmentShareFileStatus, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentShareFolderStatus", register_IsolatedWindowsEnvironmentShareFolderStatus, METH_O, "registers type"},
+        {"_register_IsolatedWindowsEnvironmentSignInProgress", register_IsolatedWindowsEnvironmentSignInProgress, METH_O, "registers type"},
         {"_register_IsolatedWindowsEnvironmentStartProcessStatus", register_IsolatedWindowsEnvironmentStartProcessStatus, METH_O, "registers type"},
         {}};
 
@@ -3373,6 +3611,7 @@ namespace py::cpp::Windows::Security::Isolation
         Py_VISIT(state->type_IsolatedWindowsEnvironmentAvailablePrinters);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentClipboardCopyPasteDirections);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentCreateStatus);
+        Py_VISIT(state->type_IsolatedWindowsEnvironmentCreationPriority);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentHostError);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentLaunchFileStatus);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentOwnerRegistrationStatus);
@@ -3381,6 +3620,7 @@ namespace py::cpp::Windows::Security::Isolation
         Py_VISIT(state->type_IsolatedWindowsEnvironmentProgressState);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentShareFileStatus);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentShareFolderStatus);
+        Py_VISIT(state->type_IsolatedWindowsEnvironmentSignInProgress);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentStartProcessStatus);
         Py_VISIT(state->type_IsolatedWindowsEnvironment);
         Py_VISIT(state->type_IsolatedWindowsEnvironmentCreateResult);
@@ -3420,6 +3660,7 @@ namespace py::cpp::Windows::Security::Isolation
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentAvailablePrinters);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentClipboardCopyPasteDirections);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentCreateStatus);
+        Py_CLEAR(state->type_IsolatedWindowsEnvironmentCreationPriority);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentHostError);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentLaunchFileStatus);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentOwnerRegistrationStatus);
@@ -3428,6 +3669,7 @@ namespace py::cpp::Windows::Security::Isolation
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentProgressState);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentShareFileStatus);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentShareFolderStatus);
+        Py_CLEAR(state->type_IsolatedWindowsEnvironmentSignInProgress);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentStartProcessStatus);
         Py_CLEAR(state->type_IsolatedWindowsEnvironment);
         Py_CLEAR(state->type_IsolatedWindowsEnvironmentCreateResult);
@@ -3836,6 +4078,29 @@ PyObject* py::py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnviro
     return python_type;
 }
 
+PyObject* py::py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::Isolation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::Isolation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IsolatedWindowsEnvironmentCreationPriority;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentCreationPriority is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentHostError>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Security::Isolation;
 
@@ -4014,6 +4279,29 @@ PyObject* py::py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnviro
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentShareFolderStatus is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentSignInProgress>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Security::Isolation;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Security::Isolation");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IsolatedWindowsEnvironmentSignInProgress;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Security::Isolation::IsolatedWindowsEnvironmentSignInProgress is not registered");
         return nullptr;
     }
 

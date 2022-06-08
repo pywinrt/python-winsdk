@@ -19,6 +19,7 @@ namespace py::cpp::Windows::Storage::Provider
         PyObject* type_StorageProviderPopulationPolicy;
         PyObject* type_StorageProviderProtectionMode;
         PyObject* type_StorageProviderState;
+        PyObject* type_StorageProviderUICommandState;
         PyObject* type_StorageProviderUriSourceStatus;
         PyObject* type_UIStatus;
         PyObject* type_WriteActivationMode;
@@ -27,21 +28,22 @@ namespace py::cpp::Windows::Storage::Provider
         PyTypeObject* type_FileUpdateRequest;
         PyTypeObject* type_FileUpdateRequestDeferral;
         PyTypeObject* type_FileUpdateRequestedEventArgs;
-        PyTypeObject* type_StorageProviderError;
-        PyTypeObject* type_StorageProviderErrorCommand;
         PyTypeObject* type_StorageProviderFileTypeInfo;
         PyTypeObject* type_StorageProviderGetContentInfoForPathResult;
         PyTypeObject* type_StorageProviderGetPathForContentUriResult;
         PyTypeObject* type_StorageProviderItemProperties;
         PyTypeObject* type_StorageProviderItemProperty;
         PyTypeObject* type_StorageProviderItemPropertyDefinition;
-        PyTypeObject* type_StorageProviderStatus;
+        PyTypeObject* type_StorageProviderMoreInfoUI;
+        PyTypeObject* type_StorageProviderQuotaUI;
+        PyTypeObject* type_StorageProviderStatusUI;
         PyTypeObject* type_StorageProviderSyncRootInfo;
         PyTypeObject* type_StorageProviderSyncRootManager;
-        PyTypeObject* type_IStorageProviderHandlerFactory;
         PyTypeObject* type_IStorageProviderItemPropertySource;
         PyTypeObject* type_IStorageProviderPropertyCapabilities;
-        PyTypeObject* type_IStorageProviderStatusSource;
+        PyTypeObject* type_IStorageProviderStatusUISource;
+        PyTypeObject* type_IStorageProviderStatusUISourceFactory;
+        PyTypeObject* type_IStorageProviderUICommand;
         PyTypeObject* type_IStorageProviderUriSource;
     };
 
@@ -304,6 +306,30 @@ namespace py::cpp::Windows::Storage::Provider
 
         state->type_StorageProviderState = type;
         Py_INCREF(state->type_StorageProviderState);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_StorageProviderUICommandState(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_StorageProviderUICommandState)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_StorageProviderUICommandState = type;
+        Py_INCREF(state->type_StorageProviderUICommandState);
 
 
         Py_RETURN_NONE;
@@ -1034,389 +1060,6 @@ namespace py::cpp::Windows::Storage::Provider
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_FileUpdateRequestedEventArgs
-    };
-
-    // ----- StorageProviderError class --------------------
-    constexpr const char* const type_name_StorageProviderError = "StorageProviderError";
-
-    static PyObject* _new_StorageProviderError(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
-    {
-        if (kwds != nullptr)
-        {
-            py::set_invalid_kwd_args_error();
-            return nullptr;
-        }
-
-        Py_ssize_t arg_count = PyTuple_Size(args);
-        if (arg_count == 3)
-        {
-            try
-            {
-                auto param0 = py::convert_to<winrt::hstring>(args, 0);
-                auto param1 = py::convert_to<winrt::hstring>(args, 1);
-                auto param2 = py::convert_to<winrt::hstring>(args, 2);
-
-                winrt::Windows::Storage::Provider::StorageProviderError instance{ param0, param1, param2 };
-                return py::wrap(instance, type);
-            }
-            catch (...)
-            {
-                py::to_PyErr();
-                return nullptr;
-            }
-        }
-        else
-        {
-            py::set_invalid_arg_count_error(arg_count);
-            return nullptr;
-        }
-    }
-
-    static void _dealloc_StorageProviderError(py::wrapper::Windows::Storage::Provider::StorageProviderError* self)
-    {
-        auto tp = Py_TYPE(self);
-        self->obj = nullptr;
-        tp->tp_free(self);
-        Py_DECREF(tp);
-    }
-
-    static PyObject* StorageProviderError_get_SecondaryAction(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.SecondaryAction());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static int StorageProviderError_put_SecondaryAction(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, PyObject* arg, void* /*unused*/) noexcept
-    {
-        if (arg == nullptr)
-        {
-            PyErr_SetString(PyExc_TypeError, "property delete not supported");
-            return -1;
-        }
-
-        try
-        {
-            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderErrorCommand>(arg);
-
-            self->obj.SecondaryAction(param0);
-            return 0;
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return -1;
-        }
-    }
-
-    static PyObject* StorageProviderError_get_PrimaryAction(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.PrimaryAction());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static int StorageProviderError_put_PrimaryAction(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, PyObject* arg, void* /*unused*/) noexcept
-    {
-        if (arg == nullptr)
-        {
-            PyErr_SetString(PyExc_TypeError, "property delete not supported");
-            return -1;
-        }
-
-        try
-        {
-            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderErrorCommand>(arg);
-
-            self->obj.PrimaryAction(param0);
-            return 0;
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return -1;
-        }
-    }
-
-    static PyObject* StorageProviderError_get_InformationalLink(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.InformationalLink());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static int StorageProviderError_put_InformationalLink(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, PyObject* arg, void* /*unused*/) noexcept
-    {
-        if (arg == nullptr)
-        {
-            PyErr_SetString(PyExc_TypeError, "property delete not supported");
-            return -1;
-        }
-
-        try
-        {
-            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderErrorCommand>(arg);
-
-            self->obj.InformationalLink(param0);
-            return 0;
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return -1;
-        }
-    }
-
-    static PyObject* StorageProviderError_get_FilePath(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.FilePath());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static int StorageProviderError_put_FilePath(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, PyObject* arg, void* /*unused*/) noexcept
-    {
-        if (arg == nullptr)
-        {
-            PyErr_SetString(PyExc_TypeError, "property delete not supported");
-            return -1;
-        }
-
-        try
-        {
-            auto param0 = py::convert_to<winrt::hstring>(arg);
-
-            self->obj.FilePath(param0);
-            return 0;
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return -1;
-        }
-    }
-
-    static PyObject* StorageProviderError_get_Id(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.Id());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyObject* StorageProviderError_get_Message(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.Message());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyObject* StorageProviderError_get_Title(py::wrapper::Windows::Storage::Provider::StorageProviderError* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.Title());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyObject* _from_StorageProviderError(PyObject* /*unused*/, PyObject* arg) noexcept
-    {
-        try
-        {
-            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
-            return py::convert(return_value.as<winrt::Windows::Storage::Provider::StorageProviderError>());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyMethodDef _methods_StorageProviderError[] = {
-        { "_from", reinterpret_cast<PyCFunction>(_from_StorageProviderError), METH_O | METH_STATIC, nullptr },
-        { }
-    };
-
-    static PyGetSetDef _getset_StorageProviderError[] = {
-        { "secondary_action", reinterpret_cast<getter>(StorageProviderError_get_SecondaryAction), reinterpret_cast<setter>(StorageProviderError_put_SecondaryAction), nullptr, nullptr },
-        { "primary_action", reinterpret_cast<getter>(StorageProviderError_get_PrimaryAction), reinterpret_cast<setter>(StorageProviderError_put_PrimaryAction), nullptr, nullptr },
-        { "informational_link", reinterpret_cast<getter>(StorageProviderError_get_InformationalLink), reinterpret_cast<setter>(StorageProviderError_put_InformationalLink), nullptr, nullptr },
-        { "file_path", reinterpret_cast<getter>(StorageProviderError_get_FilePath), reinterpret_cast<setter>(StorageProviderError_put_FilePath), nullptr, nullptr },
-        { "id", reinterpret_cast<getter>(StorageProviderError_get_Id), nullptr, nullptr, nullptr },
-        { "message", reinterpret_cast<getter>(StorageProviderError_get_Message), nullptr, nullptr, nullptr },
-        { "title", reinterpret_cast<getter>(StorageProviderError_get_Title), nullptr, nullptr, nullptr },
-        { }
-    };
-
-    static PyType_Slot _type_slots_StorageProviderError[] = 
-    {
-        { Py_tp_new, _new_StorageProviderError },
-        { Py_tp_dealloc, _dealloc_StorageProviderError },
-        { Py_tp_methods, _methods_StorageProviderError },
-        { Py_tp_getset, _getset_StorageProviderError },
-        { },
-    };
-
-    static PyType_Spec type_spec_StorageProviderError =
-    {
-        "_winsdk_Windows_Storage_Provider.StorageProviderError",
-        sizeof(py::wrapper::Windows::Storage::Provider::StorageProviderError),
-        0,
-        Py_TPFLAGS_DEFAULT,
-        _type_slots_StorageProviderError
-    };
-
-    // ----- StorageProviderErrorCommand class --------------------
-    constexpr const char* const type_name_StorageProviderErrorCommand = "StorageProviderErrorCommand";
-
-    static PyObject* _new_StorageProviderErrorCommand(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
-    {
-        if (kwds != nullptr)
-        {
-            py::set_invalid_kwd_args_error();
-            return nullptr;
-        }
-
-        Py_ssize_t arg_count = PyTuple_Size(args);
-        if (arg_count == 2)
-        {
-            try
-            {
-                auto param0 = py::convert_to<winrt::hstring>(args, 0);
-                auto param1 = py::convert_to<winrt::Windows::Foundation::Uri>(args, 1);
-
-                winrt::Windows::Storage::Provider::StorageProviderErrorCommand instance{ param0, param1 };
-                return py::wrap(instance, type);
-            }
-            catch (...)
-            {
-                py::to_PyErr();
-                return nullptr;
-            }
-        }
-        else
-        {
-            py::set_invalid_arg_count_error(arg_count);
-            return nullptr;
-        }
-    }
-
-    static void _dealloc_StorageProviderErrorCommand(py::wrapper::Windows::Storage::Provider::StorageProviderErrorCommand* self)
-    {
-        auto tp = Py_TYPE(self);
-        self->obj = nullptr;
-        tp->tp_free(self);
-        Py_DECREF(tp);
-    }
-
-    static PyObject* StorageProviderErrorCommand_get_ActionUri(py::wrapper::Windows::Storage::Provider::StorageProviderErrorCommand* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.ActionUri());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyObject* StorageProviderErrorCommand_get_Label(py::wrapper::Windows::Storage::Provider::StorageProviderErrorCommand* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.Label());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyObject* _from_StorageProviderErrorCommand(PyObject* /*unused*/, PyObject* arg) noexcept
-    {
-        try
-        {
-            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
-            return py::convert(return_value.as<winrt::Windows::Storage::Provider::StorageProviderErrorCommand>());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyMethodDef _methods_StorageProviderErrorCommand[] = {
-        { "_from", reinterpret_cast<PyCFunction>(_from_StorageProviderErrorCommand), METH_O | METH_STATIC, nullptr },
-        { }
-    };
-
-    static PyGetSetDef _getset_StorageProviderErrorCommand[] = {
-        { "action_uri", reinterpret_cast<getter>(StorageProviderErrorCommand_get_ActionUri), nullptr, nullptr, nullptr },
-        { "label", reinterpret_cast<getter>(StorageProviderErrorCommand_get_Label), nullptr, nullptr, nullptr },
-        { }
-    };
-
-    static PyType_Slot _type_slots_StorageProviderErrorCommand[] = 
-    {
-        { Py_tp_new, _new_StorageProviderErrorCommand },
-        { Py_tp_dealloc, _dealloc_StorageProviderErrorCommand },
-        { Py_tp_methods, _methods_StorageProviderErrorCommand },
-        { Py_tp_getset, _getset_StorageProviderErrorCommand },
-        { },
-    };
-
-    static PyType_Spec type_spec_StorageProviderErrorCommand =
-    {
-        "_winsdk_Windows_Storage_Provider.StorageProviderErrorCommand",
-        sizeof(py::wrapper::Windows::Storage::Provider::StorageProviderErrorCommand),
-        0,
-        Py_TPFLAGS_DEFAULT,
-        _type_slots_StorageProviderErrorCommand
     };
 
     // ----- StorageProviderFileTypeInfo class --------------------
@@ -2276,10 +1919,10 @@ namespace py::cpp::Windows::Storage::Provider
         _type_slots_StorageProviderItemPropertyDefinition
     };
 
-    // ----- StorageProviderStatus class --------------------
-    constexpr const char* const type_name_StorageProviderStatus = "StorageProviderStatus";
+    // ----- StorageProviderMoreInfoUI class --------------------
+    constexpr const char* const type_name_StorageProviderMoreInfoUI = "StorageProviderMoreInfoUI";
 
-    static PyObject* _new_StorageProviderStatus(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    static PyObject* _new_StorageProviderMoreInfoUI(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
     {
         if (kwds != nullptr)
         {
@@ -2288,31 +1931,11 @@ namespace py::cpp::Windows::Storage::Provider
         }
 
         Py_ssize_t arg_count = PyTuple_Size(args);
-        if (arg_count == 2)
+        if (arg_count == 0)
         {
             try
             {
-                auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderState>(args, 0);
-                auto param1 = py::convert_to<winrt::hstring>(args, 1);
-
-                winrt::Windows::Storage::Provider::StorageProviderStatus instance{ param0, param1 };
-                return py::wrap(instance, type);
-            }
-            catch (...)
-            {
-                py::to_PyErr();
-                return nullptr;
-            }
-        }
-        else if (arg_count == 3)
-        {
-            try
-            {
-                auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderState>(args, 0);
-                auto param1 = py::convert_to<winrt::hstring>(args, 1);
-                auto param2 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Storage::Provider::StorageProviderError>>(args, 2);
-
-                winrt::Windows::Storage::Provider::StorageProviderStatus instance{ param0, param1, param2 };
+                winrt::Windows::Storage::Provider::StorageProviderMoreInfoUI instance{  };
                 return py::wrap(instance, type);
             }
             catch (...)
@@ -2328,7 +1951,7 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static void _dealloc_StorageProviderStatus(py::wrapper::Windows::Storage::Provider::StorageProviderStatus* self)
+    static void _dealloc_StorageProviderMoreInfoUI(py::wrapper::Windows::Storage::Provider::StorageProviderMoreInfoUI* self)
     {
         auto tp = Py_TYPE(self);
         self->obj = nullptr;
@@ -2336,20 +1959,7 @@ namespace py::cpp::Windows::Storage::Provider
         Py_DECREF(tp);
     }
 
-    static PyObject* StorageProviderStatus_get_ErrorMessages(py::wrapper::Windows::Storage::Provider::StorageProviderStatus* self, void* /*unused*/) noexcept
-    {
-        try
-        {
-            return py::convert(self->obj.ErrorMessages());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyObject* StorageProviderStatus_get_Message(py::wrapper::Windows::Storage::Provider::StorageProviderStatus* self, void* /*unused*/) noexcept
+    static PyObject* StorageProviderMoreInfoUI_get_Message(py::wrapper::Windows::Storage::Provider::StorageProviderMoreInfoUI* self, void* /*unused*/) noexcept
     {
         try
         {
@@ -2362,11 +1972,33 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static PyObject* StorageProviderStatus_get_State(py::wrapper::Windows::Storage::Provider::StorageProviderStatus* self, void* /*unused*/) noexcept
+    static int StorageProviderMoreInfoUI_put_Message(py::wrapper::Windows::Storage::Provider::StorageProviderMoreInfoUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Message(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderMoreInfoUI_get_Command(py::wrapper::Windows::Storage::Provider::StorageProviderMoreInfoUI* self, void* /*unused*/) noexcept
     {
         try
         {
-            return py::convert(self->obj.State());
+            return py::convert(self->obj.Command());
         }
         catch (...)
         {
@@ -2375,12 +2007,34 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static PyObject* _from_StorageProviderStatus(PyObject* /*unused*/, PyObject* arg) noexcept
+    static int StorageProviderMoreInfoUI_put_Command(py::wrapper::Windows::Storage::Provider::StorageProviderMoreInfoUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::IStorageProviderUICommand>(arg);
+
+            self->obj.Command(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_StorageProviderMoreInfoUI(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
         {
             auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
-            return py::convert(return_value.as<winrt::Windows::Storage::Provider::StorageProviderStatus>());
+            return py::convert(return_value.as<winrt::Windows::Storage::Provider::StorageProviderMoreInfoUI>());
         }
         catch (...)
         {
@@ -2389,34 +2043,627 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static PyMethodDef _methods_StorageProviderStatus[] = {
-        { "_from", reinterpret_cast<PyCFunction>(_from_StorageProviderStatus), METH_O | METH_STATIC, nullptr },
+    static PyMethodDef _methods_StorageProviderMoreInfoUI[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_StorageProviderMoreInfoUI), METH_O | METH_STATIC, nullptr },
         { }
     };
 
-    static PyGetSetDef _getset_StorageProviderStatus[] = {
-        { "error_messages", reinterpret_cast<getter>(StorageProviderStatus_get_ErrorMessages), nullptr, nullptr, nullptr },
-        { "message", reinterpret_cast<getter>(StorageProviderStatus_get_Message), nullptr, nullptr, nullptr },
-        { "state", reinterpret_cast<getter>(StorageProviderStatus_get_State), nullptr, nullptr, nullptr },
+    static PyGetSetDef _getset_StorageProviderMoreInfoUI[] = {
+        { "message", reinterpret_cast<getter>(StorageProviderMoreInfoUI_get_Message), reinterpret_cast<setter>(StorageProviderMoreInfoUI_put_Message), nullptr, nullptr },
+        { "command", reinterpret_cast<getter>(StorageProviderMoreInfoUI_get_Command), reinterpret_cast<setter>(StorageProviderMoreInfoUI_put_Command), nullptr, nullptr },
         { }
     };
 
-    static PyType_Slot _type_slots_StorageProviderStatus[] = 
+    static PyType_Slot _type_slots_StorageProviderMoreInfoUI[] = 
     {
-        { Py_tp_new, _new_StorageProviderStatus },
-        { Py_tp_dealloc, _dealloc_StorageProviderStatus },
-        { Py_tp_methods, _methods_StorageProviderStatus },
-        { Py_tp_getset, _getset_StorageProviderStatus },
+        { Py_tp_new, _new_StorageProviderMoreInfoUI },
+        { Py_tp_dealloc, _dealloc_StorageProviderMoreInfoUI },
+        { Py_tp_methods, _methods_StorageProviderMoreInfoUI },
+        { Py_tp_getset, _getset_StorageProviderMoreInfoUI },
         { },
     };
 
-    static PyType_Spec type_spec_StorageProviderStatus =
+    static PyType_Spec type_spec_StorageProviderMoreInfoUI =
     {
-        "_winsdk_Windows_Storage_Provider.StorageProviderStatus",
-        sizeof(py::wrapper::Windows::Storage::Provider::StorageProviderStatus),
+        "_winsdk_Windows_Storage_Provider.StorageProviderMoreInfoUI",
+        sizeof(py::wrapper::Windows::Storage::Provider::StorageProviderMoreInfoUI),
         0,
         Py_TPFLAGS_DEFAULT,
-        _type_slots_StorageProviderStatus
+        _type_slots_StorageProviderMoreInfoUI
+    };
+
+    // ----- StorageProviderQuotaUI class --------------------
+    constexpr const char* const type_name_StorageProviderQuotaUI = "StorageProviderQuotaUI";
+
+    static PyObject* _new_StorageProviderQuotaUI(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Storage::Provider::StorageProviderQuotaUI instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_StorageProviderQuotaUI(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* StorageProviderQuotaUI_get_QuotaUsedLabel(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QuotaUsedLabel());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderQuotaUI_put_QuotaUsedLabel(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.QuotaUsedLabel(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderQuotaUI_get_QuotaUsedInBytes(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QuotaUsedInBytes());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderQuotaUI_put_QuotaUsedInBytes(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint64_t>(arg);
+
+            self->obj.QuotaUsedInBytes(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderQuotaUI_get_QuotaUsedColor(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QuotaUsedColor());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderQuotaUI_put_QuotaUsedColor(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IReference<winrt::Windows::UI::Color>>(arg);
+
+            self->obj.QuotaUsedColor(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderQuotaUI_get_QuotaTotalInBytes(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QuotaTotalInBytes());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderQuotaUI_put_QuotaTotalInBytes(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint64_t>(arg);
+
+            self->obj.QuotaTotalInBytes(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_StorageProviderQuotaUI(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Storage::Provider::StorageProviderQuotaUI>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_StorageProviderQuotaUI[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_StorageProviderQuotaUI), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_StorageProviderQuotaUI[] = {
+        { "quota_used_label", reinterpret_cast<getter>(StorageProviderQuotaUI_get_QuotaUsedLabel), reinterpret_cast<setter>(StorageProviderQuotaUI_put_QuotaUsedLabel), nullptr, nullptr },
+        { "quota_used_in_bytes", reinterpret_cast<getter>(StorageProviderQuotaUI_get_QuotaUsedInBytes), reinterpret_cast<setter>(StorageProviderQuotaUI_put_QuotaUsedInBytes), nullptr, nullptr },
+        { "quota_used_color", reinterpret_cast<getter>(StorageProviderQuotaUI_get_QuotaUsedColor), reinterpret_cast<setter>(StorageProviderQuotaUI_put_QuotaUsedColor), nullptr, nullptr },
+        { "quota_total_in_bytes", reinterpret_cast<getter>(StorageProviderQuotaUI_get_QuotaTotalInBytes), reinterpret_cast<setter>(StorageProviderQuotaUI_put_QuotaTotalInBytes), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_StorageProviderQuotaUI[] = 
+    {
+        { Py_tp_new, _new_StorageProviderQuotaUI },
+        { Py_tp_dealloc, _dealloc_StorageProviderQuotaUI },
+        { Py_tp_methods, _methods_StorageProviderQuotaUI },
+        { Py_tp_getset, _getset_StorageProviderQuotaUI },
+        { },
+    };
+
+    static PyType_Spec type_spec_StorageProviderQuotaUI =
+    {
+        "_winsdk_Windows_Storage_Provider.StorageProviderQuotaUI",
+        sizeof(py::wrapper::Windows::Storage::Provider::StorageProviderQuotaUI),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_StorageProviderQuotaUI
+    };
+
+    // ----- StorageProviderStatusUI class --------------------
+    constexpr const char* const type_name_StorageProviderStatusUI = "StorageProviderStatusUI";
+
+    static PyObject* _new_StorageProviderStatusUI(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        Py_ssize_t arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::Storage::Provider::StorageProviderStatusUI instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_StorageProviderStatusUI(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* StorageProviderStatusUI_get_SyncStatusCommand(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.SyncStatusCommand());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_SyncStatusCommand(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::IStorageProviderUICommand>(arg);
+
+            self->obj.SyncStatusCommand(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderStatusUI_get_QuotaUI(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.QuotaUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_QuotaUI(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderQuotaUI>(arg);
+
+            self->obj.QuotaUI(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderStatusUI_get_ProviderStateLabel(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderStateLabel());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_ProviderStateLabel(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.ProviderStateLabel(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderStatusUI_get_ProviderStateIcon(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderStateIcon());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_ProviderStateIcon(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::Uri>(arg);
+
+            self->obj.ProviderStateIcon(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderStatusUI_get_ProviderState(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderState());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_ProviderState(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderState>(arg);
+
+            self->obj.ProviderState(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderStatusUI_get_ProviderSecondaryCommands(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderSecondaryCommands());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_ProviderSecondaryCommands(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::Storage::Provider::IStorageProviderUICommand>>(arg);
+
+            self->obj.ProviderSecondaryCommands(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderStatusUI_get_ProviderPrimaryCommand(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.ProviderPrimaryCommand());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_ProviderPrimaryCommand(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::IStorageProviderUICommand>(arg);
+
+            self->obj.ProviderPrimaryCommand(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* StorageProviderStatusUI_get_MoreInfoUI(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.MoreInfoUI());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int StorageProviderStatusUI_put_MoreInfoUI(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_TypeError, "property delete not supported");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Storage::Provider::StorageProviderMoreInfoUI>(arg);
+
+            self->obj.MoreInfoUI(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _from_StorageProviderStatusUI(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Storage::Provider::StorageProviderStatusUI>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_StorageProviderStatusUI[] = {
+        { "_from", reinterpret_cast<PyCFunction>(_from_StorageProviderStatusUI), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_StorageProviderStatusUI[] = {
+        { "sync_status_command", reinterpret_cast<getter>(StorageProviderStatusUI_get_SyncStatusCommand), reinterpret_cast<setter>(StorageProviderStatusUI_put_SyncStatusCommand), nullptr, nullptr },
+        { "quota_u_i", reinterpret_cast<getter>(StorageProviderStatusUI_get_QuotaUI), reinterpret_cast<setter>(StorageProviderStatusUI_put_QuotaUI), nullptr, nullptr },
+        { "provider_state_label", reinterpret_cast<getter>(StorageProviderStatusUI_get_ProviderStateLabel), reinterpret_cast<setter>(StorageProviderStatusUI_put_ProviderStateLabel), nullptr, nullptr },
+        { "provider_state_icon", reinterpret_cast<getter>(StorageProviderStatusUI_get_ProviderStateIcon), reinterpret_cast<setter>(StorageProviderStatusUI_put_ProviderStateIcon), nullptr, nullptr },
+        { "provider_state", reinterpret_cast<getter>(StorageProviderStatusUI_get_ProviderState), reinterpret_cast<setter>(StorageProviderStatusUI_put_ProviderState), nullptr, nullptr },
+        { "provider_secondary_commands", reinterpret_cast<getter>(StorageProviderStatusUI_get_ProviderSecondaryCommands), reinterpret_cast<setter>(StorageProviderStatusUI_put_ProviderSecondaryCommands), nullptr, nullptr },
+        { "provider_primary_command", reinterpret_cast<getter>(StorageProviderStatusUI_get_ProviderPrimaryCommand), reinterpret_cast<setter>(StorageProviderStatusUI_put_ProviderPrimaryCommand), nullptr, nullptr },
+        { "more_info_u_i", reinterpret_cast<getter>(StorageProviderStatusUI_get_MoreInfoUI), reinterpret_cast<setter>(StorageProviderStatusUI_put_MoreInfoUI), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_StorageProviderStatusUI[] = 
+    {
+        { Py_tp_new, _new_StorageProviderStatusUI },
+        { Py_tp_dealloc, _dealloc_StorageProviderStatusUI },
+        { Py_tp_methods, _methods_StorageProviderStatusUI },
+        { Py_tp_getset, _getset_StorageProviderStatusUI },
+        { },
+    };
+
+    static PyType_Spec type_spec_StorageProviderStatusUI =
+    {
+        "_winsdk_Windows_Storage_Provider.StorageProviderStatusUI",
+        sizeof(py::wrapper::Windows::Storage::Provider::StorageProviderStatusUI),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_StorageProviderStatusUI
     };
 
     // ----- StorageProviderSyncRootInfo class --------------------
@@ -3292,90 +3539,6 @@ namespace py::cpp::Windows::Storage::Provider
         _type_slots_StorageProviderSyncRootManager
     };
 
-    // ----- IStorageProviderHandlerFactory interface --------------------
-    constexpr const char* const type_name_IStorageProviderHandlerFactory = "IStorageProviderHandlerFactory";
-
-    static PyObject* _new_IStorageProviderHandlerFactory(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
-    {
-        py::set_invalid_activation_error(type_name_IStorageProviderHandlerFactory);
-        return nullptr;
-    }
-
-    static void _dealloc_IStorageProviderHandlerFactory(py::wrapper::Windows::Storage::Provider::IStorageProviderHandlerFactory* self)
-    {
-        auto tp = Py_TYPE(self);
-        self->obj = nullptr;
-        tp->tp_free(self);
-        Py_DECREF(tp);
-    }
-
-    static PyObject* IStorageProviderHandlerFactory_GetStatusSource(py::wrapper::Windows::Storage::Provider::IStorageProviderHandlerFactory* self, PyObject* args) noexcept
-    {
-        Py_ssize_t arg_count = PyTuple_Size(args);
-
-        if (arg_count == 1)
-        {
-            try
-            {
-                auto param0 = py::convert_to<winrt::hstring>(args, 0);
-
-                return py::convert(self->obj.GetStatusSource(param0));
-            }
-            catch (...)
-            {
-                py::to_PyErr();
-                return nullptr;
-            }
-        }
-        else
-        {
-            py::set_invalid_arg_count_error(arg_count);
-            return nullptr;
-        }
-    }
-
-    static PyObject* _from_IStorageProviderHandlerFactory(PyObject* /*unused*/, PyObject* arg) noexcept
-    {
-        try
-        {
-            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
-            return py::convert(return_value.as<winrt::Windows::Storage::Provider::IStorageProviderHandlerFactory>());
-        }
-        catch (...)
-        {
-            py::to_PyErr();
-            return nullptr;
-        }
-    }
-
-    static PyMethodDef _methods_IStorageProviderHandlerFactory[] = {
-        { "get_status_source", reinterpret_cast<PyCFunction>(IStorageProviderHandlerFactory_GetStatusSource), METH_VARARGS, nullptr },
-        { "_from", reinterpret_cast<PyCFunction>(_from_IStorageProviderHandlerFactory), METH_O | METH_STATIC, nullptr },
-        { }
-    };
-
-    static PyGetSetDef _getset_IStorageProviderHandlerFactory[] = {
-        { }
-    };
-
-    static PyType_Slot _type_slots_IStorageProviderHandlerFactory[] = 
-    {
-        { Py_tp_new, _new_IStorageProviderHandlerFactory },
-        { Py_tp_dealloc, _dealloc_IStorageProviderHandlerFactory },
-        { Py_tp_methods, _methods_IStorageProviderHandlerFactory },
-        { Py_tp_getset, _getset_IStorageProviderHandlerFactory },
-        { },
-    };
-
-    static PyType_Spec type_spec_IStorageProviderHandlerFactory =
-    {
-        "_winsdk_Windows_Storage_Provider.IStorageProviderHandlerFactory",
-        sizeof(py::wrapper::Windows::Storage::Provider::IStorageProviderHandlerFactory),
-        0,
-        Py_TPFLAGS_DEFAULT,
-        _type_slots_IStorageProviderHandlerFactory
-    };
-
     // ----- IStorageProviderItemPropertySource interface --------------------
     constexpr const char* const type_name_IStorageProviderItemPropertySource = "IStorageProviderItemPropertySource";
 
@@ -3544,16 +3707,16 @@ namespace py::cpp::Windows::Storage::Provider
         _type_slots_IStorageProviderPropertyCapabilities
     };
 
-    // ----- IStorageProviderStatusSource interface --------------------
-    constexpr const char* const type_name_IStorageProviderStatusSource = "IStorageProviderStatusSource";
+    // ----- IStorageProviderStatusUISource interface --------------------
+    constexpr const char* const type_name_IStorageProviderStatusUISource = "IStorageProviderStatusUISource";
 
-    static PyObject* _new_IStorageProviderStatusSource(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    static PyObject* _new_IStorageProviderStatusUISource(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
     {
-        py::set_invalid_activation_error(type_name_IStorageProviderStatusSource);
+        py::set_invalid_activation_error(type_name_IStorageProviderStatusUISource);
         return nullptr;
     }
 
-    static void _dealloc_IStorageProviderStatusSource(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusSource* self)
+    static void _dealloc_IStorageProviderStatusUISource(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISource* self)
     {
         auto tp = Py_TYPE(self);
         self->obj = nullptr;
@@ -3561,7 +3724,7 @@ namespace py::cpp::Windows::Storage::Provider
         Py_DECREF(tp);
     }
 
-    static PyObject* IStorageProviderStatusSource_GetStatus(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusSource* self, PyObject* args) noexcept
+    static PyObject* IStorageProviderStatusUISource_GetStatusUI(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISource* self, PyObject* args) noexcept
     {
         Py_ssize_t arg_count = PyTuple_Size(args);
 
@@ -3569,7 +3732,7 @@ namespace py::cpp::Windows::Storage::Provider
         {
             try
             {
-                return py::convert(self->obj.GetStatus());
+                return py::convert(self->obj.GetStatusUI());
             }
             catch (...)
             {
@@ -3584,13 +3747,13 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static PyObject* IStorageProviderStatusSource_add_Changed(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusSource* self, PyObject* arg) noexcept
+    static PyObject* IStorageProviderStatusUISource_add_StatusUIChanged(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISource* self, PyObject* arg) noexcept
     {
         try
         {
-            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Storage::Provider::IStorageProviderStatusSource, winrt::Windows::Foundation::IInspectable>>(arg);
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Storage::Provider::IStorageProviderStatusUISource, winrt::Windows::Foundation::IInspectable>>(arg);
 
-            return py::convert(self->obj.Changed(param0));
+            return py::convert(self->obj.StatusUIChanged(param0));
         }
         catch (...)
         {
@@ -3599,13 +3762,13 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static PyObject* IStorageProviderStatusSource_remove_Changed(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusSource* self, PyObject* arg) noexcept
+    static PyObject* IStorageProviderStatusUISource_remove_StatusUIChanged(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISource* self, PyObject* arg) noexcept
     {
         try
         {
             auto param0 = py::convert_to<winrt::event_token>(arg);
 
-            self->obj.Changed(param0);
+            self->obj.StatusUIChanged(param0);
             Py_RETURN_NONE;
         }
         catch (...)
@@ -3615,12 +3778,12 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static PyObject* _from_IStorageProviderStatusSource(PyObject* /*unused*/, PyObject* arg) noexcept
+    static PyObject* _from_IStorageProviderStatusUISource(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
         {
             auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
-            return py::convert(return_value.as<winrt::Windows::Storage::Provider::IStorageProviderStatusSource>());
+            return py::convert(return_value.as<winrt::Windows::Storage::Provider::IStorageProviderStatusUISource>());
         }
         catch (...)
         {
@@ -3629,34 +3792,257 @@ namespace py::cpp::Windows::Storage::Provider
         }
     }
 
-    static PyMethodDef _methods_IStorageProviderStatusSource[] = {
-        { "get_status", reinterpret_cast<PyCFunction>(IStorageProviderStatusSource_GetStatus), METH_VARARGS, nullptr },
-        { "add_changed", reinterpret_cast<PyCFunction>(IStorageProviderStatusSource_add_Changed), METH_O, nullptr },
-        { "remove_changed", reinterpret_cast<PyCFunction>(IStorageProviderStatusSource_remove_Changed), METH_O, nullptr },
-        { "_from", reinterpret_cast<PyCFunction>(_from_IStorageProviderStatusSource), METH_O | METH_STATIC, nullptr },
+    static PyMethodDef _methods_IStorageProviderStatusUISource[] = {
+        { "get_status_u_i", reinterpret_cast<PyCFunction>(IStorageProviderStatusUISource_GetStatusUI), METH_VARARGS, nullptr },
+        { "add_status_u_i_changed", reinterpret_cast<PyCFunction>(IStorageProviderStatusUISource_add_StatusUIChanged), METH_O, nullptr },
+        { "remove_status_u_i_changed", reinterpret_cast<PyCFunction>(IStorageProviderStatusUISource_remove_StatusUIChanged), METH_O, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_IStorageProviderStatusUISource), METH_O | METH_STATIC, nullptr },
         { }
     };
 
-    static PyGetSetDef _getset_IStorageProviderStatusSource[] = {
+    static PyGetSetDef _getset_IStorageProviderStatusUISource[] = {
         { }
     };
 
-    static PyType_Slot _type_slots_IStorageProviderStatusSource[] = 
+    static PyType_Slot _type_slots_IStorageProviderStatusUISource[] = 
     {
-        { Py_tp_new, _new_IStorageProviderStatusSource },
-        { Py_tp_dealloc, _dealloc_IStorageProviderStatusSource },
-        { Py_tp_methods, _methods_IStorageProviderStatusSource },
-        { Py_tp_getset, _getset_IStorageProviderStatusSource },
+        { Py_tp_new, _new_IStorageProviderStatusUISource },
+        { Py_tp_dealloc, _dealloc_IStorageProviderStatusUISource },
+        { Py_tp_methods, _methods_IStorageProviderStatusUISource },
+        { Py_tp_getset, _getset_IStorageProviderStatusUISource },
         { },
     };
 
-    static PyType_Spec type_spec_IStorageProviderStatusSource =
+    static PyType_Spec type_spec_IStorageProviderStatusUISource =
     {
-        "_winsdk_Windows_Storage_Provider.IStorageProviderStatusSource",
-        sizeof(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusSource),
+        "_winsdk_Windows_Storage_Provider.IStorageProviderStatusUISource",
+        sizeof(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISource),
         0,
         Py_TPFLAGS_DEFAULT,
-        _type_slots_IStorageProviderStatusSource
+        _type_slots_IStorageProviderStatusUISource
+    };
+
+    // ----- IStorageProviderStatusUISourceFactory interface --------------------
+    constexpr const char* const type_name_IStorageProviderStatusUISourceFactory = "IStorageProviderStatusUISourceFactory";
+
+    static PyObject* _new_IStorageProviderStatusUISourceFactory(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IStorageProviderStatusUISourceFactory);
+        return nullptr;
+    }
+
+    static void _dealloc_IStorageProviderStatusUISourceFactory(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IStorageProviderStatusUISourceFactory_GetStatusUISource(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(self->obj.GetStatusUISource(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IStorageProviderStatusUISourceFactory(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IStorageProviderStatusUISourceFactory[] = {
+        { "get_status_u_i_source", reinterpret_cast<PyCFunction>(IStorageProviderStatusUISourceFactory_GetStatusUISource), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_IStorageProviderStatusUISourceFactory), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IStorageProviderStatusUISourceFactory[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_IStorageProviderStatusUISourceFactory[] = 
+    {
+        { Py_tp_new, _new_IStorageProviderStatusUISourceFactory },
+        { Py_tp_dealloc, _dealloc_IStorageProviderStatusUISourceFactory },
+        { Py_tp_methods, _methods_IStorageProviderStatusUISourceFactory },
+        { Py_tp_getset, _getset_IStorageProviderStatusUISourceFactory },
+        { },
+    };
+
+    static PyType_Spec type_spec_IStorageProviderStatusUISourceFactory =
+    {
+        "_winsdk_Windows_Storage_Provider.IStorageProviderStatusUISourceFactory",
+        sizeof(py::wrapper::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IStorageProviderStatusUISourceFactory
+    };
+
+    // ----- IStorageProviderUICommand interface --------------------
+    constexpr const char* const type_name_IStorageProviderUICommand = "IStorageProviderUICommand";
+
+    static PyObject* _new_IStorageProviderUICommand(PyTypeObject* /* unused */, PyObject* /* unused */, PyObject* /* unused */)
+    {
+        py::set_invalid_activation_error(type_name_IStorageProviderUICommand);
+        return nullptr;
+    }
+
+    static void _dealloc_IStorageProviderUICommand(py::wrapper::Windows::Storage::Provider::IStorageProviderUICommand* self)
+    {
+        auto tp = Py_TYPE(self);
+        self->obj = nullptr;
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* IStorageProviderUICommand_Invoke(py::wrapper::Windows::Storage::Provider::IStorageProviderUICommand* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            try
+            {
+                self->obj.Invoke();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* IStorageProviderUICommand_get_Description(py::wrapper::Windows::Storage::Provider::IStorageProviderUICommand* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Description());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IStorageProviderUICommand_get_Icon(py::wrapper::Windows::Storage::Provider::IStorageProviderUICommand* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Icon());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IStorageProviderUICommand_get_Label(py::wrapper::Windows::Storage::Provider::IStorageProviderUICommand* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.Label());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* IStorageProviderUICommand_get_State(py::wrapper::Windows::Storage::Provider::IStorageProviderUICommand* self, void* /*unused*/) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.State());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _from_IStorageProviderUICommand(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Storage::Provider::IStorageProviderUICommand>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_IStorageProviderUICommand[] = {
+        { "invoke", reinterpret_cast<PyCFunction>(IStorageProviderUICommand_Invoke), METH_VARARGS, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_IStorageProviderUICommand), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_IStorageProviderUICommand[] = {
+        { "description", reinterpret_cast<getter>(IStorageProviderUICommand_get_Description), nullptr, nullptr, nullptr },
+        { "icon", reinterpret_cast<getter>(IStorageProviderUICommand_get_Icon), nullptr, nullptr, nullptr },
+        { "label", reinterpret_cast<getter>(IStorageProviderUICommand_get_Label), nullptr, nullptr, nullptr },
+        { "state", reinterpret_cast<getter>(IStorageProviderUICommand_get_State), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_IStorageProviderUICommand[] = 
+    {
+        { Py_tp_new, _new_IStorageProviderUICommand },
+        { Py_tp_dealloc, _dealloc_IStorageProviderUICommand },
+        { Py_tp_methods, _methods_IStorageProviderUICommand },
+        { Py_tp_getset, _getset_IStorageProviderUICommand },
+        { },
+    };
+
+    static PyType_Spec type_spec_IStorageProviderUICommand =
+    {
+        "_winsdk_Windows_Storage_Provider.IStorageProviderUICommand",
+        sizeof(py::wrapper::Windows::Storage::Provider::IStorageProviderUICommand),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_IStorageProviderUICommand
     };
 
     // ----- IStorageProviderUriSource interface --------------------
@@ -3788,6 +4174,7 @@ namespace py::cpp::Windows::Storage::Provider
         {"_register_StorageProviderPopulationPolicy", register_StorageProviderPopulationPolicy, METH_O, "registers type"},
         {"_register_StorageProviderProtectionMode", register_StorageProviderProtectionMode, METH_O, "registers type"},
         {"_register_StorageProviderState", register_StorageProviderState, METH_O, "registers type"},
+        {"_register_StorageProviderUICommandState", register_StorageProviderUICommandState, METH_O, "registers type"},
         {"_register_StorageProviderUriSourceStatus", register_StorageProviderUriSourceStatus, METH_O, "registers type"},
         {"_register_UIStatus", register_UIStatus, METH_O, "registers type"},
         {"_register_WriteActivationMode", register_WriteActivationMode, METH_O, "registers type"},
@@ -3814,6 +4201,7 @@ namespace py::cpp::Windows::Storage::Provider
         Py_VISIT(state->type_StorageProviderPopulationPolicy);
         Py_VISIT(state->type_StorageProviderProtectionMode);
         Py_VISIT(state->type_StorageProviderState);
+        Py_VISIT(state->type_StorageProviderUICommandState);
         Py_VISIT(state->type_StorageProviderUriSourceStatus);
         Py_VISIT(state->type_UIStatus);
         Py_VISIT(state->type_WriteActivationMode);
@@ -3822,21 +4210,22 @@ namespace py::cpp::Windows::Storage::Provider
         Py_VISIT(state->type_FileUpdateRequest);
         Py_VISIT(state->type_FileUpdateRequestDeferral);
         Py_VISIT(state->type_FileUpdateRequestedEventArgs);
-        Py_VISIT(state->type_StorageProviderError);
-        Py_VISIT(state->type_StorageProviderErrorCommand);
         Py_VISIT(state->type_StorageProviderFileTypeInfo);
         Py_VISIT(state->type_StorageProviderGetContentInfoForPathResult);
         Py_VISIT(state->type_StorageProviderGetPathForContentUriResult);
         Py_VISIT(state->type_StorageProviderItemProperties);
         Py_VISIT(state->type_StorageProviderItemProperty);
         Py_VISIT(state->type_StorageProviderItemPropertyDefinition);
-        Py_VISIT(state->type_StorageProviderStatus);
+        Py_VISIT(state->type_StorageProviderMoreInfoUI);
+        Py_VISIT(state->type_StorageProviderQuotaUI);
+        Py_VISIT(state->type_StorageProviderStatusUI);
         Py_VISIT(state->type_StorageProviderSyncRootInfo);
         Py_VISIT(state->type_StorageProviderSyncRootManager);
-        Py_VISIT(state->type_IStorageProviderHandlerFactory);
         Py_VISIT(state->type_IStorageProviderItemPropertySource);
         Py_VISIT(state->type_IStorageProviderPropertyCapabilities);
-        Py_VISIT(state->type_IStorageProviderStatusSource);
+        Py_VISIT(state->type_IStorageProviderStatusUISource);
+        Py_VISIT(state->type_IStorageProviderStatusUISourceFactory);
+        Py_VISIT(state->type_IStorageProviderUICommand);
         Py_VISIT(state->type_IStorageProviderUriSource);
 
         return 0;
@@ -3862,6 +4251,7 @@ namespace py::cpp::Windows::Storage::Provider
         Py_CLEAR(state->type_StorageProviderPopulationPolicy);
         Py_CLEAR(state->type_StorageProviderProtectionMode);
         Py_CLEAR(state->type_StorageProviderState);
+        Py_CLEAR(state->type_StorageProviderUICommandState);
         Py_CLEAR(state->type_StorageProviderUriSourceStatus);
         Py_CLEAR(state->type_UIStatus);
         Py_CLEAR(state->type_WriteActivationMode);
@@ -3870,21 +4260,22 @@ namespace py::cpp::Windows::Storage::Provider
         Py_CLEAR(state->type_FileUpdateRequest);
         Py_CLEAR(state->type_FileUpdateRequestDeferral);
         Py_CLEAR(state->type_FileUpdateRequestedEventArgs);
-        Py_CLEAR(state->type_StorageProviderError);
-        Py_CLEAR(state->type_StorageProviderErrorCommand);
         Py_CLEAR(state->type_StorageProviderFileTypeInfo);
         Py_CLEAR(state->type_StorageProviderGetContentInfoForPathResult);
         Py_CLEAR(state->type_StorageProviderGetPathForContentUriResult);
         Py_CLEAR(state->type_StorageProviderItemProperties);
         Py_CLEAR(state->type_StorageProviderItemProperty);
         Py_CLEAR(state->type_StorageProviderItemPropertyDefinition);
-        Py_CLEAR(state->type_StorageProviderStatus);
+        Py_CLEAR(state->type_StorageProviderMoreInfoUI);
+        Py_CLEAR(state->type_StorageProviderQuotaUI);
+        Py_CLEAR(state->type_StorageProviderStatusUI);
         Py_CLEAR(state->type_StorageProviderSyncRootInfo);
         Py_CLEAR(state->type_StorageProviderSyncRootManager);
-        Py_CLEAR(state->type_IStorageProviderHandlerFactory);
         Py_CLEAR(state->type_IStorageProviderItemPropertySource);
         Py_CLEAR(state->type_IStorageProviderPropertyCapabilities);
-        Py_CLEAR(state->type_IStorageProviderStatusSource);
+        Py_CLEAR(state->type_IStorageProviderStatusUISource);
+        Py_CLEAR(state->type_IStorageProviderStatusUISourceFactory);
+        Py_CLEAR(state->type_IStorageProviderUICommand);
         Py_CLEAR(state->type_IStorageProviderUriSource);
 
         return 0;
@@ -4034,22 +4425,6 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Storage_Provider(void) noexcept
 
     Py_INCREF(state->type_FileUpdateRequestedEventArgs);
 
-    state->type_StorageProviderError = py::register_python_type(module.get(), type_name_StorageProviderError, &type_spec_StorageProviderError, bases.get());
-    if (!state->type_StorageProviderError)
-    {
-        return nullptr;
-    }
-
-    Py_INCREF(state->type_StorageProviderError);
-
-    state->type_StorageProviderErrorCommand = py::register_python_type(module.get(), type_name_StorageProviderErrorCommand, &type_spec_StorageProviderErrorCommand, bases.get());
-    if (!state->type_StorageProviderErrorCommand)
-    {
-        return nullptr;
-    }
-
-    Py_INCREF(state->type_StorageProviderErrorCommand);
-
     state->type_StorageProviderFileTypeInfo = py::register_python_type(module.get(), type_name_StorageProviderFileTypeInfo, &type_spec_StorageProviderFileTypeInfo, bases.get());
     if (!state->type_StorageProviderFileTypeInfo)
     {
@@ -4098,13 +4473,29 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Storage_Provider(void) noexcept
 
     Py_INCREF(state->type_StorageProviderItemPropertyDefinition);
 
-    state->type_StorageProviderStatus = py::register_python_type(module.get(), type_name_StorageProviderStatus, &type_spec_StorageProviderStatus, bases.get());
-    if (!state->type_StorageProviderStatus)
+    state->type_StorageProviderMoreInfoUI = py::register_python_type(module.get(), type_name_StorageProviderMoreInfoUI, &type_spec_StorageProviderMoreInfoUI, bases.get());
+    if (!state->type_StorageProviderMoreInfoUI)
     {
         return nullptr;
     }
 
-    Py_INCREF(state->type_StorageProviderStatus);
+    Py_INCREF(state->type_StorageProviderMoreInfoUI);
+
+    state->type_StorageProviderQuotaUI = py::register_python_type(module.get(), type_name_StorageProviderQuotaUI, &type_spec_StorageProviderQuotaUI, bases.get());
+    if (!state->type_StorageProviderQuotaUI)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_StorageProviderQuotaUI);
+
+    state->type_StorageProviderStatusUI = py::register_python_type(module.get(), type_name_StorageProviderStatusUI, &type_spec_StorageProviderStatusUI, bases.get());
+    if (!state->type_StorageProviderStatusUI)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_StorageProviderStatusUI);
 
     state->type_StorageProviderSyncRootInfo = py::register_python_type(module.get(), type_name_StorageProviderSyncRootInfo, &type_spec_StorageProviderSyncRootInfo, bases.get());
     if (!state->type_StorageProviderSyncRootInfo)
@@ -4122,14 +4513,6 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Storage_Provider(void) noexcept
 
     Py_INCREF(state->type_StorageProviderSyncRootManager);
 
-    state->type_IStorageProviderHandlerFactory = py::register_python_type(module.get(), type_name_IStorageProviderHandlerFactory, &type_spec_IStorageProviderHandlerFactory, bases.get());
-    if (!state->type_IStorageProviderHandlerFactory)
-    {
-        return nullptr;
-    }
-
-    Py_INCREF(state->type_IStorageProviderHandlerFactory);
-
     state->type_IStorageProviderItemPropertySource = py::register_python_type(module.get(), type_name_IStorageProviderItemPropertySource, &type_spec_IStorageProviderItemPropertySource, bases.get());
     if (!state->type_IStorageProviderItemPropertySource)
     {
@@ -4146,13 +4529,29 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Storage_Provider(void) noexcept
 
     Py_INCREF(state->type_IStorageProviderPropertyCapabilities);
 
-    state->type_IStorageProviderStatusSource = py::register_python_type(module.get(), type_name_IStorageProviderStatusSource, &type_spec_IStorageProviderStatusSource, bases.get());
-    if (!state->type_IStorageProviderStatusSource)
+    state->type_IStorageProviderStatusUISource = py::register_python_type(module.get(), type_name_IStorageProviderStatusUISource, &type_spec_IStorageProviderStatusUISource, bases.get());
+    if (!state->type_IStorageProviderStatusUISource)
     {
         return nullptr;
     }
 
-    Py_INCREF(state->type_IStorageProviderStatusSource);
+    Py_INCREF(state->type_IStorageProviderStatusUISource);
+
+    state->type_IStorageProviderStatusUISourceFactory = py::register_python_type(module.get(), type_name_IStorageProviderStatusUISourceFactory, &type_spec_IStorageProviderStatusUISourceFactory, bases.get());
+    if (!state->type_IStorageProviderStatusUISourceFactory)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IStorageProviderStatusUISourceFactory);
+
+    state->type_IStorageProviderUICommand = py::register_python_type(module.get(), type_name_IStorageProviderUICommand, &type_spec_IStorageProviderUICommand, bases.get());
+    if (!state->type_IStorageProviderUICommand)
+    {
+        return nullptr;
+    }
+
+    Py_INCREF(state->type_IStorageProviderUICommand);
 
     state->type_IStorageProviderUriSource = py::register_python_type(module.get(), type_name_IStorageProviderUriSource, &type_spec_IStorageProviderUriSource, bases.get());
     if (!state->type_IStorageProviderUriSource)
@@ -4419,6 +4818,29 @@ PyObject* py::py_type<winrt::Windows::Storage::Provider::StorageProviderState>::
     return python_type;
 }
 
+PyObject* py::py_type<winrt::Windows::Storage::Provider::StorageProviderUICommandState>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Storage::Provider;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_StorageProviderUICommandState;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::StorageProviderUICommandState is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyObject* py::py_type<winrt::Windows::Storage::Provider::StorageProviderUriSourceStatus>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Storage::Provider;
 
@@ -4603,52 +5025,6 @@ PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::FileUpdateReques
     return python_type;
 }
 
-PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderError>::get_python_type() noexcept {
-    using namespace py::cpp::Windows::Storage::Provider;
-
-    PyObject* module = PyState_FindModule(&module_def);
-
-    if (!module) {
-        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
-        return nullptr;
-    }
-
-    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
-    assert(state);
-
-    auto python_type = state->type_StorageProviderError;
-
-    if (!python_type) {
-        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::StorageProviderError is not registered");
-        return nullptr;
-    }
-
-    return python_type;
-}
-
-PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderErrorCommand>::get_python_type() noexcept {
-    using namespace py::cpp::Windows::Storage::Provider;
-
-    PyObject* module = PyState_FindModule(&module_def);
-
-    if (!module) {
-        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
-        return nullptr;
-    }
-
-    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
-    assert(state);
-
-    auto python_type = state->type_StorageProviderErrorCommand;
-
-    if (!python_type) {
-        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::StorageProviderErrorCommand is not registered");
-        return nullptr;
-    }
-
-    return python_type;
-}
-
 PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderFileTypeInfo>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Storage::Provider;
 
@@ -4787,7 +5163,7 @@ PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderI
     return python_type;
 }
 
-PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderStatus>::get_python_type() noexcept {
+PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderMoreInfoUI>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Storage::Provider;
 
     PyObject* module = PyState_FindModule(&module_def);
@@ -4800,10 +5176,56 @@ PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderS
     auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
     assert(state);
 
-    auto python_type = state->type_StorageProviderStatus;
+    auto python_type = state->type_StorageProviderMoreInfoUI;
 
     if (!python_type) {
-        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::StorageProviderStatus is not registered");
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::StorageProviderMoreInfoUI is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderQuotaUI>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Storage::Provider;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_StorageProviderQuotaUI;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::StorageProviderQuotaUI is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderStatusUI>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Storage::Provider;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_StorageProviderStatusUI;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::StorageProviderStatusUI is not registered");
         return nullptr;
     }
 
@@ -4856,29 +5278,6 @@ PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::StorageProviderS
     return python_type;
 }
 
-PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProviderHandlerFactory>::get_python_type() noexcept {
-    using namespace py::cpp::Windows::Storage::Provider;
-
-    PyObject* module = PyState_FindModule(&module_def);
-
-    if (!module) {
-        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
-        return nullptr;
-    }
-
-    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
-    assert(state);
-
-    auto python_type = state->type_IStorageProviderHandlerFactory;
-
-    if (!python_type) {
-        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::IStorageProviderHandlerFactory is not registered");
-        return nullptr;
-    }
-
-    return python_type;
-}
-
 PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProviderItemPropertySource>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Storage::Provider;
 
@@ -4925,7 +5324,7 @@ PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProvider
     return python_type;
 }
 
-PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProviderStatusSource>::get_python_type() noexcept {
+PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProviderStatusUISource>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Storage::Provider;
 
     PyObject* module = PyState_FindModule(&module_def);
@@ -4938,10 +5337,56 @@ PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProvider
     auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
     assert(state);
 
-    auto python_type = state->type_IStorageProviderStatusSource;
+    auto python_type = state->type_IStorageProviderStatusUISource;
 
     if (!python_type) {
-        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::IStorageProviderStatusSource is not registered");
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::IStorageProviderStatusUISource is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Storage::Provider;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IStorageProviderStatusUISourceFactory;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::IStorageProviderStatusUISourceFactory is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Storage::Provider::IStorageProviderUICommand>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Storage::Provider;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Storage::Provider");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_IStorageProviderUICommand;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Storage::Provider::IStorageProviderUICommand is not registered");
         return nullptr;
     }
 

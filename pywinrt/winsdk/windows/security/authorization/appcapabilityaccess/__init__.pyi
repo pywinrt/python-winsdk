@@ -23,6 +23,7 @@ Self = typing.TypeVar('Self')
 class AppCapability(_winrt.Object):
     capability_name: str
     user: typing.Optional[winsdk.windows.system.User]
+    display_message: str
     @staticmethod
     def _from(obj: _winrt.Object) -> AppCapability: ...
     def check_access(self) -> AppCapabilityAccessStatus: ...

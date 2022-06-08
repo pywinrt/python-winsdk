@@ -30,6 +30,11 @@ class DataUsageGranularity(enum.IntEnum):
     PER_DAY = 2
     TOTAL = 3
 
+class DomainAuthenticationKind(enum.IntEnum):
+    NONE = 0
+    LDAP = 1
+    TLS = 2
+
 class DomainConnectivityLevel(enum.IntEnum):
     NONE = 0
     UNAUTHENTICATED = 1
@@ -189,6 +194,7 @@ class ConnectionProfile(_winrt.Object):
     def get_network_usage_async(self, start_time: winsdk.windows.foundation.DateTime, end_time: winsdk.windows.foundation.DateTime, granularity: DataUsageGranularity, states: NetworkUsageStates) -> winsdk.windows.foundation.IAsyncOperation[winsdk.windows.foundation.collections.IVectorView[NetworkUsage]]: ...
     def get_provider_network_usage_async(self, start_time: winsdk.windows.foundation.DateTime, end_time: winsdk.windows.foundation.DateTime, states: NetworkUsageStates) -> winsdk.windows.foundation.IAsyncOperation[winsdk.windows.foundation.collections.IVectorView[ProviderNetworkUsage]]: ...
     def get_signal_bars(self) -> typing.Optional[typing.Optional[_winrt.UInt8]]: ...
+    def is_domain_authenticated_by(self, kind: DomainAuthenticationKind) -> _winrt.Boolean: ...
     def try_delete_async(self) -> winsdk.windows.foundation.IAsyncOperation[ConnectionProfileDeleteStatus]: ...
 
 class ConnectionProfileFilter(_winrt.Object):

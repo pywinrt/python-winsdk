@@ -73,6 +73,11 @@ class PackageContentGroupState(enum.IntEnum):
     STAGING = 2
     STAGED = 3
 
+class PackageRelationship(enum.IntEnum):
+    DEPENDENCIES = 0
+    DEPENDENTS = 1
+    ALL = 2
+
 class PackageSignatureKind(enum.IntEnum):
     NONE = 0
     DEVELOPER = 1
@@ -100,6 +105,7 @@ _ns_module._register_AppInstallerPolicySource(AppInstallerPolicySource)
 _ns_module._register_FullTrustLaunchResult(FullTrustLaunchResult)
 _ns_module._register_LimitedAccessFeatureStatus(LimitedAccessFeatureStatus)
 _ns_module._register_PackageContentGroupState(PackageContentGroupState)
+_ns_module._register_PackageRelationship(PackageRelationship)
 _ns_module._register_PackageSignatureKind(PackageSignatureKind)
 _ns_module._register_PackageUpdateAvailability(PackageUpdateAvailability)
 _ns_module._register_StartupTaskState(StartupTaskState)
@@ -113,6 +119,7 @@ AppInstance = _ns_module.AppInstance
 CameraApplicationManager = _ns_module.CameraApplicationManager
 DesignMode = _ns_module.DesignMode
 EnteredBackgroundEventArgs = _ns_module.EnteredBackgroundEventArgs
+FindRelatedPackagesOptions = _ns_module.FindRelatedPackagesOptions
 FullTrustProcessLaunchResult = _ns_module.FullTrustProcessLaunchResult
 FullTrustProcessLauncher = _ns_module.FullTrustProcessLauncher
 LeavingBackgroundEventArgs = _ns_module.LeavingBackgroundEventArgs
@@ -140,6 +147,7 @@ SuspendingEventArgs = _ns_module.SuspendingEventArgs
 SuspendingOperation = _ns_module.SuspendingOperation
 IEnteredBackgroundEventArgs = _ns_module.IEnteredBackgroundEventArgs
 ILeavingBackgroundEventArgs = _ns_module.ILeavingBackgroundEventArgs
+IPackageCatalogStatics2 = _ns_module.IPackageCatalogStatics2
 ISuspendingDeferral = _ns_module.ISuspendingDeferral
 ISuspendingEventArgs = _ns_module.ISuspendingEventArgs
 ISuspendingOperation = _ns_module.ISuspendingOperation

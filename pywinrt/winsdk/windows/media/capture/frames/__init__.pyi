@@ -196,6 +196,7 @@ class MediaFrameSourceInfo(_winrt.Object):
     source_kind: MediaFrameSourceKind
     profile_id: str
     video_profile_media_description: typing.Optional[winsdk.windows.foundation.collections.IVectorView[winsdk.windows.media.capture.MediaCaptureVideoProfileMediaDescription]]
+    is_shareable: _winrt.Boolean
     @staticmethod
     def _from(obj: _winrt.Object) -> MediaFrameSourceInfo: ...
     def get_relative_panel(self, display_region: typing.Optional[winsdk.windows.ui.windowmanagement.DisplayRegion]) -> winsdk.windows.devices.enumeration.Panel: ...

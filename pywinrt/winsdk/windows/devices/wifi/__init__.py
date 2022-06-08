@@ -51,6 +51,39 @@ class WiFiNetworkKind(enum.IntEnum):
     INFRASTRUCTURE = 1
     ADHOC = 2
 
+class WiFiOnDemandHotspotAvailability(enum.IntEnum):
+    AVAILABLE = 0
+    UNAVAILABLE = 1
+
+class WiFiOnDemandHotspotCellularBars(enum.IntEnum):
+    ZERO_BARS = 0
+    ONE_BAR = 1
+    TWO_BARS = 2
+    THREE_BARS = 3
+    FOUR_BARS = 4
+    FIVE_BARS = 5
+
+class WiFiOnDemandHotspotConnectStatus(enum.IntEnum):
+    UNSPECIFIED_FAILURE = 0
+    SUCCESS = 1
+    APP_TIMED_OUT = 2
+    INVALID_CREDENTIAL = 3
+    NETWORK_NOT_AVAILABLE = 4
+    UNSUPPORTED_AUTHENTICATION_PROTOCOL = 5
+    BLUETOOTH_CONNECT_FAILED = 6
+    BLUETOOTH_TRANSMISSION_ERROR = 7
+    OPERATION_CANCELED_BY_USER = 8
+    ENTITLEMENT_CHECK_FAILED = 9
+    NO_CELLULAR_SIGNAL = 10
+    CELLULAR_DATA_TURNED_OFF = 11
+    WLAN_CONNECT_FAILED = 12
+    WLAN_NOT_VISIBLE = 13
+    ACCESS_POINT_CANNOT_CONNECT = 14
+    CELLULAR_CONNECT_TIMED_OUT = 15
+    ROAMING_NOT_ALLOWED = 16
+    PAIRING_REQUIRED = 17
+    DATA_LIMIT_REACHED = 18
+
 class WiFiPhyKind(enum.IntEnum):
     UNKNOWN = 0
     FHSS = 1
@@ -63,6 +96,7 @@ class WiFiPhyKind(enum.IntEnum):
     VHT = 8
     DMG = 9
     H_E = 10
+    EHT = 11
 
 class WiFiReconnectionKind(enum.IntEnum):
     AUTOMATIC = 0
@@ -85,6 +119,9 @@ _ns_module._register_WiFiAccessStatus(WiFiAccessStatus)
 _ns_module._register_WiFiConnectionMethod(WiFiConnectionMethod)
 _ns_module._register_WiFiConnectionStatus(WiFiConnectionStatus)
 _ns_module._register_WiFiNetworkKind(WiFiNetworkKind)
+_ns_module._register_WiFiOnDemandHotspotAvailability(WiFiOnDemandHotspotAvailability)
+_ns_module._register_WiFiOnDemandHotspotCellularBars(WiFiOnDemandHotspotCellularBars)
+_ns_module._register_WiFiOnDemandHotspotConnectStatus(WiFiOnDemandHotspotConnectStatus)
 _ns_module._register_WiFiPhyKind(WiFiPhyKind)
 _ns_module._register_WiFiReconnectionKind(WiFiReconnectionKind)
 _ns_module._register_WiFiWpsConfigurationStatus(WiFiWpsConfigurationStatus)
@@ -94,4 +131,8 @@ WiFiAdapter = _ns_module.WiFiAdapter
 WiFiAvailableNetwork = _ns_module.WiFiAvailableNetwork
 WiFiConnectionResult = _ns_module.WiFiConnectionResult
 WiFiNetworkReport = _ns_module.WiFiNetworkReport
+WiFiOnDemandHotspotConnectTriggerDetails = _ns_module.WiFiOnDemandHotspotConnectTriggerDetails
+WiFiOnDemandHotspotConnectionResult = _ns_module.WiFiOnDemandHotspotConnectionResult
+WiFiOnDemandHotspotNetwork = _ns_module.WiFiOnDemandHotspotNetwork
+WiFiOnDemandHotspotNetworkProperties = _ns_module.WiFiOnDemandHotspotNetworkProperties
 WiFiWpsConfigurationResult = _ns_module.WiFiWpsConfigurationResult

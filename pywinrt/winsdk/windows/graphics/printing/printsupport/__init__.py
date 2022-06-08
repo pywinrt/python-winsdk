@@ -32,12 +32,22 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.foundation.collections
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.graphics.printing.printticket
 except ImportError:
     pass
 
 try:
     import winsdk.windows.system
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.ui.shell
 except ImportError:
     pass
 
@@ -56,7 +66,10 @@ _ns_module._register_WorkflowPrintTicketValidationStatus(WorkflowPrintTicketVali
 PrintSupportExtensionSession = _ns_module.PrintSupportExtensionSession
 PrintSupportExtensionTriggerDetails = _ns_module.PrintSupportExtensionTriggerDetails
 PrintSupportPrintDeviceCapabilitiesChangedEventArgs = _ns_module.PrintSupportPrintDeviceCapabilitiesChangedEventArgs
+PrintSupportPrintDeviceCapabilitiesUpdatePolicy = _ns_module.PrintSupportPrintDeviceCapabilitiesUpdatePolicy
+PrintSupportPrintTicketElement = _ns_module.PrintSupportPrintTicketElement
 PrintSupportPrintTicketValidationRequestedEventArgs = _ns_module.PrintSupportPrintTicketValidationRequestedEventArgs
+PrintSupportPrinterSelectedEventArgs = _ns_module.PrintSupportPrinterSelectedEventArgs
 PrintSupportSessionInfo = _ns_module.PrintSupportSessionInfo
 PrintSupportSettingsActivatedEventArgs = _ns_module.PrintSupportSettingsActivatedEventArgs
 PrintSupportSettingsUISession = _ns_module.PrintSupportSettingsUISession

@@ -52,7 +52,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::Connectivity
         ConnectionCost(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::Connectivity::IConnectionCost(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ConnectionProfile : winrt::Windows::Networking::Connectivity::IConnectionProfile,
-        impl::require<ConnectionProfile, winrt::Windows::Networking::Connectivity::IConnectionProfile2, winrt::Windows::Networking::Connectivity::IConnectionProfile3, winrt::Windows::Networking::Connectivity::IConnectionProfile4, winrt::Windows::Networking::Connectivity::IConnectionProfile5>
+        impl::require<ConnectionProfile, winrt::Windows::Networking::Connectivity::IConnectionProfile2, winrt::Windows::Networking::Connectivity::IConnectionProfile3, winrt::Windows::Networking::Connectivity::IConnectionProfile4, winrt::Windows::Networking::Connectivity::IConnectionProfile5, winrt::Windows::Networking::Connectivity::IConnectionProfile6>
     {
         ConnectionProfile(std::nullptr_t) noexcept {}
         ConnectionProfile(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::Connectivity::IConnectionProfile(ptr, take_ownership_from_abi) {}

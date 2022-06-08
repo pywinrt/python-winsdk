@@ -8,6 +8,8 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
 {
     struct module_state
     {
+        PyObject* type_PdlConversionHostBasedProcessingOperations;
+        PyObject* type_PrintWorkflowAttributesMergePolicy;
         PyObject* type_PrintWorkflowJobAbortReason;
         PyObject* type_PrintWorkflowPdlConversionType;
         PyObject* type_PrintWorkflowPrinterJobStatus;
@@ -44,6 +46,54 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
         PyTypeObject* type_PrintWorkflowUILauncher;
         PyTypeObject* type_PrintWorkflowXpsDataAvailableEventArgs;
     };
+
+    static PyObject* register_PdlConversionHostBasedProcessingOperations(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_PdlConversionHostBasedProcessingOperations)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_PdlConversionHostBasedProcessingOperations = type;
+        Py_INCREF(state->type_PdlConversionHostBasedProcessingOperations);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_PrintWorkflowAttributesMergePolicy(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_PrintWorkflowAttributesMergePolicy)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_PrintWorkflowAttributesMergePolicy = type;
+        Py_INCREF(state->type_PrintWorkflowAttributesMergePolicy);
+
+
+        Py_RETURN_NONE;
+    }
 
     static PyObject* register_PrintWorkflowJobAbortReason(PyObject* module, PyObject* type)
     {
@@ -1856,6 +1906,23 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
                 return nullptr;
             }
         }
+        else if (arg_count == 4)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Graphics::Printing::PrintTicket::WorkflowPrintTicket>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::Storage::Streams::IInputStream>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Storage::Streams::IOutputStream>(args, 2);
+                auto param3 = py::convert_to<winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations>(args, 3);
+
+                return py::convert(self->obj.ConvertPdlAsync(param0, param1, param2, param3));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
         else
         {
             py::set_invalid_arg_count_error(arg_count);
@@ -2090,6 +2157,24 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
                 return nullptr;
             }
         }
+        else if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Foundation::Collections::IKeyValuePair<winrt::hstring, winrt::Windows::Devices::Printers::IppAttributeValue>>>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Foundation::Collections::IKeyValuePair<winrt::hstring, winrt::Windows::Devices::Printers::IppAttributeValue>>>(args, 2);
+                auto param3 = py::convert_to<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy>(args, 3);
+                auto param4 = py::convert_to<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy>(args, 4);
+
+                return py::convert(self->obj.CreateJobOnPrinterWithAttributes(param0, param1, param2, param3, param4));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
         else
         {
             py::set_invalid_arg_count_error(arg_count);
@@ -2109,6 +2194,24 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
                 auto param1 = py::convert_to<winrt::hstring>(args, 1);
 
                 return py::convert(self->obj.CreateJobOnPrinterWithAttributesBuffer(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 5)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IBuffer>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Storage::Streams::IBuffer>(args, 2);
+                auto param3 = py::convert_to<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy>(args, 3);
+                auto param4 = py::convert_to<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy>(args, 4);
+
+                return py::convert(self->obj.CreateJobOnPrinterWithAttributesBuffer(param0, param1, param2, param3, param4));
             }
             catch (...)
             {
@@ -3761,6 +3864,8 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
     PyDoc_STRVAR(module_doc, "Windows::Graphics::Printing::Workflow");
 
     static PyMethodDef module_methods[] = {
+        {"_register_PdlConversionHostBasedProcessingOperations", register_PdlConversionHostBasedProcessingOperations, METH_O, "registers type"},
+        {"_register_PrintWorkflowAttributesMergePolicy", register_PrintWorkflowAttributesMergePolicy, METH_O, "registers type"},
         {"_register_PrintWorkflowJobAbortReason", register_PrintWorkflowJobAbortReason, METH_O, "registers type"},
         {"_register_PrintWorkflowPdlConversionType", register_PrintWorkflowPdlConversionType, METH_O, "registers type"},
         {"_register_PrintWorkflowPrinterJobStatus", register_PrintWorkflowPrinterJobStatus, METH_O, "registers type"},
@@ -3779,6 +3884,8 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
             return 0;
         }
 
+        Py_VISIT(state->type_PdlConversionHostBasedProcessingOperations);
+        Py_VISIT(state->type_PrintWorkflowAttributesMergePolicy);
         Py_VISIT(state->type_PrintWorkflowJobAbortReason);
         Py_VISIT(state->type_PrintWorkflowPdlConversionType);
         Py_VISIT(state->type_PrintWorkflowPrinterJobStatus);
@@ -3827,6 +3934,8 @@ namespace py::cpp::Windows::Graphics::Printing::Workflow
             return 0;
         }
 
+        Py_CLEAR(state->type_PdlConversionHostBasedProcessingOperations);
+        Py_CLEAR(state->type_PrintWorkflowAttributesMergePolicy);
         Py_CLEAR(state->type_PrintWorkflowJobAbortReason);
         Py_CLEAR(state->type_PrintWorkflowPdlConversionType);
         Py_CLEAR(state->type_PrintWorkflowPrinterJobStatus);
@@ -4204,6 +4313,52 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Graphics_Printing_Workflow(void) noexcept
 
 
     return module.detach();
+}
+
+PyObject* py::py_type<winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Graphics::Printing::Workflow;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Graphics::Printing::Workflow");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PdlConversionHostBasedProcessingOperations;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Graphics::Printing::Workflow;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Graphics::Printing::Workflow");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_PrintWorkflowAttributesMergePolicy;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy is not registered");
+        return nullptr;
+    }
+
+    return python_type;
 }
 
 PyObject* py::py_type<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowJobAbortReason>::get_python_type() noexcept {

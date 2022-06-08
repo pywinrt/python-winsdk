@@ -30,6 +30,16 @@ class ActivityType(enum.IntEnum):
     IN_VEHICLE = 6
     BIKING = 7
 
+class HumanEngagement(enum.IntEnum):
+    UNKNOWN = 0
+    ENGAGED = 1
+    UNENGAGED = 2
+
+class HumanPresence(enum.IntEnum):
+    UNKNOWN = 0
+    PRESENT = 1
+    NOT_PRESENT = 2
+
 class MagnetometerAccuracy(enum.IntEnum):
     UNKNOWN = 0
     UNRELIABLE = 1
@@ -350,6 +360,73 @@ class HingeAngleSensorReadingChangedEventArgs(_winrt.Object):
     reading: typing.Optional[HingeAngleReading]
     @staticmethod
     def _from(obj: _winrt.Object) -> HingeAngleSensorReadingChangedEventArgs: ...
+
+class HumanPresenceFeatures(_winrt.Object):
+    is_attention_aware_dimming_supported: _winrt.Boolean
+    is_lock_on_leave_supported: _winrt.Boolean
+    is_wake_on_approach_supported: _winrt.Boolean
+    sensor_id: str
+    supported_wake_or_lock_distances_in_millimeters: typing.Optional[winsdk.windows.foundation.collections.IVectorView[_winrt.UInt32]]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> HumanPresenceFeatures: ...
+
+class HumanPresenceSensor(_winrt.Object):
+    device_id: str
+    max_detectable_distance_in_millimeters: typing.Optional[typing.Optional[_winrt.UInt32]]
+    min_detectable_distance_in_millimeters: typing.Optional[typing.Optional[_winrt.UInt32]]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> HumanPresenceSensor: ...
+    @staticmethod
+    def from_id_async(sensor_id: str) -> winsdk.windows.foundation.IAsyncOperation[HumanPresenceSensor]: ...
+    def get_current_reading(self) -> typing.Optional[HumanPresenceSensorReading]: ...
+    @staticmethod
+    def get_default_async() -> winsdk.windows.foundation.IAsyncOperation[HumanPresenceSensor]: ...
+    @staticmethod
+    def get_device_selector() -> str: ...
+    def add_reading_changed(self, handler: winsdk.windows.foundation.TypedEventHandler[HumanPresenceSensor, HumanPresenceSensorReadingChangedEventArgs]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    def remove_reading_changed(self, token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
+
+class HumanPresenceSensorReading(_winrt.Object):
+    distance_in_millimeters: typing.Optional[typing.Optional[_winrt.UInt32]]
+    engagement: HumanEngagement
+    presence: HumanPresence
+    timestamp: winsdk.windows.foundation.DateTime
+    @staticmethod
+    def _from(obj: _winrt.Object) -> HumanPresenceSensorReading: ...
+
+class HumanPresenceSensorReadingChangedEventArgs(_winrt.Object):
+    reading: typing.Optional[HumanPresenceSensorReading]
+    @staticmethod
+    def _from(obj: _winrt.Object) -> HumanPresenceSensorReadingChangedEventArgs: ...
+
+class HumanPresenceSettings(_winrt.Object):
+    wake_on_approach_distance_in_millimeters: typing.Optional[typing.Optional[_winrt.UInt32]]
+    sensor_id: str
+    lock_on_leave_timeout: winsdk.windows.foundation.TimeSpan
+    lock_on_leave_distance_in_millimeters: typing.Optional[typing.Optional[_winrt.UInt32]]
+    is_wake_on_approach_enabled: _winrt.Boolean
+    is_lock_on_leave_enabled: _winrt.Boolean
+    is_attention_aware_dimming_enabled: _winrt.Boolean
+    @staticmethod
+    def _from(obj: _winrt.Object) -> HumanPresenceSettings: ...
+    @staticmethod
+    def get_current_settings() -> typing.Optional[HumanPresenceSettings]: ...
+    @staticmethod
+    def get_current_settings_async() -> winsdk.windows.foundation.IAsyncOperation[HumanPresenceSettings]: ...
+    @staticmethod
+    def get_supported_features_for_sensor_id(sensor_id: str) -> typing.Optional[HumanPresenceFeatures]: ...
+    @staticmethod
+    def get_supported_features_for_sensor_id_async(sensor_id: str) -> winsdk.windows.foundation.IAsyncOperation[HumanPresenceFeatures]: ...
+    @staticmethod
+    def get_supported_lock_on_leave_timeouts() -> typing.Optional[winsdk.windows.foundation.collections.IVectorView[winsdk.windows.foundation.TimeSpan]]: ...
+    @staticmethod
+    def update_settings(settings: typing.Optional[HumanPresenceSettings]) -> None: ...
+    @staticmethod
+    def update_settings_async(settings: typing.Optional[HumanPresenceSettings]) -> typing.Optional[winsdk.windows.foundation.IAsyncAction]: ...
+    @staticmethod
+    def add_settings_changed(handler: winsdk.windows.foundation.EventHandler[_winrt.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    @staticmethod
+    def remove_settings_changed(token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 
 class Inclinometer(_winrt.Object):
     report_interval: _winrt.UInt32

@@ -236,7 +236,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Notifications
         static auto GetDefault();
     };
     struct __declspec(empty_bases) ToastNotificationManagerForUser : winrt::Windows::UI::Notifications::IToastNotificationManagerForUser,
-        impl::require<ToastNotificationManagerForUser, winrt::Windows::UI::Notifications::IToastNotificationManagerForUser2>
+        impl::require<ToastNotificationManagerForUser, winrt::Windows::UI::Notifications::IToastNotificationManagerForUser2, winrt::Windows::UI::Notifications::IToastNotificationManagerForUser3>
     {
         ToastNotificationManagerForUser(std::nullptr_t) noexcept {}
         ToastNotificationManagerForUser(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Notifications::IToastNotificationManagerForUser(ptr, take_ownership_from_abi) {}

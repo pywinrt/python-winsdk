@@ -40,6 +40,16 @@ class ActivityType(enum.IntEnum):
     IN_VEHICLE = 6
     BIKING = 7
 
+class HumanEngagement(enum.IntEnum):
+    UNKNOWN = 0
+    ENGAGED = 1
+    UNENGAGED = 2
+
+class HumanPresence(enum.IntEnum):
+    UNKNOWN = 0
+    PRESENT = 1
+    NOT_PRESENT = 2
+
 class MagnetometerAccuracy(enum.IntEnum):
     UNKNOWN = 0
     UNRELIABLE = 1
@@ -86,6 +96,8 @@ class SimpleOrientation(enum.IntEnum):
 _ns_module._register_AccelerometerReadingType(AccelerometerReadingType)
 _ns_module._register_ActivitySensorReadingConfidence(ActivitySensorReadingConfidence)
 _ns_module._register_ActivityType(ActivityType)
+_ns_module._register_HumanEngagement(HumanEngagement)
+_ns_module._register_HumanPresence(HumanPresence)
 _ns_module._register_MagnetometerAccuracy(MagnetometerAccuracy)
 _ns_module._register_PedometerStepKind(PedometerStepKind)
 _ns_module._register_SensorOptimizationGoal(SensorOptimizationGoal)
@@ -121,6 +133,11 @@ GyrometerReadingChangedEventArgs = _ns_module.GyrometerReadingChangedEventArgs
 HingeAngleReading = _ns_module.HingeAngleReading
 HingeAngleSensor = _ns_module.HingeAngleSensor
 HingeAngleSensorReadingChangedEventArgs = _ns_module.HingeAngleSensorReadingChangedEventArgs
+HumanPresenceFeatures = _ns_module.HumanPresenceFeatures
+HumanPresenceSensor = _ns_module.HumanPresenceSensor
+HumanPresenceSensorReading = _ns_module.HumanPresenceSensorReading
+HumanPresenceSensorReadingChangedEventArgs = _ns_module.HumanPresenceSensorReadingChangedEventArgs
+HumanPresenceSettings = _ns_module.HumanPresenceSettings
 Inclinometer = _ns_module.Inclinometer
 InclinometerDataThreshold = _ns_module.InclinometerDataThreshold
 InclinometerReading = _ns_module.InclinometerReading

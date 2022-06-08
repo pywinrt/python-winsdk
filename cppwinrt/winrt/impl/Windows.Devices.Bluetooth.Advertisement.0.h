@@ -263,7 +263,7 @@ namespace winrt::impl
             virtual int32_t __stdcall get_ShortenedLocalName(uint8_t*) noexcept = 0;
             virtual int32_t __stdcall get_CompleteLocalName(uint8_t*) noexcept = 0;
             virtual int32_t __stdcall get_TxPowerLevel(uint8_t*) noexcept = 0;
-            virtual int32_t __stdcall get_SlaveConnectionIntervalRange(uint8_t*) noexcept = 0;
+            virtual int32_t __stdcall get_PeripheralConnectionIntervalRange(uint8_t*) noexcept = 0;
             virtual int32_t __stdcall get_ServiceSolicitation16BitUuids(uint8_t*) noexcept = 0;
             virtual int32_t __stdcall get_ServiceSolicitation32BitUuids(uint8_t*) noexcept = 0;
             virtual int32_t __stdcall get_ServiceSolicitation128BitUuids(uint8_t*) noexcept = 0;
@@ -494,7 +494,7 @@ namespace winrt::impl
         [[nodiscard]] auto ShortenedLocalName() const;
         [[nodiscard]] auto CompleteLocalName() const;
         [[nodiscard]] auto TxPowerLevel() const;
-        [[nodiscard]] auto SlaveConnectionIntervalRange() const;
+        [[nodiscard]] auto PeripheralConnectionIntervalRange() const;
         [[nodiscard]] auto ServiceSolicitation16BitUuids() const;
         [[nodiscard]] auto ServiceSolicitation32BitUuids() const;
         [[nodiscard]] auto ServiceSolicitation128BitUuids() const;

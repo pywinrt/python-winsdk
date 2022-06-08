@@ -79,6 +79,10 @@ class HandPreference(enum.IntEnum):
     LEFT_HANDED = 0
     RIGHT_HANDED = 1
 
+class ScreenCaptureDisabledBehavior(enum.IntEnum):
+    DRAW_AS_BLACK = 0
+    EXCLUDE_FROM_CAPTURE = 1
+
 class UIColorType(enum.IntEnum):
     BACKGROUND = 0
     FOREGROUND = 1
@@ -140,6 +144,7 @@ _ns_module._register_ApplicationViewSwitchingOptions(ApplicationViewSwitchingOpt
 _ns_module._register_ApplicationViewWindowingMode(ApplicationViewWindowingMode)
 _ns_module._register_FullScreenSystemOverlayMode(FullScreenSystemOverlayMode)
 _ns_module._register_HandPreference(HandPreference)
+_ns_module._register_ScreenCaptureDisabledBehavior(ScreenCaptureDisabledBehavior)
 _ns_module._register_UIColorType(UIColorType)
 _ns_module._register_UIElementType(UIElementType)
 _ns_module._register_UserInteractionMode(UserInteractionMode)

@@ -91,6 +91,15 @@ WINRT_EXPORT namespace winrt::Windows::System::Profile
         [[nodiscard]] static auto IsEnabled();
         [[nodiscard]] static auto ShouldAvoidLocalStorage();
     };
+    struct SmartAppControlPolicy
+    {
+        SmartAppControlPolicy() = delete;
+        [[nodiscard]] static auto IsEnabled();
+        static auto Changed(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        using Changed_revoker = impl::factory_event_revoker<winrt::Windows::System::Profile::ISmartAppControlPolicyStatics, &impl::abi_t<winrt::Windows::System::Profile::ISmartAppControlPolicyStatics>::remove_Changed>;
+        [[nodiscard]] static auto Changed(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler);
+        static auto Changed(winrt::event_token const& token);
+    };
     struct SystemIdentification
     {
         SystemIdentification() = delete;

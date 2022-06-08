@@ -17,6 +17,11 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.graphics.printing
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.storage.streams
 except ImportError:
     pass
@@ -55,9 +60,14 @@ class IppResolutionUnit(enum.IntEnum):
     DOTS_PER_INCH = 0
     DOTS_PER_CENTIMETER = 1
 
+class PageConfigurationSource(enum.IntEnum):
+    PRINT_JOB_CONFIGURATION = 0
+    PDL_CONTENT = 1
+
 _ns_module._register_IppAttributeErrorReason(IppAttributeErrorReason)
 _ns_module._register_IppAttributeValueKind(IppAttributeValueKind)
 _ns_module._register_IppResolutionUnit(IppResolutionUnit)
+_ns_module._register_PageConfigurationSource(PageConfigurationSource)
 
 IppAttributeError = _ns_module.IppAttributeError
 IppAttributeValue = _ns_module.IppAttributeValue
@@ -66,5 +76,8 @@ IppPrintDevice = _ns_module.IppPrintDevice
 IppResolution = _ns_module.IppResolution
 IppSetAttributesResult = _ns_module.IppSetAttributesResult
 IppTextWithLanguage = _ns_module.IppTextWithLanguage
+PageConfigurationSettings = _ns_module.PageConfigurationSettings
+PdlPassthroughProvider = _ns_module.PdlPassthroughProvider
+PdlPassthroughTarget = _ns_module.PdlPassthroughTarget
 Print3DDevice = _ns_module.Print3DDevice
 PrintSchema = _ns_module.PrintSchema

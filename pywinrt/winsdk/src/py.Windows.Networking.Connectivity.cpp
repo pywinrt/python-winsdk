@@ -40,6 +40,7 @@ namespace py::cpp::Windows::Networking::Connectivity
         PyObject* type_CellularApnAuthenticationType;
         PyObject* type_ConnectionProfileDeleteStatus;
         PyObject* type_DataUsageGranularity;
+        PyObject* type_DomainAuthenticationKind;
         PyObject* type_DomainConnectivityLevel;
         PyObject* type_NetworkAuthenticationType;
         PyObject* type_NetworkConnectivityLevel;
@@ -146,6 +147,30 @@ namespace py::cpp::Windows::Networking::Connectivity
 
         state->type_DataUsageGranularity = type;
         Py_INCREF(state->type_DataUsageGranularity);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_DomainAuthenticationKind(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_DomainAuthenticationKind)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_DomainAuthenticationKind = type;
+        Py_INCREF(state->type_DomainAuthenticationKind);
 
 
         Py_RETURN_NONE;
@@ -1310,6 +1335,31 @@ namespace py::cpp::Windows::Networking::Connectivity
         }
     }
 
+    static PyObject* ConnectionProfile_IsDomainAuthenticatedBy(py::wrapper::Windows::Networking::Connectivity::ConnectionProfile* self, PyObject* args) noexcept
+    {
+        Py_ssize_t arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Networking::Connectivity::DomainAuthenticationKind>(args, 0);
+
+                return py::convert(self->obj.IsDomainAuthenticatedBy(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* ConnectionProfile_TryDeleteAsync(py::wrapper::Windows::Networking::Connectivity::ConnectionProfile* self, PyObject* args) noexcept
     {
         Py_ssize_t arg_count = PyTuple_Size(args);
@@ -1476,6 +1526,7 @@ namespace py::cpp::Windows::Networking::Connectivity
         { "get_network_usage_async", reinterpret_cast<PyCFunction>(ConnectionProfile_GetNetworkUsageAsync), METH_VARARGS, nullptr },
         { "get_provider_network_usage_async", reinterpret_cast<PyCFunction>(ConnectionProfile_GetProviderNetworkUsageAsync), METH_VARARGS, nullptr },
         { "get_signal_bars", reinterpret_cast<PyCFunction>(ConnectionProfile_GetSignalBars), METH_VARARGS, nullptr },
+        { "is_domain_authenticated_by", reinterpret_cast<PyCFunction>(ConnectionProfile_IsDomainAuthenticatedBy), METH_VARARGS, nullptr },
         { "try_delete_async", reinterpret_cast<PyCFunction>(ConnectionProfile_TryDeleteAsync), METH_VARARGS, nullptr },
         { "_from", reinterpret_cast<PyCFunction>(_from_ConnectionProfile), METH_O | METH_STATIC, nullptr },
         { }
@@ -4399,6 +4450,7 @@ namespace py::cpp::Windows::Networking::Connectivity
         {"_register_CellularApnAuthenticationType", register_CellularApnAuthenticationType, METH_O, "registers type"},
         {"_register_ConnectionProfileDeleteStatus", register_ConnectionProfileDeleteStatus, METH_O, "registers type"},
         {"_register_DataUsageGranularity", register_DataUsageGranularity, METH_O, "registers type"},
+        {"_register_DomainAuthenticationKind", register_DomainAuthenticationKind, METH_O, "registers type"},
         {"_register_DomainConnectivityLevel", register_DomainConnectivityLevel, METH_O, "registers type"},
         {"_register_NetworkAuthenticationType", register_NetworkAuthenticationType, METH_O, "registers type"},
         {"_register_NetworkConnectivityLevel", register_NetworkConnectivityLevel, METH_O, "registers type"},
@@ -4425,6 +4477,7 @@ namespace py::cpp::Windows::Networking::Connectivity
         Py_VISIT(state->type_CellularApnAuthenticationType);
         Py_VISIT(state->type_ConnectionProfileDeleteStatus);
         Py_VISIT(state->type_DataUsageGranularity);
+        Py_VISIT(state->type_DomainAuthenticationKind);
         Py_VISIT(state->type_DomainConnectivityLevel);
         Py_VISIT(state->type_NetworkAuthenticationType);
         Py_VISIT(state->type_NetworkConnectivityLevel);
@@ -4478,6 +4531,7 @@ namespace py::cpp::Windows::Networking::Connectivity
         Py_CLEAR(state->type_CellularApnAuthenticationType);
         Py_CLEAR(state->type_ConnectionProfileDeleteStatus);
         Py_CLEAR(state->type_DataUsageGranularity);
+        Py_CLEAR(state->type_DomainAuthenticationKind);
         Py_CLEAR(state->type_DomainConnectivityLevel);
         Py_CLEAR(state->type_NetworkAuthenticationType);
         Py_CLEAR(state->type_NetworkConnectivityLevel);
@@ -4898,6 +4952,29 @@ PyObject* py::py_type<winrt::Windows::Networking::Connectivity::DataUsageGranula
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Networking::Connectivity::DataUsageGranularity is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Networking::Connectivity::DomainAuthenticationKind>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Networking::Connectivity;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Networking::Connectivity");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_DomainAuthenticationKind;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Networking::Connectivity::DomainAuthenticationKind is not registered");
         return nullptr;
     }
 

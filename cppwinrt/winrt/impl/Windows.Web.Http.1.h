@@ -28,6 +28,13 @@ WINRT_EXPORT namespace winrt::Windows::Web::Http
         IHttpClient2(std::nullptr_t = nullptr) noexcept {}
         IHttpClient2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IHttpClient3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHttpClient3>
+    {
+        IHttpClient3(std::nullptr_t = nullptr) noexcept {}
+        IHttpClient3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IHttpClientFactory :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IHttpClientFactory>
@@ -147,6 +154,13 @@ WINRT_EXPORT namespace winrt::Windows::Web::Http
     {
         IHttpRequestMessage(std::nullptr_t = nullptr) noexcept {}
         IHttpRequestMessage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHttpRequestMessage2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHttpRequestMessage2>
+    {
+        IHttpRequestMessage2(std::nullptr_t = nullptr) noexcept {}
+        IHttpRequestMessage2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IHttpRequestMessageFactory :
         winrt::Windows::Foundation::IInspectable,

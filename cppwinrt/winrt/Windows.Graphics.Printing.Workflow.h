@@ -295,6 +295,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter)->ConvertPdlAsync(*(void**)(&printTicket), *(void**)(&inputStream), *(void**)(&outputStream), &operation));
         return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlConverter2<D>::ConvertPdlAsync(winrt::Windows::Graphics::Printing::PrintTicket::WorkflowPrintTicket const& printTicket, winrt::Windows::Storage::Streams::IInputStream const& inputStream, winrt::Windows::Storage::Streams::IOutputStream const& outputStream, winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations const& hostBasedProcessingOperations) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2)->ConvertPdlAsync(*(void**)(&printTicket), *(void**)(&inputStream), *(void**)(&outputStream), static_cast<uint32_t>(hostBasedProcessingOperations), &operation));
+        return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlDataAvailableEventArgs<D>::Configuration() const
     {
         void* value{};
@@ -372,6 +378,18 @@ namespace winrt::impl
         void* result{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs)->GetDeferral(&result));
         return winrt::Windows::Foundation::Deferral{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlModificationRequestedEventArgs2<D>::CreateJobOnPrinterWithAttributes(param::iterable<winrt::Windows::Foundation::Collections::IKeyValuePair<hstring, winrt::Windows::Devices::Printers::IppAttributeValue>> const& jobAttributes, param::hstring const& targetContentType, param::iterable<winrt::Windows::Foundation::Collections::IKeyValuePair<hstring, winrt::Windows::Devices::Printers::IppAttributeValue>> const& operationAttributes, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& jobAttributesMergePolicy, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& operationAttributesMergePolicy) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2)->CreateJobOnPrinterWithAttributes(*(void**)(&jobAttributes), *(void**)(&targetContentType), *(void**)(&operationAttributes), static_cast<int32_t>(jobAttributesMergePolicy), static_cast<int32_t>(operationAttributesMergePolicy), &result));
+        return winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPdlTargetStream{ result, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlModificationRequestedEventArgs2<D>::CreateJobOnPrinterWithAttributesBuffer(winrt::Windows::Storage::Streams::IBuffer const& jobAttributesBuffer, param::hstring const& targetContentType, winrt::Windows::Storage::Streams::IBuffer const& operationAttributesBuffer, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& jobAttributesMergePolicy, winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const& operationAttributesMergePolicy) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2)->CreateJobOnPrinterWithAttributesBuffer(*(void**)(&jobAttributesBuffer), *(void**)(&targetContentType), *(void**)(&operationAttributesBuffer), static_cast<int32_t>(jobAttributesMergePolicy), static_cast<int32_t>(operationAttributesMergePolicy), &result));
+        return winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPdlTargetStream{ result, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_Graphics_Printing_Workflow_IPrintWorkflowPdlSourceContent<D>::ContentType() const
     {
@@ -1000,6 +1018,20 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2> : produce_base<D, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2>
+    {
+        int32_t __stdcall ConvertPdlAsync(void* printTicket, void* inputStream, void* outputStream, uint32_t hostBasedProcessingOperations, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().ConvertPdlAsync(*reinterpret_cast<winrt::Windows::Graphics::Printing::PrintTicket::WorkflowPrintTicket const*>(&printTicket), *reinterpret_cast<winrt::Windows::Storage::Streams::IInputStream const*>(&inputStream), *reinterpret_cast<winrt::Windows::Storage::Streams::IOutputStream const*>(&outputStream), *reinterpret_cast<winrt::Windows::Graphics::Printing::Workflow::PdlConversionHostBasedProcessingOperations const*>(&hostBasedProcessingOperations)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs> : produce_base<D, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs>
     {
         int32_t __stdcall get_Configuration(void** value) noexcept final try
@@ -1109,6 +1141,28 @@ namespace winrt::impl
             clear_abi(result);
             typename D::abi_guard guard(this->shim());
             *result = detach_from<winrt::Windows::Foundation::Deferral>(this->shim().GetDeferral());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2> : produce_base<D, winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2>
+    {
+        int32_t __stdcall CreateJobOnPrinterWithAttributes(void* jobAttributes, void* targetContentType, void* operationAttributes, int32_t jobAttributesMergePolicy, int32_t operationAttributesMergePolicy, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPdlTargetStream>(this->shim().CreateJobOnPrinterWithAttributes(*reinterpret_cast<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Foundation::Collections::IKeyValuePair<hstring, winrt::Windows::Devices::Printers::IppAttributeValue>> const*>(&jobAttributes), *reinterpret_cast<hstring const*>(&targetContentType), *reinterpret_cast<winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Foundation::Collections::IKeyValuePair<hstring, winrt::Windows::Devices::Printers::IppAttributeValue>> const*>(&operationAttributes), *reinterpret_cast<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const*>(&jobAttributesMergePolicy), *reinterpret_cast<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const*>(&operationAttributesMergePolicy)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall CreateJobOnPrinterWithAttributesBuffer(void* jobAttributesBuffer, void* targetContentType, void* operationAttributesBuffer, int32_t jobAttributesMergePolicy, int32_t operationAttributesMergePolicy, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowPdlTargetStream>(this->shim().CreateJobOnPrinterWithAttributesBuffer(*reinterpret_cast<winrt::Windows::Storage::Streams::IBuffer const*>(&jobAttributesBuffer), *reinterpret_cast<hstring const*>(&targetContentType), *reinterpret_cast<winrt::Windows::Storage::Streams::IBuffer const*>(&operationAttributesBuffer), *reinterpret_cast<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const*>(&jobAttributesMergePolicy), *reinterpret_cast<winrt::Windows::Graphics::Printing::Workflow::PrintWorkflowAttributesMergePolicy const*>(&operationAttributesMergePolicy)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1446,6 +1500,37 @@ namespace winrt::impl
 }
 WINRT_EXPORT namespace winrt::Windows::Graphics::Printing::Workflow
 {
+    constexpr auto operator|(PdlConversionHostBasedProcessingOperations const left, PdlConversionHostBasedProcessingOperations const right) noexcept
+    {
+        return static_cast<PdlConversionHostBasedProcessingOperations>(impl::to_underlying_type(left) | impl::to_underlying_type(right));
+    }
+    constexpr auto operator|=(PdlConversionHostBasedProcessingOperations& left, PdlConversionHostBasedProcessingOperations const right) noexcept
+    {
+        left = left | right;
+        return left;
+    }
+    constexpr auto operator&(PdlConversionHostBasedProcessingOperations const left, PdlConversionHostBasedProcessingOperations const right) noexcept
+    {
+        return static_cast<PdlConversionHostBasedProcessingOperations>(impl::to_underlying_type(left) & impl::to_underlying_type(right));
+    }
+    constexpr auto operator&=(PdlConversionHostBasedProcessingOperations& left, PdlConversionHostBasedProcessingOperations const right) noexcept
+    {
+        left = left & right;
+        return left;
+    }
+    constexpr auto operator~(PdlConversionHostBasedProcessingOperations const value) noexcept
+    {
+        return static_cast<PdlConversionHostBasedProcessingOperations>(~impl::to_underlying_type(value));
+    }
+    constexpr auto operator^(PdlConversionHostBasedProcessingOperations const left, PdlConversionHostBasedProcessingOperations const right) noexcept
+    {
+        return static_cast<PdlConversionHostBasedProcessingOperations>(impl::to_underlying_type(left) ^ impl::to_underlying_type(right));
+    }
+    constexpr auto operator^=(PdlConversionHostBasedProcessingOperations& left, PdlConversionHostBasedProcessingOperations const right) noexcept
+    {
+        left = left ^ right;
+        return left;
+    }
     inline PrintWorkflowObjectModelSourceFileContent::PrintWorkflowObjectModelSourceFileContent(winrt::Windows::Storage::Streams::IInputStream const& xpsStream) :
         PrintWorkflowObjectModelSourceFileContent(impl::call_factory<PrintWorkflowObjectModelSourceFileContent, IPrintWorkflowObjectModelSourceFileContentFactory>([&](IPrintWorkflowObjectModelSourceFileContentFactory const& f) { return f.CreateInstance(xpsStream); }))
     {
@@ -1470,8 +1555,10 @@ namespace std
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelSourceFileContentFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowObjectModelTargetPackage> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlConverter2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlDataAvailableEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlModificationRequestedEventArgs2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlSourceContent> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPdlTargetStream> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Printing::Workflow::IPrintWorkflowPrinterJob> : winrt::impl::hash_base {};

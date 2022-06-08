@@ -34,6 +34,10 @@ namespace py::wrapper::Windows::Devices::WiFi
     using WiFiAvailableNetwork = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiAvailableNetwork>;
     using WiFiConnectionResult = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiConnectionResult>;
     using WiFiNetworkReport = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiNetworkReport>;
+    using WiFiOnDemandHotspotConnectTriggerDetails = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails>;
+    using WiFiOnDemandHotspotConnectionResult = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult>;
+    using WiFiOnDemandHotspotNetwork = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork>;
+    using WiFiOnDemandHotspotNetworkProperties = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties>;
     using WiFiWpsConfigurationResult = py::winrt_wrapper<winrt::Windows::Devices::WiFi::WiFiWpsConfigurationResult>;
 }
 
@@ -60,6 +64,24 @@ namespace py
 
     template<>
     struct py_type<winrt::Windows::Devices::WiFi::WiFiNetworkKind>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotAvailability>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotCellularBars>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectStatus>
     {
         static PyObject* get_python_type() noexcept;
     };
@@ -108,6 +130,30 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Devices::WiFi::WiFiNetworkReport>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectTriggerDetails>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotConnectionResult>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetwork>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::WiFi::WiFiOnDemandHotspotNetworkProperties>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

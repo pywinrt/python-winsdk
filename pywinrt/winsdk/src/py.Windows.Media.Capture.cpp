@@ -69,6 +69,7 @@ namespace py::cpp::Windows::Media::Capture
         PyObject* type_GameBarServicesDisplayMode;
         PyObject* type_GameBarTargetCapturePolicy;
         PyObject* type_KnownVideoProfile;
+        PyObject* type_MediaCaptureDeviceExclusiveControlReleaseMode;
         PyObject* type_MediaCaptureDeviceExclusiveControlStatus;
         PyObject* type_MediaCaptureMemoryPreference;
         PyObject* type_MediaCaptureSharingMode;
@@ -920,6 +921,30 @@ namespace py::cpp::Windows::Media::Capture
 
         state->type_KnownVideoProfile = type;
         Py_INCREF(state->type_KnownVideoProfile);
+
+
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* register_MediaCaptureDeviceExclusiveControlReleaseMode(PyObject* module, PyObject* type)
+    {
+        auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+        assert(state);
+
+        if (state->type_MediaCaptureDeviceExclusiveControlReleaseMode)
+        {
+            PyErr_SetString(PyExc_RuntimeError, "type has already been registered");
+            return nullptr;
+        }
+
+        if (!PyType_Check(type))
+        {
+            PyErr_SetString(PyExc_TypeError, "argument is not a type");
+            return nullptr;
+        }
+
+        state->type_MediaCaptureDeviceExclusiveControlReleaseMode = type;
+        Py_INCREF(state->type_MediaCaptureDeviceExclusiveControlReleaseMode);
 
 
         Py_RETURN_NONE;
@@ -17013,6 +17038,7 @@ namespace py::cpp::Windows::Media::Capture
         {"_register_GameBarServicesDisplayMode", register_GameBarServicesDisplayMode, METH_O, "registers type"},
         {"_register_GameBarTargetCapturePolicy", register_GameBarTargetCapturePolicy, METH_O, "registers type"},
         {"_register_KnownVideoProfile", register_KnownVideoProfile, METH_O, "registers type"},
+        {"_register_MediaCaptureDeviceExclusiveControlReleaseMode", register_MediaCaptureDeviceExclusiveControlReleaseMode, METH_O, "registers type"},
         {"_register_MediaCaptureDeviceExclusiveControlStatus", register_MediaCaptureDeviceExclusiveControlStatus, METH_O, "registers type"},
         {"_register_MediaCaptureMemoryPreference", register_MediaCaptureMemoryPreference, METH_O, "registers type"},
         {"_register_MediaCaptureSharingMode", register_MediaCaptureSharingMode, METH_O, "registers type"},
@@ -17068,6 +17094,7 @@ namespace py::cpp::Windows::Media::Capture
         Py_VISIT(state->type_GameBarServicesDisplayMode);
         Py_VISIT(state->type_GameBarTargetCapturePolicy);
         Py_VISIT(state->type_KnownVideoProfile);
+        Py_VISIT(state->type_MediaCaptureDeviceExclusiveControlReleaseMode);
         Py_VISIT(state->type_MediaCaptureDeviceExclusiveControlStatus);
         Py_VISIT(state->type_MediaCaptureMemoryPreference);
         Py_VISIT(state->type_MediaCaptureSharingMode);
@@ -17199,6 +17226,7 @@ namespace py::cpp::Windows::Media::Capture
         Py_CLEAR(state->type_GameBarServicesDisplayMode);
         Py_CLEAR(state->type_GameBarTargetCapturePolicy);
         Py_CLEAR(state->type_KnownVideoProfile);
+        Py_CLEAR(state->type_MediaCaptureDeviceExclusiveControlReleaseMode);
         Py_CLEAR(state->type_MediaCaptureDeviceExclusiveControlStatus);
         Py_CLEAR(state->type_MediaCaptureMemoryPreference);
         Py_CLEAR(state->type_MediaCaptureSharingMode);
@@ -18727,6 +18755,29 @@ PyObject* py::py_type<winrt::Windows::Media::Capture::KnownVideoProfile>::get_py
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Capture::KnownVideoProfile is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyObject* py::py_type<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Media::Capture;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Media::Capture");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_MediaCaptureDeviceExclusiveControlReleaseMode;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode is not registered");
         return nullptr;
     }
 

@@ -334,6 +334,11 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
         VideoHdr8 = 9,
         CompressedCamera = 10,
     };
+    enum class MediaCaptureDeviceExclusiveControlReleaseMode : int32_t
+    {
+        OnDispose = 0,
+        OnAllStreamsStopped = 1,
+    };
     enum class MediaCaptureDeviceExclusiveControlStatus : int32_t
     {
         ExclusiveControlAvailable = 0,
@@ -817,6 +822,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::GameBarServicesDisplayMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::GameBarTargetCapturePolicy>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::KnownVideoProfile>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureMemoryPreference>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureSharingMode>{ using type = enum_category; };
@@ -937,6 +943,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarServicesDisplayMode> = L"Windows.Media.Capture.GameBarServicesDisplayMode";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::GameBarTargetCapturePolicy> = L"Windows.Media.Capture.GameBarTargetCapturePolicy";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::KnownVideoProfile> = L"Windows.Media.Capture.KnownVideoProfile";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode> = L"Windows.Media.Capture.MediaCaptureDeviceExclusiveControlReleaseMode";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlStatus> = L"Windows.Media.Capture.MediaCaptureDeviceExclusiveControlStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureMemoryPreference> = L"Windows.Media.Capture.MediaCaptureMemoryPreference";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureSharingMode> = L"Windows.Media.Capture.MediaCaptureSharingMode";

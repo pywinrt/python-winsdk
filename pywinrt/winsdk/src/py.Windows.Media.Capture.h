@@ -420,6 +420,12 @@ namespace py
     };
 
     template<>
+    struct py_type<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlReleaseMode>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct py_type<winrt::Windows::Media::Capture::MediaCaptureDeviceExclusiveControlStatus>
     {
         static PyObject* get_python_type() noexcept;

@@ -49,6 +49,7 @@ namespace py::wrapper::Windows::ApplicationModel
     using CameraApplicationManager = py::winrt_wrapper<winrt::Windows::ApplicationModel::CameraApplicationManager>;
     using DesignMode = py::winrt_wrapper<winrt::Windows::ApplicationModel::DesignMode>;
     using EnteredBackgroundEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs>;
+    using FindRelatedPackagesOptions = py::winrt_wrapper<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions>;
     using FullTrustProcessLaunchResult = py::winrt_wrapper<winrt::Windows::ApplicationModel::FullTrustProcessLaunchResult>;
     using FullTrustProcessLauncher = py::winrt_wrapper<winrt::Windows::ApplicationModel::FullTrustProcessLauncher>;
     using LeavingBackgroundEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::LeavingBackgroundEventArgs>;
@@ -76,6 +77,7 @@ namespace py::wrapper::Windows::ApplicationModel
     using SuspendingOperation = py::winrt_wrapper<winrt::Windows::ApplicationModel::SuspendingOperation>;
     using IEnteredBackgroundEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::IEnteredBackgroundEventArgs>;
     using ILeavingBackgroundEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs>;
+    using IPackageCatalogStatics2 = py::winrt_wrapper<winrt::Windows::ApplicationModel::IPackageCatalogStatics2>;
     using ISuspendingDeferral = py::winrt_wrapper<winrt::Windows::ApplicationModel::ISuspendingDeferral>;
     using ISuspendingEventArgs = py::winrt_wrapper<winrt::Windows::ApplicationModel::ISuspendingEventArgs>;
     using ISuspendingOperation = py::winrt_wrapper<winrt::Windows::ApplicationModel::ISuspendingOperation>;
@@ -118,6 +120,12 @@ namespace py
 
     template<>
     struct py_type<winrt::Windows::ApplicationModel::PackageContentGroupState>
+    {
+        static PyObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct py_type<winrt::Windows::ApplicationModel::PackageRelationship>
     {
         static PyObject* get_python_type() noexcept;
     };
@@ -178,6 +186,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::EnteredBackgroundEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::FindRelatedPackagesOptions>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -340,6 +354,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::ApplicationModel::ILeavingBackgroundEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::ApplicationModel::IPackageCatalogStatics2>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
