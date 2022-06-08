@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Changed
+- Update CppWinRT to 2.0.220607.4.
+
 ## [v1.0.0b4] - 2022-04-23
 
 ### Changed
