@@ -17,6 +17,6 @@ async def load_pdf(file: Path, password: Optional[str] = None) -> PdfDocument:
 
 
 if __name__ == "__main__":
-    file = Path(r"C:\Users\debakarr\Downloads\ADO\Framework\Sample4.PDF")
+    file = Path(__file__).parent / "assets" / "C_version_2_specification.pdf"
     document = asyncio.run(load_pdf(file))
     print(document.page_count)
