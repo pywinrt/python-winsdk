@@ -20,7 +20,7 @@ def log_network_details(network: WiFiAvailableNetwork) -> None:
     print(f"MAC address: {network.bssid}")
     print(f"Frequency: {network.channel_center_frequency_in_kilohertz} kHz")
     print(f"RSSI: {network.network_rssi_in_decibel_milliwatts} dBm (lower is better)")
-    # TODO: Need to update below three print statement, once issue #1 is closed
+    # TODO: Need to update below three print statement, once issue #1 in pywinrt is closed
     print(
         f"Authentication: {NetworkAuthenticationType(network.security_settings.network_authentication_type).name}"
     )
@@ -100,7 +100,7 @@ async def connect_to_network(
                     return True
                 else:
                     print(
-                        # TODO: Need to update once issue #1 is closed
+                        # TODO: Need to update once issue #1 in pywinrt is closed
                         f"Could not connect to {network.ssid}. Error: {WiFiConnectionStatus(result.connection_status).name}."
                     )
                     return False
