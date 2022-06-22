@@ -7,6 +7,7 @@ from winsdk.windows.devices.wifi import (
     WiFiConnectionStatus,
     WiFiPhyKind,
     WiFiReconnectionKind,
+    WiFiNetworkKind 
 )
 from winsdk.windows.networking.connectivity import (
     NetworkAuthenticationType,
@@ -28,6 +29,7 @@ def log_network_details(network: WiFiAvailableNetwork) -> None:
         f"Encryption: {NetworkEncryptionType(network.security_settings.network_encryption_type).name}"
     )
     print(f"PHY: {WiFiPhyKind(network.phy_kind).name}")
+    print(f"WiFi Kind: {WiFiNetworkKind(network.network_kind).name}")
     print(f"Signal: {network.signal_bars} bars (higher is better)")
     print(f"Uptime: {network.uptime.duration}")
 

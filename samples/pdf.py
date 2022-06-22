@@ -17,6 +17,8 @@ async def load_pdf(file: Path, password: Optional[str] = None) -> PdfDocument:
 
 
 if __name__ == "__main__":
-    file = Path(__file__).parent / "assets" / "C_version_2_specification.pdf"
+    file = Path(input("Provide the pdf file path: ").strip())
+    if not file.exists():
+        raise FileNotFoundError(f"{str(file)} does not exist!")
     document = asyncio.run(load_pdf(file))
-    print(document.page_count)
+    print(f"{file} contains {document.page_count} pages.")
