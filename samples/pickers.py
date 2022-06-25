@@ -1,6 +1,6 @@
 import asyncio
 import threading
-from tkinter import Button, Frame, Tk
+from tkinter import Button, Tk
 
 from winsdk._winrt import initialize_with_window
 from winsdk.windows.storage.pickers import FolderPicker
@@ -23,11 +23,9 @@ class App(Tk):
     def __init__(self, pickers: Pickers, async_loop: asyncio.ProactorEventLoop) -> None:
         super(App, self).__init__()
         self.minsize(100, 40)
-        frame = Frame(self)
-        frame.pack()
         hwnd = self.winfo_id()
         folder_picker_button = Button(
-            frame,
+            self,
             text="Folder Picker",
             command=lambda: asyncio.run_coroutine_threadsafe(
                 loop=async_loop, coro=pickers.store_folder(hwnd)
