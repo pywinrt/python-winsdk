@@ -7,7 +7,7 @@ with open("README.md") as f:
 
 setup(
     name="winsdk",
-    version = "1.0.0b6",
+    version = "1.0.0b7",
     description="Python bindings for the Windows SDK",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [v1.0.0b7] - 2022-09-09
+
 ### Added
 - Added build for Python 3.11.
 
@@ -49,7 +51,8 @@
 - Initial release.
 
 
-[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b6...HEAD
+[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b7...HEAD
+[v1.0.0b7]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b6...v1.0.0b7
 [v1.0.0b6]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b5...v1.0.0b6
 [v1.0.0b5]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b4...v1.0.0b5
 [v1.0.0b4]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b3...v1.0.0b4
