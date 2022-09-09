@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- Added build for Python 3.11.
+
 ### Changed
 - Update PyWinRT to [v1.0.0-beta.7](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.7).
 
