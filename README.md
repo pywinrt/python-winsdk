@@ -21,10 +21,4 @@ This package is distributed on PyPI as the [winsdk] package.
 
 ## Documentation
 
-Since the bindings are automatically generated, there are no API docs available.
-Instead, use <https://docs.microsoft.com/en-us/uwp/api/> as a reference.
-
-Also be sure to read the [pywinrt docs] that explain how the language projection
-works.
-
-[pywinrt docs]: https://github.com/pywinrt/pywinrt/blob/v1.0.0-beta.1/src/package/pywinrt/projection/readme.md
+https://python-winsdk.readthedocs.io/en/latest/
