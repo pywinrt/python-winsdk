@@ -1088,6 +1088,72 @@ namespace py::cpp::Windows::Management::Deployment
         }
     }
 
+    static PyObject* AddPackageOptions_get_LimitToExistingPackages(py::wrapper::Windows::Management::Deployment::AddPackageOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Management.Deployment.AddPackageOptions", L"LimitToExistingPackages"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.LimitToExistingPackages());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AddPackageOptions_put_LimitToExistingPackages(py::wrapper::Windows::Management::Deployment::AddPackageOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Management.Deployment.AddPackageOptions", L"LimitToExistingPackages"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.LimitToExistingPackages(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* AddPackageOptions_get_ExpectedDigests(py::wrapper::Windows::Management::Deployment::AddPackageOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Management.Deployment.AddPackageOptions", L"ExpectedDigests"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.ExpectedDigests());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_AddPackageOptions(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -1125,6 +1191,8 @@ namespace py::cpp::Windows::Management::Deployment
         { "optional_package_family_names", reinterpret_cast<getter>(AddPackageOptions_get_OptionalPackageFamilyNames), nullptr, nullptr, nullptr },
         { "optional_package_uris", reinterpret_cast<getter>(AddPackageOptions_get_OptionalPackageUris), nullptr, nullptr, nullptr },
         { "related_package_uris", reinterpret_cast<getter>(AddPackageOptions_get_RelatedPackageUris), nullptr, nullptr, nullptr },
+        { "limit_to_existing_packages", reinterpret_cast<getter>(AddPackageOptions_get_LimitToExistingPackages), reinterpret_cast<setter>(AddPackageOptions_put_LimitToExistingPackages), nullptr, nullptr },
+        { "expected_digests", reinterpret_cast<getter>(AddPackageOptions_get_ExpectedDigests), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -6286,6 +6354,25 @@ namespace py::cpp::Windows::Management::Deployment
         }
     }
 
+    static PyObject* RegisterPackageOptions_get_ExpectedDigests(py::wrapper::Windows::Management::Deployment::RegisterPackageOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Management.Deployment.RegisterPackageOptions", L"ExpectedDigests"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.ExpectedDigests());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_RegisterPackageOptions(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -6318,6 +6405,7 @@ namespace py::cpp::Windows::Management::Deployment
         { "allow_unsigned", reinterpret_cast<getter>(RegisterPackageOptions_get_AllowUnsigned), reinterpret_cast<setter>(RegisterPackageOptions_put_AllowUnsigned), nullptr, nullptr },
         { "dependency_package_uris", reinterpret_cast<getter>(RegisterPackageOptions_get_DependencyPackageUris), nullptr, nullptr, nullptr },
         { "optional_package_family_names", reinterpret_cast<getter>(RegisterPackageOptions_get_OptionalPackageFamilyNames), nullptr, nullptr, nullptr },
+        { "expected_digests", reinterpret_cast<getter>(RegisterPackageOptions_get_ExpectedDigests), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -7470,6 +7558,25 @@ namespace py::cpp::Windows::Management::Deployment
         }
     }
 
+    static PyObject* StagePackageOptions_get_ExpectedDigests(py::wrapper::Windows::Management::Deployment::StagePackageOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Management.Deployment.StagePackageOptions", L"ExpectedDigests"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.ExpectedDigests());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _from_StagePackageOptions(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         try
@@ -7503,6 +7610,7 @@ namespace py::cpp::Windows::Management::Deployment
         { "optional_package_family_names", reinterpret_cast<getter>(StagePackageOptions_get_OptionalPackageFamilyNames), nullptr, nullptr, nullptr },
         { "optional_package_uris", reinterpret_cast<getter>(StagePackageOptions_get_OptionalPackageUris), nullptr, nullptr, nullptr },
         { "related_package_uris", reinterpret_cast<getter>(StagePackageOptions_get_RelatedPackageUris), nullptr, nullptr, nullptr },
+        { "expected_digests", reinterpret_cast<getter>(StagePackageOptions_get_ExpectedDigests), nullptr, nullptr, nullptr },
         { }
     };
 

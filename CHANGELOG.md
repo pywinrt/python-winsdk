@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Changed
+- Updated CppWinRT to v2.0.230225.1.
+
 ## [v1.0.0b7] - 2022-09-09
 
 ### Added
@@ -15,7 +18,7 @@
 ## [v1.0.0b6] - 2022-06-21
 
 ### Changed
-- Update CppWinRT to 2.0.220608.4.
+- Update CppWinRT to v2.0.220608.4.
 - Update PyWinRT to [v1.0.0-beta.6](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.6).
 
 ## [v1.0.0b5] - 2022-06-07
@@ -25,7 +28,7 @@
 - Added Windows SDK (10.0.22621) for Windows 11, version 22H2 APIs.
 
 ### Changed
-- Update CppWinRT to 2.0.220607.4.
+- Update CppWinRT to v2.0.220607.4.
 - Update PyWinRT to [v1.0.0-beta.5](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.5).
 
 ## [v1.0.0b4] - 2022-04-23

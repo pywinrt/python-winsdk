@@ -116,6 +116,8 @@ class AddPackageOptions(_winrt.Object):
     optional_package_family_names: typing.Optional[winsdk.windows.foundation.collections.IVector[str]]
     optional_package_uris: typing.Optional[winsdk.windows.foundation.collections.IVector[winsdk.windows.foundation.Uri]]
     related_package_uris: typing.Optional[winsdk.windows.foundation.collections.IVector[winsdk.windows.foundation.Uri]]
+    limit_to_existing_packages: _winrt.Boolean
+    expected_digests: typing.Optional[winsdk.windows.foundation.collections.IMap[winsdk.windows.foundation.Uri, str]]
     @staticmethod
     def _from(obj: _winrt.Object) -> AddPackageOptions: ...
     def __new__(cls: typing.Type[AddPackageOptions]) -> AddPackageOptions:...
@@ -365,6 +367,7 @@ class RegisterPackageOptions(_winrt.Object):
     allow_unsigned: _winrt.Boolean
     dependency_package_uris: typing.Optional[winsdk.windows.foundation.collections.IVector[winsdk.windows.foundation.Uri]]
     optional_package_family_names: typing.Optional[winsdk.windows.foundation.collections.IVector[str]]
+    expected_digests: typing.Optional[winsdk.windows.foundation.collections.IMap[winsdk.windows.foundation.Uri, str]]
     @staticmethod
     def _from(obj: _winrt.Object) -> RegisterPackageOptions: ...
     def __new__(cls: typing.Type[RegisterPackageOptions]) -> RegisterPackageOptions:...
@@ -415,6 +418,7 @@ class StagePackageOptions(_winrt.Object):
     optional_package_family_names: typing.Optional[winsdk.windows.foundation.collections.IVector[str]]
     optional_package_uris: typing.Optional[winsdk.windows.foundation.collections.IVector[winsdk.windows.foundation.Uri]]
     related_package_uris: typing.Optional[winsdk.windows.foundation.collections.IVector[winsdk.windows.foundation.Uri]]
+    expected_digests: typing.Optional[winsdk.windows.foundation.collections.IMap[winsdk.windows.foundation.Uri, str]]
     @staticmethod
     def _from(obj: _winrt.Object) -> StagePackageOptions: ...
     def __new__(cls: typing.Type[StagePackageOptions]) -> StagePackageOptions:...
