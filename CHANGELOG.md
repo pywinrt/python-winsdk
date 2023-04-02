@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [v1.0.0b8] - 2023-04-02
+
 ### Changed
 - Updated CppWinRT to v2.0.230225.1.
 - Update PyWinRT to [v1.0.0-beta.8](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.8).
@@ -55,7 +57,8 @@
 - Initial release.
 
 
-[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b7...HEAD
+[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b8...HEAD
+[v1.0.0b8]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b7...v1.0.0b8
 [v1.0.0b7]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b6...v1.0.0b7
 [v1.0.0b6]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b5...v1.0.0b6
 [v1.0.0b5]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b4...v1.0.0b5
