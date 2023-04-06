@@ -9,12 +9,12 @@ file(GLOB headers RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "pywinrt/${CMAKE_PROJECT_NAME}/src/*.h"
 )
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 # TODO: re-enable /GL and /LTCG when we get a bigger build machine
-add_compile_options(/await /bigobj /GR- /permissive-)
+add_compile_options(/bigobj /GR- /permissive-)
 
 # strip suffix to allow support for prerelease version
 string(REGEX MATCH "^[0-9]\\.[0-9]+(\\.[0-9]+)?" PYTHON_BASE_VERSION ${PYTHON_VERSION_STRING})
