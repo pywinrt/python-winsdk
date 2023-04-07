@@ -24,6 +24,8 @@ if (MSVC)
     if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL "19.20.27404.0")
         string(APPEND CMAKE_CXX_FLAGS " /d2FH4")
     endif()
+else()
+    add_compile_options(-Werror)
 endif()
 
 # strip suffix to allow support for prerelease version
