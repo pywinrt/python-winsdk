@@ -1,56 +1,51 @@
-name: publish
-on: 
+name: Build and upload to PyPI
+
+on:
   push:
-    tags:
-      - v1.*
+  pull_request:
+  release:
+    types:
+      - published
 
 jobs:
-  sdist:
-    runs-on: windows-2019
+  build_wheels:
+    name: Build wheels
+    runs-on: windows-2022
+
     steps:
       - uses: actions/checkout@v3
-      - run: python -m pip install build
-      - run: python -m build --sdist
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.12.1
+
       - uses: actions/upload-artifact@v3
         with:
-          name: sdist_${{ github.run_id }}
-          path: dist/
+          path: ./wheelhouse/*.whl
 
-  bdist:
-    runs-on: windows-2019
-    strategy:
-      matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
-        architecture: ['x86', 'x64']
-    name: Python ${{ matrix.python-version }} ${{ matrix.architecture }} bdist
+  build_sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-          architecture: ${{ matrix.architecture }}
-      - run: python -m pip install build
-      - name: Run python -m build --wheel
-        run: |
-          Import-Module "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
-          Enter-VsDevShell -VsInstallPath "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" -DevCmdArguments '-arch=${{ matrix.architecture }}'
-          python -m build --wheel
+
+      - name: Build sdist
+        run: pipx run build --sdist
+
       - uses: actions/upload-artifact@v3
         with:
-          name: bdist_${{ matrix.python-version }}_${{ matrix.architecture }}_${{ github.run_id }}
-          path: dist/
+          path: dist/*.tar.gz
 
-  publish:
-    needs: [sdist, bdist]
-    runs-on: ubuntu-20.04
+  upload_pypi:
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
     steps:
       - uses: actions/download-artifact@v3
         with:
-          path: artifacts
-      - run: |
-          mkdir -p dist
-          mv artifacts/{b,s}dist_*/* dist/
-      - uses: pypa/gh-action-pypi-publish@release/v1
+          name: artifact
+          path: dist
+
+      - uses: pypa/gh-action-pypi-publish@v1.5.0
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}

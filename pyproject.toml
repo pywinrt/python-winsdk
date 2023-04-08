@@ -1,3 +1,8 @@
 [build-system]
 requires = ["setuptools", "wheel", "scikit-build", "cmake", "ninja"]
 build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+skip = "pp*"
+archs = "all"
+build-verbosity = 1
