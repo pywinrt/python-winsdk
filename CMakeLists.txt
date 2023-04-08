@@ -13,7 +13,7 @@ set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 if (MSVC)
     # TODO: re-enable /GL and /LTCG when we get a bigger build machine
-    add_compile_options(/bigobj /GR- /permissive-)
+    add_compile_options(/bigobj /GR- /permissive- /MP)
 
     string(REGEX REPLACE "/GR" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
     # TODO: re-enable /GL and /LTCG when we get a bigger build machine
