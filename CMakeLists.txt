@@ -4,9 +4,7 @@ project(winsdk)
 file(GLOB sources "${CMAKE_CURRENT_SOURCE_DIR}/pywinrt/${CMAKE_PROJECT_NAME}/src/*.cpp")
 
 file(GLOB headers RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
-    "cppwinrt/*.h"
-    "cppwinrt/impl/*.h"
-    "pywinrt/${CMAKE_PROJECT_NAME}/src/*.h"
+    "pywinrt/${CMAKE_PROJECT_NAME}/src/py.*.h"
 )
 
 set(CMAKE_CXX_STANDARD 20)
