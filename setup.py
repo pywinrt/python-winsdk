@@ -27,6 +27,7 @@ setup(
             'Programming Language :: Python :: Implementation :: CPython',
             'Topic :: System :: Operating System',
         ],
+    python_requires=">=3.7",
     packages=find_namespace_packages(where=("pywinrt")),
     package_dir={"": "pywinrt"}, 
     cmake_args=['-DCMAKE_BUILD_TYPE=Release', '-DCMAKE_C_COMPILER=cl', '-DCMAKE_CXX_COMPILER=cl'],
