@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel", "scikit-build @ https://github.com/scikit-build/scikit-build/archive/12ec865419765661bc70a26e9c21464d515307d2.zip", "cmake", "ninja"]
+requires = ["setuptools", "wheel", "scikit-build @ https://github.com/scikit-build/scikit-build/archive/14120db1a2ae0c1661a1b5a284f57b51b55ec066.zip", "cmake", "ninja"]
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]

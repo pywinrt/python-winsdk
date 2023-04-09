@@ -34,6 +34,8 @@ jobs:
         uses: pypa/cibuildwheel@v2.12.1
         env:
           CIBW_BUILD: ${{ matrix.build }}
+          CIBW_TEST_SKIP: "*-win_arm64"
+          CIBW_CONFIG_SETTINGS: --build-option="--generator 'Visual Studio 17 2022'"
 
       - uses: actions/upload-artifact@v3
         with:
