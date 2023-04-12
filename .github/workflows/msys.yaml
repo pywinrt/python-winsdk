@@ -1,0 +1,36 @@
+name: Build in MSYS2
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        sys:
+          - clang32
+          - clang64
+    name: 'Building on MSYS ${{ matrix.sys }}'
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 'Setup MSYS2'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: ${{matrix.sys}}
+          update: true
+          pacboy: >-
+            python-build:p
+            python-scikit-build:p
+            cmake:p
+            ninja:p
+            cc:p
+      - name: 'Build python-winsdk'
+        run: |
+          ${MINGW_PREFIX}/bin/python -m build --wheel --skip-dependency-check --no-isolation
