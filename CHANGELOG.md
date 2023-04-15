@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+## [v1.0.0b9] - 2023-04-15
+
+### Added
+- Added ARM64 binary wheels.
+
 ### Changed
 - Update PyWinRT to [v1.0.0-beta.9](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.9).
 
@@ -60,7 +65,8 @@
 - Initial release.
 
 
-[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b8...HEAD
+[Unreleased]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b9...HEAD
+[v1.0.0b9]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b8...v1.0.0b9
 [v1.0.0b8]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b7...v1.0.0b8
 [v1.0.0b7]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b6...v1.0.0b7
 [v1.0.0b6]: https://github.com/pywinrt/python-winsdk/compare/v1.0.0b5...v1.0.0b6
