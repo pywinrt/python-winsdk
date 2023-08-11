@@ -7,6 +7,9 @@
 ### Added
 - Added more Windows SDK (10.0.22621) for Windows 11, version 22H2 APIs.
 
+### Changed
+- Updated CppWinRT to v2.0.230706.1.
+
 ## [v1.0.0b9] - 2023-04-15
 
 ### Added
