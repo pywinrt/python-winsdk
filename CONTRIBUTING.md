@@ -1,7 +1,7 @@
 
 ## Prerequisites
 
-- [Python](https://www.python.org/downloads/) >= 3.7
+- [Python](https://www.python.org/downloads/) >= 3.8
 - [Nuget](https://www.nuget.org/downloads)
 
 ## Get the code

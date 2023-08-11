@@ -19,7 +19,6 @@ setup(
             'Environment :: Win32 (MS Windows)',
             'License :: OSI Approved :: MIT License',
             'Operating System :: Microsoft :: Windows :: Windows 10',
-            'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3.9',
             'Programming Language :: Python :: 3.10',
@@ -27,7 +26,7 @@ setup(
             'Programming Language :: Python :: Implementation :: CPython',
             'Topic :: System :: Operating System',
         ],
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     packages=find_namespace_packages(where=("pywinrt")),
     package_dir={"": "pywinrt"}, 
     # recursive glob (**) doesn't seem to work here
