@@ -9,6 +9,7 @@
 
 ### Changed
 - Updated CppWinRT to v2.0.230706.1.
+- Updated PyWinRT to [v1.0.0-beta.10](https://github.com/pywinrt/pywinrt/releases/tag/v1.0.0-beta.10).
 
 ## [v1.0.0b9] - 2023-04-15
 
