@@ -25,11 +25,14 @@ jobs:
         - cp311-win_amd64
         - cp311-win32
         - cp311-win_arm64
+        - cp312-win_amd64
+        - cp312-win32
+        - cp312-win_arm64
     steps:
       - uses: actions/checkout@v3
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.12.1
+        uses: pypa/cibuildwheel@v2.15.0
         env:
           CIBW_BUILD: ${{ matrix.build }}
           CIBW_TEST_SKIP: "*-win_arm64"

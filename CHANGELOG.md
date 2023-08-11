@@ -6,6 +6,7 @@
 
 ### Added
 - Added more Windows SDK (10.0.22621) for Windows 11, version 22H2 APIs.
+- Added support for Python 3.12.
 
 ### Changed
 - Updated CppWinRT to v2.0.230706.1.
