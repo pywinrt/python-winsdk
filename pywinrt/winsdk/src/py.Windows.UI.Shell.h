@@ -12,6 +12,18 @@
 #include "py.Windows.Foundation.h"
 #endif
 
+#if __has_include("py.Windows.Foundation.Collections.h")
+#include "py.Windows.Foundation.Collections.h"
+#endif
+
+#if __has_include("py.Windows.Graphics.Imaging.h")
+#include "py.Windows.Graphics.Imaging.h"
+#endif
+
+#if __has_include("py.Windows.Storage.Streams.h")
+#include "py.Windows.Storage.Streams.h"
+#endif
+
 #if __has_include("py.Windows.UI.h")
 #include "py.Windows.UI.h"
 #endif
@@ -22,6 +34,9 @@
 
 #include <winrt/Windows.ApplicationModel.Core.h>
 #include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.Graphics.Imaging.h>
+#include <winrt/Windows.Storage.Streams.h>
 #include <winrt/Windows.UI.h>
 #include <winrt/Windows.UI.StartScreen.h>
 
@@ -42,6 +57,15 @@ namespace py::wrapper::Windows::UI::Shell
     using ShareWindowCommandEventArgs = py::winrt_wrapper<winrt::Windows::UI::Shell::ShareWindowCommandEventArgs>;
     using ShareWindowCommandSource = py::winrt_wrapper<winrt::Windows::UI::Shell::ShareWindowCommandSource>;
     using TaskbarManager = py::winrt_wrapper<winrt::Windows::UI::Shell::TaskbarManager>;
+    using WindowTab = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTab>;
+    using WindowTabCloseRequestedEventArgs = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabCloseRequestedEventArgs>;
+    using WindowTabCollection = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabCollection>;
+    using WindowTabGroup = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabGroup>;
+    using WindowTabIcon = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabIcon>;
+    using WindowTabManager = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabManager>;
+    using WindowTabSwitchRequestedEventArgs = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs>;
+    using WindowTabTearOutRequestedEventArgs = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs>;
+    using WindowTabThumbnailRequestedEventArgs = py::winrt_wrapper<winrt::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs>;
     using IAdaptiveCard = py::winrt_wrapper<winrt::Windows::UI::Shell::IAdaptiveCard>;
     using IAdaptiveCardBuilderStatics = py::winrt_wrapper<winrt::Windows::UI::Shell::IAdaptiveCardBuilderStatics>;
 }
@@ -123,6 +147,60 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::UI::Shell::TaskbarManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTab>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabCloseRequestedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabCollection>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabGroup>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabIcon>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabManager>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

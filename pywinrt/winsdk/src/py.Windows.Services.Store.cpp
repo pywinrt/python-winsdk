@@ -1709,6 +1709,37 @@ namespace py::cpp::Windows::Services::Store
         }
     }
 
+    static PyObject* StoreContext_GetAssociatedStoreProductsByInAppOfferTokenAsync(py::wrapper::Windows::Services::Store::StoreContext* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.Services.Store.StoreContext", L"GetAssociatedStoreProductsByInAppOfferTokenAsync", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::hstring>>(args, 0);
+
+                return py::convert(self->obj.GetAssociatedStoreProductsByInAppOfferTokenAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* StoreContext_GetAssociatedStoreProductsWithPagingAsync(py::wrapper::Windows::Services::Store::StoreContext* self, PyObject* args) noexcept
     {
         auto arg_count = PyTuple_Size(args);
@@ -2102,6 +2133,37 @@ namespace py::cpp::Windows::Services::Store
         }
     }
 
+    static PyObject* StoreContext_GetUserPurchaseHistoryAsync(py::wrapper::Windows::Services::Store::StoreContext* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.Services.Store.StoreContext", L"GetUserPurchaseHistoryAsync", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Foundation::Collections::IIterable<winrt::hstring>>(args, 0);
+
+                return py::convert(self->obj.GetUserPurchaseHistoryAsync(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
     static PyObject* StoreContext_ReportConsumableFulfillmentAsync(py::wrapper::Windows::Services::Store::StoreContext* self, PyObject* args) noexcept
     {
         auto arg_count = PyTuple_Size(args);
@@ -2287,6 +2349,37 @@ namespace py::cpp::Windows::Services::Store
                 auto param1 = py::convert_to<winrt::Windows::Services::Store::StorePurchaseProperties>(args, 1);
 
                 return py::convert(self->obj.RequestPurchaseAsync(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* StoreContext_RequestPurchaseByInAppOfferTokenAsync(py::wrapper::Windows::Services::Store::StoreContext* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.Services.Store.StoreContext", L"RequestPurchaseByInAppOfferTokenAsync", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(self->obj.RequestPurchaseByInAppOfferTokenAsync(param0));
             }
             catch (...)
             {
@@ -2661,6 +2754,7 @@ namespace py::cpp::Windows::Services::Store
         { "get_app_and_optional_store_package_updates_async", reinterpret_cast<PyCFunction>(StoreContext_GetAppAndOptionalStorePackageUpdatesAsync), METH_VARARGS, nullptr },
         { "get_app_license_async", reinterpret_cast<PyCFunction>(StoreContext_GetAppLicenseAsync), METH_VARARGS, nullptr },
         { "get_associated_store_products_async", reinterpret_cast<PyCFunction>(StoreContext_GetAssociatedStoreProductsAsync), METH_VARARGS, nullptr },
+        { "get_associated_store_products_by_in_app_offer_token_async", reinterpret_cast<PyCFunction>(StoreContext_GetAssociatedStoreProductsByInAppOfferTokenAsync), METH_VARARGS, nullptr },
         { "get_associated_store_products_with_paging_async", reinterpret_cast<PyCFunction>(StoreContext_GetAssociatedStoreProductsWithPagingAsync), METH_VARARGS, nullptr },
         { "get_associated_store_queue_items_async", reinterpret_cast<PyCFunction>(StoreContext_GetAssociatedStoreQueueItemsAsync), METH_VARARGS, nullptr },
         { "get_consumable_balance_remaining_async", reinterpret_cast<PyCFunction>(StoreContext_GetConsumableBalanceRemainingAsync), METH_VARARGS, nullptr },
@@ -2673,11 +2767,13 @@ namespace py::cpp::Windows::Services::Store
         { "get_store_queue_items_async", reinterpret_cast<PyCFunction>(StoreContext_GetStoreQueueItemsAsync), METH_VARARGS, nullptr },
         { "get_user_collection_async", reinterpret_cast<PyCFunction>(StoreContext_GetUserCollectionAsync), METH_VARARGS, nullptr },
         { "get_user_collection_with_paging_async", reinterpret_cast<PyCFunction>(StoreContext_GetUserCollectionWithPagingAsync), METH_VARARGS, nullptr },
+        { "get_user_purchase_history_async", reinterpret_cast<PyCFunction>(StoreContext_GetUserPurchaseHistoryAsync), METH_VARARGS, nullptr },
         { "report_consumable_fulfillment_async", reinterpret_cast<PyCFunction>(StoreContext_ReportConsumableFulfillmentAsync), METH_VARARGS, nullptr },
         { "request_download_and_install_store_package_updates_async", reinterpret_cast<PyCFunction>(StoreContext_RequestDownloadAndInstallStorePackageUpdatesAsync), METH_VARARGS, nullptr },
         { "request_download_and_install_store_packages_async", reinterpret_cast<PyCFunction>(StoreContext_RequestDownloadAndInstallStorePackagesAsync), METH_VARARGS, nullptr },
         { "request_download_store_package_updates_async", reinterpret_cast<PyCFunction>(StoreContext_RequestDownloadStorePackageUpdatesAsync), METH_VARARGS, nullptr },
         { "request_purchase_async", reinterpret_cast<PyCFunction>(StoreContext_RequestPurchaseAsync), METH_VARARGS, nullptr },
+        { "request_purchase_by_in_app_offer_token_async", reinterpret_cast<PyCFunction>(StoreContext_RequestPurchaseByInAppOfferTokenAsync), METH_VARARGS, nullptr },
         { "request_rate_and_review_app_async", reinterpret_cast<PyCFunction>(StoreContext_RequestRateAndReviewAppAsync), METH_VARARGS, nullptr },
         { "request_uninstall_store_package_async", reinterpret_cast<PyCFunction>(StoreContext_RequestUninstallStorePackageAsync), METH_VARARGS, nullptr },
         { "request_uninstall_store_package_by_store_id_async", reinterpret_cast<PyCFunction>(StoreContext_RequestUninstallStorePackageByStoreIdAsync), METH_VARARGS, nullptr },
@@ -3844,6 +3940,63 @@ namespace py::cpp::Windows::Services::Store
         }
     }
 
+    static PyObject* StorePrice_get_UnformattedBasePrice(py::wrapper::Windows::Services::Store::StorePrice* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Services.Store.StorePrice", L"UnformattedBasePrice"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.UnformattedBasePrice());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* StorePrice_get_UnformattedPrice(py::wrapper::Windows::Services::Store::StorePrice* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Services.Store.StorePrice", L"UnformattedPrice"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.UnformattedPrice());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* StorePrice_get_UnformattedRecurrencePrice(py::wrapper::Windows::Services::Store::StorePrice* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Services.Store.StorePrice", L"UnformattedRecurrencePrice"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.UnformattedRecurrencePrice());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _assign_array_StorePrice(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         auto array = std::make_unique<py::ComArray<winrt::Windows::Services::Store::StorePrice>>();
@@ -3881,6 +4034,9 @@ namespace py::cpp::Windows::Services::Store
         { "formatted_recurrence_price", reinterpret_cast<getter>(StorePrice_get_FormattedRecurrencePrice), nullptr, nullptr, nullptr },
         { "is_on_sale", reinterpret_cast<getter>(StorePrice_get_IsOnSale), nullptr, nullptr, nullptr },
         { "sale_end_date", reinterpret_cast<getter>(StorePrice_get_SaleEndDate), nullptr, nullptr, nullptr },
+        { "unformatted_base_price", reinterpret_cast<getter>(StorePrice_get_UnformattedBasePrice), nullptr, nullptr, nullptr },
+        { "unformatted_price", reinterpret_cast<getter>(StorePrice_get_UnformattedPrice), nullptr, nullptr, nullptr },
+        { "unformatted_recurrence_price", reinterpret_cast<getter>(StorePrice_get_UnformattedRecurrencePrice), nullptr, nullptr, nullptr },
         { }
     };
 

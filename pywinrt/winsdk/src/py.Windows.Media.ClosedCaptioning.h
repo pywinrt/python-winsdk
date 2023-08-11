@@ -4,10 +4,15 @@
 
 #include "pybase.h"
 
+#if __has_include("py.Windows.Foundation.h")
+#include "py.Windows.Foundation.h"
+#endif
+
 #if __has_include("py.Windows.UI.h")
 #include "py.Windows.UI.h"
 #endif
 
+#include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.UI.h>
 
 #include <winrt/Windows.Media.ClosedCaptioning.h>

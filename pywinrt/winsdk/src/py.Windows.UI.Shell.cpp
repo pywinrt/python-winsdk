@@ -19,6 +19,15 @@ namespace py::cpp::Windows::UI::Shell
         PyTypeObject* type_ShareWindowCommandEventArgs;
         PyTypeObject* type_ShareWindowCommandSource;
         PyTypeObject* type_TaskbarManager;
+        PyTypeObject* type_WindowTab;
+        PyTypeObject* type_WindowTabCloseRequestedEventArgs;
+        PyTypeObject* type_WindowTabCollection;
+        PyTypeObject* type_WindowTabGroup;
+        PyTypeObject* type_WindowTabIcon;
+        PyTypeObject* type_WindowTabManager;
+        PyTypeObject* type_WindowTabSwitchRequestedEventArgs;
+        PyTypeObject* type_WindowTabTearOutRequestedEventArgs;
+        PyTypeObject* type_WindowTabThumbnailRequestedEventArgs;
         PyTypeObject* type_IAdaptiveCard;
         PyTypeObject* type_IAdaptiveCardBuilderStatics;
     };
@@ -1634,6 +1643,2370 @@ namespace py::cpp::Windows::UI::Shell
         _type_slots_TaskbarManager
     };
 
+    // ----- WindowTab class --------------------
+    static constexpr const char* const type_name_WindowTab = "WindowTab";
+
+    static PyObject* _new_WindowTab(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        auto arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::UI::Shell::WindowTab instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_WindowTab(py::wrapper::Windows::UI::Shell::WindowTab* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTab_ReportThumbnailAvailable(py::wrapper::Windows::UI::Shell::WindowTab* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTab", L"ReportThumbnailAvailable", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                self->obj.ReportThumbnailAvailable();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTab_get_TreatAsSecondaryTileId(py::wrapper::Windows::UI::Shell::WindowTab* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"TreatAsSecondaryTileId"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.TreatAsSecondaryTileId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTab_put_TreatAsSecondaryTileId(py::wrapper::Windows::UI::Shell::WindowTab* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"TreatAsSecondaryTileId"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.TreatAsSecondaryTileId(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTab_get_Title(py::wrapper::Windows::UI::Shell::WindowTab* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Title"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Title());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTab_put_Title(py::wrapper::Windows::UI::Shell::WindowTab* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Title"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Title(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTab_get_Tag(py::wrapper::Windows::UI::Shell::WindowTab* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Tag"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Tag());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTab_put_Tag(py::wrapper::Windows::UI::Shell::WindowTab* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Tag"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+
+            self->obj.Tag(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTab_get_Icon(py::wrapper::Windows::UI::Shell::WindowTab* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Icon"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Icon());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTab_put_Icon(py::wrapper::Windows::UI::Shell::WindowTab* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Icon"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::UI::Shell::WindowTabIcon>(arg);
+
+            self->obj.Icon(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTab_get_Group(py::wrapper::Windows::UI::Shell::WindowTab* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Group"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Group());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTab_put_Group(py::wrapper::Windows::UI::Shell::WindowTab* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTab", L"Group"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::UI::Shell::WindowTabGroup>(arg);
+
+            self->obj.Group(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTab(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTab>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTab(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTab>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTab[] = {
+        { "report_thumbnail_available", reinterpret_cast<PyCFunction>(WindowTab_ReportThumbnailAvailable), METH_VARARGS, nullptr },
+        { "_assign_array_", _assign_array_WindowTab, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTab), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTab[] = {
+        { "treat_as_secondary_tile_id", reinterpret_cast<getter>(WindowTab_get_TreatAsSecondaryTileId), reinterpret_cast<setter>(WindowTab_put_TreatAsSecondaryTileId), nullptr, nullptr },
+        { "title", reinterpret_cast<getter>(WindowTab_get_Title), reinterpret_cast<setter>(WindowTab_put_Title), nullptr, nullptr },
+        { "tag", reinterpret_cast<getter>(WindowTab_get_Tag), reinterpret_cast<setter>(WindowTab_put_Tag), nullptr, nullptr },
+        { "icon", reinterpret_cast<getter>(WindowTab_get_Icon), reinterpret_cast<setter>(WindowTab_put_Icon), nullptr, nullptr },
+        { "group", reinterpret_cast<getter>(WindowTab_get_Group), reinterpret_cast<setter>(WindowTab_put_Group), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTab[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTab) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTab) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTab) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTab) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTab =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTab",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTab),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTab
+    };
+
+    // ----- WindowTabCloseRequestedEventArgs class --------------------
+    static constexpr const char* const type_name_WindowTabCloseRequestedEventArgs = "WindowTabCloseRequestedEventArgs";
+
+    static PyObject* _new_WindowTabCloseRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowTabCloseRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowTabCloseRequestedEventArgs(py::wrapper::Windows::UI::Shell::WindowTabCloseRequestedEventArgs* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabCloseRequestedEventArgs_get_Tab(py::wrapper::Windows::UI::Shell::WindowTabCloseRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabCloseRequestedEventArgs", L"Tab"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Tab());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabCloseRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabCloseRequestedEventArgs>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabCloseRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabCloseRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTabCloseRequestedEventArgs[] = {
+        { "_assign_array_", _assign_array_WindowTabCloseRequestedEventArgs, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabCloseRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabCloseRequestedEventArgs[] = {
+        { "tab", reinterpret_cast<getter>(WindowTabCloseRequestedEventArgs_get_Tab), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabCloseRequestedEventArgs[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabCloseRequestedEventArgs) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabCloseRequestedEventArgs) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabCloseRequestedEventArgs) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabCloseRequestedEventArgs) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabCloseRequestedEventArgs =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabCloseRequestedEventArgs",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabCloseRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabCloseRequestedEventArgs
+    };
+
+    // ----- WindowTabCollection class --------------------
+    static constexpr const char* const type_name_WindowTabCollection = "WindowTabCollection";
+
+    static PyObject* _new_WindowTabCollection(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowTabCollection);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowTabCollection(py::wrapper::Windows::UI::Shell::WindowTabCollection* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabCollection_Append(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"Append", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::WindowTab>(args, 0);
+
+                self->obj.Append(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_Clear(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"Clear", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                self->obj.Clear();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_First(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"First", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                return py::convert(self->obj.First());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_GetAt(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"GetAt", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+
+                return py::convert(self->obj.GetAt(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_GetMany(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"GetMany", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+                auto param1 = py::convert_to<py::pybuf_view<winrt::Windows::UI::Shell::WindowTab, true>>(args, 1);
+
+                return py::convert(self->obj.GetMany(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_GetView(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"GetView", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                return py::convert(self->obj.GetView());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_IndexOf(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"IndexOf", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::WindowTab>(args, 0);
+                uint32_t param1 {  };
+
+                auto return_value = self->obj.IndexOf(param0, param1);
+
+                py::pyobj_handle out_return_value{ py::convert(return_value) };
+                if (!out_return_value)
+                {
+                    return nullptr;
+                }
+                py::pyobj_handle out1{ py::convert(param1) };
+                if (!out1)
+                {
+                    return nullptr;
+                }
+                return PyTuple_Pack(2, out_return_value.get(), out1.get());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_InsertAt(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"InsertAt", 2))
+            {
+                py::set_arg_count_version_error(2);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::UI::Shell::WindowTab>(args, 1);
+
+                self->obj.InsertAt(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_MoveTab(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"MoveTab", 2))
+            {
+                py::set_arg_count_version_error(2);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::WindowTab>(args, 0);
+                auto param1 = py::convert_to<uint32_t>(args, 1);
+
+                self->obj.MoveTab(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_RemoveAt(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"RemoveAt", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+
+                self->obj.RemoveAt(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_RemoveAtEnd(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"RemoveAtEnd", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                self->obj.RemoveAtEnd();
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_ReplaceAll(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"ReplaceAll", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<py::pybuf_view<winrt::Windows::UI::Shell::WindowTab, false>>(args, 0);
+
+                self->obj.ReplaceAll(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_SetAt(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabCollection", L"SetAt", 2))
+            {
+                py::set_arg_count_version_error(2);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<uint32_t>(args, 0);
+                auto param1 = py::convert_to<winrt::Windows::UI::Shell::WindowTab>(args, 1);
+
+                self->obj.SetAt(param0, param1);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabCollection_get_Size(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabCollection", L"Size"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Size());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabCollection(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabCollection>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabCollection(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabCollection>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _iterator_WindowTabCollection(py::wrapper::Windows::UI::Shell::WindowTabCollection* self) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.First());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static Py_ssize_t _seq_length_WindowTabCollection(py::wrapper::Windows::UI::Shell::WindowTabCollection* self) noexcept
+    {
+        try
+        {
+            return static_cast<Py_ssize_t>(self->obj.Size());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _seq_item_WindowTabCollection(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, Py_ssize_t i) noexcept
+    {
+        try
+        {
+            return py::convert(self->obj.GetAt(static_cast<uint32_t>(i)));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _seq_subscript_WindowTabCollection(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, PyObject* slice) noexcept
+    {
+        try
+        {
+            if (PyIndex_Check(slice))
+            {
+                pyobj_handle index{PyNumber_Index(slice)};
+
+                if (!index)
+                {
+                    return nullptr;
+                }
+
+                auto i = PyNumber_AsSsize_t(index.get(), PyExc_IndexError);
+
+                if (i == -1 && PyErr_Occurred())
+                {
+                    return nullptr;
+                }
+
+                return _seq_item_WindowTabCollection(self, i);
+            }
+
+            if (!PySlice_Check(slice))
+            {
+                PyErr_Format(
+                    PyExc_TypeError,
+                    "indicies must be integers, not '%s'",
+                    Py_TYPE(slice)->tp_name);
+            }
+
+            Py_ssize_t start, stop, step, length;
+
+            if (PySlice_GetIndicesEx(
+                    slice, self->obj.Size(), &start, &stop, &step, &length)
+                < 0)
+            {
+                return nullptr;
+            }
+
+            if (step != 1)
+            {
+                PyErr_SetString(
+                    PyExc_NotImplementedError,
+                    "slices with step other than 1 are not implemented");
+                return nullptr;
+            }
+
+            winrt::com_array<winrt::Windows::UI::Shell::WindowTab> items(length, empty_instance<winrt::Windows::UI::Shell::WindowTab>::get());
+
+            auto count = self->obj.GetMany(start, items);
+
+            if (count != length)
+            {
+                PyErr_Format(
+                    PyExc_RuntimeError,
+                    "returned count %d did not match requested length %zd",
+                    count,
+                    length);
+                return nullptr;
+            }
+
+            return convert(items);}
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int _seq_assign_WindowTabCollection(py::wrapper::Windows::UI::Shell::WindowTabCollection* self, Py_ssize_t i, PyObject* value) noexcept
+    {
+        try
+        {
+            if (value == nullptr) { self->obj.RemoveAt(static_cast<uint32_t>(i)); }
+            else { self->obj.SetAt(static_cast<uint32_t>(i), py::convert_to<winrt::Windows::UI::Shell::WindowTab>(value)); }
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTabCollection_get_insert(PyObject* self) noexcept
+    {
+        return PyObject_GetAttrString(self, "insert_at");
+    }
+
+    static PyMethodDef _methods_WindowTabCollection[] = {
+        { "append", reinterpret_cast<PyCFunction>(WindowTabCollection_Append), METH_VARARGS, nullptr },
+        { "clear", reinterpret_cast<PyCFunction>(WindowTabCollection_Clear), METH_VARARGS, nullptr },
+        { "first", reinterpret_cast<PyCFunction>(WindowTabCollection_First), METH_VARARGS, nullptr },
+        { "get_at", reinterpret_cast<PyCFunction>(WindowTabCollection_GetAt), METH_VARARGS, nullptr },
+        { "get_many", reinterpret_cast<PyCFunction>(WindowTabCollection_GetMany), METH_VARARGS, nullptr },
+        { "get_view", reinterpret_cast<PyCFunction>(WindowTabCollection_GetView), METH_VARARGS, nullptr },
+        { "index_of", reinterpret_cast<PyCFunction>(WindowTabCollection_IndexOf), METH_VARARGS, nullptr },
+        { "insert_at", reinterpret_cast<PyCFunction>(WindowTabCollection_InsertAt), METH_VARARGS, nullptr },
+        { "move_tab", reinterpret_cast<PyCFunction>(WindowTabCollection_MoveTab), METH_VARARGS, nullptr },
+        { "remove_at", reinterpret_cast<PyCFunction>(WindowTabCollection_RemoveAt), METH_VARARGS, nullptr },
+        { "remove_at_end", reinterpret_cast<PyCFunction>(WindowTabCollection_RemoveAtEnd), METH_VARARGS, nullptr },
+        { "replace_all", reinterpret_cast<PyCFunction>(WindowTabCollection_ReplaceAll), METH_VARARGS, nullptr },
+        { "set_at", reinterpret_cast<PyCFunction>(WindowTabCollection_SetAt), METH_VARARGS, nullptr },
+        { "_assign_array_", _assign_array_WindowTabCollection, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabCollection), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabCollection[] = {
+        { "size", reinterpret_cast<getter>(WindowTabCollection_get_Size), nullptr, nullptr, nullptr },
+        { "insert", reinterpret_cast<getter>(WindowTabCollection_get_insert), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabCollection[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabCollection) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabCollection) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabCollection) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabCollection) },
+        { Py_tp_iter, reinterpret_cast<void*>(_iterator_WindowTabCollection) },
+        { Py_sq_length, reinterpret_cast<void*>(_seq_length_WindowTabCollection) },
+        { Py_sq_item, reinterpret_cast<void*>(_seq_item_WindowTabCollection) },
+        { Py_mp_subscript, reinterpret_cast<void*>(_seq_subscript_WindowTabCollection) },
+        { Py_sq_ass_item, reinterpret_cast<void*>(_seq_assign_WindowTabCollection) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabCollection =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabCollection",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabCollection),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabCollection
+    };
+
+    // ----- WindowTabGroup class --------------------
+    static constexpr const char* const type_name_WindowTabGroup = "WindowTabGroup";
+
+    static PyObject* _new_WindowTabGroup(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        if (kwds != nullptr)
+        {
+            py::set_invalid_kwd_args_error();
+            return nullptr;
+        }
+
+        auto arg_count = PyTuple_Size(args);
+        if (arg_count == 0)
+        {
+            try
+            {
+                winrt::Windows::UI::Shell::WindowTabGroup instance{  };
+                return py::wrap(instance, type);
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static void _dealloc_WindowTabGroup(py::wrapper::Windows::UI::Shell::WindowTabGroup* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabGroup_get_Title(py::wrapper::Windows::UI::Shell::WindowTabGroup* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabGroup", L"Title"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Title());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTabGroup_put_Title(py::wrapper::Windows::UI::Shell::WindowTabGroup* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabGroup", L"Title"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::hstring>(arg);
+
+            self->obj.Title(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTabGroup_get_Icon(py::wrapper::Windows::UI::Shell::WindowTabGroup* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabGroup", L"Icon"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Icon());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTabGroup_put_Icon(py::wrapper::Windows::UI::Shell::WindowTabGroup* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabGroup", L"Icon"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::UI::Shell::WindowTabIcon>(arg);
+
+            self->obj.Icon(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabGroup(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabGroup>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabGroup(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabGroup>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTabGroup[] = {
+        { "_assign_array_", _assign_array_WindowTabGroup, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabGroup), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabGroup[] = {
+        { "title", reinterpret_cast<getter>(WindowTabGroup_get_Title), reinterpret_cast<setter>(WindowTabGroup_put_Title), nullptr, nullptr },
+        { "icon", reinterpret_cast<getter>(WindowTabGroup_get_Icon), reinterpret_cast<setter>(WindowTabGroup_put_Icon), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabGroup[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabGroup) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabGroup) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabGroup) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabGroup) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabGroup =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabGroup",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabGroup),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabGroup
+    };
+
+    // ----- WindowTabIcon class --------------------
+    static constexpr const char* const type_name_WindowTabIcon = "WindowTabIcon";
+
+    static PyObject* _new_WindowTabIcon(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowTabIcon);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowTabIcon(py::wrapper::Windows::UI::Shell::WindowTabIcon* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabIcon_CreateFromFontGlyph(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 2)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabIcon", L"CreateFromFontGlyph", 2))
+            {
+                py::set_arg_count_version_error(2);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+
+                return py::convert(winrt::Windows::UI::Shell::WindowTabIcon::CreateFromFontGlyph(param0, param1));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else if (arg_count == 3)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabIcon", L"CreateFromFontGlyph", 3))
+            {
+                py::set_arg_count_version_error(3);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+                auto param1 = py::convert_to<winrt::hstring>(args, 1);
+                auto param2 = py::convert_to<winrt::Windows::Foundation::Uri>(args, 2);
+
+                return py::convert(winrt::Windows::UI::Shell::WindowTabIcon::CreateFromFontGlyph(param0, param1, param2));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabIcon_CreateFromImage(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabIcon", L"CreateFromImage", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IRandomAccessStreamReference>(args, 0);
+
+                return py::convert(winrt::Windows::UI::Shell::WindowTabIcon::CreateFromImage(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabIcon(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabIcon>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabIcon(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabIcon>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTabIcon[] = {
+        { "create_from_font_glyph", reinterpret_cast<PyCFunction>(WindowTabIcon_CreateFromFontGlyph), METH_VARARGS | METH_STATIC, nullptr },
+        { "create_from_image", reinterpret_cast<PyCFunction>(WindowTabIcon_CreateFromImage), METH_VARARGS | METH_STATIC, nullptr },
+        { "_assign_array_", _assign_array_WindowTabIcon, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabIcon), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabIcon[] = {
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabIcon[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabIcon) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabIcon) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabIcon) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabIcon) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabIcon =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabIcon",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabIcon),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabIcon
+    };
+
+    // ----- WindowTabManager class --------------------
+    static constexpr const char* const type_name_WindowTabManager = "WindowTabManager";
+
+    static PyObject* _new_WindowTabManager(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowTabManager);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowTabManager(py::wrapper::Windows::UI::Shell::WindowTabManager* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabManager_GetForWindow(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabManager", L"GetForWindow", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::WindowId>(args, 0);
+
+                return py::convert(winrt::Windows::UI::Shell::WindowTabManager::GetForWindow(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_IsSupported(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabManager", L"IsSupported", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                return py::convert(winrt::Windows::UI::Shell::WindowTabManager::IsSupported());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_IsTabTearOutSupported(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabManager", L"IsTabTearOutSupported", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                return py::convert(winrt::Windows::UI::Shell::WindowTabManager::IsTabTearOutSupported());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_SetActiveTab(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabManager", L"SetActiveTab", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::Windows::UI::Shell::WindowTab>(args, 0);
+
+                self->obj.SetActiveTab(param0);
+                Py_RETURN_NONE;
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_get_Tabs(py::wrapper::Windows::UI::Shell::WindowTabManager* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabManager", L"Tabs"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Tabs());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_add_TabCloseRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabCloseRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::WindowTabManager, winrt::Windows::UI::Shell::WindowTabCloseRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.TabCloseRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_remove_TabCloseRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabCloseRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.TabCloseRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_add_TabSwitchRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabSwitchRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::WindowTabManager, winrt::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.TabSwitchRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_remove_TabSwitchRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabSwitchRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.TabSwitchRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_add_TabTearOutRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabTearOutRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::WindowTabManager, winrt::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.TabTearOutRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_remove_TabTearOutRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabTearOutRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.TabTearOutRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_add_TabThumbnailRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabThumbnailRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Shell::WindowTabManager, winrt::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs>>(arg);
+
+            return py::convert(self->obj.TabThumbnailRequested(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabManager_remove_TabThumbnailRequested(py::wrapper::Windows::UI::Shell::WindowTabManager* self, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Shell.WindowTabManager", L"TabThumbnailRequested"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            self->obj.TabThumbnailRequested(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabManager(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabManager>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabManager(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabManager>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTabManager[] = {
+        { "get_for_window", reinterpret_cast<PyCFunction>(WindowTabManager_GetForWindow), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_supported", reinterpret_cast<PyCFunction>(WindowTabManager_IsSupported), METH_VARARGS | METH_STATIC, nullptr },
+        { "is_tab_tear_out_supported", reinterpret_cast<PyCFunction>(WindowTabManager_IsTabTearOutSupported), METH_VARARGS | METH_STATIC, nullptr },
+        { "set_active_tab", reinterpret_cast<PyCFunction>(WindowTabManager_SetActiveTab), METH_VARARGS, nullptr },
+        { "add_tab_close_requested", reinterpret_cast<PyCFunction>(WindowTabManager_add_TabCloseRequested), METH_O, nullptr },
+        { "remove_tab_close_requested", reinterpret_cast<PyCFunction>(WindowTabManager_remove_TabCloseRequested), METH_O, nullptr },
+        { "add_tab_switch_requested", reinterpret_cast<PyCFunction>(WindowTabManager_add_TabSwitchRequested), METH_O, nullptr },
+        { "remove_tab_switch_requested", reinterpret_cast<PyCFunction>(WindowTabManager_remove_TabSwitchRequested), METH_O, nullptr },
+        { "add_tab_tear_out_requested", reinterpret_cast<PyCFunction>(WindowTabManager_add_TabTearOutRequested), METH_O, nullptr },
+        { "remove_tab_tear_out_requested", reinterpret_cast<PyCFunction>(WindowTabManager_remove_TabTearOutRequested), METH_O, nullptr },
+        { "add_tab_thumbnail_requested", reinterpret_cast<PyCFunction>(WindowTabManager_add_TabThumbnailRequested), METH_O, nullptr },
+        { "remove_tab_thumbnail_requested", reinterpret_cast<PyCFunction>(WindowTabManager_remove_TabThumbnailRequested), METH_O, nullptr },
+        { "_assign_array_", _assign_array_WindowTabManager, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabManager), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabManager[] = {
+        { "tabs", reinterpret_cast<getter>(WindowTabManager_get_Tabs), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabManager[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabManager) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabManager) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabManager) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabManager) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabManager =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabManager",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabManager),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabManager
+    };
+
+    // ----- WindowTabSwitchRequestedEventArgs class --------------------
+    static constexpr const char* const type_name_WindowTabSwitchRequestedEventArgs = "WindowTabSwitchRequestedEventArgs";
+
+    static PyObject* _new_WindowTabSwitchRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowTabSwitchRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowTabSwitchRequestedEventArgs(py::wrapper::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabSwitchRequestedEventArgs_get_Tab(py::wrapper::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabSwitchRequestedEventArgs", L"Tab"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Tab());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabSwitchRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabSwitchRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTabSwitchRequestedEventArgs[] = {
+        { "_assign_array_", _assign_array_WindowTabSwitchRequestedEventArgs, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabSwitchRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabSwitchRequestedEventArgs[] = {
+        { "tab", reinterpret_cast<getter>(WindowTabSwitchRequestedEventArgs_get_Tab), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabSwitchRequestedEventArgs[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabSwitchRequestedEventArgs) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabSwitchRequestedEventArgs) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabSwitchRequestedEventArgs) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabSwitchRequestedEventArgs) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabSwitchRequestedEventArgs =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabSwitchRequestedEventArgs",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabSwitchRequestedEventArgs
+    };
+
+    // ----- WindowTabTearOutRequestedEventArgs class --------------------
+    static constexpr const char* const type_name_WindowTabTearOutRequestedEventArgs = "WindowTabTearOutRequestedEventArgs";
+
+    static PyObject* _new_WindowTabTearOutRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowTabTearOutRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowTabTearOutRequestedEventArgs(py::wrapper::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabTearOutRequestedEventArgs_GetDeferral(py::wrapper::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabTearOutRequestedEventArgs", L"GetDeferral", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabTearOutRequestedEventArgs_get_WindowId(py::wrapper::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabTearOutRequestedEventArgs", L"WindowId"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.WindowId());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTabTearOutRequestedEventArgs_put_WindowId(py::wrapper::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabTearOutRequestedEventArgs", L"WindowId"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<uint64_t>(arg);
+
+            self->obj.WindowId(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTabTearOutRequestedEventArgs_get_Tab(py::wrapper::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabTearOutRequestedEventArgs", L"Tab"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Tab());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabTearOutRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabTearOutRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTabTearOutRequestedEventArgs[] = {
+        { "get_deferral", reinterpret_cast<PyCFunction>(WindowTabTearOutRequestedEventArgs_GetDeferral), METH_VARARGS, nullptr },
+        { "_assign_array_", _assign_array_WindowTabTearOutRequestedEventArgs, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabTearOutRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabTearOutRequestedEventArgs[] = {
+        { "window_id", reinterpret_cast<getter>(WindowTabTearOutRequestedEventArgs_get_WindowId), reinterpret_cast<setter>(WindowTabTearOutRequestedEventArgs_put_WindowId), nullptr, nullptr },
+        { "tab", reinterpret_cast<getter>(WindowTabTearOutRequestedEventArgs_get_Tab), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabTearOutRequestedEventArgs[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabTearOutRequestedEventArgs) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabTearOutRequestedEventArgs) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabTearOutRequestedEventArgs) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabTearOutRequestedEventArgs) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabTearOutRequestedEventArgs =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabTearOutRequestedEventArgs",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabTearOutRequestedEventArgs
+    };
+
+    // ----- WindowTabThumbnailRequestedEventArgs class --------------------
+    static constexpr const char* const type_name_WindowTabThumbnailRequestedEventArgs = "WindowTabThumbnailRequestedEventArgs";
+
+    static PyObject* _new_WindowTabThumbnailRequestedEventArgs(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WindowTabThumbnailRequestedEventArgs);
+        return nullptr;
+    }
+
+    static void _dealloc_WindowTabThumbnailRequestedEventArgs(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WindowTabThumbnailRequestedEventArgs_GetDeferral(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs* self, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.UI.Shell.WindowTabThumbnailRequestedEventArgs", L"GetDeferral", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                return py::convert(self->obj.GetDeferral());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabThumbnailRequestedEventArgs_get_Image(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabThumbnailRequestedEventArgs", L"Image"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Image());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WindowTabThumbnailRequestedEventArgs_put_Image(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabThumbnailRequestedEventArgs", L"Image"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Storage::Streams::IRandomAccessStreamReference>(arg);
+
+            self->obj.Image(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WindowTabThumbnailRequestedEventArgs_get_IsCompositedOnWindow(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabThumbnailRequestedEventArgs", L"IsCompositedOnWindow"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.IsCompositedOnWindow());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabThumbnailRequestedEventArgs_get_RequestedSize(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabThumbnailRequestedEventArgs", L"RequestedSize"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.RequestedSize());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* WindowTabThumbnailRequestedEventArgs_get_Tab(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.UI.Shell.WindowTabThumbnailRequestedEventArgs", L"Tab"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.Tab());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* _assign_array_WindowTabThumbnailRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WindowTabThumbnailRequestedEventArgs(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WindowTabThumbnailRequestedEventArgs[] = {
+        { "get_deferral", reinterpret_cast<PyCFunction>(WindowTabThumbnailRequestedEventArgs_GetDeferral), METH_VARARGS, nullptr },
+        { "_assign_array_", _assign_array_WindowTabThumbnailRequestedEventArgs, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WindowTabThumbnailRequestedEventArgs), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WindowTabThumbnailRequestedEventArgs[] = {
+        { "image", reinterpret_cast<getter>(WindowTabThumbnailRequestedEventArgs_get_Image), reinterpret_cast<setter>(WindowTabThumbnailRequestedEventArgs_put_Image), nullptr, nullptr },
+        { "is_composited_on_window", reinterpret_cast<getter>(WindowTabThumbnailRequestedEventArgs_get_IsCompositedOnWindow), nullptr, nullptr, nullptr },
+        { "requested_size", reinterpret_cast<getter>(WindowTabThumbnailRequestedEventArgs_get_RequestedSize), nullptr, nullptr, nullptr },
+        { "tab", reinterpret_cast<getter>(WindowTabThumbnailRequestedEventArgs_get_Tab), nullptr, nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WindowTabThumbnailRequestedEventArgs[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WindowTabThumbnailRequestedEventArgs) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WindowTabThumbnailRequestedEventArgs) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WindowTabThumbnailRequestedEventArgs) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WindowTabThumbnailRequestedEventArgs) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WindowTabThumbnailRequestedEventArgs =
+    {
+        "_winsdk_Windows_UI_Shell.WindowTabThumbnailRequestedEventArgs",
+        sizeof(py::wrapper::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WindowTabThumbnailRequestedEventArgs
+    };
+
     // ----- IAdaptiveCard interface --------------------
     static constexpr const char* const type_name_IAdaptiveCard = "IAdaptiveCard";
 
@@ -1877,6 +4250,15 @@ namespace py::cpp::Windows::UI::Shell
         Py_VISIT(state->type_ShareWindowCommandEventArgs);
         Py_VISIT(state->type_ShareWindowCommandSource);
         Py_VISIT(state->type_TaskbarManager);
+        Py_VISIT(state->type_WindowTab);
+        Py_VISIT(state->type_WindowTabCloseRequestedEventArgs);
+        Py_VISIT(state->type_WindowTabCollection);
+        Py_VISIT(state->type_WindowTabGroup);
+        Py_VISIT(state->type_WindowTabIcon);
+        Py_VISIT(state->type_WindowTabManager);
+        Py_VISIT(state->type_WindowTabSwitchRequestedEventArgs);
+        Py_VISIT(state->type_WindowTabTearOutRequestedEventArgs);
+        Py_VISIT(state->type_WindowTabThumbnailRequestedEventArgs);
         Py_VISIT(state->type_IAdaptiveCard);
         Py_VISIT(state->type_IAdaptiveCardBuilderStatics);
 
@@ -1903,6 +4285,15 @@ namespace py::cpp::Windows::UI::Shell
         Py_CLEAR(state->type_ShareWindowCommandEventArgs);
         Py_CLEAR(state->type_ShareWindowCommandSource);
         Py_CLEAR(state->type_TaskbarManager);
+        Py_CLEAR(state->type_WindowTab);
+        Py_CLEAR(state->type_WindowTabCloseRequestedEventArgs);
+        Py_CLEAR(state->type_WindowTabCollection);
+        Py_CLEAR(state->type_WindowTabGroup);
+        Py_CLEAR(state->type_WindowTabIcon);
+        Py_CLEAR(state->type_WindowTabManager);
+        Py_CLEAR(state->type_WindowTabSwitchRequestedEventArgs);
+        Py_CLEAR(state->type_WindowTabTearOutRequestedEventArgs);
+        Py_CLEAR(state->type_WindowTabThumbnailRequestedEventArgs);
         Py_CLEAR(state->type_IAdaptiveCard);
         Py_CLEAR(state->type_IAdaptiveCardBuilderStatics);
 
@@ -2057,6 +4448,60 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_UI_Shell(void) noexcept
 
     state->type_TaskbarManager = py::register_python_type(module.get(), type_name_TaskbarManager, &type_spec_TaskbarManager, bases.get(), nullptr);
     if (!state->type_TaskbarManager)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTab = py::register_python_type(module.get(), type_name_WindowTab, &type_spec_WindowTab, bases.get(), nullptr);
+    if (!state->type_WindowTab)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabCloseRequestedEventArgs = py::register_python_type(module.get(), type_name_WindowTabCloseRequestedEventArgs, &type_spec_WindowTabCloseRequestedEventArgs, bases.get(), nullptr);
+    if (!state->type_WindowTabCloseRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabCollection = py::register_python_type(module.get(), type_name_WindowTabCollection, &type_spec_WindowTabCollection, mutable_sequence_bases.get(), nullptr);
+    if (!state->type_WindowTabCollection)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabGroup = py::register_python_type(module.get(), type_name_WindowTabGroup, &type_spec_WindowTabGroup, bases.get(), nullptr);
+    if (!state->type_WindowTabGroup)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabIcon = py::register_python_type(module.get(), type_name_WindowTabIcon, &type_spec_WindowTabIcon, bases.get(), nullptr);
+    if (!state->type_WindowTabIcon)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabManager = py::register_python_type(module.get(), type_name_WindowTabManager, &type_spec_WindowTabManager, bases.get(), nullptr);
+    if (!state->type_WindowTabManager)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabSwitchRequestedEventArgs = py::register_python_type(module.get(), type_name_WindowTabSwitchRequestedEventArgs, &type_spec_WindowTabSwitchRequestedEventArgs, bases.get(), nullptr);
+    if (!state->type_WindowTabSwitchRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabTearOutRequestedEventArgs = py::register_python_type(module.get(), type_name_WindowTabTearOutRequestedEventArgs, &type_spec_WindowTabTearOutRequestedEventArgs, bases.get(), nullptr);
+    if (!state->type_WindowTabTearOutRequestedEventArgs)
+    {
+        return nullptr;
+    }
+
+    state->type_WindowTabThumbnailRequestedEventArgs = py::register_python_type(module.get(), type_name_WindowTabThumbnailRequestedEventArgs, &type_spec_WindowTabThumbnailRequestedEventArgs, bases.get(), nullptr);
+    if (!state->type_WindowTabThumbnailRequestedEventArgs)
     {
         return nullptr;
     }
@@ -2324,6 +4769,213 @@ PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::TaskbarManager>::get_pyt
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::TaskbarManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTab>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTab;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTab is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabCloseRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabCloseRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabCloseRequestedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabCollection>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabCollection;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabCollection is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabGroup>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabGroup;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabGroup is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabIcon>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabIcon;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabIcon is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabManager>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabManager;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabManager is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabSwitchRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabSwitchRequestedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabTearOutRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabTearOutRequestedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::UI::Shell;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::UI::Shell");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WindowTabThumbnailRequestedEventArgs;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::UI::Shell::WindowTabThumbnailRequestedEventArgs is not registered");
         return nullptr;
     }
 

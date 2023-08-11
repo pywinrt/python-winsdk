@@ -7,6 +7,7 @@
 static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.230225.1"), "Mismatched C++/WinRT headers.");
 #define CPPWINRT_VERSION "2.0.230225.1"
 #include "winrt/Windows.Media.h"
+#include "winrt/impl/Windows.Foundation.2.h"
 #include "winrt/impl/Windows.UI.2.h"
 #include "winrt/impl/Windows.Media.ClosedCaptioning.2.h"
 namespace winrt::impl
@@ -82,6 +83,20 @@ namespace winrt::impl
         winrt::Windows::Media::ClosedCaptioning::ClosedCaptionOpacity value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics)->get_RegionOpacity(reinterpret_cast<int32_t*>(&value)));
         return value;
+    }
+    template <typename D> auto consume_Windows_Media_ClosedCaptioning_IClosedCaptionPropertiesStatics2<D>::PropertiesChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics2)->add_PropertiesChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> auto consume_Windows_Media_ClosedCaptioning_IClosedCaptionPropertiesStatics2<D>::PropertiesChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, PropertiesChanged_revoker>(this, PropertiesChanged(handler));
+    }
+    template <typename D> auto consume_Windows_Media_ClosedCaptioning_IClosedCaptionPropertiesStatics2<D>::PropertiesChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_IMPL_SHIM(winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics2)->remove_PropertiesChanged(impl::bind_in(token));
     }
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
@@ -176,6 +191,26 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics2> : produce_base<D, winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics2>
+    {
+        int32_t __stdcall add_PropertiesChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().PropertiesChanged(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PropertiesChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PropertiesChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
 }
 WINRT_EXPORT namespace winrt::Windows::Media::ClosedCaptioning
 {
@@ -227,11 +262,25 @@ WINRT_EXPORT namespace winrt::Windows::Media::ClosedCaptioning
     {
         return impl::call_factory_cast<winrt::Windows::Media::ClosedCaptioning::ClosedCaptionOpacity(*)(IClosedCaptionPropertiesStatics const&), ClosedCaptionProperties, IClosedCaptionPropertiesStatics>([](IClosedCaptionPropertiesStatics const& f) { return f.RegionOpacity(); });
     }
+    inline auto ClosedCaptionProperties::PropertiesChanged(winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        return impl::call_factory<ClosedCaptionProperties, IClosedCaptionPropertiesStatics2>([&](IClosedCaptionPropertiesStatics2 const& f) { return f.PropertiesChanged(handler); });
+    }
+    inline auto ClosedCaptionProperties::PropertiesChanged(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const& handler)
+    {
+        auto f = get_activation_factory<ClosedCaptionProperties, winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics2>();
+        return ClosedCaptionProperties::PropertiesChanged_revoker{ f, f.PropertiesChanged(handler) };
+    }
+    inline auto ClosedCaptionProperties::PropertiesChanged(winrt::event_token const& token)
+    {
+        impl::call_factory<ClosedCaptionProperties, IClosedCaptionPropertiesStatics2>([&](IClosedCaptionPropertiesStatics2 const& f) { return f.PropertiesChanged(token); });
+    }
 }
 namespace std
 {
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::ClosedCaptioning::IClosedCaptionPropertiesStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::ClosedCaptioning::ClosedCaptionProperties> : winrt::impl::hash_base {};
 #endif
 #ifdef __cpp_lib_format

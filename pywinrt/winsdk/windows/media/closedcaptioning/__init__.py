@@ -7,6 +7,11 @@ import winsdk.system
 _ns_module = winsdk.system._import_ns_module("Windows.Media.ClosedCaptioning")
 
 try:
+    import winsdk.windows.foundation
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.ui
 except ImportError:
     pass

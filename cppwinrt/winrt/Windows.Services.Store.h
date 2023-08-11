@@ -442,6 +442,24 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStoreContext4)->SetInstallOrderForAssociatedStoreQueueItemsAsync(*(void**)(&items), &operation));
         return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Services::Store::StoreQueueItem>>{ operation, take_ownership_from_abi };
     }
+    template <typename D> auto consume_Windows_Services_Store_IStoreContext5<D>::GetUserPurchaseHistoryAsync(param::async_iterable<hstring> const& productKinds) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStoreContext5)->GetUserPurchaseHistoryAsync(*(void**)(&productKinds), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Services::Store::StoreProductQueryResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Services_Store_IStoreContext5<D>::GetAssociatedStoreProductsByInAppOfferTokenAsync(param::async_iterable<hstring> const& inAppOfferTokens) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStoreContext5)->GetAssociatedStoreProductsByInAppOfferTokenAsync(*(void**)(&inAppOfferTokens), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Services::Store::StoreProductQueryResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Services_Store_IStoreContext5<D>::RequestPurchaseByInAppOfferTokenAsync(param::hstring const& inAppOfferToken) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStoreContext5)->RequestPurchaseByInAppOfferTokenAsync(*(void**)(&inAppOfferToken), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Services::Store::StorePurchaseResult>{ operation, take_ownership_from_abi };
+    }
     template <typename D> auto consume_Windows_Services_Store_IStoreContextStatics<D>::GetDefault() const
     {
         void* value{};
@@ -618,6 +636,24 @@ namespace winrt::impl
     {
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStorePrice)->get_FormattedRecurrencePrice(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Services_Store_IStorePrice2<D>::UnformattedBasePrice() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStorePrice2)->get_UnformattedBasePrice(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Services_Store_IStorePrice2<D>::UnformattedPrice() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStorePrice2)->get_UnformattedPrice(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> auto consume_Windows_Services_Store_IStorePrice2<D>::UnformattedRecurrencePrice() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Services::Store::IStorePrice2)->get_UnformattedRecurrencePrice(&value));
         return hstring{ value, take_ownership_from_abi };
     }
     template <typename D> auto consume_Windows_Services_Store_IStoreProduct<D>::StoreId() const
@@ -1784,6 +1820,36 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Services::Store::IStoreContext5> : produce_base<D, winrt::Windows::Services::Store::IStoreContext5>
+    {
+        int32_t __stdcall GetUserPurchaseHistoryAsync(void* productKinds, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Services::Store::StoreProductQueryResult>>(this->shim().GetUserPurchaseHistoryAsync(*reinterpret_cast<winrt::Windows::Foundation::Collections::IIterable<hstring> const*>(&productKinds)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetAssociatedStoreProductsByInAppOfferTokenAsync(void* inAppOfferTokens, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Services::Store::StoreProductQueryResult>>(this->shim().GetAssociatedStoreProductsByInAppOfferTokenAsync(*reinterpret_cast<winrt::Windows::Foundation::Collections::IIterable<hstring> const*>(&inAppOfferTokens)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RequestPurchaseByInAppOfferTokenAsync(void* inAppOfferToken, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Services::Store::StorePurchaseResult>>(this->shim().RequestPurchaseByInAppOfferTokenAsync(*reinterpret_cast<hstring const*>(&inAppOfferToken)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Services::Store::IStoreContextStatics> : produce_base<D, winrt::Windows::Services::Store::IStoreContextStatics>
     {
         int32_t __stdcall GetDefault(void** value) noexcept final try
@@ -2059,6 +2125,36 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<hstring>(this->shim().FormattedRecurrencePrice());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Services::Store::IStorePrice2> : produce_base<D, winrt::Windows::Services::Store::IStorePrice2>
+    {
+        int32_t __stdcall get_UnformattedBasePrice(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().UnformattedBasePrice());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UnformattedPrice(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().UnformattedPrice());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UnformattedRecurrencePrice(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().UnformattedRecurrencePrice());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2923,6 +3019,7 @@ namespace std
     template<> struct hash<winrt::Windows::Services::Store::IStoreContext2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreContext3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreContext4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Services::Store::IStoreContext5> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreContextStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreImage> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreLicense> : winrt::impl::hash_base {};
@@ -2932,6 +3029,7 @@ namespace std
     template<> struct hash<winrt::Windows::Services::Store::IStorePackageUpdateResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStorePackageUpdateResult2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStorePrice> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Services::Store::IStorePrice2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreProduct> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreProductOptions> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Services::Store::IStoreProductPagedQueryResult> : winrt::impl::hash_base {};

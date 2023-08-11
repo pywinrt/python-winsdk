@@ -7,6 +7,7 @@ import types
 import typing
 
 import winsdk.system
+import winsdk.windows.foundation
 import winsdk.windows.ui
 
 class ClosedCaptionColor(enum.IntEnum):
@@ -69,4 +70,8 @@ class ClosedCaptionProperties(winsdk.system.Object):
     region_opacity: typing.ClassVar[ClosedCaptionOpacity]
     @staticmethod
     def _from(obj: winsdk.system.Object) -> ClosedCaptionProperties: ...
+    @staticmethod
+    def add_properties_changed(handler: winsdk.windows.foundation.EventHandler[winsdk.system.Object]) -> winsdk.windows.foundation.EventRegistrationToken: ...
+    @staticmethod
+    def remove_properties_changed(token: winsdk.windows.foundation.EventRegistrationToken) -> None: ...
 

@@ -17,6 +17,21 @@ except ImportError:
     pass
 
 try:
+    import winsdk.windows.foundation.collections
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.graphics.imaging
+except ImportError:
+    pass
+
+try:
+    import winsdk.windows.storage.streams
+except ImportError:
+    pass
+
+try:
     import winsdk.windows.ui
 except ImportError:
     pass
@@ -56,5 +71,14 @@ SecurityAppManager = _ns_module.SecurityAppManager
 ShareWindowCommandEventArgs = _ns_module.ShareWindowCommandEventArgs
 ShareWindowCommandSource = _ns_module.ShareWindowCommandSource
 TaskbarManager = _ns_module.TaskbarManager
+WindowTab = _ns_module.WindowTab
+WindowTabCloseRequestedEventArgs = _ns_module.WindowTabCloseRequestedEventArgs
+WindowTabCollection = _ns_module.WindowTabCollection
+WindowTabGroup = _ns_module.WindowTabGroup
+WindowTabIcon = _ns_module.WindowTabIcon
+WindowTabManager = _ns_module.WindowTabManager
+WindowTabSwitchRequestedEventArgs = _ns_module.WindowTabSwitchRequestedEventArgs
+WindowTabTearOutRequestedEventArgs = _ns_module.WindowTabTearOutRequestedEventArgs
+WindowTabThumbnailRequestedEventArgs = _ns_module.WindowTabThumbnailRequestedEventArgs
 IAdaptiveCard = _ns_module.IAdaptiveCard
 IAdaptiveCardBuilderStatics = _ns_module.IAdaptiveCardBuilderStatics

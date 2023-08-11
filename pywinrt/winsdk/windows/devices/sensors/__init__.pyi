@@ -185,6 +185,11 @@ class ActivitySensorTriggerDetails(winsdk.system.Object):
     def _from(obj: winsdk.system.Object) -> ActivitySensorTriggerDetails: ...
     def read_reports(self) -> typing.Optional[winsdk.windows.foundation.collections.IVectorView[ActivitySensorReadingChangeReport]]: ...
 
+class AdaptiveDimmingOptions(winsdk.system.Object):
+    allow_when_external_display_connected: winsdk.system.Boolean
+    @staticmethod
+    def _from(obj: winsdk.system.Object) -> AdaptiveDimmingOptions: ...
+
 class Altimeter(winsdk.system.Object):
     report_interval: winsdk.system.UInt32
     device_id: str
@@ -367,6 +372,7 @@ class HumanPresenceFeatures(winsdk.system.Object):
     is_wake_on_approach_supported: winsdk.system.Boolean
     sensor_id: str
     supported_wake_or_lock_distances_in_millimeters: typing.Optional[winsdk.windows.foundation.collections.IVectorView[winsdk.system.UInt32]]
+    is_adaptive_dimming_supported: winsdk.system.Boolean
     @staticmethod
     def _from(obj: winsdk.system.Object) -> HumanPresenceFeatures: ...
 
@@ -374,11 +380,17 @@ class HumanPresenceSensor(winsdk.system.Object):
     device_id: str
     max_detectable_distance_in_millimeters: typing.Optional[typing.Optional[winsdk.system.UInt32]]
     min_detectable_distance_in_millimeters: typing.Optional[typing.Optional[winsdk.system.UInt32]]
+    is_engagement_supported: winsdk.system.Boolean
+    is_presence_supported: winsdk.system.Boolean
     @staticmethod
     def _from(obj: winsdk.system.Object) -> HumanPresenceSensor: ...
     @staticmethod
+    def from_id(sensor_id: str) -> typing.Optional[HumanPresenceSensor]: ...
+    @staticmethod
     def from_id_async(sensor_id: str) -> winsdk.windows.foundation.IAsyncOperation[HumanPresenceSensor]: ...
     def get_current_reading(self) -> typing.Optional[HumanPresenceSensorReading]: ...
+    @staticmethod
+    def get_default() -> typing.Optional[HumanPresenceSensor]: ...
     @staticmethod
     def get_default_async() -> winsdk.windows.foundation.IAsyncOperation[HumanPresenceSensor]: ...
     @staticmethod
@@ -407,6 +419,10 @@ class HumanPresenceSettings(winsdk.system.Object):
     is_wake_on_approach_enabled: winsdk.system.Boolean
     is_lock_on_leave_enabled: winsdk.system.Boolean
     is_attention_aware_dimming_enabled: winsdk.system.Boolean
+    is_adaptive_dimming_enabled: winsdk.system.Boolean
+    dimming_options: typing.Optional[AdaptiveDimmingOptions]
+    lock_options: typing.Optional[LockOnLeaveOptions]
+    wake_options: typing.Optional[WakeOnApproachOptions]
     @staticmethod
     def _from(obj: winsdk.system.Object) -> HumanPresenceSettings: ...
     @staticmethod
@@ -515,6 +531,11 @@ class LightSensorReadingChangedEventArgs(winsdk.system.Object):
     reading: typing.Optional[LightSensorReading]
     @staticmethod
     def _from(obj: winsdk.system.Object) -> LightSensorReadingChangedEventArgs: ...
+
+class LockOnLeaveOptions(winsdk.system.Object):
+    allow_when_external_display_connected: winsdk.system.Boolean
+    @staticmethod
+    def _from(obj: winsdk.system.Object) -> LockOnLeaveOptions: ...
 
 class Magnetometer(winsdk.system.Object):
     report_interval: winsdk.system.UInt32
@@ -738,6 +759,12 @@ class SimpleOrientationSensorOrientationChangedEventArgs(winsdk.system.Object):
     timestamp: datetime.datetime
     @staticmethod
     def _from(obj: winsdk.system.Object) -> SimpleOrientationSensorOrientationChangedEventArgs: ...
+
+class WakeOnApproachOptions(winsdk.system.Object):
+    disable_when_battery_saver_on: winsdk.system.Boolean
+    allow_when_external_display_connected: winsdk.system.Boolean
+    @staticmethod
+    def _from(obj: winsdk.system.Object) -> WakeOnApproachOptions: ...
 
 class ISensorDataThreshold(winsdk.system.Object):
     @staticmethod

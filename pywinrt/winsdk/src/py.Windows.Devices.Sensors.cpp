@@ -29,6 +29,7 @@ namespace py::cpp::Windows::Devices::Sensors
         PyTypeObject* type_ActivitySensorReadingChangeReport;
         PyTypeObject* type_ActivitySensorReadingChangedEventArgs;
         PyTypeObject* type_ActivitySensorTriggerDetails;
+        PyTypeObject* type_AdaptiveDimmingOptions;
         PyTypeObject* type_Altimeter;
         PyTypeObject* type_AltimeterReading;
         PyTypeObject* type_AltimeterReadingChangedEventArgs;
@@ -60,6 +61,7 @@ namespace py::cpp::Windows::Devices::Sensors
         PyTypeObject* type_LightSensorDataThreshold;
         PyTypeObject* type_LightSensorReading;
         PyTypeObject* type_LightSensorReadingChangedEventArgs;
+        PyTypeObject* type_LockOnLeaveOptions;
         PyTypeObject* type_Magnetometer;
         PyTypeObject* type_MagnetometerDataThreshold;
         PyTypeObject* type_MagnetometerReading;
@@ -81,6 +83,7 @@ namespace py::cpp::Windows::Devices::Sensors
         PyTypeObject* type_SensorRotationMatrix;
         PyTypeObject* type_SimpleOrientationSensor;
         PyTypeObject* type_SimpleOrientationSensorOrientationChangedEventArgs;
+        PyTypeObject* type_WakeOnApproachOptions;
         PyTypeObject* type_ISensorDataThreshold;
     };
 
@@ -2328,6 +2331,129 @@ namespace py::cpp::Windows::Devices::Sensors
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_ActivitySensorTriggerDetails
+    };
+
+    // ----- AdaptiveDimmingOptions class --------------------
+    static constexpr const char* const type_name_AdaptiveDimmingOptions = "AdaptiveDimmingOptions";
+
+    static PyObject* _new_AdaptiveDimmingOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_AdaptiveDimmingOptions);
+        return nullptr;
+    }
+
+    static void _dealloc_AdaptiveDimmingOptions(py::wrapper::Windows::Devices::Sensors::AdaptiveDimmingOptions* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* AdaptiveDimmingOptions_get_AllowWhenExternalDisplayConnected(py::wrapper::Windows::Devices::Sensors::AdaptiveDimmingOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.AdaptiveDimmingOptions", L"AllowWhenExternalDisplayConnected"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.AllowWhenExternalDisplayConnected());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int AdaptiveDimmingOptions_put_AllowWhenExternalDisplayConnected(py::wrapper::Windows::Devices::Sensors::AdaptiveDimmingOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.AdaptiveDimmingOptions", L"AllowWhenExternalDisplayConnected"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.AllowWhenExternalDisplayConnected(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _assign_array_AdaptiveDimmingOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::Devices::Sensors::AdaptiveDimmingOptions>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_AdaptiveDimmingOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::AdaptiveDimmingOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_AdaptiveDimmingOptions[] = {
+        { "_assign_array_", _assign_array_AdaptiveDimmingOptions, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_AdaptiveDimmingOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_AdaptiveDimmingOptions[] = {
+        { "allow_when_external_display_connected", reinterpret_cast<getter>(AdaptiveDimmingOptions_get_AllowWhenExternalDisplayConnected), reinterpret_cast<setter>(AdaptiveDimmingOptions_put_AllowWhenExternalDisplayConnected), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_AdaptiveDimmingOptions[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_AdaptiveDimmingOptions) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_AdaptiveDimmingOptions) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_AdaptiveDimmingOptions) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_AdaptiveDimmingOptions) },
+        { },
+    };
+
+    static PyType_Spec type_spec_AdaptiveDimmingOptions =
+    {
+        "_winsdk_Windows_Devices_Sensors.AdaptiveDimmingOptions",
+        sizeof(py::wrapper::Windows::Devices::Sensors::AdaptiveDimmingOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_AdaptiveDimmingOptions
     };
 
     // ----- Altimeter class --------------------
@@ -6272,6 +6398,25 @@ namespace py::cpp::Windows::Devices::Sensors
         }
     }
 
+    static PyObject* HumanPresenceFeatures_get_IsAdaptiveDimmingSupported(py::wrapper::Windows::Devices::Sensors::HumanPresenceFeatures* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceFeatures", L"IsAdaptiveDimmingSupported"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.IsAdaptiveDimmingSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* _assign_array_HumanPresenceFeatures(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         auto array = std::make_unique<py::ComArray<winrt::Windows::Devices::Sensors::HumanPresenceFeatures>>();
@@ -6308,6 +6453,7 @@ namespace py::cpp::Windows::Devices::Sensors
         { "is_wake_on_approach_supported", reinterpret_cast<getter>(HumanPresenceFeatures_get_IsWakeOnApproachSupported), nullptr, nullptr, nullptr },
         { "sensor_id", reinterpret_cast<getter>(HumanPresenceFeatures_get_SensorId), nullptr, nullptr, nullptr },
         { "supported_wake_or_lock_distances_in_millimeters", reinterpret_cast<getter>(HumanPresenceFeatures_get_SupportedWakeOrLockDistancesInMillimeters), nullptr, nullptr, nullptr },
+        { "is_adaptive_dimming_supported", reinterpret_cast<getter>(HumanPresenceFeatures_get_IsAdaptiveDimmingSupported), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -6350,6 +6496,37 @@ namespace py::cpp::Windows::Devices::Sensors
         std::destroy_at(&self->obj);
         tp->tp_free(self);
         Py_DECREF(tp);
+    }
+
+    static PyObject* HumanPresenceSensor_FromId(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 1)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.Devices.Sensors.HumanPresenceSensor", L"FromId", 1))
+            {
+                py::set_arg_count_version_error(1);
+                return nullptr;
+            }
+
+            try
+            {
+                auto param0 = py::convert_to<winrt::hstring>(args, 0);
+
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSensor::FromId(param0));
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
     }
 
     static PyObject* HumanPresenceSensor_FromIdAsync(PyObject* /*unused*/, PyObject* args) noexcept
@@ -6398,6 +6575,35 @@ namespace py::cpp::Windows::Devices::Sensors
             try
             {
                 return py::convert(self->obj.GetCurrentReading());
+            }
+            catch (...)
+            {
+                py::to_PyErr();
+                return nullptr;
+            }
+        }
+        else
+        {
+            py::set_invalid_arg_count_error(arg_count);
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_GetDefault(PyObject* /*unused*/, PyObject* args) noexcept
+    {
+        auto arg_count = PyTuple_Size(args);
+
+        if (arg_count == 0)
+        {
+            if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsMethodPresent(L"Windows.Devices.Sensors.HumanPresenceSensor", L"GetDefault", 0))
+            {
+                py::set_arg_count_version_error(0);
+                return nullptr;
+            }
+
+            try
+            {
+                return py::convert(winrt::Windows::Devices::Sensors::HumanPresenceSensor::GetDefault());
             }
             catch (...)
             {
@@ -6527,6 +6733,44 @@ namespace py::cpp::Windows::Devices::Sensors
         }
     }
 
+    static PyObject* HumanPresenceSensor_get_IsEngagementSupported(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceSensor", L"IsEngagementSupported"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.IsEngagementSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSensor_get_IsPresenceSupported(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceSensor", L"IsPresenceSupported"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.IsPresenceSupported());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* HumanPresenceSensor_add_ReadingChanged(py::wrapper::Windows::Devices::Sensors::HumanPresenceSensor* self, PyObject* arg) noexcept
     {
         if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.Devices.Sensors.HumanPresenceSensor", L"ReadingChanged"))
@@ -6595,8 +6839,10 @@ namespace py::cpp::Windows::Devices::Sensors
     }
 
     static PyMethodDef _methods_HumanPresenceSensor[] = {
+        { "from_id", reinterpret_cast<PyCFunction>(HumanPresenceSensor_FromId), METH_VARARGS | METH_STATIC, nullptr },
         { "from_id_async", reinterpret_cast<PyCFunction>(HumanPresenceSensor_FromIdAsync), METH_VARARGS | METH_STATIC, nullptr },
         { "get_current_reading", reinterpret_cast<PyCFunction>(HumanPresenceSensor_GetCurrentReading), METH_VARARGS, nullptr },
+        { "get_default", reinterpret_cast<PyCFunction>(HumanPresenceSensor_GetDefault), METH_VARARGS | METH_STATIC, nullptr },
         { "get_default_async", reinterpret_cast<PyCFunction>(HumanPresenceSensor_GetDefaultAsync), METH_VARARGS | METH_STATIC, nullptr },
         { "get_device_selector", reinterpret_cast<PyCFunction>(HumanPresenceSensor_GetDeviceSelector), METH_VARARGS | METH_STATIC, nullptr },
         { "add_reading_changed", reinterpret_cast<PyCFunction>(HumanPresenceSensor_add_ReadingChanged), METH_O, nullptr },
@@ -6610,6 +6856,8 @@ namespace py::cpp::Windows::Devices::Sensors
         { "device_id", reinterpret_cast<getter>(HumanPresenceSensor_get_DeviceId), nullptr, nullptr, nullptr },
         { "max_detectable_distance_in_millimeters", reinterpret_cast<getter>(HumanPresenceSensor_get_MaxDetectableDistanceInMillimeters), nullptr, nullptr, nullptr },
         { "min_detectable_distance_in_millimeters", reinterpret_cast<getter>(HumanPresenceSensor_get_MinDetectableDistanceInMillimeters), nullptr, nullptr, nullptr },
+        { "is_engagement_supported", reinterpret_cast<getter>(HumanPresenceSensor_get_IsEngagementSupported), nullptr, nullptr, nullptr },
+        { "is_presence_supported", reinterpret_cast<getter>(HumanPresenceSensor_get_IsPresenceSupported), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -7445,6 +7693,110 @@ namespace py::cpp::Windows::Devices::Sensors
         }
     }
 
+    static PyObject* HumanPresenceSettings_get_IsAdaptiveDimmingEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceSettings", L"IsAdaptiveDimmingEnabled"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.IsAdaptiveDimmingEnabled());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int HumanPresenceSettings_put_IsAdaptiveDimmingEnabled(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceSettings", L"IsAdaptiveDimmingEnabled"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.IsAdaptiveDimmingEnabled(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_DimmingOptions(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceSettings", L"DimmingOptions"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.DimmingOptions());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_LockOptions(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceSettings", L"LockOptions"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.LockOptions());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* HumanPresenceSettings_get_WakeOptions(py::wrapper::Windows::Devices::Sensors::HumanPresenceSettings* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.HumanPresenceSettings", L"WakeOptions"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.WakeOptions());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyObject* HumanPresenceSettings_add_SettingsChanged(PyObject* /*unused*/, PyObject* arg) noexcept
     {
         if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.Devices.Sensors.HumanPresenceSettings", L"SettingsChanged"))
@@ -7535,6 +7887,10 @@ namespace py::cpp::Windows::Devices::Sensors
         { "is_wake_on_approach_enabled", reinterpret_cast<getter>(HumanPresenceSettings_get_IsWakeOnApproachEnabled), reinterpret_cast<setter>(HumanPresenceSettings_put_IsWakeOnApproachEnabled), nullptr, nullptr },
         { "is_lock_on_leave_enabled", reinterpret_cast<getter>(HumanPresenceSettings_get_IsLockOnLeaveEnabled), reinterpret_cast<setter>(HumanPresenceSettings_put_IsLockOnLeaveEnabled), nullptr, nullptr },
         { "is_attention_aware_dimming_enabled", reinterpret_cast<getter>(HumanPresenceSettings_get_IsAttentionAwareDimmingEnabled), reinterpret_cast<setter>(HumanPresenceSettings_put_IsAttentionAwareDimmingEnabled), nullptr, nullptr },
+        { "is_adaptive_dimming_enabled", reinterpret_cast<getter>(HumanPresenceSettings_get_IsAdaptiveDimmingEnabled), reinterpret_cast<setter>(HumanPresenceSettings_put_IsAdaptiveDimmingEnabled), nullptr, nullptr },
+        { "dimming_options", reinterpret_cast<getter>(HumanPresenceSettings_get_DimmingOptions), nullptr, nullptr, nullptr },
+        { "lock_options", reinterpret_cast<getter>(HumanPresenceSettings_get_LockOptions), nullptr, nullptr, nullptr },
+        { "wake_options", reinterpret_cast<getter>(HumanPresenceSettings_get_WakeOptions), nullptr, nullptr, nullptr },
         { }
     };
 
@@ -9460,6 +9816,129 @@ namespace py::cpp::Windows::Devices::Sensors
         0,
         Py_TPFLAGS_DEFAULT,
         _type_slots_LightSensorReadingChangedEventArgs
+    };
+
+    // ----- LockOnLeaveOptions class --------------------
+    static constexpr const char* const type_name_LockOnLeaveOptions = "LockOnLeaveOptions";
+
+    static PyObject* _new_LockOnLeaveOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_LockOnLeaveOptions);
+        return nullptr;
+    }
+
+    static void _dealloc_LockOnLeaveOptions(py::wrapper::Windows::Devices::Sensors::LockOnLeaveOptions* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* LockOnLeaveOptions_get_AllowWhenExternalDisplayConnected(py::wrapper::Windows::Devices::Sensors::LockOnLeaveOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.LockOnLeaveOptions", L"AllowWhenExternalDisplayConnected"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.AllowWhenExternalDisplayConnected());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int LockOnLeaveOptions_put_AllowWhenExternalDisplayConnected(py::wrapper::Windows::Devices::Sensors::LockOnLeaveOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.LockOnLeaveOptions", L"AllowWhenExternalDisplayConnected"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.AllowWhenExternalDisplayConnected(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _assign_array_LockOnLeaveOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::Devices::Sensors::LockOnLeaveOptions>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_LockOnLeaveOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::LockOnLeaveOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_LockOnLeaveOptions[] = {
+        { "_assign_array_", _assign_array_LockOnLeaveOptions, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_LockOnLeaveOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_LockOnLeaveOptions[] = {
+        { "allow_when_external_display_connected", reinterpret_cast<getter>(LockOnLeaveOptions_get_AllowWhenExternalDisplayConnected), reinterpret_cast<setter>(LockOnLeaveOptions_put_AllowWhenExternalDisplayConnected), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_LockOnLeaveOptions[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_LockOnLeaveOptions) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_LockOnLeaveOptions) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_LockOnLeaveOptions) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_LockOnLeaveOptions) },
+        { },
+    };
+
+    static PyType_Spec type_spec_LockOnLeaveOptions =
+    {
+        "_winsdk_Windows_Devices_Sensors.LockOnLeaveOptions",
+        sizeof(py::wrapper::Windows::Devices::Sensors::LockOnLeaveOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_LockOnLeaveOptions
     };
 
     // ----- Magnetometer class --------------------
@@ -13835,6 +14314,177 @@ namespace py::cpp::Windows::Devices::Sensors
         _type_slots_SimpleOrientationSensorOrientationChangedEventArgs
     };
 
+    // ----- WakeOnApproachOptions class --------------------
+    static constexpr const char* const type_name_WakeOnApproachOptions = "WakeOnApproachOptions";
+
+    static PyObject* _new_WakeOnApproachOptions(PyTypeObject* type, PyObject* args, PyObject* kwds) noexcept
+    {
+        py::set_invalid_activation_error(type_name_WakeOnApproachOptions);
+        return nullptr;
+    }
+
+    static void _dealloc_WakeOnApproachOptions(py::wrapper::Windows::Devices::Sensors::WakeOnApproachOptions* self) noexcept
+    {
+        auto tp = Py_TYPE(self);
+
+        if (PyType_IS_GC(tp))
+        {
+            PyObject_GC_UnTrack(self);
+        }
+
+        std::destroy_at(&self->obj);
+        tp->tp_free(self);
+        Py_DECREF(tp);
+    }
+
+    static PyObject* WakeOnApproachOptions_get_DisableWhenBatterySaverOn(py::wrapper::Windows::Devices::Sensors::WakeOnApproachOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.WakeOnApproachOptions", L"DisableWhenBatterySaverOn"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.DisableWhenBatterySaverOn());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WakeOnApproachOptions_put_DisableWhenBatterySaverOn(py::wrapper::Windows::Devices::Sensors::WakeOnApproachOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.WakeOnApproachOptions", L"DisableWhenBatterySaverOn"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.DisableWhenBatterySaverOn(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* WakeOnApproachOptions_get_AllowWhenExternalDisplayConnected(py::wrapper::Windows::Devices::Sensors::WakeOnApproachOptions* self, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.WakeOnApproachOptions", L"AllowWhenExternalDisplayConnected"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            return py::convert(self->obj.AllowWhenExternalDisplayConnected());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static int WakeOnApproachOptions_put_AllowWhenExternalDisplayConnected(py::wrapper::Windows::Devices::Sensors::WakeOnApproachOptions* self, PyObject* arg, void* /*unused*/) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsPropertyPresent(L"Windows.Devices.Sensors.WakeOnApproachOptions", L"AllowWhenExternalDisplayConnected"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "property is not available in this version of Windows");
+            return -1;
+        }
+
+        if (arg == nullptr)
+        {
+            PyErr_SetString(PyExc_AttributeError, "can't delete attribute");
+            return -1;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<bool>(arg);
+
+            self->obj.AllowWhenExternalDisplayConnected(param0);
+            return 0;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return -1;
+        }
+    }
+
+    static PyObject* _assign_array_WakeOnApproachOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        auto array = std::make_unique<py::ComArray<winrt::Windows::Devices::Sensors::WakeOnApproachOptions>>();
+        if (!py::cpp::_winrt::Array_Assign(arg, std::move(array)))
+        {
+            return nullptr;
+        }
+        Py_RETURN_NONE;
+    }
+
+    static PyObject* _from_WakeOnApproachOptions(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        try
+        {
+            auto return_value = py::convert_to<winrt::Windows::Foundation::IInspectable>(arg);
+            return py::convert(return_value.as<winrt::Windows::Devices::Sensors::WakeOnApproachOptions>());
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyMethodDef _methods_WakeOnApproachOptions[] = {
+        { "_assign_array_", _assign_array_WakeOnApproachOptions, METH_O | METH_STATIC, nullptr },
+        { "_from", reinterpret_cast<PyCFunction>(_from_WakeOnApproachOptions), METH_O | METH_STATIC, nullptr },
+        { }
+    };
+
+    static PyGetSetDef _getset_WakeOnApproachOptions[] = {
+        { "disable_when_battery_saver_on", reinterpret_cast<getter>(WakeOnApproachOptions_get_DisableWhenBatterySaverOn), reinterpret_cast<setter>(WakeOnApproachOptions_put_DisableWhenBatterySaverOn), nullptr, nullptr },
+        { "allow_when_external_display_connected", reinterpret_cast<getter>(WakeOnApproachOptions_get_AllowWhenExternalDisplayConnected), reinterpret_cast<setter>(WakeOnApproachOptions_put_AllowWhenExternalDisplayConnected), nullptr, nullptr },
+        { }
+    };
+
+    static PyType_Slot _type_slots_WakeOnApproachOptions[] = 
+    {
+        { Py_tp_new, reinterpret_cast<void*>(_new_WakeOnApproachOptions) },
+        { Py_tp_dealloc, reinterpret_cast<void*>(_dealloc_WakeOnApproachOptions) },
+        { Py_tp_methods, reinterpret_cast<void*>(_methods_WakeOnApproachOptions) },
+        { Py_tp_getset, reinterpret_cast<void*>(_getset_WakeOnApproachOptions) },
+        { },
+    };
+
+    static PyType_Spec type_spec_WakeOnApproachOptions =
+    {
+        "_winsdk_Windows_Devices_Sensors.WakeOnApproachOptions",
+        sizeof(py::wrapper::Windows::Devices::Sensors::WakeOnApproachOptions),
+        0,
+        Py_TPFLAGS_DEFAULT,
+        _type_slots_WakeOnApproachOptions
+    };
+
     // ----- ISensorDataThreshold interface --------------------
     static constexpr const char* const type_name_ISensorDataThreshold = "ISensorDataThreshold";
 
@@ -13958,6 +14608,7 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_VISIT(state->type_ActivitySensorReadingChangeReport);
         Py_VISIT(state->type_ActivitySensorReadingChangedEventArgs);
         Py_VISIT(state->type_ActivitySensorTriggerDetails);
+        Py_VISIT(state->type_AdaptiveDimmingOptions);
         Py_VISIT(state->type_Altimeter);
         Py_VISIT(state->type_AltimeterReading);
         Py_VISIT(state->type_AltimeterReadingChangedEventArgs);
@@ -13989,6 +14640,7 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_VISIT(state->type_LightSensorDataThreshold);
         Py_VISIT(state->type_LightSensorReading);
         Py_VISIT(state->type_LightSensorReadingChangedEventArgs);
+        Py_VISIT(state->type_LockOnLeaveOptions);
         Py_VISIT(state->type_Magnetometer);
         Py_VISIT(state->type_MagnetometerDataThreshold);
         Py_VISIT(state->type_MagnetometerReading);
@@ -14010,6 +14662,7 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_VISIT(state->type_SensorRotationMatrix);
         Py_VISIT(state->type_SimpleOrientationSensor);
         Py_VISIT(state->type_SimpleOrientationSensorOrientationChangedEventArgs);
+        Py_VISIT(state->type_WakeOnApproachOptions);
         Py_VISIT(state->type_ISensorDataThreshold);
 
         return 0;
@@ -14045,6 +14698,7 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_CLEAR(state->type_ActivitySensorReadingChangeReport);
         Py_CLEAR(state->type_ActivitySensorReadingChangedEventArgs);
         Py_CLEAR(state->type_ActivitySensorTriggerDetails);
+        Py_CLEAR(state->type_AdaptiveDimmingOptions);
         Py_CLEAR(state->type_Altimeter);
         Py_CLEAR(state->type_AltimeterReading);
         Py_CLEAR(state->type_AltimeterReadingChangedEventArgs);
@@ -14076,6 +14730,7 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_CLEAR(state->type_LightSensorDataThreshold);
         Py_CLEAR(state->type_LightSensorReading);
         Py_CLEAR(state->type_LightSensorReadingChangedEventArgs);
+        Py_CLEAR(state->type_LockOnLeaveOptions);
         Py_CLEAR(state->type_Magnetometer);
         Py_CLEAR(state->type_MagnetometerDataThreshold);
         Py_CLEAR(state->type_MagnetometerReading);
@@ -14097,6 +14752,7 @@ namespace py::cpp::Windows::Devices::Sensors
         Py_CLEAR(state->type_SensorRotationMatrix);
         Py_CLEAR(state->type_SimpleOrientationSensor);
         Py_CLEAR(state->type_SimpleOrientationSensorOrientationChangedEventArgs);
+        Py_CLEAR(state->type_WakeOnApproachOptions);
         Py_CLEAR(state->type_ISensorDataThreshold);
 
         return 0;
@@ -14262,6 +14918,12 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sensors(void) noexcept
 
     state->type_ActivitySensorTriggerDetails = py::register_python_type(module.get(), type_name_ActivitySensorTriggerDetails, &type_spec_ActivitySensorTriggerDetails, bases.get(), nullptr);
     if (!state->type_ActivitySensorTriggerDetails)
+    {
+        return nullptr;
+    }
+
+    state->type_AdaptiveDimmingOptions = py::register_python_type(module.get(), type_name_AdaptiveDimmingOptions, &type_spec_AdaptiveDimmingOptions, bases.get(), nullptr);
+    if (!state->type_AdaptiveDimmingOptions)
     {
         return nullptr;
     }
@@ -14452,6 +15114,12 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sensors(void) noexcept
         return nullptr;
     }
 
+    state->type_LockOnLeaveOptions = py::register_python_type(module.get(), type_name_LockOnLeaveOptions, &type_spec_LockOnLeaveOptions, bases.get(), nullptr);
+    if (!state->type_LockOnLeaveOptions)
+    {
+        return nullptr;
+    }
+
     state->type_Magnetometer = py::register_python_type(module.get(), type_name_Magnetometer, &type_spec_Magnetometer, bases.get(), nullptr);
     if (!state->type_Magnetometer)
     {
@@ -14574,6 +15242,12 @@ PyMODINIT_FUNC PyInit__winsdk_Windows_Devices_Sensors(void) noexcept
 
     state->type_SimpleOrientationSensorOrientationChangedEventArgs = py::register_python_type(module.get(), type_name_SimpleOrientationSensorOrientationChangedEventArgs, &type_spec_SimpleOrientationSensorOrientationChangedEventArgs, bases.get(), nullptr);
     if (!state->type_SimpleOrientationSensorOrientationChangedEventArgs)
+    {
+        return nullptr;
+    }
+
+    state->type_WakeOnApproachOptions = py::register_python_type(module.get(), type_name_WakeOnApproachOptions, &type_spec_WakeOnApproachOptions, bases.get(), nullptr);
+    if (!state->type_WakeOnApproachOptions)
     {
         return nullptr;
     }
@@ -15065,6 +15739,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::ActivitySensorTri
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::ActivitySensorTriggerDetails is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::AdaptiveDimmingOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_AdaptiveDimmingOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::AdaptiveDimmingOptions is not registered");
         return nullptr;
     }
 
@@ -15784,6 +16481,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::LightSensorReadin
     return python_type;
 }
 
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::LockOnLeaveOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_LockOnLeaveOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::LockOnLeaveOptions is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
 PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::Magnetometer>::get_python_type() noexcept {
     using namespace py::cpp::Windows::Devices::Sensors;
 
@@ -16261,6 +16981,29 @@ PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::SimpleOrientation
 
     if (!python_type) {
         PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::SimpleOrientationSensorOrientationChangedEventArgs is not registered");
+        return nullptr;
+    }
+
+    return python_type;
+}
+
+PyTypeObject* py::winrt_type<winrt::Windows::Devices::Sensors::WakeOnApproachOptions>::get_python_type() noexcept {
+    using namespace py::cpp::Windows::Devices::Sensors;
+
+    PyObject* module = PyState_FindModule(&module_def);
+
+    if (!module) {
+        PyErr_SetString(PyExc_RuntimeError, "could not find module for Windows::Devices::Sensors");
+        return nullptr;
+    }
+
+    auto state = reinterpret_cast<module_state*>(PyModule_GetState(module));
+    assert(state);
+
+    auto python_type = state->type_WakeOnApproachOptions;
+
+    if (!python_type) {
+        PyErr_SetString(PyExc_RuntimeError, "type winrt::Windows::Devices::Sensors::WakeOnApproachOptions is not registered");
         return nullptr;
     }
 

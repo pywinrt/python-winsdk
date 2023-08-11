@@ -91,5 +91,82 @@ WINRT_EXPORT namespace winrt::Windows::UI::Shell
         ITaskbarManagerStatics(std::nullptr_t = nullptr) noexcept {}
         ITaskbarManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTab :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTab>
+    {
+        IWindowTab(std::nullptr_t = nullptr) noexcept {}
+        IWindowTab(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabCloseRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabCloseRequestedEventArgs>
+    {
+        IWindowTabCloseRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabCloseRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabCollection :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabCollection>
+    {
+        IWindowTabCollection(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabCollection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabGroup :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabGroup>
+    {
+        IWindowTabGroup(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabGroup(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabIcon :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabIcon>
+    {
+        IWindowTabIcon(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabIcon(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabIconStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabIconStatics>
+    {
+        IWindowTabIconStatics(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabIconStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabManager :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabManager>
+    {
+        IWindowTabManager(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabManagerStatics>
+    {
+        IWindowTabManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabSwitchRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabSwitchRequestedEventArgs>
+    {
+        IWindowTabSwitchRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabSwitchRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabTearOutRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabTearOutRequestedEventArgs>
+    {
+        IWindowTabTearOutRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabTearOutRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IWindowTabThumbnailRequestedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWindowTabThumbnailRequestedEventArgs>
+    {
+        IWindowTabThumbnailRequestedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IWindowTabThumbnailRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
 }
 #endif

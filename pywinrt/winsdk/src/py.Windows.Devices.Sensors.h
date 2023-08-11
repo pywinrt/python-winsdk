@@ -40,6 +40,7 @@ namespace py::wrapper::Windows::Devices::Sensors
     using ActivitySensorReadingChangeReport = py::winrt_wrapper<winrt::Windows::Devices::Sensors::ActivitySensorReadingChangeReport>;
     using ActivitySensorReadingChangedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Sensors::ActivitySensorReadingChangedEventArgs>;
     using ActivitySensorTriggerDetails = py::winrt_wrapper<winrt::Windows::Devices::Sensors::ActivitySensorTriggerDetails>;
+    using AdaptiveDimmingOptions = py::winrt_wrapper<winrt::Windows::Devices::Sensors::AdaptiveDimmingOptions>;
     using Altimeter = py::winrt_wrapper<winrt::Windows::Devices::Sensors::Altimeter>;
     using AltimeterReading = py::winrt_wrapper<winrt::Windows::Devices::Sensors::AltimeterReading>;
     using AltimeterReadingChangedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Sensors::AltimeterReadingChangedEventArgs>;
@@ -71,6 +72,7 @@ namespace py::wrapper::Windows::Devices::Sensors
     using LightSensorDataThreshold = py::winrt_wrapper<winrt::Windows::Devices::Sensors::LightSensorDataThreshold>;
     using LightSensorReading = py::winrt_wrapper<winrt::Windows::Devices::Sensors::LightSensorReading>;
     using LightSensorReadingChangedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Sensors::LightSensorReadingChangedEventArgs>;
+    using LockOnLeaveOptions = py::winrt_wrapper<winrt::Windows::Devices::Sensors::LockOnLeaveOptions>;
     using Magnetometer = py::winrt_wrapper<winrt::Windows::Devices::Sensors::Magnetometer>;
     using MagnetometerDataThreshold = py::winrt_wrapper<winrt::Windows::Devices::Sensors::MagnetometerDataThreshold>;
     using MagnetometerReading = py::winrt_wrapper<winrt::Windows::Devices::Sensors::MagnetometerReading>;
@@ -92,6 +94,7 @@ namespace py::wrapper::Windows::Devices::Sensors
     using SensorRotationMatrix = py::winrt_wrapper<winrt::Windows::Devices::Sensors::SensorRotationMatrix>;
     using SimpleOrientationSensor = py::winrt_wrapper<winrt::Windows::Devices::Sensors::SimpleOrientationSensor>;
     using SimpleOrientationSensorOrientationChangedEventArgs = py::winrt_wrapper<winrt::Windows::Devices::Sensors::SimpleOrientationSensorOrientationChangedEventArgs>;
+    using WakeOnApproachOptions = py::winrt_wrapper<winrt::Windows::Devices::Sensors::WakeOnApproachOptions>;
     using ISensorDataThreshold = py::winrt_wrapper<winrt::Windows::Devices::Sensors::ISensorDataThreshold>;
 }
 
@@ -253,6 +256,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Devices::Sensors::ActivitySensorTriggerDetails>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::AdaptiveDimmingOptions>
     {
         static PyTypeObject* get_python_type() noexcept;
     };
@@ -444,6 +453,12 @@ namespace py
     };
 
     template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::LockOnLeaveOptions>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
     struct winrt_type<winrt::Windows::Devices::Sensors::Magnetometer>
     {
         static PyTypeObject* get_python_type() noexcept;
@@ -565,6 +580,12 @@ namespace py
 
     template<>
     struct winrt_type<winrt::Windows::Devices::Sensors::SimpleOrientationSensorOrientationChangedEventArgs>
+    {
+        static PyTypeObject* get_python_type() noexcept;
+    };
+
+    template<>
+    struct winrt_type<winrt::Windows::Devices::Sensors::WakeOnApproachOptions>
     {
         static PyTypeObject* get_python_type() noexcept;
     };

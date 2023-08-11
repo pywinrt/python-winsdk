@@ -373,7 +373,52 @@ namespace py::cpp::Windows::Media::ClosedCaptioning
         }
     }
 
+    static PyObject* ClosedCaptionProperties_add_PropertiesChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", L"PropertiesChanged"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>>(arg);
+
+            return py::convert(winrt::Windows::Media::ClosedCaptioning::ClosedCaptionProperties::PropertiesChanged(param0));
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
+    static PyObject* ClosedCaptionProperties_remove_PropertiesChanged(PyObject* /*unused*/, PyObject* arg) noexcept
+    {
+        if (!winrt::Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", L"PropertiesChanged"))
+        {
+            PyErr_SetString(PyExc_AttributeError, "event is not available in this version of Windows");
+            return nullptr;
+        }
+
+        try
+        {
+            auto param0 = py::convert_to<winrt::event_token>(arg);
+
+            winrt::Windows::Media::ClosedCaptioning::ClosedCaptionProperties::PropertiesChanged(param0);
+            Py_RETURN_NONE;
+        }
+        catch (...)
+        {
+            py::to_PyErr();
+            return nullptr;
+        }
+    }
+
     static PyMethodDef _methods_ClosedCaptionProperties[] = {
+        { "add_properties_changed", reinterpret_cast<PyCFunction>(ClosedCaptionProperties_add_PropertiesChanged), METH_O | METH_STATIC, nullptr },
+        { "remove_properties_changed", reinterpret_cast<PyCFunction>(ClosedCaptionProperties_remove_PropertiesChanged), METH_O | METH_STATIC, nullptr },
         { }
     };
 

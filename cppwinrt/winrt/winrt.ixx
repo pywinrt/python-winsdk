@@ -347,6 +347,7 @@ export module winrt;
 #include "winrt/Windows.System.Profile.SystemManufacturers.h"
 #include "winrt/Windows.System.RemoteDesktop.h"
 #include "winrt/Windows.System.RemoteDesktop.Input.h"
+#include "winrt/Windows.System.RemoteDesktop.Provider.h"
 #include "winrt/Windows.System.RemoteSystems.h"
 #include "winrt/Windows.System.Threading.h"
 #include "winrt/Windows.System.Threading.Core.h"

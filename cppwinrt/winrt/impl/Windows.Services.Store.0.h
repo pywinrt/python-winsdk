@@ -131,6 +131,7 @@ WINRT_EXPORT namespace winrt::Windows::Services::Store
     struct IStoreContext2;
     struct IStoreContext3;
     struct IStoreContext4;
+    struct IStoreContext5;
     struct IStoreContextStatics;
     struct IStoreImage;
     struct IStoreLicense;
@@ -140,6 +141,7 @@ WINRT_EXPORT namespace winrt::Windows::Services::Store
     struct IStorePackageUpdateResult;
     struct IStorePackageUpdateResult2;
     struct IStorePrice;
+    struct IStorePrice2;
     struct IStoreProduct;
     struct IStoreProductOptions;
     struct IStoreProductPagedQueryResult;
@@ -207,6 +209,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Services::Store::IStoreContext2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreContext3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreContext4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Services::Store::IStoreContext5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreContextStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreImage>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreLicense>{ using type = interface_category; };
@@ -216,6 +219,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Services::Store::IStorePackageUpdateResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStorePackageUpdateResult2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStorePrice>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Services::Store::IStorePrice2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreProduct>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreProductOptions>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Services::Store::IStoreProductPagedQueryResult>{ using type = interface_category; };
@@ -331,6 +335,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreContext2> = L"Windows.Services.Store.IStoreContext2";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreContext3> = L"Windows.Services.Store.IStoreContext3";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreContext4> = L"Windows.Services.Store.IStoreContext4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreContext5> = L"Windows.Services.Store.IStoreContext5";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreContextStatics> = L"Windows.Services.Store.IStoreContextStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreImage> = L"Windows.Services.Store.IStoreImage";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreLicense> = L"Windows.Services.Store.IStoreLicense";
@@ -340,6 +345,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStorePackageUpdateResult> = L"Windows.Services.Store.IStorePackageUpdateResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStorePackageUpdateResult2> = L"Windows.Services.Store.IStorePackageUpdateResult2";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStorePrice> = L"Windows.Services.Store.IStorePrice";
+    template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStorePrice2> = L"Windows.Services.Store.IStorePrice2";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreProduct> = L"Windows.Services.Store.IStoreProduct";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreProductOptions> = L"Windows.Services.Store.IStoreProductOptions";
     template <> inline constexpr auto& name_v<winrt::Windows::Services::Store::IStoreProductPagedQueryResult> = L"Windows.Services.Store.IStoreProductPagedQueryResult";
@@ -372,6 +378,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreContext2>{ 0x18BC54DA,0x7BD9,0x452C,{ 0x91,0x16,0x3B,0xBD,0x06,0xFF,0xC6,0x3A } }; // 18BC54DA-7BD9-452C-9116-3BBD06FFC63A
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreContext3>{ 0xE26226CA,0x1A01,0x4730,{ 0x85,0xA6,0xEC,0xC8,0x96,0xE4,0xAE,0x38 } }; // E26226CA-1A01-4730-85A6-ECC896E4AE38
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreContext4>{ 0xAF9C6F69,0xBEA1,0x4BF4,{ 0x8E,0x74,0xAE,0x03,0xE2,0x06,0xC6,0xB0 } }; // AF9C6F69-BEA1-4BF4-8E74-AE03E206C6B0
+    template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreContext5>{ 0x6DE6C52B,0xC43A,0x5953,{ 0xB3,0x9A,0x71,0x64,0x3C,0x57,0xD9,0x6E } }; // 6DE6C52B-C43A-5953-B39A-71643C57D96E
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreContextStatics>{ 0x9C06EE5F,0x15C0,0x4E72,{ 0x93,0x30,0xD6,0x19,0x1C,0xEB,0xD1,0x9C } }; // 9C06EE5F-15C0-4E72-9330-D6191CEBD19C
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreImage>{ 0x081FD248,0xADB4,0x4B64,{ 0xA9,0x93,0x78,0x47,0x89,0x92,0x6E,0xD5 } }; // 081FD248-ADB4-4B64-A993-784789926ED5
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreLicense>{ 0x26DC9579,0x4C4F,0x4F30,{ 0xBC,0x89,0x64,0x9F,0x60,0xE3,0x60,0x55 } }; // 26DC9579-4C4F-4F30-BC89-649F60E36055
@@ -381,6 +388,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStorePackageUpdateResult>{ 0xE79142ED,0x61F9,0x4893,{ 0xB4,0xFE,0xCF,0x19,0x16,0x03,0xAF,0x7B } }; // E79142ED-61F9-4893-B4FE-CF191603AF7B
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStorePackageUpdateResult2>{ 0x071D012E,0xBC62,0x4F2E,{ 0x87,0xEA,0x99,0xD8,0x01,0xAE,0xAF,0x98 } }; // 071D012E-BC62-4F2E-87EA-99D801AEAF98
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStorePrice>{ 0x55BA94C4,0x15F1,0x407C,{ 0x8F,0x06,0x00,0x63,0x80,0xF4,0xDF,0x0B } }; // 55BA94C4-15F1-407C-8F06-006380F4DF0B
+    template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStorePrice2>{ 0xF711573C,0x40E6,0x5641,{ 0xB0,0x63,0xF1,0xDF,0x42,0xB2,0xB1,0x2A } }; // F711573C-40E6-5641-B063-F1DF42B2B12A
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreProduct>{ 0x320E2C52,0xD760,0x450A,{ 0xA4,0x2B,0x67,0xD1,0xE9,0x01,0xAC,0x90 } }; // 320E2C52-D760-450A-A42B-67D1E901AC90
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreProductOptions>{ 0x5B34A0F9,0xA113,0x4811,{ 0x83,0x26,0x16,0x19,0x9C,0x92,0x7F,0x31 } }; // 5B34A0F9-A113-4811-8326-16199C927F31
     template <> inline constexpr guid guid_v<winrt::Windows::Services::Store::IStoreProductPagedQueryResult>{ 0xC92718C5,0x4DD5,0x4869,{ 0xA4,0x62,0xEC,0xC6,0x87,0x2E,0x43,0xC5 } }; // C92718C5-4DD5-4869-A462-ECC6872E43C5
@@ -568,6 +576,15 @@ namespace winrt::impl
             virtual int32_t __stdcall SetInstallOrderForAssociatedStoreQueueItemsAsync(void*, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Services::Store::IStoreContext5>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetUserPurchaseHistoryAsync(void*, void**) noexcept = 0;
+            virtual int32_t __stdcall GetAssociatedStoreProductsByInAppOfferTokenAsync(void*, void**) noexcept = 0;
+            virtual int32_t __stdcall RequestPurchaseByInAppOfferTokenAsync(void*, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Services::Store::IStoreContextStatics>
     {
         struct WINRT_IMPL_NOVTABLE type : inspectable_abi
@@ -650,6 +667,15 @@ namespace winrt::impl
             virtual int32_t __stdcall get_SaleEndDate(int64_t*) noexcept = 0;
             virtual int32_t __stdcall get_CurrencyCode(void**) noexcept = 0;
             virtual int32_t __stdcall get_FormattedRecurrencePrice(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Services::Store::IStorePrice2>
+    {
+        struct WINRT_IMPL_NOVTABLE type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_UnformattedBasePrice(void**) noexcept = 0;
+            virtual int32_t __stdcall get_UnformattedPrice(void**) noexcept = 0;
+            virtual int32_t __stdcall get_UnformattedRecurrencePrice(void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Services::Store::IStoreProduct>
@@ -1024,6 +1050,17 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Services_Store_IStoreContext4<D>;
     };
     template <typename D>
+    struct consume_Windows_Services_Store_IStoreContext5
+    {
+        auto GetUserPurchaseHistoryAsync(param::async_iterable<hstring> const& productKinds) const;
+        auto GetAssociatedStoreProductsByInAppOfferTokenAsync(param::async_iterable<hstring> const& inAppOfferTokens) const;
+        auto RequestPurchaseByInAppOfferTokenAsync(param::hstring const& inAppOfferToken) const;
+    };
+    template <> struct consume<winrt::Windows::Services::Store::IStoreContext5>
+    {
+        template <typename D> using type = consume_Windows_Services_Store_IStoreContext5<D>;
+    };
+    template <typename D>
     struct consume_Windows_Services_Store_IStoreContextStatics
     {
         auto GetDefault() const;
@@ -1126,6 +1163,17 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Services::Store::IStorePrice>
     {
         template <typename D> using type = consume_Windows_Services_Store_IStorePrice<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Services_Store_IStorePrice2
+    {
+        [[nodiscard]] auto UnformattedBasePrice() const;
+        [[nodiscard]] auto UnformattedPrice() const;
+        [[nodiscard]] auto UnformattedRecurrencePrice() const;
+    };
+    template <> struct consume<winrt::Windows::Services::Store::IStorePrice2>
+    {
+        template <typename D> using type = consume_Windows_Services_Store_IStorePrice2<D>;
     };
     template <typename D>
     struct consume_Windows_Services_Store_IStoreProduct

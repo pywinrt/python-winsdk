@@ -84,6 +84,13 @@ WINRT_EXPORT namespace winrt::Windows::Services::Store
         IStoreContext4(std::nullptr_t = nullptr) noexcept {}
         IStoreContext4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct WINRT_IMPL_EMPTY_BASES IStoreContext5 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStoreContext5>
+    {
+        IStoreContext5(std::nullptr_t = nullptr) noexcept {}
+        IStoreContext5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct WINRT_IMPL_EMPTY_BASES IStoreContextStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IStoreContextStatics>
@@ -147,6 +154,13 @@ WINRT_EXPORT namespace winrt::Windows::Services::Store
     {
         IStorePrice(std::nullptr_t = nullptr) noexcept {}
         IStorePrice(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct WINRT_IMPL_EMPTY_BASES IStorePrice2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStorePrice2>
+    {
+        IStorePrice2(std::nullptr_t = nullptr) noexcept {}
+        IStorePrice2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct WINRT_IMPL_EMPTY_BASES IStoreProduct :
         winrt::Windows::Foundation::IInspectable,
