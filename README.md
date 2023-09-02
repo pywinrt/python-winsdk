@@ -1,3 +1,7 @@
+DEPRECATION NOTICE: The monolithic `winsdk` package is being deprecated
+in favor of per-namespace `winrt-Namespace` packages. Please refer to
+to <https://github.com/pywinrt/pywinrt> instead.
+
 # Python Windows SDK
 
 Python bindings for the Windows SDK.
